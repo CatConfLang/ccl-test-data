@@ -1,0 +1,398 @@
+{
+  "test_suite": "CCL Parser Conformance Tests",
+  "version": "1.0.0",
+  "description": "Language-agnostic test cases for CCL (Categorical Configuration Language) parsers",
+  "source": "Combined from Gleam implementation and OCaml reference implementation",
+  "tests": [
+    {
+      "name": "basic_pairs",
+      "description": "Simple key-value pairs",
+      "input": "name = Alice\nage = 42",
+      "expected": [
+        {"key": "name", "value": "Alice"},
+        {"key": "age", "value": "42"}
+      ],
+      "tags": ["basic"]
+    },
+    {
+      "name": "equals_in_values",
+      "description": "Values can contain equals signs",
+      "input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
+      "expected": [
+        {"key": "msg", "value": "k=v pairs live happily here"},
+        {"key": "more", "value": "a=b=c=d"}
+      ],
+      "tags": ["basic", "equals"]
+    },
+    {
+      "name": "trimming_rules",
+      "description": "Key whitespace trimmed, value leading spaces trimmed",
+      "input": "  spaces around key   =    value with leading spaces removed and trailing tabs kept? \t\t",
+      "expected": [
+        {"key": "spaces around key", "value": "value with leading spaces removed and trailing tabs kept?"}
+      ],
+      "tags": ["whitespace", "trimming"]
+    },
+    {
+      "name": "multiline_values",
+      "description": "Multiline values with continuation lines",
+      "input": "description = First\n  Second line\n  Third line\ndone = yes",
+      "expected": [
+        {"key": "description", "value": "First\nSecond line\nThird line"},
+        {"key": "done", "value": "yes"}
+      ],
+      "tags": ["multiline", "continuation"]
+    },
+    {
+      "name": "blank_lines_in_values",
+      "description": "Blank lines preserved in multiline values",
+      "input": "body = Line one\n\n  Line three after a blank line",
+      "expected": [
+        {"key": "body", "value": "Line one\n\nLine three after a blank line"}
+      ],
+      "tags": ["multiline", "blank-lines"]
+    },
+    {
+      "name": "comment_extension",
+      "description": "Comments using special key",
+      "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
+      "expected": [
+        {"key": "/", "value": "This is an environment section"},
+        {"key": "port", "value": "8080"},
+        {"key": "serve", "value": "index.html"},
+        {"key": "/", "value": "Database section"},
+        {"key": "mode", "value": "in-memory"},
+        {"key": "connections", "value": "16"}
+      ],
+      "tags": ["comments", "extension"]
+    },
+    {
+      "name": "composition_stability_ab",
+      "description": "Composition preserves order (a+b)",
+      "input": "a = 1\nb = 2\nb = 20\nc = 3",
+      "expected": [
+        {"key": "a", "value": "1"},
+        {"key": "b", "value": "2"},
+        {"key": "b", "value": "20"},
+        {"key": "c", "value": "3"}
+      ],
+      "tags": ["composition", "duplicate-keys"]
+    },
+    {
+      "name": "composition_stability_ba",
+      "description": "Composition preserves order (b+a)",
+      "input": "b = 20\nc = 3\na = 1\nb = 2",
+      "expected": [
+        {"key": "b", "value": "20"},
+        {"key": "c", "value": "3"},
+        {"key": "a", "value": "1"},
+        {"key": "b", "value": "2"}
+      ],
+      "tags": ["composition", "duplicate-keys"]
+    },
+    {
+      "name": "key_with_tabs",
+      "description": "Keys with tabs are trimmed",
+      "input": "\tkey\t=\tvalue",
+      "expected": [
+        {"key": "key", "value": "\tvalue"}
+      ],
+      "tags": ["whitespace", "tabs"]
+    },
+    {
+      "name": "equals_start_continuation",
+      "description": "Lines starting with equals are continuations",
+      "input": "a = first\n= not a key",
+      "expected": [
+        {"key": "a", "value": "first\n= not a key"}
+      ],
+      "tags": ["continuation", "equals"]
+    },
+    {
+      "name": "whitespace_only_value",
+      "description": "Value that is only whitespace becomes empty",
+      "input": "onlyspaces =     ",
+      "expected": [
+        {"key": "onlyspaces", "value": ""}
+      ],
+      "tags": ["whitespace", "empty-value"]
+    },
+    {
+      "name": "unicode_graphemes",
+      "description": "Unicode characters in values",
+      "input": "emoji = 😀😃😄",
+      "expected": [
+        {"key": "emoji", "value": "😀😃😄"}
+      ],
+      "tags": ["unicode", "basic"]
+    },
+    {
+      "name": "crlf_normalization",
+      "description": "CRLF line endings normalized to LF",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "expected": [
+        {"key": "key1", "value": "value1"},
+        {"key": "key2", "value": "value2"}
+      ],
+      "tags": ["line-endings", "normalization"]
+    },
+    {
+      "name": "empty_input",
+      "description": "Empty input returns empty result",
+      "input": "",
+      "expected": [],
+      "tags": ["edge-cases", "empty"]
+    },
+    {
+      "name": "no_equals_continuation",
+      "description": "Lines without equals are continuations",
+      "input": "key = first line\nsecond line without equals\nthird line",
+      "expected": [
+        {"key": "key", "value": "first line\nsecond line without equals\nthird line"}
+      ],
+      "tags": ["continuation", "multiline"]
+    },
+    {
+      "name": "key_only_empty_value",
+      "description": "Key followed by equals and no value",
+      "input": "emptykey =\nother = value",
+      "expected": [
+        {"key": "emptykey", "value": ""},
+        {"key": "other", "value": "value"}
+      ],
+      "tags": ["empty-value", "basic"]
+    },
+    {
+      "name": "tab_preservation_in_values",
+      "description": "Tabs preserved in values, spaces trimmed",
+      "input": "mixed =    \tvalue with leading spaces and tabs\t",
+      "expected": [
+        {"key": "mixed", "value": "\tvalue with leading spaces and tabs"}
+      ],
+      "tags": ["whitespace", "tabs", "trimming"]
+    },
+    {
+      "name": "unicode_keys",
+      "description": "Unicode characters in keys",
+      "input": "配置 = config in Chinese\nключ = key in Russian",
+      "expected": [
+        {"key": "配置", "value": "config in Chinese"},
+        {"key": "ключ", "value": "key in Russian"}
+      ],
+      "tags": ["unicode", "keys"]
+    },
+    {
+      "name": "mixed_indentation_continuation",
+      "description": "Mixed spaces and tabs in continuation lines",
+      "input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
+      "expected": [
+        {"key": "description", "value": "First line\nspaces indented\n\ttab indented\n\tmixed indent"}
+      ],
+      "tags": ["multiline", "indentation", "mixed-whitespace"]
+    },
+    {
+      "name": "eof_without_newline",
+      "description": "File ending without trailing newline",
+      "input": "last = final value",
+      "expected": [
+        {"key": "last", "value": "final value"}
+      ],
+      "tags": ["edge-cases", "eof"]
+    },
+    {
+      "name": "spaces_vs_tabs_continuation",
+      "description": "Leading spaces trimmed, tabs preserved in continuation",
+      "input": "text = First\n    four spaces\n\ttab preserved",
+      "expected": [
+        {"key": "text", "value": "First\nfour spaces\n\ttab preserved"}
+      ],
+      "tags": ["continuation", "whitespace", "tabs"]
+    },
+    {
+      "name": "ocaml_basic_single",
+      "description": "Basic single key-value (from OCaml)",
+      "input": "key=val",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["basic", "ocaml"]
+    },
+    {
+      "name": "ocaml_basic_with_spaces",
+      "description": "Basic key-value with spaces (from OCaml)",
+      "input": "key = val",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["basic", "whitespace", "ocaml"]
+    },
+    {
+      "name": "ocaml_indented_key",
+      "description": "Indented key (from OCaml)",
+      "input": "  key = val",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["whitespace", "indentation", "ocaml"]
+    },
+    {
+      "name": "ocaml_trailing_spaces",
+      "description": "Key-value with trailing spaces (from OCaml)",
+      "input": "key = val  ",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["whitespace", "trimming", "ocaml"]
+    },
+    {
+      "name": "ocaml_surrounded_spaces",
+      "description": "Key-value surrounded by spaces (from OCaml)",
+      "input": "  key  =  val  ",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["whitespace", "trimming", "ocaml"]
+    },
+    {
+      "name": "ocaml_with_newlines",
+      "description": "Key-value with newlines (from OCaml)",
+      "input": "\nkey = val\n",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["line-endings", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_value",
+      "description": "Empty value (from OCaml)",
+      "input": "key =",
+      "expected": [
+        {"key": "key", "value": ""}
+      ],
+      "tags": ["empty-value", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_value_with_newline",
+      "description": "Empty value with newline (from OCaml)",
+      "input": "key =\n",
+      "expected": [
+        {"key": "key", "value": ""}
+      ],
+      "tags": ["empty-value", "line-endings", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_value_with_spaces",
+      "description": "Empty value with trailing spaces (from OCaml)",
+      "input": "key =  ",
+      "expected": [
+        {"key": "key", "value": ""}
+      ],
+      "tags": ["empty-value", "whitespace", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key",
+      "description": "Empty key (from OCaml)",
+      "input": "= val",
+      "expected": [
+        {"key": "", "value": "val"}
+      ],
+      "tags": ["empty-key", "lists", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key_indented",
+      "description": "Empty key with indentation (from OCaml)",
+      "input": "  = val",
+      "expected": [
+        {"key": "", "value": "val"}
+      ],
+      "tags": ["empty-key", "lists", "indentation", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key_with_newline",
+      "description": "Empty key with newline (from OCaml)",
+      "input": "\n  = val",
+      "expected": [
+        {"key": "", "value": "val"}
+      ],
+      "tags": ["empty-key", "lists", "line-endings", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key_and_value",
+      "description": "Both key and value empty (from OCaml)",
+      "input": "=",
+      "expected": [
+        {"key": "", "value": ""}
+      ],
+      "tags": ["empty-key", "empty-value", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key_value_spaces",
+      "description": "Empty key and value with spaces (from OCaml)",
+      "input": "  =  ",
+      "expected": [
+        {"key": "", "value": ""}
+      ],
+      "tags": ["empty-key", "empty-value", "whitespace", "ocaml"]
+    },
+    {
+      "name": "ocaml_equals_in_value",
+      "description": "Equals sign in value (from OCaml)",
+      "input": "a=b=c",
+      "expected": [
+        {"key": "a", "value": "b=c"}
+      ],
+      "tags": ["equals", "basic", "ocaml"]
+    },
+    {
+      "name": "ocaml_equals_in_value_spaces",
+      "description": "Equals in value with spaces (from OCaml)",
+      "input": "a = b = c",
+      "expected": [
+        {"key": "a", "value": "b = c"}
+      ],
+      "tags": ["equals", "whitespace", "ocaml"]
+    },
+    {
+      "name": "ocaml_multiple_pairs",
+      "description": "Multiple key-value pairs (from OCaml)",
+      "input": "key1 = val1\nkey2 = val2",
+      "expected": [
+        {"key": "key1", "value": "val1"},
+        {"key": "key2", "value": "val2"}
+      ],
+      "tags": ["basic", "multiple", "ocaml"]
+    },
+    {
+      "name": "ocaml_empty_key_list",
+      "description": "List using empty keys (from OCaml)",
+      "input": "= 3\n= 1\n= 2",
+      "expected": [
+        {"key": "", "value": "3"},
+        {"key": "", "value": "1"},
+        {"key": "", "value": "2"}
+      ],
+      "tags": ["lists", "empty-key", "ocaml"]
+    },
+    {
+      "name": "ocaml_array_style_list",
+      "description": "Array-style list with empty values (from OCaml)",
+      "input": "1 =\n2 =\n3 =",
+      "expected": [
+        {"key": "1", "value": ""},
+        {"key": "2", "value": ""},
+        {"key": "3", "value": ""}
+      ],
+      "tags": ["lists", "empty-value", "ocaml"]
+    }
+  ],
+  "error_tests": [
+    {
+      "name": "just_key_error",
+      "description": "Key without equals should cause error",
+      "input": "key",
+      "expected_error": true,
+      "error_message": "end_of_input",
+      "tags": ["error", "incomplete", "ocaml"]
+    }
+  ]
+}

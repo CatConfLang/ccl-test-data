@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CCL Test Suite Schema",
+  "description": "JSON Schema for CCL (Categorical Configuration Language) test suites",
+  "type": "object",
+  "required": ["test_suite", "version", "tests"],
+  "properties": {
+    "test_suite": {
+      "type": "string",
+      "description": "Name of the test suite"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the test suite format"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the test suite"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source information for the test cases"
+    },
+    "tests": {
+      "type": "array",
+      "description": "Array of test cases",
+      "items": {
+        "$ref": "#/definitions/test_case"
+      }
+    },
+    "error_tests": {
+      "type": "array",
+      "description": "Array of error test cases",
+      "items": {
+        "$ref": "#/definitions/error_test_case"
+      }
+    }
+  },
+  "definitions": {
+    "test_case": {
+      "type": "object",
+      "required": ["name", "description", "input", "expected", "tags"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the test case"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of what the test checks"
+        },
+        "input": {
+          "type": "string",
+          "description": "CCL input string to parse (use \\n for newlines)"
+        },
+        "expected": {
+          "type": "array",
+          "description": "Expected key-value pairs after parsing",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and filtering tests",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "error_test_case": {
+      "type": "object",
+      "required": ["name", "description", "input", "expected_error", "tags"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the error test case"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the error condition"
+        },
+        "input": {
+          "type": "string",
+          "description": "CCL input string that should cause an error"
+        },
+        "expected_error": {
+          "type": "boolean",
+          "const": true,
+          "description": "Must be true to indicate this is an error test"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "Expected error message or pattern"
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and filtering error tests",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": ["key", "value"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The key part of the entry"
+        },
+        "value": {
+          "type": "string",
+          "description": "The value part of the entry"
+        }
+      }
+    }
+  }
+}
