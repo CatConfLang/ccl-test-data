@@ -37,7 +37,7 @@
       "description": "Multiline values with continuation lines",
       "input": "description = First\n  Second line\n  Third line\ndone = yes",
       "expected": [
-        {"key": "description", "value": "First\nSecond line\nThird line"},
+        {"key": "description", "value": "First\n  Second line\n  Third line"},
         {"key": "done", "value": "yes"}
       ],
       "tags": ["multiline", "continuation"]
@@ -47,7 +47,7 @@
       "description": "Blank lines preserved in multiline values",
       "input": "body = Line one\n\n  Line three after a blank line",
       "expected": [
-        {"key": "body", "value": "Line one\n\nLine three after a blank line"}
+        {"key": "body", "value": "Line one\n\n  Line three after a blank line"}
       ],
       "tags": ["multiline", "blank-lines"]
     },
@@ -97,15 +97,6 @@
         {"key": "key", "value": "\tvalue"}
       ],
       "tags": ["whitespace", "tabs"]
-    },
-    {
-      "name": "equals_start_continuation",
-      "description": "Lines starting with equals are continuations",
-      "input": "a = first\n= not a key",
-      "expected": [
-        {"key": "a", "value": "first\n= not a key"}
-      ],
-      "tags": ["continuation", "equals"]
     },
     {
       "name": "whitespace_only_value",
@@ -185,7 +176,7 @@
       "description": "Mixed spaces and tabs in continuation lines",
       "input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
       "expected": [
-        {"key": "description", "value": "First line\nspaces indented\n\ttab indented\n\tmixed indent"}
+        {"key": "description", "value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"}
       ],
       "tags": ["multiline", "indentation", "mixed-whitespace"]
     },
@@ -200,10 +191,10 @@
     },
     {
       "name": "spaces_vs_tabs_continuation",
-      "description": "Leading spaces trimmed, tabs preserved in continuation",
+      "description": "Leading whitespace preserved in continuation lines",
       "input": "text = First\n    four spaces\n\ttab preserved",
       "expected": [
-        {"key": "text", "value": "First\nfour spaces\n\ttab preserved"}
+        {"key": "text", "value": "First\n    four spaces\n\ttab preserved"}
       ],
       "tags": ["continuation", "whitespace", "tabs"]
     },
@@ -382,6 +373,136 @@
         {"key": "3", "value": ""}
       ],
       "tags": ["lists", "empty-value"]
+    },
+    {
+      "name": "indented_equals_continuation",
+      "description": "Indented lines with equals signs become continuation values",
+      "input": "key1 = val1\n  inner = some\nkey2 = val2",
+      "expected": [
+        {"key": "key1", "value": "val1\n  inner = some"},
+        {"key": "key2", "value": "val2"}
+      ],
+      "tags": ["continuation", "indentation", "equals"]
+    },
+    {
+      "name": "nested_single_line",
+      "description": "Single line nested value",
+      "input": "key =\n  val",
+      "expected": [
+        {"key": "key", "value": "\n  val"}
+      ],
+      "tags": ["nested", "indentation"]
+    },
+    {
+      "name": "nested_multi_line",
+      "description": "Multi-line nested value",
+      "input": "key =\n  line1\n  line2",
+      "expected": [
+        {"key": "key", "value": "\n  line1\n  line2"}
+      ],
+      "tags": ["nested", "indentation", "multiline"]
+    },
+    {
+      "name": "nested_with_blank_line",
+      "description": "Multi-line nested value with blank line",
+      "input": "key =\n  line1\n\n  line2",
+      "expected": [
+        {"key": "key", "value": "\n  line1\n\n  line2"}
+      ],
+      "tags": ["nested", "indentation", "multiline", "blank-lines"]
+    },
+    {
+      "name": "nested_key_value_pairs",
+      "description": "Nested key-value pairs treated as continuation value",
+      "input": "key =\n  field1 = value1\n  field2 = value2",
+      "expected": [
+        {"key": "key", "value": "\n  field1 = value1\n  field2 = value2"}
+      ],
+      "tags": ["nested", "indentation", "equals", "continuation"]
+    },
+    {
+      "name": "deep_nested_structure",
+      "description": "Deep nested key-value pairs with multiple indentation levels",
+      "input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
+      "expected": [
+        {"key": "key", "value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"}
+      ],
+      "tags": ["nested", "indentation", "deep", "continuation"]
+    },
+    {
+      "name": "section_style_syntax",
+      "description": "Section-style syntax creates empty key entry",
+      "input": "== Section 2 ==",
+      "expected": [
+        {"key": "", "value": "= Section 2 =="}
+      ],
+      "tags": ["section", "empty-key", "special-syntax"]
+    },
+    {
+      "name": "multiple_empty_equality",
+      "description": "Multiple equals with empty key",
+      "input": " =  = ",
+      "expected": [
+        {"key": "", "value": "="}
+      ],
+      "tags": ["empty-key", "multiple-equals", "whitespace"]
+    },
+    {
+      "name": "key_with_newline_before_equals",
+      "description": "Key with newline before equals sign",
+      "input": "key \n= val\n",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["whitespace", "newlines", "edge-case"]
+    },
+    {
+      "name": "complex_multi_newline_whitespace",
+      "description": "Complex whitespace with multiple newlines",
+      "input": "  \n key  \n=  val  \n",
+      "expected": [
+        {"key": "key", "value": "val"}
+      ],
+      "tags": ["whitespace", "newlines", "edge-case"]
+    },
+    {
+      "name": "empty_value_with_trailing_spaces_newline",
+      "description": "Empty value with trailing spaces and newline",
+      "input": "key =  \n",
+      "expected": [
+        {"key": "key", "value": ""}
+      ],
+      "tags": ["empty-value", "whitespace", "newlines"]
+    },
+    {
+      "name": "empty_key_value_with_surrounding_newlines",
+      "description": "Empty key and value with surrounding newlines",
+      "input": "\n  =  \n",
+      "expected": [
+        {"key": "", "value": ""}
+      ],
+      "tags": ["empty-key", "empty-value", "newlines", "whitespace"]
+    },
+    {
+      "name": "comment_syntax_slash_equals",
+      "description": "Comment syntax using slash equals",
+      "input": "/= this is a comment",
+      "expected": [
+        {"key": "/", "value": "this is a comment"}
+      ],
+      "tags": ["comment", "special-syntax"]
+    },
+    {
+      "name": "realistic_stress_test",
+      "description": "Real-world configuration example",
+      "input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
+      "expected": [
+        {"key": "name", "value": "Dmitrii Kovanikov"},
+        {"key": "login", "value": "chshersh"},
+        {"key": "language", "value": "OCaml"},
+        {"key": "date", "value": "2024-05-25"}
+      ],
+      "tags": ["realistic", "multiple-pairs", "stress-test"]
     }
   ],
   "error_tests": [
@@ -392,6 +513,38 @@
       "expected_error": true,
       "error_message": "end_of_input",
       "tags": ["error", "incomplete"]
+    },
+    {
+      "name": "whitespace_only_error",
+      "description": "Input with only whitespace should cause error",
+      "input": "   ",
+      "expected_error": true,
+      "error_message": "not_enough_input", 
+      "tags": ["error", "whitespace", "empty"]
+    },
+    {
+      "name": "just_string_error",
+      "description": "Plain string without equals should cause error",
+      "input": "val",
+      "expected_error": true,
+      "error_message": "not_enough_input",
+      "tags": ["error", "incomplete"]
+    },
+    {
+      "name": "multiline_plain_error",
+      "description": "Multiline plain text without equals should cause error",
+      "input": "val\n  next",
+      "expected_error": true,
+      "error_message": "not_enough_input",
+      "tags": ["error", "multiline", "incomplete"]
+    },
+    {
+      "name": "multiline_plain_nested_error",
+      "description": "Nested multiline plain text should cause error",
+      "input": "\nval\n  next",
+      "expected_error": true,
+      "error_message": "end_of_input",
+      "tags": ["error", "multiline", "nested", "incomplete"]
     }
   ]
 }
