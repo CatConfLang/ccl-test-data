@@ -2,7 +2,6 @@
   "test_suite": "CCL Parser Conformance Tests",
   "version": "1.0.0",
   "description": "Language-agnostic test cases for CCL (Categorical Configuration Language) parsers",
-  "source": "Combined from Gleam implementation and OCaml reference implementation",
   "tests": [
     {
       "name": "basic_pairs",
@@ -209,180 +208,180 @@
       "tags": ["continuation", "whitespace", "tabs"]
     },
     {
-      "name": "ocaml_basic_single",
-      "description": "Basic single key-value (from OCaml)",
+      "name": "basic_single_no_spaces",
+      "description": "Basic single key-value without spaces",
       "input": "key=val",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["basic", "ocaml"]
+      "tags": ["basic"]
     },
     {
-      "name": "ocaml_basic_with_spaces",
-      "description": "Basic key-value with spaces (from OCaml)",
+      "name": "basic_with_spaces",
+      "description": "Basic key-value with spaces around equals",
       "input": "key = val",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["basic", "whitespace", "ocaml"]
+      "tags": ["basic", "whitespace"]
     },
     {
-      "name": "ocaml_indented_key",
-      "description": "Indented key (from OCaml)",
+      "name": "indented_key",
+      "description": "Key-value pair with indented key",
       "input": "  key = val",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["whitespace", "indentation", "ocaml"]
+      "tags": ["whitespace", "indentation"]
     },
     {
-      "name": "ocaml_trailing_spaces",
-      "description": "Key-value with trailing spaces (from OCaml)",
+      "name": "value_trailing_spaces",
+      "description": "Key-value with trailing spaces in value",
       "input": "key = val  ",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["whitespace", "trimming", "ocaml"]
+      "tags": ["whitespace", "trimming"]
     },
     {
-      "name": "ocaml_surrounded_spaces",
-      "description": "Key-value surrounded by spaces (from OCaml)",
+      "name": "key_value_surrounded_spaces",
+      "description": "Key-value with spaces around key and value",
       "input": "  key  =  val  ",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["whitespace", "trimming", "ocaml"]
+      "tags": ["whitespace", "trimming"]
     },
     {
-      "name": "ocaml_with_newlines",
-      "description": "Key-value with newlines (from OCaml)",
+      "name": "surrounded_by_newlines",
+      "description": "Key-value surrounded by newlines",
       "input": "\nkey = val\n",
       "expected": [
         {"key": "key", "value": "val"}
       ],
-      "tags": ["line-endings", "ocaml"]
+      "tags": ["line-endings"]
     },
     {
-      "name": "ocaml_empty_value",
-      "description": "Empty value (from OCaml)",
+      "name": "key_empty_value",
+      "description": "Key with empty value",
       "input": "key =",
       "expected": [
         {"key": "key", "value": ""}
       ],
-      "tags": ["empty-value", "ocaml"]
+      "tags": ["empty-value"]
     },
     {
-      "name": "ocaml_empty_value_with_newline",
-      "description": "Empty value with newline (from OCaml)",
+      "name": "empty_value_with_newline",
+      "description": "Key with empty value followed by newline",
       "input": "key =\n",
       "expected": [
         {"key": "key", "value": ""}
       ],
-      "tags": ["empty-value", "line-endings", "ocaml"]
+      "tags": ["empty-value", "line-endings"]
     },
     {
-      "name": "ocaml_empty_value_with_spaces",
-      "description": "Empty value with trailing spaces (from OCaml)",
+      "name": "empty_value_with_spaces",
+      "description": "Key with empty value and trailing spaces",
       "input": "key =  ",
       "expected": [
         {"key": "key", "value": ""}
       ],
-      "tags": ["empty-value", "whitespace", "ocaml"]
+      "tags": ["empty-value", "whitespace"]
     },
     {
-      "name": "ocaml_empty_key",
-      "description": "Empty key (from OCaml)",
+      "name": "empty_key_with_value",
+      "description": "Empty key with value",
       "input": "= val",
       "expected": [
         {"key": "", "value": "val"}
       ],
-      "tags": ["empty-key", "lists", "ocaml"]
+      "tags": ["empty-key", "lists"]
     },
     {
-      "name": "ocaml_empty_key_indented",
-      "description": "Empty key with indentation (from OCaml)",
+      "name": "empty_key_indented",
+      "description": "Empty key with leading indentation",
       "input": "  = val",
       "expected": [
         {"key": "", "value": "val"}
       ],
-      "tags": ["empty-key", "lists", "indentation", "ocaml"]
+      "tags": ["empty-key", "lists", "indentation"]
     },
     {
-      "name": "ocaml_empty_key_with_newline",
-      "description": "Empty key with newline (from OCaml)",
+      "name": "empty_key_with_newline",
+      "description": "Empty key with leading newline and indentation",
       "input": "\n  = val",
       "expected": [
         {"key": "", "value": "val"}
       ],
-      "tags": ["empty-key", "lists", "line-endings", "ocaml"]
+      "tags": ["empty-key", "lists", "line-endings"]
     },
     {
-      "name": "ocaml_empty_key_and_value",
-      "description": "Both key and value empty (from OCaml)",
+      "name": "empty_key_and_value",
+      "description": "Both key and value are empty",
       "input": "=",
       "expected": [
         {"key": "", "value": ""}
       ],
-      "tags": ["empty-key", "empty-value", "ocaml"]
+      "tags": ["empty-key", "empty-value"]
     },
     {
-      "name": "ocaml_empty_key_value_spaces",
-      "description": "Empty key and value with spaces (from OCaml)",
+      "name": "empty_key_value_with_spaces",
+      "description": "Empty key and value with surrounding spaces",
       "input": "  =  ",
       "expected": [
         {"key": "", "value": ""}
       ],
-      "tags": ["empty-key", "empty-value", "whitespace", "ocaml"]
+      "tags": ["empty-key", "empty-value", "whitespace"]
     },
     {
-      "name": "ocaml_equals_in_value",
-      "description": "Equals sign in value (from OCaml)",
+      "name": "equals_in_value_no_spaces",
+      "description": "Equals sign in value without spaces",
       "input": "a=b=c",
       "expected": [
         {"key": "a", "value": "b=c"}
       ],
-      "tags": ["equals", "basic", "ocaml"]
+      "tags": ["equals", "basic"]
     },
     {
-      "name": "ocaml_equals_in_value_spaces",
-      "description": "Equals in value with spaces (from OCaml)",
+      "name": "equals_in_value_with_spaces",
+      "description": "Equals sign in value with surrounding spaces",
       "input": "a = b = c",
       "expected": [
         {"key": "a", "value": "b = c"}
       ],
-      "tags": ["equals", "whitespace", "ocaml"]
+      "tags": ["equals", "whitespace"]
     },
     {
-      "name": "ocaml_multiple_pairs",
-      "description": "Multiple key-value pairs (from OCaml)",
+      "name": "multiple_key_value_pairs",
+      "description": "Multiple key-value pairs on separate lines",
       "input": "key1 = val1\nkey2 = val2",
       "expected": [
         {"key": "key1", "value": "val1"},
         {"key": "key2", "value": "val2"}
       ],
-      "tags": ["basic", "multiple", "ocaml"]
+      "tags": ["basic", "multiple"]
     },
     {
-      "name": "ocaml_empty_key_list",
-      "description": "List using empty keys (from OCaml)",
+      "name": "list_with_empty_keys",
+      "description": "List representation using empty keys",
       "input": "= 3\n= 1\n= 2",
       "expected": [
         {"key": "", "value": "3"},
         {"key": "", "value": "1"},
         {"key": "", "value": "2"}
       ],
-      "tags": ["lists", "empty-key", "ocaml"]
+      "tags": ["lists", "empty-key"]
     },
     {
-      "name": "ocaml_array_style_list",
-      "description": "Array-style list with empty values (from OCaml)",
+      "name": "array_style_list",
+      "description": "Array-style list using numeric keys with empty values",
       "input": "1 =\n2 =\n3 =",
       "expected": [
         {"key": "1", "value": ""},
         {"key": "2", "value": ""},
         {"key": "3", "value": ""}
       ],
-      "tags": ["lists", "empty-value", "ocaml"]
+      "tags": ["lists", "empty-value"]
     }
   ],
   "error_tests": [
@@ -392,7 +391,7 @@
       "input": "key",
       "expected_error": true,
       "error_message": "end_of_input",
-      "tags": ["error", "incomplete", "ocaml"]
+      "tags": ["error", "incomplete"]
     }
   ]
 }
