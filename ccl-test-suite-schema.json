@@ -34,12 +34,23 @@
       "items": {
         "$ref": "#/definitions/error_test_case"
       }
+    },
+    "nested_tests": {
+      "type": "array",
+      "description": "Array of nested structure test cases (require object construction)",
+      "items": {
+        "$ref": "#/definitions/test_case"
+      }
     }
   },
   "definitions": {
     "test_case": {
       "type": "object",
-      "required": ["name", "description", "input", "expected", "tags"],
+      "required": ["name", "description", "input", "tags"],
+      "anyOf": [
+        {"required": ["expected"]},
+        {"required": ["expected_flat", "expected_nested"]}
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -55,10 +66,22 @@
         },
         "expected": {
           "type": "array",
-          "description": "Expected key-value pairs after parsing",
+          "description": "Expected key-value pairs after flat parsing (for flat tests only)",
           "items": {
             "$ref": "#/definitions/entry"
           }
+        },
+        "expected_flat": {
+          "type": "array",
+          "description": "Expected key-value pairs after flat parsing (for nested tests)",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_nested": {
+          "type": "object",
+          "description": "Expected nested object structure after object construction",
+          "additionalProperties": true
         },
         "tags": {
           "type": "array",

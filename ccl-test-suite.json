@@ -546,5 +546,153 @@
       "error_message": "end_of_input",
       "tags": ["error", "multiline", "nested", "incomplete"]
     }
+  ],
+  "nested_tests": [
+    {
+      "name": "recursive_nested_single",
+      "description": "Single nested value should be recursively parsed",
+      "input": "database =\n  enabled = true",
+      "expected_flat": [
+        {"key": "database", "value": "\n  enabled = true"}
+      ],
+      "expected_nested": {
+        "database": {
+          "enabled": "true"
+        }
+      },
+      "tags": ["recursive", "nested", "basic"]
+    },
+    {
+      "name": "recursive_nested_multiple",
+      "description": "Multiple nested values should be recursively parsed",
+      "input": "database =\n  host = localhost\n  port = 5432\n  enabled = true",
+      "expected_flat": [
+        {"key": "database", "value": "\n  host = localhost\n  port = 5432\n  enabled = true"}
+      ],
+      "expected_nested": {
+        "database": {
+          "host": "localhost",
+          "port": "5432", 
+          "enabled": "true"
+        }
+      },
+      "tags": ["recursive", "nested", "multiple"]
+    },
+    {
+      "name": "deep_recursive_nesting",
+      "description": "Deeply nested structures should be fully parsed",
+      "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
+      "expected_flat": [
+        {"key": "server", "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"}
+      ],
+      "expected_nested": {
+        "server": {
+          "database": {
+            "host": "localhost",
+            "port": "5432"
+          },
+          "cache": {
+            "enabled": "true"
+          }
+        }
+      },
+      "tags": ["recursive", "nested", "deep"]
+    },
+    {
+      "name": "multiple_keys_same_name_merge",
+      "description": "Multiple entries with same key should merge in object construction",
+      "input": "user =\n  name = alice\nuser =\n  age = 25",
+      "expected_flat": [
+        {"key": "user", "value": "\n  name = alice"},
+        {"key": "user", "value": "\n  age = 25"}
+      ],
+      "expected_nested": {
+        "user": {
+          "name": "alice",
+          "age": "25"
+        }
+      },
+      "tags": ["merge", "duplicate-keys", "object-construction"]
+    },
+    {
+      "name": "empty_key_list_style",
+      "description": "Empty keys create list-style structures",
+      "input": "ports =\n  = 8000\n  = 8001\n  = 8002",
+      "expected_flat": [
+        {"key": "ports", "value": "\n  = 8000\n  = 8001\n  = 8002"}
+      ],
+      "expected_nested": {
+        "ports": {
+          "": ["8000", "8001", "8002"]
+        }
+      },
+      "tags": ["empty-key", "lists", "array-style"]
+    },
+    {
+      "name": "stress_test_complex_nesting",
+      "description": "Complex stress test based on OCaml reference implementation",
+      "input": "/ = This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+      "expected_flat": [
+        {"key": "/", "value": "This is a CCL document"},
+        {"key": "title", "value": "CCL Example"},
+        {"key": "database", "value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"},
+        {"key": "user", "value": "\n  guestId = 42"},
+        {"key": "user", "value": "\n  login = chshersh\n  createdAt = 2024-12-31"}
+      ],
+      "expected_nested": {
+        "/": "This is a CCL document",
+        "title": "CCL Example",
+        "database": {
+          "enabled": "true",
+          "ports": {
+            "": ["8000", "8001", "8002"]
+          },
+          "limits": {
+            "cpu": "1500mi",
+            "memory": "10Gb"
+          }
+        },
+        "user": {
+          "guestId": "42",
+          "login": "chshersh",
+          "createdAt": "2024-12-31"
+        }
+      },
+      "tags": ["stress", "complex", "merge", "empty-key", "comments"]
+    },
+    {
+      "name": "empty_key_top_level",
+      "description": "Empty keys at top level should be supported",
+      "input": "= root_value\nkey = normal\n= another_root",
+      "expected_flat": [
+        {"key": "", "value": "root_value"},
+        {"key": "key", "value": "normal"},
+        {"key": "", "value": "another_root"}
+      ],
+      "expected_nested": {
+        "": ["root_value", "another_root"],
+        "key": "normal"
+      },
+      "tags": ["empty-key", "top-level", "merge"]
+    },
+    {
+      "name": "mixed_flat_and_nested",
+      "description": "Mix of flat values and nested structures",
+      "input": "simple = value\nnested =\n  key1 = val1\n  key2 = val2\nanother = simple",
+      "expected_flat": [
+        {"key": "simple", "value": "value"},
+        {"key": "nested", "value": "\n  key1 = val1\n  key2 = val2"},
+        {"key": "another", "value": "simple"}
+      ],
+      "expected_nested": {
+        "simple": "value",
+        "nested": {
+          "key1": "val1",
+          "key2": "val2"
+        },
+        "another": "simple"
+      },
+      "tags": ["mixed", "flat", "nested"]
+    }
   ]
 }
