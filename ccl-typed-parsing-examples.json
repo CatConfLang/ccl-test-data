@@ -63,11 +63,11 @@
       "expected_typed": {
         "flag1": {"type": "BoolVal", "value": true},
         "flag2": {"type": "BoolVal", "value": true},
-        "flag3": {"type": "BoolVal", "value": true},
+        "flag3": {"type": "IntVal", "value": 1},
         "flag4": {"type": "BoolVal", "value": false},
         "flag5": {"type": "BoolVal", "value": false},
         "flag6": {"type": "BoolVal", "value": false},
-        "flag7": {"type": "BoolVal", "value": false}
+        "flag7": {"type": "IntVal", "value": 0}
       },
       "api_calls": ["get_bool(ccl, \"flag1\")", "get_bool(ccl, \"flag2\")", "get_bool(ccl, \"flag3\")", "get_bool(ccl, \"flag4\")", "get_bool(ccl, \"flag5\")", "get_bool(ccl, \"flag6\")", "get_bool(ccl, \"flag7\")"],
       "tags": ["typed_parsing", "boolean", "variants"]
