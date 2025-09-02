@@ -1,0 +1,195 @@
+{
+  "test_suite": "CCL Typed Parsing Examples",
+  "version": "1.0.0",
+  "description": "Example test cases for CCL typed parsing feature (TDD design)",
+  "source": "Language-agnostic test format for Go, Rust, Gleam, and other CCL implementations",
+  
+  "typed_parsing_tests": [
+    {
+      "name": "parse_basic_integer",
+      "description": "Parse a basic integer value",
+      "input": "port = 8080",
+      "expected_flat": [
+        {"key": "port", "value": "8080"}
+      ],
+      "expected_typed": {
+        "port": {"type": "IntVal", "value": 8080}
+      },
+      "api_calls": ["get_int(ccl, \"port\")"],
+      "tags": ["typed_parsing", "integer", "basic"]
+    },
+    
+    {
+      "name": "parse_basic_float",
+      "description": "Parse a basic float value",
+      "input": "temperature = 98.6",
+      "expected_flat": [
+        {"key": "temperature", "value": "98.6"}
+      ],
+      "expected_typed": {
+        "temperature": {"type": "FloatVal", "value": 98.6}
+      },
+      "api_calls": ["get_float(ccl, \"temperature\")"],
+      "tags": ["typed_parsing", "float", "basic"]
+    },
+    
+    {
+      "name": "parse_boolean_true",
+      "description": "Parse boolean true value",
+      "input": "enabled = true",
+      "expected_flat": [
+        {"key": "enabled", "value": "true"}
+      ],
+      "expected_typed": {
+        "enabled": {"type": "BoolVal", "value": true}
+      },
+      "api_calls": ["get_bool(ccl, \"enabled\")"],
+      "tags": ["typed_parsing", "boolean", "true"]
+    },
+    
+    {
+      "name": "parse_boolean_variants",
+      "description": "Parse various boolean representations",
+      "input": "flag1 = yes\\nflag2 = on\\nflag3 = 1\\nflag4 = false\\nflag5 = no\\nflag6 = off\\nflag7 = 0",
+      "expected_flat": [
+        {"key": "flag1", "value": "yes"},
+        {"key": "flag2", "value": "on"},
+        {"key": "flag3", "value": "1"},
+        {"key": "flag4", "value": "false"},
+        {"key": "flag5", "value": "no"},
+        {"key": "flag6", "value": "off"},
+        {"key": "flag7", "value": "0"}
+      ],
+      "expected_typed": {
+        "flag1": {"type": "BoolVal", "value": true},
+        "flag2": {"type": "BoolVal", "value": true},
+        "flag3": {"type": "BoolVal", "value": true},
+        "flag4": {"type": "BoolVal", "value": false},
+        "flag5": {"type": "BoolVal", "value": false},
+        "flag6": {"type": "BoolVal", "value": false},
+        "flag7": {"type": "BoolVal", "value": false}
+      },
+      "api_calls": ["get_bool(ccl, \"flag1\")", "get_bool(ccl, \"flag2\")", "get_bool(ccl, \"flag3\")", "get_bool(ccl, \"flag4\")", "get_bool(ccl, \"flag5\")", "get_bool(ccl, \"flag6\")", "get_bool(ccl, \"flag7\")"],
+      "tags": ["typed_parsing", "boolean", "variants"]
+    },
+    
+    {
+      "name": "parse_mixed_types",
+      "description": "Parse configuration with mixed data types using smart parsing",
+      "input": "host = localhost\\nport = 8080\\nssl = true\\ntimeout = 30.5\\ndebug = off",
+      "expected_flat": [
+        {"key": "host", "value": "localhost"},
+        {"key": "port", "value": "8080"},
+        {"key": "ssl", "value": "true"},
+        {"key": "timeout", "value": "30.5"},
+        {"key": "debug", "value": "off"}
+      ],
+      "expected_typed": {
+        "host": {"type": "StringVal", "value": "localhost"},
+        "port": {"type": "IntVal", "value": 8080},
+        "ssl": {"type": "BoolVal", "value": true},
+        "timeout": {"type": "FloatVal", "value": 30.5},
+        "debug": {"type": "BoolVal", "value": false}
+      },
+      "api_calls": ["get_typed_value(ccl, \"host\")", "get_typed_value(ccl, \"port\")", "get_typed_value(ccl, \"ssl\")", "get_typed_value(ccl, \"timeout\")", "get_typed_value(ccl, \"debug\")"],
+      "tags": ["typed_parsing", "mixed_types", "smart_parsing"]
+    },
+    
+    {
+      "name": "parse_empty_value",
+      "description": "Parse empty value as EmptyVal type",
+      "input": "empty_key =",
+      "expected_flat": [
+        {"key": "empty_key", "value": ""}
+      ],
+      "expected_typed": {
+        "empty_key": {"type": "EmptyVal", "value": null}
+      },
+      "api_calls": ["get_typed_value(ccl, \"empty_key\")"],
+      "tags": ["typed_parsing", "empty", "edge_case"]
+    },
+    
+    {
+      "name": "parse_with_whitespace",
+      "description": "Parse values with leading/trailing whitespace",
+      "input": "number =   42   \\nflag =  true  ",
+      "expected_flat": [
+        {"key": "number", "value": "  42   "},
+        {"key": "flag", "value": " true  "}
+      ],
+      "expected_typed": {
+        "number": {"type": "IntVal", "value": 42},
+        "flag": {"type": "BoolVal", "value": true}
+      },
+      "api_calls": ["get_int(ccl, \"number\")", "get_bool(ccl, \"flag\")"],
+      "tags": ["typed_parsing", "whitespace", "trimming"]
+    },
+    
+    {
+      "name": "parse_with_conservative_options",
+      "description": "Parse with conservative options - integers only",
+      "input": "number = 42\\ndecimal = 3.14\\nflag = true\\ntext = hello",
+      "expected_flat": [
+        {"key": "number", "value": "42"},
+        {"key": "decimal", "value": "3.14"},
+        {"key": "flag", "value": "true"},
+        {"key": "text", "value": "hello"}
+      ],
+      "expected_typed": {
+        "number": {"type": "IntVal", "value": 42},
+        "decimal": {"type": "StringVal", "value": "3.14"},
+        "flag": {"type": "StringVal", "value": "true"},
+        "text": {"type": "StringVal", "value": "hello"}
+      },
+      "parse_options": {
+        "parse_integers": true,
+        "parse_floats": false,
+        "parse_booleans": false
+      },
+      "api_calls": ["get_typed_value_with_options(ccl, \"number\", conservative_options)", "get_typed_value_with_options(ccl, \"decimal\", conservative_options)"],
+      "tags": ["typed_parsing", "parse_options", "conservative"]
+    }
+  ],
+  
+  "typed_parsing_error_tests": [
+    {
+      "name": "parse_integer_error",
+      "description": "Attempt to parse non-numeric string as integer should return error",
+      "input": "port = not_a_number",
+      "expected_error": true,
+      "expected_error_message": "Cannot parse 'not_a_number' as integer at path 'port'",
+      "api_call": "get_int(ccl, \"port\")",
+      "tags": ["typed_parsing", "integer", "error_handling"]
+    },
+    
+    {
+      "name": "parse_float_error",
+      "description": "Attempt to parse non-numeric string as float should return error",
+      "input": "temperature = invalid",
+      "expected_error": true,
+      "expected_error_message": "Cannot parse 'invalid' as float at path 'temperature'",
+      "api_call": "get_float(ccl, \"temperature\")",
+      "tags": ["typed_parsing", "float", "error_handling"]
+    },
+    
+    {
+      "name": "parse_boolean_error",
+      "description": "Attempt to parse invalid string as boolean should return error",
+      "input": "enabled = maybe",
+      "expected_error": true,
+      "expected_error_message": "Cannot parse 'maybe' as boolean at path 'enabled'",
+      "api_call": "get_bool(ccl, \"enabled\")",
+      "tags": ["typed_parsing", "boolean", "error_handling"]
+    },
+    
+    {
+      "name": "parse_missing_path_error",
+      "description": "Attempt to parse from non-existent path should return error",
+      "input": "existing = value",
+      "expected_error": true,
+      "expected_error_message": "Path 'missing' not found.",
+      "api_call": "get_int(ccl, \"missing\")",
+      "tags": ["typed_parsing", "missing_path", "error_handling"]
+    }
+  ]
+}
