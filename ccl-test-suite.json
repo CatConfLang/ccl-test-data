@@ -503,6 +503,47 @@
         {"key": "date", "value": "2024-05-25"}
       ],
       "tags": ["realistic", "multiple-pairs", "stress-test"]
+    },
+    {
+      "name": "quotes_treated_as_literal_unquoted",
+      "description": "Quotes should be treated as literal characters (unquoted case)",
+      "input": "host = localhost",
+      "expected": [
+        {"key": "host", "value": "localhost"}
+      ],
+      "tags": ["quotes", "literal"]
+    },
+    {
+      "name": "quotes_treated_as_literal_quoted",
+      "description": "Quotes should be treated as literal characters (quoted case)",
+      "input": "host = \"localhost\"",
+      "expected": [
+        {"key": "host", "value": "\"localhost\""}
+      ],
+      "tags": ["quotes", "literal"]
+    },
+    {
+      "name": "multiple_values_same_key_ports",
+      "description": "Multiple values for same key (ports example)",
+      "input": "ports = 8000\nports = 8001\nports = 8002",
+      "expected": [
+        {"key": "ports", "value": "8000"},
+        {"key": "ports", "value": "8001"},
+        {"key": "ports", "value": "8002"}
+      ],
+      "tags": ["duplicate-keys", "multiple-values"]
+    },
+    {
+      "name": "mixed_keys_with_duplicates",
+      "description": "Mixed keys with some duplicates",
+      "input": "name = app\nports = 8000\nname = service\nports = 8001",
+      "expected": [
+        {"key": "name", "value": "app"},
+        {"key": "ports", "value": "8000"},
+        {"key": "name", "value": "service"},
+        {"key": "ports", "value": "8001"}
+      ],
+      "tags": ["duplicate-keys", "mixed"]
     }
   ],
   "error_tests": [
