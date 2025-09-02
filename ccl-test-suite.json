@@ -734,6 +734,16 @@
         "another": "simple"
       },
       "tags": ["mixed", "flat", "nested"]
+    },
+    {
+      "name": "tab_only_indentation",
+      "description": "Multiline value using only tab characters for indentation",
+      "input": "config = First line\n\tTab indented line\n\tAnother tab line\nnext = value",
+      "expected": [
+        {"key": "config", "value": "First line\n\tTab indented line\n\tAnother tab line"},
+        {"key": "next", "value": "value"}
+      ],
+      "tags": ["multiline", "tabs", "indentation"]
     }
   ]
 }
