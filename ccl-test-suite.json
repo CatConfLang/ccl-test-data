@@ -745,5 +745,178 @@
       ],
       "tags": ["multiline", "tabs", "indentation"]
     }
+  ],
+  "algebraic_tests": [
+    {
+      "name": "monoid_identity_left_empty",
+      "description": "Empty list is left identity for entry concatenation",
+      "property": "monoid_identity_left",
+      "input1": "",
+      "input2": "key = value",
+      "expected_combined": [
+        {"key": "key", "value": "value"}
+      ],
+      "tags": ["algebraic", "monoid", "identity"]
+    },
+    {
+      "name": "monoid_identity_right_empty", 
+      "description": "Empty list is right identity for entry concatenation",
+      "property": "monoid_identity_right",
+      "input1": "key = value",
+      "input2": "",
+      "expected_combined": [
+        {"key": "key", "value": "value"}
+      ],
+      "tags": ["algebraic", "monoid", "identity"]
+    },
+    {
+      "name": "monoid_identity_both_empty",
+      "description": "Empty combined with empty produces empty",
+      "property": "monoid_identity_reflexive",
+      "input1": "",
+      "input2": "",
+      "expected_combined": [],
+      "tags": ["algebraic", "monoid", "identity"]
+    },
+    {
+      "name": "semigroup_associativity_three_configs",
+      "description": "Entry concatenation is associative: (a+b)+c = a+(b+c)",
+      "property": "semigroup_associativity",
+      "input1": "a = 1",
+      "input2": "b = 2",
+      "input3": "c = 3",
+      "expected_left_assoc": [
+        {"key": "a", "value": "1"},
+        {"key": "b", "value": "2"},
+        {"key": "c", "value": "3"}
+      ],
+      "expected_right_assoc": [
+        {"key": "a", "value": "1"},
+        {"key": "b", "value": "2"},
+        {"key": "c", "value": "3"}
+      ],
+      "tags": ["algebraic", "semigroup", "associativity"]
+    },
+    {
+      "name": "semigroup_associativity_with_duplicates",
+      "description": "Associativity preserves duplicate key order",
+      "property": "semigroup_associativity",
+      "input1": "key = first",
+      "input2": "key = second\nother = value",
+      "input3": "key = third",
+      "expected_left_assoc": [
+        {"key": "key", "value": "first"},
+        {"key": "key", "value": "second"},
+        {"key": "other", "value": "value"},
+        {"key": "key", "value": "third"}
+      ],
+      "expected_right_assoc": [
+        {"key": "key", "value": "first"},
+        {"key": "key", "value": "second"},
+        {"key": "other", "value": "value"},
+        {"key": "key", "value": "third"}
+      ],
+      "tags": ["algebraic", "semigroup", "associativity", "duplicate-keys"]
+    },
+    {
+      "name": "composition_closure_property",
+      "description": "Combining valid CCL inputs always produces valid CCL",
+      "property": "closure",
+      "input1": "name = alice\nage = 25",
+      "input2": "city = boston\nage = 26",
+      "expected_combined": [
+        {"key": "name", "value": "alice"},
+        {"key": "age", "value": "25"},
+        {"key": "city", "value": "boston"},
+        {"key": "age", "value": "26"}
+      ],
+      "tags": ["algebraic", "closure", "composition"]
+    },
+    {
+      "name": "text_concat_preserves_parsing",
+      "description": "Text concatenation with newline preserves individual parsing",
+      "property": "concatenation_equivalence", 
+      "input1": "key1 = val1",
+      "input2": "key2 = val2",
+      "expected_text_concat": "key1 = val1\nkey2 = val2",
+      "expected_combined": [
+        {"key": "key1", "value": "val1"},
+        {"key": "key2", "value": "val2"}
+      ],
+      "tags": ["algebraic", "concatenation", "text-level"]
+    },
+    {
+      "name": "multiline_composition_stability",
+      "description": "Multiline values maintain structure during composition",
+      "property": "structure_preservation",
+      "input1": "desc = Line 1\n  Line 2",
+      "input2": "other = simple",
+      "expected_combined": [
+        {"key": "desc", "value": "Line 1\n  Line 2"},
+        {"key": "other", "value": "simple"}
+      ],
+      "tags": ["algebraic", "multiline", "structure-preservation"]
+    },
+    {
+      "name": "empty_key_list_composition",
+      "description": "Empty key lists compose properly maintaining order",
+      "property": "list_composition",
+      "input1": "= first\n= second",
+      "input2": "= third\n= fourth",
+      "expected_combined": [
+        {"key": "", "value": "first"},
+        {"key": "", "value": "second"},
+        {"key": "", "value": "third"},
+        {"key": "", "value": "fourth"}
+      ],
+      "tags": ["algebraic", "empty-key", "lists", "composition"]
+    },
+    {
+      "name": "comment_preservation_composition",
+      "description": "Comment entries are preserved during composition",
+      "property": "comment_preservation",
+      "input1": "/= Section 1\nkey1 = val1",
+      "input2": "/= Section 2\nkey2 = val2", 
+      "expected_combined": [
+        {"key": "/", "value": "Section 1"},
+        {"key": "key1", "value": "val1"},
+        {"key": "/", "value": "Section 2"},
+        {"key": "key2", "value": "val2"}
+      ],
+      "tags": ["algebraic", "comments", "preservation"]
+    },
+    {
+      "name": "nested_structure_associativity",
+      "description": "Nested configurations maintain associativity",
+      "property": "nested_associativity",
+      "input1": "db =\n  host = localhost",
+      "input2": "db =\n  port = 5432",
+      "input3": "app =\n  name = myapp",
+      "expected_left_assoc": [
+        {"key": "db", "value": "\n  host = localhost"},
+        {"key": "db", "value": "\n  port = 5432"},
+        {"key": "app", "value": "\n  name = myapp"}
+      ],
+      "expected_right_assoc": [
+        {"key": "db", "value": "\n  host = localhost"},
+        {"key": "db", "value": "\n  port = 5432"},
+        {"key": "app", "value": "\n  name = myapp"}
+      ],
+      "tags": ["algebraic", "nested", "associativity"]
+    },
+    {
+      "name": "unicode_composition_stability",
+      "description": "Unicode content is stable under composition",
+      "property": "unicode_stability",
+      "input1": "配置 = 中文配置\nemoji = 😀",
+      "input2": "ключ = русский\nemoji = 😃",
+      "expected_combined": [
+        {"key": "配置", "value": "中文配置"},
+        {"key": "emoji", "value": "😀"},
+        {"key": "ключ", "value": "русский"},
+        {"key": "emoji", "value": "😃"}
+      ],
+      "tags": ["algebraic", "unicode", "composition"]
+    }
   ]
 }
