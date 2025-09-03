@@ -114,8 +114,8 @@
       "description": "Parse values with leading/trailing whitespace",
       "input": "number =   42   \\nflag =  true  ",
       "expected_flat": [
-        {"key": "number", "value": "  42   "},
-        {"key": "flag", "value": " true  "}
+        {"key": "number", "value": "42"},
+        {"key": "flag", "value": "true"}
       ],
       "expected_typed": {
         "number": {"type": "IntVal", "value": 42},
