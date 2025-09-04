@@ -48,6 +48,13 @@
       "items": {
         "$ref": "#/definitions/typed_test_case"
       }
+    },
+    "algebraic_tests": {
+      "type": "array",
+      "description": "Array of algebraic property test cases (test mathematical properties)",
+      "items": {
+        "$ref": "#/definitions/algebraic_test_case"
+      }
     }
   },
   "definitions": {
@@ -238,6 +245,46 @@
         }
       },
       "additionalProperties": false
+    },
+    "algebraic_test_case": {
+      "type": "object",
+      "required": ["name", "description", "property", "input1", "input2", "expected_combined", "tags"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the algebraic test case"
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable description of the algebraic property being tested"
+        },
+        "property": {
+          "type": "string",
+          "description": "The algebraic property being tested (e.g., 'monoid_identity_left', 'semigroup_associativity')"
+        },
+        "input1": {
+          "type": "string",
+          "description": "First CCL input string"
+        },
+        "input2": {
+          "type": "string",
+          "description": "Second CCL input string"
+        },
+        "expected_combined": {
+          "type": "array",
+          "description": "Expected result after combining input1 and input2",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and filtering algebraic tests",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
     }
   }
 }
