@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CCL Unified Test Suite Schema",
+  "description": "Unified JSON Schema for CCL test suites across all 4 architecture levels",
+  "type": "object",
+  "required": ["suite", "version", "tests"],
+  "properties": {
+    "suite": {
+      "type": "string",
+      "description": "Name of the test suite (e.g., 'CCL Entry Parsing', 'CCL Object Construction')"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the test suite format"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the test suite purpose and scope"
+    },
+    "tests": {
+      "type": "array",
+      "description": "Array of test cases",
+      "items": {
+        "$ref": "#/definitions/unified_test_case"
+      }
+    },
+    "composition_tests": {
+      "type": "array", 
+      "description": "Optional composition tests for Level 2 (entry processing)",
+      "items": {
+        "$ref": "#/definitions/composition_test_case"
+      }
+    }
+  },
+  "definitions": {
+    "unified_test_case": {
+      "type": "object",
+      "required": ["name", "input", "meta"],
+      "anyOf": [
+        {"required": ["expected"]},
+        {"required": ["expected_flat"]},
+        {"required": ["expected_flat", "expected_nested"]},
+        {"required": ["expected_error"]}
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the test case"
+        },
+        "input": {
+          "type": "string",
+          "description": "CCL input string to parse"
+        },
+        "expected": {
+          "type": "array",
+          "description": "Expected entries for Level 1-2 tests",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_flat": {
+          "type": "array", 
+          "description": "Expected flat parsing result for Level 3+ tests",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_nested": {
+          "type": "object",
+          "description": "Expected nested object structure for Level 3 tests",
+          "additionalProperties": true
+        },
+        "expected_typed": {
+          "type": "object",
+          "description": "Expected typed values for Level 4 tests",
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/definitions/typed_value"
+            }
+          }
+        },
+        "expected_error": {
+          "type": "boolean",
+          "description": "True if this test should produce an error"
+        },
+        "error_message": {
+          "type": "string",
+          "description": "Expected error message pattern"
+        },
+        "parse_options": {
+          "$ref": "#/definitions/parse_options",
+          "description": "Parsing options for Level 4 typed tests"
+        },
+        "api_calls": {
+          "type": "array",
+          "description": "API calls being tested for Level 4",
+          "items": {
+            "type": "string"
+          }
+        },
+        "meta": {
+          "$ref": "#/definitions/test_metadata",
+          "description": "Test metadata including level and categorization"
+        }
+      }
+    },
+    "composition_test_case": {
+      "type": "object",
+      "required": ["name", "property", "input1", "input2", "expected_combined", "meta"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the composition test"
+        },
+        "property": {
+          "type": "string",
+          "enum": ["monoid_identity_left", "monoid_identity_right", "semigroup_associativity", "closure", "concatenation_equivalence"],
+          "description": "Algebraic property being tested"
+        },
+        "input1": {
+          "type": "string",
+          "description": "First CCL input"
+        },
+        "input2": {
+          "type": "string",
+          "description": "Second CCL input"
+        },
+        "input3": {
+          "type": "string",
+          "description": "Third CCL input (for associativity tests)"
+        },
+        "expected_combined": {
+          "type": "array",
+          "description": "Expected result after composition",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_left_assoc": {
+          "type": "array",
+          "description": "Expected left associative result",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_right_assoc": {
+          "type": "array", 
+          "description": "Expected right associative result",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        "expected_text_concat": {
+          "type": "string",
+          "description": "Expected text concatenation result"
+        },
+        "meta": {
+          "$ref": "#/definitions/test_metadata"
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": ["key", "value"],
+      "properties": {
+        "key": {
+          "type": "string",
+          "description": "The key part of the entry"
+        },
+        "value": {
+          "type": "string", 
+          "description": "The value part of the entry"
+        }
+      }
+    },
+    "typed_value": {
+      "type": "object",
+      "required": ["type", "value"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["StringVal", "IntVal", "FloatVal", "BoolVal", "EmptyVal"],
+          "description": "The inferred type of the value"
+        },
+        "value": {
+          "oneOf": [
+            {"type": "string"},
+            {"type": "integer"},
+            {"type": "number"},
+            {"type": "boolean"},
+            {"type": "null"}
+          ],
+          "description": "The typed value (null for EmptyVal)"
+        }
+      }
+    },
+    "parse_options": {
+      "type": "object",
+      "properties": {
+        "parse_integers": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable integer parsing"
+        },
+        "parse_floats": {
+          "type": "boolean",
+          "default": true, 
+          "description": "Enable float parsing"
+        },
+        "parse_booleans": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable boolean parsing"
+        }
+      },
+      "additionalProperties": false
+    },
+    "test_metadata": {
+      "type": "object",
+      "required": ["tags", "level"],
+      "properties": {
+        "tags": {
+          "type": "array",
+          "description": "Tags for categorizing and filtering tests",
+          "items": {
+            "type": "string"
+          }
+        },
+        "level": {
+          "type": "integer",
+          "enum": [1, 2, 3, 4],
+          "description": "CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed)"
+        },
+        "feature": {
+          "type": "string",
+          "description": "Optional feature category (e.g., 'parsing', 'comments', 'nesting', 'types')"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["basic", "intermediate", "advanced"],
+          "description": "Test difficulty level"
+        }
+      }
+    }
+  }
+}
