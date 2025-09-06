@@ -115,6 +115,144 @@
         {"key": "3", "value": ""}
       ],
       "meta": {"tags": ["lists", "empty-value", "redundant"], "level": 2}
+    },
+    {
+      "name": "section_header_double_equals",
+      "input": "== Database Config ==\nhost = localhost\nport = 5432",
+      "expected": [
+        {"key": "", "value": "= Database Config =="},
+        {"key": "host", "value": "localhost"},
+        {"key": "port", "value": "5432"}
+      ],
+      "meta": {"tags": ["section-headers", "keyless-values"], "level": 2}
+    },
+    {
+      "name": "section_header_triple_equals",
+      "input": "=== Server Settings ===\nhost = 0.0.0.0\nssl = true",
+      "expected": [
+        {"key": "", "value": "== Server Settings ==="},
+        {"key": "host", "value": "0.0.0.0"},
+        {"key": "ssl", "value": "true"}
+      ],
+      "meta": {"tags": ["section-headers", "keyless-values"], "level": 2}
+    },
+    {
+      "name": "multiple_sections_with_entries",
+      "input": "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info",
+      "expected": [
+        {"key": "", "value": "= Database =="},
+        {"key": "host", "value": "localhost"},
+        {"key": "", "value": "== Cache ==="},
+        {"key": "redis", "value": "enabled"},
+        {"key": "", "value": "= Logging =="},
+        {"key": "level", "value": "info"}
+      ],
+      "meta": {"tags": ["section-headers", "multiple-sections"], "level": 2}
+    },
+    {
+      "name": "section_headers_mixed_with_lists",
+      "input": "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data",
+      "expected": [
+        {"key": "", "value": "= Configuration =="},
+        {"key": "", "value": "item1"},
+        {"key": "", "value": "item2"},
+        {"key": "key", "value": "value"},
+        {"key": "", "value": "== Next Section ==="},
+        {"key": "other", "value": "data"}
+      ],
+      "meta": {"tags": ["section-headers", "lists", "mixed-content"], "level": 2}
+    },
+    {
+      "name": "empty_section_header_only",
+      "input": "== Empty Section ==",
+      "expected": [
+        {"key": "", "value": "= Empty Section =="}
+      ],
+      "meta": {"tags": ["section-headers", "empty-section"], "level": 2}
+    },
+    {
+      "name": "section_header_at_end",
+      "input": "key = value\n== Final Section ==",
+      "expected": [
+        {"key": "key", "value": "value"},
+        {"key": "", "value": "= Final Section =="}
+      ],
+      "meta": {"tags": ["section-headers", "end-of-file"], "level": 2}
+    },
+    {
+      "name": "section_headers_no_trailing_equals",
+      "input": "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080",
+      "expected": [
+        {"key": "", "value": "= Database Config"},
+        {"key": "host", "value": "localhost"},
+        {"key": "", "value": "== Server Settings"},
+        {"key": "port", "value": "8080"}
+      ],
+      "meta": {"tags": ["section-headers", "asymmetric-equals"], "level": 2}
+    },
+    {
+      "name": "section_headers_with_colons",
+      "input": "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379",
+      "expected": [
+        {"key": "", "value": "= Database: Production =="},
+        {"key": "host", "value": "db.prod.com"},
+        {"key": "", "value": "== Cache: Redis Config ==="},
+        {"key": "port", "value": "6379"}
+      ],
+      "meta": {"tags": ["section-headers", "colon-convention", "user-text"], "level": 2}
+    },
+    {
+      "name": "spaced_equals_not_section_header",
+      "input": "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value",
+      "expected": [
+        {"key": "", "value": "= spaced equals"},
+        {"key": "", "value": "= wide spaces"},
+        {"key": "", "value": "= Real Header =="},
+        {"key": "key", "value": "value"}
+      ],
+      "meta": {"tags": ["section-headers", "spacing-edge-cases", "list-items"], "level": 2}
+    },
+    {
+      "name": "consecutive_section_headers",
+      "input": "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value",
+      "expected": [
+        {"key": "", "value": "= First Section =="},
+        {"key": "", "value": "== Nested Section ==="},
+        {"key": "", "value": "=== Deep Section ===="},
+        {"key": "key", "value": "value"}
+      ],
+      "meta": {"tags": ["section-headers", "consecutive", "hierarchical"], "level": 2}
+    },
+    {
+      "name": "section_headers_with_comments",
+      "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
+      "expected": [
+        {"key": "", "value": "= Database Config =="},
+        {"key": "/", "value": "Connection settings"},
+        {"key": "host", "value": "localhost"},
+        {"key": "", "value": "== Cache Config ==="},
+        {"key": "/", "value": "Redis configuration"},
+        {"key": "port", "value": "6379"}
+      ],
+      "meta": {"tags": ["section-headers", "comments", "mixed-content"], "level": 2}
+    },
+    {
+      "name": "multiline_section_header_value",
+      "input": "== Section Header =\n  This continues the header\nkey = value",
+      "expected": [
+        {"key": "", "value": "= Section Header =\n  This continues the header"},
+        {"key": "key", "value": "value"}
+      ],
+      "meta": {"tags": ["section-headers", "multiline", "edge-case"], "level": 2}
+    },
+    {
+      "name": "unindented_multiline_becomes_continuation",
+      "input": "== Section Header =\nThis continues the header\nkey = value",
+      "expected": [
+        {"key": "", "value": "= Section Header =\nThis continues the header"},
+        {"key": "key", "value": "value"}
+      ],
+      "meta": {"tags": ["section-headers", "unindented-continuation", "parser-behavior"], "level": 2}
     }
   ],
   "composition_tests": [
