@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "suite": "CCL Typed Access",
   "version": "1.0",
   "description": "Type-aware value extraction with validation and smart type inference - get_string(), get_int(), get_bool()",

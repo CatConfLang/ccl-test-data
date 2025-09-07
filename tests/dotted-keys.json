@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "suite": "CCL Dotted Key Expansion",
   "version": "1.0",
   "description": "Expanding dotted keys (e.g., 'database.host') into hierarchical structures - enables dual access patterns",

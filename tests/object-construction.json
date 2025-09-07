@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema.json",
+  "$schema": "./schema.json",
   "suite": "CCL Object Construction",
   "version": "1.0", 
   "description": "Converting flat Entry[] to nested objects via make_objects() - essential for hierarchical access",

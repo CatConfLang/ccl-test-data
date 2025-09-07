@@ -1,5 +1,5 @@
 {
-	"$schema": "../schema.json",
+	"$schema": "./schema.json",
 	"suite": "CCL Comment Filtering",
 	"version": "1.0",
 	"description": "Comment syntax and filtering functionality - remove documentation keys from configuration",

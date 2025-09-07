@@ -1,5 +1,5 @@
 {
-	"$schema": "../schema.json",
+	"$schema": "./schema.json",
 	"suite": "CCL Entry Processing",
 	"version": "1.0",
 	"description": "Entry composition, merging, and advanced processing - optional functionality for complex configurations",

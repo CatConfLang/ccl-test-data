@@ -1,5 +1,5 @@
 {
-	"$schema": "../schema.json",
+	"$schema": "./schema.json",
 	"suite": "CCL Comprehensive Parsing",
 	"version": "1.0",
 	"description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation.",

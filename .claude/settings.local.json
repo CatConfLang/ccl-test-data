@@ -23,7 +23,12 @@
       "Bash(git reflog:*)",
       "Bash(git gc:*)",
       "Bash(npm run test:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(mv:*)",
+      "Bash(rmdir:*)",
+      "Bash(sed:*)",
+      "Bash(npm run validate:*)",
+      "Bash(./scripts/update-readme.sh:*)"
     ],
     "deny": [],
     "ask": []

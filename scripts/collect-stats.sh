@@ -2,7 +2,7 @@
 set -e
 
 # CCL Test Statistics Collector
-# Auto-discovers and analyzes test files in feature-based structure
+# Auto-discovers and categorizes test files using their metadata
 
 cd "$(dirname "$0")/.."
 
@@ -65,11 +65,8 @@ else
     echo "🔍 Collecting CCL test statistics..."
 fi
 
-# Auto-discover test files using fd
-discover_tests() {
-    local category="$1"
-    fd -t f "\.json$" "tests/$category/" 2>/dev/null || true
-}
+# Discover all test files (excluding schema/meta files)
+ALL_TEST_FILES=($(fd -t f "\.json$" tests/ --max-depth 1 -E "schema.json" -E "pretty-print-schema.json"))
 
 # Count tests in a file
 count_tests() {
@@ -84,101 +81,111 @@ count_tests() {
     fi
 }
 
-# Get file description
+# Get file description and suite name
 get_description() {
     local file="$1"
     jq -r '.description // "No description"' "$file" 2>/dev/null || echo "No description"
+}
+
+get_suite_name() {
+    local file="$1"
+    jq -r '.suite // "Unknown"' "$file" 2>/dev/null || echo "Unknown"
+}
+
+# Categorize test file based on suite name and description
+categorize_file() {
+    local file="$1"
+    local suite=$(get_suite_name "$file")
+    local desc=$(get_description "$file")
+    local basename_file=$(basename "$file" .json)
+    
+    # Categorize based on suite name and description content
+    if [[ "$suite" =~ (Essential|Comprehensive|Object) ]] || 
+       [[ "$desc" =~ (essential|comprehensive|object-construction) ]] || 
+       [[ "$basename_file" =~ (essential-parsing|comprehensive-parsing|object-construction) ]]; then
+        echo "core"
+    elif [[ "$suite" =~ (Dotted|Comment|Processing|Typed) ]] || 
+         [[ "$desc" =~ (dotted|comment|processing|typed|composition|filtering) ]] ||
+         [[ "$basename_file" =~ (dotted-keys|comments|processing|typed-access) ]]; then
+        echo "features"
+    elif [[ "$suite" =~ (Error) ]] || [[ "$desc" =~ (error|malformed) ]]; then
+        echo "integration"
+    elif [[ "$suite" =~ (Pretty) ]] || [[ "$desc" =~ (pretty|formatting|round-trip) ]]; then
+        echo "utilities"
+    else
+        # Default fallback based on filename if metadata unclear
+        if [[ "$basename_file" =~ essential|comprehensive|object ]]; then
+            echo "core"
+        elif [[ "$basename_file" =~ dotted|comment|processing|typed ]]; then
+            echo "features"
+        elif [[ "$basename_file" =~ error ]]; then
+            echo "integration"
+        elif [[ "$basename_file" =~ pretty ]]; then
+            echo "utilities"
+        else
+            echo "other"
+        fi
+    fi
 }
 
 # Initialize counters
 declare -A CATEGORY_COUNTS
 declare -A CATEGORY_FILES
 declare -A FILE_DESCRIPTIONS
+declare -A CATEGORY_TOTALS=(["core"]=0 ["features"]=0 ["integration"]=0 ["utilities"]=0 ["other"]=0)
 
-# Discover and categorize files
+# Process all test files
 if [[ "$USE_GUM" == "true" ]]; then
     echo
-    gum style --foreground 244 "Discovering test files by category..."
+    gum style --foreground 244 "Categorizing test files by metadata..."
 fi
 
-# Core functionality tests
-CORE_FILES=($(discover_tests "core"))
-CORE_TOTAL=0
-for file in "${CORE_FILES[@]}"; do
-    if [[ -n "$file" ]]; then
+for file in "${ALL_TEST_FILES[@]}"; do
+    if [[ -n "$file" && -f "$file" ]]; then
         count=$(count_tests "$file")
-        CORE_TOTAL=$((CORE_TOTAL + count))
-        basename_file=$(basename "$file" .json)
-        CATEGORY_COUNTS["core_$basename_file"]=$count
-        CATEGORY_FILES["core_$basename_file"]="$file"
-        FILE_DESCRIPTIONS["core_$basename_file"]=$(get_description "$file")
-        
-        if [[ "$USE_GUM" == "true" ]]; then
-            gum style --foreground 244 "  Core: $basename_file ($count tests)"
+        if [[ "$count" -gt 0 ]]; then  # Only process files with actual tests
+            basename_file=$(basename "$file" .json)
+            category=$(categorize_file "$file")
+            
+            # Update category totals
+            CATEGORY_TOTALS["$category"]=$((${CATEGORY_TOTALS["$category"]} + count))
+            
+            # Store file info
+            CATEGORY_COUNTS["${category}_$basename_file"]=$count
+            CATEGORY_FILES["${category}_$basename_file"]="$file"
+            FILE_DESCRIPTIONS["${category}_$basename_file"]=$(get_description "$file")
+            
+            if [[ "$USE_GUM" == "true" ]]; then
+                # Capitalize category name for display
+                category_display=$(echo "$category" | sed 's/^./\U&/')
+                gum style --foreground 244 "  $category_display: $basename_file ($count tests)"
+            fi
         fi
     fi
 done
 
-# Feature tests
-FEATURE_FILES=($(discover_tests "features"))
-FEATURES_TOTAL=0
-for file in "${FEATURE_FILES[@]}"; do
-    if [[ -n "$file" ]]; then
-        count=$(count_tests "$file")
-        FEATURES_TOTAL=$((FEATURES_TOTAL + count))
-        basename_file=$(basename "$file" .json)
-        CATEGORY_COUNTS["features_$basename_file"]=$count
-        CATEGORY_FILES["features_$basename_file"]="$file"
-        FILE_DESCRIPTIONS["features_$basename_file"]=$(get_description "$file")
-        
-        if [[ "$USE_GUM" == "true" ]]; then
-            gum style --foreground 244 "  Feature: $basename_file ($count tests)"
-        fi
-    fi
+# Calculate total
+TOTAL_COUNT=0
+for total in "${CATEGORY_TOTALS[@]}"; do
+    TOTAL_COUNT=$((TOTAL_COUNT + total))
 done
-
-# Integration tests
-INTEGRATION_FILES=($(discover_tests "integration"))
-INTEGRATION_TOTAL=0
-for file in "${INTEGRATION_FILES[@]}"; do
-    if [[ -n "$file" ]]; then
-        count=$(count_tests "$file")
-        INTEGRATION_TOTAL=$((INTEGRATION_TOTAL + count))
-        basename_file=$(basename "$file" .json)
-        CATEGORY_COUNTS["integration_$basename_file"]=$count
-        CATEGORY_FILES["integration_$basename_file"]="$file"
-        FILE_DESCRIPTIONS["integration_$basename_file"]=$(get_description "$file")
-        
-        if [[ "$USE_GUM" == "true" ]]; then
-            gum style --foreground 244 "  Integration: $basename_file ($count tests)"
-        fi
-    fi
-done
-
-# Pretty print tests (special case)
-PRETTY_FILE="tests/pretty-print.json"
-PRETTY_COUNT=0
-if [[ -f "$PRETTY_FILE" ]]; then
-    PRETTY_COUNT=$(count_tests "$PRETTY_FILE")
-    CATEGORY_COUNTS["utility_pretty-print"]=$PRETTY_COUNT
-    CATEGORY_FILES["utility_pretty-print"]="$PRETTY_FILE"
-    FILE_DESCRIPTIONS["utility_pretty-print"]=$(get_description "$PRETTY_FILE")
-fi
-
-# Calculate totals
-TOTAL_COUNT=$((CORE_TOTAL + FEATURES_TOTAL + INTEGRATION_TOTAL + PRETTY_COUNT))
 
 # Show interactive summary
 if [[ "$USE_GUM" == "true" ]]; then
     echo
     gum style --foreground 212 --bold "📊 Test Statistics Summary"
     echo
-    gum style --foreground 33 --bold "Feature-Based Structure:"
+    gum style --foreground 33 --bold "Feature-Based Structure (Flat):"
     gum style --padding "0 2" --foreground 244 \
-        "Core: $CORE_TOTAL tests" \
-        "Features: $FEATURES_TOTAL tests" \
-        "Integration: $INTEGRATION_TOTAL tests" \
-        "Utilities: $PRETTY_COUNT tests"
+        "Core: ${CATEGORY_TOTALS['core']} tests" \
+        "Features: ${CATEGORY_TOTALS['features']} tests" \
+        "Integration: ${CATEGORY_TOTALS['integration']} tests" \
+        "Utilities: ${CATEGORY_TOTALS['utilities']} tests"
+    
+    if [[ "${CATEGORY_TOTALS['other']}" -gt 0 ]]; then
+        gum style --padding "0 2" --foreground 244 "Other: ${CATEGORY_TOTALS['other']} tests"
+    fi
+    
     echo
     gum style --foreground 33 --bold "Total: $TOTAL_COUNT tests"
     echo
@@ -188,10 +195,10 @@ fi
 # Generate JSON output
 cat << EOF
 {
-  "structure": "feature-based",
+  "structure": "flat",
   "categories": {
     "core": {
-      "total": $CORE_TOTAL,
+      "total": ${CATEGORY_TOTALS['core']},
 EOF
 
 # Add core file details
@@ -213,7 +220,7 @@ cat << EOF
 
     },
     "features": {
-      "total": $FEATURES_TOTAL,
+      "total": ${CATEGORY_TOTALS['features']},
 EOF
 
 # Add feature file details
@@ -235,7 +242,7 @@ cat << EOF
 
     },
     "integration": {
-      "total": $INTEGRATION_TOTAL,
+      "total": ${CATEGORY_TOTALS['integration']},
 EOF
 
 # Add integration file details  
@@ -257,14 +264,33 @@ cat << EOF
 
     },
     "utilities": {
-      "pretty-print": $PRETTY_COUNT
+      "total": ${CATEGORY_TOTALS['utilities']},
+EOF
+
+# Add utility file details  
+first=true
+for key in "${!CATEGORY_COUNTS[@]}"; do
+    if [[ $key == utilities_* ]]; then
+        name=${key#utilities_}
+        count=${CATEGORY_COUNTS[$key]}
+        if [[ $first == true ]]; then
+            first=false
+        else
+            echo ","
+        fi
+        echo -n "      \"$name\": $count"
+    fi
+done
+
+cat << EOF
+
     }
   },
   "totals": {
-    "core": $CORE_TOTAL,
-    "features": $FEATURES_TOTAL,
-    "integration": $INTEGRATION_TOTAL,
-    "utilities": $PRETTY_COUNT,
+    "core": ${CATEGORY_TOTALS['core']},
+    "features": ${CATEGORY_TOTALS['features']},
+    "integration": ${CATEGORY_TOTALS['integration']},
+    "utilities": ${CATEGORY_TOTALS['utilities']},
     "overall": $TOTAL_COUNT
   },
   "descriptions": {
