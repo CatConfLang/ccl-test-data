@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "suite": "CCL Entry Parsing",
   "version": "1.0",
   "description": "Level 1: Core parsing from text to Entry[] - essential for CCL compliance",

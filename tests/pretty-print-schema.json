@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CCL Pretty Print Test Schema",
+  "description": "Schema for CCL pretty-printing and round-trip validation tests",
+  "type": "object",
+  "required": ["suite", "version", "tests"],
+  "properties": {
+    "suite": {
+      "type": "string",
+      "description": "Name of the pretty-print test suite"
+    },
+    "version": {
+      "type": "string", 
+      "description": "Version of the pretty-print test format"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the pretty-print test suite"
+    },
+    "tests": {
+      "type": "array",
+      "description": "Array of pretty-print test cases",
+      "items": {
+        "$ref": "#/definitions/pretty_print_test_case"
+      }
+    }
+  },
+  "definitions": {
+    "pretty_print_test_case": {
+      "type": "object",
+      "required": ["name", "input", "expected_canonical", "meta"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Unique name for the pretty-print test case"
+        },
+        "input": {
+          "type": "string",
+          "description": "CCL input string to parse and pretty-print"
+        },
+        "property": {
+          "type": "string",
+          "enum": ["round_trip", "canonical_format", "whitespace_normalization", "deterministic"],
+          "description": "Pretty-print property being tested"
+        },
+        "expected_canonical": {
+          "type": "string",
+          "description": "Expected canonical formatted output"
+        },
+        "meta": {
+          "$ref": "schema.json#/definitions/test_metadata"
+        }
+      }
+    }
+  }
+}

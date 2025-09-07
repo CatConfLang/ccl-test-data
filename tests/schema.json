@@ -1,5 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "schema.json",
   "title": "CCL Unified Test Suite Schema",
   "description": "Unified JSON Schema for CCL test suites across all 4 architecture levels",
   "type": "object",
@@ -106,7 +107,17 @@
     },
     "composition_test_case": {
       "type": "object",
-      "required": ["name", "property", "input1", "input2", "expected_combined", "meta"],
+      "required": ["name", "property", "input1", "input2", "meta"],
+      "anyOf": [
+        {
+          "properties": {"property": {"const": "semigroup_associativity"}},
+          "required": ["expected_left_assoc", "expected_right_assoc"]
+        },
+        {
+          "properties": {"property": {"not": {"const": "semigroup_associativity"}}},
+          "required": ["expected_combined"]
+        }
+      ],
       "properties": {
         "name": {
           "type": "string",
@@ -185,7 +196,6 @@
         "value": {
           "oneOf": [
             {"type": "string"},
-            {"type": "integer"},
             {"type": "number"},
             {"type": "boolean"},
             {"type": "null"}

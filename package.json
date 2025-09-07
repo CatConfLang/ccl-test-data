@@ -8,7 +8,9 @@
     "test": "tests"
   },
   "scripts": {
-    "validate": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' -d 'tests/utilities.json' --verbose",
+    "validate": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' --verbose && cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
+    "validate:core": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' --verbose",
+    "validate:pretty-print": "cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
     "test": "npm run validate"
   },
   "keywords": [],

@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "suite": "CCL Typed Parsing",
   "version": "1.0",
   "description": "Level 4: Extracting typed values from CCL objects with type conversion",
