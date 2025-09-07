@@ -7,7 +7,14 @@
       "Bash(npm test)",
       "Bash(npx ajv validate:*)",
       "Bash(npm run validate:pretty-print:*)",
-      "Bash(npx ajv compile:*)"
+      "Bash(npx ajv compile:*)",
+      "WebSearch",
+      "Bash(./scripts/collect-stats.sh:*)",
+      "Bash(chmod:*)",
+      "Bash(npm run docs:stats:*)",
+      "Bash(npm run docs:update:*)",
+      "Bash(npm run docs:check:*)",
+      "Bash(command:*)"
     ],
     "deny": [],
     "ask": []
