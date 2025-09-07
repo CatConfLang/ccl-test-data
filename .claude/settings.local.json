@@ -28,7 +28,8 @@
       "Bash(rmdir:*)",
       "Bash(sed:*)",
       "Bash(npm run validate:*)",
-      "Bash(./scripts/update-readme.sh:*)"
+      "Bash(./scripts/update-readme.sh:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
