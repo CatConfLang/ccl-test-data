@@ -14,7 +14,11 @@
       "Bash(npm run docs:stats:*)",
       "Bash(npm run docs:update:*)",
       "Bash(npm run docs:check:*)",
-      "Bash(command:*)"
+      "Bash(command:*)",
+      "Bash(npm audit:*)",
+      "Bash(npm view:*)",
+      "Bash(npm install:*)",
+      "Bash(npm show:*)"
     ],
     "deny": [],
     "ask": []
