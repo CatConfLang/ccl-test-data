@@ -8,105 +8,105 @@
       "property": "round_trip",
       "input": "key = value\nnested =\n  sub = val",
       "expected_canonical": "key = value\nnested =\n  sub = val",
-      "meta": {"tags": ["round-trip", "basic"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "basic"], "level": 4}
     },
     {
       "name": "round_trip_whitespace_normalization",
       "property": "round_trip", 
       "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
       "expected_canonical": "key = value\nnested =\n    sub  =  val",
-      "meta": {"tags": ["round-trip", "whitespace"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "whitespace"], "level": 4}
     },
     {
       "name": "round_trip_empty_keys_lists",
       "property": "round_trip",
       "input": "= item1\n= item2\nregular = value",
       "expected_canonical": "= item1\n= item2\nregular = value", 
-      "meta": {"tags": ["round-trip", "lists"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "lists"], "level": 4}
     },
     {
       "name": "round_trip_nested_structures",
       "property": "round_trip",
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "expected_canonical": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-      "meta": {"tags": ["round-trip", "nested"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "nested"], "level": 4}
     },
     {
       "name": "round_trip_multiline_values",
       "property": "round_trip",
       "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
       "expected_canonical": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
-      "meta": {"tags": ["round-trip", "multiline"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "multiline"], "level": 4}
     },
     {
       "name": "round_trip_mixed_content",
       "property": "round_trip",
       "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
       "expected_canonical": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
-      "meta": {"tags": ["round-trip", "mixed"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "mixed"], "level": 4}
     },
     {
       "name": "canonical_format_empty_values",
       "property": "canonical_format",
       "input": "empty_key =",
       "expected_canonical": "empty_key =",
-      "meta": {"tags": ["canonical", "empty"], "level": "pretty-print"}
+      "meta": {"tags": ["canonical", "empty"], "level": 4}
     },
     {
       "name": "canonical_format_tab_preservation",
       "property": "canonical_format", 
       "input": "value_with_tabs = text\t\twith\ttabs\t",
       "expected_canonical": "value_with_tabs = text\t\twith\ttabs",
-      "meta": {"tags": ["canonical", "tabs"], "level": "pretty-print"}
+      "meta": {"tags": ["canonical", "tabs"], "level": 4}
     },
     {
       "name": "canonical_format_unicode",
       "property": "canonical_format",
       "input": "unicode = 你好世界\nemo = 🌟✨",
       "expected_canonical": "unicode = 你好世界\nemo = 🌟✨",
-      "meta": {"tags": ["canonical", "unicode"], "level": "pretty-print"}
+      "meta": {"tags": ["canonical", "unicode"], "level": 4}
     },
     {
       "name": "round_trip_complex_nesting",
       "property": "round_trip",
       "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
       "expected_canonical": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
-      "meta": {"tags": ["round-trip", "complex"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "complex"], "level": 4}
     },
     {
       "name": "canonical_format_line_endings",
       "property": "canonical_format",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "expected_canonical": "key1 = value1\nkey2 = value2",
-      "meta": {"tags": ["canonical", "crlf"], "level": "pretty-print"}
+      "meta": {"tags": ["canonical", "crlf"], "level": 4}
     },
     {
       "name": "round_trip_deeply_nested",
       "property": "round_trip", 
       "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
       "expected_canonical": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
-      "meta": {"tags": ["round-trip", "deep"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "deep"], "level": 4}
     },
     {
       "name": "canonical_format_consistent_spacing",
       "property": "canonical_format",
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
       "expected_canonical": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3", 
-      "meta": {"tags": ["canonical", "spacing"], "level": "pretty-print"}
+      "meta": {"tags": ["canonical", "spacing"], "level": 4}
     },
     {
       "name": "round_trip_empty_multiline",
       "property": "round_trip",
       "input": "empty_section =\n\nother = value",
       "expected_canonical": "empty_section =\n\nother = value",
-      "meta": {"tags": ["round-trip", "empty-multiline"], "level": "pretty-print"}
+      "meta": {"tags": ["round-trip", "empty-multiline"], "level": 4}
     },
     {
       "name": "deterministic_output",
       "property": "deterministic",
       "input": "z = last\na = first\nm = middle",
       "expected_canonical": "z = last\na = first\nm = middle",
-      "meta": {"tags": ["deterministic", "order"], "level": "pretty-print"}
+      "meta": {"tags": ["deterministic", "order"], "level": 4}
     }
   ]
 }
