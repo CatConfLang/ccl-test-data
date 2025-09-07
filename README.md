@@ -162,6 +162,34 @@ The new 4-level architecture includes **106 test cases** total:
 - Malformed input detection
 - Error message validation
 
+## Development
+
+### Prerequisites
+
+This project uses [mise](https://mise.jdx.dev/) for dependency management:
+
+```bash
+# Install mise (if not already installed)
+curl https://mise.run | sh
+
+# Install project dependencies
+mise install
+```
+
+Required tools (automatically installed by mise):
+- `jq` - JSON processor for extracting test statistics
+- `sd` - Fast find-and-replace tool for README automation
+
+### Available Scripts
+
+```bash
+npm test              # Validate schemas + check README sync
+npm run validate      # Validate all test files against schemas
+npm run docs:stats    # Show current test counts
+npm run docs:update   # Update README with latest counts
+npm run docs:check    # Verify README is up to date
+```
+
 ## Version History
 
 - **v2.0.0** - 4-level architecture with 106 comprehensive test cases

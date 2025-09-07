@@ -1,0 +1,12 @@
+[tools]
+# JSON processor for extracting test counts
+jq = "latest"
+# Fast find-and-replace tool (better than sed)
+sd = "latest"
+
+[env]
+# Ensure tools are available in PATH
+_.path = [
+    "{{config_root}}/bin",
+    "$PATH"
+]
