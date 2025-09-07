@@ -1,0 +1,341 @@
+{
+	"$schema": "../schema.json",
+	"suite": "CCL Essential Parsing",
+	"version": "1.0",
+	"description": "Core parsing functionality - minimum viable CCL implementation. Start here for rapid prototyping.",
+	"tests": [
+		{
+			"name": "basic_pairs",
+			"input": "name = Alice\nage = 42",
+			"expected": [
+				{
+					"key": "name",
+					"value": "Alice"
+				},
+				{
+					"key": "age",
+					"value": "42"
+				}
+			],
+			"meta": {
+				"tags": [
+					"basic"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "equals_in_values",
+			"input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
+			"expected": [
+				{
+					"key": "msg",
+					"value": "k=v pairs live happily here"
+				},
+				{
+					"key": "more",
+					"value": "a=b=c=d"
+				}
+			],
+			"meta": {
+				"tags": [
+					"basic",
+					"equals"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "trimming_rules",
+			"input": "  spaces around key   =    value with leading spaces removed and trailing tabs kept? \t\t",
+			"expected": [
+				{
+					"key": "spaces around key",
+					"value": "value with leading spaces removed and trailing tabs kept?"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"trimming"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "multiline_values",
+			"input": "description = First\n  Second line\n  Third line\ndone = yes",
+			"expected": [
+				{
+					"key": "description",
+					"value": "First\n  Second line\n  Third line"
+				},
+				{
+					"key": "done",
+					"value": "yes"
+				}
+			],
+			"meta": {
+				"tags": [
+					"multiline",
+					"continuation"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "blank_lines_in_values",
+			"input": "body = Line one\n\n  Line three after a blank line",
+			"expected": [
+				{
+					"key": "body",
+					"value": "Line one\n\n  Line three after a blank line"
+				}
+			],
+			"meta": {
+				"tags": [
+					"multiline",
+					"blank-lines"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "no_equals_continuation",
+			"input": "key = first line\nsecond line without equals\nthird line",
+			"expected": [
+				{
+					"key": "key",
+					"value": "first line\nsecond line without equals\nthird line"
+				}
+			],
+			"meta": {
+				"tags": [
+					"continuation",
+					"multiline"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "key_only_empty_value",
+			"input": "emptykey =\nother = value",
+			"expected": [
+				{
+					"key": "emptykey",
+					"value": ""
+				},
+				{
+					"key": "other",
+					"value": "value"
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-value",
+					"basic"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_with_value",
+			"input": "= val",
+			"expected": [
+				{
+					"key": "",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"lists"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_and_value",
+			"input": "=",
+			"expected": [
+				{
+					"key": "",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"empty-value"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "unicode_graphemes",
+			"input": "emoji = 😀😃😄",
+			"expected": [
+				{
+					"key": "emoji",
+					"value": "😀😃😄"
+				}
+			],
+			"meta": {
+				"tags": [
+					"unicode",
+					"basic"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "unicode_keys",
+			"input": "配置 = config in Chinese\nключ = key in Russian",
+			"expected": [
+				{
+					"key": "配置",
+					"value": "config in Chinese"
+				},
+				{
+					"key": "ключ",
+					"value": "key in Russian"
+				}
+			],
+			"meta": {
+				"tags": [
+					"unicode",
+					"keys"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "crlf_normalization",
+			"input": "key1 = value1\r\nkey2 = value2\r\n",
+			"expected": [
+				{
+					"key": "key1",
+					"value": "value1"
+				},
+				{
+					"key": "key2",
+					"value": "value2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"line-endings",
+					"normalization"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_input",
+			"input": "",
+			"expected": [],
+			"meta": {
+				"tags": [
+					"edge-cases",
+					"empty"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "eof_without_newline",
+			"input": "last = final value",
+			"expected": [
+				{
+					"key": "last",
+					"value": "final value"
+				}
+			],
+			"meta": {
+				"tags": [
+					"edge-cases",
+					"eof"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "tab_preservation_in_values",
+			"input": "mixed =    \tvalue with leading spaces and tabs\t",
+			"expected": [
+				{
+					"key": "mixed",
+					"value": "\tvalue with leading spaces and tabs"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"tabs",
+					"trimming"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "mixed_indentation_continuation",
+			"input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
+			"expected": [
+				{
+					"key": "description",
+					"value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"
+				}
+			],
+			"meta": {
+				"tags": [
+					"multiline",
+					"indentation",
+					"mixed-whitespace"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "indented_equals_continuation",
+			"input": "key1 = val1\n  inner = some\nkey2 = val2",
+			"expected": [
+				{
+					"key": "key1",
+					"value": "val1\n  inner = some"
+				},
+				{
+					"key": "key2",
+					"value": "val2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"continuation",
+					"indentation",
+					"equals"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "nested_key_value_pairs",
+			"input": "key =\n  field1 = value1\n  field2 = value2",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\n  field1 = value1\n  field2 = value2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"nested",
+					"indentation",
+					"equals",
+					"continuation"
+				],
+				"level": 1
+			}
+		}
+	]
+}

@@ -189,14 +189,13 @@ description = This is a multiline
 
 ## Core Concepts
 
-### The 4-Level Architecture
+### Implementation Architecture
 
-CCL implementations typically follow a 4-level architecture:
+CCL implementations follow a feature-based architecture:
 
-1. **Level 1: Entry Parsing** - Parse text into key-value entries
-2. **Level 2: Entry Processing** - Filter comments, handle composition  
-3. **Level 3: Object Construction** - Build nested objects from flat entries
-4. **Level 4: Typed Parsing** - Provide type-aware value extraction
+1. **Essential Parsing** - Parse text into key-value entries
+2. **Object Construction** - Build nested objects from flat entries  
+3. **Optional Features** - Choose dotted keys, comments, typed access, etc.
 
 ### Key Features
 

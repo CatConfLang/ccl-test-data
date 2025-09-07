@@ -8,8 +8,8 @@
     "test": "tests"
   },
   "scripts": {
-    "validate": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' --verbose && cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
-    "validate:core": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' --verbose",
+    "validate": "ajv validate -s tests/schema.json -d 'tests/core/*.json' -d 'tests/features/*.json' -d 'tests/integration/*.json' --verbose && cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
+    "validate:core": "ajv validate -s tests/schema.json -d 'tests/core/*.json' -d 'tests/features/*.json' -d 'tests/integration/*.json' --verbose",
     "validate:pretty-print": "cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
     "docs:stats": "./scripts/collect-stats.sh",
     "docs:update": "./scripts/update-readme.sh",

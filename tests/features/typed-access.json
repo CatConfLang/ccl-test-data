@@ -1,8 +1,8 @@
 {
-  "$schema": "./schema.json",
-  "suite": "CCL Typed Parsing",
+  "$schema": "../schema.json",
+  "suite": "CCL Typed Access",
   "version": "1.0",
-  "description": "Level 4: Extracting typed values from CCL objects with type conversion",
+  "description": "Type-aware value extraction with validation and smart type inference - get_string(), get_int(), get_bool()",
   "tests": [
     {
       "name": "parse_basic_integer",

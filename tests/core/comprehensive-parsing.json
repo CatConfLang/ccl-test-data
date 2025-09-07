@@ -1,0 +1,577 @@
+{
+	"$schema": "../schema.json",
+	"suite": "CCL Comprehensive Parsing",
+	"version": "1.0",
+	"description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation.",
+	"tests": [
+		{
+			"name": "basic_single_no_spaces",
+			"input": "key=val",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"basic",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "basic_with_spaces",
+			"input": "key = val",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"basic",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "indented_key",
+			"input": "  key = val",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"indentation",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "value_trailing_spaces",
+			"input": "key = val  ",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"trimming",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "key_value_surrounded_spaces",
+			"input": "  key  =  val  ",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"trimming",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "surrounded_by_newlines",
+			"input": "\nkey = val\n",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"line-endings",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "key_empty_value",
+			"input": "key =",
+			"expected": [
+				{
+					"key": "key",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-value",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_value_with_newline",
+			"input": "key =\n",
+			"expected": [
+				{
+					"key": "key",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-value",
+					"line-endings",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_value_with_spaces",
+			"input": "key =  ",
+			"expected": [
+				{
+					"key": "key",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-value",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_indented",
+			"input": "  = val",
+			"expected": [
+				{
+					"key": "",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"lists",
+					"indentation",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_with_newline",
+			"input": "\n  = val",
+			"expected": [
+				{
+					"key": "",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"lists",
+					"line-endings",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_value_with_spaces",
+			"input": "  =  ",
+			"expected": [
+				{
+					"key": "",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"empty-value",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "equals_in_value_no_spaces",
+			"input": "a=b=c",
+			"expected": [
+				{
+					"key": "a",
+					"value": "b=c"
+				}
+			],
+			"meta": {
+				"tags": [
+					"equals",
+					"basic",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "equals_in_value_with_spaces",
+			"input": "a = b = c",
+			"expected": [
+				{
+					"key": "a",
+					"value": "b = c"
+				}
+			],
+			"meta": {
+				"tags": [
+					"equals",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "multiple_key_value_pairs",
+			"input": "key1 = val1\nkey2 = val2",
+			"expected": [
+				{
+					"key": "key1",
+					"value": "val1"
+				},
+				{
+					"key": "key2",
+					"value": "val2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"basic",
+					"multiple",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "key_with_tabs",
+			"input": "\tkey\t=\tvalue",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\tvalue"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"tabs",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "whitespace_only_value",
+			"input": "onlyspaces =     ",
+			"expected": [
+				{
+					"key": "onlyspaces",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"empty-value",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "spaces_vs_tabs_continuation",
+			"input": "text = First\n    four spaces\n\ttab preserved",
+			"expected": [
+				{
+					"key": "text",
+					"value": "First\n    four spaces\n\ttab preserved"
+				}
+			],
+			"meta": {
+				"tags": [
+					"continuation",
+					"whitespace",
+					"tabs",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "multiple_empty_equality",
+			"input": " =  = ",
+			"expected": [
+				{
+					"key": "",
+					"value": "="
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"multiple-equals",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "key_with_newline_before_equals",
+			"input": "key \n= val\n",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"newlines",
+					"edge-case",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "complex_multi_newline_whitespace",
+			"input": "  \n key  \n=  val  \n",
+			"expected": [
+				{
+					"key": "key",
+					"value": "val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"whitespace",
+					"newlines",
+					"edge-case",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_value_with_trailing_spaces_newline",
+			"input": "key =  \n",
+			"expected": [
+				{
+					"key": "key",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-value",
+					"whitespace",
+					"newlines",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "empty_key_value_with_surrounding_newlines",
+			"input": "\n  =  \n",
+			"expected": [
+				{
+					"key": "",
+					"value": ""
+				}
+			],
+			"meta": {
+				"tags": [
+					"empty-key",
+					"empty-value",
+					"newlines",
+					"whitespace",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "quotes_treated_as_literal_unquoted",
+			"input": "host = localhost",
+			"expected": [
+				{
+					"key": "host",
+					"value": "localhost"
+				}
+			],
+			"meta": {
+				"tags": [
+					"quotes",
+					"literal",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "quotes_treated_as_literal_quoted",
+			"input": "host = \"localhost\"",
+			"expected": [
+				{
+					"key": "host",
+					"value": "\"localhost\""
+				}
+			],
+			"meta": {
+				"tags": [
+					"quotes",
+					"literal",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "nested_single_line",
+			"input": "key =\n  val",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\n  val"
+				}
+			],
+			"meta": {
+				"tags": [
+					"nested",
+					"indentation",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "nested_multi_line",
+			"input": "key =\n  line1\n  line2",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\n  line1\n  line2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"nested",
+					"indentation",
+					"multiline",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "nested_with_blank_line",
+			"input": "key =\n  line1\n\n  line2",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\n  line1\n\n  line2"
+				}
+			],
+			"meta": {
+				"tags": [
+					"nested",
+					"indentation",
+					"multiline",
+					"blank-lines",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "deep_nested_structure",
+			"input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
+			"expected": [
+				{
+					"key": "key",
+					"value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
+				}
+			],
+			"meta": {
+				"tags": [
+					"nested",
+					"indentation",
+					"deep",
+					"continuation",
+					"redundant"
+				],
+				"level": 1
+			}
+		},
+		{
+			"name": "realistic_stress_test",
+			"input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
+			"expected": [
+				{
+					"key": "name",
+					"value": "Dmitrii Kovanikov"
+				},
+				{
+					"key": "login",
+					"value": "chshersh"
+				},
+				{
+					"key": "language",
+					"value": "OCaml"
+				},
+				{
+					"key": "date",
+					"value": "2024-05-25"
+				}
+			],
+			"meta": {
+				"tags": [
+					"realistic",
+					"multiple-pairs",
+					"stress-test",
+					"redundant"
+				],
+				"level": 1
+			}
+		}
+	]
+}
