@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json", 
   "suite": "CCL Entry Processing", 
   "version": "1.0",
   "description": "Level 2: Processing Entry[] to filtered/grouped Entry[] - comments, filtering, composition",

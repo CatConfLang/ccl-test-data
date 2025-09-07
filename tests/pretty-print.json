@@ -1,4 +1,5 @@
 {
+  "$schema": "./pretty-print-schema.json",
   "suite": "CCL Pretty Printer",
   "version": "1.0", 
   "description": "Pretty printing and round-trip testing - ensures canonical formatting and parse/pretty-print/parse identity",

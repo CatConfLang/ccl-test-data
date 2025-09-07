@@ -1,4 +1,5 @@
 {
+  "$schema": "./schema.json",
   "suite": "CCL Object Construction",
   "version": "1.0", 
   "description": "Level 3: Converting Entry[] to nested objects via make_objects() - hierarchical structures",
