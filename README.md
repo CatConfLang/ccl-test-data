@@ -1,8 +1,43 @@
-# CCL Test Suite
+# CCL (Categorical Configuration Language)
 
-This directory contains language-agnostic test cases for CCL (Categorical Configuration Language) parsers organized by architectural level.
+Central repository for CCL language specification, documentation, and test suite.
 
-## 4-Level Architecture
+## What is CCL?
+
+CCL is a minimal, human-readable configuration language based on simple key-value pairs with elegant composition and nesting capabilities. It's designed around mathematical principles from Category Theory, providing predictable parsing and powerful structural features.
+
+```ccl
+/= Application Configuration
+app.name = MyApplication
+app.debug = true
+
+database =
+  host = localhost
+  port = 5432
+  
+servers =
+  = web-1.example.com
+  = web-2.example.com
+```
+
+## Documentation
+
+### Language Guide
+- **[Getting Started](docs/getting-started.md)** - Learn CCL syntax and basic concepts
+- **[CCL FAQ](docs/ccl_faq.md)** - Common questions and gotchas
+- **[Format Comparison](docs/format-comparison.md)** - CCL vs JSON, YAML, TOML, etc.
+- **[Glossary](docs/glossary.md)** - Technical terms and definitions
+
+### Implementation Guide  
+- **[4-Level Architecture](docs/4-level-architecture.md)** - CCL's systematic implementation approach
+- **[Implementing CCL](docs/implementing-ccl.md)** - Guide for language authors
+- **[Examples](docs/examples/)** - Practical CCL configuration files
+
+## Language-Agnostic Test Suite
+
+This repository contains comprehensive test cases for CCL parsers organized by architectural level. Use these tests to validate your CCL implementation regardless of programming language.
+
+### 4-Level Architecture
 
 CCL implementations should progress through these levels:
 
@@ -190,7 +225,40 @@ npm run docs:update   # Update README with latest counts
 npm run docs:check    # Verify README is up to date
 ```
 
+## CCL Implementations
+
+### Available Implementations
+
+- **[Gleam](../ccl_gleam/)** - Full 4-level implementation with type-safe parsing
+- **[OCaml](https://github.com/chshersh/ccl)** - Reference implementation by CCL creator
+- **Go** - Coming soon
+- **Rust** - Coming soon
+
+### Implementation Status
+
+Implementations can declare their support level:
+
+- **Level 1**: Basic CCL parser ✅ (required)
+- **Level 2**: Comments + composition ✅ 
+- **Level 3**: Object construction ✅ (recommended)
+- **Level 4**: Typed parsing ✅ (language-specific)
+
+## External Resources
+
+- **[Original Blog Post](https://chshersh.com/blog/2025-01-06-the-most-elegant-configuration-language.html)** - CCL specification and rationale
+- **[Reference Implementation](https://github.com/chshersh/ccl)** - OCaml implementation by CCL creator
+- **[Community Discussions](https://github.com/chshersh/ccl/discussions)** - Implementation questions and language design
+
+## Contributing
+
+This repository is the central hub for CCL language documentation and testing. Contributions welcome:
+
+1. **Documentation improvements** - Clarify language features and usage patterns
+2. **Test case additions** - Expand coverage for edge cases and new features  
+3. **Implementation guides** - Help for new language implementations
+4. **Example configurations** - Real-world CCL usage patterns
+
 ## Version History
 
-- **v2.0.0** - 4-level architecture with 106 comprehensive test cases
+- **v2.0.0** - Comprehensive language documentation + 4-level test architecture (106 test cases)
 - **v1.0.0** - Legacy monolithic test suite (archived)
