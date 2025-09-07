@@ -7,7 +7,7 @@ This directory contains language-agnostic test cases for CCL (Categorical Config
 CCL implementations should progress through these levels:
 
 ### Level 1: Entry Parsing (Core)
-**File**: `ccl-entry-parsing.json` (48 tests)  
+**File**: `tests/level-1-parsing.json` (48 tests)  
 **API**: `parse(text) → Result(List(Entry), ParseError)`
 
 Essential parsing functionality that every CCL implementation must support:
@@ -20,7 +20,7 @@ Essential parsing functionality that every CCL implementation must support:
 Many tests tagged `"redundant"` are variations of core functionality for comprehensive coverage.
 
 ### Level 2: Entry Processing (Extensions)
-**File**: `ccl-entry-processing.json` (11 tests + composition tests)  
+**File**: `tests/level-2-processing.json` (11 tests + composition tests)  
 **API**: `filter_keys()`, entry composition functions
 
 Processing operations on parsed entries:
@@ -30,7 +30,7 @@ Processing operations on parsed entries:
 - Decorative section parsing (future)
 
 ### Level 3: Object Construction (Hierarchical)
-**File**: `ccl-object-construction.json` (8 tests)  
+**File**: `tests/level-3-objects.json` (8 tests)  
 **API**: `make_objects(entries) → CCL`
 
 Converting flat entry lists to nested object structures:
@@ -40,7 +40,7 @@ Converting flat entry lists to nested object structures:
 - Complex nested configuration examples
 
 ### Level 4: Typed Parsing (Language-Specific)
-**File**: `ccl-typed-parsing-examples.json` (8 tests)  
+**File**: `tests/level-4-typed.json` (8 tests)  
 **API**: `get_int()`, `get_bool()`, `get_typed_value()`, etc.
 
 Type-aware extraction with validation:
@@ -50,13 +50,13 @@ Type-aware extraction with validation:
 - Type safety and validation
 
 ### Error Handling (All Levels)
-**File**: `ccl-errors.json` (5 tests)
+**File**: `tests/errors.json` (5 tests)
 
 Malformed input detection across all levels.
 
 ## Schema
 
-All test files use the unified schema defined in `ccl-unified-test-schema.json`:
+All test files use the unified schema defined in `tests/schema.json`:
 
 ```json
 {
@@ -78,10 +78,10 @@ All test files use the unified schema defined in `ccl-unified-test-schema.json`:
 ## Usage for Implementers
 
 ### Quick Start (Level 1 Only)
-Focus on `ccl-entry-parsing.json` tests without `"redundant"` tag:
+Focus on `tests/level-1-parsing.json` tests without `"redundant"` tag:
 ```bash
 # Filter out redundant tests for initial implementation
-jq '.tests[] | select(.meta.tags | contains(["redundant"]) | not)' ccl-entry-parsing.json
+jq '.tests[] | select(.meta.tags | contains(["redundant"]) | not)' tests/level-1-parsing.json
 ```
 
 ### Full Compliance
@@ -98,7 +98,7 @@ import json
 
 def run_ccl_tests():
     # Level 1: Core parsing
-    with open('ccl-entry-parsing.json') as f:
+    with open('tests/level-1-parsing.json') as f:
         level1_tests = json.load(f)['tests']
     
     for test in level1_tests:
@@ -118,19 +118,21 @@ Implementations can declare their support level:
 
 ## Files
 
-### Current (4-Level Architecture)
-- `ccl-entry-parsing.json` - Level 1 core parsing tests
-- `ccl-entry-processing.json` - Level 2 processing tests
-- `ccl-object-construction.json` - Level 3 object tests
-- `ccl-typed-parsing-examples.json` - Level 4 typed tests
-- `ccl-errors.json` - Error handling tests
-- `ccl-unified-test-schema.json` - JSON schema for all test files
+```
+tests/
+├── level-1-parsing.json      # Level 1: Core parsing tests (48 tests)
+├── level-2-processing.json   # Level 2: Processing and composition tests (11 tests)
+├── level-3-objects.json      # Level 3: Object construction tests (8 tests)
+├── level-4-typed.json        # Level 4: Typed parsing tests (8 tests)
+├── errors.json               # Error handling tests (5 tests)
+├── utilities.json            # Additional tools and utilities
+└── schema.json               # Test schema definitions
+```
 
-### Legacy (Archived)
-- `legacy-ccl-test-suite.json.backup` - Original monolithic test suite
-- `legacy-ccl-test-suite-schema.json.backup` - Original schema
-
-The legacy files are kept as backup but all tests have been migrated to the new 4-level structure with improved organization and comprehensive coverage.
+This simple structure makes it easy to:
+- Quickly locate test files by architecture level
+- Run targeted test suites for specific implementation phases
+- Navigate and understand the test organization at a glance
 
 ## Test Coverage
 
