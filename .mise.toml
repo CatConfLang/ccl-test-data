@@ -3,6 +3,8 @@
 jq = "latest"
 # Fast find-and-replace tool (better than sed)
 sd = "latest"
+# Interactive CLI components and styling
+gum = "latest"
 
 [env]
 # Ensure tools are available in PATH
