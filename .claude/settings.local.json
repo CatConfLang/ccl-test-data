@@ -18,7 +18,8 @@
       "Bash(npm audit:*)",
       "Bash(npm view:*)",
       "Bash(npm install:*)",
-      "Bash(npm show:*)"
+      "Bash(npm show:*)",
+      "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter 'git rm -rf --cached --ignore-unmatch node_modules' --prune-empty --tag-name-filter cat -- --all)"
     ],
     "deny": [],
     "ask": []
