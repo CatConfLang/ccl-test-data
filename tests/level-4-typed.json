@@ -1,0 +1,294 @@
+{
+  "suite": "CCL Typed Parsing",
+  "version": "1.0",
+  "description": "Level 4: Extracting typed values from CCL objects with type conversion",
+  "tests": [
+    {
+      "name": "parse_basic_integer",
+      "input": "port = 8080",
+      "expected_flat": [
+        {"key": "port", "value": "8080"}
+      ],
+      "expected_nested": {
+        "port": "8080"
+      },
+      "expected_typed": {
+        "port": {"type": "IntVal", "value": 8080}
+      },
+      "meta": {"tags": ["typed_parsing", "integer", "basic"], "level": 4}
+    },
+    {
+      "name": "parse_basic_float",
+      "input": "temperature = 98.6",
+      "expected_flat": [
+        {"key": "temperature", "value": "98.6"}
+      ],
+      "expected_nested": {
+        "temperature": "98.6"
+      },
+      "expected_typed": {
+        "temperature": {"type": "FloatVal", "value": 98.6}
+      },
+      "meta": {"tags": ["typed_parsing", "float", "basic"], "level": 4}
+    },
+    {
+      "name": "parse_boolean_true",
+      "input": "enabled = true",
+      "expected_flat": [
+        {"key": "enabled", "value": "true"}
+      ],
+      "expected_nested": {
+        "enabled": "true"
+      },
+      "expected_typed": {
+        "enabled": {"type": "BoolVal", "value": true}
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "true"], "level": 4}
+    },
+    {
+      "name": "parse_boolean_yes",
+      "input": "active = yes",
+      "expected_flat": [
+        {"key": "active", "value": "yes"}
+      ],
+      "expected_nested": {
+        "active": "yes"
+      },
+      "expected_typed": {
+        "active": {"type": "BoolVal", "value": true}
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "yes_no"], "level": 4}
+    },
+    {
+      "name": "parse_boolean_false",
+      "input": "disabled = false",
+      "expected_flat": [
+        {"key": "disabled", "value": "false"}
+      ],
+      "expected_nested": {
+        "disabled": "false"
+      },
+      "expected_typed": {
+        "disabled": {"type": "BoolVal", "value": false}
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "false"], "level": 4}
+    },
+    {
+      "name": "parse_string_fallback",
+      "input": "name = Alice",
+      "expected_flat": [
+        {"key": "name", "value": "Alice"}
+      ],
+      "expected_nested": {
+        "name": "Alice"
+      },
+      "expected_typed": {
+        "name": {"type": "StringVal", "value": "Alice"}
+      },
+      "meta": {"tags": ["typed_parsing", "string", "fallback"], "level": 4}
+    },
+    {
+      "name": "parse_negative_integer",
+      "input": "offset = -42",
+      "expected_flat": [
+        {"key": "offset", "value": "-42"}
+      ],
+      "expected_nested": {
+        "offset": "-42"
+      },
+      "expected_typed": {
+        "offset": {"type": "IntVal", "value": -42}
+      },
+      "meta": {"tags": ["typed_parsing", "integer", "negative"], "level": 4}
+    },
+    {
+      "name": "parse_zero_values",
+      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "expected_flat": [
+        {"key": "count", "value": "0"},
+        {"key": "distance", "value": "0.0"},
+        {"key": "disabled", "value": "no"}
+      ],
+      "expected_nested": {
+        "count": "0",
+        "distance": "0.0", 
+        "disabled": "no"
+      },
+      "expected_typed": {
+        "count": {"type": "IntVal", "value": 0},
+        "distance": {"type": "FloatVal", "value": 0.0},
+        "disabled": {"type": "BoolVal", "value": false}
+      },
+      "meta": {"tags": ["typed_parsing", "zero_values", "mixed"], "level": 4}
+    },
+    {
+      "name": "parse_boolean_variants",
+      "input": "flag1 = yes\\nflag2 = on\\nflag3 = 1\\nflag4 = false\\nflag5 = no\\nflag6 = off\\nflag7 = 0",
+      "expected_flat": [
+        {"key": "flag1", "value": "yes"},
+        {"key": "flag2", "value": "on"},
+        {"key": "flag3", "value": "1"},
+        {"key": "flag4", "value": "false"},
+        {"key": "flag5", "value": "no"},
+        {"key": "flag6", "value": "off"},
+        {"key": "flag7", "value": "0"}
+      ],
+      "expected_nested": {
+        "flag1": "yes",
+        "flag2": "on",
+        "flag3": "1",
+        "flag4": "false",
+        "flag5": "no",
+        "flag6": "off",
+        "flag7": "0"
+      },
+      "expected_typed": {
+        "flag1": {"type": "BoolVal", "value": true},
+        "flag2": {"type": "BoolVal", "value": true},
+        "flag3": {"type": "IntVal", "value": 1},
+        "flag4": {"type": "BoolVal", "value": false},
+        "flag5": {"type": "BoolVal", "value": false},
+        "flag6": {"type": "BoolVal", "value": false},
+        "flag7": {"type": "IntVal", "value": 0}
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "variants"], "level": 4}
+    },
+    {
+      "name": "parse_mixed_types",
+      "input": "host = localhost\\nport = 8080\\nssl = true\\ntimeout = 30.5\\ndebug = off",
+      "expected_flat": [
+        {"key": "host", "value": "localhost"},
+        {"key": "port", "value": "8080"},
+        {"key": "ssl", "value": "true"},
+        {"key": "timeout", "value": "30.5"},
+        {"key": "debug", "value": "off"}
+      ],
+      "expected_nested": {
+        "host": "localhost",
+        "port": "8080",
+        "ssl": "true",
+        "timeout": "30.5",
+        "debug": "off"
+      },
+      "expected_typed": {
+        "host": {"type": "StringVal", "value": "localhost"},
+        "port": {"type": "IntVal", "value": 8080},
+        "ssl": {"type": "BoolVal", "value": true},
+        "timeout": {"type": "FloatVal", "value": 30.5},
+        "debug": {"type": "BoolVal", "value": false}
+      },
+      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing"], "level": 4}
+    },
+    {
+      "name": "parse_empty_value",
+      "input": "empty_key =",
+      "expected_flat": [
+        {"key": "empty_key", "value": ""}
+      ],
+      "expected_nested": {
+        "empty_key": ""
+      },
+      "expected_typed": {
+        "empty_key": {"type": "EmptyVal", "value": null}
+      },
+      "meta": {"tags": ["typed_parsing", "empty", "edge_case"], "level": 4}
+    },
+    {
+      "name": "parse_with_whitespace",
+      "input": "number =   42   \\nflag =  true  ",
+      "expected_flat": [
+        {"key": "number", "value": "42"},
+        {"key": "flag", "value": "true"}
+      ],
+      "expected_nested": {
+        "number": "42",
+        "flag": "true"
+      },
+      "expected_typed": {
+        "number": {"type": "IntVal", "value": 42},
+        "flag": {"type": "BoolVal", "value": true}
+      },
+      "meta": {"tags": ["typed_parsing", "whitespace", "trimming"], "level": 4}
+    },
+    {
+      "name": "parse_with_conservative_options",
+      "input": "number = 42\\ndecimal = 3.14\\nflag = true\\ntext = hello",
+      "expected_flat": [
+        {"key": "number", "value": "42"},
+        {"key": "decimal", "value": "3.14"},
+        {"key": "flag", "value": "true"},
+        {"key": "text", "value": "hello"}
+      ],
+      "expected_nested": {
+        "number": "42",
+        "decimal": "3.14",
+        "flag": "true",
+        "text": "hello"
+      },
+      "expected_typed": {
+        "number": {"type": "IntVal", "value": 42},
+        "decimal": {"type": "StringVal", "value": "3.14"},
+        "flag": {"type": "StringVal", "value": "true"},
+        "text": {"type": "StringVal", "value": "hello"}
+      },
+      "parse_options": {
+        "parse_integers": true,
+        "parse_floats": false,
+        "parse_booleans": false
+      },
+      "meta": {"tags": ["typed_parsing", "parse_options", "conservative"], "level": 4}
+    },
+    {
+      "name": "parse_integer_error",
+      "input": "port = not_a_number",
+      "expected_flat": [
+        {"key": "port", "value": "not_a_number"}
+      ],
+      "expected_nested": {
+        "port": "not_a_number"
+      },
+      "expected_error": true,
+      "error_message": "Cannot parse 'not_a_number' as integer at path 'port'",
+      "meta": {"tags": ["typed_parsing", "integer", "error_handling"], "level": 4}
+    },
+    {
+      "name": "parse_float_error",
+      "input": "temperature = invalid",
+      "expected_flat": [
+        {"key": "temperature", "value": "invalid"}
+      ],
+      "expected_nested": {
+        "temperature": "invalid"
+      },
+      "expected_error": true,
+      "error_message": "Cannot parse 'invalid' as float at path 'temperature'",
+      "meta": {"tags": ["typed_parsing", "float", "error_handling"], "level": 4}
+    },
+    {
+      "name": "parse_boolean_error",
+      "input": "enabled = maybe",
+      "expected_flat": [
+        {"key": "enabled", "value": "maybe"}
+      ],
+      "expected_nested": {
+        "enabled": "maybe"
+      },
+      "expected_error": true,
+      "error_message": "Cannot parse 'maybe' as boolean at path 'enabled'",
+      "meta": {"tags": ["typed_parsing", "boolean", "error_handling"], "level": 4}
+    },
+    {
+      "name": "parse_missing_path_error",
+      "input": "existing = value",
+      "expected_flat": [
+        {"key": "existing", "value": "value"}
+      ],
+      "expected_nested": {
+        "existing": "value"
+      },
+      "expected_error": true,
+      "error_message": "Path 'missing' not found.",
+      "meta": {"tags": ["typed_parsing", "missing_path", "error_handling"], "level": 4}
+    }
+  ]
+}
