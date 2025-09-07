@@ -11,9 +11,9 @@
     "validate": "ajv validate -s tests/schema.json -d 'tests/comments.json' -d 'tests/comprehensive-parsing.json' -d 'tests/dotted-keys.json' -d 'tests/errors.json' -d 'tests/essential-parsing.json' -d 'tests/object-construction.json' -d 'tests/processing.json' -d 'tests/typed-access.json' --verbose && cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
     "validate:core": "ajv validate -s tests/schema.json -d 'tests/*.json' --verbose",
     "validate:pretty-print": "cd tests && ajv validate -s pretty-print-schema.json -r schema.json -d pretty-print.json --verbose",
-    "docs:stats": "./scripts/collect-stats.sh",
-    "docs:update": "./scripts/update-readme.sh",
-    "docs:check": "./scripts/update-readme.sh && git diff --exit-code README.md",
+    "docs:stats": "node scripts/collect-stats.mjs",
+    "docs:update": "node scripts/update-readme.mjs",
+    "docs:check": "node scripts/update-readme.mjs && git diff --exit-code README.md",
     "test": "npm run validate && npm run docs:check"
   },
   "keywords": [],
