@@ -44,21 +44,21 @@ CCL tests are organized by functionality rather than rigid levels, making it eas
 ### Core Functionality
 Essential tests that every CCL implementation needs:
 
-**Essential Parsing** - `tests/core/essential-parsing.json` (18 tests)  
+**Essential Parsing** - `tests/essential-parsing.json` (18 tests)  
 Start here for rapid prototyping and basic CCL support:
 - Basic key-value parsing with whitespace handling
 - Multiline values and continuation lines  
 - Unicode support and line ending normalization
 - Empty keys/values, equals-in-values handling
 
-**Comprehensive Parsing** - `tests/core/comprehensive-parsing.json` (30 tests)  
+**Comprehensive Parsing** - `tests/comprehensive-parsing.json` (30 tests)  
 Production-ready validation with edge cases:
 - Whitespace variations (tabs, spaces, trimming)
 - Line ending handling (Unix, Windows, Mac)
 - Edge cases (empty keys/values, multiple equals)
 - Stress testing with realistic examples
 
-**Object Construction** - `tests/core/object-construction.json` (8 tests)  
+**Object Construction** - `tests/object-construction.json` (8 tests)  
 **API**: `make_objects(entries) → CCL`
 
 Essential for hierarchical access:
@@ -70,21 +70,21 @@ Essential for hierarchical access:
 ### Optional Features
 Implement these based on your needs:
 
-**Dotted Key Expansion** - `tests/features/dotted-keys.json` (18 tests)  
+**Dotted Key Expansion** - `tests/dotted-keys.json` (18 tests)  
 Enables dual access patterns (`database.host` ↔ hierarchical):
 - Basic dotted key expansion to nested structures
 - Deep nesting support (3+ levels)
 - Mixed dotted and nested syntax
 - Conflict resolution and merging
 
-**Comment Filtering** - `tests/features/comments.json` (3 tests)  
+**Comment Filtering** - `tests/comments.json` (3 tests)  
 **API**: `filter(entries)` 
 
 Remove documentation keys from configuration:
 - Comment syntax (keys starting with `/`)
 - Filtering and processing behavior
 
-**Entry Processing** - `tests/features/processing.json` (21 tests)  
+**Entry Processing** - `tests/processing.json` (21 tests)  
 **API**: `compose_entries()`, advanced processing
 
 Advanced entry composition and merging:
@@ -92,7 +92,7 @@ Advanced entry composition and merging:
 - Entry list merging with algebraic properties
 - Complex composition scenarios
 
-**Typed Access** - `tests/features/typed-access.json` (17 tests)  
+**Typed Access** - `tests/typed-access.json` (17 tests)  
 **API**: `get_string()`, `get_int()`, `get_bool()`, etc.
 
 Type-aware extraction with validation:
@@ -103,7 +103,7 @@ Type-aware extraction with validation:
 
 ### Integration & Validation
 
-**Error Handling** - `tests/integration/errors.json` (5 tests)  
+**Error Handling** - `tests/errors.json` (5 tests)  
 Malformed input detection and error reporting
 
 **Pretty Printing** - `tests/pretty-print.json` (15 tests)  
@@ -113,42 +113,41 @@ Round-trip testing and canonical formatting
 
 **Recommended progression for new implementations:**
 
-1. **Start Simple**: `core/essential-parsing.json` (18 tests)
+1. **Start Simple**: `essential-parsing.json` (18 tests)
    - Gets you a working CCL parser quickly
    - Handles 80% of real-world CCL files
 
-2. **Add Hierarchy**: `core/object-construction.json` (8 tests)  
+2. **Add Hierarchy**: `object-construction.json` (8 tests)  
    - Enables nested configuration access
    - Required for practical use
 
-3. **Production Ready**: `core/comprehensive-parsing.json` (30 tests)
+3. **Production Ready**: `comprehensive-parsing.json` (30 tests)
    - Handles edge cases and whitespace variations
    - Required for robust production systems
 
-4. **Choose Features**: Select from `features/` based on your needs
+4. **Choose Features**: Select based on your needs
    - `dotted-keys.json` - For convenient `database.host` style access
    - `typed-access.json` - For `get_int()`, `get_bool()` convenience
    - `comments.json` - For documentation in config files
    - `processing.json` - For advanced composition features
 
-5. **Validate**: `integration/errors.json` for error handling
+5. **Validate**: `errors.json` for error handling
 
 ## Test Structure
 
 ```
 tests/
-├── core/                     # Essential functionality
-│   ├── essential-parsing.json      # 18 tests - start here
-│   ├── comprehensive-parsing.json  # 30 tests - production ready  
-│   └── object-construction.json    # 8 tests - hierarchy support
-├── features/                 # Optional enhancements
-│   ├── dotted-keys.json           # 18 tests - dual access patterns
-│   ├── comments.json              # 3 tests - comment filtering
-│   ├── processing.json            # 21 tests - advanced composition
-│   └── typed-access.json          # 17 tests - type-safe getters
-├── integration/              # Validation & edge cases
-│   └── errors.json               # 5 tests - error handling
-└── pretty-print.json        # 15 tests - round-trip formatting
+├── essential-parsing.json          # 18 tests - core parsing, start here
+├── comprehensive-parsing.json      # 30 tests - production ready parsing  
+├── object-construction.json        # 8 tests - hierarchy support
+├── dotted-keys.json                # 18 tests - dual access patterns
+├── comments.json                   # 3 tests - comment filtering
+├── processing.json                 # 21 tests - advanced composition
+├── typed-access.json               # 17 tests - type-safe getters
+├── errors.json                     # 5 tests - error handling
+├── pretty-print.json               # 15 tests - round-trip formatting
+├── schema.json                     # Test schema definition
+└── pretty-print-schema.json        # Pretty-print test schema
 ```
 
 ## Schema
