@@ -1,8 +1,8 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "../schema.json",
   "suite": "CCL Object Construction",
   "version": "1.0", 
-  "description": "Level 3: Converting Entry[] to nested objects via make_objects() - hierarchical structures",
+  "description": "Converting flat Entry[] to nested objects via make_objects() - essential for hierarchical access",
   "tests": [
     {
       "name": "recursive_nested_single",

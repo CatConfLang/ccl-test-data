@@ -1,19 +1,21 @@
 # Implementing CCL - A Guide for Language Authors
 
-This guide helps you implement a CCL parser in your programming language using the 4-level architecture and comprehensive test suite.
+This guide helps you implement a CCL parser in your programming language using the feature-based test architecture and comprehensive test suite.
 
 ## Quick Start
 
 1. **Study the specification** - Read the [CCL FAQ](ccl_faq.md) and [Getting Started Guide](getting-started.md)
-2. **Choose your target level** - Start with Level 1, progress through Level 4
+2. **Choose your implementation path** - Start with core functionality, add features as needed
 3. **Use the test suite** - Language-agnostic JSON tests validate your implementation
 4. **Follow the reference** - OCaml reference implementation at https://github.com/chshersh/ccl
 
 ## Implementation Roadmap
 
-### Phase 1: Core Parsing (Level 1)
+### Phase 1: Essential Parsing
 **Goal:** Parse CCL text into flat key-value entries  
-**Test Suite:** `tests/level-1-parsing.json` (48 tests)
+**Test Suite:** `tests/core/essential-parsing.json` (18 tests)
+
+Start here for rapid prototyping - covers 80% of real-world CCL usage.
 
 #### Essential Algorithm
 ```pseudocode
@@ -64,9 +66,11 @@ function parse(text: string) -> Result<List<Entry>, ParseError> {
 - Preserve relative indentation in multiline values
 - Handle mixed tabs and spaces (warn in strict mode)
 
-### Phase 2: Object Construction (Level 3)
+### Phase 2: Object Construction  
 **Goal:** Convert flat entries to nested objects  
-**Test Suite:** `tests/level-3-objects.json` (8 tests)
+**Test Suite:** `tests/core/object-construction.json` (8 tests)
+
+Required for hierarchical configuration access.
 
 #### Fixed-Point Algorithm
 ```pseudocode
@@ -118,9 +122,11 @@ function merge_into_result(result: CCL, key: string, value: any) {
 }
 ```
 
-### Phase 3: Entry Processing (Level 2)  
-**Goal:** Filter and compose entries  
-**Test Suite:** `tests/level-2-processing.json` (28 tests)
+### Phase 3: Production Readiness
+**Goal:** Comprehensive parsing validation  
+**Test Suite:** `tests/core/comprehensive-parsing.json` (30 tests)
+
+Handle edge cases and production scenarios robustly.
 
 #### Comment Filtering
 ```pseudocode
@@ -142,32 +148,102 @@ function compose_entries(left: List<Entry>, right: List<Entry>) -> List<Entry> {
 }
 ```
 
-### Phase 4: Typed Access (Level 4)
-**Goal:** Type-safe value extraction  
-**Test Suite:** `tests/level-4-typed.json` (17 tests)
+### Phase 4: Optional Features
+**Goal:** Choose features based on your needs
+
+#### Dotted Key Support
+**Test Suite:** `tests/features/dotted-keys.json` (18 tests)  
+Enable dual access patterns (`database.host` ↔ hierarchical).
+
+#### Comment Filtering  
+**Test Suite:** `tests/features/comments.json` (3 tests)  
+Remove documentation keys from configuration.
+
+#### Entry Processing
+**Test Suite:** `tests/features/processing.json` (21 tests)  
+Advanced composition and merging capabilities.
+
+#### Type-Safe Access
+**Test Suite:** `tests/features/typed-access.json` (17 tests)
 
 #### Type-Safe Accessors
+
+**Dual Access Pattern Support:**
+CCL should support both hierarchical and dotted access patterns as first-class alternatives:
+
+```ccl
+# Both syntaxes create the same hierarchical structure
+database.host = localhost    # Dotted syntax  
+database =                   # Nested syntax
+  port = 5432
+```
+
+**API Design - Both Access Patterns:**
 ```pseudocode
-function get_string(ccl: CCL, path: string) -> Result<string, Error> {
-  value = navigate_path(ccl, path)
-  
-  match value {
-    string -> Ok(string)
-    _ -> Error("Expected string at " + path)
+// Hierarchical access
+host = get_string(ccl, "database", "host")     // ✓ Works
+port = get_int(ccl, "database", "port")        // ✓ Works
+
+// Dotted access  
+host = get_string(ccl, "database.host")        // ✓ Also works
+port = get_int(ccl, "database.port")           // ✓ Also works
+```
+
+#### Reusable Implementation Pattern
+
+**Core Navigation Logic:**
+```pseudocode
+// Reusable path parsing - handles both access patterns
+function parse_path(...path_args) -> List<string> {
+  if path_args.length == 1 and path_args[0].contains(".") {
+    // Dotted access: "database.host" -> ["database", "host"]
+    return path_args[0].split(".")
+  } else {
+    // Hierarchical access: ("database", "host") -> ["database", "host"]
+    return path_args
   }
 }
 
-function get_int(ccl: CCL, path: string) -> Result<int, Error> {
-  str_result = get_string(ccl, path)
-  match str_result {
-    Ok(str) -> parse_int(str)
+// Reusable navigation - works for both patterns
+function navigate_path(ccl_obj, path_segments) -> Result<Value, Error> {
+  current = ccl_obj
+  for segment in path_segments {
+    if current is not object or segment not in current {
+      return Error("Path not found: " + join(path_segments, "."))
+    }
+    current = current[segment]
+  }
+  return Ok(current)
+}
+
+// Base getter that all typed getters reuse
+function get_raw_value(ccl: CCL, ...path) -> Result<Value, Error> {
+  segments = parse_path(...path)
+  return navigate_path(ccl, segments)
+}
+```
+
+**Typed Getters Using Shared Logic:**
+```pseudocode
+function get_string(ccl: CCL, ...path) -> Result<string, Error> {
+  value = get_raw_value(ccl, ...path)
+  match value {
+    Ok(string) -> Ok(string)
     Error(e) -> Error(e)
   }
 }
 
-function get_bool(ccl: CCL, path: string) -> Result<bool, Error> {
-  str_result = get_string(ccl, path)
-  match str_result {
+function get_int(ccl: CCL, ...path) -> Result<int, Error> {
+  value = get_raw_value(ccl, ...path)
+  match value {
+    Ok(str) -> parse_int(str) or Error("Invalid integer: " + str)
+    Error(e) -> Error(e)
+  }
+}
+
+function get_bool(ccl: CCL, ...path) -> Result<bool, Error> {
+  value = get_raw_value(ccl, ...path)
+  match value {
     Ok(str) -> match str.to_lowercase() {
       "true" | "yes" | "on" | "1" -> Ok(true)
       "false" | "no" | "off" | "0" -> Ok(false)
@@ -176,6 +252,32 @@ function get_bool(ccl: CCL, path: string) -> Result<bool, Error> {
     Error(e) -> Error(e)
   }
 }
+```
+
+**Language-Specific Variations:**
+
+*Rust:*
+```rust
+fn get_typed<T: FromStr>(obj: &CCL, path: &[&str]) -> Result<T, CCLError> {
+    let value = get_raw_value(obj, path)?;
+    value.parse().map_err(|_| CCLError::TypeError)
+}
+```
+
+*TypeScript:*
+```typescript
+function getTyped<T>(obj: CCL, parser: (s: string) => T, ...path: string[]): T {
+    const value = getRawValue(obj, ...path);
+    return parser(value);
+}
+```
+
+**Benefits of This Approach:**
+- Single navigation algorithm handles both access patterns
+- Consistent error handling across all getters
+- Easy to extend with new typed getters
+- Testable components (navigation vs type conversion)
+- Maximum code reuse between getter functions
 ```
 
 ## Language-Specific Considerations
@@ -289,20 +391,25 @@ function run_test_suite(test_file: string) {
 
 1. **Start with essential tests:**
    ```bash
-   # Filter non-redundant Level 1 tests
-   jq '.tests[] | select(.meta.tags | contains(["redundant"]) | not)' level-1-parsing.json
+   # Run essential parsing tests first
+   validate_tests("tests/core/essential-parsing.json")     # 18 tests
    ```
 
 2. **Add comprehensive coverage:**
    ```bash
-   # Run all tests for your target level
-   run_tests("level-1-parsing.json")   # 48 tests
-   run_tests("level-3-objects.json")   # 8 tests
+   # Run core functionality tests
+   validate_tests("tests/core/essential-parsing.json")        # 18 tests
+   validate_tests("tests/core/object-construction.json")      # 8 tests
+   validate_tests("tests/core/comprehensive-parsing.json")    # 30 tests
+   
+   # Add optional features as needed
+   validate_tests("tests/features/dotted-keys.json")          # 18 tests
+   validate_tests("tests/features/typed-access.json")         # 17 tests
    ```
 
 3. **Validate error handling:**
    ```bash
-   run_tests("errors.json")            # 5 tests
+   validate_tests("tests/integration/errors.json")            # 5 tests
    ```
 
 ## Performance Considerations

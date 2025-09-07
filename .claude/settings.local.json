@@ -21,7 +21,9 @@
       "Bash(npm show:*)",
       "Bash(FILTER_BRANCH_SQUELCH_WARNING=1 git filter-branch --force --index-filter 'git rm -rf --cached --ignore-unmatch node_modules' --prune-empty --tag-name-filter cat -- --all)",
       "Bash(git reflog:*)",
-      "Bash(git gc:*)"
+      "Bash(git gc:*)",
+      "Bash(npm run test:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

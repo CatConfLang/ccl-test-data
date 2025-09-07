@@ -2,7 +2,7 @@
 set -e
 
 # CCL Test Statistics Collector
-# Extracts test counts and metadata from JSON test files
+# Auto-discovers and analyzes test files in feature-based structure
 
 cd "$(dirname "$0")/.."
 
@@ -30,6 +30,10 @@ check_tool() {
                     gum style --foreground 244 "Install with:" --padding "1 0 0 0"
                     gum style --foreground 33 --padding "0 2" "mise install" "brew install jq" "apt install jq"
                     ;;
+                fd)
+                    gum style --foreground 244 "Install with:" --padding "1 0 0 0" 
+                    gum style --foreground 33 --padding "0 2" "mise install" "brew install fd" "apt install fd-find"
+                    ;;
             esac
         else
             echo "❌ '$tool' command not found. Install with:"
@@ -39,6 +43,11 @@ check_tool() {
                     echo "   brew install jq   # (if using homebrew)"
                     echo "   apt install jq   # (if using apt)"
                     ;;
+                fd)
+                    echo "   mise install   # (if using mise)"
+                    echo "   brew install fd   # (if using homebrew)"
+                    echo "   apt install fd-find   # (if using apt)"
+                    ;;
             esac
         fi
         exit 1
@@ -46,99 +55,237 @@ check_tool() {
 }
 
 check_tool jq
+check_tool fd
 
 # Show progress message
 if [[ "$USE_GUM" == "true" ]]; then
     gum style --foreground 212 --bold "🔍 CCL Test Statistics Collector"
-    gum spin --spinner dot --title "Analyzing test files..." -- sleep 0.5
+    gum spin --spinner dot --title "Discovering test files..." -- sleep 0.5
 else
     echo "🔍 Collecting CCL test statistics..."
 fi
 
-# Extract test counts from each file
+# Auto-discover test files using fd
+discover_tests() {
+    local category="$1"
+    fd -t f "\.json$" "tests/$category/" 2>/dev/null || true
+}
+
+# Count tests in a file
+count_tests() {
+    local file="$1"
+    local regular_tests=$(jq '.tests | length' "$file" 2>/dev/null || echo "0")
+    local composition_tests=$(jq '.composition_tests | length' "$file" 2>/dev/null || echo "0")
+    
+    if [[ "$composition_tests" != "0" ]]; then
+        echo $((regular_tests + composition_tests))
+    else
+        echo "$regular_tests"
+    fi
+}
+
+# Get file description
+get_description() {
+    local file="$1"
+    jq -r '.description // "No description"' "$file" 2>/dev/null || echo "No description"
+}
+
+# Initialize counters
+declare -A CATEGORY_COUNTS
+declare -A CATEGORY_FILES
+declare -A FILE_DESCRIPTIONS
+
+# Discover and categorize files
 if [[ "$USE_GUM" == "true" ]]; then
     echo
-    gum style --foreground 244 "Extracting test counts..."
-    LEVEL_1_COUNT=$(gum spin --spinner meter --title "Level 1 parsing tests" -- jq '.tests | length' tests/level-1-parsing.json)
-    LEVEL_2_TESTS=$(gum spin --spinner meter --title "Level 2 processing tests" -- jq '.tests | length' tests/level-2-processing.json)
-    LEVEL_2_COMP=$(gum spin --spinner meter --title "Level 2 composition tests" -- jq '.composition_tests | length' tests/level-2-processing.json)
-    LEVEL_3_COUNT=$(gum spin --spinner meter --title "Level 3 object tests" -- jq '.tests | length' tests/level-3-objects.json)
-    LEVEL_4_COUNT=$(gum spin --spinner meter --title "Level 4 typed tests" -- jq '.tests | length' tests/level-4-typed.json)
-    ERROR_COUNT=$(gum spin --spinner meter --title "Error handling tests" -- jq '.tests | length' tests/errors.json)
-    PRETTY_COUNT=$(gum spin --spinner meter --title "Pretty print tests" -- jq '.tests | length' tests/pretty-print.json)
-else
-    LEVEL_1_COUNT=$(jq '.tests | length' tests/level-1-parsing.json)
-    LEVEL_2_TESTS=$(jq '.tests | length' tests/level-2-processing.json)  
-    LEVEL_2_COMP=$(jq '.composition_tests | length' tests/level-2-processing.json)
-    LEVEL_3_COUNT=$(jq '.tests | length' tests/level-3-objects.json)
-    LEVEL_4_COUNT=$(jq '.tests | length' tests/level-4-typed.json)
-    ERROR_COUNT=$(jq '.tests | length' tests/errors.json)
-    PRETTY_COUNT=$(jq '.tests | length' tests/pretty-print.json)
+    gum style --foreground 244 "Discovering test files by category..."
+fi
+
+# Core functionality tests
+CORE_FILES=($(discover_tests "core"))
+CORE_TOTAL=0
+for file in "${CORE_FILES[@]}"; do
+    if [[ -n "$file" ]]; then
+        count=$(count_tests "$file")
+        CORE_TOTAL=$((CORE_TOTAL + count))
+        basename_file=$(basename "$file" .json)
+        CATEGORY_COUNTS["core_$basename_file"]=$count
+        CATEGORY_FILES["core_$basename_file"]="$file"
+        FILE_DESCRIPTIONS["core_$basename_file"]=$(get_description "$file")
+        
+        if [[ "$USE_GUM" == "true" ]]; then
+            gum style --foreground 244 "  Core: $basename_file ($count tests)"
+        fi
+    fi
+done
+
+# Feature tests
+FEATURE_FILES=($(discover_tests "features"))
+FEATURES_TOTAL=0
+for file in "${FEATURE_FILES[@]}"; do
+    if [[ -n "$file" ]]; then
+        count=$(count_tests "$file")
+        FEATURES_TOTAL=$((FEATURES_TOTAL + count))
+        basename_file=$(basename "$file" .json)
+        CATEGORY_COUNTS["features_$basename_file"]=$count
+        CATEGORY_FILES["features_$basename_file"]="$file"
+        FILE_DESCRIPTIONS["features_$basename_file"]=$(get_description "$file")
+        
+        if [[ "$USE_GUM" == "true" ]]; then
+            gum style --foreground 244 "  Feature: $basename_file ($count tests)"
+        fi
+    fi
+done
+
+# Integration tests
+INTEGRATION_FILES=($(discover_tests "integration"))
+INTEGRATION_TOTAL=0
+for file in "${INTEGRATION_FILES[@]}"; do
+    if [[ -n "$file" ]]; then
+        count=$(count_tests "$file")
+        INTEGRATION_TOTAL=$((INTEGRATION_TOTAL + count))
+        basename_file=$(basename "$file" .json)
+        CATEGORY_COUNTS["integration_$basename_file"]=$count
+        CATEGORY_FILES["integration_$basename_file"]="$file"
+        FILE_DESCRIPTIONS["integration_$basename_file"]=$(get_description "$file")
+        
+        if [[ "$USE_GUM" == "true" ]]; then
+            gum style --foreground 244 "  Integration: $basename_file ($count tests)"
+        fi
+    fi
+done
+
+# Pretty print tests (special case)
+PRETTY_FILE="tests/pretty-print.json"
+PRETTY_COUNT=0
+if [[ -f "$PRETTY_FILE" ]]; then
+    PRETTY_COUNT=$(count_tests "$PRETTY_FILE")
+    CATEGORY_COUNTS["utility_pretty-print"]=$PRETTY_COUNT
+    CATEGORY_FILES["utility_pretty-print"]="$PRETTY_FILE"
+    FILE_DESCRIPTIONS["utility_pretty-print"]=$(get_description "$PRETTY_FILE")
 fi
 
 # Calculate totals
-LEVEL_2_TOTAL=$((LEVEL_2_TESTS + LEVEL_2_COMP))
-TOTAL_COUNT=$((LEVEL_1_COUNT + LEVEL_2_TOTAL + LEVEL_3_COUNT + LEVEL_4_COUNT + ERROR_COUNT))
+TOTAL_COUNT=$((CORE_TOTAL + FEATURES_TOTAL + INTEGRATION_TOTAL + PRETTY_COUNT))
 
-# Extract metadata
-if [[ "$USE_GUM" == "true" ]]; then
-    echo
-    gum style --foreground 244 "Extracting metadata..."
-    LEVEL_1_DESC=$(gum spin --spinner dot --title "Level 1 description" -- jq -r '.description' tests/level-1-parsing.json)
-    LEVEL_2_DESC=$(gum spin --spinner dot --title "Level 2 description" -- jq -r '.description' tests/level-2-processing.json)
-    LEVEL_3_DESC=$(gum spin --spinner dot --title "Level 3 description" -- jq -r '.description' tests/level-3-objects.json)
-    LEVEL_4_DESC=$(gum spin --spinner dot --title "Level 4 description" -- jq -r '.description' tests/level-4-typed.json)
-    ERROR_DESC=$(gum spin --spinner dot --title "Error description" -- jq -r '.description' tests/errors.json)
-    PRETTY_DESC=$(gum spin --spinner dot --title "Pretty print description" -- jq -r '.description' tests/pretty-print.json)
-else
-    LEVEL_1_DESC=$(jq -r '.description' tests/level-1-parsing.json)
-    LEVEL_2_DESC=$(jq -r '.description' tests/level-2-processing.json)
-    LEVEL_3_DESC=$(jq -r '.description' tests/level-3-objects.json)
-    LEVEL_4_DESC=$(jq -r '.description' tests/level-4-typed.json)
-    ERROR_DESC=$(jq -r '.description' tests/errors.json)
-    PRETTY_DESC=$(jq -r '.description' tests/pretty-print.json)
-fi
-
-# Show interactive summary before JSON output
+# Show interactive summary
 if [[ "$USE_GUM" == "true" ]]; then
     echo
     gum style --foreground 212 --bold "📊 Test Statistics Summary"
     echo
-    gum style --foreground 33 --bold "Test Counts:"
+    gum style --foreground 33 --bold "Feature-Based Structure:"
     gum style --padding "0 2" --foreground 244 \
-        "Level 1: $LEVEL_1_COUNT tests" \
-        "Level 2: $LEVEL_2_TOTAL tests ($LEVEL_2_TESTS + $LEVEL_2_COMP composition)" \
-        "Level 3: $LEVEL_3_COUNT tests" \
-        "Level 4: $LEVEL_4_COUNT tests" \
-        "Errors: $ERROR_COUNT tests" \
-        "Pretty Print: $PRETTY_COUNT tests" \
-        "" \
-        "Total: $TOTAL_COUNT tests"
+        "Core: $CORE_TOTAL tests" \
+        "Features: $FEATURES_TOTAL tests" \
+        "Integration: $INTEGRATION_TOTAL tests" \
+        "Utilities: $PRETTY_COUNT tests"
+    echo
+    gum style --foreground 33 --bold "Total: $TOTAL_COUNT tests"
     echo
     gum style --foreground 33 --bold "JSON Output:"
 fi
 
-# Output results
+# Generate JSON output
 cat << EOF
 {
-  "counts": {
-    "level1": $LEVEL_1_COUNT,
-    "level2": $LEVEL_2_TOTAL,
-    "level2_tests": $LEVEL_2_TESTS,
-    "level2_composition": $LEVEL_2_COMP,
-    "level3": $LEVEL_3_COUNT,
-    "level4": $LEVEL_4_COUNT,
-    "errors": $ERROR_COUNT,
-    "pretty_print": $PRETTY_COUNT,
-    "total": $TOTAL_COUNT
+  "structure": "feature-based",
+  "categories": {
+    "core": {
+      "total": $CORE_TOTAL,
+EOF
+
+# Add core file details
+first=true
+for key in "${!CATEGORY_COUNTS[@]}"; do
+    if [[ $key == core_* ]]; then
+        name=${key#core_}
+        count=${CATEGORY_COUNTS[$key]}
+        if [[ $first == true ]]; then
+            first=false
+        else
+            echo ","
+        fi
+        echo -n "      \"$name\": $count"
+    fi
+done
+
+cat << EOF
+
+    },
+    "features": {
+      "total": $FEATURES_TOTAL,
+EOF
+
+# Add feature file details
+first=true
+for key in "${!CATEGORY_COUNTS[@]}"; do
+    if [[ $key == features_* ]]; then
+        name=${key#features_}
+        count=${CATEGORY_COUNTS[$key]}
+        if [[ $first == true ]]; then
+            first=false
+        else
+            echo ","
+        fi
+        echo -n "      \"$name\": $count"
+    fi
+done
+
+cat << EOF
+
+    },
+    "integration": {
+      "total": $INTEGRATION_TOTAL,
+EOF
+
+# Add integration file details  
+first=true
+for key in "${!CATEGORY_COUNTS[@]}"; do
+    if [[ $key == integration_* ]]; then
+        name=${key#integration_}
+        count=${CATEGORY_COUNTS[$key]}
+        if [[ $first == true ]]; then
+            first=false
+        else
+            echo ","
+        fi
+        echo -n "      \"$name\": $count"
+    fi
+done
+
+cat << EOF
+
+    },
+    "utilities": {
+      "pretty-print": $PRETTY_COUNT
+    }
+  },
+  "totals": {
+    "core": $CORE_TOTAL,
+    "features": $FEATURES_TOTAL,
+    "integration": $INTEGRATION_TOTAL,
+    "utilities": $PRETTY_COUNT,
+    "overall": $TOTAL_COUNT
   },
   "descriptions": {
-    "level1": "$LEVEL_1_DESC",
-    "level2": "$LEVEL_2_DESC", 
-    "level3": "$LEVEL_3_DESC",
-    "level4": "$LEVEL_4_DESC",
-    "errors": "$ERROR_DESC",
-    "pretty_print": "$PRETTY_DESC"
+EOF
+
+# Add descriptions
+first=true
+for key in "${!FILE_DESCRIPTIONS[@]}"; do
+    desc=${FILE_DESCRIPTIONS[$key]}
+    # Escape quotes in description
+    desc=$(echo "$desc" | sed 's/"/\\"/g')
+    if [[ $first == true ]]; then
+        first=false
+    else
+        echo ","
+    fi
+    echo -n "    \"$key\": \"$desc\""
+done
+
+cat << EOF
+
   }
 }
 EOF

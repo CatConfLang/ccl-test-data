@@ -1,6 +1,8 @@
 [tools]
 # JSON processor for extracting test counts
 jq = "latest"
+# Fast find alternative (better than find)
+fd = "latest"
 # Fast find-and-replace tool (better than sed)
 sd = "latest"
 # Interactive CLI components and styling

@@ -1,5 +1,5 @@
 {
-  "$schema": "./schema.json",
+  "$schema": "../schema.json",
   "suite": "CCL Error Cases",
   "version": "1.0",
   "description": "Error handling tests - malformed input detection across all levels",
