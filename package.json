@@ -1,0 +1,21 @@
+{
+  "name": "ccl-test-data",
+  "version": "1.0.0",
+  "description": "This directory contains language-agnostic test cases for CCL (Categorical Configuration Language) parsers organized by architectural level.",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "validate": "ajv validate -s tests/schema.json -d 'tests/level-*.json' -d 'tests/errors.json' -d 'tests/utilities.json' --verbose",
+    "test": "npm run validate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "ajv-cli": "^5.0.0"
+  }
+}
