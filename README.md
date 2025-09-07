@@ -20,7 +20,7 @@ Essential parsing functionality that every CCL implementation must support:
 Many tests tagged `"redundant"` are variations of core functionality for comprehensive coverage.
 
 ### Level 2: Entry Processing (Extensions)
-**File**: `tests/level-2-processing.json` (11 tests + composition tests)  
+**File**: `tests/level-2-processing.json` (24 tests + 4 composition tests)  
 **API**: `filter_keys()`, entry composition functions
 
 Processing operations on parsed entries:
@@ -40,7 +40,7 @@ Converting flat entry lists to nested object structures:
 - Complex nested configuration examples
 
 ### Level 4: Typed Parsing (Language-Specific)
-**File**: `tests/level-4-typed.json` (8 tests)  
+**File**: `tests/level-4-typed.json` (17 tests)  
 **API**: `get_int()`, `get_bool()`, `get_typed_value()`, etc.
 
 Type-aware extraction with validation:
@@ -121,9 +121,9 @@ Implementations can declare their support level:
 ```
 tests/
 ├── level-1-parsing.json      # Level 1: Core parsing tests (48 tests)
-├── level-2-processing.json   # Level 2: Processing and composition tests (11 tests)
+├── level-2-processing.json   # Level 2: Processing and composition tests (28 tests)
 ├── level-3-objects.json      # Level 3: Object construction tests (8 tests)
-├── level-4-typed.json        # Level 4: Typed parsing tests (8 tests)
+├── level-4-typed.json        # Level 4: Typed parsing tests (17 tests)
 ├── errors.json               # Error handling tests (5 tests)
 ├── utilities.json            # Additional tools and utilities
 └── schema.json               # Test schema definitions
@@ -136,14 +136,14 @@ This simple structure makes it easy to:
 
 ## Test Coverage
 
-The new 4-level architecture includes **80 test cases** total:
+The new 4-level architecture includes **106 test cases** total:
 
 ### Level 1 (Core Parsing) - 48 tests
 - 18 essential tests covering core functionality
 - 30 additional tests marked as `"redundant"` for comprehensive edge case coverage
 - Includes basic parsing, whitespace handling, multiline values, unicode support
 
-### Level 2 (Processing) - 11 tests  
+### Level 2 (Processing) - 28 tests  
 - Comment filtering and composition behavior
 - Duplicate key handling and algebraic properties
 - Entry list operations and merging
@@ -153,7 +153,7 @@ The new 4-level architecture includes **80 test cases** total:
 - Complex hierarchical configurations
 - List handling with empty keys
 
-### Level 4 (Typed) - 8 tests
+### Level 4 (Typed) - 17 tests
 - Type inference and validation
 - Smart parsing with configurable options
 - Language-specific type extraction
@@ -164,5 +164,5 @@ The new 4-level architecture includes **80 test cases** total:
 
 ## Version History
 
-- **v2.0.0** - 4-level architecture with 80 comprehensive test cases
+- **v2.0.0** - 4-level architecture with 106 comprehensive test cases
 - **v1.0.0** - Legacy monolithic test suite (archived)
