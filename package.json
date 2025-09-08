@@ -14,6 +14,7 @@
     "docs:stats": "node scripts/collect-stats.mjs",
     "docs:update": "node scripts/update-readme.mjs",
     "docs:check": "node scripts/update-readme.mjs && git diff --exit-code README.md",
+    "docs:schema": "node scripts/generate-schema-docs.mjs",
     "test": "npm run validate && npm run docs:check"
   },
   "keywords": [],

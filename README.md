@@ -32,14 +32,26 @@ npm test
 
 ### Test Files
 
-The test suite is organized by CCL feature level:
+The test suite is organized by feature category:
 
-- **`tests/ccl-entry-parsing.json`** (18 tests) - Core parsing functionality
-- **`tests/ccl-entry-processing.json`** (10 tests) - Comment filtering and composition
-- **`tests/ccl-object-construction.json`** (8 tests) - Nested object building
-- **`tests/ccl-typed-parsing-examples.json`** (12 tests) - Type-safe value access
-- **`tests/ccl-pretty-printer.json`** (15 tests) - Formatting and round-trip tests
-- **`tests/ccl-errors.json`** (5 tests) - Error handling validation
+**Core Parsing** (48 tests)
+- **`tests/essential-parsing.json`** (18 tests) - Basic parsing functionality for rapid prototyping
+- **`tests/comprehensive-parsing.json`** (30 tests) - Thorough parsing with edge cases and whitespace variations
+
+**Advanced Processing** (24 tests)
+- **`tests/processing.json`** (21 tests) - Entry composition, merging, and advanced processing
+- **`tests/comments.json`** (3 tests) - Comment syntax and filtering functionality
+
+**Object Construction** (26 tests)
+- **`tests/object-construction.json`** (8 tests) - Converting flat entries to nested objects
+- **`tests/dotted-keys.json`** (18 tests) - Dotted key expansion and conflict resolution
+
+**Type System** (17 tests)
+- **`tests/typed-access.json`** (17 tests) - Type-aware value extraction with smart inference
+
+**Output & Validation** (20 tests)
+- **`tests/pretty-print.json`** (15 tests) - Formatting and round-trip tests
+- **`tests/errors.json`** (5 tests) - Error handling validation
 
 ### Using the Test Suite
 
@@ -60,7 +72,12 @@ Example test case structure:
 
 ## Documentation
 
-### Test Suite Specific
+### Test Suite Schema
+
+- **[Schema Technical Reference](docs/generated-schema.md)** - Complete auto-generated field documentation
+- **[Schema Implementation Guide](docs/schema-reference.md)** - Practical usage examples and patterns
+
+### Test Suite Architecture
 
 - **[Test Architecture](docs/test-architecture.md)** - How to use this test suite
 

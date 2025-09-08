@@ -13,7 +13,7 @@ This guide helps you implement a CCL parser in your programming language using t
 
 ### Phase 1: Essential Parsing
 **Goal:** Parse CCL text into flat key-value entries  
-**Test Suite:** `tests/core/essential-parsing.json` (18 tests)
+**Test Suite:** `tests/essential-parsing.json` (18 tests)
 
 Start here for rapid prototyping - covers 80% of real-world CCL usage.
 
@@ -68,7 +68,7 @@ function parse(text: string) -> Result<List<Entry>, ParseError> {
 
 ### Phase 2: Object Construction  
 **Goal:** Convert flat entries to nested objects  
-**Test Suite:** `tests/core/object-construction.json` (8 tests)
+**Test Suite:** `tests/object-construction.json` (8 tests)
 
 Required for hierarchical configuration access.
 
@@ -124,7 +124,7 @@ function merge_into_result(result: CCL, key: string, value: any) {
 
 ### Phase 3: Production Readiness
 **Goal:** Comprehensive parsing validation  
-**Test Suite:** `tests/core/comprehensive-parsing.json` (30 tests)
+**Test Suite:** `tests/comprehensive-parsing.json` (30 tests)
 
 Handle edge cases and production scenarios robustly.
 
@@ -152,19 +152,19 @@ function compose_entries(left: List<Entry>, right: List<Entry>) -> List<Entry> {
 **Goal:** Choose features based on your needs
 
 #### Dotted Key Support
-**Test Suite:** `tests/features/dotted-keys.json` (18 tests)  
+**Test Suite:** `tests/dotted-keys.json` (18 tests)  
 Enable dual access patterns (`database.host` ↔ hierarchical).
 
 #### Comment Filtering  
-**Test Suite:** `tests/features/comments.json` (3 tests)  
+**Test Suite:** `tests/comments.json` (3 tests)  
 Remove documentation keys from configuration.
 
 #### Entry Processing
-**Test Suite:** `tests/features/processing.json` (21 tests)  
+**Test Suite:** `tests/processing.json` (21 tests)  
 Advanced composition and merging capabilities.
 
 #### Type-Safe Access
-**Test Suite:** `tests/features/typed-access.json` (17 tests)
+**Test Suite:** `tests/typed-access.json` (17 tests)
 
 #### Type-Safe Accessors
 
@@ -392,24 +392,24 @@ function run_test_suite(test_file: string) {
 1. **Start with essential tests:**
    ```bash
    # Run essential parsing tests first
-   validate_tests("tests/core/essential-parsing.json")     # 18 tests
+   validate_tests("tests/essential-parsing.json")     # 18 tests
    ```
 
 2. **Add comprehensive coverage:**
    ```bash
    # Run core functionality tests
    validate_tests("tests/core/essential-parsing.json")        # 18 tests
-   validate_tests("tests/core/object-construction.json")      # 8 tests
-   validate_tests("tests/core/comprehensive-parsing.json")    # 30 tests
+   validate_tests("tests/object-construction.json")      # 8 tests
+   validate_tests("tests/comprehensive-parsing.json")    # 30 tests
    
    # Add optional features as needed
-   validate_tests("tests/features/dotted-keys.json")          # 18 tests
-   validate_tests("tests/features/typed-access.json")         # 17 tests
+   validate_tests("tests/dotted-keys.json")          # 18 tests
+   validate_tests("tests/typed-access.json")         # 17 tests
    ```
 
 3. **Validate error handling:**
    ```bash
-   validate_tests("tests/integration/errors.json")            # 5 tests
+   validate_tests("tests/errors.json")            # 5 tests
    ```
 
 ## Performance Considerations

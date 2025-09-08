@@ -37,22 +37,24 @@ async function updateReadme() {
     // Collect current stats (silent mode to avoid output)
     const stats = await collectStats(true);
     
-    // Extract counts
-    const coreTotal = stats.categories.core.total;
-    const featuresTotal = stats.categories.features.total;
-    const integrationTotal = stats.categories.integration.total;
-    const utilitiesTotal = stats.categories.utilities.total;
+    // Extract counts from feature-based categories
+    const coreParsingTotal = stats.categories['core-parsing'].total;
+    const advancedProcessingTotal = stats.categories['advanced-processing'].total;
+    const objectConstructionTotal = stats.categories['object-construction'].total;
+    const typeSystemTotal = stats.categories['type-system'].total;
+    const outputValidationTotal = stats.categories['output-validation'].total;
     const total = stats.totalTests;
     
     if (isTTY) {
       console.log(`${colors.blue}${colors.bold}Current Test Counts:${colors.reset}`);
-      console.log(`  ${colors.gray}Core: ${coreTotal}${colors.reset}`);
-      console.log(`  ${colors.gray}Features: ${featuresTotal}${colors.reset}`);
-      console.log(`  ${colors.gray}Integration: ${integrationTotal}${colors.reset}`);
-      console.log(`  ${colors.gray}Utilities: ${utilitiesTotal}${colors.reset}`);
+      console.log(`  ${colors.gray}Core Parsing: ${coreParsingTotal}${colors.reset}`);
+      console.log(`  ${colors.gray}Advanced Processing: ${advancedProcessingTotal}${colors.reset}`);
+      console.log(`  ${colors.gray}Object Construction: ${objectConstructionTotal}${colors.reset}`);
+      console.log(`  ${colors.gray}Type System: ${typeSystemTotal}${colors.reset}`);
+      console.log(`  ${colors.gray}Output & Validation: ${outputValidationTotal}${colors.reset}`);
       console.log(`  ${colors.gray}Total: ${total}${colors.reset}\n`);
     } else {
-      console.log(`📊 Current counts: Core:${coreTotal} Features:${featuresTotal} Integration:${integrationTotal} Utilities:${utilitiesTotal} Total:${total}`);
+      console.log(`📊 Current counts: CoreParsing:${coreParsingTotal} AdvancedProcessing:${advancedProcessingTotal} ObjectConstruction:${objectConstructionTotal} TypeSystem:${typeSystemTotal} OutputValidation:${outputValidationTotal} Total:${total}`);
     }
     
     // Read current README
@@ -65,22 +67,26 @@ async function updateReadme() {
       `includes **${total} test cases** total:`
     );
     
-    // Update individual category sections
+    // Update individual category sections with new feature-based structure
     readme = readme.replace(
-      /### Core \(\d+ tests\)/,
-      `### Core (${coreTotal} tests)`
+      /\*\*Core Parsing\*\* \(\d+ tests\)/,
+      `**Core Parsing** (${coreParsingTotal} tests)`
     );
     readme = readme.replace(
-      /### Features \(\d+ tests\)/,
-      `### Features (${featuresTotal} tests)`
+      /\*\*Advanced Processing\*\* \(\d+ tests\)/,
+      `**Advanced Processing** (${advancedProcessingTotal} tests)`
     );
     readme = readme.replace(
-      /### Integration \(\d+ tests\)/,
-      `### Integration (${integrationTotal} tests)`
+      /\*\*Object Construction\*\* \(\d+ tests\)/,
+      `**Object Construction** (${objectConstructionTotal} tests)`
     );
     readme = readme.replace(
-      /### Utilities \(\d+ tests\)/,
-      `### Utilities (${utilitiesTotal} tests)`
+      /\*\*Type System\*\* \(\d+ tests\)/,
+      `**Type System** (${typeSystemTotal} tests)`
+    );
+    readme = readme.replace(
+      /\*\*Output & Validation\*\* \(\d+ tests\)/,
+      `**Output & Validation** (${outputValidationTotal} tests)`
     );
     
     // Check if anything changed
@@ -103,17 +109,26 @@ async function updateReadme() {
       console.log(`\n${colors.blue}${colors.bold}🔄 Changes Applied:${colors.reset}`);
       
       const changes = [];
-      if (originalReadme.match(/### Core \((\d+) tests\)/)?.[1] !== String(coreTotal)) {
-        changes.push(`Core: ${originalReadme.match(/### Core \((\d+) tests\)/)?.[1]} → ${coreTotal}`);
+      const oldCoreParsing = originalReadme.match(/\*\*Core Parsing\*\* \((\d+) tests\)/)?.[1];
+      const oldAdvancedProcessing = originalReadme.match(/\*\*Advanced Processing\*\* \((\d+) tests\)/)?.[1];
+      const oldObjectConstruction = originalReadme.match(/\*\*Object Construction\*\* \((\d+) tests\)/)?.[1];
+      const oldTypeSystem = originalReadme.match(/\*\*Type System\*\* \((\d+) tests\)/)?.[1];
+      const oldOutputValidation = originalReadme.match(/\*\*Output & Validation\*\* \((\d+) tests\)/)?.[1];
+      
+      if (oldCoreParsing !== String(coreParsingTotal)) {
+        changes.push(`Core Parsing: ${oldCoreParsing} → ${coreParsingTotal}`);
       }
-      if (originalReadme.match(/### Features \((\d+) tests\)/)?.[1] !== String(featuresTotal)) {
-        changes.push(`Features: ${originalReadme.match(/### Features \((\d+) tests\)/)?.[1]} → ${featuresTotal}`);
+      if (oldAdvancedProcessing !== String(advancedProcessingTotal)) {
+        changes.push(`Advanced Processing: ${oldAdvancedProcessing} → ${advancedProcessingTotal}`);
       }
-      if (originalReadme.match(/### Integration \((\d+) tests\)/)?.[1] !== String(integrationTotal)) {
-        changes.push(`Integration: ${originalReadme.match(/### Integration \((\d+) tests\)/)?.[1]} → ${integrationTotal}`);
+      if (oldObjectConstruction !== String(objectConstructionTotal)) {
+        changes.push(`Object Construction: ${oldObjectConstruction} → ${objectConstructionTotal}`);
       }
-      if (originalReadme.match(/### Utilities \((\d+) tests\)/)?.[1] !== String(utilitiesTotal)) {
-        changes.push(`Utilities: ${originalReadme.match(/### Utilities \((\d+) tests\)/)?.[1]} → ${utilitiesTotal}`);
+      if (oldTypeSystem !== String(typeSystemTotal)) {
+        changes.push(`Type System: ${oldTypeSystem} → ${typeSystemTotal}`);
+      }
+      if (oldOutputValidation !== String(outputValidationTotal)) {
+        changes.push(`Output & Validation: ${oldOutputValidation} → ${outputValidationTotal}`);
       }
       
       changes.forEach(change => {
@@ -124,15 +139,17 @@ async function updateReadme() {
       console.log('🔄 Changes made:');
       
       // Simple diff output for non-TTY
-      const oldCore = originalReadme.match(/### Core \((\d+) tests\)/)?.[1];
-      const oldFeatures = originalReadme.match(/### Features \((\d+) tests\)/)?.[1];
-      const oldIntegration = originalReadme.match(/### Integration \((\d+) tests\)/)?.[1];
-      const oldUtilities = originalReadme.match(/### Utilities \((\d+) tests\)/)?.[1];
+      const oldCoreParsing = originalReadme.match(/\*\*Core Parsing\*\* \((\d+) tests\)/)?.[1];
+      const oldAdvancedProcessing = originalReadme.match(/\*\*Advanced Processing\*\* \((\d+) tests\)/)?.[1];
+      const oldObjectConstruction = originalReadme.match(/\*\*Object Construction\*\* \((\d+) tests\)/)?.[1];
+      const oldTypeSystem = originalReadme.match(/\*\*Type System\*\* \((\d+) tests\)/)?.[1];
+      const oldOutputValidation = originalReadme.match(/\*\*Output & Validation\*\* \((\d+) tests\)/)?.[1];
       
-      if (oldCore !== String(coreTotal)) console.log(`- Core: ${oldCore} → ${coreTotal}`);
-      if (oldFeatures !== String(featuresTotal)) console.log(`- Features: ${oldFeatures} → ${featuresTotal}`);
-      if (oldIntegration !== String(integrationTotal)) console.log(`- Integration: ${oldIntegration} → ${integrationTotal}`);
-      if (oldUtilities !== String(utilitiesTotal)) console.log(`- Utilities: ${oldUtilities} → ${utilitiesTotal}`);
+      if (oldCoreParsing !== String(coreParsingTotal)) console.log(`- Core Parsing: ${oldCoreParsing} → ${coreParsingTotal}`);
+      if (oldAdvancedProcessing !== String(advancedProcessingTotal)) console.log(`- Advanced Processing: ${oldAdvancedProcessing} → ${advancedProcessingTotal}`);
+      if (oldObjectConstruction !== String(objectConstructionTotal)) console.log(`- Object Construction: ${oldObjectConstruction} → ${objectConstructionTotal}`);
+      if (oldTypeSystem !== String(typeSystemTotal)) console.log(`- Type System: ${oldTypeSystem} → ${typeSystemTotal}`);
+      if (oldOutputValidation !== String(outputValidationTotal)) console.log(`- Output & Validation: ${oldOutputValidation} → ${outputValidationTotal}`);
     }
     
     return { updated: true };

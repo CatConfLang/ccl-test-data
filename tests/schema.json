@@ -243,7 +243,8 @@
         },
         "feature": {
           "type": "string",
-          "description": "Optional feature category (e.g., 'parsing', 'comments', 'nesting', 'types')"
+          "enum": ["parsing", "processing", "comments", "object-construction", "dotted-keys", "typed-parsing", "pretty-printing", "error-handling"],
+          "description": "Feature category for test organization and filtering"
         },
         "difficulty": {
           "type": "string",

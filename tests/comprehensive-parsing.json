@@ -18,7 +18,8 @@
 					"basic",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -36,7 +37,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -54,7 +56,8 @@
 					"indentation",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -72,7 +75,8 @@
 					"trimming",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -90,7 +94,8 @@
 					"trimming",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -107,7 +112,8 @@
 					"line-endings",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -124,7 +130,8 @@
 					"empty-value",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -142,7 +149,8 @@
 					"line-endings",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -160,7 +168,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -179,7 +188,8 @@
 					"indentation",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -198,7 +208,8 @@
 					"line-endings",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -217,7 +228,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -235,7 +247,8 @@
 					"basic",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -253,7 +266,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -275,7 +289,8 @@
 					"multiple",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -293,7 +308,8 @@
 					"tabs",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -311,7 +327,8 @@
 					"empty-value",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -330,7 +347,8 @@
 					"tabs",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -349,7 +367,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -368,7 +387,8 @@
 					"edge-case",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -387,7 +407,8 @@
 					"edge-case",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -406,7 +427,8 @@
 					"newlines",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -426,7 +448,8 @@
 					"whitespace",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -444,7 +467,8 @@
 					"literal",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -462,7 +486,8 @@
 					"literal",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -480,7 +505,8 @@
 					"indentation",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -499,7 +525,8 @@
 					"multiline",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -519,7 +546,8 @@
 					"blank-lines",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -539,7 +567,8 @@
 					"continuation",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -570,7 +599,8 @@
 					"stress-test",
 					"redundant"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		}
 	]

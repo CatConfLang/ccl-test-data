@@ -38,7 +38,8 @@
 					"comments",
 					"extension"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "comments"
 			}
 		},
 		{
@@ -55,7 +56,8 @@
 					"comment",
 					"special-syntax"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "comments"
 			}
 		},
 		{
@@ -93,7 +95,8 @@
 					"comments",
 					"mixed-content"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "comments"
 			}
 		}
 	]
