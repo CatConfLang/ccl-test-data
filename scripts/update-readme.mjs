@@ -61,10 +61,10 @@ async function updateReadme() {
     let readme = await readFile(README_PATH, 'utf8');
     const originalReadme = readme;
     
-    // Update total count in main description
+    // Update total count in validation benefits section
     readme = readme.replace(
-      /includes \*\*\d+ test cases\*\* total:/,
-      `includes **${total} test cases** total:`
+      /✅ \*\*\d+\+ test assertions\*\*/,
+      `✅ **${total}+ test assertions**`
     );
     
     // Update individual category sections with new feature-based structure

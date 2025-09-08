@@ -1,13 +1,24 @@
 # Implementing CCL - A Guide for Language Authors
 
-This guide helps you implement a CCL parser in your programming language using the feature-based test architecture and comprehensive test suite.
+**Validation-Based Testing**
+
+This guide helps you implement a CCL parser in your programming language using the **validation-based test format** that makes multi-level testing explicit and eliminates confusion.
+
+The test suite uses a validation format where each test specifies exactly which API functions to validate, making implementation dramatically easier.
 
 ## Quick Start
 
 1. **Study the specification** - Read the [CCL FAQ](ccl_faq.md) and [Getting Started Guide](getting-started.md)
 2. **Choose your implementation path** - Start with core functionality, add features as needed
-3. **Use the test suite** - Language-agnostic JSON tests validate your implementation
+3. **Use the validation-based test suite** - Each test specifies which API functions to validate
 4. **Follow the reference** - OCaml reference implementation at https://github.com/chshersh/ccl
+
+### Validation-Based Testing Benefits
+
+✅ **Crystal clear** - Each validation maps to exact API function  
+✅ **No confusion** - No guessing about `expected_flat` vs `expected_nested`  
+✅ **Easy iteration** - Test runners iterate over `validations` keys  
+✅ **Self-documenting** - Validation names explain what's being tested
 
 ## Implementation Roadmap
 
@@ -142,7 +153,7 @@ function filter_by_prefixes(entries: List<Entry>, prefixes: List<string>) {
 
 #### Entry Composition
 ```pseudocode
-function compose_entries(left: List<Entry>, right: List<Entry>) -> List<Entry> {
+function compose(left: List<Entry>, right: List<Entry>) -> List<Entry> {
   // Simple concatenation - merging happens at object level
   return left + right
 }
@@ -275,7 +286,7 @@ function getTyped<T>(obj: CCL, parser: (s: string) => T, ...path: string[]): T {
 **Benefits of This Approach:**
 - Single navigation algorithm handles both access patterns
 - Consistent error handling across all getters
-- Easy to extend with new typed getters
+- Easy to extend with additional typed getters
 - Testable components (navigation vs type conversion)
 - Maximum code reuse between getter functions
 ```
@@ -353,30 +364,62 @@ Each level has a dedicated test file with specific format:
 }
 ```
 
-### Test Runner Implementation
+### Validation-Based Test Runner Implementation
 ```pseudocode
-function run_test_suite(test_file: string) {
+function run_validation_test_suite(test_file: string) {
   test_data = load_json(test_file)
   
   for test in test_data.tests {
     try {
-      // Level 1 tests
-      if test.expected exists {
-        actual = parse(test.input)
-        assert_equal(actual, test.expected)
-      }
-      
-      // Level 3 tests  
-      if test.expected_nested exists {
-        entries = parse(test.input)
-        objects = make_objects(entries)
-        assert_equal(objects, test.expected_nested)
-      }
-      
-      // Error tests
-      if test.expected_error exists {
-        result = parse(test.input)
-        assert_error(result)
+      // Iterate over all validations in the test
+      for (validation_type, expected) in test.validations {
+        switch validation_type {
+          case "parse":
+            if expected.error {
+              assert_throws(() => parse(test.input), expected.error_message)
+            } else {
+              actual = parse(test.input)
+              assert_equal(actual, expected)
+            }
+            break
+            
+          case "make_objects":
+            entries = parse(test.input)
+            actual = make_objects(entries)
+            assert_equal(actual, expected)
+            break
+            
+          case "get_string":
+            entries = parse(test.input)
+            ccl = make_objects(entries)
+            if expected.error {
+              assert_throws(() => get_string(ccl, ...expected.args))
+            } else {
+              actual = get_string(ccl, ...expected.args)
+              assert_equal(actual, expected.expected)
+            }
+            break
+            
+          case "filter":
+            entries = parse(test.input)
+            actual = filter(entries)
+            assert_equal(actual, expected)
+            break
+            
+          case "compose":
+            actual = compose(expected.left, expected.right)
+            assert_equal(actual, expected.expected)
+            break
+            
+          case "round_trip":
+            entries = parse(test.input)
+            formatted = pretty_print(entries)
+            reparsed = parse(formatted)
+            assert_equal(entries, reparsed)
+            break
+            
+          // ... handle other validation types
+        }
       }
       
       print("✅ " + test.name)
@@ -384,6 +427,38 @@ function run_test_suite(test_file: string) {
       print("❌ " + test.name + ": " + error)
     }
   }
+}
+```
+
+### Validation Format Example
+
+The format eliminates confusion by explicitly mapping each validation to an API function:
+
+```json
+{
+  "name": "multi_level_validation",
+  "input": "database.host = localhost\ndatabase.port = 8080",
+  "validations": {
+    "parse": [
+      {"key": "database.host", "value": "localhost"},
+      {"key": "database.port", "value": "8080"}
+    ],
+    "expand_dotted": [
+      {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
+    ],
+    "make_objects": {
+      "database": {"host": "localhost", "port": "8080"}
+    },
+    "get_string": {
+      "args": ["database.host"],
+      "expected": "localhost"
+    },
+    "get_int": {
+      "args": ["database", "port"],
+      "expected": 8080
+    }
+  },
+  "meta": {"level": 4, "feature": "typed-parsing"}
 }
 ```
 
