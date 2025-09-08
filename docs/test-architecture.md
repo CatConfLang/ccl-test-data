@@ -1,5 +1,9 @@
 # CCL Test Suite Architecture
 
+**Validation-Based Testing Format**
+
+CCL tests use a **validation-based format** that makes multi-level testing explicit and eliminates confusion around multiple expected fields. Each test specifies exactly which API functions to validate.
+
 CCL implementations use a feature-based test organization that provides clear implementation milestones while allowing developers to choose their level of CCL support based on actual needs rather than artificial levels.
 
 ## Architecture Overview
@@ -17,10 +21,48 @@ Optional Features      ← Choose based on your needs
 └── Typed Access         (17 tests) - Type-safe APIs
 
 Integration           ← Validation & edge cases
+├── Pretty Printing      (15 tests) - Canonical formatting
 └── Error Handling       (5 tests) - Robust error reporting
 ```
 
 Each category has specific APIs, test suites, and implementation requirements.
+
+## Validation-Based Test Format
+
+Tests use explicit `validations` objects instead of confusing multi-level fields (`expected_flat`, `expected_nested`, etc.). Each test clearly specifies which API functions to test.
+
+### Test Structure
+```json
+{
+  "name": "basic_object_construction",
+  "input": "database.host = localhost",
+  "validations": {
+    "parse": [{"key": "database.host", "value": "localhost"}],
+    "make_objects": {"database": {"host": "localhost"}},
+    "get_string": {
+      "args": ["database.host"],
+      "expected": "localhost"
+    }
+  }
+}
+```
+
+### Validation Types Available
+- **`parse`** - Level 1: Entry parsing validation
+- **`filter`** - Level 2: Comment filtering validation  
+- **`compose`** - Level 2: Entry composition validation
+- **`expand_dotted`** - Level 2: Dotted key expansion validation
+- **`make_objects`** - Level 3: Object construction validation
+- **`get_string`**, **`get_int`**, **`get_bool`**, **`get_float`** - Level 4: Typed access validation
+- **`pretty_print`** - Output formatting validation
+- **`round_trip`** - Parse-format-parse identity validation
+- **`canonical_format`** - Canonical formatting validation
+
+### Benefits
+✅ **Crystal clear** - Each validation maps to exact API function  
+✅ **No confusion** - No guessing about `expected_flat` vs `expected_nested`  
+✅ **Easy iteration** - Test runners iterate over `validations` keys  
+✅ **Explicit testing** - Multi-level testing is obvious
 
 ## Core Functionality (Required)
 
@@ -143,7 +185,7 @@ function make_objects(entries) {
 
 ### Entry Processing
 **Files**: `tests/processing.json` (21 tests)
-**API:** `compose_entries()`, advanced processing
+**API:** `compose()`, advanced processing
 **Purpose:** Advanced composition and merging capabilities
 
 #### Functionality
@@ -224,21 +266,31 @@ function get_bool(ccl_obj, ...path) {
 - Production-ready with convenient access patterns
 
 #### Full CCL (Complete - 135 tests)
-- All tests across all categories
+- All tests across all categories  
 - Maximum feature support and robustness
+- Includes pretty-printing and round-trip validation
 
 ### Test-Driven Development
 ```bash
 # Core functionality
-npm run validate:core                    # Essential tests
-cd tests && validate core/*.json         # All core tests
+npm run validate:essential-parsing       # Essential tests (18)
+npm run validate:object-construction     # Object construction (8)
+
+# Production readiness
+npm run validate:comprehensive-parsing   # Comprehensive tests (30)
 
 # Feature selection
-cd tests && validate features/dotted-keys.json  # Dotted key support
-cd tests && validate features/typed-access.json # Type-safe APIs
+npm run validate:dotted-keys            # Dotted key support (18)
+npm run validate:typed-access           # Type-safe APIs (17)
+npm run validate:comments               # Comment filtering (3)
+npm run validate:processing             # Entry processing (21)
+
+# Output & validation
+npm run validate:pretty-print           # Pretty printing (15)
+npm run validate:errors                 # Error handling (5)
 
 # Full validation  
-npm test                                 # All tests
+npm test                                 # All 135 tests
 ```
 
 ### API Design Patterns
@@ -263,6 +315,44 @@ get_bool(obj, ...path) → bool
 get_string(obj, ...path) → string
 ```
 
+## Test Runner Implementation
+
+### Using Validation-Based Tests
+```pseudocode
+function run_validation_test(test_case) {
+  // Iterate over all validations in the test
+  for (validation_type, expected) in test_case.validations {
+    switch validation_type {
+      case "parse":
+        actual = parse(test_case.input)
+        assert_equal(actual, expected)
+        
+      case "make_objects":
+        entries = parse(test_case.input)
+        actual = make_objects(entries)
+        assert_equal(actual, expected)
+        
+      case "get_string":
+        entries = parse(test_case.input)
+        ccl = make_objects(entries)
+        actual = get_string(ccl, ...expected.args)
+        assert_equal(actual, expected.expected)
+        
+      case "filter":
+        entries = parse(test_case.input)
+        actual = filter(entries)
+        assert_equal(actual, expected)
+        
+      case "round_trip":
+        entries = parse(test_case.input)
+        formatted = pretty_print(entries)
+        reparsed = parse(formatted)
+        assert_equal(entries, reparsed)
+    }
+  }
+}
+```
+
 ## Architecture Benefits
 
 1. **Flexible Implementation**: Choose features based on actual needs
@@ -270,7 +360,9 @@ get_string(obj, ...path) → string
 3. **Implementation Guidance**: Test counts show relative complexity
 4. **Language Agnostic**: Architecture works across programming languages
 5. **Comprehensive Coverage**: 135 tests cover all CCL functionality
-6. **Maintainable**: Feature-based organization scales with new features
+6. **Maintainable**: Feature-based organization scales with additional features
+7. **Explicit Testing**: Validation format eliminates multi-level testing confusion
+8. **Easy Test Runners**: Direct mapping from validations to API functions
 
 ## Implementation Examples
 

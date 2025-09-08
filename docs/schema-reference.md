@@ -1,6 +1,8 @@
 # CCL Test Suite JSON Schema Reference
 
-This document provides implementation-focused documentation for the JSON schema used in the CCL test suite files. All test files in the `tests/` directory conform to this unified schema structure.
+**Validation-Based Testing Format**
+
+This document provides implementation-focused documentation for the **validation-based JSON schema** used in the CCL test suite files. All test files in the `tests/` directory use the validation format that makes multi-level testing explicit and eliminates confusion.
 
 > **📋 Complete Technical Reference:** For exhaustive field-by-field documentation, see [`generated-schema.md`](generated-schema.md) - automatically generated from the schema with complete type information and field listings.
 
@@ -8,11 +10,17 @@ This document provides implementation-focused documentation for the JSON schema 
 
 ## Schema Overview
 
-The CCL test suite uses a unified JSON schema (`tests/schema.json`) that supports all 4 CCL architecture levels with consistent structure and metadata. This allows for language-agnostic testing across different CCL implementations.
+The CCL test suite uses a **validation-based JSON schema** (`tests/schema.json`) that makes API function testing explicit. Instead of confusing multi-level fields (`expected_flat`, `expected_nested`, etc.), each test specifies exactly which API functions to validate.
 
 **Schema Location**: `tests/schema.json`  
-**Schema Version**: JSON Schema Draft 07  
-**Test Suite Version**: 1.0
+**Schema Version**: JSON Schema Draft 07
+
+## Key Benefits of Validation-Based Testing
+
+✅ **Explicit API Testing**: Each validation maps to exact API function  
+✅ **No Multi-Level Confusion**: Eliminates `expected_flat` vs `expected_nested` guesswork  
+✅ **Easy Test Runners**: Direct iteration over `validations` object keys  
+✅ **Clear Intent**: Obvious what functions to test and what results to expect
 
 ## Root Object Structure
 
@@ -21,8 +29,7 @@ The CCL test suite uses a unified JSON schema (`tests/schema.json`) that support
   "suite": "string",
   "version": "string", 
   "description": "string",
-  "tests": [...],
-  "composition_tests": [...] // Optional
+  "tests": [...]
 }
 ```
 
@@ -30,29 +37,38 @@ The CCL test suite uses a unified JSON schema (`tests/schema.json`) that support
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
-| `suite` | string | ✓ | Name of the test suite (e.g., "CCL Essential Parsing", "CCL Object Construction") |
-| `version` | string | ✓ | Version of the test suite format (currently "1.0") |
+| `suite` | string | ✓ | Name of the test suite (e.g., "CCL Essential Parsing (Validation Format)") |
+| `version` | string | ✓ | Version of the test suite format |
 | `description` | string |  | Description of the test suite purpose and scope |
-| `tests` | array | ✓ | Array of test cases conforming to the unified test case schema |
-| `composition_tests` | array |  | Optional composition tests for Level 2 (entry processing) algebraic properties |
+| `tests` | array | ✓ | Array of validation-based test cases |
 
-## Test Case Structure
+## Validation-Based Test Case Structure
 
-Each test case in the `tests` array follows this unified structure that supports all CCL levels:
+Each test case uses the explicit `validations` object instead of multiple `expected_*` fields:
 
 ```json
 {
   "name": "string",
   "input": "string",
-  "expected": [...],        // For Level 1-2 tests
-  "expected_flat": [...],   // For Level 3+ tests
-  "expected_nested": {...}, // For Level 3 tests
-  "expected_typed": {...},  // For Level 4 tests
-  "expected_error": boolean,// For error tests
-  "error_message": "string",// Optional error description
-  "parse_options": {...},   // For Level 4 typed tests
-  "api_calls": [...],       // For Level 4 tests
-  "meta": {...}             // Metadata object (required)
+  "input1": "string",  // For composition tests
+  "input2": "string",  // For composition tests  
+  "input3": "string",  // For associativity tests
+  "validations": {
+    "parse": [...],              // Level 1: Entry parsing
+    "filter": [...],             // Level 2: Comment filtering
+    "compose": {...},            // Level 2: Entry composition
+    "expand_dotted": [...],      // Level 2: Dotted key expansion
+    "make_objects": {...},       // Level 3: Object construction
+    "get_string": {...},         // Level 4: String access
+    "get_int": {...},            // Level 4: Integer access
+    "get_bool": {...},           // Level 4: Boolean access
+    "get_float": {...},          // Level 4: Float access
+    "pretty_print": "string",    // Output formatting
+    "round_trip": {...},         // Parse-format-parse identity
+    "canonical_format": {...},   // Canonical formatting
+    "associativity": {...}       // Composition laws
+  },
+  "meta": {...}
 }
 ```
 
@@ -61,18 +77,156 @@ Each test case in the `tests` array follows this unified structure that supports
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `name` | string | ✓ | Unique identifier for the test case within the suite |
-| `input` | string | ✓ | CCL input string to parse |
-| `expected` | Entry[] |  | Expected entries for Level 1-2 tests |
-| `expected_flat` | Entry[] |  | Expected flat parsing result for Level 3+ tests |
-| `expected_nested` | object |  | Expected nested object structure for Level 3 tests |
-| `expected_typed` | object |  | Expected typed values for Level 4 tests |
-| `expected_error` | boolean |  | True if this test should produce an error |
-| `error_message` | string |  | Expected error message pattern |
-| `parse_options` | object |  | Parsing options for Level 4 typed tests |
-| `api_calls` | string[] |  | API calls being tested for Level 4 |
+| `input` | string | ✓ | Primary CCL input string to parse |
+| `input1`, `input2`, `input3` | string |  | Additional inputs for composition/associativity tests |
+| `validations` | object | ✓ | Object containing API function validations to perform |
 | `meta` | object | ✓ | Test metadata including level and categorization |
 
-### Entry Object Structure
+## Validation Types Reference
+
+### Level 1: Entry Parsing
+
+#### `parse` Validation
+Tests the core `parse(text)` API function.
+
+```json
+"parse": [
+  {"key": "database.host", "value": "localhost"},
+  {"key": "database.port", "value": "8080"}
+]
+```
+
+**Error Format:**
+```json
+"parse": {
+  "error": true,
+  "error_type": "ParseError",
+  "error_message": "end_of_input"
+}
+```
+
+### Level 2: Entry Processing  
+
+#### `filter` Validation
+Tests the `filter(entries)` API function for comment removal.
+
+```json
+"filter": [
+  {"key": "key", "value": "value"}
+]
+```
+
+#### `compose` Validation  
+Tests the `compose(left, right)` API function for entry composition.
+
+```json
+"compose": {
+  "left": [{"key": "key1", "value": "value1"}],
+  "right": [{"key": "key2", "value": "value2"}],
+  "expected": [
+    {"key": "key1", "value": "value1"},
+    {"key": "key2", "value": "value2"}
+  ]
+}
+```
+
+#### `expand_dotted` Validation
+Tests dotted key expansion (e.g., `database.host` → nested structure).
+
+```json
+"expand_dotted": [
+  {"key": "database", "value": "\n  host = localhost"}
+]
+```
+
+### Level 3: Object Construction
+
+#### `make_objects` Validation
+Tests the `make_objects(entries)` API function for hierarchical structure creation.
+
+```json
+"make_objects": {
+  "database": {
+    "host": "localhost", 
+    "port": "8080"
+  }
+}
+```
+
+### Level 4: Typed Access
+
+#### Typed Access Validations
+Test type-safe accessor functions with dual access patterns.
+
+```json
+"get_string": {
+  "args": ["database.host"],     // Dotted access
+  "expected": "localhost"
+},
+"get_int": {
+  "args": ["database", "port"],  // Hierarchical access  
+  "expected": 8080
+},
+"get_bool": {
+  "args": ["enabled"],
+  "expected": true
+}
+```
+
+**Error Format:**
+```json
+"get_string": {
+  "args": ["nonexistent.key"],
+  "error": true,
+  "error_type": "AccessError",
+  "error_message": "Path not found"
+}
+```
+
+### Output & Formatting
+
+#### `pretty_print` Validation
+Tests canonical output formatting.
+
+```json
+"pretty_print": "key = value\nnested = \n  sub = val"
+```
+
+#### `round_trip` Validation  
+Tests parse-format-parse identity.
+
+```json
+"round_trip": {
+  "property": "identity",
+  "description": "Parse → Pretty-print → Parse should be identical"
+}
+```
+
+#### `canonical_format` Validation
+Tests standardized formatting output.
+
+```json
+"canonical_format": {
+  "expected": "key = value\nnested = val",
+  "description": "Should produce standardized formatting"
+}
+```
+
+### Composition Laws
+
+#### `associativity` Validation
+Tests algebraic properties of entry composition.
+
+```json
+"associativity": {
+  "property": "semigroup_associativity",
+  "left_assoc": "(A + B) + C", 
+  "right_assoc": "A + (B + C)",
+  "should_be_equal": true
+}
+```
+
+## Entry Object Structure
 
 The `Entry` object represents a parsed key-value pair:
 
@@ -82,45 +236,6 @@ The `Entry` object represents a parsed key-value pair:
   "value": "string"
 }
 ```
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `key` | string | ✓ | The key part of the entry |
-| `value` | string | ✓ | The value part of the entry |
-
-### Typed Value Structure
-
-For Level 4 tests, `expected_typed` contains typed value objects:
-
-```json
-{
-  "type": "StringVal|IntVal|FloatVal|BoolVal|EmptyVal",
-  "value": "string|number|boolean|null"
-}
-```
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `type` | enum | ✓ | The inferred type: `StringVal`, `IntVal`, `FloatVal`, `BoolVal`, or `EmptyVal` |
-| `value` | mixed | ✓ | The typed value (string, number, boolean, or null for EmptyVal) |
-
-### Parse Options
-
-For Level 4 typed parsing tests, optional parsing configuration:
-
-```json
-{
-  "parse_integers": true,
-  "parse_floats": true,
-  "parse_booleans": true
-}
-```
-
-| Field | Type | Default | Description |
-|-------|------|---------|-------------|
-| `parse_integers` | boolean | true | Enable integer parsing |
-| `parse_floats` | boolean | true | Enable float parsing |
-| `parse_booleans` | boolean | true | Enable boolean parsing |
 
 ## Test Metadata Structure
 
@@ -135,18 +250,7 @@ Every test case must include a `meta` object with categorization and level infor
 }
 ```
 
-### Metadata Fields
-
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `tags` | string[] | ✓ | Tags for categorizing and filtering tests |
-| `level` | integer | ✓ | CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed) |
-| `feature` | enum | ✓ | Feature category for organization |
-| `difficulty` | enum |  | Test difficulty level |
-
 ### Feature Categories
-
-The `feature` field must be one of these standardized categories:
 
 | Feature | Description | Files |
 |---------|-------------|--------|
@@ -159,66 +263,6 @@ The `feature` field must be one of these standardized categories:
 | `pretty-printing` | Formatting and round-trip tests | `pretty-print.json` |
 | `error-handling` | Error detection and reporting | `errors.json` |
 
-### Common Tags
-
-Tags provide fine-grained categorization within features. Common tags include:
-
-**Parsing Related:**
-- `basic` - Fundamental functionality
-- `whitespace` - Whitespace handling
-- `multiline` - Multi-line values
-- `continuation` - Indented continuation lines
-- `unicode` - Unicode character support
-- `line-endings` - Line ending normalization
-
-**Structure Related:**
-- `nested` - Nested structures
-- `dotted-keys` - Dotted key syntax
-- `lists` - List-style entries (empty keys)
-- `empty-key` - Empty key handling
-- `empty-value` - Empty value handling
-
-**Advanced Features:**
-- `typed_parsing` - Type inference
-- `comments` - Comment handling
-- `composition` - Entry composition
-- `duplicate-keys` - Duplicate key handling
-- `merge` - Object merging
-
-**Quality Related:**
-- `edge-case` - Edge case testing
-- `error` - Error condition testing
-- `round-trip` - Round-trip validation
-
-## Composition Tests (Level 2)
-
-Level 2 processing tests may include a `composition_tests` array for testing algebraic properties:
-
-```json
-{
-  "name": "string",
-  "property": "monoid_identity_left|monoid_identity_right|semigroup_associativity|closure|concatenation_equivalence",
-  "input1": "string",
-  "input2": "string", 
-  "input3": "string",    // For associativity tests
-  "expected_combined": [...],
-  "expected_left_assoc": [...],   // For associativity tests
-  "expected_right_assoc": [...],  // For associativity tests
-  "expected_text_concat": "string",
-  "meta": {...}
-}
-```
-
-### Composition Test Properties
-
-| Property | Description |
-|----------|-------------|
-| `monoid_identity_left` | Tests left identity: `empty + x = x` |
-| `monoid_identity_right` | Tests right identity: `x + empty = x` |
-| `semigroup_associativity` | Tests associativity: `(a + b) + c = a + (b + c)` |
-| `closure` | Tests that operations remain within the set |
-| `concatenation_equivalence` | Tests text concatenation equivalence |
-
 ## Usage Examples
 
 ### Basic Level 1 Test
@@ -227,9 +271,11 @@ Level 2 processing tests may include a `composition_tests` array for testing alg
 {
   "name": "basic_key_value",
   "input": "key = value",
-  "expected": [
-    {"key": "key", "value": "value"}
-  ],
+  "validations": {
+    "parse": [
+      {"key": "key", "value": "value"}
+    ]
+  },
   "meta": {
     "tags": ["basic"],
     "level": 1,
@@ -238,46 +284,34 @@ Level 2 processing tests may include a `composition_tests` array for testing alg
 }
 ```
 
-### Level 3 Object Construction Test
+### Multi-Level Test
 
 ```json
 {
-  "name": "nested_objects",
-  "input": "database =\n  host = localhost\n  port = 5432",
-  "expected_flat": [
-    {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
-  ],
-  "expected_nested": {
-    "database": {
-      "host": "localhost",
-      "port": "5432"
+  "name": "nested_with_typed_access",
+  "input": "database.host = localhost\ndatabase.port = 8080",
+  "validations": {
+    "parse": [
+      {"key": "database.host", "value": "localhost"},
+      {"key": "database.port", "value": "8080"}
+    ],
+    "expand_dotted": [
+      {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
+    ],
+    "make_objects": {
+      "database": {"host": "localhost", "port": "8080"}
+    },
+    "get_string": {
+      "args": ["database.host"],
+      "expected": "localhost"
+    },
+    "get_int": {
+      "args": ["database", "port"],
+      "expected": 8080
     }
   },
   "meta": {
-    "tags": ["nested", "object-construction"],
-    "level": 3,
-    "feature": "object-construction"
-  }
-}
-```
-
-### Level 4 Typed Parsing Test
-
-```json
-{
-  "name": "parse_integer",
-  "input": "port = 8080",
-  "expected_flat": [
-    {"key": "port", "value": "8080"}
-  ],
-  "expected_nested": {
-    "port": "8080"
-  },
-  "expected_typed": {
-    "port": {"type": "IntVal", "value": 8080}
-  },
-  "meta": {
-    "tags": ["typed_parsing", "integer"],
+    "tags": ["dotted-keys", "typed_parsing"],
     "level": 4,
     "feature": "typed-parsing"
   }
@@ -288,10 +322,15 @@ Level 2 processing tests may include a `composition_tests` array for testing alg
 
 ```json
 {
-  "name": "incomplete_key",
+  "name": "incomplete_key_error",
   "input": "key",
-  "expected_error": true,
-  "error_message": "end_of_input",
+  "validations": {
+    "parse": {
+      "error": true,
+      "error_type": "ParseError",
+      "error_message": "end_of_input"
+    }
+  },
   "meta": {
     "tags": ["error", "incomplete"],
     "level": 1,
@@ -300,59 +339,79 @@ Level 2 processing tests may include a `composition_tests` array for testing alg
 }
 ```
 
+## Implementation Guidelines
+
+### Test Runner for Validation Format
+
+```javascript
+function runValidationTest(testCase) {
+  // Iterate over all validations in the test
+  for (const [validationType, expected] of Object.entries(testCase.validations)) {
+    switch (validationType) {
+      case 'parse':
+        if (expected.error) {
+          // Test error case
+          expect(() => parse(testCase.input)).toThrow(expected.error_message);
+        } else {
+          // Test success case
+          const actual = parse(testCase.input);
+          expect(actual).toEqual(expected);
+        }
+        break;
+        
+      case 'make_objects':
+        const entries = parse(testCase.input);
+        const actual = makeObjects(entries);
+        expect(actual).toEqual(expected);
+        break;
+        
+      case 'get_string':
+        const ccl = makeObjects(parse(testCase.input));
+        if (expected.error) {
+          expect(() => getString(ccl, ...expected.args)).toThrow();
+        } else {
+          const actual = getString(ccl, ...expected.args);
+          expect(actual).toBe(expected.expected);
+        }
+        break;
+        
+      case 'filter':
+        const filteredEntries = filter(parse(testCase.input));
+        expect(filteredEntries).toEqual(expected);
+        break;
+        
+      case 'round_trip':
+        const originalEntries = parse(testCase.input);
+        const formatted = prettyPrint(originalEntries);
+        const reparsedEntries = parse(formatted);
+        expect(reparsedEntries).toEqual(originalEntries);
+        break;
+        
+      // ... handle other validation types
+    }
+  }
+}
+```
+
+### Benefits of Validation-Based Testing
+
+1. **🎯 Explicit Intent**: Each test clearly shows which API functions to test
+2. **🚀 Easy Implementation**: Test runners iterate over validation keys
+3. **📚 Self-Documenting**: Validation names explain what's being tested
+4. **🔧 Flexible**: Easy to add additional validation types
+5. **✅ No Confusion**: Eliminates guesswork about multiple expected fields
+6. **📊 Clear Coverage**: See exactly what APIs are tested per test case
+
 ## Schema Validation
 
-All test files should validate against the schema:
+Validate all test files against the schema:
 
 ```bash
 # Using AJV CLI
 ajv validate -s tests/schema.json -d "tests/*.json"
 
-# Using Node.js script
+# Using npm script
 npm run validate
 ```
 
-## Implementation Guidelines
-
-When implementing CCL parsers, use this schema structure to:
-
-1. **Load test cases** programmatically from JSON files
-2. **Filter by level** to test only implemented features  
-3. **Filter by feature** to focus on specific functionality
-4. **Filter by tags** for targeted testing scenarios
-5. **Validate outputs** against expected results
-
-### Test Runner Example
-
-```javascript
-function runTestSuite(testFile, options = {}) {
-  const suite = JSON.parse(fs.readFileSync(testFile));
-  
-  for (const test of suite.tests) {
-    // Filter by level if specified
-    if (options.level && test.meta.level !== options.level) {
-      continue;
-    }
-    
-    // Filter by feature if specified  
-    if (options.feature && test.meta.feature !== options.feature) {
-      continue;
-    }
-    
-    // Run appropriate test based on level
-    if (test.expected) {
-      // Level 1-2 test
-      const result = parse(test.input);
-      assert.deepEqual(result, test.expected);
-    } else if (test.expected_nested) {
-      // Level 3 test
-      const entries = parse(test.input);
-      const objects = makeObjects(entries);
-      assert.deepEqual(objects, test.expected_nested);
-    }
-    // ... handle other test types
-  }
-}
-```
-
-This schema provides a comprehensive, flexible foundation for testing CCL implementations across all architecture levels while maintaining consistency and language-agnostic compatibility.
+The validation-based format provides a foundation for testing CCL implementations with explicit API function testing, eliminating the confusion of multi-level field approaches.
