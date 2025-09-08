@@ -21,7 +21,8 @@
 				"tags": [
 					"basic"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -42,7 +43,8 @@
 					"basic",
 					"equals"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -59,7 +61,8 @@
 					"whitespace",
 					"trimming"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -80,7 +83,8 @@
 					"multiline",
 					"continuation"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -97,7 +101,8 @@
 					"multiline",
 					"blank-lines"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -114,7 +119,8 @@
 					"continuation",
 					"multiline"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -135,7 +141,8 @@
 					"empty-value",
 					"basic"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -152,7 +159,8 @@
 					"empty-key",
 					"lists"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -169,7 +177,8 @@
 					"empty-key",
 					"empty-value"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -186,7 +195,8 @@
 					"unicode",
 					"basic"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -207,7 +217,8 @@
 					"unicode",
 					"keys"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -228,7 +239,8 @@
 					"line-endings",
 					"normalization"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -240,7 +252,8 @@
 					"edge-cases",
 					"empty"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -257,7 +270,8 @@
 					"edge-cases",
 					"eof"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -275,7 +289,8 @@
 					"tabs",
 					"trimming"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -293,7 +308,8 @@
 					"indentation",
 					"mixed-whitespace"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -315,7 +331,8 @@
 					"indentation",
 					"equals"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		},
 		{
@@ -334,7 +351,8 @@
 					"equals",
 					"continuation"
 				],
-				"level": 1
+				"level": 1,
+				"feature": "parsing"
 			}
 		}
 	]

@@ -16,7 +16,7 @@
       "expected_typed": {
         "port": {"type": "IntVal", "value": 8080}
       },
-      "meta": {"tags": ["typed_parsing", "integer", "basic"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "integer", "basic"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_basic_float",
@@ -30,7 +30,7 @@
       "expected_typed": {
         "temperature": {"type": "FloatVal", "value": 98.6}
       },
-      "meta": {"tags": ["typed_parsing", "float", "basic"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "float", "basic"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_true",
@@ -44,7 +44,7 @@
       "expected_typed": {
         "enabled": {"type": "BoolVal", "value": true}
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "true"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "boolean", "true"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_yes",
@@ -58,7 +58,7 @@
       "expected_typed": {
         "active": {"type": "BoolVal", "value": true}
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "yes_no"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "boolean", "yes_no"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_false",
@@ -72,7 +72,7 @@
       "expected_typed": {
         "disabled": {"type": "BoolVal", "value": false}
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "false"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "boolean", "false"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_string_fallback",
@@ -86,7 +86,7 @@
       "expected_typed": {
         "name": {"type": "StringVal", "value": "Alice"}
       },
-      "meta": {"tags": ["typed_parsing", "string", "fallback"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "string", "fallback"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_negative_integer",
@@ -100,7 +100,7 @@
       "expected_typed": {
         "offset": {"type": "IntVal", "value": -42}
       },
-      "meta": {"tags": ["typed_parsing", "integer", "negative"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "integer", "negative"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_zero_values",
@@ -120,7 +120,7 @@
         "distance": {"type": "FloatVal", "value": 0.0},
         "disabled": {"type": "BoolVal", "value": false}
       },
-      "meta": {"tags": ["typed_parsing", "zero_values", "mixed"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "zero_values", "mixed"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_variants",
@@ -152,7 +152,7 @@
         "flag6": {"type": "BoolVal", "value": false},
         "flag7": {"type": "IntVal", "value": 0}
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "variants"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "boolean", "variants"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_mixed_types",
@@ -178,7 +178,7 @@
         "timeout": {"type": "FloatVal", "value": 30.5},
         "debug": {"type": "BoolVal", "value": false}
       },
-      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_empty_value",
@@ -192,7 +192,7 @@
       "expected_typed": {
         "empty_key": {"type": "EmptyVal", "value": null}
       },
-      "meta": {"tags": ["typed_parsing", "empty", "edge_case"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "empty", "edge_case"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_with_whitespace",
@@ -209,7 +209,7 @@
         "number": {"type": "IntVal", "value": 42},
         "flag": {"type": "BoolVal", "value": true}
       },
-      "meta": {"tags": ["typed_parsing", "whitespace", "trimming"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "whitespace", "trimming"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_with_conservative_options",
@@ -237,7 +237,7 @@
         "parse_floats": false,
         "parse_booleans": false
       },
-      "meta": {"tags": ["typed_parsing", "parse_options", "conservative"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "parse_options", "conservative"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_integer_error",
@@ -250,7 +250,7 @@
       },
       "expected_error": true,
       "error_message": "Cannot parse 'not_a_number' as integer at path 'port'",
-      "meta": {"tags": ["typed_parsing", "integer", "error_handling"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "integer", "error_handling"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_float_error",
@@ -263,7 +263,7 @@
       },
       "expected_error": true,
       "error_message": "Cannot parse 'invalid' as float at path 'temperature'",
-      "meta": {"tags": ["typed_parsing", "float", "error_handling"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "float", "error_handling"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_error",
@@ -276,7 +276,7 @@
       },
       "expected_error": true,
       "error_message": "Cannot parse 'maybe' as boolean at path 'enabled'",
-      "meta": {"tags": ["typed_parsing", "boolean", "error_handling"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "boolean", "error_handling"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_missing_path_error",
@@ -289,7 +289,7 @@
       },
       "expected_error": true,
       "error_message": "Path 'missing' not found.",
-      "meta": {"tags": ["typed_parsing", "missing_path", "error_handling"], "level": 4}
+      "meta": {"tags": ["typed_parsing", "missing_path", "error_handling"], "level": 4, "feature": "typed-parsing"}
     }
   ]
 }

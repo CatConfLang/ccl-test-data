@@ -30,7 +30,8 @@
 					"composition",
 					"duplicate-keys"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -55,7 +56,8 @@
 					"duplicate-keys",
 					"multiple-values"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -80,7 +82,8 @@
 					"lists",
 					"empty-key"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -98,7 +101,8 @@
 					"empty-key",
 					"special-syntax"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -128,7 +132,8 @@
 					"duplicate-keys",
 					"redundant"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -158,7 +163,8 @@
 					"duplicate-keys",
 					"redundant"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -184,7 +190,8 @@
 					"multiple-values",
 					"redundant"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -214,7 +221,8 @@
 					"mixed",
 					"redundant"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -240,7 +248,8 @@
 					"empty-value",
 					"redundant"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -265,7 +274,8 @@
 					"section-headers",
 					"keyless-values"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -290,7 +300,8 @@
 					"section-headers",
 					"keyless-values"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -327,7 +338,8 @@
 					"section-headers",
 					"multiple-sections"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -365,7 +377,8 @@
 					"lists",
 					"mixed-content"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -382,7 +395,8 @@
 					"section-headers",
 					"empty-section"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -403,7 +417,8 @@
 					"section-headers",
 					"end-of-file"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -432,7 +447,8 @@
 					"section-headers",
 					"asymmetric-equals"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -462,7 +478,8 @@
 					"colon-convention",
 					"user-text"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -492,7 +509,8 @@
 					"spacing-edge-cases",
 					"list-items"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -522,7 +540,8 @@
 					"consecutive",
 					"hierarchical"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -544,7 +563,8 @@
 					"multiline",
 					"edge-case"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		},
 		{
@@ -566,7 +586,8 @@
 					"unindented-continuation",
 					"parser-behavior"
 				],
-				"level": 2
+				"level": 2,
+				"feature": "processing"
 			}
 		}
 	]

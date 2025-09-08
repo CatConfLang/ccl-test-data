@@ -25,7 +25,7 @@ Each category has specific APIs, test suites, and implementation requirements.
 ## Core Functionality (Required)
 
 ### Essential Parsing
-**Files**: `tests/core/essential-parsing.json` (18 tests)  
+**Files**: `tests/essential-parsing.json` (18 tests)  
 **API:** `parse(text) → Result<Entry[], ParseError>`  
 **Status:** Required for all CCL implementations
 
@@ -67,7 +67,7 @@ function parse(text) {
 ```
 
 ### Comprehensive Parsing  
-**Files**: `tests/core/comprehensive-parsing.json` (30 tests)
+**Files**: `tests/comprehensive-parsing.json` (30 tests)
 **Purpose:** Production-ready validation with comprehensive edge cases
 **Status:** Recommended for production systems
 
@@ -84,7 +84,7 @@ function parse(text) {
 - **Robustness:** Handles malformed input gracefully
 
 ### Object Construction
-**Files**: `tests/core/object-construction.json` (8 tests)  
+**Files**: `tests/object-construction.json` (8 tests)  
 **API:** `make_objects(entries) → CCL`  
 **Status:** Required for hierarchical access
 
@@ -116,7 +116,7 @@ function make_objects(entries) {
 ## Optional Features (Choose Based on Needs)
 
 ### Dotted Key Expansion
-**Files**: `tests/features/dotted-keys.json` (18 tests)  
+**Files**: `tests/dotted-keys.json` (18 tests)  
 **Purpose:** Enable dual access patterns for convenience
 **Status:** Recommended for user-friendly APIs
 
@@ -132,7 +132,7 @@ function make_objects(entries) {
 - Flexible configuration authoring
 
 ### Comment Filtering
-**Files**: `tests/features/comments.json` (3 tests)  
+**Files**: `tests/comments.json` (3 tests)  
 **API:** `filter(entries)`  
 **Purpose:** Remove documentation keys from configuration
 
@@ -142,7 +142,7 @@ function make_objects(entries) {
 - Preserve structure while removing documentation
 
 ### Entry Processing
-**Files**: `tests/features/processing.json` (21 tests)
+**Files**: `tests/processing.json` (21 tests)
 **API:** `compose_entries()`, advanced processing
 **Purpose:** Advanced composition and merging capabilities
 
@@ -153,7 +153,7 @@ function make_objects(entries) {
 - Associative and commutative operations
 
 ### Typed Access
-**Files**: `tests/features/typed-access.json` (17 tests)  
+**Files**: `tests/typed-access.json` (17 tests)  
 **API:** `get_string()`, `get_int()`, `get_bool()`, etc.  
 **Purpose:** Type-safe value extraction with validation
 
@@ -192,7 +192,7 @@ function get_bool(ccl_obj, ...path) {
 ## Integration & Validation
 
 ### Error Handling
-**Files**: `tests/integration/errors.json` (5 tests)  
+**Files**: `tests/errors.json` (5 tests)  
 **Purpose:** Malformed input detection across all functionality
 **Status:** Recommended for robust implementations
 

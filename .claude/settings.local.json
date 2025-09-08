@@ -29,7 +29,14 @@
       "Bash(sed:*)",
       "Bash(npm run validate:*)",
       "Bash(./scripts/update-readme.sh:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(for file in pretty-print.json dotted-keys.json typed-access.json processing.json)",
+      "Bash(do echo \"Processing $file\")",
+      "Bash(done)",
+      "Bash(jsonschema2md:*)",
+      "Bash(generate-schema-doc:*)",
+      "Bash(python:*)",
+      "Bash(npm run docs:schema:*)"
     ],
     "deny": [],
     "ask": []

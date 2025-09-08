@@ -23,12 +23,16 @@ const colors = {
   gray: '\x1b[90m'
 };
 
-// Categories for test files - based on actual test file names and descriptions
-const CATEGORIES = {
-  core: ['core', 'fundamental', 'basic', 'essential', 'comprehensive', 'parsing validation'],
-  features: ['feature', 'functionality', 'capability', 'dotted', 'typed', 'access', 'comment'],
-  integration: ['integration', 'e2e', 'end-to-end', 'workflow', 'error', 'processing', 'composition'],
-  utilities: ['util', 'helper', 'utility', 'tool', 'common', 'pretty', 'print', 'format']
+// Feature-based categories - based on meta.feature field in test files
+const FEATURE_CATEGORIES = {
+  'parsing': 'core-parsing',
+  'processing': 'advanced-processing', 
+  'comments': 'advanced-processing',
+  'object-construction': 'object-construction',
+  'dotted-keys': 'object-construction',
+  'typed-parsing': 'type-system',
+  'pretty-printing': 'output-validation',
+  'error-handling': 'output-validation'
 };
 
 async function findTestFiles() {
@@ -58,27 +62,26 @@ async function countTests(filePath) {
   }
 }
 
-async function getDescription(filePath) {
+async function getFileMetadata(filePath) {
   try {
     const content = await readFile(filePath, 'utf8');
     const data = JSON.parse(content);
-    return data.description || '';
+    
+    // Get the feature from the first test's meta.feature field
+    const feature = data.tests && data.tests[0] && data.tests[0].meta && data.tests[0].meta.feature;
+    
+    return {
+      description: data.description || '',
+      feature: feature || null
+    };
   } catch {
-    return '';
+    return { description: '', feature: null };
   }
 }
 
-function categorizeFile(filePath, description = '') {
-  const fileName = basename(filePath).toLowerCase();
-  const searchText = `${fileName} ${description}`.toLowerCase();
-  
-  for (const [category, keywords] of Object.entries(CATEGORIES)) {
-    if (keywords.some(keyword => searchText.includes(keyword))) {
-      return category;
-    }
-  }
-  
-  return 'other';
+function categorizeByFeature(feature) {
+  if (!feature) return 'other';
+  return FEATURE_CATEGORIES[feature] || 'other';
 }
 
 async function collectStats(silent = false) {
@@ -91,13 +94,14 @@ async function collectStats(silent = false) {
   
   const testFiles = await findTestFiles();
   const stats = {
-    structure: 'flat',
+    structure: 'feature-based',
     categories: {
-      core: { total: 0, files: {} },
-      features: { total: 0, files: {} },
-      integration: { total: 0, files: {} },
-      utilities: { total: 0, files: {} },
-      other: { total: 0, files: {} }
+      'core-parsing': { total: 0, files: {} },
+      'advanced-processing': { total: 0, files: {} },
+      'object-construction': { total: 0, files: {} },
+      'type-system': { total: 0, files: {} },
+      'output-validation': { total: 0, files: {} },
+      'other': { total: 0, files: {} }
     },
     totalTests: 0,
     totalFiles: 0
@@ -110,8 +114,8 @@ async function collectStats(silent = false) {
   for (const file of testFiles) {
     const count = await countTests(file);
     if (count > 0) {
-      const description = await getDescription(file);
-      const category = categorizeFile(file, description);
+      const metadata = await getFileMetadata(file);
+      const category = categorizeByFeature(metadata.feature);
       const fileName = basename(file, '.json');
       
       stats.categories[category].files[fileName] = count;
@@ -120,8 +124,8 @@ async function collectStats(silent = false) {
       stats.totalFiles++;
       
       if (showOutput) {
-        const categoryDisplay = category.charAt(0).toUpperCase() + category.slice(1);
-        console.log(`  ${colors.gray}${categoryDisplay}: ${fileName} (${count} tests)${colors.reset}`);
+        const categoryDisplay = category.replace('-', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+        console.log(`  ${colors.gray}${categoryDisplay}: ${fileName} (${count} tests) [${metadata.feature || 'unknown'}]${colors.reset}`);
       }
     }
   }
@@ -129,11 +133,12 @@ async function collectStats(silent = false) {
   // Display summary or JSON based on TTY and silent mode
   if (!silent && isTTY) {
     console.log(`\n${colors.magenta}${colors.bold}📊 Test Statistics Summary${colors.reset}\n`);
-    console.log(`${colors.blue}${colors.bold}Feature-Based Structure (Flat):${colors.reset}`);
-    console.log(`  ${colors.gray}Core: ${stats.categories.core.total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Features: ${stats.categories.features.total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Integration: ${stats.categories.integration.total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Utilities: ${stats.categories.utilities.total} tests${colors.reset}`);
+    console.log(`${colors.blue}${colors.bold}Feature-Based Structure:${colors.reset}`);
+    console.log(`  ${colors.gray}Core Parsing: ${stats.categories['core-parsing'].total} tests${colors.reset}`);
+    console.log(`  ${colors.gray}Advanced Processing: ${stats.categories['advanced-processing'].total} tests${colors.reset}`);
+    console.log(`  ${colors.gray}Object Construction: ${stats.categories['object-construction'].total} tests${colors.reset}`);
+    console.log(`  ${colors.gray}Type System: ${stats.categories['type-system'].total} tests${colors.reset}`);
+    console.log(`  ${colors.gray}Output & Validation: ${stats.categories['output-validation'].total} tests${colors.reset}`);
     
     if (stats.categories.other.total > 0) {
       console.log(`  ${colors.gray}Other: ${stats.categories.other.total} tests${colors.reset}`);
@@ -158,4 +163,4 @@ if (process.argv[1] === __filename) {
   });
 }
 
-export { collectStats, countTests, categorizeFile };
+export { collectStats, countTests, categorizeByFeature, getFileMetadata };

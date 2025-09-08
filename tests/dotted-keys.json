@@ -18,7 +18,7 @@
           "host": "localhost"
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "single"], "level": 3}
+      "meta": {"tags": ["basic", "dotted-keys", "single"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "basic_multiple_dotted_keys_same_parent",
@@ -38,7 +38,7 @@
           "name": "mydb"
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "multiple", "same-parent"], "level": 3}
+      "meta": {"tags": ["basic", "dotted-keys", "multiple", "same-parent"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "multiple_dotted_keys_different_parents",
@@ -64,7 +64,7 @@
           "enabled": "true"
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "multiple", "different-parents"], "level": 3}
+      "meta": {"tags": ["basic", "dotted-keys", "multiple", "different-parents"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "deep_dotted_nesting_three_levels",
@@ -84,7 +84,7 @@
           }
         }
       },
-      "meta": {"tags": ["deep-nesting", "dotted-keys", "three-levels"], "level": 3}
+      "meta": {"tags": ["deep-nesting", "dotted-keys", "three-levels"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "deep_dotted_nesting_four_levels",
@@ -108,7 +108,7 @@
           }
         }
       },
-      "meta": {"tags": ["deep-nesting", "dotted-keys", "four-levels", "extreme"], "level": 3}
+      "meta": {"tags": ["deep-nesting", "dotted-keys", "four-levels", "extreme"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "mixed_dotted_and_regular_keys",
@@ -135,7 +135,7 @@
           "port": "8080"
         }
       },
-      "meta": {"tags": ["mixed", "dotted-keys", "regular-keys"], "level": 3}
+      "meta": {"tags": ["mixed", "dotted-keys", "regular-keys"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "conflict_dotted_vs_nested_dotted_wins",
@@ -153,7 +153,7 @@
           "host": "localhost"
         }
       },
-      "meta": {"tags": ["conflict-resolution", "dotted-wins", "merge"], "level": 3}
+      "meta": {"tags": ["conflict-resolution", "dotted-wins", "merge"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "conflict_nested_vs_dotted_merge",
@@ -172,7 +172,7 @@
           "name": "mydb"
         }
       },
-      "meta": {"tags": ["conflict-resolution", "merge", "order-independent"], "level": 3}
+      "meta": {"tags": ["conflict-resolution", "merge", "order-independent"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "complex_conflict_multiple_sources",
@@ -196,7 +196,7 @@
           "version": "1.0"
         }
       },
-      "meta": {"tags": ["complex-conflict", "multiple-sources", "merge"], "level": 3}
+      "meta": {"tags": ["complex-conflict", "multiple-sources", "merge"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "dotted_keys_with_empty_key_parent",
@@ -214,7 +214,7 @@
           "port": "8080"
         }
       },
-      "meta": {"tags": ["empty-key", "dotted-keys", "edge-case"], "level": 3}
+      "meta": {"tags": ["empty-key", "dotted-keys", "edge-case"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "dotted_keys_with_empty_key_child",
@@ -232,7 +232,7 @@
           "host": "localhost"
         }
       },
-      "meta": {"tags": ["empty-key", "dotted-keys", "trailing-dot"], "level": 3}
+      "meta": {"tags": ["empty-key", "dotted-keys", "trailing-dot"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "edge_case_single_dot",
@@ -251,7 +251,7 @@
         },
         "key": "normal"
       },
-      "meta": {"tags": ["edge-case", "single-dot", "empty-key"], "level": 3}
+      "meta": {"tags": ["edge-case", "single-dot", "empty-key"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "edge_case_multiple_consecutive_dots",
@@ -278,7 +278,7 @@
           }
         }
       },
-      "meta": {"tags": ["edge-case", "consecutive-dots", "empty-segments"], "level": 3}
+      "meta": {"tags": ["edge-case", "consecutive-dots", "empty-segments"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "dotted_keys_with_list_style",
@@ -297,7 +297,7 @@
           "staging": "staging1"
         }
       },
-      "meta": {"tags": ["list-style", "dotted-keys", "duplicate-keys"], "level": 3}
+      "meta": {"tags": ["list-style", "dotted-keys", "duplicate-keys"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "dotted_keys_with_empty_key_lists",
@@ -316,7 +316,7 @@
           "admin": "9000"
         }
       },
-      "meta": {"tags": ["empty-key", "list-style", "dotted-keys", "mixed"], "level": 3}
+      "meta": {"tags": ["empty-key", "list-style", "dotted-keys", "mixed"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "backward_compatibility_no_dots",
@@ -336,7 +336,7 @@
         "host": "localhost",
         "port": "5432"
       },
-      "meta": {"tags": ["backward-compatibility", "no-dots", "unchanged"], "level": 3}
+      "meta": {"tags": ["backward-compatibility", "no-dots", "unchanged"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "backward_compatibility_nested_syntax",
@@ -353,7 +353,7 @@
           "port": "5432"
         }
       },
-      "meta": {"tags": ["backward-compatibility", "nested-syntax", "unchanged"], "level": 3}
+      "meta": {"tags": ["backward-compatibility", "nested-syntax", "unchanged"], "level": 3, "feature": "dotted-keys"}
     },
     {
       "name": "stress_test_complex_mixed_scenario",
@@ -406,7 +406,7 @@
           "env": "production"
         }
       },
-      "meta": {"tags": ["stress-test", "complex", "mixed", "real-world"], "level": 3}
+      "meta": {"tags": ["stress-test", "complex", "mixed", "real-world"], "level": 3, "feature": "dotted-keys"}
     }
   ]
 }
