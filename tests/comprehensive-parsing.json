@@ -1,18 +1,20 @@
 {
 	"$schema": "./schema.json",
-	"suite": "CCL Comprehensive Parsing",
-	"version": "1.0",
-	"description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation.",
+	"suite": "CCL Comprehensive Parsing - Validation Format",
+	"version": "2.0",
+	"description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.",
 	"tests": [
 		{
 			"name": "basic_single_no_spaces",
 			"input": "key=val",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"basic",
@@ -25,12 +27,14 @@
 		{
 			"name": "basic_with_spaces",
 			"input": "key = val",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"basic",
@@ -44,12 +48,14 @@
 		{
 			"name": "indented_key",
 			"input": "  key = val",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -63,12 +69,14 @@
 		{
 			"name": "value_trailing_spaces",
 			"input": "key = val  ",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -82,12 +90,14 @@
 		{
 			"name": "key_value_surrounded_spaces",
 			"input": "  key  =  val  ",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -101,12 +111,14 @@
 		{
 			"name": "surrounded_by_newlines",
 			"input": "\nkey = val\n",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"line-endings",
@@ -119,12 +131,14 @@
 		{
 			"name": "key_empty_value",
 			"input": "key =",
-			"expected": [
-				{
-					"key": "key",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-value",
@@ -137,12 +151,14 @@
 		{
 			"name": "empty_value_with_newline",
 			"input": "key =\n",
-			"expected": [
-				{
-					"key": "key",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-value",
@@ -156,12 +172,14 @@
 		{
 			"name": "empty_value_with_spaces",
 			"input": "key =  ",
-			"expected": [
-				{
-					"key": "key",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-value",
@@ -175,12 +193,14 @@
 		{
 			"name": "empty_key_indented",
 			"input": "  = val",
-			"expected": [
-				{
-					"key": "",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -195,12 +215,14 @@
 		{
 			"name": "empty_key_with_newline",
 			"input": "\n  = val",
-			"expected": [
-				{
-					"key": "",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -215,12 +237,14 @@
 		{
 			"name": "empty_key_value_with_spaces",
 			"input": "  =  ",
-			"expected": [
-				{
-					"key": "",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -235,12 +259,14 @@
 		{
 			"name": "equals_in_value_no_spaces",
 			"input": "a=b=c",
-			"expected": [
-				{
-					"key": "a",
-					"value": "b=c"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "a",
+						"value": "b=c"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"equals",
@@ -254,12 +280,14 @@
 		{
 			"name": "equals_in_value_with_spaces",
 			"input": "a = b = c",
-			"expected": [
-				{
-					"key": "a",
-					"value": "b = c"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "a",
+						"value": "b = c"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"equals",
@@ -273,16 +301,18 @@
 		{
 			"name": "multiple_key_value_pairs",
 			"input": "key1 = val1\nkey2 = val2",
-			"expected": [
-				{
-					"key": "key1",
-					"value": "val1"
-				},
-				{
-					"key": "key2",
-					"value": "val2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key1",
+						"value": "val1"
+					},
+					{
+						"key": "key2",
+						"value": "val2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"basic",
@@ -296,12 +326,14 @@
 		{
 			"name": "key_with_tabs",
 			"input": "\tkey\t=\tvalue",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\tvalue"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\tvalue"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -315,12 +347,14 @@
 		{
 			"name": "whitespace_only_value",
 			"input": "onlyspaces =     ",
-			"expected": [
-				{
-					"key": "onlyspaces",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "onlyspaces",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -334,12 +368,14 @@
 		{
 			"name": "spaces_vs_tabs_continuation",
 			"input": "text = First\n    four spaces\n\ttab preserved",
-			"expected": [
-				{
-					"key": "text",
-					"value": "First\n    four spaces\n\ttab preserved"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "text",
+						"value": "First\n    four spaces\n\ttab preserved"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"continuation",
@@ -354,12 +390,14 @@
 		{
 			"name": "multiple_empty_equality",
 			"input": " =  = ",
-			"expected": [
-				{
-					"key": "",
-					"value": "="
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": "="
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -374,12 +412,14 @@
 		{
 			"name": "key_with_newline_before_equals",
 			"input": "key \n= val\n",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -394,12 +434,14 @@
 		{
 			"name": "complex_multi_newline_whitespace",
 			"input": "  \n key  \n=  val  \n",
-			"expected": [
-				{
-					"key": "key",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -414,12 +456,14 @@
 		{
 			"name": "empty_value_with_trailing_spaces_newline",
 			"input": "key =  \n",
-			"expected": [
-				{
-					"key": "key",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-value",
@@ -434,12 +478,14 @@
 		{
 			"name": "empty_key_value_with_surrounding_newlines",
 			"input": "\n  =  \n",
-			"expected": [
-				{
-					"key": "",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -455,12 +501,14 @@
 		{
 			"name": "quotes_treated_as_literal_unquoted",
 			"input": "host = localhost",
-			"expected": [
-				{
-					"key": "host",
-					"value": "localhost"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "host",
+						"value": "localhost"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"quotes",
@@ -474,12 +522,14 @@
 		{
 			"name": "quotes_treated_as_literal_quoted",
 			"input": "host = \"localhost\"",
-			"expected": [
-				{
-					"key": "host",
-					"value": "\"localhost\""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "host",
+						"value": "\"localhost\""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"quotes",
@@ -493,12 +543,14 @@
 		{
 			"name": "nested_single_line",
 			"input": "key =\n  val",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\n  val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\n  val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"nested",
@@ -512,12 +564,14 @@
 		{
 			"name": "nested_multi_line",
 			"input": "key =\n  line1\n  line2",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\n  line1\n  line2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\n  line1\n  line2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"nested",
@@ -532,12 +586,14 @@
 		{
 			"name": "nested_with_blank_line",
 			"input": "key =\n  line1\n\n  line2",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\n  line1\n\n  line2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\n  line1\n\n  line2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"nested",
@@ -553,12 +609,14 @@
 		{
 			"name": "deep_nested_structure",
 			"input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"nested",
@@ -574,24 +632,26 @@
 		{
 			"name": "realistic_stress_test",
 			"input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
-			"expected": [
-				{
-					"key": "name",
-					"value": "Dmitrii Kovanikov"
-				},
-				{
-					"key": "login",
-					"value": "chshersh"
-				},
-				{
-					"key": "language",
-					"value": "OCaml"
-				},
-				{
-					"key": "date",
-					"value": "2024-05-25"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "name",
+						"value": "Dmitrii Kovanikov"
+					},
+					{
+						"key": "login",
+						"value": "chshersh"
+					},
+					{
+						"key": "language",
+						"value": "OCaml"
+					},
+					{
+						"key": "date",
+						"value": "2024-05-25"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"realistic",

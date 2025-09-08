@@ -1,42 +1,62 @@
 {
   "$schema": "./schema.json",
-  "suite": "CCL Error Cases",
-  "version": "1.0",
-  "description": "Error handling tests - malformed input detection across all levels",
+  "suite": "CCL Error Cases (Validation Format)",
+  "version": "2.0",
+  "description": "Error handling tests - malformed input detection across all levels using validation format",
   "tests": [
     {
       "name": "just_key_error",
       "input": "key",
-      "expected_error": true,
-      "error_message": "end_of_input",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "end_of_input"
+        }
+      },
       "meta": {"tags": ["error", "incomplete"], "level": 1, "feature": "error-handling"}
     },
     {
       "name": "whitespace_only_error",
       "input": "   ",
-      "expected_error": true,
-      "error_message": "not_enough_input",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "not_enough_input"
+        }
+      },
       "meta": {"tags": ["error", "whitespace", "empty"], "level": 1, "feature": "error-handling"}
     },
     {
       "name": "just_string_error",
       "input": "val",
-      "expected_error": true,
-      "error_message": "not_enough_input",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "not_enough_input"
+        }
+      },
       "meta": {"tags": ["error", "incomplete"], "level": 1, "feature": "error-handling"}
     },
     {
       "name": "multiline_plain_error",
       "input": "val\n  next",
-      "expected_error": true,
-      "error_message": "not_enough_input",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "not_enough_input"
+        }
+      },
       "meta": {"tags": ["error", "multiline", "incomplete"], "level": 1, "feature": "error-handling"}
     },
     {
       "name": "multiline_plain_nested_error",
       "input": "\nval\n  next",
-      "expected_error": true,
-      "error_message": "end_of_input",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "end_of_input"
+        }
+      },
       "meta": {"tags": ["error", "multiline", "nested", "incomplete"], "level": 1, "feature": "error-handling"}
     }
   ]

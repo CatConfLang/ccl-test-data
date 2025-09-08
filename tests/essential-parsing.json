@@ -1,22 +1,24 @@
 {
 	"$schema": "./schema.json",
-	"suite": "CCL Essential Parsing",
-	"version": "1.0",
+	"suite": "CCL Essential Parsing (Validation Format)",
+	"version": "2.0",
 	"description": "Core parsing functionality - minimum viable CCL implementation. Start here for rapid prototyping.",
 	"tests": [
 		{
 			"name": "basic_pairs",
 			"input": "name = Alice\nage = 42",
-			"expected": [
-				{
-					"key": "name",
-					"value": "Alice"
-				},
-				{
-					"key": "age",
-					"value": "42"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "name",
+						"value": "Alice"
+					},
+					{
+						"key": "age",
+						"value": "42"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"basic"
@@ -28,16 +30,18 @@
 		{
 			"name": "equals_in_values",
 			"input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
-			"expected": [
-				{
-					"key": "msg",
-					"value": "k=v pairs live happily here"
-				},
-				{
-					"key": "more",
-					"value": "a=b=c=d"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "msg",
+						"value": "k=v pairs live happily here"
+					},
+					{
+						"key": "more",
+						"value": "a=b=c=d"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"basic",
@@ -50,12 +54,14 @@
 		{
 			"name": "trimming_rules",
 			"input": "  spaces around key   =    value with leading spaces removed and trailing tabs kept? \t\t",
-			"expected": [
-				{
-					"key": "spaces around key",
-					"value": "value with leading spaces removed and trailing tabs kept?"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "spaces around key",
+						"value": "value with leading spaces removed and trailing tabs kept?"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -68,16 +74,18 @@
 		{
 			"name": "multiline_values",
 			"input": "description = First\n  Second line\n  Third line\ndone = yes",
-			"expected": [
-				{
-					"key": "description",
-					"value": "First\n  Second line\n  Third line"
-				},
-				{
-					"key": "done",
-					"value": "yes"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "description",
+						"value": "First\n  Second line\n  Third line"
+					},
+					{
+						"key": "done",
+						"value": "yes"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"multiline",
@@ -90,12 +98,14 @@
 		{
 			"name": "blank_lines_in_values",
 			"input": "body = Line one\n\n  Line three after a blank line",
-			"expected": [
-				{
-					"key": "body",
-					"value": "Line one\n\n  Line three after a blank line"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "body",
+						"value": "Line one\n\n  Line three after a blank line"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"multiline",
@@ -108,12 +118,14 @@
 		{
 			"name": "no_equals_continuation",
 			"input": "key = first line\nsecond line without equals\nthird line",
-			"expected": [
-				{
-					"key": "key",
-					"value": "first line\nsecond line without equals\nthird line"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "first line\nsecond line without equals\nthird line"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"continuation",
@@ -126,16 +138,18 @@
 		{
 			"name": "key_only_empty_value",
 			"input": "emptykey =\nother = value",
-			"expected": [
-				{
-					"key": "emptykey",
-					"value": ""
-				},
-				{
-					"key": "other",
-					"value": "value"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "emptykey",
+						"value": ""
+					},
+					{
+						"key": "other",
+						"value": "value"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-value",
@@ -148,12 +162,14 @@
 		{
 			"name": "empty_key_with_value",
 			"input": "= val",
-			"expected": [
-				{
-					"key": "",
-					"value": "val"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": "val"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -166,12 +182,14 @@
 		{
 			"name": "empty_key_and_value",
 			"input": "=",
-			"expected": [
-				{
-					"key": "",
-					"value": ""
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "",
+						"value": ""
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"empty-key",
@@ -184,12 +202,14 @@
 		{
 			"name": "unicode_graphemes",
 			"input": "emoji = 😀😃😄",
-			"expected": [
-				{
-					"key": "emoji",
-					"value": "😀😃😄"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "emoji",
+						"value": "😀😃😄"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"unicode",
@@ -202,16 +222,18 @@
 		{
 			"name": "unicode_keys",
 			"input": "配置 = config in Chinese\nключ = key in Russian",
-			"expected": [
-				{
-					"key": "配置",
-					"value": "config in Chinese"
-				},
-				{
-					"key": "ключ",
-					"value": "key in Russian"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "配置",
+						"value": "config in Chinese"
+					},
+					{
+						"key": "ключ",
+						"value": "key in Russian"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"unicode",
@@ -224,16 +246,18 @@
 		{
 			"name": "crlf_normalization",
 			"input": "key1 = value1\r\nkey2 = value2\r\n",
-			"expected": [
-				{
-					"key": "key1",
-					"value": "value1"
-				},
-				{
-					"key": "key2",
-					"value": "value2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key1",
+						"value": "value1"
+					},
+					{
+						"key": "key2",
+						"value": "value2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"line-endings",
@@ -246,7 +270,9 @@
 		{
 			"name": "empty_input",
 			"input": "",
-			"expected": [],
+			"validations": {
+				"parse": []
+			},
 			"meta": {
 				"tags": [
 					"edge-cases",
@@ -259,12 +285,14 @@
 		{
 			"name": "eof_without_newline",
 			"input": "last = final value",
-			"expected": [
-				{
-					"key": "last",
-					"value": "final value"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "last",
+						"value": "final value"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"edge-cases",
@@ -277,12 +305,14 @@
 		{
 			"name": "tab_preservation_in_values",
 			"input": "mixed =    \tvalue with leading spaces and tabs\t",
-			"expected": [
-				{
-					"key": "mixed",
-					"value": "\tvalue with leading spaces and tabs"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "mixed",
+						"value": "\tvalue with leading spaces and tabs"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"whitespace",
@@ -296,12 +326,14 @@
 		{
 			"name": "mixed_indentation_continuation",
 			"input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
-			"expected": [
-				{
-					"key": "description",
-					"value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "description",
+						"value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"multiline",
@@ -315,16 +347,18 @@
 		{
 			"name": "indented_equals_continuation",
 			"input": "key1 = val1\n  inner = some\nkey2 = val2",
-			"expected": [
-				{
-					"key": "key1",
-					"value": "val1\n  inner = some"
-				},
-				{
-					"key": "key2",
-					"value": "val2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key1",
+						"value": "val1\n  inner = some"
+					},
+					{
+						"key": "key2",
+						"value": "val2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"continuation",
@@ -338,12 +372,14 @@
 		{
 			"name": "nested_key_value_pairs",
 			"input": "key =\n  field1 = value1\n  field2 = value2",
-			"expected": [
-				{
-					"key": "key",
-					"value": "\n  field1 = value1\n  field2 = value2"
-				}
-			],
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "\n  field1 = value1\n  field2 = value2"
+					}
+				]
+			},
 			"meta": {
 				"tags": [
 					"nested",

@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "schema.json",
-  "title": "CCL Unified Test Suite Schema",
-  "description": "Unified JSON Schema for CCL test suites across all 4 architecture levels",
+  "title": "CCL Validation-Based Test Suite Schema",
+  "description": "New validation-based JSON Schema for CCL test suites with explicit API function testing",
   "type": "object",
   "required": ["suite", "version", "tests"],
   "properties": {
@@ -20,29 +20,16 @@
     },
     "tests": {
       "type": "array",
-      "description": "Array of test cases",
+      "description": "Array of test cases with validation-based structure",
       "items": {
-        "$ref": "#/definitions/unified_test_case"
-      }
-    },
-    "composition_tests": {
-      "type": "array", 
-      "description": "Optional composition tests for Level 2 (entry processing)",
-      "items": {
-        "$ref": "#/definitions/composition_test_case"
+        "$ref": "#/definitions/validation_test_case"
       }
     }
   },
   "definitions": {
-    "unified_test_case": {
+    "validation_test_case": {
       "type": "object",
-      "required": ["name", "input", "meta"],
-      "anyOf": [
-        {"required": ["expected"]},
-        {"required": ["expected_flat"]},
-        {"required": ["expected_flat", "expected_nested"]},
-        {"required": ["expected_error"]}
-      ],
+      "required": ["name", "input", "validations", "meta"],
       "properties": {
         "name": {
           "type": "string",
@@ -52,51 +39,75 @@
           "type": "string",
           "description": "CCL input string to parse"
         },
-        "expected": {
-          "type": "array",
-          "description": "Expected entries for Level 1-2 tests",
-          "items": {
-            "$ref": "#/definitions/entry"
-          }
-        },
-        "expected_flat": {
-          "type": "array", 
-          "description": "Expected flat parsing result for Level 3+ tests",
-          "items": {
-            "$ref": "#/definitions/entry"
-          }
-        },
-        "expected_nested": {
-          "type": "object",
-          "description": "Expected nested object structure for Level 3 tests",
-          "additionalProperties": true
-        },
-        "expected_typed": {
-          "type": "object",
-          "description": "Expected typed values for Level 4 tests",
-          "patternProperties": {
-            ".*": {
-              "$ref": "#/definitions/typed_value"
-            }
-          }
-        },
-        "expected_error": {
-          "type": "boolean",
-          "description": "True if this test should produce an error"
-        },
-        "error_message": {
+        "input1": {
           "type": "string",
-          "description": "Expected error message pattern"
+          "description": "First CCL input for composition tests"
         },
-        "parse_options": {
-          "$ref": "#/definitions/parse_options",
-          "description": "Parsing options for Level 4 typed tests"
+        "input2": {
+          "type": "string",
+          "description": "Second CCL input for composition tests"
         },
-        "api_calls": {
-          "type": "array",
-          "description": "API calls being tested for Level 4",
-          "items": {
-            "type": "string"
+        "input3": {
+          "type": "string",
+          "description": "Third CCL input for associativity tests"
+        },
+        "validations": {
+          "type": "object",
+          "description": "Object containing API function validations to perform",
+          "additionalProperties": false,
+          "properties": {
+            "parse": {
+              "$ref": "#/definitions/parse_validation",
+              "description": "Level 1: Entry parsing validation"
+            },
+            "filter": {
+              "$ref": "#/definitions/filter_validation",
+              "description": "Level 2: Entry filtering validation"
+            },
+            "compose": {
+              "$ref": "#/definitions/compose_validation",
+              "description": "Level 2: Entry composition validation"
+            },
+            "expand_dotted": {
+              "$ref": "#/definitions/expand_dotted_validation",
+              "description": "Level 2: Dotted key expansion validation"
+            },
+            "make_objects": {
+              "$ref": "#/definitions/make_objects_validation",
+              "description": "Level 3: Object construction validation"
+            },
+            "get_string": {
+              "$ref": "#/definitions/typed_access_validation",
+              "description": "Level 4: String access validation"
+            },
+            "get_int": {
+              "$ref": "#/definitions/typed_access_validation",
+              "description": "Level 4: Integer access validation"
+            },
+            "get_bool": {
+              "$ref": "#/definitions/typed_access_validation", 
+              "description": "Level 4: Boolean access validation"
+            },
+            "get_float": {
+              "$ref": "#/definitions/typed_access_validation",
+              "description": "Level 4: Float access validation"
+            },
+            "pretty_print": {
+              "$ref": "#/definitions/pretty_print_validation",
+              "description": "Output formatting validation"
+            },
+            "round_trip": {
+              "$ref": "#/definitions/round_trip_validation",
+              "description": "Parse-format-parse identity validation"
+            },
+            "canonical_format": {
+              "$ref": "#/definitions/canonical_format_validation",
+              "description": "Canonical formatting validation"
+            },
+            "associativity": {
+              "$ref": "#/definitions/associativity_validation",
+              "description": "Composition associativity validation"
+            }
           }
         },
         "meta": {
@@ -105,68 +116,213 @@
         }
       }
     },
-    "composition_test_case": {
-      "type": "object",
-      "required": ["name", "property", "input1", "input2", "meta"],
-      "anyOf": [
+    "parse_validation": {
+      "oneOf": [
         {
-          "properties": {"property": {"const": "semigroup_associativity"}},
-          "required": ["expected_left_assoc", "expected_right_assoc"]
+          "type": "array",
+          "description": "Expected entries from parsing",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
         },
         {
-          "properties": {"property": {"not": {"const": "semigroup_associativity"}}},
-          "required": ["expected_combined"]
+          "$ref": "#/definitions/error_validation",
+          "description": "Expected parse error"
         }
-      ],
-      "properties": {
-        "name": {
-          "type": "string",
-          "description": "Name of the composition test"
+      ]
+    },
+    "filter_validation": {
+      "oneOf": [
+        {
+          "type": "array",
+          "description": "Expected entries after filtering",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
         },
+        {
+          "$ref": "#/definitions/error_validation"
+        }
+      ]
+    },
+    "compose_validation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["left", "right", "expected"],
+          "properties": {
+            "left": {
+              "type": "array",
+              "description": "Left entry array for composition",
+              "items": {"$ref": "#/definitions/entry"}
+            },
+            "right": {
+              "type": "array", 
+              "description": "Right entry array for composition",
+              "items": {"$ref": "#/definitions/entry"}
+            },
+            "expected": {
+              "type": "array",
+              "description": "Expected result of composition",
+              "items": {"$ref": "#/definitions/entry"}
+            }
+          }
+        },
+        {
+          "$ref": "#/definitions/error_validation"
+        }
+      ]
+    },
+    "expand_dotted_validation": {
+      "oneOf": [
+        {
+          "type": "array",
+          "description": "Expected entries after dotted key expansion",
+          "items": {
+            "$ref": "#/definitions/entry"
+          }
+        },
+        {
+          "$ref": "#/definitions/error_validation"
+        }
+      ]
+    },
+    "make_objects_validation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "description": "Expected nested object structure",
+          "additionalProperties": true
+        },
+        {
+          "$ref": "#/definitions/error_validation"
+        }
+      ]
+    },
+    "typed_access_validation": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["args", "expected"],
+          "properties": {
+            "args": {
+              "type": "array",
+              "description": "Path arguments for access (supports both hierarchical and dotted)",
+              "items": {"type": "string"}
+            },
+            "expected": {
+              "oneOf": [
+                {"type": "string"},
+                {"type": "number"},
+                {"type": "boolean"}
+              ],
+              "description": "Expected typed value"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": ["args", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "args": {
+                  "type": "array",
+                  "items": {"type": "string"}
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
+        }
+      ]
+    },
+    "pretty_print_validation": {
+      "oneOf": [
+        {
+          "type": "string",
+          "description": "Expected pretty-printed output"
+        },
+        {
+          "$ref": "#/definitions/error_validation"
+        }
+      ]
+    },
+    "round_trip_validation": {
+      "type": "object",
+      "required": ["property"],
+      "properties": {
         "property": {
           "type": "string",
-          "enum": ["monoid_identity_left", "monoid_identity_right", "semigroup_associativity", "closure", "concatenation_equivalence"],
+          "enum": ["identity"],
+          "description": "Round-trip property to validate"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the round-trip test"
+        }
+      }
+    },
+    "canonical_format_validation": {
+      "type": "object",
+      "required": ["expected"],
+      "properties": {
+        "expected": {
+          "type": "string",
+          "description": "Expected canonical formatted output"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of canonical formatting"
+        }
+      }
+    },
+    "associativity_validation": {
+      "type": "object",
+      "required": ["property", "should_be_equal"],
+      "properties": {
+        "property": {
+          "type": "string",
+          "enum": ["semigroup_associativity", "monoid_identity_left", "monoid_identity_right"],
           "description": "Algebraic property being tested"
         },
-        "input1": {
+        "left_assoc": {
           "type": "string",
-          "description": "First CCL input"
+          "description": "Left associative expression description"
         },
-        "input2": {
+        "right_assoc": {
+          "type": "string", 
+          "description": "Right associative expression description"
+        },
+        "should_be_equal": {
+          "type": "boolean",
+          "description": "Whether left and right associative results should be equal"
+        }
+      }
+    },
+    "error_validation": {
+      "type": "object",
+      "required": ["error"],
+      "properties": {
+        "error": {
+          "type": "boolean",
+          "const": true,
+          "description": "Indicates this validation expects an error"
+        },
+        "error_type": {
           "type": "string",
-          "description": "Second CCL input"
+          "enum": ["ParseError", "AccessError", "TypeError", "ValidationError"],
+          "description": "Expected error type"
         },
-        "input3": {
+        "error_pattern": {
           "type": "string",
-          "description": "Third CCL input (for associativity tests)"
+          "description": "Expected error message pattern (regex)"
         },
-        "expected_combined": {
-          "type": "array",
-          "description": "Expected result after composition",
-          "items": {
-            "$ref": "#/definitions/entry"
-          }
-        },
-        "expected_left_assoc": {
-          "type": "array",
-          "description": "Expected left associative result",
-          "items": {
-            "$ref": "#/definitions/entry"
-          }
-        },
-        "expected_right_assoc": {
-          "type": "array", 
-          "description": "Expected right associative result",
-          "items": {
-            "$ref": "#/definitions/entry"
-          }
-        },
-        "expected_text_concat": {
+        "error_message": {
           "type": "string",
-          "description": "Expected text concatenation result"
-        },
-        "meta": {
-          "$ref": "#/definitions/test_metadata"
+          "description": "Expected exact error message"
         }
       }
     },
@@ -179,51 +335,10 @@
           "description": "The key part of the entry"
         },
         "value": {
-          "type": "string", 
+          "type": "string",
           "description": "The value part of the entry"
         }
       }
-    },
-    "typed_value": {
-      "type": "object",
-      "required": ["type", "value"],
-      "properties": {
-        "type": {
-          "type": "string",
-          "enum": ["StringVal", "IntVal", "FloatVal", "BoolVal", "EmptyVal"],
-          "description": "The inferred type of the value"
-        },
-        "value": {
-          "oneOf": [
-            {"type": "string"},
-            {"type": "number"},
-            {"type": "boolean"},
-            {"type": "null"}
-          ],
-          "description": "The typed value (null for EmptyVal)"
-        }
-      }
-    },
-    "parse_options": {
-      "type": "object",
-      "properties": {
-        "parse_integers": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable integer parsing"
-        },
-        "parse_floats": {
-          "type": "boolean",
-          "default": true, 
-          "description": "Enable float parsing"
-        },
-        "parse_booleans": {
-          "type": "boolean",
-          "default": true,
-          "description": "Enable boolean parsing"
-        }
-      },
-      "additionalProperties": false
     },
     "test_metadata": {
       "type": "object",
