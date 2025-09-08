@@ -36,7 +36,9 @@
       "Bash(jsonschema2md:*)",
       "Bash(generate-schema-doc:*)",
       "Bash(python:*)",
-      "Bash(npm run docs:schema:*)"
+      "Bash(npm run docs:schema:*)",
+      "Read(//home/tylerbu/code/claude-workspace/tools-monorepo/packages/ccl-docs/**)",
+      "Bash(jq:*)"
     ],
     "deny": [],
     "ask": []
