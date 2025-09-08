@@ -1,236 +1,97 @@
-# CCL (Categorical Configuration Language)
+# CCL Test Suite
 
-Central repository for CCL language specification, documentation, and test suite.
+Language-agnostic test suite for the Categorical Configuration Language (CCL).
 
 ## What is CCL?
 
-CCL is a minimal, human-readable configuration language based on simple key-value pairs with elegant composition and nesting capabilities. It's designed around mathematical principles from Category Theory, providing predictable parsing and powerful structural features.
+For comprehensive CCL documentation, see the **[CCL Documentation](https://ccl.tylerbutler.com)** which includes:
 
-```ccl
-/= Application Configuration
-app.name = MyApplication
-app.debug = true
+- **[Specification Summary](https://ccl.tylerbutler.com/specification-summary)** - Complete language specification
+- **[Syntax Reference](https://ccl.tylerbutler.com/syntax-reference)** - Quick syntax guide
+- **[Parsing Algorithm](https://ccl.tylerbutler.com/parsing-algorithm)** - Implementation guide
+- **[Mathematical Theory](https://ccl.tylerbutler.com/theory)** - Theoretical foundations
 
-database =
-  host = localhost
-  port = 5432
-  
-servers =
-  = web-1.example.com
-  = web-2.example.com
+**Original sources:**
+- [CCL Blog Post](https://chshersh.com/blog/2025-01-06-the-most-elegant-configuration-language.html) - Original specification by Dmitrii Kovanikov
+- [OCaml Reference Implementation](https://github.com/chshersh/ccl) - Canonical implementation
+
+## Test Suite
+
+This repository contains the **official JSON test suite** for CCL implementations across all programming languages.
+
+### Quick Start
+
+```bash
+# Clone the test suite
+git clone <this-repo>
+cd ccl-test-data
+
+# Run validation script
+npm test
+```
+
+### Test Files
+
+The test suite is organized by CCL feature level:
+
+- **`tests/ccl-entry-parsing.json`** (18 tests) - Core parsing functionality
+- **`tests/ccl-entry-processing.json`** (10 tests) - Comment filtering and composition
+- **`tests/ccl-object-construction.json`** (8 tests) - Nested object building
+- **`tests/ccl-typed-parsing-examples.json`** (12 tests) - Type-safe value access
+- **`tests/ccl-pretty-printer.json`** (15 tests) - Formatting and round-trip tests
+- **`tests/ccl-errors.json`** (5 tests) - Error handling validation
+
+### Using the Test Suite
+
+1. **Load test files** into your language's testing framework
+2. **Filter by level** to test only the features you implement
+3. **Use metadata** to focus on specific functionality
+4. **Validate JSON structure** matches expected format
+
+Example test case structure:
+```json
+{
+  "name": "basic_key_value",
+  "input": "key = value",
+  "expected": [{"key": "key", "value": "value"}],
+  "meta": {"tags": ["basic"], "level": 1}
+}
 ```
 
 ## Documentation
 
-### Language Guide
-- **[Getting Started](docs/getting-started.md)** - Learn CCL syntax and basic concepts
-- **[CCL FAQ](docs/ccl_faq.md)** - Common questions and gotchas
-- **[Format Comparison](docs/format-comparison.md)** - CCL vs JSON, YAML, TOML, etc.
-- **[Glossary](docs/glossary.md)** - Technical terms and definitions
+### Test Suite Specific
 
-### Implementation Guide  
-- **[API Reference](docs/api-reference.md)** - Proposed API structure and patterns
-- **[Implementing CCL](docs/implementing-ccl.md)** - Guide for language authors
-- **[Examples](docs/examples/)** - Practical CCL configuration files
+- **[Test Architecture](docs/test-architecture.md)** - How to use this test suite
 
-## Language-Agnostic Test Suite
+### General Implementation Guidance
 
-This repository contains comprehensive test cases for CCL parsers organized by feature and implementation priority. Use these tests to validate your CCL implementation regardless of programming language.
+- **[Implementation Guide](https://ccl.tylerbutler.com/implementing-ccl)** - Complete CCL implementation guide
+- **[Test Architecture](https://ccl.tylerbutler.com/test-architecture)** - General testing concepts
 
-### Feature-Based Organization
+### Examples
 
-CCL tests are organized by functionality rather than rigid levels, making it easier to implement features incrementally:
-
-### Core Functionality
-Essential tests that every CCL implementation needs:
-
-**Essential Parsing** - `tests/essential-parsing.json` (18 tests)  
-Start here for rapid prototyping and basic CCL support:
-- Basic key-value parsing with whitespace handling
-- Multiline values and continuation lines  
-- Unicode support and line ending normalization
-- Empty keys/values, equals-in-values handling
-
-**Comprehensive Parsing** - `tests/comprehensive-parsing.json` (30 tests)  
-Production-ready validation with edge cases:
-- Whitespace variations (tabs, spaces, trimming)
-- Line ending handling (Unix, Windows, Mac)
-- Edge cases (empty keys/values, multiple equals)
-- Stress testing with realistic examples
-
-**Object Construction** - `tests/object-construction.json` (8 tests)  
-**API**: `make_objects(entries) → CCL`
-
-Essential for hierarchical access:
-- Recursive parsing of nested values using fixed-point algorithm
-- Duplicate key merging in object construction
-- Empty key handling for list-style data
-- Complex nested configuration support
-
-### Optional Features
-Implement these based on your needs:
-
-**Dotted Key Expansion** - `tests/dotted-keys.json` (18 tests)  
-Enables dual access patterns (`database.host` ↔ hierarchical):
-- Basic dotted key expansion to nested structures
-- Deep nesting support (3+ levels)
-- Mixed dotted and nested syntax
-- Conflict resolution and merging
-
-**Comment Filtering** - `tests/comments.json` (3 tests)  
-**API**: `filter(entries)` 
-
-Remove documentation keys from configuration:
-- Comment syntax (keys starting with `/`)
-- Filtering and processing behavior
-
-**Entry Processing** - `tests/processing.json` (21 tests)  
-**API**: `compose_entries()`, advanced processing
-
-Advanced entry composition and merging:
-- Duplicate key handling and composition
-- Entry list merging with algebraic properties
-- Complex composition scenarios
-
-**Typed Access** - `tests/typed-access.json` (17 tests)  
-**API**: `get_string()`, `get_int()`, `get_bool()`, etc.
-
-Type-aware extraction with validation:
-- Smart type inference (integers, floats, booleans) 
-- Configurable parsing options and validation
-- Language-specific convenience functions
-- Dual access pattern support (dotted + hierarchical)
-
-### Integration & Validation
-
-**Error Handling** - `tests/errors.json` (5 tests)  
-Malformed input detection and error reporting
-
-**Pretty Printing** - `tests/pretty-print.json` (15 tests)  
-Round-trip testing and canonical formatting
-
-## Implementation Path
-
-**Recommended progression for new implementations:**
-
-1. **Start Simple**: `essential-parsing.json` (18 tests)
-   - Gets you a working CCL parser quickly
-   - Handles 80% of real-world CCL files
-
-2. **Add Hierarchy**: `object-construction.json` (8 tests)  
-   - Enables nested configuration access
-   - Required for practical use
-
-3. **Production Ready**: `comprehensive-parsing.json` (30 tests)
-   - Handles edge cases and whitespace variations
-   - Required for robust production systems
-
-4. **Choose Features**: Select based on your needs
-   - `dotted-keys.json` - For convenient `database.host` style access
-   - `typed-access.json` - For `get_int()`, `get_bool()` convenience
-   - `comments.json` - For documentation in config files
-   - `processing.json` - For advanced composition features
-
-5. **Validate**: `errors.json` for error handling
-
-## Test Structure
-
-```
-tests/
-├── essential-parsing.json          # 18 tests - core parsing, start here
-├── comprehensive-parsing.json      # 30 tests - production ready parsing  
-├── object-construction.json        # 8 tests - hierarchy support
-├── dotted-keys.json                # 18 tests - dual access patterns
-├── comments.json                   # 3 tests - comment filtering
-├── processing.json                 # 21 tests - advanced composition
-├── typed-access.json               # 17 tests - type-safe getters
-├── errors.json                     # 5 tests - error handling
-├── pretty-print.json               # 15 tests - round-trip formatting
-├── schema.json                     # Test schema definition
-└── pretty-print-schema.json        # Pretty-print test schema
-```
-
-## Schema
-
-All test files use the unified schema defined in `tests/schema.json`:
-
-```json
-{
-  "name": "test_name",
-  "input": "ccl input string",  
-  "expected": [...],             // Level 1-2
-  "expected_flat": [...],        // Level 3-4 flat parsing
-  "expected_nested": {...},      // Level 3 object construction
-  "expected_typed": {...},       // Level 4 typed values
-  "expected_error": true,        // Error tests
-  "meta": {
-    "tags": ["basic", "whitespace"],
-    "level": 1
-  }
-}
-```
-
-## Test Coverage
-
-The feature-based architecture includes **135 test cases** total:
-
-### Core (56 tests)
-- **Essential**: 18 tests for rapid implementation  
-- **Comprehensive**: 30 tests for production validation
-- **Object Construction**: 8 tests for hierarchy support
-
-### Features (59 tests)  
-- **Dotted Keys**: 18 tests for dual access patterns
-- **Comments**: 3 tests for filtering functionality
-- **Processing**: 21 tests for advanced composition  
-- **Typed Access**: 17 tests for type-safe APIs
-
-### Integration (5 tests)
-- **Error Handling**: Malformed input detection and reporting
-
-### Utilities (15 tests)
-- **Pretty Print**: Round-trip testing and canonical formatting
-
-## Usage
-
-### Running Tests
-
-**Validate test files:**
-```bash
-npm test                    # Validate all test files
-npm run validate:core       # Core validation only
-```
-
-**Test Statistics:**
-```bash
-./scripts/collect-stats.sh  # JSON output  
-./scripts/collect-stats.sh --interactive  # Pretty display
-```
-
-### Language Integration
-
-Each test provides multiple expected outputs for different implementation approaches:
-
-```json
-{
-  "input": "key = value",
-  "expected": [{"key": "key", "value": "value"}],           // Raw parsing
-  "expected_nested": {"key": "value"},                      // Object form
-  "expected_typed": {"key": {"type": "string", "value": "value"}}  // Typed
-}
-```
-
-Choose the output format that matches your implementation level.
+See `docs/examples/` for sample configurations and expected parsing results.
 
 ## Contributing
 
-This test suite is designed to be comprehensive and implementation-agnostic. When adding tests:
+When adding test cases:
 
-1. **Choose the right category**: Core vs Features vs Integration
-2. **Follow naming conventions**: Descriptive test names with consistent tagging
-3. **Validate against schema**: All tests must pass `npm run validate`
-4. **Update documentation**: Keep this README and docs/ current
+1. Add to appropriate JSON file by feature level
+2. Include descriptive name and metadata
+3. Validate JSON structure
+4. Update test counts in documentation
 
-## License
+## Validation
 
-This test suite and documentation is provided as a reference for CCL implementations across all programming languages.
+```bash
+# Validate test suite structure
+npm run validate
+
+# Run specific test category
+npm run test:parsing
+npm run test:objects
+npm run test:types
+```
+
+This test suite ensures consistent CCL behavior across all language implementations.
