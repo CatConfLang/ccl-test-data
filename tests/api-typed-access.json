@@ -200,7 +200,58 @@
           ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "zero_values", "mixed"], "level": 4, "feature": "typed-parsing"}
+      "meta": {"tags": ["typed_parsing", "zero_values", "mixed", "proposed"], "level": 4, "feature": "typed-parsing"}
+    },
+    {
+      "name": "parse_zero_values_ocaml_reference",
+      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "count", "value": "0"},
+            {"key": "distance", "value": "0.0"},
+            {"key": "disabled", "value": "no"}
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "count": "0",
+            "distance": "0.0", 
+            "disabled": "no"
+          }
+        },
+        "get_int": {
+          "count": 1,
+          "cases": [
+            {
+              "args": ["count"],
+              "expected": 0
+            }
+          ]
+        },
+        "get_float": {
+          "count": 1,
+          "cases": [
+            {
+              "args": ["distance"],
+              "expected": 0.0
+            }
+          ]
+        },
+        "get_bool": {
+          "count": 1,
+          "cases": [
+            {
+              "args": ["disabled"],
+              "error": true,
+              "error_message": "Value is not a boolean"
+            }
+          ]
+        }
+      },
+      "meta": {"tags": ["typed_parsing", "zero_values", "mixed", "reference_compliant"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_variants",
@@ -233,7 +284,41 @@
           "expected": 1
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "variants"], "level": 4, "feature": "typed-parsing"}
+      "meta": {"tags": ["typed_parsing", "boolean", "variants", "proposed"], "level": 4, "feature": "typed-parsing"}
+    },
+    {
+      "name": "parse_boolean_variants_ocaml_reference",
+      "input": "flag1 = yes\\nflag2 = on\\nflag3 = 1\\nflag4 = false\\nflag5 = no\\nflag6 = off\\nflag7 = 0",
+      "validations": {
+        "parse": [
+          {"key": "flag1", "value": "yes"},
+          {"key": "flag2", "value": "on"},
+          {"key": "flag3", "value": "1"},
+          {"key": "flag4", "value": "false"},
+          {"key": "flag5", "value": "no"},
+          {"key": "flag6", "value": "off"},
+          {"key": "flag7", "value": "0"}
+        ],
+        "make_objects": {
+          "flag1": "yes",
+          "flag2": "on",
+          "flag3": "1",
+          "flag4": "false",
+          "flag5": "no",
+          "flag6": "off",
+          "flag7": "0"
+        },
+        "get_bool": {
+          "args": ["flag1"],
+          "error": true,
+          "error_message": "Value is not a boolean"
+        },
+        "get_int": {
+          "args": ["flag3"],
+          "expected": 1
+        }
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "variants", "reference_compliant"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_mixed_types",
@@ -270,7 +355,44 @@
           "expected": 30.5
         }
       },
-      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing"], "level": 4, "feature": "typed-parsing"}
+      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing", "proposed"], "level": 4, "feature": "typed-parsing"}
+    },
+    {
+      "name": "parse_mixed_types_ocaml_reference",
+      "input": "host = localhost\\nport = 8080\\nssl = true\\ntimeout = 30.5\\ndebug = off",
+      "validations": {
+        "parse": [
+          {"key": "host", "value": "localhost"},
+          {"key": "port", "value": "8080"},
+          {"key": "ssl", "value": "true"},
+          {"key": "timeout", "value": "30.5"},
+          {"key": "debug", "value": "off"}
+        ],
+        "make_objects": {
+          "host": "localhost",
+          "port": "8080",
+          "ssl": "true",
+          "timeout": "30.5",
+          "debug": "off"
+        },
+        "get_string": {
+          "args": ["host"],
+          "expected": "localhost"
+        },
+        "get_int": {
+          "args": ["port"],
+          "expected": 8080
+        },
+        "get_bool": {
+          "args": ["ssl"],
+          "expected": true
+        },
+        "get_float": {
+          "args": ["timeout"],
+          "expected": 30.5
+        }
+      },
+      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing", "reference_compliant"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_empty_value",
