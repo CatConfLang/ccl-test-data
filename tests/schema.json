@@ -96,6 +96,10 @@
               "$ref": "#/definitions/typed_access_validation",
               "description": "API: Level 4 float access validation"
             },
+            "get_list": {
+              "$ref": "#/definitions/typed_access_validation",
+              "description": "API: Level 4 list access validation"
+            },
             "pretty_print": {
               "$ref": "#/definitions/pretty_print_validation",
               "description": "API: Output formatting validation"
@@ -124,9 +128,28 @@
       "oneOf": [
         {
           "type": "array",
-          "description": "Expected entries from parsing",
+          "description": "Legacy format: Expected entries from parsing",
           "items": {
             "$ref": "#/definitions/entry"
+          }
+        },
+        {
+          "type": "object",
+          "description": "Counted format: Expected entries with assertion count",
+          "required": ["count", "expected"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of assertions this validation represents"
+            },
+            "expected": {
+              "type": "array",
+              "description": "Expected entries from parsing",
+              "items": {
+                "$ref": "#/definitions/entry"
+              }
+            }
           }
         },
         {
@@ -139,9 +162,28 @@
       "oneOf": [
         {
           "type": "array",
-          "description": "Expected entries after filtering",
+          "description": "Legacy format: Expected entries after filtering",
           "items": {
             "$ref": "#/definitions/entry"
+          }
+        },
+        {
+          "type": "object",
+          "description": "Counted format: Expected entries with assertion count",
+          "required": ["count", "expected"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of assertions this validation represents"
+            },
+            "expected": {
+              "type": "array",
+              "description": "Expected entries after filtering",
+              "items": {
+                "$ref": "#/definitions/entry"
+              }
+            }
           }
         },
         {
@@ -181,9 +223,28 @@
       "oneOf": [
         {
           "type": "array",
-          "description": "Expected entries after dotted key expansion",
+          "description": "Legacy format: Expected entries after dotted key expansion",
           "items": {
             "$ref": "#/definitions/entry"
+          }
+        },
+        {
+          "type": "object",
+          "description": "Counted format: Expected entries with assertion count",
+          "required": ["count", "expected"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of assertions this validation represents"
+            },
+            "expected": {
+              "type": "array",
+              "description": "Expected entries after dotted key expansion",
+              "items": {
+                "$ref": "#/definitions/entry"
+              }
+            }
           }
         },
         {
@@ -195,8 +256,31 @@
       "oneOf": [
         {
           "type": "object",
-          "description": "Expected nested object structure",
-          "additionalProperties": true
+          "description": "Legacy format: Expected nested object structure",
+          "additionalProperties": true,
+          "not": {
+            "anyOf": [
+              {"required": ["count"]},
+              {"required": ["expected"]}
+            ]
+          }
+        },
+        {
+          "type": "object",
+          "description": "Counted format: Expected object with assertion count",
+          "required": ["count", "expected"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of assertions this validation represents"
+            },
+            "expected": {
+              "type": "object",
+              "description": "Expected nested object structure",
+              "additionalProperties": true
+            }
+          }
         },
         {
           "$ref": "#/definitions/error_validation"
@@ -206,7 +290,32 @@
     "typed_access_validation": {
       "oneOf": [
         {
+          "type": "array",
+          "description": "Legacy format: Array of typed access tests",
+          "items": {
+            "type": "object",
+            "required": ["args", "expected"],
+            "properties": {
+              "args": {
+                "type": "array",
+                "description": "Path arguments for access",
+                "items": {"type": "string"}
+              },
+              "expected": {
+                "oneOf": [
+                  {"type": "string"},
+                  {"type": "number"},
+                  {"type": "boolean"},
+                  {"type": "array", "items": {"type": "string"}}
+                ],
+                "description": "Expected typed value"
+              }
+            }
+          }
+        },
+        {
           "type": "object",
+          "description": "Legacy format: Single typed access test",
           "required": ["args", "expected"],
           "properties": {
             "args": {
@@ -218,9 +327,49 @@
               "oneOf": [
                 {"type": "string"},
                 {"type": "number"},
-                {"type": "boolean"}
+                {"type": "boolean"},
+                {"type": "array", "items": {"type": "string"}}
               ],
               "description": "Expected typed value"
+            }
+          },
+          "not": {
+            "required": ["count"]
+          }
+        },
+        {
+          "type": "object",
+          "description": "Counted format: Multiple typed access tests with count",
+          "required": ["count", "cases"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of assertions this validation represents"
+            },
+            "cases": {
+              "type": "array",
+              "description": "Array of typed access tests",
+              "items": {
+                "type": "object",
+                "required": ["args", "expected"],
+                "properties": {
+                  "args": {
+                    "type": "array",
+                    "description": "Path arguments for access",
+                    "items": {"type": "string"}
+                  },
+                  "expected": {
+                    "oneOf": [
+                      {"type": "string"},
+                      {"type": "number"},
+                      {"type": "boolean"},
+                      {"type": "array", "items": {"type": "string"}}
+                    ],
+                    "description": "Expected typed value"
+                  }
+                }
+              }
             }
           }
         },
@@ -362,7 +511,7 @@
         },
         "feature": {
           "type": "string",
-          "enum": ["parsing", "processing", "comments", "object-construction", "dotted-keys", "typed-parsing", "pretty-printing", "error-handling"],
+          "enum": ["parsing", "processing", "comments", "object-construction", "dotted-keys", "typed-parsing", "pretty-printing", "error-handling", "algebraic-properties"],
           "description": "Feature category for test organization and filtering"
         },
         "difficulty": {

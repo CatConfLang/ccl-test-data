@@ -40,14 +40,14 @@ function remarkUpdateCounts(stats) {
       visit(node, 'text', (textNode) => {
         const text = textNode.value;
         
-        // Match: ✅ **135+ test assertions**
+        // Match: ✅ **148+ test assertions**
         const assertionMatch = text.match(/✅ \*\*(\d+)\+ test assertions\*\*/);
         if (assertionMatch) {
           const oldCount = assertionMatch[1];
-          if (oldCount !== String(stats.totalTests)) {
+          if (oldCount !== String(stats.totalAssertions)) {
             textNode.value = text.replace(
               /✅ \*\*\d+\+ test assertions\*\*/,
-              `✅ **${stats.totalTests}+ test assertions**`
+              `✅ **${stats.totalAssertions}+ test assertions**`
             );
             updatedCount++;
           }
@@ -115,9 +115,9 @@ async function updateReadme() {
       console.log(`  ${colors.gray}Object Construction: ${objectConstructionTotal}${colors.reset}`);
       console.log(`  ${colors.gray}Type System: ${typeSystemTotal}${colors.reset}`);
       console.log(`  ${colors.gray}Output & Validation: ${outputValidationTotal}${colors.reset}`);
-      console.log(`  ${colors.gray}Total: ${total}${colors.reset}\n`);
+      console.log(`  ${colors.gray}Total: ${total} tests (${stats.totalAssertions} assertions)${colors.reset}\n`);
     } else {
-      console.log(`📊 Current counts: CoreParsing:${coreParsingTotal} AdvancedProcessing:${advancedProcessingTotal} ObjectConstruction:${objectConstructionTotal} TypeSystem:${typeSystemTotal} OutputValidation:${outputValidationTotal} Total:${total}`);
+      console.log(`📊 Current counts: CoreParsing:${coreParsingTotal} AdvancedProcessing:${advancedProcessingTotal} ObjectConstruction:${objectConstructionTotal} TypeSystem:${typeSystemTotal} OutputValidation:${outputValidationTotal} Total:${total} Assertions:${stats.totalAssertions}`);
     }
     
     // Read current README

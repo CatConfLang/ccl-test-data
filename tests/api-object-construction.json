@@ -23,14 +23,20 @@
       "name": "recursive_nested_multiple",
       "input": "database =\n  host = localhost\n  port = 5432\n  enabled = true",
       "validations": {
-        "parse": [
-          {"key": "database", "value": "\n  host = localhost\n  port = 5432\n  enabled = true"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "database", "value": "\n  host = localhost\n  port = 5432\n  enabled = true"}
+          ]
+        },
         "make_objects": {
-          "database": {
-            "host": "localhost",
-            "port": "5432", 
-            "enabled": "true"
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "5432", 
+              "enabled": "true"
+            }
           }
         }
       },
@@ -61,14 +67,20 @@
       "name": "multiple_keys_same_name_merge",
       "input": "user =\n  name = alice\nuser =\n  age = 25",
       "validations": {
-        "parse": [
-          {"key": "user", "value": "\n  name = alice"},
-          {"key": "user", "value": "\n  age = 25"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "user", "value": "\n  name = alice"},
+            {"key": "user", "value": "\n  age = 25"}
+          ]
+        },
         "make_objects": {
-          "user": {
-            "name": "alice",
-            "age": "25"
+          "count": 1,
+          "expected": {
+            "user": {
+              "name": "alice",
+              "age": "25"
+            }
           }
         }
       },

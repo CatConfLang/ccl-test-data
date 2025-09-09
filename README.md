@@ -25,6 +25,7 @@ This repository contains the **official JSON test suite** for CCL implementation
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
 ✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
 ✅ **Simple test runners** - Direct iteration over `validations` object keys\
+✅ **Assertion counting** - Optional explicit counts for validation verification\
 ✅ **Self-documenting** - Validation names explain what's being tested\
 ✅ **148+ test assertions** - Comprehensive coverage across all CCL features
 
@@ -96,25 +97,71 @@ The test suite is organized by feature category:
 **Test runner example:**
 
 ```javascript
-for (const [validationType, expected] of Object.entries(test.validations)) {
+for (const [validationType, validationData] of Object.entries(test.validations)) {
   switch (validationType) {
     case 'parse':
       const actual = parse(test.input);
+      // Handle both legacy array format and new counted format
+      const expected = Array.isArray(validationData) ? validationData : validationData.items;
       expect(actual).toEqual(expected);
       break;
     case 'make_objects':
       const entries = parse(test.input);
       const objects = makeObjects(entries);
-      expect(objects).toEqual(expected);
+      // Handle both legacy object format and new counted format  
+      const expectedObj = validationData.result || validationData;
+      expect(objects).toEqual(expectedObj);
       break;
     case 'get_string':
       const ccl = makeObjects(parse(test.input));
-      const value = getString(ccl, ...expected.args);
-      expect(value).toBe(expected.expected);
+      // Handle legacy single test, legacy array, and new counted format
+      const tests = validationData.cases || (Array.isArray(validationData) ? validationData : [validationData]);
+      tests.forEach(test => {
+        const value = getString(ccl, ...test.args);
+        expect(value).toBe(test.expected);
+      });
       break;
   }
 }
 ```
+
+### **Assertion Counting**
+
+The test suite supports **explicit assertion counting** to help implementers validate they're running the correct number of assertions:
+
+**Legacy Format** (backwards compatible):
+
+```json
+{
+  "validations": {
+    "parse": [{"key": "name", "value": "Alice"}],
+    "get_string": {"args": ["name"], "expected": "Alice"}
+  }
+}
+```
+
+**New Counted Format** (optional, more explicit):
+
+```json
+{
+  "validations": {
+    "parse": {
+      "count": 1,
+      "items": [{"key": "name", "value": "Alice"}]
+    },
+    "get_string": {
+      "count": 1, 
+      "cases": [{"args": ["name"], "expected": "Alice"}]
+    }
+  }
+}
+```
+
+**Benefits:**
+
+- **Explicit counting**: Each validation declares exactly how many assertions it represents
+- **Self-validating**: Test runners can verify `count` matches actual array lengths
+- **Backwards compatible**: Existing tests continue working unchanged
 
 ## Documentation
 

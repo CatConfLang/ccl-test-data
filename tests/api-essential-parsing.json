@@ -31,16 +31,19 @@
 			"name": "equals_in_values",
 			"input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
 			"validations": {
-				"parse": [
-					{
-						"key": "msg",
-						"value": "k=v pairs live happily here"
-					},
-					{
-						"key": "more",
-						"value": "a=b=c=d"
-					}
-				]
+				"parse": {
+					"count": 2,
+					"expected": [
+						{
+							"key": "msg",
+							"value": "k=v pairs live happily here"
+						},
+						{
+							"key": "more",
+							"value": "a=b=c=d"
+						}
+					]
+				}
 			},
 			"meta": {
 				"tags": [

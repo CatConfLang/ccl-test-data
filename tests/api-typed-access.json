@@ -42,15 +42,26 @@
       "name": "parse_boolean_true",
       "input": "enabled = true",
       "validations": {
-        "parse": [
-          {"key": "enabled", "value": "true"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "enabled", "value": "true"}
+          ]
+        },
         "make_objects": {
-          "enabled": "true"
+          "count": 1,
+          "expected": {
+            "enabled": "true"
+          }
         },
         "get_bool": {
-          "args": ["enabled"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": ["enabled"],
+              "expected": true
+            }
+          ]
         }
       },
       "meta": {"tags": ["typed_parsing", "boolean", "true"], "level": 4, "feature": "typed-parsing"}
@@ -127,27 +138,48 @@
       "name": "parse_zero_values",
       "input": "count = 0\ndistance = 0.0\ndisabled = no",
       "validations": {
-        "parse": [
-          {"key": "count", "value": "0"},
-          {"key": "distance", "value": "0.0"},
-          {"key": "disabled", "value": "no"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "count", "value": "0"},
+            {"key": "distance", "value": "0.0"},
+            {"key": "disabled", "value": "no"}
+          ]
+        },
         "make_objects": {
-          "count": "0",
-          "distance": "0.0", 
-          "disabled": "no"
+          "count": 1,
+          "expected": {
+            "count": "0",
+            "distance": "0.0", 
+            "disabled": "no"
+          }
         },
         "get_int": {
-          "args": ["count"],
-          "expected": 0
+          "count": 1,
+          "cases": [
+            {
+              "args": ["count"],
+              "expected": 0
+            }
+          ]
         },
         "get_float": {
-          "args": ["distance"],
-          "expected": 0.0
+          "count": 1,
+          "cases": [
+            {
+              "args": ["distance"],
+              "expected": 0.0
+            }
+          ]
         },
         "get_bool": {
-          "args": ["disabled"],
-          "expected": false
+          "count": 1,
+          "cases": [
+            {
+              "args": ["disabled"],
+              "expected": false
+            }
+          ]
         }
       },
       "meta": {"tags": ["typed_parsing", "zero_values", "mixed"], "level": 4, "feature": "typed-parsing"}
