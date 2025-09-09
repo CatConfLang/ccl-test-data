@@ -81,7 +81,25 @@
           "expected": true
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "yes_no"], "level": 4, "feature": "typed-parsing"}
+      "meta": {"tags": ["typed_parsing", "boolean", "yes_no", "proposed"], "level": 4, "feature": "typed-parsing"}
+    },
+    {
+      "name": "parse_boolean_yes_ocaml_reference",
+      "input": "active = yes",
+      "validations": {
+        "parse": [
+          {"key": "active", "value": "yes"}
+        ],
+        "make_objects": {
+          "active": "yes"
+        },
+        "get_bool": {
+          "args": ["active"],
+          "error": true,
+          "error_message": "Value is not a boolean"
+        }
+      },
+      "meta": {"tags": ["typed_parsing", "boolean", "yes_invalid", "reference_compliant"], "level": 4, "feature": "typed-parsing"}
     },
     {
       "name": "parse_boolean_false",
