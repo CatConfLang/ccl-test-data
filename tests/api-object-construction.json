@@ -115,7 +115,23 @@
           "key": "normal"
         }
       },
-      "meta": {"tags": ["empty-key", "top-level", "merge"], "level": 3, "feature": "object-construction"}
+      "meta": {"tags": ["empty-key", "top-level", "merge", "proposed"], "level": 3, "feature": "object-construction"}
+    },
+    {
+      "name": "empty_key_top_level_ocaml_reference",
+      "input": "= root_value\nkey = normal\n= another_root",
+      "validations": {
+        "parse": [
+          {"key": "", "value": "root_value"},
+          {"key": "key", "value": "normal"},
+          {"key": "", "value": "another_root"}
+        ],
+        "make_objects": {
+          "": ["another_root", "root_value"],
+          "key": "normal"
+        }
+      },
+      "meta": {"tags": ["empty-key", "top-level", "merge", "reference_compliant"], "level": 3, "feature": "object-construction"}
     },
     {
       "name": "mixed_flat_and_nested",
