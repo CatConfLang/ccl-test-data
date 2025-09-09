@@ -499,7 +499,7 @@
       "properties": {
         "tags": {
           "type": "array",
-          "description": "Tags for categorizing and filtering tests",
+          "description": "Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc.",
           "items": {
             "type": "string"
           }
@@ -511,7 +511,19 @@
         },
         "feature": {
           "type": "string",
-          "enum": ["parsing", "processing", "comments", "object-construction", "dotted-keys", "typed-parsing", "pretty-printing", "error-handling", "algebraic-properties"],
+          "enum": [
+            "parsing", 
+            "processing", 
+            "comments", 
+            "object-construction", 
+            "dotted-keys", 
+            "typed-parsing", 
+            "pretty-printing", 
+            "error-handling", 
+            "algebraic-properties",
+            "flexible-boolean-parsing",
+            "crlf-normalization"
+          ],
           "description": "Feature category for test organization and filtering"
         },
         "difficulty": {
