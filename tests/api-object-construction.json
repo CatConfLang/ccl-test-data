@@ -115,7 +115,7 @@
           "key": "normal"
         }
       },
-      "meta": {"tags": ["empty-key", "top-level", "merge", "proposed"], "level": 3, "feature": "object-construction"}
+      "meta": {"tags": ["empty-key", "top-level", "merge", "proposed-behavior"], "level": 3, "feature": "object-construction"}
     },
     {
       "name": "empty_key_top_level_ocaml_reference",
@@ -131,7 +131,7 @@
           "key": "normal"
         }
       },
-      "meta": {"tags": ["empty-key", "top-level", "merge", "reference_compliant"], "level": 3, "feature": "object-construction"}
+      "meta": {"tags": ["empty-key", "top-level", "merge", "reference-compliant-behavior"], "level": 3, "feature": "object-construction"}
     },
     {
       "name": "mixed_flat_and_nested",
