@@ -132,10 +132,31 @@
 			"meta": {
 				"tags": [
 					"continuation",
-					"multiline"
+					"multiline",
+					"proposed"
 				],
 				"level": 1,
 				"feature": "parsing"
+			}
+		},
+		{
+			"name": "no_equals_continuation_ocaml_reference",
+			"input": "key = first line\nsecond line without equals\nthird line",
+			"validations": {
+				"parse": {
+					"error": true,
+					"error_message": "end_of_input"
+				}
+			},
+			"meta": {
+				"tags": [
+					"continuation",
+					"multiline",
+					"error_case",
+					"reference_compliant"
+				],
+				"level": 1,
+				"feature": "error-handling"
 			}
 		},
 		{
@@ -264,7 +285,33 @@
 			"meta": {
 				"tags": [
 					"line-endings",
-					"normalization"
+					"normalization",
+					"proposed"
+				],
+				"level": 1,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "crlf_normalization_ocaml_reference",
+			"input": "key1 = value1\r\nkey2 = value2\r\n",
+			"validations": {
+				"parse": [
+					{
+						"key": "key1",
+						"value": "value1\r"
+					},
+					{
+						"key": "key2",
+						"value": "value2\r"
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"line-endings",
+					"crlf-preserved",
+					"reference_compliant"
 				],
 				"level": 1,
 				"feature": "parsing"
