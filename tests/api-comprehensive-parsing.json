@@ -339,7 +339,7 @@
 					"whitespace",
 					"tabs",
 					"redundant",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -361,7 +361,7 @@
 					"whitespace",
 					"tabs",
 					"redundant",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -405,7 +405,7 @@
 					"whitespace",
 					"tabs",
 					"redundant",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 2,
 				"feature": "parsing"
@@ -428,7 +428,7 @@
 					"whitespace",
 					"tabs",
 					"redundant",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 2,
 				"feature": "parsing"
@@ -826,7 +826,7 @@
 					"lists",
 					"merging",
 					"multi-level",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 4,
 				"feature": "parsing"
@@ -897,7 +897,7 @@
 					"lists",
 					"merging",
 					"multi-level",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 4,
 				"feature": "parsing"

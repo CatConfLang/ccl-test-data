@@ -133,7 +133,7 @@
 				"tags": [
 					"continuation",
 					"multiline",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -153,7 +153,7 @@
 					"continuation",
 					"multiline",
 					"error_case",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 1,
 				"feature": "error-handling"
@@ -286,14 +286,14 @@
 				"tags": [
 					"line-endings",
 					"normalization",
-					"proposed"
+					"needs-crlf-normalization"
 				],
 				"level": 1,
-				"feature": "parsing"
+				"feature": "crlf-normalization"
 			}
 		},
 		{
-			"name": "crlf_normalization_ocaml_reference",
+			"name": "crlf_normalization_strict",
 			"input": "key1 = value1\r\nkey2 = value2\r\n",
 			"validations": {
 				"parse": [
@@ -311,7 +311,7 @@
 				"tags": [
 					"line-endings",
 					"crlf-preserved",
-					"reference_compliant"
+					"uses-strict-line-ending-parsing"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -368,7 +368,7 @@
 					"whitespace",
 					"tabs",
 					"trimming",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -390,7 +390,7 @@
 					"whitespace",
 					"tabs",
 					"trimming",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -412,7 +412,7 @@
 					"multiline",
 					"indentation",
 					"mixed-whitespace",
-					"proposed"
+					"proposed-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -434,7 +434,7 @@
 					"multiline",
 					"indentation",
 					"mixed-whitespace",
-					"reference_compliant"
+					"reference-compliant-behavior"
 				],
 				"level": 1,
 				"feature": "parsing"
