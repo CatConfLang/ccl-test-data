@@ -338,7 +338,30 @@
 				"tags": [
 					"whitespace",
 					"tabs",
-					"redundant"
+					"redundant",
+					"proposed"
+				],
+				"level": 1,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "key_with_tabs_ocaml_reference",
+			"input": "\tkey\t=\tvalue",
+			"validations": {
+				"parse": [
+					{
+						"key": "key",
+						"value": "value"
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"whitespace",
+					"tabs",
+					"redundant",
+					"reference_compliant"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -381,7 +404,31 @@
 					"continuation",
 					"whitespace",
 					"tabs",
-					"redundant"
+					"redundant",
+					"proposed"
+				],
+				"level": 2,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "spaces_vs_tabs_continuation_ocaml_reference",
+			"input": "text = First\n    four spaces\n\ttab preserved",
+			"validations": {
+				"parse_value": [
+					{
+						"key": "text",
+						"value": "First\n    four spaces\n tab preserved"
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"continuation",
+					"whitespace",
+					"tabs",
+					"redundant",
+					"reference_compliant"
 				],
 				"level": 2,
 				"feature": "parsing"
@@ -778,7 +825,79 @@
 					"nested",
 					"lists",
 					"merging",
-					"multi-level"
+					"multi-level",
+					"proposed"
+				],
+				"level": 4,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "ocaml_stress_test_original_ocaml_reference",
+			"input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+			"validations": {
+				"parse": [
+					{
+						"key": "/",
+						"value": "This is a CCL document"
+					},
+					{
+						"key": "title",
+						"value": "CCL Example"
+					},
+					{
+						"key": "database",
+						"value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"
+					},
+					{
+						"key": "user",
+						"value": "\n  guestId = 42"
+					},
+					{
+						"key": "user",
+						"value": "\n  login = chshersh\n  createdAt = 2024-12-31"
+					}
+				],
+				"make_objects": {
+					"/": "This is a CCL document",
+					"title": "CCL Example",
+					"database": {
+						"enabled": "true",
+						"ports": {
+							"": [
+								"8000",
+								"8001",
+								"8002"
+							]
+						},
+						"limits": {
+							"cpu": "1500mi",
+							"memory": "10Gb"
+						}
+					},
+					"user": {
+						"guestId": "42",
+						"login": "chshersh",
+						"createdAt": "2024-12-31"
+					}
+				},
+				"get_string": {
+					"args": [
+						"title"
+					],
+					"expected": "CCL Example"
+				}
+			},
+			"meta": {
+				"tags": [
+					"stress-test",
+					"ocaml-original",
+					"realistic",
+					"nested",
+					"lists",
+					"merging",
+					"multi-level",
+					"reference_compliant"
 				],
 				"level": 4,
 				"feature": "parsing"
