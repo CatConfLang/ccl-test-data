@@ -367,7 +367,30 @@
 				"tags": [
 					"whitespace",
 					"tabs",
-					"trimming"
+					"trimming",
+					"proposed"
+				],
+				"level": 1,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "tab_preservation_in_values_ocaml_reference",
+			"input": "mixed =    \tvalue with leading spaces and tabs\t",
+			"validations": {
+				"parse": [
+					{
+						"key": "mixed",
+						"value": "value with leading spaces and tabs"
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"whitespace",
+					"tabs",
+					"trimming",
+					"reference_compliant"
 				],
 				"level": 1,
 				"feature": "parsing"
@@ -388,7 +411,30 @@
 				"tags": [
 					"multiline",
 					"indentation",
-					"mixed-whitespace"
+					"mixed-whitespace",
+					"proposed"
+				],
+				"level": 1,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "mixed_indentation_continuation_ocaml_reference",
+			"input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
+			"validations": {
+				"parse": [
+					{
+						"key": "description",
+						"value": "First line\n    spaces indented\n tab indented\n   mixed indent"
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"multiline",
+					"indentation",
+					"mixed-whitespace",
+					"reference_compliant"
 				],
 				"level": 1,
 				"feature": "parsing"
