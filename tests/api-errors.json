@@ -24,7 +24,15 @@
           "error_message": "not_enough_input"
         }
       },
-      "meta": {"tags": ["error", "whitespace", "empty"], "level": 1, "feature": "error-handling"}
+      "meta": {"tags": ["error", "whitespace", "empty", "proposed"], "level": 1, "feature": "error-handling"}
+    },
+    {
+      "name": "whitespace_only_error_ocaml_reference",
+      "input": "   ",
+      "validations": {
+        "parse": []
+      },
+      "meta": {"tags": ["whitespace", "empty", "success", "reference_compliant"], "level": 1, "feature": "parsing"}
     },
     {
       "name": "just_string_error",
