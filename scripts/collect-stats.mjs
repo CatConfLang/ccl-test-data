@@ -44,21 +44,40 @@ async function findTestFiles() {
     .map(file => join(testDir, file));
 }
 
+function countAssertions(validationData) {
+  // Expect new counted format with explicit count field
+  if (typeof validationData === 'object' && validationData !== null && typeof validationData.count === 'number') {
+    return validationData.count;
+  }
+  
+  // If no count field, assume single assertion
+  return 1;
+}
+
 async function countTests(filePath) {
   try {
     const content = await readFile(filePath, 'utf8');
     const data = JSON.parse(content);
     
     if (!data.tests || !Array.isArray(data.tests)) {
-      return 0;
+      return { tests: 0, assertions: 0 };
     }
     
-    return data.tests.length;
+    let totalAssertions = 0;
+    for (const test of data.tests) {
+      if (test.validations) {
+        for (const [validationType, validationData] of Object.entries(test.validations)) {
+          totalAssertions += countAssertions(validationData);
+        }
+      }
+    }
+    
+    return { tests: data.tests.length, assertions: totalAssertions };
   } catch (error) {
     if (process.stdout.isTTY) {
       console.error(`${colors.red}Error reading ${filePath}: ${error.message}${colors.reset}`);
     }
-    return 0;
+    return { tests: 0, assertions: 0 };
   }
 }
 
@@ -96,14 +115,15 @@ async function collectStats(silent = false) {
   const stats = {
     structure: 'feature-based',
     categories: {
-      'core-parsing': { total: 0, files: {} },
-      'advanced-processing': { total: 0, files: {} },
-      'object-construction': { total: 0, files: {} },
-      'type-system': { total: 0, files: {} },
-      'output-validation': { total: 0, files: {} },
-      'other': { total: 0, files: {} }
+      'core-parsing': { total: 0, assertions: 0, files: {} },
+      'advanced-processing': { total: 0, assertions: 0, files: {} },
+      'object-construction': { total: 0, assertions: 0, files: {} },
+      'type-system': { total: 0, assertions: 0, files: {} },
+      'output-validation': { total: 0, assertions: 0, files: {} },
+      'other': { total: 0, assertions: 0, files: {} }
     },
     totalTests: 0,
+    totalAssertions: 0,
     totalFiles: 0
   };
   
@@ -112,20 +132,22 @@ async function collectStats(silent = false) {
   }
   
   for (const file of testFiles) {
-    const count = await countTests(file);
-    if (count > 0) {
+    const counts = await countTests(file);
+    if (counts.tests > 0) {
       const metadata = await getFileMetadata(file);
       const category = categorizeByFeature(metadata.feature);
       const fileName = basename(file, '.json');
       
-      stats.categories[category].files[fileName] = count;
-      stats.categories[category].total += count;
-      stats.totalTests += count;
+      stats.categories[category].files[fileName] = { tests: counts.tests, assertions: counts.assertions };
+      stats.categories[category].total += counts.tests;
+      stats.categories[category].assertions += counts.assertions;
+      stats.totalTests += counts.tests;
+      stats.totalAssertions += counts.assertions;
       stats.totalFiles++;
       
       if (showOutput) {
         const categoryDisplay = category.replace('-', ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        console.log(`  ${colors.gray}${categoryDisplay}: ${fileName} (${count} tests) [${metadata.feature || 'unknown'}]${colors.reset}`);
+        console.log(`  ${colors.gray}${categoryDisplay}: ${fileName} (${counts.tests} tests, ${counts.assertions} assertions) [${metadata.feature || 'unknown'}]${colors.reset}`);
       }
     }
   }
@@ -134,17 +156,17 @@ async function collectStats(silent = false) {
   if (!silent && isTTY) {
     console.log(`\n${colors.magenta}${colors.bold}📊 Test Statistics Summary${colors.reset}\n`);
     console.log(`${colors.blue}${colors.bold}Feature-Based Structure:${colors.reset}`);
-    console.log(`  ${colors.gray}Core Parsing: ${stats.categories['core-parsing'].total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Advanced Processing: ${stats.categories['advanced-processing'].total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Object Construction: ${stats.categories['object-construction'].total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Type System: ${stats.categories['type-system'].total} tests${colors.reset}`);
-    console.log(`  ${colors.gray}Output & Validation: ${stats.categories['output-validation'].total} tests${colors.reset}`);
+    console.log(`  ${colors.gray}Core Parsing: ${stats.categories['core-parsing'].total} tests (${stats.categories['core-parsing'].assertions} assertions)${colors.reset}`);
+    console.log(`  ${colors.gray}Advanced Processing: ${stats.categories['advanced-processing'].total} tests (${stats.categories['advanced-processing'].assertions} assertions)${colors.reset}`);
+    console.log(`  ${colors.gray}Object Construction: ${stats.categories['object-construction'].total} tests (${stats.categories['object-construction'].assertions} assertions)${colors.reset}`);
+    console.log(`  ${colors.gray}Type System: ${stats.categories['type-system'].total} tests (${stats.categories['type-system'].assertions} assertions)${colors.reset}`);
+    console.log(`  ${colors.gray}Output & Validation: ${stats.categories['output-validation'].total} tests (${stats.categories['output-validation'].assertions} assertions)${colors.reset}`);
     
     if (stats.categories.other.total > 0) {
       console.log(`  ${colors.gray}Other: ${stats.categories.other.total} tests${colors.reset}`);
     }
     
-    console.log(`\n${colors.blue}${colors.bold}Total: ${stats.totalTests} tests across ${stats.totalFiles} files${colors.reset}\n`);
+    console.log(`\n${colors.blue}${colors.bold}Total: ${stats.totalTests} tests (${stats.totalAssertions} assertions) across ${stats.totalFiles} files${colors.reset}\n`);
     console.log(`${colors.blue}${colors.bold}JSON Output:${colors.reset}`);
     console.log(JSON.stringify(stats, null, 2));
   } else if (!silent) {
