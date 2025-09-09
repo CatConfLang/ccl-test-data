@@ -258,8 +258,12 @@ Every test case must include a `meta` object with categorization and level infor
 | `object-construction` | Flat entries to nested objects | `object-construction.json` |
 | `dotted-keys` | Dotted key expansion | `dotted-keys.json` |
 | `typed-parsing` | Type-aware value extraction | `typed-access.json` |
+| `flexible-boolean-parsing` | Enhanced boolean parsing (yes/no/on/off) | `typed-access.json` |
+| `crlf-normalization` | Line ending normalization | `essential-parsing.json` |
 | `pretty-printing` | Formatting and round-trip tests | `pretty-print.json` |
 | `error-handling` | Error detection and reporting | `errors.json` |
+
+> **📖 Test Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for detailed guidance on filtering tests by feature support and compliance requirements.
 
 ## Usage Examples
 
@@ -336,6 +340,57 @@ Every test case must include a `meta` object with categorization and level infor
   }
 }
 ```
+
+## Test Filtering Architecture
+
+The CCL test suite uses a dual filtering system enabling implementations to run different test subsets based on:
+
+1. **Feature capabilities** - What functionality does your implementation support?
+2. **Behavioral compliance** - How does your implementation handle spec ambiguities?
+
+### Feature-Based Filtering
+
+Filter tests by `meta.feature` to match your implementation's capabilities:
+
+```javascript
+// Basic implementation
+const basicFeatures = ["parsing", "typed-parsing", "object-construction"];
+const myTests = tests.filter(test => basicFeatures.includes(test.meta.feature));
+
+// Enhanced implementation with optional features  
+const enhancedFeatures = [
+  "parsing", "typed-parsing", "object-construction",
+  "flexible-boolean-parsing", "crlf-normalization"
+];
+const myTests = tests.filter(test => enhancedFeatures.includes(test.meta.feature));
+```
+
+### Compliance-Based Filtering
+
+Filter tests by `meta.tags` to choose your interpretation of spec ambiguities:
+
+```javascript
+// CCL proposed behavior (enhanced/flexible)
+const proposedTests = tests.filter(test => 
+  !test.meta.tags.includes("reference-compliant-behavior")
+);
+
+// OCaml reference compliant behavior (strict/baseline)
+const referenceTests = tests.filter(test => 
+  !test.meta.tags.includes("proposed-behavior") ||
+   test.meta.tags.includes("reference-compliant-behavior")
+);
+```
+
+### Tag-Feature Design Pattern
+
+The filtering system follows consistent patterns:
+
+- **Optional features**: Clear requirement tags (e.g., `needs-flexible-boolean-parsing` tag + `flexible-boolean-parsing` feature)
+- **Baseline behavior**: Descriptive behavior tags with base feature category (e.g., `uses-strict-boolean-parsing` tag + `typed-parsing` feature)
+- **Spec ambiguities**: `proposed-behavior` vs `reference-compliant-behavior` tags with same base feature
+
+> **📖 Complete Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for comprehensive documentation of the filtering architecture, patterns, and examples.
 
 ## Implementation Guidelines
 
