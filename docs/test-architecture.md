@@ -1,8 +1,6 @@
 # CCL Test Suite Architecture
 
-**Validation-Based Testing Format**
-
-CCL tests use a **validation-based format** that makes multi-level testing explicit and eliminates confusion around multiple expected fields. Each test specifies exactly which API functions to validate.
+CCL tests specify exactly which API functions to validate and their expected outputs.
 
 CCL implementations use a feature-based test organization that provides clear implementation milestones while allowing developers to choose their level of CCL support based on actual needs rather than artificial levels.
 
@@ -27,14 +25,16 @@ Integration           ← Validation & edge cases
 
 Each category has specific APIs, test suites, and implementation requirements.
 
-## Validation-Based Test Format
+## Test Format
 
-Tests use explicit `validations` objects instead of confusing multi-level fields (`expected_flat`, `expected_nested`, etc.). Each test clearly specifies which API functions to test.
+CCL tests are organized into two categories based on implementation complexity:
 
-### Test Structure
+### API Tests (Direct Function Mapping)
+Files: `api-*.json` - Simple test runners that directly call API functions
+
 ```json
 {
-  "name": "basic_object_construction",
+  "name": "basic_object_construction", 
   "input": "database.host = localhost",
   "validations": {
     "parse": [{"key": "database.host", "value": "localhost"}],
@@ -47,27 +47,44 @@ Tests use explicit `validations` objects instead of confusing multi-level fields
 }
 ```
 
-### Validation Types Available
+### Property Tests (Mathematical Properties)  
+Files: `property-*.json` - Custom test runner logic required
+
+```json
+{
+  "name": "round_trip_basic",
+  "input": "key = value\nnested =\n  sub = val", 
+  "validations": {
+    "round_trip": {
+      "property": "identity"
+    }
+  }
+}
+```
+
+### API Validation Types (Direct Mapping)
 - **`parse`** - Level 1: Entry parsing validation
 - **`filter`** - Level 2: Comment filtering validation  
 - **`compose`** - Level 2: Entry composition validation
 - **`expand_dotted`** - Level 2: Dotted key expansion validation
 - **`make_objects`** - Level 3: Object construction validation
 - **`get_string`**, **`get_int`**, **`get_bool`**, **`get_float`** - Level 4: Typed access validation
-- **`pretty_print`** - Output formatting validation
+
+### Property Validation Types (Custom Logic)
 - **`round_trip`** - Parse-format-parse identity validation
+- **`associativity`** - Algebraic composition properties
 - **`canonical_format`** - Canonical formatting validation
 
-### Benefits
-✅ **Crystal clear** - Each validation maps to exact API function  
-✅ **No confusion** - No guessing about `expected_flat` vs `expected_nested`  
-✅ **Easy iteration** - Test runners iterate over `validations` keys  
-✅ **Explicit testing** - Multi-level testing is obvious
+### Implementation Complexity
+✅ **API Tests** - Simple iteration over validations → direct API calls  
+⚠️ **Property Tests** - Requires custom mathematical property implementations  
+✅ **Progressive adoption** - Start with API tests, add properties later  
+✅ **Clear separation** - File naming shows implementation burden
 
 ## Core Functionality (Required)
 
 ### Essential Parsing
-**Files**: `tests/essential-parsing.json` (18 tests)  
+**Files**: `tests/api-essential-parsing.json` (18 tests)  
 **API:** `parse(text) → Result<Entry[], ParseError>`  
 **Status:** Required for all CCL implementations
 
@@ -109,7 +126,7 @@ function parse(text) {
 ```
 
 ### Comprehensive Parsing  
-**Files**: `tests/comprehensive-parsing.json` (30 tests)
+**Files**: `tests/api-comprehensive-parsing.json` (30 tests)
 **Purpose:** Production-ready validation with comprehensive edge cases
 **Status:** Recommended for production systems
 
@@ -126,7 +143,7 @@ function parse(text) {
 - **Robustness:** Handles malformed input gracefully
 
 ### Object Construction
-**Files**: `tests/object-construction.json` (8 tests)  
+**Files**: `tests/api-object-construction.json` (8 tests)  
 **API:** `make_objects(entries) → CCL`  
 **Status:** Required for hierarchical access
 
@@ -158,7 +175,7 @@ function make_objects(entries) {
 ## Optional Features (Choose Based on Needs)
 
 ### Dotted Key Expansion
-**Files**: `tests/dotted-keys.json` (18 tests)  
+**Files**: `tests/api-dotted-keys.json` (18 tests)  
 **Purpose:** Enable dual access patterns for convenience
 **Status:** Recommended for user-friendly APIs
 
@@ -174,7 +191,7 @@ function make_objects(entries) {
 - Flexible configuration authoring
 
 ### Comment Filtering
-**Files**: `tests/comments.json` (3 tests)  
+**Files**: `tests/api-comments.json` (3 tests)  
 **API:** `filter(entries)`  
 **Purpose:** Remove documentation keys from configuration
 
@@ -184,7 +201,7 @@ function make_objects(entries) {
 - Preserve structure while removing documentation
 
 ### Entry Processing
-**Files**: `tests/processing.json` (21 tests)
+**Files**: `tests/api-processing.json` (21 tests)
 **API:** `compose()`, advanced processing
 **Purpose:** Advanced composition and merging capabilities
 
@@ -195,7 +212,7 @@ function make_objects(entries) {
 - Associative and commutative operations
 
 ### Typed Access
-**Files**: `tests/typed-access.json` (17 tests)  
+**Files**: `tests/api-typed-access.json` (17 tests)  
 **API:** `get_string()`, `get_int()`, `get_bool()`, etc.  
 **Purpose:** Type-safe value extraction with validation
 
@@ -234,7 +251,7 @@ function get_bool(ccl_obj, ...path) {
 ## Integration & Validation
 
 ### Error Handling
-**Files**: `tests/errors.json` (5 tests)  
+**Files**: `tests/api-errors.json` (5 tests)  
 **Purpose:** Malformed input detection across all functionality
 **Status:** Recommended for robust implementations
 
@@ -272,25 +289,22 @@ function get_bool(ccl_obj, ...path) {
 
 ### Test-Driven Development
 ```bash
-# Core functionality
-npm run validate:essential-parsing       # Essential tests (18)
-npm run validate:object-construction     # Object construction (8)
+# API Tests (Direct function mapping)
+npm run validate:api-essential-parsing       # Essential tests (18)
+npm run validate:api-object-construction     # Object construction (8)
+npm run validate:api-comprehensive-parsing   # Comprehensive tests (30)
+npm run validate:api-dotted-keys            # Dotted key support (18)
+npm run validate:api-typed-access           # Type-safe APIs (17)
+npm run validate:api-comments               # Comment filtering (3)
+npm run validate:api-processing             # Entry processing (21)
+npm run validate:api-errors                 # Error handling (5)
 
-# Production readiness
-npm run validate:comprehensive-parsing   # Comprehensive tests (30)
-
-# Feature selection
-npm run validate:dotted-keys            # Dotted key support (18)
-npm run validate:typed-access           # Type-safe APIs (17)
-npm run validate:comments               # Comment filtering (3)
-npm run validate:processing             # Entry processing (21)
-
-# Output & validation
-npm run validate:pretty-print           # Pretty printing (15)
-npm run validate:errors                 # Error handling (5)
+# Property Tests (Custom logic required)  
+npm run validate:property-round-trip        # Round-trip validation (15)
+npm run validate:property-algebraic         # Algebraic properties (5)
 
 # Full validation  
-npm test                                 # All 135 tests
+npm test                                     # All 135 tests
 ```
 
 ### API Design Patterns
@@ -317,10 +331,12 @@ get_string(obj, ...path) → string
 
 ## Test Runner Implementation
 
-### Using Validation-Based Tests
+### Simple API Test Runner (30 lines)
+**For files:** `api-*.json` - Direct function mapping only
+
 ```pseudocode
-function run_validation_test(test_case) {
-  // Iterate over all validations in the test
+function run_api_validation_test(test_case) {
+  // Simple iteration over API validations
   for (validation_type, expected) in test_case.validations {
     switch validation_type {
       case "parse":
@@ -343,15 +359,71 @@ function run_validation_test(test_case) {
         actual = filter(entries)
         assert_equal(actual, expected)
         
-      case "round_trip":
-        entries = parse(test_case.input)
-        formatted = pretty_print(entries)
-        reparsed = parse(formatted)
-        assert_equal(entries, reparsed)
+      // ... other direct API calls
     }
   }
 }
 ```
+
+### Full Property Test Runner (100+ lines) 
+**For files:** `property-*.json` - Requires custom mathematical property logic
+
+```pseudocode
+function run_property_validation_test(test_case) {
+  // Handle both API validations + complex properties
+  for (validation_type, expected) in test_case.validations {
+    switch validation_type {
+      // All the API validations from above, PLUS:
+      
+      case "round_trip":
+        // Multi-step identity property
+        entries = parse(test_case.input)
+        formatted = pretty_print(entries)
+        reparsed = parse(formatted)
+        assert_equal(entries, reparsed)
+        
+      case "associativity":
+        // Complex algebraic property testing
+        if expected.property == "semigroup_associativity" {
+          // Test (a ⊕ b) ⊕ c == a ⊕ (b ⊕ c)
+          a = parse(test_case.input1)
+          b = parse(test_case.input2) 
+          c = parse(test_case.input3)
+          
+          left_assoc = compose(compose(a, b), c)
+          right_assoc = compose(a, compose(b, c))
+          assert_equal(left_assoc, right_assoc)
+        }
+        
+      case "canonical_format":
+        // Custom formatting validation logic
+        entries = parse(test_case.input)
+        canonical = canonical_format(entries)
+        assert_matches_canonical_rules(canonical)
+    }
+  }
+}
+```
+
+### Implementation Guidance
+
+**Start Here (Simple):**
+```bash
+# Only run API tests - direct function mapping
+validate_tests("tests/api-*.json")           # ~90 tests
+```
+
+**Advanced (Full Features):**
+```bash  
+# Add property tests - custom logic required
+validate_tests("tests/property-*.json")      # ~45 tests  
+validate_tests("tests/*.json")               # All 135 tests
+```
+
+**Implementation Burden:**
+- ✅ **API Tests**: Straightforward switch statement over validation types
+- ⚠️ **Property Tests**: Custom mathematical property implementations required
+- 📊 **Lines of Code**: Simple runner ~30 lines, Full runner ~100+ lines
 
 ## Architecture Benefits
 
@@ -361,8 +433,8 @@ function run_validation_test(test_case) {
 4. **Language Agnostic**: Architecture works across programming languages
 5. **Comprehensive Coverage**: 135 tests cover all CCL functionality
 6. **Maintainable**: Feature-based organization scales with additional features
-7. **Explicit Testing**: Validation format eliminates multi-level testing confusion
-8. **Easy Test Runners**: Direct mapping from validations to API functions
+7. **Clear Testing**: Test format provides explicit validation mapping
+8. **Simple Test Runners**: Direct mapping from validations to API functions
 
 ## Implementation Examples
 

@@ -1,8 +1,6 @@
 # CCL Test Suite
 
-**Validation-Based Testing Format**
-
-Language-agnostic test suite for the Categorical Configuration Language (CCL) with a **validation-based format** that makes multi-level testing explicit and eliminates implementation confusion.
+Language-agnostic test suite for the Categorical Configuration Language (CCL). Each test specifies which CCL parsing functions to validate and their expected outputs.
 
 ## What is CCL?
 
@@ -22,13 +20,13 @@ For comprehensive CCL documentation, see the **[CCL Documentation](https://ccl.t
 
 This repository contains the **official JSON test suite** for CCL implementations across all programming languages.
 
-### Validation-Based Format Benefits
+### Test Format Features
 
-✅ **Crystal clear API testing** - Each validation maps to exact API function\
-✅ **No multi-level confusion** - Eliminates `expected_flat` vs `expected_nested` guesswork\
-✅ **Easy test runners** - Direct iteration over `validations` object keys\
+✅ **Direct API mapping** - Each validation maps to a specific API function\
+✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
+✅ **Simple test runners** - Direct iteration over `validations` object keys\
 ✅ **Self-documenting** - Validation names explain what's being tested\
-✅ **135+ test assertions** - Same 135 test inputs now validate multiple API functions
+✅ **148+ test assertions** - Comprehensive coverage across all CCL features
 
 ### Quick Start
 
@@ -43,12 +41,12 @@ npm test
 
 ### Test Files
 
-The test suite is organized by feature category using the **validation-based format**:
+The test suite is organized by feature category:
 
-**Core Parsing** (48 tests)
+**Core Parsing** (49 tests)
 
 - **`tests/essential-parsing.json`** (18 tests) - Basic parsing functionality for rapid prototyping
-- **`tests/comprehensive-parsing.json`** (30 tests) - Thorough parsing with edge cases and whitespace variations
+- **`tests/comprehensive-parsing.json`** (31 tests) - Thorough parsing with edge cases, whitespace variations, and OCaml stress test
 
 **Advanced Processing** (24 tests)
 
@@ -64,19 +62,20 @@ The test suite is organized by feature category using the **validation-based for
 
 - **`tests/typed-access.json`** (17 tests) - Type-aware value extraction with smart inference
 
-**Output & Validation** (20 tests)
+**Output & Validation** (32 tests)
 
 - **`tests/pretty-print.json`** (15 tests) - Formatting and round-trip tests
+- **`tests/algebraic-properties.json`** (12 tests) - Algebraic property validation (associativity, monoid laws)
 - **`tests/errors.json`** (5 tests) - Error handling validation
 
-### Using the Validation-Based Test Suite
+### Using the Test Suite
 
 1. **Load test files** into your language's testing framework
 1. **Iterate over validations** - Each test specifies which API functions to validate
 1. **Filter by level** to test only the features you implement
 1. **Use metadata** to focus on specific functionality
 
-**Validation format structure:**
+**Test format structure:**
 
 ```json
 {

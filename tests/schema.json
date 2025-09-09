@@ -53,60 +53,64 @@
         },
         "validations": {
           "type": "object",
-          "description": "Object containing API function validations to perform",
+          "description": "Object containing test validations - organized by implementation complexity",
           "additionalProperties": false,
           "properties": {
             "parse": {
               "$ref": "#/definitions/parse_validation",
-              "description": "Level 1: Entry parsing validation"
+              "description": "API: Level 1 entry parsing validation"
+            },
+            "parse_value": {
+              "$ref": "#/definitions/parse_validation",
+              "description": "API: Level 2 entry processing validation (indentation-aware parsing)"
             },
             "filter": {
               "$ref": "#/definitions/filter_validation",
-              "description": "Level 2: Entry filtering validation"
+              "description": "API: Level 2 entry filtering validation"
             },
             "compose": {
               "$ref": "#/definitions/compose_validation",
-              "description": "Level 2: Entry composition validation"
+              "description": "API: Level 2 entry composition validation"
             },
             "expand_dotted": {
               "$ref": "#/definitions/expand_dotted_validation",
-              "description": "Level 2: Dotted key expansion validation"
+              "description": "API: Level 2 dotted key expansion validation"
             },
             "make_objects": {
               "$ref": "#/definitions/make_objects_validation",
-              "description": "Level 3: Object construction validation"
+              "description": "API: Level 3 object construction validation"
             },
             "get_string": {
               "$ref": "#/definitions/typed_access_validation",
-              "description": "Level 4: String access validation"
+              "description": "API: Level 4 string access validation"
             },
             "get_int": {
               "$ref": "#/definitions/typed_access_validation",
-              "description": "Level 4: Integer access validation"
+              "description": "API: Level 4 integer access validation"
             },
             "get_bool": {
               "$ref": "#/definitions/typed_access_validation", 
-              "description": "Level 4: Boolean access validation"
+              "description": "API: Level 4 boolean access validation"
             },
             "get_float": {
               "$ref": "#/definitions/typed_access_validation",
-              "description": "Level 4: Float access validation"
+              "description": "API: Level 4 float access validation"
             },
             "pretty_print": {
               "$ref": "#/definitions/pretty_print_validation",
-              "description": "Output formatting validation"
+              "description": "API: Output formatting validation"
             },
             "round_trip": {
               "$ref": "#/definitions/round_trip_validation",
-              "description": "Parse-format-parse identity validation"
+              "description": "PROPERTY: Parse-format-parse identity validation"
             },
             "canonical_format": {
               "$ref": "#/definitions/canonical_format_validation",
-              "description": "Canonical formatting validation"
+              "description": "PROPERTY: Canonical formatting validation"
             },
             "associativity": {
               "$ref": "#/definitions/associativity_validation",
-              "description": "Composition associativity validation"
+              "description": "PROPERTY: Composition associativity validation"
             }
           }
         },
