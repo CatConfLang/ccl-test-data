@@ -351,24 +351,45 @@
               "type": "array",
               "description": "Array of typed access tests",
               "items": {
-                "type": "object",
-                "required": ["args", "expected"],
-                "properties": {
-                  "args": {
-                    "type": "array",
-                    "description": "Path arguments for access",
-                    "items": {"type": "string"}
+                "oneOf": [
+                  {
+                    "type": "object",
+                    "required": ["args", "expected"],
+                    "properties": {
+                      "args": {
+                        "type": "array",
+                        "description": "Path arguments for access",
+                        "items": {"type": "string"}
+                      },
+                      "expected": {
+                        "oneOf": [
+                          {"type": "string"},
+                          {"type": "number"},
+                          {"type": "boolean"},
+                          {"type": "array", "items": {"type": "string"}}
+                        ],
+                        "description": "Expected typed value"
+                      }
+                    }
                   },
-                  "expected": {
-                    "oneOf": [
-                      {"type": "string"},
-                      {"type": "number"},
-                      {"type": "boolean"},
-                      {"type": "array", "items": {"type": "string"}}
-                    ],
-                    "description": "Expected typed value"
+                  {
+                    "type": "object",
+                    "required": ["args", "error"],
+                    "allOf": [
+                      {
+                        "properties": {
+                          "args": {
+                            "type": "array",
+                            "items": {"type": "string"}
+                          }
+                        }
+                      },
+                      {
+                        "$ref": "#/definitions/error_validation"
+                      }
+                    ]
                   }
-                }
+                ]
               }
             }
           }
