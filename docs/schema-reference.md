@@ -156,6 +156,7 @@ Tests the `make_objects(entries)` API function for hierarchical structure creati
 #### Typed Access Validations
 Test type-safe accessor functions with dual access patterns.
 
+**Simple Format:**
 ```json
 "get_string": {
   "args": ["database.host"],     // Dotted access
@@ -171,6 +172,23 @@ Test type-safe accessor functions with dual access patterns.
 }
 ```
 
+**Counted Format (multiple test cases):**
+```json
+"get_bool": {
+  "count": 2,
+  "cases": [
+    {
+      "args": ["enabled"],
+      "expected": true
+    },
+    {
+      "args": ["disabled"], 
+      "expected": false
+    }
+  ]
+}
+```
+
 **Error Format:**
 ```json
 "get_string": {
@@ -178,6 +196,24 @@ Test type-safe accessor functions with dual access patterns.
   "error": true,
   "error_type": "AccessError",
   "error_message": "Path not found"
+}
+```
+
+**Counted Format with Mixed Success/Error Cases:**
+```json
+"get_bool": {
+  "count": 2,
+  "cases": [
+    {
+      "args": ["enabled"],
+      "expected": true
+    },
+    {
+      "args": ["invalid_bool"],
+      "error": true,
+      "error_message": "Value is not a boolean"
+    }
+  ]
 }
 ```
 
@@ -421,8 +457,20 @@ function runValidationTest(testCase) {
       case 'get_string':
         const ccl = makeObjects(parse(testCase.input));
         if (expected.error) {
+          // Simple error format
           expect(() => getString(ccl, ...expected.args)).toThrow();
+        } else if (expected.cases) {
+          // Counted format with multiple cases
+          expected.cases.forEach(testCase => {
+            if (testCase.error) {
+              expect(() => getString(ccl, ...testCase.args)).toThrow();
+            } else {
+              const actual = getString(ccl, ...testCase.args);
+              expect(actual).toBe(testCase.expected);
+            }
+          });
         } else {
+          // Simple success format
           const actual = getString(ccl, ...expected.args);
           expect(actual).toBe(expected.expected);
         }

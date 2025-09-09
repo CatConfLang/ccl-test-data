@@ -23,62 +23,117 @@
           - [4.1.6.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 0 > entry](#tests_items_validations_parse_oneOf_i0_items)
             - [4.1.6.1.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 0 > item 0 items > key`](#tests_items_validations_parse_oneOf_i0_items_key)
             - [4.1.6.1.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 0 > item 0 items > value`](#tests_items_validations_parse_oneOf_i0_items_value)
-        - [4.1.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > error_validation`](#tests_items_validations_parse_oneOf_i1)
-          - [4.1.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error`](#tests_items_validations_parse_oneOf_i1_error)
-          - [4.1.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_type`](#tests_items_validations_parse_oneOf_i1_error_type)
-          - [4.1.6.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_pattern`](#tests_items_validations_parse_oneOf_i1_error_pattern)
-          - [4.1.6.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_message`](#tests_items_validations_parse_oneOf_i1_error_message)
-      - [4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`](#tests_items_validations_filter)
-        - [4.1.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0`](#tests_items_validations_filter_oneOf_i0)
-          - [4.1.6.2.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0 > entry](#tests_items_validations_filter_oneOf_i0_items)
-        - [4.1.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > error_validation`](#tests_items_validations_filter_oneOf_i1)
-      - [4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose`](#tests_items_validations_compose)
-        - [4.1.6.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0`](#tests_items_validations_compose_oneOf_i0)
-          - [4.1.6.3.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left`](#tests_items_validations_compose_oneOf_i0_left)
-            - [4.1.6.3.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left > entry](#tests_items_validations_compose_oneOf_i0_left_items)
-          - [4.1.6.3.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right`](#tests_items_validations_compose_oneOf_i0_right)
-            - [4.1.6.3.1.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right > entry](#tests_items_validations_compose_oneOf_i0_right_items)
-          - [4.1.6.3.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected`](#tests_items_validations_compose_oneOf_i0_expected)
-            - [4.1.6.3.1.3.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected > entry](#tests_items_validations_compose_oneOf_i0_expected_items)
-        - [4.1.6.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > error_validation`](#tests_items_validations_compose_oneOf_i1)
-      - [4.1.6.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted`](#tests_items_validations_expand_dotted)
-        - [4.1.6.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0`](#tests_items_validations_expand_dotted_oneOf_i0)
-          - [4.1.6.4.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0 > entry](#tests_items_validations_expand_dotted_oneOf_i0_items)
-        - [4.1.6.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > error_validation`](#tests_items_validations_expand_dotted_oneOf_i1)
-      - [4.1.6.5. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects`](#tests_items_validations_make_objects)
-        - [4.1.6.5.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0`](#tests_items_validations_make_objects_oneOf_i0)
-        - [4.1.6.5.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > error_validation`](#tests_items_validations_make_objects_oneOf_i1)
-      - [4.1.6.6. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string`](#tests_items_validations_get_string)
-        - [4.1.6.6.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i0)
-          - [4.1.6.6.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > args`](#tests_items_validations_get_string_oneOf_i0_args)
-            - [4.1.6.6.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > args > args items](#tests_items_validations_get_string_oneOf_i0_args_items)
-          - [4.1.6.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected`](#tests_items_validations_get_string_oneOf_i0_expected)
-            - [4.1.6.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i0)
-            - [4.1.6.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i1)
-            - [4.1.6.6.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 2`](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i2)
-        - [4.1.6.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i1)
-          - [4.1.6.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0`](#tests_items_validations_get_string_oneOf_i1_allOf_i0)
-            - [4.1.6.6.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0 > args`](#tests_items_validations_get_string_oneOf_i1_allOf_i0_args)
-              - [4.1.6.6.2.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0 > args > args items](#tests_items_validations_get_string_oneOf_i1_allOf_i0_args_items)
-          - [4.1.6.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > error_validation`](#tests_items_validations_get_string_oneOf_i1_allOf_i1)
-          - [4.1.6.6.2.3. The following properties are required](#autogenerated_heading_2)
-      - [4.1.6.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_int`](#tests_items_validations_get_int)
-      - [4.1.6.8. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_bool`](#tests_items_validations_get_bool)
-      - [4.1.6.9. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_float`](#tests_items_validations_get_float)
-      - [4.1.6.10. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print`](#tests_items_validations_pretty_print)
-        - [4.1.6.10.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > item 0`](#tests_items_validations_pretty_print_oneOf_i0)
-        - [4.1.6.10.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > error_validation`](#tests_items_validations_pretty_print_oneOf_i1)
-      - [4.1.6.11. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip`](#tests_items_validations_round_trip)
-        - [4.1.6.11.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > property`](#tests_items_validations_round_trip_property)
-        - [4.1.6.11.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > description`](#tests_items_validations_round_trip_description)
-      - [4.1.6.12. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format`](#tests_items_validations_canonical_format)
-        - [4.1.6.12.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > expected`](#tests_items_validations_canonical_format_expected)
-        - [4.1.6.12.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > description`](#tests_items_validations_canonical_format_description)
-      - [4.1.6.13. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity`](#tests_items_validations_associativity)
-        - [4.1.6.13.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > property`](#tests_items_validations_associativity_property)
-        - [4.1.6.13.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > left_assoc`](#tests_items_validations_associativity_left_assoc)
-        - [4.1.6.13.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > right_assoc`](#tests_items_validations_associativity_right_assoc)
-        - [4.1.6.13.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > should_be_equal`](#tests_items_validations_associativity_should_be_equal)
+        - [4.1.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1`](#tests_items_validations_parse_oneOf_i1)
+          - [4.1.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > count`](#tests_items_validations_parse_oneOf_i1_count)
+          - [4.1.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > expected`](#tests_items_validations_parse_oneOf_i1_expected)
+            - [4.1.6.1.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > expected > entry](#tests_items_validations_parse_oneOf_i1_expected_items)
+        - [4.1.6.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > error_validation`](#tests_items_validations_parse_oneOf_i2)
+          - [4.1.6.1.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error`](#tests_items_validations_parse_oneOf_i2_error)
+          - [4.1.6.1.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_type`](#tests_items_validations_parse_oneOf_i2_error_type)
+          - [4.1.6.1.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_pattern`](#tests_items_validations_parse_oneOf_i2_error_pattern)
+          - [4.1.6.1.3.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_message`](#tests_items_validations_parse_oneOf_i2_error_message)
+      - [4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_value`](#tests_items_validations_parse_value)
+      - [4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`](#tests_items_validations_filter)
+        - [4.1.6.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0`](#tests_items_validations_filter_oneOf_i0)
+          - [4.1.6.3.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0 > entry](#tests_items_validations_filter_oneOf_i0_items)
+        - [4.1.6.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1`](#tests_items_validations_filter_oneOf_i1)
+          - [4.1.6.3.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > count`](#tests_items_validations_filter_oneOf_i1_count)
+          - [4.1.6.3.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > expected`](#tests_items_validations_filter_oneOf_i1_expected)
+            - [4.1.6.3.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > expected > entry](#tests_items_validations_filter_oneOf_i1_expected_items)
+        - [4.1.6.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > error_validation`](#tests_items_validations_filter_oneOf_i2)
+      - [4.1.6.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose`](#tests_items_validations_compose)
+        - [4.1.6.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0`](#tests_items_validations_compose_oneOf_i0)
+          - [4.1.6.4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left`](#tests_items_validations_compose_oneOf_i0_left)
+            - [4.1.6.4.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left > entry](#tests_items_validations_compose_oneOf_i0_left_items)
+          - [4.1.6.4.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right`](#tests_items_validations_compose_oneOf_i0_right)
+            - [4.1.6.4.1.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right > entry](#tests_items_validations_compose_oneOf_i0_right_items)
+          - [4.1.6.4.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected`](#tests_items_validations_compose_oneOf_i0_expected)
+            - [4.1.6.4.1.3.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected > entry](#tests_items_validations_compose_oneOf_i0_expected_items)
+        - [4.1.6.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > error_validation`](#tests_items_validations_compose_oneOf_i1)
+      - [4.1.6.5. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted`](#tests_items_validations_expand_dotted)
+        - [4.1.6.5.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0`](#tests_items_validations_expand_dotted_oneOf_i0)
+          - [4.1.6.5.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0 > entry](#tests_items_validations_expand_dotted_oneOf_i0_items)
+        - [4.1.6.5.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1`](#tests_items_validations_expand_dotted_oneOf_i1)
+          - [4.1.6.5.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > count`](#tests_items_validations_expand_dotted_oneOf_i1_count)
+          - [4.1.6.5.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > expected`](#tests_items_validations_expand_dotted_oneOf_i1_expected)
+            - [4.1.6.5.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > expected > entry](#tests_items_validations_expand_dotted_oneOf_i1_expected_items)
+        - [4.1.6.5.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > error_validation`](#tests_items_validations_expand_dotted_oneOf_i2)
+      - [4.1.6.6. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects`](#tests_items_validations_make_objects)
+        - [4.1.6.6.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0`](#tests_items_validations_make_objects_oneOf_i0)
+          - [4.1.6.6.1.1. Must **not** be](#autogenerated_heading_2)
+            - [4.1.6.6.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0 > not > anyOf > item 0`](#tests_items_validations_make_objects_oneOf_i0_not_anyOf_i0)
+              - [4.1.6.6.1.1.1.1. The following properties are required](#autogenerated_heading_3)
+            - [4.1.6.6.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0 > not > anyOf > item 1`](#tests_items_validations_make_objects_oneOf_i0_not_anyOf_i1)
+              - [4.1.6.6.1.1.2.1. The following properties are required](#autogenerated_heading_4)
+        - [4.1.6.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1`](#tests_items_validations_make_objects_oneOf_i1)
+          - [4.1.6.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1 > count`](#tests_items_validations_make_objects_oneOf_i1_count)
+          - [4.1.6.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1 > expected`](#tests_items_validations_make_objects_oneOf_i1_expected)
+        - [4.1.6.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > error_validation`](#tests_items_validations_make_objects_oneOf_i2)
+      - [4.1.6.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string`](#tests_items_validations_get_string)
+        - [4.1.6.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i0)
+          - [4.1.6.7.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items](#tests_items_validations_get_string_oneOf_i0_items)
+            - [4.1.6.7.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > args`](#tests_items_validations_get_string_oneOf_i0_items_args)
+              - [4.1.6.7.1.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > args > args items](#tests_items_validations_get_string_oneOf_i0_items_args_items)
+            - [4.1.6.7.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected`](#tests_items_validations_get_string_oneOf_i0_items_expected)
+              - [4.1.6.7.1.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i0)
+              - [4.1.6.7.1.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i1)
+              - [4.1.6.7.1.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 2`](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i2)
+              - [4.1.6.7.1.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 3`](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3)
+                - [4.1.6.7.1.1.2.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 3 > item 3 items](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3_items)
+        - [4.1.6.7.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i1)
+          - [4.1.6.7.2.1. Must **not** be](#autogenerated_heading_5)
+            - [4.1.6.7.2.1.1. The following properties are required](#autogenerated_heading_6)
+          - [4.1.6.7.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > args`](#tests_items_validations_get_string_oneOf_i1_args)
+            - [4.1.6.7.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > args > args items](#tests_items_validations_get_string_oneOf_i1_args_items)
+          - [4.1.6.7.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected`](#tests_items_validations_get_string_oneOf_i1_expected)
+            - [4.1.6.7.2.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i0)
+            - [4.1.6.7.2.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i1)
+            - [4.1.6.7.2.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 2`](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i2)
+            - [4.1.6.7.2.3.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 3`](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3)
+              - [4.1.6.7.2.3.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 3 > item 3 items](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3_items)
+        - [4.1.6.7.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2`](#tests_items_validations_get_string_oneOf_i2)
+          - [4.1.6.7.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > count`](#tests_items_validations_get_string_oneOf_i2_count)
+          - [4.1.6.7.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases`](#tests_items_validations_get_string_oneOf_i2_cases)
+            - [4.1.6.7.3.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items](#tests_items_validations_get_string_oneOf_i2_cases_items)
+              - [4.1.6.7.3.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0)
+                - [4.1.6.7.3.2.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > args`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args)
+                  - [4.1.6.7.3.2.1.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > args > args items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args_items)
+                - [4.1.6.7.3.2.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected)
+                  - [4.1.6.7.3.2.1.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 0`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i0)
+                  - [4.1.6.7.3.2.1.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i1)
+                  - [4.1.6.7.3.2.1.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 2`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i2)
+                  - [4.1.6.7.3.2.1.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 3`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3)
+                    - [4.1.6.7.3.2.1.1.2.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 3 > item 3 items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3_items)
+              - [4.1.6.7.3.2.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1)
+                - [4.1.6.7.3.2.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0)
+                  - [4.1.6.7.3.2.1.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0 > args`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args)
+                    - [4.1.6.7.3.2.1.2.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0 > args > args items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args_items)
+                - [4.1.6.7.3.2.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > error_validation`](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i1)
+                - [4.1.6.7.3.2.1.2.3. The following properties are required](#autogenerated_heading_7)
+        - [4.1.6.7.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3`](#tests_items_validations_get_string_oneOf_i3)
+          - [4.1.6.7.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0`](#tests_items_validations_get_string_oneOf_i3_allOf_i0)
+            - [4.1.6.7.4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0 > args`](#tests_items_validations_get_string_oneOf_i3_allOf_i0_args)
+              - [4.1.6.7.4.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0 > args > args items](#tests_items_validations_get_string_oneOf_i3_allOf_i0_args_items)
+          - [4.1.6.7.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > error_validation`](#tests_items_validations_get_string_oneOf_i3_allOf_i1)
+          - [4.1.6.7.4.3. The following properties are required](#autogenerated_heading_8)
+      - [4.1.6.8. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_int`](#tests_items_validations_get_int)
+      - [4.1.6.9. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_bool`](#tests_items_validations_get_bool)
+      - [4.1.6.10. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_float`](#tests_items_validations_get_float)
+      - [4.1.6.11. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_list`](#tests_items_validations_get_list)
+      - [4.1.6.12. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print`](#tests_items_validations_pretty_print)
+        - [4.1.6.12.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > item 0`](#tests_items_validations_pretty_print_oneOf_i0)
+        - [4.1.6.12.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > error_validation`](#tests_items_validations_pretty_print_oneOf_i1)
+      - [4.1.6.13. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip`](#tests_items_validations_round_trip)
+        - [4.1.6.13.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > property`](#tests_items_validations_round_trip_property)
+        - [4.1.6.13.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > description`](#tests_items_validations_round_trip_description)
+      - [4.1.6.14. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format`](#tests_items_validations_canonical_format)
+        - [4.1.6.14.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > expected`](#tests_items_validations_canonical_format_expected)
+        - [4.1.6.14.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > description`](#tests_items_validations_canonical_format_description)
+      - [4.1.6.15. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity`](#tests_items_validations_associativity)
+        - [4.1.6.15.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > property`](#tests_items_validations_associativity_property)
+        - [4.1.6.15.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > left_assoc`](#tests_items_validations_associativity_left_assoc)
+        - [4.1.6.15.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > right_assoc`](#tests_items_validations_associativity_right_assoc)
+        - [4.1.6.15.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > should_be_equal`](#tests_items_validations_associativity_should_be_equal)
     - [4.1.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta`](#tests_items_meta)
       - [4.1.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags`](#tests_items_meta_tags)
         - [4.1.7.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags > tags items](#tests_items_meta_tags_items)
@@ -160,15 +215,15 @@
 | **Additional properties** | Any type allowed                   |
 | **Defined in**            | #/definitions/validation_test_case |
 
-| Property                                   | Pattern | Type   | Deprecated | Definition                     | Title/Description                                     |
-| ------------------------------------------ | ------- | ------ | ---------- | ------------------------------ | ----------------------------------------------------- |
-| + [name](#tests_items_name )               | No      | string | No         | -                              | Unique name for the test case                         |
-| + [input](#tests_items_input )             | No      | string | No         | -                              | CCL input string to parse                             |
-| - [input1](#tests_items_input1 )           | No      | string | No         | -                              | First CCL input for composition tests                 |
-| - [input2](#tests_items_input2 )           | No      | string | No         | -                              | Second CCL input for composition tests                |
-| - [input3](#tests_items_input3 )           | No      | string | No         | -                              | Third CCL input for associativity tests               |
-| + [validations](#tests_items_validations ) | No      | object | No         | -                              | Object containing API function validations to perform |
-| + [meta](#tests_items_meta )               | No      | object | No         | In #/definitions/test_metadata | Test metadata including level and categorization      |
+| Property                                   | Pattern | Type   | Deprecated | Definition                     | Title/Description                                                           |
+| ------------------------------------------ | ------- | ------ | ---------- | ------------------------------ | --------------------------------------------------------------------------- |
+| + [name](#tests_items_name )               | No      | string | No         | -                              | Unique name for the test case                                               |
+| + [input](#tests_items_input )             | No      | string | No         | -                              | CCL input string to parse                                                   |
+| - [input1](#tests_items_input1 )           | No      | string | No         | -                              | First CCL input for composition tests                                       |
+| - [input2](#tests_items_input2 )           | No      | string | No         | -                              | Second CCL input for composition tests                                      |
+| - [input3](#tests_items_input3 )           | No      | string | No         | -                              | Third CCL input for associativity tests                                     |
+| + [validations](#tests_items_validations ) | No      | object | No         | -                              | Object containing test validations - organized by implementation complexity |
+| + [meta](#tests_items_meta )               | No      | object | No         | In #/definitions/test_metadata | Test metadata including level and categorization                            |
 
 #### <a name="tests_items_name"></a>4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > name`
 
@@ -223,23 +278,25 @@
 | **Required**              | Yes         |
 | **Additional properties** | Not allowed |
 
-**Description:** Object containing API function validations to perform
+**Description:** Object containing test validations - organized by implementation complexity
 
-| Property                                                         | Pattern | Type   | Deprecated | Definition                                                 | Title/Description                        |
-| ---------------------------------------------------------------- | ------- | ------ | ---------- | ---------------------------------------------------------- | ---------------------------------------- |
-| - [parse](#tests_items_validations_parse )                       | No      | object | No         | In #/definitions/parse_validation                          | Level 1: Entry parsing validation        |
-| - [filter](#tests_items_validations_filter )                     | No      | object | No         | In #/definitions/filter_validation                         | Level 2: Entry filtering validation      |
-| - [compose](#tests_items_validations_compose )                   | No      | object | No         | In #/definitions/compose_validation                        | Level 2: Entry composition validation    |
-| - [expand_dotted](#tests_items_validations_expand_dotted )       | No      | object | No         | In #/definitions/expand_dotted_validation                  | Level 2: Dotted key expansion validation |
-| - [make_objects](#tests_items_validations_make_objects )         | No      | object | No         | In #/definitions/make_objects_validation                   | Level 3: Object construction validation  |
-| - [get_string](#tests_items_validations_get_string )             | No      | object | No         | In #/definitions/typed_access_validation                   | Level 4: String access validation        |
-| - [get_int](#tests_items_validations_get_int )                   | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | Level 4: Integer access validation       |
-| - [get_bool](#tests_items_validations_get_bool )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | Level 4: Boolean access validation       |
-| - [get_float](#tests_items_validations_get_float )               | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | Level 4: Float access validation         |
-| - [pretty_print](#tests_items_validations_pretty_print )         | No      | object | No         | In #/definitions/pretty_print_validation                   | Output formatting validation             |
-| - [round_trip](#tests_items_validations_round_trip )             | No      | object | No         | In #/definitions/round_trip_validation                     | Parse-format-parse identity validation   |
-| - [canonical_format](#tests_items_validations_canonical_format ) | No      | object | No         | In #/definitions/canonical_format_validation               | Canonical formatting validation          |
-| - [associativity](#tests_items_validations_associativity )       | No      | object | No         | In #/definitions/associativity_validation                  | Composition associativity validation     |
+| Property                                                         | Pattern | Type   | Deprecated | Definition                                                 | Title/Description                                                    |
+| ---------------------------------------------------------------- | ------- | ------ | ---------- | ---------------------------------------------------------- | -------------------------------------------------------------------- |
+| - [parse](#tests_items_validations_parse )                       | No      | object | No         | In #/definitions/parse_validation                          | API: Level 1 entry parsing validation                                |
+| - [parse_value](#tests_items_validations_parse_value )           | No      | object | No         | Same as [parse](#tests_items_validations_parse )           | API: Level 2 entry processing validation (indentation-aware parsing) |
+| - [filter](#tests_items_validations_filter )                     | No      | object | No         | In #/definitions/filter_validation                         | API: Level 2 entry filtering validation                              |
+| - [compose](#tests_items_validations_compose )                   | No      | object | No         | In #/definitions/compose_validation                        | API: Level 2 entry composition validation                            |
+| - [expand_dotted](#tests_items_validations_expand_dotted )       | No      | object | No         | In #/definitions/expand_dotted_validation                  | API: Level 2 dotted key expansion validation                         |
+| - [make_objects](#tests_items_validations_make_objects )         | No      | object | No         | In #/definitions/make_objects_validation                   | API: Level 3 object construction validation                          |
+| - [get_string](#tests_items_validations_get_string )             | No      | object | No         | In #/definitions/typed_access_validation                   | API: Level 4 string access validation                                |
+| - [get_int](#tests_items_validations_get_int )                   | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 integer access validation                               |
+| - [get_bool](#tests_items_validations_get_bool )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 boolean access validation                               |
+| - [get_float](#tests_items_validations_get_float )               | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 float access validation                                 |
+| - [get_list](#tests_items_validations_get_list )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 list access validation                                  |
+| - [pretty_print](#tests_items_validations_pretty_print )         | No      | object | No         | In #/definitions/pretty_print_validation                   | API: Output formatting validation                                    |
+| - [round_trip](#tests_items_validations_round_trip )             | No      | object | No         | In #/definitions/round_trip_validation                     | PROPERTY: Parse-format-parse identity validation                     |
+| - [canonical_format](#tests_items_validations_canonical_format ) | No      | object | No         | In #/definitions/canonical_format_validation               | PROPERTY: Canonical formatting validation                            |
+| - [associativity](#tests_items_validations_associativity )       | No      | object | No         | In #/definitions/associativity_validation                  | PROPERTY: Composition associativity validation                       |
 
 ##### <a name="tests_items_validations_parse"></a>4.1.6.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse`
 
@@ -250,12 +307,13 @@
 | **Additional properties** | Any type allowed               |
 | **Defined in**            | #/definitions/parse_validation |
 
-**Description:** Level 1: Entry parsing validation
+**Description:** API: Level 1 entry parsing validation
 
 | One of(Option)                                              |
 | ----------------------------------------------------------- |
 | [item 0](#tests_items_validations_parse_oneOf_i0)           |
-| [error_validation](#tests_items_validations_parse_oneOf_i1) |
+| [item 1](#tests_items_validations_parse_oneOf_i1)           |
+| [error_validation](#tests_items_validations_parse_oneOf_i2) |
 
 ###### <a name="tests_items_validations_parse_oneOf_i0"></a>4.1.6.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 0`
 
@@ -264,7 +322,7 @@
 | **Type**     | `array` |
 | **Required** | No      |
 
-**Description:** Expected entries from parsing
+**Description:** Legacy format: Expected entries from parsing
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |
@@ -310,7 +368,65 @@
 
 **Description:** The value part of the entry
 
-###### <a name="tests_items_validations_parse_oneOf_i1"></a>4.1.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > error_validation`
+###### <a name="tests_items_validations_parse_oneOf_i1"></a>4.1.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Counted format: Expected entries with assertion count
+
+| Property                                                        | Pattern | Type    | Deprecated | Definition | Title/Description                               |
+| --------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
+| + [count](#tests_items_validations_parse_oneOf_i1_count )       | No      | integer | No         | -          | Number of assertions this validation represents |
+| + [expected](#tests_items_validations_parse_oneOf_i1_expected ) | No      | array   | No         | -          | Expected entries from parsing                   |
+
+###### <a name="tests_items_validations_parse_oneOf_i1_count"></a>4.1.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > count`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | Yes       |
+
+**Description:** Number of assertions this validation represents
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="tests_items_validations_parse_oneOf_i1_expected"></a>4.1.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > expected`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `array` |
+| **Required** | Yes     |
+
+**Description:** Expected entries from parsing
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                 | Description |
+| --------------------------------------------------------------- | ----------- |
+| [entry](#tests_items_validations_parse_oneOf_i1_expected_items) | -           |
+
+###### <a name="tests_items_validations_parse_oneOf_i1_expected_items"></a>4.1.6.1.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > expected > entry
+
+|                           |                                                                                               |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                      |
+| **Required**              | No                                                                                            |
+| **Additional properties** | Any type allowed                                                                              |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
+
+###### <a name="tests_items_validations_parse_oneOf_i2"></a>4.1.6.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > error_validation`
 
 |                           |                                |
 | ------------------------- | ------------------------------ |
@@ -323,12 +439,12 @@
 
 | Property                                                                  | Pattern | Type             | Deprecated | Definition | Title/Description                          |
 | ------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------ |
-| + [error](#tests_items_validations_parse_oneOf_i1_error )                 | No      | const            | No         | -          | Indicates this validation expects an error |
-| - [error_type](#tests_items_validations_parse_oneOf_i1_error_type )       | No      | enum (of string) | No         | -          | Expected error type                        |
-| - [error_pattern](#tests_items_validations_parse_oneOf_i1_error_pattern ) | No      | string           | No         | -          | Expected error message pattern (regex)     |
-| - [error_message](#tests_items_validations_parse_oneOf_i1_error_message ) | No      | string           | No         | -          | Expected exact error message               |
+| + [error](#tests_items_validations_parse_oneOf_i2_error )                 | No      | const            | No         | -          | Indicates this validation expects an error |
+| - [error_type](#tests_items_validations_parse_oneOf_i2_error_type )       | No      | enum (of string) | No         | -          | Expected error type                        |
+| - [error_pattern](#tests_items_validations_parse_oneOf_i2_error_pattern ) | No      | string           | No         | -          | Expected error message pattern (regex)     |
+| - [error_message](#tests_items_validations_parse_oneOf_i2_error_message ) | No      | string           | No         | -          | Expected exact error message               |
 
-###### <a name="tests_items_validations_parse_oneOf_i1_error"></a>4.1.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error`
+###### <a name="tests_items_validations_parse_oneOf_i2_error"></a>4.1.6.1.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error`
 
 |              |         |
 | ------------ | ------- |
@@ -339,7 +455,7 @@
 
 Specific value: `true`
 
-###### <a name="tests_items_validations_parse_oneOf_i1_error_type"></a>4.1.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_type`
+###### <a name="tests_items_validations_parse_oneOf_i2_error_type"></a>4.1.6.1.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_type`
 
 |              |                    |
 | ------------ | ------------------ |
@@ -354,7 +470,7 @@ Must be one of:
 * "TypeError"
 * "ValidationError"
 
-###### <a name="tests_items_validations_parse_oneOf_i1_error_pattern"></a>4.1.6.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_pattern`
+###### <a name="tests_items_validations_parse_oneOf_i2_error_pattern"></a>4.1.6.1.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_pattern`
 
 |              |          |
 | ------------ | -------- |
@@ -363,7 +479,7 @@ Must be one of:
 
 **Description:** Expected error message pattern (regex)
 
-###### <a name="tests_items_validations_parse_oneOf_i1_error_message"></a>4.1.6.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 1 > error_message`
+###### <a name="tests_items_validations_parse_oneOf_i2_error_message"></a>4.1.6.1.3.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_message`
 
 |              |          |
 | ------------ | -------- |
@@ -372,7 +488,18 @@ Must be one of:
 
 **Description:** Expected exact error message
 
-##### <a name="tests_items_validations_filter"></a>4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`
+##### <a name="tests_items_validations_parse_value"></a>4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_value`
+
+|                           |                                         |
+| ------------------------- | --------------------------------------- |
+| **Type**                  | `combining`                             |
+| **Required**              | No                                      |
+| **Additional properties** | Any type allowed                        |
+| **Same definition as**    | [parse](#tests_items_validations_parse) |
+
+**Description:** API: Level 2 entry processing validation (indentation-aware parsing)
+
+##### <a name="tests_items_validations_filter"></a>4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`
 
 |                           |                                 |
 | ------------------------- | ------------------------------- |
@@ -381,21 +508,22 @@ Must be one of:
 | **Additional properties** | Any type allowed                |
 | **Defined in**            | #/definitions/filter_validation |
 
-**Description:** Level 2: Entry filtering validation
+**Description:** API: Level 2 entry filtering validation
 
 | One of(Option)                                               |
 | ------------------------------------------------------------ |
 | [item 0](#tests_items_validations_filter_oneOf_i0)           |
-| [error_validation](#tests_items_validations_filter_oneOf_i1) |
+| [item 1](#tests_items_validations_filter_oneOf_i1)           |
+| [error_validation](#tests_items_validations_filter_oneOf_i2) |
 
-###### <a name="tests_items_validations_filter_oneOf_i0"></a>4.1.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0`
+###### <a name="tests_items_validations_filter_oneOf_i0"></a>4.1.6.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0`
 
 |              |         |
 | ------------ | ------- |
 | **Type**     | `array` |
 | **Required** | No      |
 
-**Description:** Expected entries after filtering
+**Description:** Legacy format: Expected entries after filtering
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |
@@ -409,7 +537,7 @@ Must be one of:
 | ------------------------------------------------------- | ----------- |
 | [entry](#tests_items_validations_filter_oneOf_i0_items) | -           |
 
-###### <a name="tests_items_validations_filter_oneOf_i0_items"></a>4.1.6.2.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0 > entry
+###### <a name="tests_items_validations_filter_oneOf_i0_items"></a>4.1.6.3.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0 > entry
 
 |                           |                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -418,16 +546,74 @@ Must be one of:
 | **Additional properties** | Any type allowed                                                                              |
 | **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
 
-###### <a name="tests_items_validations_filter_oneOf_i1"></a>4.1.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > error_validation`
+###### <a name="tests_items_validations_filter_oneOf_i1"></a>4.1.6.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Counted format: Expected entries with assertion count
+
+| Property                                                         | Pattern | Type    | Deprecated | Definition | Title/Description                               |
+| ---------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
+| + [count](#tests_items_validations_filter_oneOf_i1_count )       | No      | integer | No         | -          | Number of assertions this validation represents |
+| + [expected](#tests_items_validations_filter_oneOf_i1_expected ) | No      | array   | No         | -          | Expected entries after filtering                |
+
+###### <a name="tests_items_validations_filter_oneOf_i1_count"></a>4.1.6.3.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > count`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | Yes       |
+
+**Description:** Number of assertions this validation represents
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="tests_items_validations_filter_oneOf_i1_expected"></a>4.1.6.3.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > expected`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `array` |
+| **Required** | Yes     |
+
+**Description:** Expected entries after filtering
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                  | Description |
+| ---------------------------------------------------------------- | ----------- |
+| [entry](#tests_items_validations_filter_oneOf_i1_expected_items) | -           |
+
+###### <a name="tests_items_validations_filter_oneOf_i1_expected_items"></a>4.1.6.3.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 1 > expected > entry
+
+|                           |                                                                                               |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                      |
+| **Required**              | No                                                                                            |
+| **Additional properties** | Any type allowed                                                                              |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
+
+###### <a name="tests_items_validations_filter_oneOf_i2"></a>4.1.6.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-##### <a name="tests_items_validations_compose"></a>4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose`
+##### <a name="tests_items_validations_compose"></a>4.1.6.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose`
 
 |                           |                                  |
 | ------------------------- | -------------------------------- |
@@ -436,14 +622,14 @@ Must be one of:
 | **Additional properties** | Any type allowed                 |
 | **Defined in**            | #/definitions/compose_validation |
 
-**Description:** Level 2: Entry composition validation
+**Description:** API: Level 2 entry composition validation
 
 | One of(Option)                                                |
 | ------------------------------------------------------------- |
 | [item 0](#tests_items_validations_compose_oneOf_i0)           |
 | [error_validation](#tests_items_validations_compose_oneOf_i1) |
 
-###### <a name="tests_items_validations_compose_oneOf_i0"></a>4.1.6.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0`
+###### <a name="tests_items_validations_compose_oneOf_i0"></a>4.1.6.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -457,7 +643,7 @@ Must be one of:
 | + [right](#tests_items_validations_compose_oneOf_i0_right )       | No      | array | No         | -          | Right entry array for composition |
 | + [expected](#tests_items_validations_compose_oneOf_i0_expected ) | No      | array | No         | -          | Expected result of composition    |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_left"></a>4.1.6.3.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left`
+###### <a name="tests_items_validations_compose_oneOf_i0_left"></a>4.1.6.4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left`
 
 |              |         |
 | ------------ | ------- |
@@ -478,7 +664,7 @@ Must be one of:
 | ------------------------------------------------------------- | ----------- |
 | [entry](#tests_items_validations_compose_oneOf_i0_left_items) | -           |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_left_items"></a>4.1.6.3.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left > entry
+###### <a name="tests_items_validations_compose_oneOf_i0_left_items"></a>4.1.6.4.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > left > entry
 
 |                           |                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -487,7 +673,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                                                              |
 | **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_right"></a>4.1.6.3.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right`
+###### <a name="tests_items_validations_compose_oneOf_i0_right"></a>4.1.6.4.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right`
 
 |              |         |
 | ------------ | ------- |
@@ -508,7 +694,7 @@ Must be one of:
 | -------------------------------------------------------------- | ----------- |
 | [entry](#tests_items_validations_compose_oneOf_i0_right_items) | -           |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_right_items"></a>4.1.6.3.1.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right > entry
+###### <a name="tests_items_validations_compose_oneOf_i0_right_items"></a>4.1.6.4.1.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > right > entry
 
 |                           |                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -517,7 +703,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                                                              |
 | **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_expected"></a>4.1.6.3.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected`
+###### <a name="tests_items_validations_compose_oneOf_i0_expected"></a>4.1.6.4.1.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected`
 
 |              |         |
 | ------------ | ------- |
@@ -538,7 +724,7 @@ Must be one of:
 | ----------------------------------------------------------------- | ----------- |
 | [entry](#tests_items_validations_compose_oneOf_i0_expected_items) | -           |
 
-###### <a name="tests_items_validations_compose_oneOf_i0_expected_items"></a>4.1.6.3.1.3.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected > entry
+###### <a name="tests_items_validations_compose_oneOf_i0_expected_items"></a>4.1.6.4.1.3.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > item 0 > expected > entry
 
 |                           |                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -547,16 +733,16 @@ Must be one of:
 | **Additional properties** | Any type allowed                                                                              |
 | **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
 
-###### <a name="tests_items_validations_compose_oneOf_i1"></a>4.1.6.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > error_validation`
+###### <a name="tests_items_validations_compose_oneOf_i1"></a>4.1.6.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > compose > oneOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-##### <a name="tests_items_validations_expand_dotted"></a>4.1.6.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted`
+##### <a name="tests_items_validations_expand_dotted"></a>4.1.6.5. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted`
 
 |                           |                                        |
 | ------------------------- | -------------------------------------- |
@@ -565,21 +751,22 @@ Must be one of:
 | **Additional properties** | Any type allowed                       |
 | **Defined in**            | #/definitions/expand_dotted_validation |
 
-**Description:** Level 2: Dotted key expansion validation
+**Description:** API: Level 2 dotted key expansion validation
 
 | One of(Option)                                                      |
 | ------------------------------------------------------------------- |
 | [item 0](#tests_items_validations_expand_dotted_oneOf_i0)           |
-| [error_validation](#tests_items_validations_expand_dotted_oneOf_i1) |
+| [item 1](#tests_items_validations_expand_dotted_oneOf_i1)           |
+| [error_validation](#tests_items_validations_expand_dotted_oneOf_i2) |
 
-###### <a name="tests_items_validations_expand_dotted_oneOf_i0"></a>4.1.6.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0`
+###### <a name="tests_items_validations_expand_dotted_oneOf_i0"></a>4.1.6.5.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0`
 
 |              |         |
 | ------------ | ------- |
 | **Type**     | `array` |
 | **Required** | No      |
 
-**Description:** Expected entries after dotted key expansion
+**Description:** Legacy format: Expected entries after dotted key expansion
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |
@@ -593,7 +780,7 @@ Must be one of:
 | -------------------------------------------------------------- | ----------- |
 | [entry](#tests_items_validations_expand_dotted_oneOf_i0_items) | -           |
 
-###### <a name="tests_items_validations_expand_dotted_oneOf_i0_items"></a>4.1.6.4.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0 > entry
+###### <a name="tests_items_validations_expand_dotted_oneOf_i0_items"></a>4.1.6.5.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 0 > entry
 
 |                           |                                                                                               |
 | ------------------------- | --------------------------------------------------------------------------------------------- |
@@ -602,16 +789,74 @@ Must be one of:
 | **Additional properties** | Any type allowed                                                                              |
 | **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
 
-###### <a name="tests_items_validations_expand_dotted_oneOf_i1"></a>4.1.6.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > error_validation`
+###### <a name="tests_items_validations_expand_dotted_oneOf_i1"></a>4.1.6.5.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Counted format: Expected entries with assertion count
+
+| Property                                                                | Pattern | Type    | Deprecated | Definition | Title/Description                               |
+| ----------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
+| + [count](#tests_items_validations_expand_dotted_oneOf_i1_count )       | No      | integer | No         | -          | Number of assertions this validation represents |
+| + [expected](#tests_items_validations_expand_dotted_oneOf_i1_expected ) | No      | array   | No         | -          | Expected entries after dotted key expansion     |
+
+###### <a name="tests_items_validations_expand_dotted_oneOf_i1_count"></a>4.1.6.5.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > count`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | Yes       |
+
+**Description:** Number of assertions this validation represents
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="tests_items_validations_expand_dotted_oneOf_i1_expected"></a>4.1.6.5.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > expected`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `array` |
+| **Required** | Yes     |
+
+**Description:** Expected entries after dotted key expansion
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                         | Description |
+| ----------------------------------------------------------------------- | ----------- |
+| [entry](#tests_items_validations_expand_dotted_oneOf_i1_expected_items) | -           |
+
+###### <a name="tests_items_validations_expand_dotted_oneOf_i1_expected_items"></a>4.1.6.5.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > item 1 > expected > entry
+
+|                           |                                                                                               |
+| ------------------------- | --------------------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                                      |
+| **Required**              | No                                                                                            |
+| **Additional properties** | Any type allowed                                                                              |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i0_items](#tests_items_validations_parse_oneOf_i0_items) |
+
+###### <a name="tests_items_validations_expand_dotted_oneOf_i2"></a>4.1.6.5.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > expand_dotted > oneOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-##### <a name="tests_items_validations_make_objects"></a>4.1.6.5. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects`
+##### <a name="tests_items_validations_make_objects"></a>4.1.6.6. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects`
 
 |                           |                                       |
 | ------------------------- | ------------------------------------- |
@@ -620,14 +865,42 @@ Must be one of:
 | **Additional properties** | Any type allowed                      |
 | **Defined in**            | #/definitions/make_objects_validation |
 
-**Description:** Level 3: Object construction validation
+**Description:** API: Level 3 object construction validation
 
 | One of(Option)                                                     |
 | ------------------------------------------------------------------ |
 | [item 0](#tests_items_validations_make_objects_oneOf_i0)           |
-| [error_validation](#tests_items_validations_make_objects_oneOf_i1) |
+| [item 1](#tests_items_validations_make_objects_oneOf_i1)           |
+| [error_validation](#tests_items_validations_make_objects_oneOf_i2) |
 
-###### <a name="tests_items_validations_make_objects_oneOf_i0"></a>4.1.6.5.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0`
+###### <a name="tests_items_validations_make_objects_oneOf_i0"></a>4.1.6.6.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Legacy format: Expected nested object structure
+
+| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description |
+| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [](#tests_items_validations_make_objects_oneOf_i0_additionalProperties ) | No      | object | No         | -          | -                 |
+
+###### <a name="autogenerated_heading_2"></a>4.1.6.6.1.1. Must **not** be
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+| Any of(Option)                                                        |
+| --------------------------------------------------------------------- |
+| [item 0](#tests_items_validations_make_objects_oneOf_i0_not_anyOf_i0) |
+| [item 1](#tests_items_validations_make_objects_oneOf_i0_not_anyOf_i1) |
+
+###### <a name="tests_items_validations_make_objects_oneOf_i0_not_anyOf_i0"></a>4.1.6.6.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0 > not > anyOf > item 0`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -635,22 +908,72 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
+###### <a name="autogenerated_heading_3"></a>4.1.6.6.1.1.1.1. The following properties are required
+* count
+
+###### <a name="tests_items_validations_make_objects_oneOf_i0_not_anyOf_i1"></a>4.1.6.6.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 0 > not > anyOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+###### <a name="autogenerated_heading_4"></a>4.1.6.6.1.1.2.1. The following properties are required
+* expected
+
+###### <a name="tests_items_validations_make_objects_oneOf_i1"></a>4.1.6.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Counted format: Expected object with assertion count
+
+| Property                                                               | Pattern | Type    | Deprecated | Definition | Title/Description                               |
+| ---------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
+| + [count](#tests_items_validations_make_objects_oneOf_i1_count )       | No      | integer | No         | -          | Number of assertions this validation represents |
+| + [expected](#tests_items_validations_make_objects_oneOf_i1_expected ) | No      | object  | No         | -          | Expected nested object structure                |
+
+###### <a name="tests_items_validations_make_objects_oneOf_i1_count"></a>4.1.6.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1 > count`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | Yes       |
+
+**Description:** Number of assertions this validation represents
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="tests_items_validations_make_objects_oneOf_i1_expected"></a>4.1.6.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > item 1 > expected`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | Yes              |
+| **Additional properties** | Any type allowed |
+
 **Description:** Expected nested object structure
 
-| Property                                                                   | Pattern | Type   | Deprecated | Definition | Title/Description |
-| -------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
-| - [](#tests_items_validations_make_objects_oneOf_i0_additionalProperties ) | No      | object | No         | -          | -                 |
+| Property                                                                            | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ----------------------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [](#tests_items_validations_make_objects_oneOf_i1_expected_additionalProperties ) | No      | object | No         | -          | -                 |
 
-###### <a name="tests_items_validations_make_objects_oneOf_i1"></a>4.1.6.5.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > error_validation`
+###### <a name="tests_items_validations_make_objects_oneOf_i2"></a>4.1.6.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > make_objects > oneOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-##### <a name="tests_items_validations_get_string"></a>4.1.6.6. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string`
+##### <a name="tests_items_validations_get_string"></a>4.1.6.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string`
 
 |                           |                                       |
 | ------------------------- | ------------------------------------- |
@@ -659,14 +982,37 @@ Must be one of:
 | **Additional properties** | Any type allowed                      |
 | **Defined in**            | #/definitions/typed_access_validation |
 
-**Description:** Level 4: String access validation
+**Description:** API: Level 4 string access validation
 
 | One of(Option)                                         |
 | ------------------------------------------------------ |
 | [item 0](#tests_items_validations_get_string_oneOf_i0) |
 | [item 1](#tests_items_validations_get_string_oneOf_i1) |
+| [item 2](#tests_items_validations_get_string_oneOf_i2) |
+| [item 3](#tests_items_validations_get_string_oneOf_i3) |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0"></a>4.1.6.6.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0`
+###### <a name="tests_items_validations_get_string_oneOf_i0"></a>4.1.6.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of object` |
+| **Required** | No                |
+
+**Description:** Legacy format: Array of typed access tests
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                    | Description |
+| ------------------------------------------------------------------ | ----------- |
+| [item 0 items](#tests_items_validations_get_string_oneOf_i0_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items"></a>4.1.6.7.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -674,12 +1020,130 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
+| Property                                                                   | Pattern | Type            | Deprecated | Definition | Title/Description         |
+| -------------------------------------------------------------------------- | ------- | --------------- | ---------- | ---------- | ------------------------- |
+| + [args](#tests_items_validations_get_string_oneOf_i0_items_args )         | No      | array of string | No         | -          | Path arguments for access |
+| + [expected](#tests_items_validations_get_string_oneOf_i0_items_expected ) | No      | Combination     | No         | -          | Expected typed value      |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_args"></a>4.1.6.7.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > args`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | Yes               |
+
+**Description:** Path arguments for access
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                             | Description |
+| --------------------------------------------------------------------------- | ----------- |
+| [args items](#tests_items_validations_get_string_oneOf_i0_items_args_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_args_items"></a>4.1.6.7.1.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > args > args items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected"></a>4.1.6.7.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | Yes              |
+| **Additional properties** | Any type allowed |
+
+**Description:** Expected typed value
+
+| One of(Option)                                                                 |
+| ------------------------------------------------------------------------------ |
+| [item 0](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i0) |
+| [item 1](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i1) |
+| [item 2](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i2) |
+| [item 3](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3) |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i0"></a>4.1.6.7.1.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 0`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i1"></a>4.1.6.7.1.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 1`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i2"></a>4.1.6.7.1.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 2`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3"></a>4.1.6.7.1.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 3`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                            | Description |
+| ------------------------------------------------------------------------------------------ | ----------- |
+| [item 3 items](#tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i0_items_expected_oneOf_i3_items"></a>4.1.6.7.1.1.2.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > item 0 items > expected > oneOf > item 3 > item 3 items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i1"></a>4.1.6.7.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Legacy format: Single typed access test
+
 | Property                                                             | Pattern | Type            | Deprecated | Definition | Title/Description                                                 |
 | -------------------------------------------------------------------- | ------- | --------------- | ---------- | ---------- | ----------------------------------------------------------------- |
-| + [args](#tests_items_validations_get_string_oneOf_i0_args )         | No      | array of string | No         | -          | Path arguments for access (supports both hierarchical and dotted) |
-| + [expected](#tests_items_validations_get_string_oneOf_i0_expected ) | No      | Combination     | No         | -          | Expected typed value                                              |
+| + [args](#tests_items_validations_get_string_oneOf_i1_args )         | No      | array of string | No         | -          | Path arguments for access (supports both hierarchical and dotted) |
+| + [expected](#tests_items_validations_get_string_oneOf_i1_expected ) | No      | Combination     | No         | -          | Expected typed value                                              |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_args"></a>4.1.6.6.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > args`
+###### <a name="autogenerated_heading_5"></a>4.1.6.7.2.1. Must **not** be
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+###### <a name="autogenerated_heading_6"></a>4.1.6.7.2.1.1. The following properties are required
+* count
+
+###### <a name="tests_items_validations_get_string_oneOf_i1_args"></a>4.1.6.7.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > args`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -698,16 +1162,16 @@ Must be one of:
 
 | Each item of this array must be                                       | Description |
 | --------------------------------------------------------------------- | ----------- |
-| [args items](#tests_items_validations_get_string_oneOf_i0_args_items) | -           |
+| [args items](#tests_items_validations_get_string_oneOf_i1_args_items) | -           |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_args_items"></a>4.1.6.6.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > args > args items
+###### <a name="tests_items_validations_get_string_oneOf_i1_args_items"></a>4.1.6.7.2.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > args > args items
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_expected"></a>4.1.6.6.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected`
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected"></a>4.1.6.7.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -719,32 +1183,290 @@ Must be one of:
 
 | One of(Option)                                                           |
 | ------------------------------------------------------------------------ |
-| [item 0](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i0) |
-| [item 1](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i1) |
-| [item 2](#tests_items_validations_get_string_oneOf_i0_expected_oneOf_i2) |
+| [item 0](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i0) |
+| [item 1](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i1) |
+| [item 2](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i2) |
+| [item 3](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3) |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_expected_oneOf_i0"></a>4.1.6.6.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 0`
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected_oneOf_i0"></a>4.1.6.7.2.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 0`
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_expected_oneOf_i1"></a>4.1.6.6.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 1`
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected_oneOf_i1"></a>4.1.6.7.2.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 1`
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `number` |
 | **Required** | No       |
 
-###### <a name="tests_items_validations_get_string_oneOf_i0_expected_oneOf_i2"></a>4.1.6.6.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 0 > expected > oneOf > item 2`
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected_oneOf_i2"></a>4.1.6.7.2.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 2`
 
 |              |           |
 | ------------ | --------- |
 | **Type**     | `boolean` |
 | **Required** | No        |
 
-###### <a name="tests_items_validations_get_string_oneOf_i1"></a>4.1.6.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1`
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3"></a>4.1.6.7.2.3.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 3`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                      | Description |
+| ------------------------------------------------------------------------------------ | ----------- |
+| [item 3 items](#tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i1_expected_oneOf_i3_items"></a>4.1.6.7.2.3.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > expected > oneOf > item 3 > item 3 items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2"></a>4.1.6.7.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+**Description:** Counted format: Multiple typed access tests with count
+
+| Property                                                       | Pattern | Type    | Deprecated | Definition | Title/Description                               |
+| -------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
+| + [count](#tests_items_validations_get_string_oneOf_i2_count ) | No      | integer | No         | -          | Number of assertions this validation represents |
+| + [cases](#tests_items_validations_get_string_oneOf_i2_cases ) | No      | array   | No         | -          | Array of typed access tests                     |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_count"></a>4.1.6.7.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > count`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `integer` |
+| **Required** | Yes       |
+
+**Description:** Number of assertions this validation represents
+
+| Restrictions |        |
+| ------------ | ------ |
+| **Minimum**  | &ge; 0 |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases"></a>4.1.6.7.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases`
+
+|              |         |
+| ------------ | ------- |
+| **Type**     | `array` |
+| **Required** | Yes     |
+
+**Description:** Array of typed access tests
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                         | Description |
+| ----------------------------------------------------------------------- | ----------- |
+| [cases items](#tests_items_validations_get_string_oneOf_i2_cases_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items"></a>4.1.6.7.3.2.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+| One of(Option)                                                              |
+| --------------------------------------------------------------------------- |
+| [item 0](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0) |
+| [item 1](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1) |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0"></a>4.1.6.7.3.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+| Property                                                                                  | Pattern | Type            | Deprecated | Definition | Title/Description         |
+| ----------------------------------------------------------------------------------------- | ------- | --------------- | ---------- | ---------- | ------------------------- |
+| + [args](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args )         | No      | array of string | No         | -          | Path arguments for access |
+| + [expected](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected ) | No      | Combination     | No         | -          | Expected typed value      |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args"></a>4.1.6.7.3.2.1.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > args`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | Yes               |
+
+**Description:** Path arguments for access
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                            | Description |
+| ------------------------------------------------------------------------------------------ | ----------- |
+| [args items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_args_items"></a>4.1.6.7.3.2.1.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > args > args items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected"></a>4.1.6.7.3.2.1.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | Yes              |
+| **Additional properties** | Any type allowed |
+
+**Description:** Expected typed value
+
+| One of(Option)                                                                                |
+| --------------------------------------------------------------------------------------------- |
+| [item 0](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i0) |
+| [item 1](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i1) |
+| [item 2](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i2) |
+| [item 3](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3) |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i0"></a>4.1.6.7.3.2.1.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 0`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i1"></a>4.1.6.7.3.2.1.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 1`
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `number` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i2"></a>4.1.6.7.3.2.1.1.2.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 2`
+
+|              |           |
+| ------------ | --------- |
+| **Type**     | `boolean` |
+| **Required** | No        |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3"></a>4.1.6.7.3.2.1.1.2.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 3`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                           | Description |
+| --------------------------------------------------------------------------------------------------------- | ----------- |
+| [item 3 items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i0_expected_oneOf_i3_items"></a>4.1.6.7.3.2.1.1.2.4.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 0 > expected > oneOf > item 3 > item 3 items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1"></a>4.1.6.7.3.2.1.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `combining`      |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+| All of(Requirement)                                                                            |
+| ---------------------------------------------------------------------------------------------- |
+| [item 0](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0)           |
+| [error_validation](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i1) |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0"></a>4.1.6.7.3.2.1.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0`
+
+|                           |                  |
+| ------------------------- | ---------------- |
+| **Type**                  | `object`         |
+| **Required**              | No               |
+| **Additional properties** | Any type allowed |
+
+| Property                                                                                   | Pattern | Type            | Deprecated | Definition | Title/Description |
+| ------------------------------------------------------------------------------------------ | ------- | --------------- | ---------- | ---------- | ----------------- |
+| - [args](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args ) | No      | array of string | No         | -          | -                 |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args"></a>4.1.6.7.3.2.1.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0 > args`
+
+|              |                   |
+| ------------ | ----------------- |
+| **Type**     | `array of string` |
+| **Required** | No                |
+
+|                      | Array restrictions |
+| -------------------- | ------------------ |
+| **Min items**        | N/A                |
+| **Max items**        | N/A                |
+| **Items unicity**    | False              |
+| **Additional items** | False              |
+| **Tuple validation** | See below          |
+
+| Each item of this array must be                                                                     | Description |
+| --------------------------------------------------------------------------------------------------- | ----------- |
+| [args items](#tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args_items) | -           |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i0_args_items"></a>4.1.6.7.3.2.1.2.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > item 0 > args > args items
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+###### <a name="tests_items_validations_get_string_oneOf_i2_cases_items_oneOf_i1_allOf_i1"></a>4.1.6.7.3.2.1.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 2 > cases > cases items > oneOf > item 1 > allOf > error_validation`
+
+|                           |                                                                                   |
+| ------------------------- | --------------------------------------------------------------------------------- |
+| **Type**                  | `object`                                                                          |
+| **Required**              | No                                                                                |
+| **Additional properties** | Any type allowed                                                                  |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
+
+###### <a name="autogenerated_heading_7"></a>4.1.6.7.3.2.1.2.3. The following properties are required
+* args
+* error
+
+###### <a name="tests_items_validations_get_string_oneOf_i3"></a>4.1.6.7.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -754,10 +1476,10 @@ Must be one of:
 
 | All of(Requirement)                                                       |
 | ------------------------------------------------------------------------- |
-| [item 0](#tests_items_validations_get_string_oneOf_i1_allOf_i0)           |
-| [error_validation](#tests_items_validations_get_string_oneOf_i1_allOf_i1) |
+| [item 0](#tests_items_validations_get_string_oneOf_i3_allOf_i0)           |
+| [error_validation](#tests_items_validations_get_string_oneOf_i3_allOf_i1) |
 
-###### <a name="tests_items_validations_get_string_oneOf_i1_allOf_i0"></a>4.1.6.6.2.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0`
+###### <a name="tests_items_validations_get_string_oneOf_i3_allOf_i0"></a>4.1.6.7.4.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0`
 
 |                           |                  |
 | ------------------------- | ---------------- |
@@ -767,9 +1489,9 @@ Must be one of:
 
 | Property                                                              | Pattern | Type            | Deprecated | Definition | Title/Description |
 | --------------------------------------------------------------------- | ------- | --------------- | ---------- | ---------- | ----------------- |
-| - [args](#tests_items_validations_get_string_oneOf_i1_allOf_i0_args ) | No      | array of string | No         | -          | -                 |
+| - [args](#tests_items_validations_get_string_oneOf_i3_allOf_i0_args ) | No      | array of string | No         | -          | -                 |
 
-###### <a name="tests_items_validations_get_string_oneOf_i1_allOf_i0_args"></a>4.1.6.6.2.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0 > args`
+###### <a name="tests_items_validations_get_string_oneOf_i3_allOf_i0_args"></a>4.1.6.7.4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0 > args`
 
 |              |                   |
 | ------------ | ----------------- |
@@ -786,29 +1508,29 @@ Must be one of:
 
 | Each item of this array must be                                                | Description |
 | ------------------------------------------------------------------------------ | ----------- |
-| [args items](#tests_items_validations_get_string_oneOf_i1_allOf_i0_args_items) | -           |
+| [args items](#tests_items_validations_get_string_oneOf_i3_allOf_i0_args_items) | -           |
 
-###### <a name="tests_items_validations_get_string_oneOf_i1_allOf_i0_args_items"></a>4.1.6.6.2.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > item 0 > args > args items
+###### <a name="tests_items_validations_get_string_oneOf_i3_allOf_i0_args_items"></a>4.1.6.7.4.1.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > item 0 > args > args items
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
 
-###### <a name="tests_items_validations_get_string_oneOf_i1_allOf_i1"></a>4.1.6.6.2.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 1 > allOf > error_validation`
+###### <a name="tests_items_validations_get_string_oneOf_i3_allOf_i1"></a>4.1.6.7.4.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_string > oneOf > item 3 > allOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-###### <a name="autogenerated_heading_2"></a>4.1.6.6.2.3. The following properties are required
+###### <a name="autogenerated_heading_8"></a>4.1.6.7.4.3. The following properties are required
 * args
 * error
 
-##### <a name="tests_items_validations_get_int"></a>4.1.6.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_int`
+##### <a name="tests_items_validations_get_int"></a>4.1.6.8. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_int`
 
 |                           |                                                   |
 | ------------------------- | ------------------------------------------------- |
@@ -817,20 +1539,9 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** Level 4: Integer access validation
+**Description:** API: Level 4 integer access validation
 
-##### <a name="tests_items_validations_get_bool"></a>4.1.6.8. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_bool`
-
-|                           |                                                   |
-| ------------------------- | ------------------------------------------------- |
-| **Type**                  | `combining`                                       |
-| **Required**              | No                                                |
-| **Additional properties** | Any type allowed                                  |
-| **Same definition as**    | [get_string](#tests_items_validations_get_string) |
-
-**Description:** Level 4: Boolean access validation
-
-##### <a name="tests_items_validations_get_float"></a>4.1.6.9. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_float`
+##### <a name="tests_items_validations_get_bool"></a>4.1.6.9. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_bool`
 
 |                           |                                                   |
 | ------------------------- | ------------------------------------------------- |
@@ -839,9 +1550,31 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** Level 4: Float access validation
+**Description:** API: Level 4 boolean access validation
 
-##### <a name="tests_items_validations_pretty_print"></a>4.1.6.10. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print`
+##### <a name="tests_items_validations_get_float"></a>4.1.6.10. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_float`
+
+|                           |                                                   |
+| ------------------------- | ------------------------------------------------- |
+| **Type**                  | `combining`                                       |
+| **Required**              | No                                                |
+| **Additional properties** | Any type allowed                                  |
+| **Same definition as**    | [get_string](#tests_items_validations_get_string) |
+
+**Description:** API: Level 4 float access validation
+
+##### <a name="tests_items_validations_get_list"></a>4.1.6.11. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_list`
+
+|                           |                                                   |
+| ------------------------- | ------------------------------------------------- |
+| **Type**                  | `combining`                                       |
+| **Required**              | No                                                |
+| **Additional properties** | Any type allowed                                  |
+| **Same definition as**    | [get_string](#tests_items_validations_get_string) |
+
+**Description:** API: Level 4 list access validation
+
+##### <a name="tests_items_validations_pretty_print"></a>4.1.6.12. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print`
 
 |                           |                                       |
 | ------------------------- | ------------------------------------- |
@@ -850,14 +1583,14 @@ Must be one of:
 | **Additional properties** | Any type allowed                      |
 | **Defined in**            | #/definitions/pretty_print_validation |
 
-**Description:** Output formatting validation
+**Description:** API: Output formatting validation
 
 | One of(Option)                                                     |
 | ------------------------------------------------------------------ |
 | [item 0](#tests_items_validations_pretty_print_oneOf_i0)           |
 | [error_validation](#tests_items_validations_pretty_print_oneOf_i1) |
 
-###### <a name="tests_items_validations_pretty_print_oneOf_i0"></a>4.1.6.10.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > item 0`
+###### <a name="tests_items_validations_pretty_print_oneOf_i0"></a>4.1.6.12.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > item 0`
 
 |              |          |
 | ------------ | -------- |
@@ -866,16 +1599,16 @@ Must be one of:
 
 **Description:** Expected pretty-printed output
 
-###### <a name="tests_items_validations_pretty_print_oneOf_i1"></a>4.1.6.10.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > error_validation`
+###### <a name="tests_items_validations_pretty_print_oneOf_i1"></a>4.1.6.12.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print > oneOf > error_validation`
 
 |                           |                                                                                   |
 | ------------------------- | --------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                          |
 | **Required**              | No                                                                                |
 | **Additional properties** | Any type allowed                                                                  |
-| **Same definition as**    | [tests_items_validations_parse_oneOf_i1](#tests_items_validations_parse_oneOf_i1) |
+| **Same definition as**    | [tests_items_validations_parse_oneOf_i2](#tests_items_validations_parse_oneOf_i2) |
 
-##### <a name="tests_items_validations_round_trip"></a>4.1.6.11. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip`
+##### <a name="tests_items_validations_round_trip"></a>4.1.6.13. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip`
 
 |                           |                                     |
 | ------------------------- | ----------------------------------- |
@@ -884,14 +1617,14 @@ Must be one of:
 | **Additional properties** | Any type allowed                    |
 | **Defined in**            | #/definitions/round_trip_validation |
 
-**Description:** Parse-format-parse identity validation
+**Description:** PROPERTY: Parse-format-parse identity validation
 
 | Property                                                          | Pattern | Type             | Deprecated | Definition | Title/Description                  |
 | ----------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ---------------------------------- |
 | + [property](#tests_items_validations_round_trip_property )       | No      | enum (of string) | No         | -          | Round-trip property to validate    |
 | - [description](#tests_items_validations_round_trip_description ) | No      | string           | No         | -          | Description of the round-trip test |
 
-###### <a name="tests_items_validations_round_trip_property"></a>4.1.6.11.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > property`
+###### <a name="tests_items_validations_round_trip_property"></a>4.1.6.13.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > property`
 
 |              |                    |
 | ------------ | ------------------ |
@@ -903,7 +1636,7 @@ Must be one of:
 Must be one of:
 * "identity"
 
-###### <a name="tests_items_validations_round_trip_description"></a>4.1.6.11.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > description`
+###### <a name="tests_items_validations_round_trip_description"></a>4.1.6.13.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > round_trip > description`
 
 |              |          |
 | ------------ | -------- |
@@ -912,7 +1645,7 @@ Must be one of:
 
 **Description:** Description of the round-trip test
 
-##### <a name="tests_items_validations_canonical_format"></a>4.1.6.12. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format`
+##### <a name="tests_items_validations_canonical_format"></a>4.1.6.14. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format`
 
 |                           |                                           |
 | ------------------------- | ----------------------------------------- |
@@ -921,14 +1654,14 @@ Must be one of:
 | **Additional properties** | Any type allowed                          |
 | **Defined in**            | #/definitions/canonical_format_validation |
 
-**Description:** Canonical formatting validation
+**Description:** PROPERTY: Canonical formatting validation
 
 | Property                                                                | Pattern | Type   | Deprecated | Definition | Title/Description                   |
 | ----------------------------------------------------------------------- | ------- | ------ | ---------- | ---------- | ----------------------------------- |
 | + [expected](#tests_items_validations_canonical_format_expected )       | No      | string | No         | -          | Expected canonical formatted output |
 | - [description](#tests_items_validations_canonical_format_description ) | No      | string | No         | -          | Description of canonical formatting |
 
-###### <a name="tests_items_validations_canonical_format_expected"></a>4.1.6.12.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > expected`
+###### <a name="tests_items_validations_canonical_format_expected"></a>4.1.6.14.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > expected`
 
 |              |          |
 | ------------ | -------- |
@@ -937,7 +1670,7 @@ Must be one of:
 
 **Description:** Expected canonical formatted output
 
-###### <a name="tests_items_validations_canonical_format_description"></a>4.1.6.12.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > description`
+###### <a name="tests_items_validations_canonical_format_description"></a>4.1.6.14.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > canonical_format > description`
 
 |              |          |
 | ------------ | -------- |
@@ -946,7 +1679,7 @@ Must be one of:
 
 **Description:** Description of canonical formatting
 
-##### <a name="tests_items_validations_associativity"></a>4.1.6.13. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity`
+##### <a name="tests_items_validations_associativity"></a>4.1.6.15. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity`
 
 |                           |                                        |
 | ------------------------- | -------------------------------------- |
@@ -955,7 +1688,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                       |
 | **Defined in**            | #/definitions/associativity_validation |
 
-**Description:** Composition associativity validation
+**Description:** PROPERTY: Composition associativity validation
 
 | Property                                                                     | Pattern | Type             | Deprecated | Definition | Title/Description                                          |
 | ---------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ---------------------------------------------------------- |
@@ -964,7 +1697,7 @@ Must be one of:
 | - [right_assoc](#tests_items_validations_associativity_right_assoc )         | No      | string           | No         | -          | Right associative expression description                   |
 | + [should_be_equal](#tests_items_validations_associativity_should_be_equal ) | No      | boolean          | No         | -          | Whether left and right associative results should be equal |
 
-###### <a name="tests_items_validations_associativity_property"></a>4.1.6.13.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > property`
+###### <a name="tests_items_validations_associativity_property"></a>4.1.6.15.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > property`
 
 |              |                    |
 | ------------ | ------------------ |
@@ -978,7 +1711,7 @@ Must be one of:
 * "monoid_identity_left"
 * "monoid_identity_right"
 
-###### <a name="tests_items_validations_associativity_left_assoc"></a>4.1.6.13.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > left_assoc`
+###### <a name="tests_items_validations_associativity_left_assoc"></a>4.1.6.15.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > left_assoc`
 
 |              |          |
 | ------------ | -------- |
@@ -987,7 +1720,7 @@ Must be one of:
 
 **Description:** Left associative expression description
 
-###### <a name="tests_items_validations_associativity_right_assoc"></a>4.1.6.13.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > right_assoc`
+###### <a name="tests_items_validations_associativity_right_assoc"></a>4.1.6.15.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > right_assoc`
 
 |              |          |
 | ------------ | -------- |
@@ -996,7 +1729,7 @@ Must be one of:
 
 **Description:** Right associative expression description
 
-###### <a name="tests_items_validations_associativity_should_be_equal"></a>4.1.6.13.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > should_be_equal`
+###### <a name="tests_items_validations_associativity_should_be_equal"></a>4.1.6.15.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > associativity > should_be_equal`
 
 |              |           |
 | ------------ | --------- |
@@ -1016,12 +1749,12 @@ Must be one of:
 
 **Description:** Test metadata including level and categorization
 
-| Property                                      | Pattern | Type              | Deprecated | Definition | Title/Description                                                          |
-| --------------------------------------------- | ------- | ----------------- | ---------- | ---------- | -------------------------------------------------------------------------- |
-| + [tags](#tests_items_meta_tags )             | No      | array of string   | No         | -          | Tags for categorizing and filtering tests                                  |
-| + [level](#tests_items_meta_level )           | No      | enum (of integer) | No         | -          | CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed) |
-| - [feature](#tests_items_meta_feature )       | No      | enum (of string)  | No         | -          | Feature category for test organization and filtering                       |
-| - [difficulty](#tests_items_meta_difficulty ) | No      | enum (of string)  | No         | -          | Test difficulty level                                                      |
+| Property                                      | Pattern | Type              | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------------------- | ------- | ----------------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| + [tags](#tests_items_meta_tags )             | No      | array of string   | No         | -          | Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc. |
+| + [level](#tests_items_meta_level )           | No      | enum (of integer) | No         | -          | CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed)                                                                                                                                                                                                                                                                                   |
+| - [feature](#tests_items_meta_feature )       | No      | enum (of string)  | No         | -          | Feature category for test organization and filtering                                                                                                                                                                                                                                                                                                         |
+| - [difficulty](#tests_items_meta_difficulty ) | No      | enum (of string)  | No         | -          | Test difficulty level                                                                                                                                                                                                                                                                                                                                        |
 
 ##### <a name="tests_items_meta_tags"></a>4.1.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags`
 
@@ -1030,7 +1763,7 @@ Must be one of:
 | **Type**     | `array of string` |
 | **Required** | Yes               |
 
-**Description:** Tags for categorizing and filtering tests
+**Description:** Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc.
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |
@@ -1084,6 +1817,9 @@ Must be one of:
 * "typed-parsing"
 * "pretty-printing"
 * "error-handling"
+* "algebraic-properties"
+* "flexible-boolean-parsing"
+* "crlf-normalization"
 
 ##### <a name="tests_items_meta_difficulty"></a>4.1.7.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > difficulty`
 
@@ -1100,4 +1836,4 @@ Must be one of:
 * "advanced"
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-09-07 at 23:49:57 -0700
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2025-09-09 at 15:12:03 -0700
