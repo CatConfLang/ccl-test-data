@@ -49,7 +49,7 @@
 			"name": "indented_key",
 			"input": "  key = val",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "key",
 						"value": "val"
@@ -62,7 +62,7 @@
 					"indentation",
 					"redundant"
 				],
-				"level": 1,
+				"level": 2,
 				"feature": "parsing"
 			}
 		},
@@ -194,7 +194,7 @@
 			"name": "empty_key_indented",
 			"input": "  = val",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "",
 						"value": "val"
@@ -208,7 +208,7 @@
 					"indentation",
 					"redundant"
 				],
-				"level": 1,
+				"level": 2,
 				"feature": "parsing"
 			}
 		},
@@ -369,7 +369,7 @@
 			"name": "spaces_vs_tabs_continuation",
 			"input": "text = First\n    four spaces\n\ttab preserved",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "text",
 						"value": "First\n    four spaces\n\ttab preserved"
@@ -383,7 +383,7 @@
 					"tabs",
 					"redundant"
 				],
-				"level": 1,
+				"level": 2,
 				"feature": "parsing"
 			}
 		},
@@ -587,7 +587,7 @@
 			"name": "nested_with_blank_line",
 			"input": "key =\n  line1\n\n  line2",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "key",
 						"value": "\n  line1\n\n  line2"
@@ -602,7 +602,7 @@
 					"blank-lines",
 					"redundant"
 				],
-				"level": 1,
+				"level": 2,
 				"feature": "parsing"
 			}
 		},
@@ -610,7 +610,7 @@
 			"name": "deep_nested_structure",
 			"input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "key",
 						"value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
@@ -625,7 +625,7 @@
 					"continuation",
 					"redundant"
 				],
-				"level": 1,
+				"level": 2,
 				"feature": "parsing"
 			}
 		},
@@ -660,6 +660,127 @@
 					"redundant"
 				],
 				"level": 1,
+				"feature": "parsing"
+			}
+		},
+		{
+			"name": "ocaml_stress_test_original",
+			"input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+			"validations": {
+				"parse": [
+					{
+						"key": "title",
+						"value": "CCL Example"
+					},
+					{
+						"key": "database",
+						"value": ""
+					},
+					{
+						"key": "database.enabled",
+						"value": "true"
+					},
+					{
+						"key": "database.ports",
+						"value": ""
+					},
+					{
+						"key": "database.ports.",
+						"value": "8000"
+					},
+					{
+						"key": "database.ports.",
+						"value": "8001"
+					},
+					{
+						"key": "database.ports.",
+						"value": "8002"
+					},
+					{
+						"key": "database.limits",
+						"value": ""
+					},
+					{
+						"key": "database.limits.cpu",
+						"value": "1500mi"
+					},
+					{
+						"key": "database.limits.memory",
+						"value": "10Gb"
+					},
+					{
+						"key": "user",
+						"value": ""
+					},
+					{
+						"key": "user.guestId",
+						"value": "42"
+					},
+					{
+						"key": "user",
+						"value": ""
+					},
+					{
+						"key": "user.login",
+						"value": "chshersh"
+					},
+					{
+						"key": "user.createdAt",
+						"value": "2024-12-31"
+					}
+				],
+				"make_objects": {
+					"title": "CCL Example",
+					"database": {
+						"enabled": "true",
+						"ports": ["8000", "8001", "8002"],
+						"limits": {
+							"cpu": "1500mi",
+							"memory": "10Gb"
+						}
+					},
+					"user": {
+						"guestId": "42",
+						"login": "chshersh",
+						"createdAt": "2024-12-31"
+					}
+				},
+				"get_string": [
+					{
+						"args": ["title"],
+						"expected": "CCL Example"
+					},
+					{
+						"args": ["database.enabled"],
+						"expected": "true"
+					},
+					{
+						"args": ["database.limits.cpu"],
+						"expected": "1500mi"
+					},
+					{
+						"args": ["user.login"],
+						"expected": "chshersh"
+					}
+				],
+				"get_list": [
+					{
+						"args": ["database.ports"],
+						"expected": ["8000", "8001", "8002"]
+					}
+				]
+			},
+			"meta": {
+				"tags": [
+					"stress-test", 
+					"ocaml-original",
+					"realistic",
+					"nested",
+					"lists",
+					"merging",
+					"multi-level"
+				],
+				"level": 4,
 				"feature": "parsing"
 			}
 		}

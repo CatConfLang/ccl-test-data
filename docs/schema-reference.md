@@ -1,8 +1,6 @@
 # CCL Test Suite JSON Schema Reference
 
-**Validation-Based Testing Format**
-
-This document provides implementation-focused documentation for the **validation-based JSON schema** used in the CCL test suite files. All test files in the `tests/` directory use the validation format that makes multi-level testing explicit and eliminates confusion.
+This document provides implementation-focused documentation for the JSON schema used in the CCL test suite files. All test files in the `tests/` directory specify which CCL parsing functions to validate and their expected outputs.
 
 > **📋 Complete Technical Reference:** For exhaustive field-by-field documentation, see [`generated-schema.md`](generated-schema.md) - automatically generated from the schema with complete type information and field listings.
 
@@ -10,17 +8,17 @@ This document provides implementation-focused documentation for the **validation
 
 ## Schema Overview
 
-The CCL test suite uses a **validation-based JSON schema** (`tests/schema.json`) that makes API function testing explicit. Instead of confusing multi-level fields (`expected_flat`, `expected_nested`, etc.), each test specifies exactly which API functions to validate.
+The CCL test suite uses a JSON schema (`tests/schema.json`) that makes API function testing explicit. Each test specifies exactly which API functions to validate.
 
 **Schema Location**: `tests/schema.json`  
 **Schema Version**: JSON Schema Draft 07
 
-## Key Benefits of Validation-Based Testing
+## Test Format Features
 
-✅ **Explicit API Testing**: Each validation maps to exact API function  
-✅ **No Multi-Level Confusion**: Eliminates `expected_flat` vs `expected_nested` guesswork  
-✅ **Easy Test Runners**: Direct iteration over `validations` object keys  
-✅ **Clear Intent**: Obvious what functions to test and what results to expect
+✅ **Direct API mapping**: Each validation maps to a specific API function  
+✅ **Multi-level testing**: Tests declare expected outputs for different parsing levels
+✅ **Simple test runners**: Direct iteration over `validations` object keys  
+✅ **Clear intent**: Obvious what functions to test and what results to expect
 
 ## Root Object Structure
 
@@ -40,11 +38,11 @@ The CCL test suite uses a **validation-based JSON schema** (`tests/schema.json`)
 | `suite` | string | ✓ | Name of the test suite (e.g., "CCL Essential Parsing (Validation Format)") |
 | `version` | string | ✓ | Version of the test suite format |
 | `description` | string |  | Description of the test suite purpose and scope |
-| `tests` | array | ✓ | Array of validation-based test cases |
+| `tests` | array | ✓ | Array of test cases |
 
-## Validation-Based Test Case Structure
+## Test Case Structure
 
-Each test case uses the explicit `validations` object instead of multiple `expected_*` fields:
+Each test case uses explicit `validations` objects that specify which API functions to test:
 
 ```json
 {
@@ -341,7 +339,7 @@ Every test case must include a `meta` object with categorization and level infor
 
 ## Implementation Guidelines
 
-### Test Runner for Validation Format
+### Test Runner
 
 ```javascript
 function runValidationTest(testCase) {
@@ -393,14 +391,14 @@ function runValidationTest(testCase) {
 }
 ```
 
-### Benefits of Validation-Based Testing
+### Test Format Benefits
 
-1. **🎯 Explicit Intent**: Each test clearly shows which API functions to test
-2. **🚀 Easy Implementation**: Test runners iterate over validation keys
-3. **📚 Self-Documenting**: Validation names explain what's being tested
-4. **🔧 Flexible**: Easy to add additional validation types
-5. **✅ No Confusion**: Eliminates guesswork about multiple expected fields
-6. **📊 Clear Coverage**: See exactly what APIs are tested per test case
+1. **🎯 Clear intent**: Each test shows which API functions to test
+2. **🚀 Simple implementation**: Test runners iterate over validation keys
+3. **📚 Self-documenting**: Validation names explain what's being tested
+4. **🔧 Extensible**: Easy to add additional validation types
+5. **✅ Explicit structure**: Clear mapping between tests and API functions
+6. **📊 Comprehensive coverage**: See exactly what APIs are tested per test case
 
 ## Schema Validation
 
@@ -414,4 +412,4 @@ ajv validate -s tests/schema.json -d "tests/*.json"
 npm run validate
 ```
 
-The validation-based format provides a foundation for testing CCL implementations with explicit API function testing, eliminating the confusion of multi-level field approaches.
+This test format provides a foundation for testing CCL implementations with explicit API function testing and clear structure.

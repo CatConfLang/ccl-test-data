@@ -38,7 +38,14 @@
       "Bash(python:*)",
       "Bash(npm run docs:schema:*)",
       "Read(//home/tylerbu/code/claude-workspace/tools-monorepo/packages/ccl-docs/**)",
-      "Bash(jq:*)"
+      "Bash(jq:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Read(//home/tylerbu/code/claude-workspace/ccl-ocaml/test/**)",
+      "Read(//home/tylerbu/code/claude-workspace/ccl-ocaml/**)",
+      "Read(//home/tylerbu/code/claude-workspace/ccl_gleam/packages/**)",
+      "Read(//home/tylerbu/code/claude-workspace/ccl_gleam/**)",
+      "Read(//home/tylerbu/code/claude-workspace/**)"
     ],
     "deny": [],
     "ask": []

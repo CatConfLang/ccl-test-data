@@ -1,23 +1,19 @@
 # Implementing CCL - A Guide for Language Authors
 
-**Validation-Based Testing**
-
-This guide helps you implement a CCL parser in your programming language using the **validation-based test format** that makes multi-level testing explicit and eliminates confusion.
-
-The test suite uses a validation format where each test specifies exactly which API functions to validate, making implementation dramatically easier.
+This guide helps you implement a CCL parser in your programming language using the test suite where each test specifies exactly which API functions to validate.
 
 ## Quick Start
 
 1. **Study the specification** - Read the [CCL FAQ](ccl_faq.md) and [Getting Started Guide](getting-started.md)
 2. **Choose your implementation path** - Start with core functionality, add features as needed
-3. **Use the validation-based test suite** - Each test specifies which API functions to validate
+3. **Use the test suite** - Each test specifies which API functions to validate
 4. **Follow the reference** - OCaml reference implementation at https://github.com/chshersh/ccl
 
-### Validation-Based Testing Benefits
+### Test Format Features
 
-✅ **Crystal clear** - Each validation maps to exact API function  
-✅ **No confusion** - No guessing about `expected_flat` vs `expected_nested`  
-✅ **Easy iteration** - Test runners iterate over `validations` keys  
+✅ **Direct mapping** - Each validation maps to a specific API function  
+✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels
+✅ **Simple iteration** - Test runners iterate over `validations` keys  
 ✅ **Self-documenting** - Validation names explain what's being tested
 
 ## Implementation Roadmap
@@ -364,7 +360,7 @@ Each level has a dedicated test file with specific format:
 }
 ```
 
-### Validation-Based Test Runner Implementation
+### Test Runner Implementation
 ```pseudocode
 function run_validation_test_suite(test_file: string) {
   test_data = load_json(test_file)
@@ -430,9 +426,9 @@ function run_validation_test_suite(test_file: string) {
 }
 ```
 
-### Validation Format Example
+### Test Format Example
 
-The format eliminates confusion by explicitly mapping each validation to an API function:
+Each test explicitly maps validations to API functions:
 
 ```json
 {

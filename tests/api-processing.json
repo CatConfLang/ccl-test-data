@@ -586,7 +586,7 @@
 			"name": "multiline_section_header_value",
 			"input": "== Section Header =\n  This continues the header\nkey = value",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "",
 						"value": "= Section Header =\n  This continues the header"
@@ -611,7 +611,7 @@
 			"name": "unindented_multiline_becomes_continuation",
 			"input": "== Section Header =\nThis continues the header\nkey = value",
 			"validations": {
-				"parse": [
+				"parse_value": [
 					{
 						"key": "",
 						"value": "= Section Header =\nThis continues the header"

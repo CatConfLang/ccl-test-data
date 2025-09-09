@@ -1,0 +1,203 @@
+{
+  "$schema": "./schema.json",
+  "suite": "CCL Algebraic Properties",
+  "version": "2.0",
+  "description": "Algebraic property tests including semigroup associativity, monoid identity laws, and round-trip properties that ensure mathematical correctness of CCL operations",
+  "tests": [
+    {
+      "name": "semigroup_associativity_basic",
+      "input": "a = 1\nb = 2\nc = 3",
+      "validations": {
+        "associativity": {
+          "property": "semigroup_associativity",
+          "left_assoc": "(a ⊕ b) ⊕ c - merge a with b, then merge result with c",
+          "right_assoc": "a ⊕ (b ⊕ c) - merge b with c, then merge a with result", 
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "associativity", "semigroup"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "semigroup_associativity_nested",
+      "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
+      "validations": {
+        "associativity": {
+          "property": "semigroup_associativity",
+          "left_assoc": "((config ⊕ db) ⊕ additional) - merge config with db first",
+          "right_assoc": "(config ⊕ (db ⊕ additional)) - merge db with additional first",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "associativity", "nested", "semigroup"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "semigroup_associativity_lists",
+      "input": "= item1\n= item2\n= item3",
+      "validations": {
+        "associativity": {
+          "property": "semigroup_associativity",
+          "left_assoc": "((list1 ⊕ list2) ⊕ list3) - merge first two lists, then third",
+          "right_assoc": "(list1 ⊕ (list2 ⊕ list3)) - merge last two lists, then first",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "associativity", "lists", "semigroup"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_left_identity_basic",
+      "input": "key = value\nnested =\n  sub = val",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_left",
+          "left_assoc": "ε ⊕ x - merge empty CCL with input",
+          "right_assoc": "x - original input unchanged",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "left"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_right_identity_basic", 
+      "input": "key = value\nnested =\n  sub = val",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_right",
+          "left_assoc": "x - original input unchanged",
+          "right_assoc": "x ⊕ ε - merge input with empty CCL",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "right"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_left_identity_nested",
+      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_left",
+          "left_assoc": "ε ⊕ nested_config - merge empty with nested structure",
+          "right_assoc": "nested_config - original nested structure",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "left", "nested"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_right_identity_nested",
+      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_right", 
+          "left_assoc": "nested_config - original nested structure",
+          "right_assoc": "nested_config ⊕ ε - merge nested structure with empty",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "right", "nested"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_left_identity_lists",
+      "input": "= item1\n= item2\n= item3",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_left",
+          "left_assoc": "ε ⊕ list - merge empty with list",
+          "right_assoc": "list - original list unchanged",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "left", "lists"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "monoid_right_identity_lists",
+      "input": "= item1\n= item2\n= item3",
+      "validations": {
+        "associativity": {
+          "property": "monoid_identity_right",
+          "left_assoc": "list - original list unchanged", 
+          "right_assoc": "list ⊕ ε - merge list with empty",
+          "should_be_equal": true
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "monoid", "identity", "right", "lists"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "round_trip_property_basic",
+      "input": "key = value\nanother = test",
+      "validations": {
+        "round_trip": {
+          "property": "identity"
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "round-trip", "identity"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "round_trip_property_nested",
+      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+      "validations": {
+        "round_trip": {
+          "property": "identity"
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "round-trip", "identity", "nested"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    },
+    {
+      "name": "round_trip_property_complex",
+      "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
+      "validations": {
+        "round_trip": {
+          "property": "identity"
+        }
+      },
+      "meta": {
+        "tags": ["algebraic", "round-trip", "identity", "complex", "mixed"],
+        "level": 4,
+        "feature": "algebraic-properties"
+      }
+    }
+  ]
+}
