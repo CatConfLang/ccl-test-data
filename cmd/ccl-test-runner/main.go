@@ -143,36 +143,36 @@ test counts, assertion counts, and categorization by feature areas.`,
 // Action functions for CLI commands
 func generateAction(ctx *cli.Context) error {
 	styles.Status("🚀", "Generating test files...")
-	
+
 	inputDir := ctx.String("input")
 	outputDir := ctx.String("output")
 	skipDisabled := ctx.Bool("skip-disabled")
 	skipTags := ctx.StringSlice("skip-tags")
 	runOnly := ctx.StringSlice("run-only")
-	
+
 	// Create generator options
 	options := generator.Options{
 		SkipDisabled: skipDisabled,
 		SkipTags:     skipTags,
 		RunOnly:      runOnly,
 	}
-	
+
 	gen := generator.NewWithOptions(inputDir, outputDir, options)
 	if err := gen.GenerateAll(); err != nil {
 		return fmt.Errorf("failed to generate tests: %w", err)
 	}
-	
+
 	// Display assertion statistics
 	stats := gen.GetStats()
 	totalTests := stats.TotalTests
 	activeTests := totalTests - stats.SkippedTests
-	
-	styles.InfoLite("Generated %d tests with %d total assertions", totalTests, stats.TotalAssertions + stats.SkippedAssertions)
+
+	styles.InfoLite("Generated %d tests with %d total assertions", totalTests, stats.TotalAssertions+stats.SkippedAssertions)
 	styles.InfoLite("Active tests: %d (with %d assertions)", activeTests, stats.TotalAssertions)
 	if stats.SkippedTests > 0 {
 		styles.InfoLite("Skipped tests: %d (with %d assertions)", stats.SkippedTests, stats.SkippedAssertions)
 	}
-	
+
 	styles.Success("✅ Test generation completed successfully")
 	return nil
 }
@@ -184,13 +184,13 @@ func testAction(ctx *cli.Context) error {
 	features := ctx.StringSlice("features")
 	listOnly := ctx.Bool("list")
 	verbose := ctx.Bool("verbose")
-	
+
 	if verbose {
 		format = "verbose"
 	}
-	
+
 	packages := buildPackagePatterns(levels, tags, features)
-	
+
 	if listOnly {
 		styles.Info("📋 Available test packages:")
 		if len(packages) == 0 {
@@ -207,7 +207,7 @@ func testAction(ctx *cli.Context) error {
 		}
 		return nil
 	}
-	
+
 	styles.Status("🧪", "Running tests...")
 	return runTestsWithGotestsum(format, levels, tags, features, ctx.Args().Slice())
 }
@@ -215,18 +215,18 @@ func testAction(ctx *cli.Context) error {
 func statsAction(ctx *cli.Context) error {
 	inputDir := ctx.String("input")
 	format := ctx.String("format")
-	
+
 	// Only show status message for pretty format
 	if format != "json" {
 		styles.Status("📊", "Collecting test statistics...")
 	}
-	
+
 	collector := stats.NewCollector(inputDir)
 	statistics, err := collector.CollectStats()
 	if err != nil {
 		return fmt.Errorf("failed to collect statistics: %w", err)
 	}
-	
+
 	switch format {
 	case "json":
 		// Output pure JSON for machine consumption (no status messages)
@@ -235,40 +235,40 @@ func statsAction(ctx *cli.Context) error {
 			return fmt.Errorf("failed to marshal statistics: %w", err)
 		}
 		fmt.Println(string(jsonData))
-		
+
 	default: // "pretty"
 		// Display human-readable summary
 		styles.Info("🔍 CCL Test Suite Statistics")
 		styles.InfoLite("")
-		
+
 		styles.InfoLite("Feature-Based Structure:")
-		styles.InfoLite("  Core Parsing: %d tests (%d assertions)", 
-			statistics.Categories["core-parsing"].Total, 
+		styles.InfoLite("  Core Parsing: %d tests (%d assertions)",
+			statistics.Categories["core-parsing"].Total,
 			statistics.Categories["core-parsing"].Assertions)
-		styles.InfoLite("  Advanced Processing: %d tests (%d assertions)", 
-			statistics.Categories["advanced-processing"].Total, 
+		styles.InfoLite("  Advanced Processing: %d tests (%d assertions)",
+			statistics.Categories["advanced-processing"].Total,
 			statistics.Categories["advanced-processing"].Assertions)
-		styles.InfoLite("  Object Construction: %d tests (%d assertions)", 
-			statistics.Categories["object-construction"].Total, 
+		styles.InfoLite("  Object Construction: %d tests (%d assertions)",
+			statistics.Categories["object-construction"].Total,
 			statistics.Categories["object-construction"].Assertions)
-		styles.InfoLite("  Type System: %d tests (%d assertions)", 
-			statistics.Categories["type-system"].Total, 
+		styles.InfoLite("  Type System: %d tests (%d assertions)",
+			statistics.Categories["type-system"].Total,
 			statistics.Categories["type-system"].Assertions)
-		styles.InfoLite("  Output & Validation: %d tests (%d assertions)", 
-			statistics.Categories["output-validation"].Total, 
+		styles.InfoLite("  Output & Validation: %d tests (%d assertions)",
+			statistics.Categories["output-validation"].Total,
 			statistics.Categories["output-validation"].Assertions)
-		
+
 		if statistics.Categories["other"].Total > 0 {
-			styles.InfoLite("  Other: %d tests (%d assertions)", 
+			styles.InfoLite("  Other: %d tests (%d assertions)",
 				statistics.Categories["other"].Total,
 				statistics.Categories["other"].Assertions)
 		}
-		
+
 		styles.InfoLite("")
-		styles.Success("Total: %d tests (%d assertions) across %d files", 
+		styles.Success("Total: %d tests (%d assertions) across %d files",
 			statistics.TotalTests, statistics.TotalAssertions, statistics.TotalFiles)
 	}
-	
+
 	return nil
 }
 
@@ -278,10 +278,10 @@ func runTestsWithGotestsum(format string, levels []int, tags []string, features 
 		styles.Warning("⚠️  gotestsum not found, falling back to go test")
 		return runWithGoTest(levels, tags, features, extraArgs)
 	}
-	
+
 	// Build gotestsum command
 	cmd := exec.Command("gotestsum")
-	
+
 	// Add format flag
 	switch format {
 	case "json":
@@ -294,69 +294,69 @@ func runTestsWithGotestsum(format string, levels []int, tags []string, features 
 	default: // pretty
 		cmd.Args = append(cmd.Args, "--format", "testname")
 	}
-	
+
 	// Add package patterns based on filters
 	packages := buildPackagePatterns(levels, tags, features)
-	
+
 	if len(packages) == 0 {
 		cmd.Args = append(cmd.Args, "--", "./generated_tests/...")
 	} else {
 		cmd.Args = append(cmd.Args, "--")
 		cmd.Args = append(cmd.Args, packages...)
 	}
-	
+
 	// Add extra args from user
 	cmd.Args = append(cmd.Args, extraArgs...)
-	
+
 	// Set up command output
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
-	
+
 	styles.Command(strings.Join(cmd.Args, " "))
 	return cmd.Run()
 }
 
 func runWithGoTest(levels []int, tags []string, features []string, extraArgs []string) error {
 	cmd := exec.Command("go", "test")
-	
+
 	// Add package patterns
 	packages := buildPackagePatterns(levels, tags, features)
-	
+
 	if len(packages) == 0 {
 		cmd.Args = append(cmd.Args, "./generated_tests/...")
 	} else {
 		cmd.Args = append(cmd.Args, packages...)
 	}
-	
+
 	// Add extra args
 	cmd.Args = append(cmd.Args, extraArgs...)
-	
+
 	// Set up command output
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
-	
+
 	styles.Command(strings.Join(cmd.Args, " "))
 	return cmd.Run()
 }
 
 func buildPackagePatterns(levels []int, tags []string, features []string) []string {
 	var packages []string
-	
+
 	// If levels are specified, filter by level
 	if len(levels) > 0 {
 		for _, level := range levels {
 			pattern := fmt.Sprintf("generated_tests/level%d*", level)
 			if matches, err := filepath.Glob(pattern); err == nil {
 				for _, match := range matches {
-					// Ensure the package pattern is correct for go test  
+					// Ensure the package pattern is correct for go test
 					packages = append(packages, "./"+match)
 				}
 			}
 		}
 	}
-	
+
 	// If features are specified, filter by feature names
 	if len(features) > 0 {
 		for _, feature := range features {
@@ -368,12 +368,12 @@ func buildPackagePatterns(levels []int, tags []string, features []string) []stri
 			}
 		}
 	}
-	
+
 	// TODO: Tag filtering would require parsing test files or metadata
 	// For now, we'll just warn the user
 	if len(tags) > 0 {
 		styles.Warning("⚠️  Tag filtering not yet implemented")
 	}
-	
+
 	return packages
 }

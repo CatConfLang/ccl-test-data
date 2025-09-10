@@ -12,33 +12,33 @@ type TestSuite struct {
 
 // TestCase represents a single test case
 type TestCase struct {
-	Name        string         `json:"name"`
-	Input       string         `json:"input,omitempty"`
-	Input1      string         `json:"input1,omitempty"`
-	Input2      string         `json:"input2,omitempty"`
-	Input3      string         `json:"input3,omitempty"`
-	Validations ValidationSet  `json:"validations"`
-	Meta        TestMetadata   `json:"meta"`
+	Name        string        `json:"name"`
+	Input       string        `json:"input,omitempty"`
+	Input1      string        `json:"input1,omitempty"`
+	Input2      string        `json:"input2,omitempty"`
+	Input3      string        `json:"input3,omitempty"`
+	Validations ValidationSet `json:"validations"`
+	Meta        TestMetadata  `json:"meta"`
 }
 
 // ValidationSet contains all possible validation types
 // Using interface{} to handle the flexible oneOf schema structures
 type ValidationSet struct {
-	Parse          interface{} `json:"parse,omitempty"`
-	ParseValue     interface{} `json:"parse_value,omitempty"`
-	Filter         interface{} `json:"filter,omitempty"`
-	Compose        interface{} `json:"compose,omitempty"`
-	ExpandDotted   interface{} `json:"expand_dotted,omitempty"`
-	MakeObjects    interface{} `json:"make_objects,omitempty"`
-	GetString      interface{} `json:"get_string,omitempty"`
-	GetInt         interface{} `json:"get_int,omitempty"`
-	GetBool        interface{} `json:"get_bool,omitempty"`
-	GetFloat       interface{} `json:"get_float,omitempty"`
-	GetList        interface{} `json:"get_list,omitempty"`
-	PrettyPrint    interface{} `json:"pretty_print,omitempty"`
-	RoundTrip      interface{} `json:"round_trip,omitempty"`
-	Canonical      interface{} `json:"canonical_format,omitempty"`
-	Associativity  interface{} `json:"associativity,omitempty"`
+	Parse         interface{} `json:"parse,omitempty"`
+	ParseValue    interface{} `json:"parse_value,omitempty"`
+	Filter        interface{} `json:"filter,omitempty"`
+	Compose       interface{} `json:"compose,omitempty"`
+	ExpandDotted  interface{} `json:"expand_dotted,omitempty"`
+	MakeObjects   interface{} `json:"make_objects,omitempty"`
+	GetString     interface{} `json:"get_string,omitempty"`
+	GetInt        interface{} `json:"get_int,omitempty"`
+	GetBool       interface{} `json:"get_bool,omitempty"`
+	GetFloat      interface{} `json:"get_float,omitempty"`
+	GetList       interface{} `json:"get_list,omitempty"`
+	PrettyPrint   interface{} `json:"pretty_print,omitempty"`
+	RoundTrip     interface{} `json:"round_trip,omitempty"`
+	Canonical     interface{} `json:"canonical_format,omitempty"`
+	Associativity interface{} `json:"associativity,omitempty"`
 }
 
 // TestMetadata contains test categorization information

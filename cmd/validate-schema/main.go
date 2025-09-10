@@ -15,18 +15,18 @@ func main() {
 
 	// Load schema
 	schemaLoader := gojsonschema.NewReferenceLoader("file://tests/schema.json")
-	
+
 	for _, testFile := range os.Args[1:] {
 		// Load test file
 		testLoader := gojsonschema.NewReferenceLoader("file://" + testFile)
-		
+
 		// Validate
 		result, err := gojsonschema.Validate(schemaLoader, testLoader)
 		if err != nil {
 			fmt.Printf("✗ %s - Error: %v\n", testFile, err)
 			continue
 		}
-		
+
 		if result.Valid() {
 			fmt.Printf("✓ %s - Valid\n", testFile)
 		} else {

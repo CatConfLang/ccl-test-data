@@ -95,19 +95,19 @@ func (g *Generator) generateTestContentFromTemplate(testSuite types.TestSuite, s
 	var testCases []string
 	hasActiveTests := false
 	hasAssertions := false
-	
+
 	for _, test := range testSuite.Tests {
 		testCase, err := g.generateTestCase(test)
 		if err != nil {
 			return "", fmt.Errorf("failed to generate test case %s: %w", test.Name, err)
 		}
 		testCases = append(testCases, testCase)
-		
+
 		// Count assertions and track statistics
 		assertionCount := g.countAssertions(test.Validations)
 		g.stats.TestCounts[test.Name] = assertionCount
 		g.stats.TotalTests++
-		
+
 		// Check if this test is not skipped using generator options
 		isSkipped := g.shouldSkipTest(test.Meta.Tags)
 		if isSkipped {
@@ -178,7 +178,7 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 		return "", fmt.Errorf("failed to generate validations: %w", err)
 	}
 	data.Validations = validations
-	
+
 	// Check if there are actual implemented validations (not just TODOs)
 	hasImplementedValidations := false
 	for _, validation := range validations {
@@ -187,9 +187,9 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 			break
 		}
 	}
-	
+
 	data.HasValidations = hasImplementedValidations
-	
+
 	// Determine which variables are needed (only if there are implemented validations)
 	if hasImplementedValidations {
 		data.NeedsParseResult = g.needsParseResult(test.Validations)
@@ -381,7 +381,7 @@ func (g *Generator) generateTypedAccessValidation(method string, validation inte
 	objectResult = ccl.MakeObjects(parseResult)
 	%sResult, err := ccl.%s(objectResult, %s)
 	require.NoError(t, err)
-	assert.Equal(t, %s, %sResult)`, 
+	assert.Equal(t, %s, %sResult)`,
 			method, strings.ToLower(method), method, formatStringArray(testCase.Args), formatGoValue(testCase.Expected), strings.ToLower(method)), nil
 	}
 
@@ -422,11 +422,11 @@ type TypedAccessCase struct {
 
 // CountedValidation represents a validation with count field
 type CountedValidation struct {
-	Count    int                   `json:"count"`
-	Expected []map[string]string  `json:"expected"`
+	Count    int                 `json:"count"`
+	Expected []map[string]string `json:"expected"`
 }
 
-// CountedObjectValidation represents an object validation with count field  
+// CountedObjectValidation represents an object validation with count field
 type CountedObjectValidation struct {
 	Count    int                    `json:"count"`
 	Expected map[string]interface{} `json:"expected"`
@@ -527,7 +527,7 @@ func (g *Generator) generateComplexValidation(method string, validation interfac
 	validationStr = strings.ReplaceAll(validationStr, "\n", "\\n")
 	validationStr = strings.ReplaceAll(validationStr, "\r", "\\r")
 	validationStr = strings.ReplaceAll(validationStr, "\t", "\\t")
-	
+
 	return fmt.Sprintf(`// TODO: Implement %s validation
 	// Validation data: %s`, method, validationStr), nil
 }
@@ -538,13 +538,13 @@ func toPascalCase(input string) string {
 	parts := strings.FieldsFunc(input, func(r rune) bool {
 		return r == '_' || r == '-' || r == ' '
 	})
-	
+
 	for i, part := range parts {
 		if len(part) > 0 {
 			parts[i] = strings.ToUpper(part[:1]) + strings.ToLower(part[1:])
 		}
 	}
-	
+
 	return strings.Join(parts, "")
 }
 
@@ -739,21 +739,21 @@ func formatGoSlice(s []interface{}) string {
 // Helper functions to determine which variables are needed
 
 func (g *Generator) needsParseResult(validations types.ValidationSet) bool {
-	return validations.Parse != nil || 
-		   validations.Filter != nil || 
-		   validations.MakeObjects != nil || 
-		   validations.GetString != nil ||
-		   validations.GetInt != nil ||
-		   validations.GetBool != nil ||
-		   validations.GetFloat != nil
+	return validations.Parse != nil ||
+		validations.Filter != nil ||
+		validations.MakeObjects != nil ||
+		validations.GetString != nil ||
+		validations.GetInt != nil ||
+		validations.GetBool != nil ||
+		validations.GetFloat != nil
 }
 
 func (g *Generator) needsObjectResult(validations types.ValidationSet) bool {
-	return validations.MakeObjects != nil || 
-		   validations.GetString != nil ||
-		   validations.GetInt != nil ||
-		   validations.GetBool != nil ||
-		   validations.GetFloat != nil
+	return validations.MakeObjects != nil ||
+		validations.GetString != nil ||
+		validations.GetInt != nil ||
+		validations.GetBool != nil ||
+		validations.GetFloat != nil
 }
 
 func (g *Generator) needsFilterResult(validations types.ValidationSet) bool {
@@ -763,7 +763,7 @@ func (g *Generator) needsFilterResult(validations types.ValidationSet) bool {
 // countAssertions counts the total number of assertions for a validation set
 func (g *Generator) countAssertions(validations types.ValidationSet) int {
 	count := 0
-	
+
 	if validations.Parse != nil {
 		count += g.getValidationCount(validations.Parse)
 	}
@@ -809,7 +809,7 @@ func (g *Generator) countAssertions(validations types.ValidationSet) int {
 	if validations.Associativity != nil {
 		count += g.getValidationCount(validations.Associativity)
 	}
-	
+
 	return count
 }
 
