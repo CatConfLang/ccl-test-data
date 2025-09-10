@@ -41,7 +41,7 @@ func TestRoundTripMixedContent(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// canonical_format_empty_values - canonical empty (level 4)
+// canonical_format_empty_values - canonical empty proposed-behavior (level 4)
 func TestCanonicalFormatEmptyValues(t *testing.T) {
 
 	ccl := mock.New()
@@ -53,12 +53,12 @@ func TestCanonicalFormatEmptyValues(t *testing.T) {
 
 }
 
-// canonical_format_tab_preservation - canonical tabs (level 4)
+// canonical_format_tab_preservation - canonical tabs proposed-behavior (level 4)
 func TestCanonicalFormatTabPreservation(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// canonical_format_unicode - canonical unicode (level 4)
+// canonical_format_unicode - canonical unicode proposed-behavior (level 4)
 func TestCanonicalFormatUnicode(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -68,7 +68,7 @@ func TestRoundTripComplexNesting(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// canonical_format_line_endings - canonical crlf (level 4)
+// canonical_format_line_endings - canonical crlf proposed-behavior (level 4)
 func TestCanonicalFormatLineEndings(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -78,7 +78,7 @@ func TestRoundTripDeeplyNested(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// canonical_format_consistent_spacing - canonical spacing (level 4)
+// canonical_format_consistent_spacing - canonical spacing proposed-behavior (level 4)
 func TestCanonicalFormatConsistentSpacing(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -88,7 +88,44 @@ func TestRoundTripEmptyMultiline(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// deterministic_output - deterministic order (level 4)
+// deterministic_output - deterministic order proposed-behavior (level 4)
 func TestDeterministicOutput(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// canonical_format_empty_values_ocaml_reference - canonical empty reference-compliant-behavior (level 4)
+func TestCanonicalFormatEmptyValuesOcamlReference(t *testing.T) {
+
+	ccl := mock.New()
+	input := `empty_key =`
+
+	// TODO: Implement test validations
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+
+}
+
+// canonical_format_tab_preservation_ocaml_reference - canonical tabs reference-compliant-behavior (level 4)
+func TestCanonicalFormatTabPreservationOcamlReference(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// canonical_format_unicode_ocaml_reference - canonical unicode reference-compliant-behavior (level 4)
+func TestCanonicalFormatUnicodeOcamlReference(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// canonical_format_line_endings_ocaml_reference - canonical crlf reference-compliant-behavior (level 4)
+func TestCanonicalFormatLineEndingsOcamlReference(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// canonical_format_consistent_spacing_ocaml_reference - canonical spacing reference-compliant-behavior (level 4)
+func TestCanonicalFormatConsistentSpacingOcamlReference(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// deterministic_output_ocaml_reference - deterministic order reference-compliant-behavior (level 4)
+func TestDeterministicOutputOcamlReference(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
