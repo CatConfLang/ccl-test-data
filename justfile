@@ -9,6 +9,7 @@ alias gen := generate
 alias t := test
 alias l := list
 alias v := test-verbose
+alias reset := dev-basic
 
 # Build the ccl-test-runner binary
 build:
@@ -47,11 +48,13 @@ test-generated:
 
 # Run tests suitable for mock implementation
 test-mock:
-    go run ./cmd/ccl-test-runner test --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior
+    just generate-mock
+    go run ./cmd/ccl-test-runner test
 
 # Run only basic tests for mock development
 test-mock-basic:
-    go run ./cmd/ccl-test-runner test --run-only basic,essential-parsing,empty,comments
+    just generate-mock-dev
+    go run ./cmd/ccl-test-runner test
 
 # Run only level 1 tests
 test-level1:
@@ -175,4 +178,4 @@ ci:
 dev-basic:
     just clean
     just generate-level1
-    just test-mock-basic
+    just test-level1

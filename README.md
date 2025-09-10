@@ -43,6 +43,9 @@ just test
 # Generate tests for mock implementation development
 just generate-mock
 just test-mock
+
+# Set repository to clean, passing state (required for commits)
+just reset  # alias for dev-basic
 ```
 
 ### Test Files
@@ -201,6 +204,25 @@ The repository includes a basic Level 1 mock CCL implementation for testing and 
 - **Location**: `internal/mock/ccl.go`
 - **Features**: Basic key-value parsing, comment handling, empty input support
 - **Usage**: Demonstrates test integration patterns
+
+### Repository State Management
+
+The repository should be maintained in a clean, passing state. Use these commands to ensure all enabled tests pass:
+
+```bash
+# Standard repository state (all tests should pass)
+just reset  # alias for dev-basic
+
+# Or run the steps manually:
+just generate-level1  # Generate only basic Level 1 tests
+just test-level1      # Run Level 1 tests (all should pass)
+```
+
+**This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (`basic`, `essential-parsing`, `empty` tags) and skips advanced features that would fail in the current mock implementation. This ensures:
+
+- **Clean commits**: All enabled tests pass before committing
+- **Stable CI**: Continuous integration runs pass consistently  
+- **Development foundation**: Solid base for CCL implementation work
 
 ## Documentation
 
