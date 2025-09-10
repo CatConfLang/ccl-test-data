@@ -178,4 +178,5 @@ ci:
 dev-basic:
     just clean
     just generate-level1
+    just lint
     just test-level1

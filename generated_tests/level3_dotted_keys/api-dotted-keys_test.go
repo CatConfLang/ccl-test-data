@@ -62,7 +62,7 @@ database.name = mydb`
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult = ccl.MakeObjects(parseResult)
-	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"port": "5432", "host": "localhost", "name": "mydb"}}
+	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"host": "localhost", "name": "mydb", "port": "5432"}}
 	assert.Equal(t, expectedObjects, objectResult)
 
 }
@@ -90,7 +90,7 @@ cache.enabled = true`
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult = ccl.MakeObjects(parseResult)
-	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"host": "localhost"}, "server": map[string]interface{}{"port": "8080"}, "cache": map[string]interface{}{"enabled": "true"}}
+	expectedObjects := map[string]interface{}{"cache": map[string]interface{}{"enabled": "true"}, "database": map[string]interface{}{"host": "localhost"}, "server": map[string]interface{}{"port": "8080"}}
 	assert.Equal(t, expectedObjects, objectResult)
 
 }
