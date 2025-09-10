@@ -221,7 +221,7 @@ just test-level1      # Run Level 1 tests (all should pass)
 **This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (`basic`, `essential-parsing`, `empty` tags) and skips advanced features that would fail in the current mock implementation. This ensures:
 
 - **Clean commits**: All enabled tests pass before committing
-- **Stable CI**: Continuous integration runs pass consistently  
+- **Stable CI**: Continuous integration runs pass consistently
 - **Development foundation**: Solid base for CCL implementation work
 
 ## Documentation
