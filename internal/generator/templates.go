@@ -116,8 +116,8 @@ func (g *Generator) generateTestContentFromTemplate(testSuite types.TestSuite, s
 		} else {
 			hasActiveTests = true
 			g.stats.TotalAssertions += assertionCount
-			// Check if this test has assertions (validations)
-			if hasValidations(test.Validations) {
+			// Check if this test has implemented assertions (not just TODO validations)
+			if g.hasImplementedValidations(test.Validations) {
 				hasAssertions = true
 			}
 		}
@@ -680,6 +680,20 @@ func hasValidations(validations types.ValidationSet) bool {
 		validations.RoundTrip != nil ||
 		validations.Canonical != nil ||
 		validations.Associativity != nil
+}
+
+// hasImplementedValidations checks if the ValidationSet has any validations that generate actual assertions (not just TODOs)
+func (g *Generator) hasImplementedValidations(validations types.ValidationSet) bool {
+	// Only check validation types that are actually implemented in the generator
+	return validations.Parse != nil ||
+		validations.Filter != nil ||
+		validations.MakeObjects != nil ||
+		validations.GetString != nil ||
+		validations.GetInt != nil ||
+		validations.GetBool != nil ||
+		validations.GetFloat != nil
+	// Note: Other validation types (PrettyPrint, RoundTrip, Canonical, etc.) are not implemented
+	// and only generate TODO comments, so they don't count as "implemented validations"
 }
 
 func formatEntryArray(entries []map[string]string) string {
