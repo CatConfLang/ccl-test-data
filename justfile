@@ -111,19 +111,20 @@ clean:
 
 # Clean everything including node_modules (cross-platform)
 clean-all:
-    go run ./cmd/clean generated_tests bin node_modules
+    go run ./cmd/clean generated_tests bin scripts/node_modules
 
 # Update documentation with current stats (replaces npm run docs:update)
 docs-update:
-    node scripts/update-readme-remark.mjs
+    cd scripts && node update-readme-remark.mjs
 
 # Check if documentation is up to date (replaces npm run docs:check)
 docs-check:
-    node scripts/update-readme-remark.mjs && git diff --exit-code README.md
+    cd scripts && node update-readme-remark.mjs
+    git diff --exit-code README.md
 
 # Generate schema documentation (replaces npm run docs:schema)
 docs-schema:
-    node scripts/generate-schema-docs.mjs
+    cd scripts && node generate-schema-docs.mjs
 
 # Run go mod tidy and format code
 check:
@@ -136,9 +137,9 @@ lint:
     go fmt ./...
     go vet ./...
 
-# Install Node.js dependencies
+# Install Node.js dependencies (in scripts folder)
 deps-node:
-    npm install
+    cd scripts && npm install
 
 # Install all dependencies (Node.js + Go via go.mod)
 deps: deps-node

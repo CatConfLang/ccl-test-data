@@ -8,7 +8,7 @@ import remarkParse from 'remark-parse';
 import remarkStringify from 'remark-stringify';
 import remarkGfm from 'remark-gfm';
 import { visit } from 'unist-util-visit';
-import { collectStats } from './collect-stats.mjs';
+import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -97,8 +97,13 @@ async function updateReadme() {
   }
   
   try {
-    // Collect current stats (silent mode to avoid output)
-    const stats = await collectStats(true);
+    // Collect current stats using Go stats command
+    const statsOutput = execSync('go run ./cmd/ccl-test-runner stats --format json', { 
+      encoding: 'utf8',
+      cwd: ROOT_DIR,
+      stdio: ['ignore', 'pipe', 'ignore'] // Ignore stderr to suppress status messages
+    });
+    const stats = JSON.parse(statsOutput);
     
     // Extract counts from feature-based categories
     const coreParsingTotal = stats.categories['core-parsing'].total;

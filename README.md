@@ -22,11 +22,11 @@ This repository contains the **official JSON test suite** for CCL implementation
 
 ### Test Format Features
 
-✅ **Direct API mapping** - Each validation maps to a specific API function  
-✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels  
-✅ **Simple test runners** - Direct iteration over `validations` object keys  
-✅ **Assertion counting** - Required explicit counts for validation verification  
-✅ **Self-documenting** - Validation names explain what's being tested  
+✅ **Direct API mapping** - Each validation maps to a specific API function\
+✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
+✅ **Simple test runners** - Direct iteration over `validations` object keys\
+✅ **Assertion counting** - Required explicit counts for validation verification\
+✅ **Self-documenting** - Validation names explain what's being tested\
 ✅ **446 test assertions** - Comprehensive coverage across all CCL features
 
 ### Quick Start
@@ -50,21 +50,26 @@ just test-mock
 The test suite is organized by feature category:
 
 **Core Parsing**
+
 - **`tests/api-essential-parsing.json`** - Basic parsing functionality for rapid prototyping
 - **`tests/api-comprehensive-parsing.json`** - Thorough parsing with edge cases and whitespace variations
 
-**Advanced Processing**  
+**Advanced Processing**
+
 - **`tests/api-processing.json`** - Entry composition, merging, and advanced processing
 - **`tests/api-comments.json`** - Comment syntax and filtering functionality
 
 **Object Construction**
+
 - **`tests/api-object-construction.json`** - Converting flat entries to nested objects
 - **`tests/api-dotted-keys.json`** - Dotted key expansion and conflict resolution
 
 **Type System**
+
 - **`tests/api-typed-access.json`** - Type-aware value extraction with smart inference
 
 **Error Handling**
+
 - **`tests/api-errors.json`** - Error handling validation
 
 ### Using the Test Suite
@@ -219,10 +224,10 @@ The repository includes a basic Level 1 mock CCL implementation for testing and 
 When adding test cases:
 
 1. Add to appropriate JSON file by feature level
-2. Include descriptive name and metadata
-3. Use counted format with appropriate `count` values
-4. Validate JSON structure with `just validate`
-5. Update test counts in documentation
+1. Include descriptive name and metadata
+1. Use counted format with appropriate `count` values
+1. Validate JSON structure with `just validate`
+1. Update test counts in documentation
 
 ## Validation
 
