@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-Official JSON test suite for CCL (Categorical Configuration Language) implementations with a comprehensive Go-based test runner and mock implementation.
+Official JSON test suite for CCL (Categorical Configuration Language) implementations with **feature-based tagging** for precise test selection, comprehensive Go-based test runner, and mock implementation.
 
 ### Architecture
 
@@ -16,10 +16,12 @@ Official JSON test suite for CCL (Categorical Configuration Language) implementa
 - **Level 5**: Validation/formatting - `PrettyPrint()`
 
 **Key Components:**
-- `tests/api-*.json` - Feature-specific test suites with counted assertions
-- `cmd/ccl-test-runner/` - CLI for test generation and execution
+- `tests/api-*.json` - Feature-specific test suites with structured tagging and counted assertions
+- `cmd/ccl-test-runner/` - CLI for test generation and execution with enhanced statistics
 - `internal/mock/ccl.go` - Working CCL implementation (should pass most Level 1-4 tests)
 - `internal/generator/` - Go test file generation from JSON data
+- `internal/stats/enhanced.go` - Feature-based statistics and analysis
+- `docs/tag-migration.json` - Tag migration mapping and implementation guidance
 
 ## Essential Commands
 
@@ -77,8 +79,48 @@ The `internal/mock/ccl.go` contains a working CCL implementation that should pas
 
 **Repository State Management:**
 - `just reset` generates only tests that the mock implementation can pass
-- Uses tags: `basic`, `essential-parsing`, `empty` (skips advanced features)
+- Uses structured tags: `function:parse`, `function:make-objects`, `function:get-string` (skips advanced features)
 - All enabled tests should pass before commits to maintain clean CI state
+
+## Feature-Based Tagging System
+
+### Structured Tags
+
+All tests now use structured tags for precise test selection:
+
+**Function Tags** (`function:*`) - Required CCL functions:
+- `function:parse`, `function:filter`, `function:compose`, `function:expand-dotted`
+- `function:make-objects`, `function:get-string`, `function:get-int`, `function:get-bool`, `function:get-float`, `function:get-list`
+- `function:pretty-print`
+
+**Feature Tags** (`feature:*`) - Optional language features:
+- `feature:comments`, `feature:dotted-keys`, `feature:empty-keys`, `feature:multiline`, `feature:unicode`, `feature:whitespace`
+
+**Behavior Tags** (`behavior:*`) - Implementation choices (mutually exclusive):
+- `behavior:crlf-preserve` vs `behavior:crlf-normalize`
+- `behavior:tabs-preserve` vs `behavior:tabs-to-spaces`
+- `behavior:strict-spacing` vs `behavior:loose-spacing`
+
+**Variant Tags** (`variant:*`) - Specification variants:
+- `variant:proposed-behavior` vs `variant:reference-compliant`
+
+### Test Selection Strategy
+
+**For Mock Implementation:**
+```bash
+# Generate tests for basic functions only
+just generate --run-only function:parse,function:make-objects,function:get-string
+
+# Skip advanced features
+just generate --skip-tags feature:comments,feature:unicode,variant:proposed-behavior
+```
+
+**For Progressive Implementation:**
+1. Start with `function:parse` only
+2. Add `function:make-objects` for Level 3
+3. Add typed access: `function:get-string`, `function:get-int`, etc.
+4. Add processing: `function:filter`, `function:compose`, `function:expand-dotted`
+5. Add formatting: `function:pretty-print`
 
 ## Test Data Format
 
@@ -98,6 +140,11 @@ All tests use required `count` fields for precise validation:
       "count": 1, 
       "cases": [{"args": ["key"], "expected": "value"}]
     }
+  },
+  "meta": {
+    "tags": ["function:parse", "function:get-string"],
+    "level": 1,
+    "feature": "parsing"
   }
 }
 ```
@@ -120,8 +167,13 @@ All tests use required `count` fields for precise validation:
 
 ### Adding Tests
 1. Add to appropriate `tests/api-*.json` file by feature level
-2. Include proper `count` fields matching array lengths or case counts
-3. Run `just generate` and `just test-generated` to verify
+2. Include structured tags:
+   - Required: `function:*` tags based on validations used
+   - Optional: `feature:*` tags for language features required
+   - Conflicts: `conflicts` array for mutually exclusive behaviors
+3. Include proper `count` fields matching array lengths or case counts
+4. Run `just generate` and `just test-generated` to verify
+5. Check `just stats` to see impact on test coverage
 
 ### Mock Implementation Development
 The mock implementation should handle progressively more CCL features:

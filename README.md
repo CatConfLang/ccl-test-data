@@ -1,6 +1,6 @@
 # CCL Test Suite
 
-Language-agnostic test suite for the Categorical Configuration Language (CCL). Each test specifies which CCL parsing functions to validate and their expected outputs.
+Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based tagging** for precise test selection. Each test specifies which CCL functions to validate and uses structured tags to enable progressive implementation.
 
 ## What is CCL?
 
@@ -22,12 +22,15 @@ This repository contains the **official JSON test suite** for CCL implementation
 
 ### Test Format Features
 
+✅ **Feature-based tagging** - Structured tags for precise test selection (`function:*`, `feature:*`, `behavior:*`, `variant:*`)\
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
 ✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
+✅ **Conflict resolution** - Automatic handling of mutually exclusive behaviors\
+✅ **Progressive implementation** - Clear path from minimal parsing to full features\
 ✅ **Simple test runners** - Direct iteration over `validations` object keys\
 ✅ **Assertion counting** - Required explicit counts for validation verification\
 ✅ **Self-documenting** - Validation names explain what's being tested\
-✅ **446 test assertions** - Comprehensive coverage across all CCL features
+✅ **452 test assertions** - Comprehensive coverage across all CCL features
 
 ### Quick Start
 
@@ -104,9 +107,106 @@ The test suite now uses a **counted format** with required `count` fields for al
       ]
     }
   },
-  "meta": {"tags": ["dotted-keys"], "level": 4}
+  "meta": {
+    "tags": ["function:parse", "function:make-objects", "function:get-string", "feature:dotted-keys"],
+    "level": 3,
+    "feature": "dotted-keys"
+  }
 }
 ```
+
+### Feature-Based Test Selection
+
+The test suite uses **structured tags** to enable precise test selection based on implementation capabilities:
+
+#### Tag Categories
+
+**Function Tags** (`function:*`) - Required CCL functions:
+- `function:parse` - Basic key-value parsing (Level 1)
+- `function:filter` - Entry filtering (Level 2) 
+- `function:compose` - Entry composition (Level 2)
+- `function:expand-dotted` - Dotted key expansion (Level 2)
+- `function:make-objects` - Object construction (Level 3)
+- `function:get-string`, `function:get-int`, `function:get-bool`, `function:get-float`, `function:get-list` - Typed access (Level 4)
+- `function:pretty-print` - Formatting (Level 5)
+
+**Feature Tags** (`feature:*`) - Optional language features:
+- `feature:comments` - `/=` comment syntax
+- `feature:dotted-keys` - `foo.bar.baz` key syntax
+- `feature:empty-keys` - `= value` anonymous list items
+- `feature:multiline` - Multi-line value support
+- `feature:unicode` - Unicode content handling
+- `feature:whitespace` - Complex whitespace preservation
+
+**Behavior Tags** (`behavior:*`) - Implementation choices (mutually exclusive):
+- `behavior:crlf-preserve` vs `behavior:crlf-normalize` - Line ending handling
+- `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` - Tab handling
+- `behavior:strict-spacing` vs `behavior:loose-spacing` - Whitespace sensitivity
+
+**Variant Tags** (`variant:*`) - Specification variants:
+- `variant:proposed-behavior` - Proposed specification behavior
+- `variant:reference-compliant` - OCaml reference implementation behavior
+
+#### Test Selection Examples
+
+**Minimal Implementation** (Parse only):
+```json
+{"supported_tags": ["function:parse"]}
+```
+
+**Basic Implementation** (Parse + Objects + Typed Access):
+```json
+{
+  "supported_functions": ["function:parse", "function:make-objects", "function:get-string"],
+  "supported_features": ["feature:dotted-keys"],
+  "behavior_choices": {"line_endings": "behavior:crlf-normalize"}
+}
+```
+
+**Advanced Implementation** (All functions, optional features):
+```json
+{
+  "supported_functions": ["function:*"],
+  "optional_features": ["feature:comments", "feature:unicode"],
+  "skip_variants": ["variant:proposed-behavior"]
+}
+```
+
+#### Conflict Resolution
+
+Tests with conflicting behaviors are automatically excluded:
+
+```json
+{
+  "name": "crlf_preservation_test",
+  "meta": {
+    "tags": ["function:parse", "behavior:crlf-preserve"],
+    "conflicts": ["behavior:crlf-normalize"]
+  }
+}
+```
+
+If your implementation chooses `behavior:crlf-normalize`, tests tagged with `behavior:crlf-preserve` are automatically skipped.
+
+#### Feature Field vs Feature Tags
+
+There are two distinct "feature" concepts that serve different purposes:
+
+**`feature` field** (organizational) - File/suite categorization:
+- `"feature": "parsing"` - This test belongs to parsing test suite
+- `"feature": "dotted-keys"` - This test belongs to dotted-keys test suite  
+- `"feature": "object-construction"` - This test belongs to object construction suite
+
+**`feature:*` tags** (requirement-based) - Implementation requirements:
+- `"feature:dotted-keys"` - This test requires dotted key support to run
+- `"feature:comments"` - This test requires comment parsing support
+- `"feature:unicode"` - This test requires Unicode handling
+
+**Example:** A test in the "parsing" suite (`"feature": "parsing"`) might still have `"feature:comments"` tag if it tests comment parsing, indicating that implementations without comment support should skip it.
+
+**Usage:**
+- **File organization**: Use `feature` field for test suite grouping
+- **Test filtering**: Use `feature:*` tags for implementation-based filtering
 
 **Test runner example:**
 
@@ -269,8 +369,33 @@ just dev-basic
 
 ### Current Test Statistics
 
-- **161 total tests** with **446 assertions**
-- **88 active tests** (307 assertions) for standard implementations
-- **73 skipped tests** (139 assertions) for advanced/optional features
+The test suite provides comprehensive coverage with **452 assertions** across **167 tests**:
 
-This test suite ensures consistent CCL behavior across all language implementations.
+```bash
+# View detailed statistics
+just stats
+```
+
+**📊 Current Breakdown:**
+- **167 total tests** with **452 assertions** across **10 files**
+- **21 mutually exclusive tests** with behavioral/variant conflicts
+- **11 CCL functions** from basic parsing to advanced formatting
+- **6 language features** (comments, dotted-keys, unicode, etc.)
+- **3 behavioral choices** (CRLF, tabs, spacing handling)
+- **2 specification variants** (proposed vs reference behavior)
+
+**📚 Level Distribution:**
+- **Level 1**: 54 tests (basic parsing)
+- **Level 2**: 30 tests (processing)
+- **Level 3**: 27 tests (object construction)  
+- **Level 4**: 56 tests (typed access)
+
+**⚙️ Function Coverage:**
+- `function:parse`: 132 tests (most essential)
+- `function:make-objects`: 66 tests
+- `function:get-*`: 38 tests (typed access)
+- `function:pretty-print`: 24 tests
+- `function:compose`: 12 tests
+- Other functions: 35 tests
+
+This test suite ensures consistent CCL behavior across all language implementations with precise control over which features to test.
