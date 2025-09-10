@@ -1,23 +1,40 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Object Construction - Validation Format",
-  "version": "2.0", 
+  "version": "2.0",
   "description": "Converting flat Entry[] to nested objects via make_objects() - essential for hierarchical access",
   "tests": [
     {
       "name": "recursive_nested_single",
       "input": "database =\n  enabled = true",
       "validations": {
-        "parse": [
-          {"key": "database", "value": "\n  enabled = true"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  enabled = true"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "enabled": "true"
+          "count": 1,
+          "expected": {
+            "database": {
+              "enabled": "true"
+            }
           }
         }
       },
-      "meta": {"tags": ["recursive", "nested", "basic"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "recursive",
+          "nested",
+          "basic"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "recursive_nested_multiple",
@@ -26,7 +43,10 @@
         "parse": {
           "count": 1,
           "expected": [
-            {"key": "database", "value": "\n  host = localhost\n  port = 5432\n  enabled = true"}
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432\n  enabled = true"
+            }
           ]
         },
         "make_objects": {
@@ -34,34 +54,59 @@
           "expected": {
             "database": {
               "host": "localhost",
-              "port": "5432", 
+              "port": "5432",
               "enabled": "true"
             }
           }
         }
       },
-      "meta": {"tags": ["recursive", "nested", "multiple"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "recursive",
+          "nested",
+          "multiple"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "deep_recursive_nesting",
       "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
       "validations": {
-        "parse": [
-          {"key": "server", "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "server",
+              "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+            }
+          ]
+        },
         "make_objects": {
-          "server": {
-            "database": {
-              "host": "localhost",
-              "port": "5432"
-            },
-            "cache": {
-              "enabled": "true"
+          "count": 1,
+          "expected": {
+            "server": {
+              "database": {
+                "host": "localhost",
+                "port": "5432"
+              },
+              "cache": {
+                "enabled": "true"
+              }
             }
           }
         }
       },
-      "meta": {"tags": ["recursive", "nested", "deep"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "recursive",
+          "nested",
+          "deep"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "multiple_keys_same_name_merge",
@@ -70,8 +115,14 @@
         "parse": {
           "count": 2,
           "expected": [
-            {"key": "user", "value": "\n  name = alice"},
-            {"key": "user", "value": "\n  age = 25"}
+            {
+              "key": "user",
+              "value": "\n  name = alice"
+            },
+            {
+              "key": "user",
+              "value": "\n  age = 25"
+            }
           ]
         },
         "make_objects": {
@@ -84,107 +135,248 @@
           }
         }
       },
-      "meta": {"tags": ["merge", "duplicate-keys", "object-construction"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "merge",
+          "duplicate-keys",
+          "object-construction"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "empty_key_list_style",
       "input": "ports =\n  = 8000\n  = 8001\n  = 8002",
       "validations": {
-        "parse": [
-          {"key": "ports", "value": "\n  = 8000\n  = 8001\n  = 8002"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "ports",
+              "value": "\n  = 8000\n  = 8001\n  = 8002"
+            }
+          ]
+        },
         "make_objects": {
-          "ports": {
-            "": ["8000", "8001", "8002"]
+          "count": 1,
+          "expected": {
+            "ports": {
+              "": [
+                "8000",
+                "8001",
+                "8002"
+              ]
+            }
           }
         }
       },
-      "meta": {"tags": ["empty-key", "lists", "array-style"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "lists",
+          "array-style"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "empty_key_top_level",
       "input": "= root_value\nkey = normal\n= another_root",
       "validations": {
-        "parse": [
-          {"key": "", "value": "root_value"},
-          {"key": "key", "value": "normal"},
-          {"key": "", "value": "another_root"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "",
+              "value": "root_value"
+            },
+            {
+              "key": "key",
+              "value": "normal"
+            },
+            {
+              "key": "",
+              "value": "another_root"
+            }
+          ]
+        },
         "make_objects": {
-          "": ["root_value", "another_root"],
-          "key": "normal"
+          "count": 1,
+          "expected": {
+            "": [
+              "root_value",
+              "another_root"
+            ],
+            "key": "normal"
+          }
         }
       },
-      "meta": {"tags": ["empty-key", "top-level", "merge", "proposed-behavior"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "top-level",
+          "merge",
+          "proposed-behavior"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "empty_key_top_level_ocaml_reference",
       "input": "= root_value\nkey = normal\n= another_root",
       "validations": {
-        "parse": [
-          {"key": "", "value": "root_value"},
-          {"key": "key", "value": "normal"},
-          {"key": "", "value": "another_root"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "",
+              "value": "root_value"
+            },
+            {
+              "key": "key",
+              "value": "normal"
+            },
+            {
+              "key": "",
+              "value": "another_root"
+            }
+          ]
+        },
         "make_objects": {
-          "": ["another_root", "root_value"],
-          "key": "normal"
+          "count": 1,
+          "expected": {
+            "": [
+              "another_root",
+              "root_value"
+            ],
+            "key": "normal"
+          }
         }
       },
-      "meta": {"tags": ["empty-key", "top-level", "merge", "reference-compliant-behavior"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "top-level",
+          "merge",
+          "reference-compliant-behavior"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "mixed_flat_and_nested",
       "input": "simple = value\nnested =\n  key1 = val1\n  key2 = val2\nanother = simple",
       "validations": {
-        "parse": [
-          {"key": "simple", "value": "value"},
-          {"key": "nested", "value": "\n  key1 = val1\n  key2 = val2"},
-          {"key": "another", "value": "simple"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "simple",
+              "value": "value"
+            },
+            {
+              "key": "nested",
+              "value": "\n  key1 = val1\n  key2 = val2"
+            },
+            {
+              "key": "another",
+              "value": "simple"
+            }
+          ]
+        },
         "make_objects": {
-          "simple": "value",
-          "nested": {
-            "key1": "val1",
-            "key2": "val2"
-          },
-          "another": "simple"
+          "count": 1,
+          "expected": {
+            "simple": "value",
+            "nested": {
+              "key1": "val1",
+              "key2": "val2"
+            },
+            "another": "simple"
+          }
         }
       },
-      "meta": {"tags": ["mixed", "flat", "nested"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "mixed",
+          "flat",
+          "nested"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     },
     {
       "name": "stress_test_complex_nesting",
       "input": "/ = This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
       "validations": {
-        "parse": [
-          {"key": "/", "value": "This is a CCL document"},
-          {"key": "title", "value": "CCL Example"},
-          {"key": "database", "value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"},
-          {"key": "user", "value": "\n  guestId = 42"},
-          {"key": "user", "value": "\n  login = chshersh\n  createdAt = 2024-12-31"}
-        ],
-        "make_objects": {
-          "/": "This is a CCL document",
-          "title": "CCL Example",
-          "database": {
-            "enabled": "true",
-            "ports": {
-              "": ["8000", "8001", "8002"]
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "/",
+              "value": "This is a CCL document"
             },
-            "limits": {
-              "cpu": "1500mi",
-              "memory": "10Gb"
+            {
+              "key": "title",
+              "value": "CCL Example"
+            },
+            {
+              "key": "database",
+              "value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"
+            },
+            {
+              "key": "user",
+              "value": "\n  guestId = 42"
+            },
+            {
+              "key": "user",
+              "value": "\n  login = chshersh\n  createdAt = 2024-12-31"
             }
-          },
-          "user": {
-            "guestId": "42",
-            "login": "chshersh",
-            "createdAt": "2024-12-31"
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "/": "This is a CCL document",
+            "title": "CCL Example",
+            "database": {
+              "enabled": "true",
+              "ports": {
+                "": [
+                  "8000",
+                  "8001",
+                  "8002"
+                ]
+              },
+              "limits": {
+                "cpu": "1500mi",
+                "memory": "10Gb"
+              }
+            },
+            "user": {
+              "guestId": "42",
+              "login": "chshersh",
+              "createdAt": "2024-12-31"
+            }
           }
         }
       },
-      "meta": {"tags": ["stress", "complex", "merge", "empty-key", "comments"], "level": 3, "feature": "object-construction"}
+      "meta": {
+        "tags": [
+          "stress",
+          "complex",
+          "merge",
+          "empty-key",
+          "comments"
+        ],
+        "level": 3,
+        "feature": "object-construction"
+      }
     }
   ]
 }

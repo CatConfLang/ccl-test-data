@@ -1,907 +1,1044 @@
 {
-	"$schema": "./schema.json",
-	"suite": "CCL Comprehensive Parsing - Validation Format",
-	"version": "2.0",
-	"description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.",
-	"tests": [
-		{
-			"name": "basic_single_no_spaces",
-			"input": "key=val",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"basic",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "basic_with_spaces",
-			"input": "key = val",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"basic",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "indented_key",
-			"input": "  key = val",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"indentation",
-					"redundant"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "value_trailing_spaces",
-			"input": "key = val  ",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"trimming",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "key_value_surrounded_spaces",
-			"input": "  key  =  val  ",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"trimming",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "surrounded_by_newlines",
-			"input": "\nkey = val\n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"line-endings",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "key_empty_value",
-			"input": "key =",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-value",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_value_with_newline",
-			"input": "key =\n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-value",
-					"line-endings",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_value_with_spaces",
-			"input": "key =  ",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-value",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_indented",
-			"input": "  = val",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"lists",
-					"indentation",
-					"redundant"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_with_newline",
-			"input": "\n  = val",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"lists",
-					"line-endings",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_value_with_spaces",
-			"input": "  =  ",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"empty-value",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "equals_in_value_no_spaces",
-			"input": "a=b=c",
-			"validations": {
-				"parse": [
-					{
-						"key": "a",
-						"value": "b=c"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"equals",
-					"basic",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "equals_in_value_with_spaces",
-			"input": "a = b = c",
-			"validations": {
-				"parse": [
-					{
-						"key": "a",
-						"value": "b = c"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"equals",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "multiple_key_value_pairs",
-			"input": "key1 = val1\nkey2 = val2",
-			"validations": {
-				"parse": [
-					{
-						"key": "key1",
-						"value": "val1"
-					},
-					{
-						"key": "key2",
-						"value": "val2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"basic",
-					"multiple",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "key_with_tabs",
-			"input": "\tkey\t=\tvalue",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "\tvalue"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"tabs",
-					"redundant",
-					"proposed-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "key_with_tabs_ocaml_reference",
-			"input": "\tkey\t=\tvalue",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "value"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"tabs",
-					"redundant",
-					"reference-compliant-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "whitespace_only_value",
-			"input": "onlyspaces =     ",
-			"validations": {
-				"parse": [
-					{
-						"key": "onlyspaces",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"empty-value",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "spaces_vs_tabs_continuation",
-			"input": "text = First\n    four spaces\n\ttab preserved",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "text",
-						"value": "First\n    four spaces\n\ttab preserved"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"continuation",
-					"whitespace",
-					"tabs",
-					"redundant",
-					"proposed-behavior"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "spaces_vs_tabs_continuation_ocaml_reference",
-			"input": "text = First\n    four spaces\n\ttab preserved",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "text",
-						"value": "First\n    four spaces\n tab preserved"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"continuation",
-					"whitespace",
-					"tabs",
-					"redundant",
-					"reference-compliant-behavior"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "multiple_empty_equality",
-			"input": " =  = ",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": "="
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"multiple-equals",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "key_with_newline_before_equals",
-			"input": "key \n= val\n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"newlines",
-					"edge-case",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "complex_multi_newline_whitespace",
-			"input": "  \n key  \n=  val  \n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"newlines",
-					"edge-case",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_value_with_trailing_spaces_newline",
-			"input": "key =  \n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-value",
-					"whitespace",
-					"newlines",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_value_with_surrounding_newlines",
-			"input": "\n  =  \n",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"empty-value",
-					"newlines",
-					"whitespace",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "quotes_treated_as_literal_unquoted",
-			"input": "host = localhost",
-			"validations": {
-				"parse": [
-					{
-						"key": "host",
-						"value": "localhost"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"quotes",
-					"literal",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "quotes_treated_as_literal_quoted",
-			"input": "host = \"localhost\"",
-			"validations": {
-				"parse": [
-					{
-						"key": "host",
-						"value": "\"localhost\""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"quotes",
-					"literal",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "nested_single_line",
-			"input": "key =\n  val",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "\n  val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"nested",
-					"indentation",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "nested_multi_line",
-			"input": "key =\n  line1\n  line2",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "\n  line1\n  line2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"nested",
-					"indentation",
-					"multiline",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "nested_with_blank_line",
-			"input": "key =\n  line1\n\n  line2",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "key",
-						"value": "\n  line1\n\n  line2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"nested",
-					"indentation",
-					"multiline",
-					"blank-lines",
-					"redundant"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "deep_nested_structure",
-			"input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
-			"validations": {
-				"parse_value": [
-					{
-						"key": "key",
-						"value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"nested",
-					"indentation",
-					"deep",
-					"continuation",
-					"redundant"
-				],
-				"level": 2,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "realistic_stress_test",
-			"input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
-			"validations": {
-				"parse": [
-					{
-						"key": "name",
-						"value": "Dmitrii Kovanikov"
-					},
-					{
-						"key": "login",
-						"value": "chshersh"
-					},
-					{
-						"key": "language",
-						"value": "OCaml"
-					},
-					{
-						"key": "date",
-						"value": "2024-05-25"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"realistic",
-					"multiple-pairs",
-					"stress-test",
-					"redundant"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "ocaml_stress_test_original",
-			"input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
-			"validations": {
-				"parse": [
-					{
-						"key": "title",
-						"value": "CCL Example"
-					},
-					{
-						"key": "database",
-						"value": ""
-					},
-					{
-						"key": "database.enabled",
-						"value": "true"
-					},
-					{
-						"key": "database.ports",
-						"value": ""
-					},
-					{
-						"key": "database.ports.",
-						"value": "8000"
-					},
-					{
-						"key": "database.ports.",
-						"value": "8001"
-					},
-					{
-						"key": "database.ports.",
-						"value": "8002"
-					},
-					{
-						"key": "database.limits",
-						"value": ""
-					},
-					{
-						"key": "database.limits.cpu",
-						"value": "1500mi"
-					},
-					{
-						"key": "database.limits.memory",
-						"value": "10Gb"
-					},
-					{
-						"key": "user",
-						"value": ""
-					},
-					{
-						"key": "user.guestId",
-						"value": "42"
-					},
-					{
-						"key": "user",
-						"value": ""
-					},
-					{
-						"key": "user.login",
-						"value": "chshersh"
-					},
-					{
-						"key": "user.createdAt",
-						"value": "2024-12-31"
-					}
-				],
-				"make_objects": {
-					"title": "CCL Example",
-					"database": {
-						"enabled": "true",
-						"ports": ["8000", "8001", "8002"],
-						"limits": {
-							"cpu": "1500mi",
-							"memory": "10Gb"
-						}
-					},
-					"user": {
-						"guestId": "42",
-						"login": "chshersh",
-						"createdAt": "2024-12-31"
-					}
-				},
-				"get_string": [
-					{
-						"args": ["title"],
-						"expected": "CCL Example"
-					},
-					{
-						"args": ["database.enabled"],
-						"expected": "true"
-					},
-					{
-						"args": ["database.limits.cpu"],
-						"expected": "1500mi"
-					},
-					{
-						"args": ["user.login"],
-						"expected": "chshersh"
-					}
-				],
-				"get_list": [
-					{
-						"args": ["database.ports"],
-						"expected": ["8000", "8001", "8002"]
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"stress-test", 
-					"ocaml-original",
-					"realistic",
-					"nested",
-					"lists",
-					"merging",
-					"multi-level",
-					"proposed-behavior"
-				],
-				"level": 4,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "ocaml_stress_test_original_ocaml_reference",
-			"input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
-			"validations": {
-				"parse": [
-					{
-						"key": "/",
-						"value": "This is a CCL document"
-					},
-					{
-						"key": "title",
-						"value": "CCL Example"
-					},
-					{
-						"key": "database",
-						"value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"
-					},
-					{
-						"key": "user",
-						"value": "\n  guestId = 42"
-					},
-					{
-						"key": "user",
-						"value": "\n  login = chshersh\n  createdAt = 2024-12-31"
-					}
-				],
-				"make_objects": {
-					"/": "This is a CCL document",
-					"title": "CCL Example",
-					"database": {
-						"enabled": "true",
-						"ports": {
-							"": [
-								"8000",
-								"8001",
-								"8002"
-							]
-						},
-						"limits": {
-							"cpu": "1500mi",
-							"memory": "10Gb"
-						}
-					},
-					"user": {
-						"guestId": "42",
-						"login": "chshersh",
-						"createdAt": "2024-12-31"
-					}
-				},
-				"get_string": {
-					"args": [
-						"title"
-					],
-					"expected": "CCL Example"
-				}
-			},
-			"meta": {
-				"tags": [
-					"stress-test",
-					"ocaml-original",
-					"realistic",
-					"nested",
-					"lists",
-					"merging",
-					"multi-level",
-					"reference-compliant-behavior"
-				],
-				"level": 4,
-				"feature": "parsing"
-			}
-		}
-	]
+  "$schema": "./schema.json",
+  "suite": "CCL Comprehensive Parsing - Validation Format",
+  "version": "2.0",
+  "description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.",
+  "tests": [
+    {
+      "name": "basic_single_no_spaces",
+      "input": "key=val",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "basic",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "basic_with_spaces",
+      "input": "key = val",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "basic",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "indented_key",
+      "input": "  key = val",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "indentation",
+          "redundant"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "value_trailing_spaces",
+      "input": "key = val  ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "trimming",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "key_value_surrounded_spaces",
+      "input": "  key  =  val  ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "trimming",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "surrounded_by_newlines",
+      "input": "\nkey = val\n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "line-endings",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "key_empty_value",
+      "input": "key =",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-value",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_value_with_newline",
+      "input": "key =\n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-value",
+          "line-endings",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_value_with_spaces",
+      "input": "key =  ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-value",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_indented",
+      "input": "  = val",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "lists",
+          "indentation",
+          "redundant"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_with_newline",
+      "input": "\n  = val",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "lists",
+          "line-endings",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_value_with_spaces",
+      "input": "  =  ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "empty-value",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "equals_in_value_no_spaces",
+      "input": "a=b=c",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a",
+              "value": "b=c"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "equals",
+          "basic",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "equals_in_value_with_spaces",
+      "input": "a = b = c",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a",
+              "value": "b = c"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "equals",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "multiple_key_value_pairs",
+      "input": "key1 = val1\nkey2 = val2",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "key1",
+              "value": "val1"
+            },
+            {
+              "key": "key2",
+              "value": "val2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "basic",
+          "multiple",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "key_with_tabs",
+      "input": "\tkey\t=\tvalue",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\tvalue"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "tabs",
+          "redundant",
+          "proposed-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "key_with_tabs_ocaml_reference",
+      "input": "\tkey\t=\tvalue",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "value"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "tabs",
+          "redundant",
+          "reference-compliant-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "whitespace_only_value",
+      "input": "onlyspaces =     ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "onlyspaces",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "empty-value",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "spaces_vs_tabs_continuation",
+      "input": "text = First\n    four spaces\n\ttab preserved",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "text",
+              "value": "First\n    four spaces\n\ttab preserved"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "continuation",
+          "whitespace",
+          "tabs",
+          "redundant",
+          "proposed-behavior"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "spaces_vs_tabs_continuation_ocaml_reference",
+      "input": "text = First\n    four spaces\n\ttab preserved",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "text",
+              "value": "First\n    four spaces\n tab preserved"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "continuation",
+          "whitespace",
+          "tabs",
+          "redundant",
+          "reference-compliant-behavior"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "multiple_empty_equality",
+      "input": " =  = ",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": "="
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "multiple-equals",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "key_with_newline_before_equals",
+      "input": "key \n= val\n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "newlines",
+          "edge-case",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "complex_multi_newline_whitespace",
+      "input": "  \n key  \n=  val  \n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "newlines",
+          "edge-case",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_value_with_trailing_spaces_newline",
+      "input": "key =  \n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-value",
+          "whitespace",
+          "newlines",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_value_with_surrounding_newlines",
+      "input": "\n  =  \n",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "empty-value",
+          "newlines",
+          "whitespace",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "quotes_treated_as_literal_unquoted",
+      "input": "host = localhost",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "host",
+              "value": "localhost"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "quotes",
+          "literal",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "quotes_treated_as_literal_quoted",
+      "input": "host = \"localhost\"",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "host",
+              "value": "\"localhost\""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "quotes",
+          "literal",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "nested_single_line",
+      "input": "key =\n  val",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\n  val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "nested",
+          "indentation",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "nested_multi_line",
+      "input": "key =\n  line1\n  line2",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\n  line1\n  line2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "nested",
+          "indentation",
+          "multiline",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "nested_with_blank_line",
+      "input": "key =\n  line1\n\n  line2",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\n  line1\n\n  line2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "nested",
+          "indentation",
+          "multiline",
+          "blank-lines",
+          "redundant"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "deep_nested_structure",
+      "input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
+      "validations": {
+        "parse_value": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "nested",
+          "indentation",
+          "deep",
+          "continuation",
+          "redundant"
+        ],
+        "level": 2,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "realistic_stress_test",
+      "input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
+      "validations": {
+        "parse": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "name",
+              "value": "Dmitrii Kovanikov"
+            },
+            {
+              "key": "login",
+              "value": "chshersh"
+            },
+            {
+              "key": "language",
+              "value": "OCaml"
+            },
+            {
+              "key": "date",
+              "value": "2024-05-25"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "realistic",
+          "multiple-pairs",
+          "stress-test",
+          "redundant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "ocaml_stress_test_original",
+      "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+      "validations": {
+        "parse": {
+          "count": 15,
+          "expected": [
+            {
+              "key": "title",
+              "value": "CCL Example"
+            },
+            {
+              "key": "database",
+              "value": ""
+            },
+            {
+              "key": "database.enabled",
+              "value": "true"
+            },
+            {
+              "key": "database.ports",
+              "value": ""
+            },
+            {
+              "key": "database.ports.",
+              "value": "8000"
+            },
+            {
+              "key": "database.ports.",
+              "value": "8001"
+            },
+            {
+              "key": "database.ports.",
+              "value": "8002"
+            },
+            {
+              "key": "database.limits",
+              "value": ""
+            },
+            {
+              "key": "database.limits.cpu",
+              "value": "1500mi"
+            },
+            {
+              "key": "database.limits.memory",
+              "value": "10Gb"
+            },
+            {
+              "key": "user",
+              "value": ""
+            },
+            {
+              "key": "user.guestId",
+              "value": "42"
+            },
+            {
+              "key": "user",
+              "value": ""
+            },
+            {
+              "key": "user.login",
+              "value": "chshersh"
+            },
+            {
+              "key": "user.createdAt",
+              "value": "2024-12-31"
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "title": "CCL Example",
+            "database": {
+              "enabled": "true",
+              "ports": [
+                "8000",
+                "8001",
+                "8002"
+              ],
+              "limits": {
+                "cpu": "1500mi",
+                "memory": "10Gb"
+              }
+            },
+            "user": {
+              "guestId": "42",
+              "login": "chshersh",
+              "createdAt": "2024-12-31"
+            }
+          }
+        },
+        "get_string": {
+          "count": 4,
+          "cases": [
+            {
+              "args": [
+                "title"
+              ],
+              "expected": "CCL Example"
+            },
+            {
+              "args": [
+                "database.enabled"
+              ],
+              "expected": "true"
+            },
+            {
+              "args": [
+                "database.limits.cpu"
+              ],
+              "expected": "1500mi"
+            },
+            {
+              "args": [
+                "user.login"
+              ],
+              "expected": "chshersh"
+            }
+          ]
+        },
+        "get_list": {
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "database.ports"
+              ],
+              "expected": [
+                "8000",
+                "8001",
+                "8002"
+              ]
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "stress-test",
+          "ocaml-original",
+          "realistic",
+          "nested",
+          "lists",
+          "merging",
+          "multi-level",
+          "proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "ocaml_stress_test_original_ocaml_reference",
+      "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+      "validations": {
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "/",
+              "value": "This is a CCL document"
+            },
+            {
+              "key": "title",
+              "value": "CCL Example"
+            },
+            {
+              "key": "database",
+              "value": "\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb"
+            },
+            {
+              "key": "user",
+              "value": "\n  guestId = 42"
+            },
+            {
+              "key": "user",
+              "value": "\n  login = chshersh\n  createdAt = 2024-12-31"
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "/": "This is a CCL document",
+            "title": "CCL Example",
+            "database": {
+              "enabled": "true",
+              "ports": {
+                "": [
+                  "8000",
+                  "8001",
+                  "8002"
+                ]
+              },
+              "limits": {
+                "cpu": "1500mi",
+                "memory": "10Gb"
+              }
+            },
+            "user": {
+              "guestId": "42",
+              "login": "chshersh",
+              "createdAt": "2024-12-31"
+            }
+          }
+        },
+        "get_string": {
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "title"
+              ],
+              "expected": "CCL Example"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "stress-test",
+          "ocaml-original",
+          "realistic",
+          "nested",
+          "lists",
+          "merging",
+          "multi-level",
+          "reference-compliant-behavior"
+        ],
+        "level": 4,
+        "feature": "parsing"
+      }
+    }
+  ]
 }
