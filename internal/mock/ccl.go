@@ -32,14 +32,16 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 	lines := strings.Split(input, "\n")
 
 	for _, line := range lines {
-		line = strings.TrimSpace(line)
+		// Preserve \r characters when trimming - only trim leading/trailing spaces and tabs
+		originalLine := line
+		line = strings.Trim(line, " \t")
 		if line == "" {
 			continue
 		}
 
 		// Handle comments (start with /=)
 		if strings.HasPrefix(line, "/=") {
-			comment := strings.TrimSpace(strings.TrimPrefix(line, "/="))
+			comment := strings.Trim(strings.TrimPrefix(line, "/="), " \t")
 			entries = append(entries, Entry{
 				Key:   "/",
 				Value: comment,
@@ -51,8 +53,12 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 		if strings.Contains(line, "=") {
 			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
-				key := strings.TrimSpace(parts[0])
-				value := strings.TrimSpace(parts[1])
+				key := strings.Trim(parts[0], " \t")
+				value := strings.Trim(parts[1], " \t")
+				// If original line had \r at the end, preserve it in the value
+				if strings.HasSuffix(originalLine, "\r") && !strings.HasSuffix(value, "\r") {
+					value = value + "\r"
+				}
 				entries = append(entries, Entry{
 					Key:   key,
 					Value: value,

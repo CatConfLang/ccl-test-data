@@ -11,7 +11,7 @@ import (
 
 // just_key_error - error incomplete (level 1)
 func TestJustKeyError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // whitespace_only_error - error whitespace empty proposed (level 1)
@@ -26,15 +26,15 @@ func TestWhitespaceOnlyErrorOcamlReference(t *testing.T) {
 
 // just_string_error - error incomplete (level 1)
 func TestJustStringError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // multiline_plain_error - error multiline incomplete (level 1)
 func TestMultilinePlainError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // multiline_plain_nested_error - error multiline nested incomplete (level 1)
 func TestMultilinePlainNestedError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
