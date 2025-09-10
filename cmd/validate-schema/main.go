@@ -33,8 +33,8 @@ func main() {
 				if err != nil {
 					return err
 				}
-				if !info.IsDir() && strings.HasPrefix(filepath.Base(path), "api-") && 
-				   strings.HasSuffix(path, ".json") && filepath.Base(path) != "schema.json" {
+				if !info.IsDir() && strings.HasPrefix(filepath.Base(path), "api-") &&
+					strings.HasSuffix(path, ".json") && filepath.Base(path) != "schema.json" {
 					testFiles = append(testFiles, path)
 				}
 				return nil
