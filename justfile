@@ -103,7 +103,7 @@ stats-json:
 
 # Validate all test files against schema
 validate:
-    find tests/ -name "api-*.json" -not -name "schema.json" | xargs go run cmd/validate-schema/main.go
+    jv tests/schema.json tests/api-*.json tests/property-*.json
 
 # Clean up generated files (cross-platform)
 clean:
@@ -141,9 +141,10 @@ lint:
 deps-node:
     cd scripts && npm install
 
-# Install all dependencies (Node.js + Go via go.mod)
+# Install all dependencies (Node.js + Go modules + tools)
 deps: deps-node
-    go mod tidy
+    go mod download
+    go install github.com/santhosh-tekuri/jsonschema/cmd/jv
 
 # Full development cycle: clean, generate, and test
 dev:
