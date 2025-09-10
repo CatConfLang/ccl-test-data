@@ -34,8 +34,15 @@ generate-level1:
 generate-mock-dev:
     go run ./cmd/ccl-test-runner generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior,reference-compliant-behavior --run-only basic,essential-parsing,empty,comments
 
-# Run all generated tests
+# Run comprehensive test suite including validation and docs (replaces npm test)
 test:
+    just validate
+    just docs-check
+    just generate
+    just test-generated
+
+# Run generated Go tests only
+test-generated:
     go run ./cmd/ccl-test-runner test
 
 # Run tests suitable for mock implementation
@@ -86,39 +93,81 @@ test-table:
 list:
     go run ./cmd/ccl-test-runner test --list
 
-# Show test generation statistics
+# Show comprehensive test suite statistics
 stats:
-    go run ./cmd/ccl-test-runner generate 2>&1 | tail -5
+    go run ./cmd/ccl-test-runner stats
+
+# Show test statistics in JSON format
+stats-json:
+    go run ./cmd/ccl-test-runner stats --format json
 
 # Validate all test files against schema
 validate:
     find tests/ -name "api-*.json" -not -name "schema.json" | xargs go run cmd/validate-schema/main.go
 
-# Clean up generated files
+# Clean up generated files (cross-platform)
 clean:
-    rm -rf generated_tests/ bin/
+    npx rimraf generated_tests/ bin/
+
+# Clean everything including node_modules (cross-platform)
+clean-all:
+    npx rimraf generated_tests/ bin/ node_modules/
+
+# Update documentation with current stats (replaces npm run docs:update)
+docs-update:
+    node scripts/update-readme-remark.mjs
+
+# Check if documentation is up to date (replaces npm run docs:check)
+docs-check:
+    node scripts/update-readme-remark.mjs && git diff --exit-code README.md
+
+# Generate schema documentation (replaces npm run docs:schema)
+docs-schema:
+    node scripts/generate-schema-docs.mjs
 
 # Run go mod tidy and format code
 check:
     go mod tidy
     go fmt ./...
+    
+# Lint and format all code
+lint:
+    go mod tidy
+    go fmt ./...
+    go vet ./...
 
-# Install dependencies
-deps:
-    go get gotest.tools/gotestsum
-    go get github.com/xeipuuv/gojsonschema
+# Install Node.js dependencies
+deps-node:
+    npm install
+
+# Install all dependencies (Node.js + Go via go.mod)
+deps: deps-node
+    go mod tidy
 
 # Full development cycle: clean, generate, and test
 dev:
     just clean
     just generate
-    just test
+    just test-generated
 
 # Mock development cycle: clean, generate mock tests, and run them
 dev-mock:
     just clean
     just generate-mock
     just test-mock
+
+# Full development workflow with docs
+dev-full:
+    just clean
+    just generate
+    just test
+
+# CI/CD pipeline
+ci:
+    just validate
+    just generate
+    just test-generated
+    just docs-check
 
 # Quick development cycle for basic functionality
 dev-basic:
