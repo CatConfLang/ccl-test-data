@@ -780,7 +780,7 @@ func formatGoMap(m map[string]interface{}) string {
 	}
 	// Sort keys to ensure deterministic output
 	sort.Strings(keys)
-	
+
 	var parts []string
 	for _, k := range keys {
 		parts = append(parts, fmt.Sprintf("%q: %s", k, formatGoValue(m[k])))
