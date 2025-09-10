@@ -23,20 +23,20 @@ func New() *CCL {
 // Parse implements Level 1: Raw entry parsing
 func (c *CCL) Parse(input string) ([]Entry, error) {
 	var entries []Entry
-	
+
 	// Handle empty input
 	if strings.TrimSpace(input) == "" {
 		return []Entry{}, nil
 	}
-	
+
 	lines := strings.Split(input, "\n")
-	
+
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
 		if line == "" {
 			continue
 		}
-		
+
 		// Handle comments (start with /=)
 		if strings.HasPrefix(line, "/=") {
 			comment := strings.TrimSpace(strings.TrimPrefix(line, "/="))
@@ -46,7 +46,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 			})
 			continue
 		}
-		
+
 		// Handle key-value pairs
 		if strings.Contains(line, "=") {
 			parts := strings.SplitN(line, "=", 2)
@@ -61,7 +61,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 		}
 		// Skip lines without = (don't error - Level 1 is just basic parsing)
 	}
-	
+
 	return entries, nil
 }
 
@@ -104,11 +104,11 @@ func (c *CCL) ExpandDotted(entries []Entry) []Entry {
 // MakeObjects implements Level 3: Object construction
 func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
 	result := make(map[string]interface{})
-	
+
 	for _, entry := range entries {
 		key := entry.Key
 		value := entry.Value
-		
+
 		// Handle empty keys as list items
 		if key == "" {
 			// Add to a list under empty key
@@ -126,7 +126,7 @@ func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
 			// Handle dotted keys - basic support
 			parts := strings.Split(key, ".")
 			current := result
-			
+
 			for i, part := range parts {
 				if i == len(parts)-1 {
 					// Last part - set the value
@@ -155,7 +155,7 @@ func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
 			}
 		}
 	}
-	
+
 	return result
 }
 
@@ -165,11 +165,11 @@ func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, erro
 	if err != nil {
 		return "", err
 	}
-	
+
 	if str, ok := value.(string); ok {
 		return str, nil
 	}
-	
+
 	return fmt.Sprintf("%v", value), nil
 }
 
@@ -179,15 +179,15 @@ func (c *CCL) GetInt(obj map[string]interface{}, path []string) (int, error) {
 	if err != nil {
 		return 0, err
 	}
-	
+
 	if str, ok := value.(string); ok {
 		return strconv.Atoi(str)
 	}
-	
+
 	if i, ok := value.(int); ok {
 		return i, nil
 	}
-	
+
 	return 0, fmt.Errorf("cannot convert %v to int", value)
 }
 
@@ -197,15 +197,15 @@ func (c *CCL) GetBool(obj map[string]interface{}, path []string) (bool, error) {
 	if err != nil {
 		return false, err
 	}
-	
+
 	if str, ok := value.(string); ok {
 		return strconv.ParseBool(str)
 	}
-	
+
 	if b, ok := value.(bool); ok {
 		return b, nil
 	}
-	
+
 	return false, fmt.Errorf("cannot convert %v to bool", value)
 }
 
@@ -215,15 +215,15 @@ func (c *CCL) GetFloat(obj map[string]interface{}, path []string) (float64, erro
 	if err != nil {
 		return 0, err
 	}
-	
+
 	if str, ok := value.(string); ok {
 		return strconv.ParseFloat(str, 64)
 	}
-	
+
 	if f, ok := value.(float64); ok {
 		return f, nil
 	}
-	
+
 	return 0, fmt.Errorf("cannot convert %v to float64", value)
 }
 
@@ -233,7 +233,7 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 	if err != nil {
 		return nil, err
 	}
-	
+
 	if arr, ok := value.([]interface{}); ok {
 		result := make([]string, len(arr))
 		for i, v := range arr {
@@ -241,11 +241,11 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 		}
 		return result, nil
 	}
-	
+
 	if list, ok := value.([]string); ok {
 		return list, nil
 	}
-	
+
 	return nil, fmt.Errorf("cannot convert %v to []string", value)
 }
 
@@ -260,7 +260,7 @@ func (c *CCL) PrettyPrint(obj map[string]interface{}) string {
 
 func (c *CCL) getValue(obj map[string]interface{}, path []string) (interface{}, error) {
 	current := obj
-	
+
 	for i, key := range path {
 		if i == len(path)-1 {
 			// Last key - return the value
@@ -281,7 +281,7 @@ func (c *CCL) getValue(obj map[string]interface{}, path []string) (interface{}, 
 			}
 		}
 	}
-	
+
 	return nil, fmt.Errorf("invalid path")
 }
 

@@ -21,11 +21,11 @@ type Options struct {
 
 // AssertionStats tracks assertion counts from test generation
 type AssertionStats struct {
-	TotalTests      int
-	TotalAssertions int
-	SkippedTests    int
+	TotalTests        int
+	TotalAssertions   int
+	SkippedTests      int
 	SkippedAssertions int
-	TestCounts      map[string]int // test name -> assertion count
+	TestCounts        map[string]int // test name -> assertion count
 }
 
 // Generator handles test file generation from JSON test data
@@ -158,14 +158,14 @@ func (g *Generator) generateTestContent(testSuite types.TestSuite, sourceFile st
 func (g *Generator) getOutputPath(testSuite types.TestSuite, sourceFile string) string {
 	// Extract base filename without extension
 	baseName := strings.TrimSuffix(filepath.Base(sourceFile), ".json")
-	
+
 	// Determine level and feature from the first test or suite name
 	level := g.inferLevel(testSuite)
 	feature := g.inferFeature(testSuite)
-	
+
 	// Create directory structure: level-X-feature/
 	dirName := fmt.Sprintf("level%d_%s", level, strings.ReplaceAll(feature, "-", "_"))
-	
+
 	return filepath.Join(g.outputDir, dirName, baseName+"_test.go")
 }
 
@@ -182,7 +182,7 @@ func (g *Generator) inferLevel(testSuite types.TestSuite) int {
 	if len(testSuite.Tests) > 0 {
 		return testSuite.Tests[0].Meta.Level
 	}
-	
+
 	// Fall back to parsing suite name
 	suiteName := strings.ToLower(testSuite.Suite)
 	if strings.Contains(suiteName, "typed") {
@@ -201,7 +201,7 @@ func (g *Generator) inferFeature(testSuite types.TestSuite) string {
 	if len(testSuite.Tests) > 0 && testSuite.Tests[0].Meta.Feature != "" {
 		return testSuite.Tests[0].Meta.Feature
 	}
-	
+
 	// Fall back to parsing suite name
 	suiteName := strings.ToLower(testSuite.Suite)
 	if strings.Contains(suiteName, "typed") {

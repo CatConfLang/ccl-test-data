@@ -31,18 +31,18 @@ type FileStats struct {
 
 // CategoryStats represents statistics for a feature category
 type CategoryStats struct {
-	Total      int                    `json:"total"`
-	Assertions int                    `json:"assertions"`
-	Files      map[string]*FileStats  `json:"files"`
+	Total      int                   `json:"total"`
+	Assertions int                   `json:"assertions"`
+	Files      map[string]*FileStats `json:"files"`
 }
 
 // Statistics represents the complete test suite statistics
 type Statistics struct {
-	Structure       string                     `json:"structure"`
-	Categories      map[string]*CategoryStats  `json:"categories"`
-	TotalTests      int                        `json:"totalTests"`
-	TotalAssertions int                        `json:"totalAssertions"`
-	TotalFiles      int                        `json:"totalFiles"`
+	Structure       string                    `json:"structure"`
+	Categories      map[string]*CategoryStats `json:"categories"`
+	TotalTests      int                       `json:"totalTests"`
+	TotalAssertions int                       `json:"totalAssertions"`
+	TotalFiles      int                       `json:"totalFiles"`
 }
 
 // Collector handles statistics collection from test files
@@ -58,19 +58,19 @@ func NewCollector(testDir string) *Collector {
 // findTestFiles finds all JSON test files in the test directory
 func (c *Collector) findTestFiles() ([]string, error) {
 	var files []string
-	
+
 	err := filepath.WalkDir(c.testDir, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
-		
+
 		if !d.IsDir() && strings.HasSuffix(path, ".json") && !strings.HasSuffix(path, "schema.json") {
 			files = append(files, path)
 		}
-		
+
 		return nil
 	})
-	
+
 	return files, err
 }
 
@@ -79,7 +79,7 @@ func countAssertions(validationData interface{}) int {
 	if validationData == nil {
 		return 0
 	}
-	
+
 	// Handle map structure (counted format or error format)
 	if m, ok := validationData.(map[string]interface{}); ok {
 		// Check for counted format with explicit count field
@@ -93,7 +93,7 @@ func countAssertions(validationData interface{}) int {
 			return 1
 		}
 	}
-	
+
 	// If no count field, assume single assertion
 	return 1
 }
@@ -104,51 +104,51 @@ func (c *Collector) analyzeTestFile(filePath string) (*FileStats, string, error)
 	if err != nil {
 		return nil, "", fmt.Errorf("reading file %s: %w", filePath, err)
 	}
-	
+
 	var testSuite types.TestSuite
 	if err := json.Unmarshal(data, &testSuite); err != nil {
 		return nil, "", fmt.Errorf("parsing JSON in %s: %w", filePath, err)
 	}
-	
+
 	if len(testSuite.Tests) == 0 {
 		return &FileStats{}, "", nil
 	}
-	
+
 	// Get feature from first test's metadata
 	feature := ""
 	if len(testSuite.Tests) > 0 {
 		feature = testSuite.Tests[0].Meta.Feature
 	}
-	
+
 	// Count assertions
 	totalAssertions := 0
 	for _, test := range testSuite.Tests {
 		// Use reflection to iterate over validation fields
 		validationData := map[string]interface{}{
-			"parse":          test.Validations.Parse,
-			"parse_value":    test.Validations.ParseValue,
-			"filter":         test.Validations.Filter,
-			"compose":        test.Validations.Compose,
-			"expand_dotted":  test.Validations.ExpandDotted,
-			"make_objects":   test.Validations.MakeObjects,
-			"get_string":     test.Validations.GetString,
-			"get_int":        test.Validations.GetInt,
-			"get_bool":       test.Validations.GetBool,
-			"get_float":      test.Validations.GetFloat,
-			"get_list":       test.Validations.GetList,
-			"pretty_print":   test.Validations.PrettyPrint,
-			"round_trip":     test.Validations.RoundTrip,
-			"canonical":      test.Validations.Canonical,
-			"associativity":  test.Validations.Associativity,
+			"parse":         test.Validations.Parse,
+			"parse_value":   test.Validations.ParseValue,
+			"filter":        test.Validations.Filter,
+			"compose":       test.Validations.Compose,
+			"expand_dotted": test.Validations.ExpandDotted,
+			"make_objects":  test.Validations.MakeObjects,
+			"get_string":    test.Validations.GetString,
+			"get_int":       test.Validations.GetInt,
+			"get_bool":      test.Validations.GetBool,
+			"get_float":     test.Validations.GetFloat,
+			"get_list":      test.Validations.GetList,
+			"pretty_print":  test.Validations.PrettyPrint,
+			"round_trip":    test.Validations.RoundTrip,
+			"canonical":     test.Validations.Canonical,
+			"associativity": test.Validations.Associativity,
 		}
-		
+
 		for _, validation := range validationData {
 			if validation != nil {
 				totalAssertions += countAssertions(validation)
 			}
 		}
 	}
-	
+
 	return &FileStats{
 		Tests:      len(testSuite.Tests),
 		Assertions: totalAssertions,
@@ -160,11 +160,11 @@ func categorizeByFeature(feature string) string {
 	if feature == "" {
 		return "other"
 	}
-	
+
 	if category, exists := FeatureCategories[feature]; exists {
 		return category
 	}
-	
+
 	return "other"
 }
 
@@ -174,7 +174,7 @@ func (c *Collector) CollectStats() (*Statistics, error) {
 	if err != nil {
 		return nil, fmt.Errorf("finding test files: %w", err)
 	}
-	
+
 	stats := &Statistics{
 		Structure: "feature-based",
 		Categories: map[string]*CategoryStats{
@@ -186,7 +186,7 @@ func (c *Collector) CollectStats() (*Statistics, error) {
 			"other":               {Files: make(map[string]*FileStats)},
 		},
 	}
-	
+
 	for _, filePath := range testFiles {
 		fileStats, feature, err := c.analyzeTestFile(filePath)
 		if err != nil {
@@ -194,25 +194,25 @@ func (c *Collector) CollectStats() (*Statistics, error) {
 			fmt.Fprintf(os.Stderr, "Warning: %v\n", err)
 			continue
 		}
-		
+
 		if fileStats.Tests == 0 {
 			continue
 		}
-		
+
 		category := categorizeByFeature(feature)
 		fileName := strings.TrimSuffix(filepath.Base(filePath), ".json")
-		
+
 		// Update category stats
 		categoryStats := stats.Categories[category]
 		categoryStats.Files[fileName] = fileStats
 		categoryStats.Total += fileStats.Tests
 		categoryStats.Assertions += fileStats.Assertions
-		
+
 		// Update totals
 		stats.TotalTests += fileStats.Tests
 		stats.TotalAssertions += fileStats.Assertions
 		stats.TotalFiles++
 	}
-	
+
 	return stats, nil
 }
