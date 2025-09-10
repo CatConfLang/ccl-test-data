@@ -7,26 +7,12 @@
   "directories": {
     "test": "tests"
   },
-  "scripts": {
-    "validate": "ajv validate -s tests/schema.json -d 'tests/!(schema).json' --verbose",
-    "validate:core": "ajv validate -s tests/schema.json -d 'tests/!(schema).json' --verbose",
-    "validate:pretty-print": "ajv validate -s tests/schema.json -d 'tests/pretty-print.json' --verbose",
-    "docs:stats": "node scripts/collect-stats.mjs",
-    "docs:update": "node scripts/update-readme-remark.mjs",
-    "docs:check": "node scripts/update-readme-remark.mjs && git diff --exit-code README.md",
-    "docs:schema": "node scripts/generate-schema-docs.mjs",
-    "test": "npm run validate && npm run docs:check"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "ajv-cli": "^5.0.0",
-    "fast-json-patch": "^3.1.1"
-  },
-  "overrides": {
-    "fast-json-patch": "^3.1.1"
+    "rimraf": "^5.0.0"
   },
   "dependencies": {
     "remark-gfm": "^4.0.1",
