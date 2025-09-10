@@ -63,7 +63,10 @@
       "Bash(rm:*)",
       "Bash(just validate)",
       "Bash(just generate-mock:*)",
-      "Bash(just:*)"
+      "Bash(just:*)",
+      "Bash(go install:*)",
+      "Bash(git checkout:*)",
+      "Read(//tmp/**)"
     ],
     "deny": [],
     "ask": []

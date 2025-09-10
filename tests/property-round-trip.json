@@ -79,7 +79,7 @@
           "expected": "empty_key ="
         }
       },
-      "meta": {"tags": ["canonical", "empty"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["canonical", "empty", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
     },
     {
       "name": "canonical_format_tab_preservation",
@@ -90,7 +90,7 @@
           "expected": "value_with_tabs = text\t\twith\ttabs"
         }
       },
-      "meta": {"tags": ["canonical", "tabs"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["canonical", "tabs", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
     },
     {
       "name": "canonical_format_unicode",
@@ -101,7 +101,7 @@
           "expected": "unicode = 你好世界\nemo = 🌟✨"
         }
       },
-      "meta": {"tags": ["canonical", "unicode"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["canonical", "unicode", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
     },
     {
       "name": "round_trip_complex_nesting",
@@ -123,7 +123,7 @@
           "expected": "key1 = value1\nkey2 = value2"
         }
       },
-      "meta": {"tags": ["canonical", "crlf"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["canonical", "crlf", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
     },
     {
       "name": "round_trip_deeply_nested",
@@ -145,7 +145,7 @@
           "expected": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
         }
       },
-      "meta": {"tags": ["canonical", "spacing"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["canonical", "spacing", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
     },
     {
       "name": "round_trip_empty_multiline",
@@ -167,7 +167,73 @@
           "expected": "z = last\na = first\nm = middle"
         }
       },
-      "meta": {"tags": ["deterministic", "order"], "level": 4, "feature": "pretty-printing"}
+      "meta": {"tags": ["deterministic", "order", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "canonical_format_empty_values_ocaml_reference",
+      "input": "empty_key =",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "empty_key =\n"
+        }
+      },
+      "meta": {"tags": ["canonical", "empty", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "canonical_format_tab_preservation_ocaml_reference",
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "value_with_tabs =\n  text\t\twith\ttabs =\n"
+        }
+      },
+      "meta": {"tags": ["canonical", "tabs", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "canonical_format_unicode_ocaml_reference",
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+        }
+      },
+      "meta": {"tags": ["canonical", "unicode", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "canonical_format_line_endings_ocaml_reference",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "key1 =\n  value1 =\nkey2 =\n  value2 ="
+        }
+      },
+      "meta": {"tags": ["canonical", "crlf", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "canonical_format_consistent_spacing_ocaml_reference",
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
+        }
+      },
+      "meta": {"tags": ["canonical", "spacing", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+    },
+    {
+      "name": "deterministic_output_ocaml_reference",
+      "input": "z = last\na = first\nm = middle",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
+        }
+      },
+      "meta": {"tags": ["deterministic", "order", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
     }
   ]
 }
