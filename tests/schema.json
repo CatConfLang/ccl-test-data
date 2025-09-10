@@ -37,18 +37,22 @@
         },
         "input": {
           "type": "string",
+          "minLength": 0,
           "description": "CCL input string to parse"
         },
         "input1": {
           "type": "string",
+          "minLength": 0,
           "description": "First CCL input for composition tests"
         },
         "input2": {
           "type": "string",
+          "minLength": 0,
           "description": "Second CCL input for composition tests"
         },
         "input3": {
           "type": "string",
+          "minLength": 0,
           "description": "Third CCL input for associativity tests"
         },
         "validations": {
@@ -186,6 +190,24 @@
               }
             }
           }
+        },
+        {
+          "type": "object",
+          "required": ["count", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of assertions this validation represents"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
         }
       ]
     },
@@ -193,8 +215,13 @@
       "oneOf": [
         {
           "type": "object",
-          "required": ["left", "right", "expected"],
+          "required": ["count", "left", "right", "expected"],
           "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Number of assertions this validation represents"
+            },
             "left": {
               "type": "array",
               "description": "Left entry array for composition",
@@ -213,7 +240,22 @@
           }
         },
         {
-          "$ref": "#/definitions/error_validation"
+          "type": "object",
+          "required": ["count", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of assertions this validation represents"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
         }
       ]
     },
@@ -237,6 +279,24 @@
               }
             }
           }
+        },
+        {
+          "type": "object",
+          "required": ["count", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of assertions this validation represents"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
         }
       ]
     },
@@ -258,6 +318,24 @@
               "additionalProperties": true
             }
           }
+        },
+        {
+          "type": "object",
+          "required": ["count", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of assertions this validation represents"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
         }
       ]
     },
@@ -325,8 +403,19 @@
     "pretty_print_validation": {
       "oneOf": [
         {
-          "type": "string",
-          "description": "Expected pretty-printed output"
+          "type": "object",
+          "required": ["count", "expected"],
+          "properties": {
+            "count": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "Number of assertions this validation represents"
+            },
+            "expected": {
+              "type": "string",
+              "description": "Expected pretty-printed output"
+            }
+          }
         }
       ]
     },
@@ -336,7 +425,7 @@
       "properties": {
         "count": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": 1,
           "description": "Number of assertions this validation represents"
         },
         "property": {
@@ -356,7 +445,7 @@
       "properties": {
         "count": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": 1,
           "description": "Number of assertions this validation represents"
         },
         "expected": {
@@ -375,7 +464,7 @@
       "properties": {
         "count": {
           "type": "integer",
-          "minimum": 0,
+          "minimum": 1,
           "description": "Number of assertions this validation represents"
         },
         "property": {
@@ -443,7 +532,8 @@
           "type": "array",
           "description": "Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc.",
           "items": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*$"
           }
         },
         "level": {
