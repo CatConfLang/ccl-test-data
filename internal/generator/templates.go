@@ -873,12 +873,15 @@ func (g *Generator) getValidationCount(validation interface{}) int {
 		return 1 // Default to 1 assertion
 	}
 
-	// Try to parse as a structure with count field
-	var countStruct struct {
-		Count int `json:"count"`
-	}
-	if err := json.Unmarshal(jsonData, &countStruct); err == nil && countStruct.Count > 0 {
-		return countStruct.Count
+	// Check if this has an explicit count field
+	var checkMap map[string]interface{}
+	if err := json.Unmarshal(jsonData, &checkMap); err == nil {
+		if countVal, hasCount := checkMap["count"]; hasCount {
+			// Has explicit count field - use its value
+			if countFloat, ok := countVal.(float64); ok {
+				return int(countFloat)
+			}
+		}
 	}
 
 	// For typed access validations, check if it's an array (legacy format)
