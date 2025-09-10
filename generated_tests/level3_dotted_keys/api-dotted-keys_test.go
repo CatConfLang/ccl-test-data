@@ -62,7 +62,7 @@ database.name = mydb`
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult = ccl.MakeObjects(parseResult)
-	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"port": "5432", "host": "localhost", "name": "mydb"}}
+	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"host": "localhost", "name": "mydb", "port": "5432"}}
 	assert.Equal(t, expectedObjects, objectResult)
 
 }
@@ -90,82 +90,82 @@ cache.enabled = true`
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult = ccl.MakeObjects(parseResult)
-	expectedObjects := map[string]interface{}{"database": map[string]interface{}{"host": "localhost"}, "server": map[string]interface{}{"port": "8080"}, "cache": map[string]interface{}{"enabled": "true"}}
+	expectedObjects := map[string]interface{}{"cache": map[string]interface{}{"enabled": "true"}, "database": map[string]interface{}{"host": "localhost"}, "server": map[string]interface{}{"port": "8080"}}
 	assert.Equal(t, expectedObjects, objectResult)
 
 }
 
 // deep_dotted_nesting_three_levels - deep-nesting dotted-keys three-levels (level 3)
 func TestDeepDottedNestingThreeLevels(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // deep_dotted_nesting_four_levels - deep-nesting dotted-keys four-levels extreme (level 3)
 func TestDeepDottedNestingFourLevels(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // mixed_dotted_and_regular_keys - mixed dotted-keys regular-keys (level 3)
 func TestMixedDottedAndRegularKeys(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // conflict_dotted_vs_nested_dotted_wins - conflict-resolution dotted-wins merge (level 3)
 func TestConflictDottedVsNestedDottedWins(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // conflict_nested_vs_dotted_merge - conflict-resolution merge order-independent (level 3)
 func TestConflictNestedVsDottedMerge(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // complex_conflict_multiple_sources - complex-conflict multiple-sources merge (level 3)
 func TestComplexConflictMultipleSources(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // dotted_keys_with_empty_key_parent - empty-key dotted-keys edge-case (level 3)
 func TestDottedKeysWithEmptyKeyParent(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // dotted_keys_with_empty_key_child - empty-key dotted-keys trailing-dot (level 3)
 func TestDottedKeysWithEmptyKeyChild(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // edge_case_single_dot - edge-case single-dot empty-key (level 3)
 func TestEdgeCaseSingleDot(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // edge_case_multiple_consecutive_dots - edge-case consecutive-dots empty-segments (level 3)
 func TestEdgeCaseMultipleConsecutiveDots(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // dotted_keys_with_list_style - list-style dotted-keys duplicate-keys (level 3)
 func TestDottedKeysWithListStyle(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // dotted_keys_with_empty_key_lists - empty-key list-style dotted-keys mixed (level 3)
 func TestDottedKeysWithEmptyKeyLists(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // backward_compatibility_no_dots - backward-compatibility no-dots unchanged (level 3)
 func TestBackwardCompatibilityNoDots(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // backward_compatibility_nested_syntax - backward-compatibility nested-syntax unchanged (level 3)
 func TestBackwardCompatibilityNestedSyntax(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // stress_test_complex_mixed_scenario - stress-test complex mixed real-world (level 3)
 func TestStressTestComplexMixedScenario(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

@@ -11,15 +11,15 @@ import (
 
 // comment_extension - comments extension (level 2)
 func TestCommentExtension(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // comment_syntax_slash_equals - comment special-syntax (level 2)
 func TestCommentSyntaxSlashEquals(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // section_headers_with_comments - section-headers comments mixed-content (level 2)
 func TestSectionHeadersWithComments(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

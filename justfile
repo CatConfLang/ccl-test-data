@@ -29,7 +29,7 @@ generate-mock:
 
 # Generate tests for basic Level 1 functionality only
 generate-level1:
-    go run ./cmd/ccl-test-runner generate --run-only basic,essential-parsing,empty,redundant,quotes,realistic
+    go run ./cmd/ccl-test-runner generate --run-only basic,essential-parsing,empty,redundant,quotes,realistic,line-endings
 
 # Generate tests for mock implementation development (Level 1 + comments)
 generate-mock-dev:

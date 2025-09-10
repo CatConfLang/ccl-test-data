@@ -18,27 +18,27 @@ func TestRoundTripBasic(t *testing.T) {
 
 // round_trip_whitespace_normalization - round-trip whitespace (level 4)
 func TestRoundTripWhitespaceNormalization(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_empty_keys_lists - round-trip lists (level 4)
 func TestRoundTripEmptyKeysLists(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_nested_structures - round-trip nested (level 4)
 func TestRoundTripNestedStructures(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_multiline_values - round-trip multiline (level 4)
 func TestRoundTripMultilineValues(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_mixed_content - round-trip mixed (level 4)
 func TestRoundTripMixedContent(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // canonical_format_empty_values - canonical empty (level 4)
@@ -55,40 +55,40 @@ func TestCanonicalFormatEmptyValues(t *testing.T) {
 
 // canonical_format_tab_preservation - canonical tabs (level 4)
 func TestCanonicalFormatTabPreservation(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // canonical_format_unicode - canonical unicode (level 4)
 func TestCanonicalFormatUnicode(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_complex_nesting - round-trip complex (level 4)
 func TestRoundTripComplexNesting(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // canonical_format_line_endings - canonical crlf (level 4)
 func TestCanonicalFormatLineEndings(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_deeply_nested - round-trip deep (level 4)
 func TestRoundTripDeeplyNested(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // canonical_format_consistent_spacing - canonical spacing (level 4)
 func TestCanonicalFormatConsistentSpacing(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_empty_multiline - round-trip empty-multiline (level 4)
 func TestRoundTripEmptyMultiline(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // deterministic_output - deterministic order (level 4)
 func TestDeterministicOutput(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

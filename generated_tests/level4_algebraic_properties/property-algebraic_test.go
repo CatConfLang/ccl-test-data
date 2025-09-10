@@ -11,60 +11,60 @@ import (
 
 // semigroup_associativity_basic - algebraic associativity semigroup (level 4)
 func TestSemigroupAssociativityBasic(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // semigroup_associativity_nested - algebraic associativity nested semigroup (level 4)
 func TestSemigroupAssociativityNested(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // semigroup_associativity_lists - algebraic associativity lists semigroup (level 4)
 func TestSemigroupAssociativityLists(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_left_identity_basic - algebraic monoid identity left (level 4)
 func TestMonoidLeftIdentityBasic(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_right_identity_basic - algebraic monoid identity right (level 4)
 func TestMonoidRightIdentityBasic(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_left_identity_nested - algebraic monoid identity left nested (level 4)
 func TestMonoidLeftIdentityNested(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_right_identity_nested - algebraic monoid identity right nested (level 4)
 func TestMonoidRightIdentityNested(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_left_identity_lists - algebraic monoid identity left lists (level 4)
 func TestMonoidLeftIdentityLists(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // monoid_right_identity_lists - algebraic monoid identity right lists (level 4)
 func TestMonoidRightIdentityLists(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_property_basic - algebraic round-trip identity (level 4)
 func TestRoundTripPropertyBasic(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_property_nested - algebraic round-trip identity nested (level 4)
 func TestRoundTripPropertyNested(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
 // round_trip_property_complex - algebraic round-trip identity complex mixed (level 4)
 func TestRoundTripPropertyComplex(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty]")
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

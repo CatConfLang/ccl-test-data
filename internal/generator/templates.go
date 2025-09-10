@@ -324,6 +324,20 @@ func (g *Generator) generateParseValidation(validation interface{}) (string, err
 
 // generateFilterValidation creates assertion for filter validation
 func (g *Generator) generateFilterValidation(validation interface{}) (string, error) {
+	// Try to parse as counted format with expected field (current schema format)
+	if countedValidation, ok := g.parseAsCountedValidation(validation); ok {
+		inputVar := "input"
+		if len(countedValidation.Expected) == 0 {
+			inputVar = `""`
+		}
+		return fmt.Sprintf(`// Filter validation
+	parseResult, err = ccl.Parse(%s)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := %s
+	assert.Equal(t, expectedFilter, filterResult)`, inputVar, formatEntryArray(countedValidation.Expected)), nil
+	}
+
 	// Try to parse as array of entries (legacy format)
 	if entries, ok := g.parseAsEntryArray(validation); ok {
 		inputVar := "input"
@@ -375,14 +389,27 @@ func (g *Generator) generateMakeObjectsValidation(validation interface{}) (strin
 func (g *Generator) generateTypedAccessValidation(method string, validation interface{}) (string, error) {
 	// Try to parse as single test case
 	if testCase, ok := g.parseAsTypedAccessCase(validation); ok {
-		return fmt.Sprintf(`// %s validation
+		if testCase.Error {
+			// Generate error case
+			return fmt.Sprintf(`// %s validation
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult = ccl.MakeObjects(parseResult)
+	_, err = ccl.%s(objectResult, %s)
+	require.Error(t, err)
+	assert.Contains(t, err.Error(), "%s")`,
+				method, method, formatStringArray(testCase.Args), testCase.ErrorMessage), nil
+		} else {
+			// Generate success case
+			return fmt.Sprintf(`// %s validation
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult = ccl.MakeObjects(parseResult)
 	%sResult, err := ccl.%s(objectResult, %s)
 	require.NoError(t, err)
 	assert.Equal(t, %s, %sResult)`,
-			method, strings.ToLower(method), method, formatStringArray(testCase.Args), formatGoValue(testCase.Expected), strings.ToLower(method)), nil
+				method, strings.ToLower(method), method, formatStringArray(testCase.Args), formatGoValue(testCase.Expected), strings.ToLower(method)), nil
+		}
 	}
 
 	return g.generateComplexValidation(method, validation)
@@ -416,8 +443,10 @@ func (g *Generator) parseAsEntryArray(validation interface{}) ([]map[string]stri
 }
 
 type TypedAccessCase struct {
-	Args     []string
-	Expected interface{}
+	Args         []string
+	Expected     interface{}
+	Error        bool
+	ErrorMessage string
 }
 
 // CountedValidation represents a validation with count field
@@ -502,8 +531,10 @@ func (g *Generator) parseAsTypedAccessCase(validation interface{}) (*TypedAccess
 	}
 
 	var testCase struct {
-		Args     []string    `json:"args"`
-		Expected interface{} `json:"expected"`
+		Args         []string    `json:"args"`
+		Expected     interface{} `json:"expected"`
+		Error        bool        `json:"error"`
+		ErrorMessage string      `json:"error_message"`
 	}
 	if err := json.Unmarshal(jsonData, &testCase); err != nil {
 		return nil, false
@@ -514,8 +545,10 @@ func (g *Generator) parseAsTypedAccessCase(validation interface{}) (*TypedAccess
 	}
 
 	return &TypedAccessCase{
-		Args:     testCase.Args,
-		Expected: testCase.Expected,
+		Args:         testCase.Args,
+		Expected:     testCase.Expected,
+		Error:        testCase.Error,
+		ErrorMessage: testCase.ErrorMessage,
 	}, true
 }
 
@@ -551,6 +584,11 @@ func toPascalCase(input string) string {
 func escapeGoString(s string) string {
 	if s == "" {
 		return `""`
+	}
+	// If string contains CRLF sequences, use quoted string to preserve them
+	if strings.Contains(s, "\r\n") {
+		// Use %q to create a properly escaped quoted string
+		return fmt.Sprintf("%q", s)
 	}
 	return fmt.Sprintf("`%s`", s)
 }
