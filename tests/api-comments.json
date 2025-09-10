@@ -40,8 +40,8 @@
       },
       "meta": {
         "tags": [
-          "comments",
-          "extension"
+          "feature:comments",
+          "function:filter"
         ],
         "level": 2,
         "feature": "comments"
@@ -63,8 +63,8 @@
       },
       "meta": {
         "tags": [
-          "comment",
-          "special-syntax"
+          "feature:comments",
+          "function:filter"
         ],
         "level": 2,
         "feature": "comments"
@@ -106,9 +106,9 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "comments",
-          "mixed-content"
+          "feature:comments",
+          "feature:empty-keys",
+          "function:filter"
         ],
         "level": 2,
         "feature": "comments"

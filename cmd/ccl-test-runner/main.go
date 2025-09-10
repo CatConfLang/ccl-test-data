@@ -221,8 +221,8 @@ func statsAction(ctx *cli.Context) error {
 		styles.Status("📊", "Collecting test statistics...")
 	}
 
-	collector := stats.NewCollector(inputDir)
-	statistics, err := collector.CollectStats()
+	collector := stats.NewEnhancedCollector(inputDir)
+	statistics, err := collector.CollectEnhancedStats()
 	if err != nil {
 		return fmt.Errorf("failed to collect statistics: %w", err)
 	}
@@ -237,36 +237,8 @@ func statsAction(ctx *cli.Context) error {
 		fmt.Println(string(jsonData))
 
 	default: // "pretty"
-		// Display human-readable summary
-		styles.Info("🔍 CCL Test Suite Statistics")
-		styles.InfoLite("")
-
-		styles.InfoLite("Feature-Based Structure:")
-		styles.InfoLite("  Core Parsing: %d tests (%d assertions)",
-			statistics.Categories["core-parsing"].Total,
-			statistics.Categories["core-parsing"].Assertions)
-		styles.InfoLite("  Advanced Processing: %d tests (%d assertions)",
-			statistics.Categories["advanced-processing"].Total,
-			statistics.Categories["advanced-processing"].Assertions)
-		styles.InfoLite("  Object Construction: %d tests (%d assertions)",
-			statistics.Categories["object-construction"].Total,
-			statistics.Categories["object-construction"].Assertions)
-		styles.InfoLite("  Type System: %d tests (%d assertions)",
-			statistics.Categories["type-system"].Total,
-			statistics.Categories["type-system"].Assertions)
-		styles.InfoLite("  Output & Validation: %d tests (%d assertions)",
-			statistics.Categories["output-validation"].Total,
-			statistics.Categories["output-validation"].Assertions)
-
-		if statistics.Categories["other"].Total > 0 {
-			styles.InfoLite("  Other: %d tests (%d assertions)",
-				statistics.Categories["other"].Total,
-				statistics.Categories["other"].Assertions)
-		}
-
-		styles.InfoLite("")
-		styles.Success("Total: %d tests (%d assertions) across %d files",
-			statistics.TotalTests, statistics.TotalAssertions, statistics.TotalFiles)
+		// Use the enhanced stats printer
+		stats.PrintEnhancedStats(statistics)
 	}
 
 	return nil

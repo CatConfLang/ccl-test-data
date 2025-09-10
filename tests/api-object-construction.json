@@ -28,9 +28,8 @@
       },
       "meta": {
         "tags": [
-          "recursive",
-          "nested",
-          "basic"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -62,9 +61,8 @@
       },
       "meta": {
         "tags": [
-          "recursive",
-          "nested",
-          "multiple"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -100,9 +98,8 @@
       },
       "meta": {
         "tags": [
-          "recursive",
-          "nested",
-          "deep"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -137,9 +134,8 @@
       },
       "meta": {
         "tags": [
-          "merge",
-          "duplicate-keys",
-          "object-construction"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -173,9 +169,9 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "lists",
-          "array-style"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -215,13 +211,16 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "top-level",
-          "merge",
-          "proposed-behavior"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 3,
-        "feature": "object-construction"
+        "feature": "object-construction",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
       }
     },
     {
@@ -258,10 +257,10 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "top-level",
-          "merge",
-          "reference-compliant-behavior"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -302,9 +301,9 @@
       },
       "meta": {
         "tags": [
-          "mixed",
-          "flat",
-          "nested"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"
@@ -368,11 +367,9 @@
       },
       "meta": {
         "tags": [
-          "stress",
-          "complex",
-          "merge",
-          "empty-key",
-          "comments"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "object-construction"

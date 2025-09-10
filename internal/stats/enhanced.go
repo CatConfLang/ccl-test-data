@@ -1,0 +1,485 @@
+package stats
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/fs"
+	"os"
+	"path/filepath"
+	"sort"
+	"strings"
+
+	"github.com/ccl-test-data/test-runner/internal/types"
+)
+
+// Enhanced statistics structures
+type FunctionStats struct {
+	Tests      int      `json:"tests"`
+	Assertions int      `json:"assertions"`
+	Files      []string `json:"files"`
+}
+
+type FeatureStats struct {
+	Tests      int      `json:"tests"`
+	Assertions int      `json:"assertions"`
+	Files      []string `json:"files"`
+}
+
+type BehaviorStats struct {
+	Tests      int               `json:"tests"`
+	Assertions int               `json:"assertions"`
+	Files      []string          `json:"files"`
+	Conflicts  map[string]int    `json:"conflicts"`
+}
+
+type VariantStats struct {
+	Tests      int      `json:"tests"`
+	Assertions int      `json:"assertions"`
+	Files      []string `json:"files"`
+}
+
+type ConflictGroup struct {
+	Tags  []string `json:"tags"`
+	Count int      `json:"count"`
+}
+
+type EnhancedStatistics struct {
+	Structure        string                     `json:"structure"`
+	TotalTests       int                        `json:"totalTests"`
+	TotalAssertions  int                        `json:"totalAssertions"`
+	TotalFiles       int                        `json:"totalFiles"`
+	
+	// Feature-based analysis
+	Functions        map[string]*FunctionStats  `json:"functions"`
+	Features         map[string]*FeatureStats   `json:"features"`
+	Behaviors        map[string]*BehaviorStats  `json:"behaviors"`
+	Variants         map[string]*VariantStats   `json:"variants"`
+	
+	// Conflict analysis
+	ConflictPairs    map[string][]string        `json:"conflictPairs"`
+	ConflictGroups   []ConflictGroup            `json:"conflictGroups"`
+	MutuallyExclusive int                       `json:"mutuallyExclusiveTests"`
+	
+	// Level breakdown
+	LevelBreakdown   map[string]int             `json:"levelBreakdown"`
+	
+	// Legacy compatibility
+	Categories       map[string]*CategoryStats  `json:"categories"`
+}
+
+// EnhancedCollector provides detailed statistics about the new tagging system
+type EnhancedCollector struct {
+	testDir string
+}
+
+// NewEnhancedCollector creates a new enhanced statistics collector
+func NewEnhancedCollector(testDir string) *EnhancedCollector {
+	return &EnhancedCollector{testDir: testDir}
+}
+
+// parseTag extracts category and name from structured tags like "function:parse"
+func parseTag(tag string) (category, name string) {
+	parts := strings.SplitN(tag, ":", 2)
+	if len(parts) == 2 {
+		return parts[0], parts[1]
+	}
+	return "legacy", tag
+}
+
+// analyzeEnhancedTestFile analyzes a test file with the new tagging system
+func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string]interface{}, error) {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, fmt.Errorf("reading file %s: %w", filePath, err)
+	}
+
+	var testSuite types.TestSuite
+	if err := json.Unmarshal(data, &testSuite); err != nil {
+		return nil, fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+	}
+
+	fileName := strings.TrimSuffix(filepath.Base(filePath), ".json")
+	result := map[string]interface{}{
+		"fileName": fileName,
+		"tests":    []map[string]interface{}{},
+	}
+
+	for _, test := range testSuite.Tests {
+		// Count assertions for this test
+		assertions := 0
+		validationData := map[string]interface{}{
+			"parse":            test.Validations.Parse,
+			"parse_value":      test.Validations.ParseValue,
+			"filter":           test.Validations.Filter,
+			"compose":          test.Validations.Compose,
+			"expand_dotted":    test.Validations.ExpandDotted,
+			"make_objects":     test.Validations.MakeObjects,
+			"get_string":       test.Validations.GetString,
+			"get_int":          test.Validations.GetInt,
+			"get_bool":         test.Validations.GetBool,
+			"get_float":        test.Validations.GetFloat,
+			"get_list":         test.Validations.GetList,
+			"pretty_print":     test.Validations.PrettyPrint,
+			"round_trip":       test.Validations.RoundTrip,
+			"canonical_format": test.Validations.Canonical,
+			"associativity":    test.Validations.Associativity,
+		}
+
+		for _, validation := range validationData {
+			if validation != nil {
+				assertions += countAssertions(validation)
+			}
+		}
+
+		// Analyze tags
+		functions := []string{}
+		features := []string{}
+		behaviors := []string{}
+		variants := []string{}
+		
+		for _, tag := range test.Meta.Tags {
+			category, name := parseTag(tag)
+			switch category {
+			case "function":
+				functions = append(functions, name)
+			case "feature":
+				features = append(features, name)
+			case "behavior":
+				behaviors = append(behaviors, name)
+			case "variant":
+				variants = append(variants, name)
+			}
+		}
+
+		testData := map[string]interface{}{
+			"name":       test.Name,
+			"level":      test.Meta.Level,
+			"feature":    test.Meta.Feature,
+			"assertions": assertions,
+			"functions":  functions,
+			"features":   features,
+			"behaviors":  behaviors,
+			"variants":   variants,
+			"conflicts":  test.Meta.Conflicts,
+		}
+
+		result["tests"] = append(result["tests"].([]map[string]interface{}), testData)
+	}
+
+	return result, nil
+}
+
+// CollectEnhancedStats collects enhanced statistics with the new tagging system
+func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) {
+	testFiles, err := c.findTestFiles()
+	if err != nil {
+		return nil, fmt.Errorf("finding test files: %w", err)
+	}
+
+	stats := &EnhancedStatistics{
+		Structure:       "feature-based-enhanced",
+		Functions:       make(map[string]*FunctionStats),
+		Features:        make(map[string]*FeatureStats),
+		Behaviors:       make(map[string]*BehaviorStats),
+		Variants:        make(map[string]*VariantStats),
+		ConflictPairs:   make(map[string][]string),
+		LevelBreakdown:  make(map[string]int),
+		Categories:      make(map[string]*CategoryStats),
+	}
+
+	// Initialize legacy categories for compatibility
+	stats.Categories = map[string]*CategoryStats{
+		"core-parsing":        {Files: make(map[string]*FileStats)},
+		"advanced-processing": {Files: make(map[string]*FileStats)},
+		"object-construction": {Files: make(map[string]*FileStats)},
+		"type-system":         {Files: make(map[string]*FileStats)},
+		"output-validation":   {Files: make(map[string]*FileStats)},
+		"other":               {Files: make(map[string]*FileStats)},
+	}
+
+	conflictPairs := make(map[string]map[string]int)
+
+	for _, filePath := range testFiles {
+		fileData, err := c.analyzeEnhancedTestFile(filePath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: %v\n", err)
+			continue
+		}
+
+		fileName := fileData["fileName"].(string)
+		tests := fileData["tests"].([]map[string]interface{})
+
+		if len(tests) == 0 {
+			continue
+		}
+
+		fileStats := &FileStats{Tests: len(tests), Assertions: 0}
+
+		for _, testData := range tests {
+			assertions := testData["assertions"].(int)
+			level := testData["level"].(int)
+			feature := testData["feature"].(string)
+			functions := testData["functions"].([]string)
+			features := testData["features"].([]string)
+			behaviors := testData["behaviors"].([]string)
+			variants := testData["variants"].([]string)
+
+			fileStats.Assertions += assertions
+			stats.TotalTests++
+			stats.TotalAssertions += assertions
+
+			// Level breakdown
+			levelKey := fmt.Sprintf("level-%d", level)
+			stats.LevelBreakdown[levelKey]++
+
+			// Function stats
+			for _, fn := range functions {
+				if stats.Functions[fn] == nil {
+					stats.Functions[fn] = &FunctionStats{Files: []string{}}
+				}
+				fnStats := stats.Functions[fn]
+				fnStats.Tests++
+				fnStats.Assertions += assertions
+				if !contains(fnStats.Files, fileName) {
+					fnStats.Files = append(fnStats.Files, fileName)
+				}
+			}
+
+			// Feature stats
+			for _, feat := range features {
+				if stats.Features[feat] == nil {
+					stats.Features[feat] = &FeatureStats{Files: []string{}}
+				}
+				featStats := stats.Features[feat]
+				featStats.Tests++
+				featStats.Assertions += assertions
+				if !contains(featStats.Files, fileName) {
+					featStats.Files = append(featStats.Files, fileName)
+				}
+			}
+
+			// Behavior stats
+			for _, behav := range behaviors {
+				if stats.Behaviors[behav] == nil {
+					stats.Behaviors[behav] = &BehaviorStats{Files: []string{}, Conflicts: make(map[string]int)}
+				}
+				behavStats := stats.Behaviors[behav]
+				behavStats.Tests++
+				behavStats.Assertions += assertions
+				if !contains(behavStats.Files, fileName) {
+					behavStats.Files = append(behavStats.Files, fileName)
+				}
+			}
+
+			// Variant stats
+			for _, variant := range variants {
+				if stats.Variants[variant] == nil {
+					stats.Variants[variant] = &VariantStats{Files: []string{}}
+				}
+				varStats := stats.Variants[variant]
+				varStats.Tests++
+				varStats.Assertions += assertions
+				if !contains(varStats.Files, fileName) {
+					varStats.Files = append(varStats.Files, fileName)
+				}
+			}
+
+			// Conflict analysis
+			if conflictSlice, ok := testData["conflicts"].([]string); ok && len(conflictSlice) > 0 {
+				// Count this as a mutually exclusive test
+				stats.MutuallyExclusive++
+				
+				// Track conflict relationships for each tag in this test
+				allTags := append([]string{}, behaviors...)
+				allTags = append(allTags, variants...)
+				
+				for _, tag := range allTags {
+					// Determine the full tag with prefix
+					var fullTag string
+					if contains(behaviors, tag) {
+						fullTag = "behavior:" + tag
+					} else {
+						fullTag = "variant:" + tag
+					}
+					
+					// Record what this tag conflicts with
+					if conflictPairs[fullTag] == nil {
+						conflictPairs[fullTag] = make(map[string]int)
+					}
+					
+					for _, conflict := range conflictSlice {
+						conflictPairs[fullTag][conflict]++
+					}
+				}
+			}
+
+			// Legacy category stats for compatibility
+			category := categorizeByFeature(feature)
+			if stats.Categories[category] == nil {
+				stats.Categories[category] = &CategoryStats{Files: make(map[string]*FileStats)}
+			}
+			categoryStats := stats.Categories[category]
+			if categoryStats.Files[fileName] == nil {
+				categoryStats.Files[fileName] = &FileStats{}
+			}
+			categoryStats.Files[fileName].Tests++
+			categoryStats.Files[fileName].Assertions += assertions
+		}
+
+		// Update legacy category totals
+		for _, categoryStats := range stats.Categories {
+			if categoryStats.Files[fileName] != nil {
+				categoryStats.Total += fileStats.Tests
+				categoryStats.Assertions += fileStats.Assertions
+			}
+		}
+
+		stats.TotalFiles++
+	}
+
+	// Convert conflict pairs to slice format
+	for tag, conflicts := range conflictPairs {
+		conflictList := []string{}
+		for conflict := range conflicts {
+			conflictList = append(conflictList, conflict)
+		}
+		stats.ConflictPairs[tag] = conflictList
+	}
+
+	return stats, nil
+}
+
+// findTestFiles finds all JSON test files (reuse from base collector)
+func (c *EnhancedCollector) findTestFiles() ([]string, error) {
+	var files []string
+
+	err := filepath.WalkDir(c.testDir, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+
+		if !d.IsDir() && strings.HasSuffix(path, ".json") && !strings.HasSuffix(path, "schema.json") {
+			files = append(files, path)
+		}
+
+		return nil
+	})
+
+	return files, err
+}
+
+// Helper function to check if slice contains string
+func contains(slice []string, item string) bool {
+	for _, s := range slice {
+		if s == item {
+			return true
+		}
+	}
+	return false
+}
+
+// PrintEnhancedStats prints enhanced statistics in a human-readable format
+func PrintEnhancedStats(stats *EnhancedStatistics) {
+	fmt.Printf("📊 Enhanced CCL Test Suite Statistics\n\n")
+	
+	// Overall summary
+	fmt.Printf("🔍 Overview:\n")
+	fmt.Printf("  Total Tests: %d\n", stats.TotalTests)
+	fmt.Printf("  Total Assertions: %d\n", stats.TotalAssertions)
+	fmt.Printf("  Total Files: %d\n", stats.TotalFiles)
+	fmt.Printf("  Mutually Exclusive Tests: %d\n\n", stats.MutuallyExclusive)
+
+	// Level breakdown
+	fmt.Printf("📚 Level Breakdown:\n")
+	levels := []string{"level-1", "level-2", "level-3", "level-4", "level-5"}
+	for _, level := range levels {
+		if count, exists := stats.LevelBreakdown[level]; exists && count > 0 {
+			fmt.Printf("  %s: %d tests\n", strings.Title(strings.Replace(level, "-", " ", -1)), count)
+		}
+	}
+	fmt.Println()
+
+	// Function requirements
+	fmt.Printf("⚙️  Function Requirements:\n")
+	functionKeys := make([]string, 0, len(stats.Functions))
+	for k := range stats.Functions {
+		functionKeys = append(functionKeys, k)
+	}
+	sort.Strings(functionKeys)
+	
+	for _, fn := range functionKeys {
+		fnStats := stats.Functions[fn]
+		fmt.Printf("  function:%s: %d tests (%d assertions) across %d files\n", 
+			fn, fnStats.Tests, fnStats.Assertions, len(fnStats.Files))
+	}
+	fmt.Println()
+
+	// Language features
+	if len(stats.Features) > 0 {
+		fmt.Printf("🎨 Language Features:\n")
+		featureKeys := make([]string, 0, len(stats.Features))
+		for k := range stats.Features {
+			featureKeys = append(featureKeys, k)
+		}
+		sort.Strings(featureKeys)
+		
+		for _, feat := range featureKeys {
+			featStats := stats.Features[feat]
+			fmt.Printf("  feature:%s: %d tests (%d assertions) across %d files\n", 
+				feat, featStats.Tests, featStats.Assertions, len(featStats.Files))
+		}
+		fmt.Println()
+	}
+
+	// Behavioral choices
+	if len(stats.Behaviors) > 0 {
+		fmt.Printf("🔧 Behavioral Choices:\n")
+		behaviorKeys := make([]string, 0, len(stats.Behaviors))
+		for k := range stats.Behaviors {
+			behaviorKeys = append(behaviorKeys, k)
+		}
+		sort.Strings(behaviorKeys)
+		
+		for _, behav := range behaviorKeys {
+			behavStats := stats.Behaviors[behav]
+			fmt.Printf("  behavior:%s: %d tests (%d assertions)\n", 
+				behav, behavStats.Tests, behavStats.Assertions)
+		}
+		fmt.Println()
+	}
+
+	// Implementation variants
+	if len(stats.Variants) > 0 {
+		fmt.Printf("🔀 Implementation Variants:\n")
+		variantKeys := make([]string, 0, len(stats.Variants))
+		for k := range stats.Variants {
+			variantKeys = append(variantKeys, k)
+		}
+		sort.Strings(variantKeys)
+		
+		for _, variant := range variantKeys {
+			varStats := stats.Variants[variant]
+			fmt.Printf("  variant:%s: %d tests (%d assertions)\n", 
+				variant, varStats.Tests, varStats.Assertions)
+		}
+		fmt.Println()
+	}
+
+	// Conflict relationships
+	if len(stats.ConflictPairs) > 0 {
+		fmt.Printf("⚔️  Conflict Relationships:\n")
+		conflictKeys := make([]string, 0, len(stats.ConflictPairs))
+		for k := range stats.ConflictPairs {
+			conflictKeys = append(conflictKeys, k)
+		}
+		sort.Strings(conflictKeys)
+		
+		for _, tag := range conflictKeys {
+			conflicts := stats.ConflictPairs[tag]
+			if len(conflicts) > 0 {
+				fmt.Printf("  %s conflicts with: %s\n", tag, strings.Join(conflicts, ", "))
+			}
+		}
+		fmt.Println()
+	}
+}

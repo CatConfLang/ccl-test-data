@@ -20,8 +20,7 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -43,9 +42,8 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "whitespace",
-          "redundant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -67,9 +65,8 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "indentation",
-          "redundant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 2,
         "feature": "parsing"
@@ -91,9 +88,8 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "trimming",
-          "redundant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -115,9 +111,8 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "trimming",
-          "redundant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -139,8 +134,7 @@
       },
       "meta": {
         "tags": [
-          "line-endings",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -162,8 +156,8 @@
       },
       "meta": {
         "tags": [
-          "empty-value",
-          "redundant"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -185,9 +179,8 @@
       },
       "meta": {
         "tags": [
-          "empty-value",
-          "line-endings",
-          "redundant"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -209,9 +202,9 @@
       },
       "meta": {
         "tags": [
-          "empty-value",
-          "whitespace",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -233,10 +226,8 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "lists",
-          "indentation",
-          "redundant"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "parsing"
@@ -258,10 +249,8 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "lists",
-          "line-endings",
-          "redundant"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -283,10 +272,9 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "empty-value",
-          "whitespace",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -308,9 +296,7 @@
       },
       "meta": {
         "tags": [
-          "equals",
-          "basic",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -332,9 +318,8 @@
       },
       "meta": {
         "tags": [
-          "equals",
-          "whitespace",
-          "redundant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -360,9 +345,7 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "multiple",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -384,13 +367,17 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "tabs",
-          "redundant",
-          "proposed-behavior"
+          "behavior:tabs-preserve",
+          "feature:whitespace",
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 1,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": [
+          "behavior:tabs-to-spaces",
+          "variant:reference-compliant"
+        ]
       }
     },
     {
@@ -409,13 +396,16 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "tabs",
-          "redundant",
-          "reference-compliant-behavior"
+          "behavior:tabs-preserve",
+          "feature:whitespace",
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 1,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": [
+          "behavior:tabs-to-spaces"
+        ]
       }
     },
     {
@@ -434,9 +424,9 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "empty-value",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -458,14 +448,17 @@
       },
       "meta": {
         "tags": [
-          "continuation",
-          "whitespace",
-          "tabs",
-          "redundant",
-          "proposed-behavior"
+          "behavior:tabs-preserve",
+          "feature:whitespace",
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 2,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": [
+          "behavior:tabs-to-spaces",
+          "variant:reference-compliant"
+        ]
       }
     },
     {
@@ -484,14 +477,16 @@
       },
       "meta": {
         "tags": [
-          "continuation",
-          "whitespace",
-          "tabs",
-          "redundant",
-          "reference-compliant-behavior"
+          "behavior:tabs-preserve",
+          "feature:whitespace",
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 2,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": [
+          "behavior:tabs-to-spaces"
+        ]
       }
     },
     {
@@ -510,10 +505,9 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "multiple-equals",
-          "whitespace",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -535,10 +529,9 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "newlines",
-          "edge-case",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -560,10 +553,9 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "newlines",
-          "edge-case",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -585,10 +577,9 @@
       },
       "meta": {
         "tags": [
-          "empty-value",
-          "whitespace",
-          "newlines",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -610,11 +601,9 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "empty-value",
-          "newlines",
-          "whitespace",
-          "redundant"
+          "feature:empty-keys",
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -636,9 +625,7 @@
       },
       "meta": {
         "tags": [
-          "quotes",
-          "literal",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -660,9 +647,7 @@
       },
       "meta": {
         "tags": [
-          "quotes",
-          "literal",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -684,9 +669,8 @@
       },
       "meta": {
         "tags": [
-          "nested",
-          "indentation",
-          "redundant"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -708,10 +692,9 @@
       },
       "meta": {
         "tags": [
-          "nested",
-          "indentation",
-          "multiline",
-          "redundant"
+          "feature:multiline",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -733,11 +716,9 @@
       },
       "meta": {
         "tags": [
-          "nested",
-          "indentation",
-          "multiline",
-          "blank-lines",
-          "redundant"
+          "feature:multiline",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 2,
         "feature": "parsing"
@@ -759,11 +740,8 @@
       },
       "meta": {
         "tags": [
-          "nested",
-          "indentation",
-          "deep",
-          "continuation",
-          "redundant"
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 2,
         "feature": "parsing"
@@ -797,10 +775,7 @@
       },
       "meta": {
         "tags": [
-          "realistic",
-          "multiple-pairs",
-          "stress-test",
-          "redundant"
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -945,17 +920,19 @@
       },
       "meta": {
         "tags": [
-          "stress-test",
-          "ocaml-original",
-          "realistic",
-          "nested",
-          "lists",
-          "merging",
-          "multi-level",
-          "proposed-behavior"
+          "feature:comments",
+          "feature:empty-keys",
+          "function:get-list",
+          "function:get-string",
+          "function:make-objects",
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 4,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
       }
     },
     {
@@ -1027,14 +1004,12 @@
       },
       "meta": {
         "tags": [
-          "stress-test",
-          "ocaml-original",
-          "realistic",
-          "nested",
-          "lists",
-          "merging",
-          "multi-level",
-          "reference-compliant-behavior"
+          "feature:comments",
+          "feature:empty-keys",
+          "function:get-string",
+          "function:make-objects",
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 4,
         "feature": "parsing"

@@ -32,8 +32,7 @@
       },
       "meta": {
         "tags": [
-          "composition",
-          "duplicate-keys"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -63,8 +62,7 @@
       },
       "meta": {
         "tags": [
-          "duplicate-keys",
-          "multiple-values"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -94,8 +92,8 @@
       },
       "meta": {
         "tags": [
-          "lists",
-          "empty-key"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -117,9 +115,8 @@
       },
       "meta": {
         "tags": [
-          "section",
-          "empty-key",
-          "special-syntax"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -153,9 +150,7 @@
       },
       "meta": {
         "tags": [
-          "composition",
-          "duplicate-keys",
-          "redundant"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -189,9 +184,7 @@
       },
       "meta": {
         "tags": [
-          "composition",
-          "duplicate-keys",
-          "redundant"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -221,9 +214,7 @@
       },
       "meta": {
         "tags": [
-          "duplicate-keys",
-          "multiple-values",
-          "redundant"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -257,9 +248,9 @@
       },
       "meta": {
         "tags": [
-          "duplicate-keys",
-          "mixed",
-          "redundant"
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -289,9 +280,8 @@
       },
       "meta": {
         "tags": [
-          "lists",
-          "empty-value",
-          "redundant"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -321,8 +311,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "keyless-values"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -352,8 +342,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "keyless-values"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -395,8 +385,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "multiple-sections"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -438,9 +428,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "lists",
-          "mixed-content"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -462,8 +451,7 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "empty-section"
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -489,8 +477,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "end-of-file"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -524,8 +512,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "asymmetric-equals"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -559,9 +547,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "colon-convention",
-          "user-text"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -595,9 +582,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "spacing-edge-cases",
-          "list-items"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -631,9 +617,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "consecutive",
-          "hierarchical"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -659,9 +644,9 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "multiline",
-          "edge-case"
+          "feature:empty-keys",
+          "feature:multiline",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"
@@ -687,9 +672,8 @@
       },
       "meta": {
         "tags": [
-          "section-headers",
-          "unindented-continuation",
-          "parser-behavior"
+          "feature:empty-keys",
+          "function:parse"
         ],
         "level": 2,
         "feature": "processing"

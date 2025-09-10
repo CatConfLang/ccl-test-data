@@ -44,6 +44,7 @@ type ValidationSet struct {
 // TestMetadata contains test categorization information
 type TestMetadata struct {
 	Tags       []string `json:"tags"`
+	Conflicts  []string `json:"conflicts,omitempty"`
 	Level      int      `json:"level"`
 	Feature    string   `json:"feature,omitempty"`
 	Difficulty string   `json:"difficulty,omitempty"`
