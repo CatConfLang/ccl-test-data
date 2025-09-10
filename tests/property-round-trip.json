@@ -9,6 +9,7 @@
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -19,6 +20,7 @@
       "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -29,6 +31,7 @@
       "input": "= item1\n= item2\nregular = value",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -39,6 +42,7 @@
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -49,6 +53,7 @@
       "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -59,6 +64,7 @@
       "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -69,6 +75,7 @@
       "input": "empty_key =",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "empty_key ="
         }
       },
@@ -79,6 +86,7 @@
       "input": "value_with_tabs = text\t\twith\ttabs\t",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "value_with_tabs = text\t\twith\ttabs"
         }
       },
@@ -89,6 +97,7 @@
       "input": "unicode = 你好世界\nemo = 🌟✨",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "unicode = 你好世界\nemo = 🌟✨"
         }
       },
@@ -99,6 +108,7 @@
       "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -109,6 +119,7 @@
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "key1 = value1\nkey2 = value2"
         }
       },
@@ -119,6 +130,7 @@
       "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -129,6 +141,7 @@
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
         }
       },
@@ -139,6 +152,7 @@
       "input": "empty_section =\n\nother = value",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -149,6 +163,7 @@
       "input": "z = last\na = first\nm = middle",
       "validations": {
         "canonical_format": {
+          "count": 1,
           "expected": "z = last\na = first\nm = middle"
         }
       },

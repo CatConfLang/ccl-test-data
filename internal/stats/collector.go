@@ -125,21 +125,21 @@ func (c *Collector) analyzeTestFile(filePath string) (*FileStats, string, error)
 	for _, test := range testSuite.Tests {
 		// Use reflection to iterate over validation fields
 		validationData := map[string]interface{}{
-			"parse":         test.Validations.Parse,
-			"parse_value":   test.Validations.ParseValue,
-			"filter":        test.Validations.Filter,
-			"compose":       test.Validations.Compose,
-			"expand_dotted": test.Validations.ExpandDotted,
-			"make_objects":  test.Validations.MakeObjects,
-			"get_string":    test.Validations.GetString,
-			"get_int":       test.Validations.GetInt,
-			"get_bool":      test.Validations.GetBool,
-			"get_float":     test.Validations.GetFloat,
-			"get_list":      test.Validations.GetList,
-			"pretty_print":  test.Validations.PrettyPrint,
-			"round_trip":    test.Validations.RoundTrip,
-			"canonical":     test.Validations.Canonical,
-			"associativity": test.Validations.Associativity,
+			"parse":            test.Validations.Parse,
+			"parse_value":      test.Validations.ParseValue,
+			"filter":           test.Validations.Filter,
+			"compose":          test.Validations.Compose,
+			"expand_dotted":    test.Validations.ExpandDotted,
+			"make_objects":     test.Validations.MakeObjects,
+			"get_string":       test.Validations.GetString,
+			"get_int":          test.Validations.GetInt,
+			"get_bool":         test.Validations.GetBool,
+			"get_float":        test.Validations.GetFloat,
+			"get_list":         test.Validations.GetList,
+			"pretty_print":     test.Validations.PrettyPrint,
+			"round_trip":       test.Validations.RoundTrip,
+			"canonical_format": test.Validations.Canonical,
+			"associativity":    test.Validations.Associativity,
 		}
 
 		for _, validation := range validationData {

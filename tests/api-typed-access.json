@@ -189,11 +189,16 @@
           }
         },
         "get_bool": {
-          "args": [
-            "active"
-          ],
-          "error": true,
-          "error_message": "Value is not a boolean"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "active"
+              ],
+              "error": true,
+              "error_message": "Value is not a boolean"
+            }
+          ]
         }
       },
       "meta": {
@@ -612,11 +617,16 @@
           }
         },
         "get_bool": {
-          "args": [
-            "flag1"
-          ],
-          "error": true,
-          "error_message": "Value is not a boolean"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "flag1"
+              ],
+              "error": true,
+              "error_message": "Value is not a boolean"
+            }
+          ]
         },
         "get_int": {
           "count": 1,
@@ -1016,11 +1026,16 @@
           }
         },
         "get_int": {
-          "args": [
-            "port"
-          ],
-          "error": true,
-          "error_message": "Cannot parse 'not_a_number' as integer at path 'port'"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "port"
+              ],
+              "error": true,
+              "error_message": "Cannot parse 'not_a_number' as integer at path 'port'"
+            }
+          ]
         }
       },
       "meta": {
@@ -1053,11 +1068,16 @@
           }
         },
         "get_float": {
-          "args": [
-            "temperature"
-          ],
-          "error": true,
-          "error_message": "Cannot parse 'invalid' as float at path 'temperature'"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "temperature"
+              ],
+              "error": true,
+              "error_message": "Cannot parse 'invalid' as float at path 'temperature'"
+            }
+          ]
         }
       },
       "meta": {
@@ -1090,11 +1110,16 @@
           }
         },
         "get_bool": {
-          "args": [
-            "enabled"
-          ],
-          "error": true,
-          "error_message": "Cannot parse 'maybe' as boolean at path 'enabled'"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "enabled"
+              ],
+              "error": true,
+              "error_message": "Cannot parse 'maybe' as boolean at path 'enabled'"
+            }
+          ]
         }
       },
       "meta": {
@@ -1127,11 +1152,16 @@
           }
         },
         "get_string": {
-          "args": [
-            "missing"
-          ],
-          "error": true,
-          "error_message": "Path 'missing' not found."
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "missing"
+              ],
+              "error": true,
+              "error_message": "Path 'missing' not found."
+            }
+          ]
         }
       },
       "meta": {
