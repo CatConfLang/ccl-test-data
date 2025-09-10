@@ -161,10 +161,16 @@ func TestEmptyInput(t *testing.T) {
 
 	ccl := mock.New()
 
-	// TODO: Implement Parse validation
-	// Validation data: map[count:0 expected:[]]
-	// TODO: Implement test validations
-	_ = ccl // Prevent unused variable warning
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+
+	var err error
+
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
 
 }
 

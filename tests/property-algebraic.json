@@ -9,6 +9,7 @@
       "input": "a = 1\nb = 2\nc = 3",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "semigroup_associativity",
           "left_assoc": "(a ⊕ b) ⊕ c - merge a with b, then merge result with c",
           "right_assoc": "a ⊕ (b ⊕ c) - merge b with c, then merge a with result", 
@@ -26,6 +27,7 @@
       "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "semigroup_associativity",
           "left_assoc": "((config ⊕ db) ⊕ additional) - merge config with db first",
           "right_assoc": "(config ⊕ (db ⊕ additional)) - merge db with additional first",
@@ -43,6 +45,7 @@
       "input": "= item1\n= item2\n= item3",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "semigroup_associativity",
           "left_assoc": "((list1 ⊕ list2) ⊕ list3) - merge first two lists, then third",
           "right_assoc": "(list1 ⊕ (list2 ⊕ list3)) - merge last two lists, then first",
@@ -60,6 +63,7 @@
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_left",
           "left_assoc": "ε ⊕ x - merge empty CCL with input",
           "right_assoc": "x - original input unchanged",
@@ -77,6 +81,7 @@
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_right",
           "left_assoc": "x - original input unchanged",
           "right_assoc": "x ⊕ ε - merge input with empty CCL",
@@ -94,6 +99,7 @@
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_left",
           "left_assoc": "ε ⊕ nested_config - merge empty with nested structure",
           "right_assoc": "nested_config - original nested structure",
@@ -111,6 +117,7 @@
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_right", 
           "left_assoc": "nested_config - original nested structure",
           "right_assoc": "nested_config ⊕ ε - merge nested structure with empty",
@@ -128,6 +135,7 @@
       "input": "= item1\n= item2\n= item3",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_left",
           "left_assoc": "ε ⊕ list - merge empty with list",
           "right_assoc": "list - original list unchanged",
@@ -145,6 +153,7 @@
       "input": "= item1\n= item2\n= item3",
       "validations": {
         "associativity": {
+          "count": 1,
           "property": "monoid_identity_right",
           "left_assoc": "list - original list unchanged", 
           "right_assoc": "list ⊕ ε - merge list with empty",
@@ -162,6 +171,7 @@
       "input": "key = value\nanother = test",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -176,6 +186,7 @@
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
@@ -190,6 +201,7 @@
       "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
       "validations": {
         "round_trip": {
+          "count": 1,
           "property": "identity"
         }
       },
