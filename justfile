@@ -107,11 +107,11 @@ validate:
 
 # Clean up generated files (cross-platform)
 clean:
-    npx rimraf generated_tests/ bin/
+    go run ./cmd/clean generated_tests bin
 
 # Clean everything including node_modules (cross-platform)
 clean-all:
-    npx rimraf generated_tests/ bin/ node_modules/
+    go run ./cmd/clean generated_tests bin node_modules
 
 # Update documentation with current stats (replaces npm run docs:update)
 docs-update:
