@@ -22,12 +22,12 @@ This repository contains the **official JSON test suite** for CCL implementation
 
 ### Test Format Features
 
-✅ **Direct API mapping** - Each validation maps to a specific API function\
-✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
-✅ **Simple test runners** - Direct iteration over `validations` object keys\
-✅ **Assertion counting** - Optional explicit counts for validation verification\
-✅ **Self-documenting** - Validation names explain what's being tested\
-✅ **148+ test assertions** - Comprehensive coverage across all CCL features
+✅ **Direct API mapping** - Each validation maps to a specific API function  
+✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels  
+✅ **Simple test runners** - Direct iteration over `validations` object keys  
+✅ **Assertion counting** - Required explicit counts for validation verification  
+✅ **Self-documenting** - Validation names explain what's being tested  
+✅ **446 test assertions** - Comprehensive coverage across all CCL features
 
 ### Quick Start
 
@@ -36,45 +36,40 @@ This repository contains the **official JSON test suite** for CCL implementation
 git clone <this-repo>
 cd ccl-test-data
 
-# Run validation script
-npm test
+# Install dependencies and run tests
+just deps
+just test
+
+# Generate tests for mock implementation development
+just generate-mock
+just test-mock
 ```
 
 ### Test Files
 
 The test suite is organized by feature category:
 
-**Core Parsing** (49 tests)
+**Core Parsing**
+- **`tests/api-essential-parsing.json`** - Basic parsing functionality for rapid prototyping
+- **`tests/api-comprehensive-parsing.json`** - Thorough parsing with edge cases and whitespace variations
 
-- **`tests/essential-parsing.json`** (18 tests) - Basic parsing functionality for rapid prototyping
-- **`tests/comprehensive-parsing.json`** (31 tests) - Thorough parsing with edge cases, whitespace variations, and OCaml stress test
+**Advanced Processing**  
+- **`tests/api-processing.json`** - Entry composition, merging, and advanced processing
+- **`tests/api-comments.json`** - Comment syntax and filtering functionality
 
-**Advanced Processing** (24 tests)
+**Object Construction**
+- **`tests/api-object-construction.json`** - Converting flat entries to nested objects
+- **`tests/api-dotted-keys.json`** - Dotted key expansion and conflict resolution
 
-- **`tests/processing.json`** (21 tests) - Entry composition, merging, and advanced processing
-- **`tests/comments.json`** (3 tests) - Comment syntax and filtering functionality
+**Type System**
+- **`tests/api-typed-access.json`** - Type-aware value extraction with smart inference
 
-**Object Construction** (26 tests)
-
-- **`tests/object-construction.json`** (8 tests) - Converting flat entries to nested objects
-- **`tests/dotted-keys.json`** (18 tests) - Dotted key expansion and conflict resolution
-
-**Type System** (17 tests)
-
-- **`tests/typed-access.json`** (17 tests) - Type-aware value extraction with smart inference
-
-**Output & Validation** (32 tests)
-
-- **`tests/pretty-print.json`** (15 tests) - Formatting and round-trip tests
-- **`tests/algebraic-properties.json`** (12 tests) - Algebraic property validation (associativity, monoid laws)
-- **`tests/errors.json`** (5 tests) - Error handling validation
+**Error Handling**
+- **`tests/api-errors.json`** - Error handling validation
 
 ### Using the Test Suite
 
-1. **Load test files** into your language's testing framework
-1. **Iterate over validations** - Each test specifies which API functions to validate
-1. **Filter by level** to test only the features you implement
-1. **Use metadata** to focus on specific functionality
+The test suite now uses a **counted format** with required `count` fields for all validations:
 
 **Test format structure:**
 
@@ -83,11 +78,22 @@ The test suite is organized by feature category:
   "name": "basic_multi_level_test",
   "input": "database.host = localhost",
   "validations": {
-    "parse": [{"key": "database.host", "value": "localhost"}],
-    "make_objects": {"database": {"host": "localhost"}},
+    "parse": {
+      "count": 1,
+      "expected": [{"key": "database.host", "value": "localhost"}]
+    },
+    "make_objects": {
+      "count": 1,
+      "expected": {"database": {"host": "localhost"}}
+    },
     "get_string": {
-      "args": ["database.host"],
-      "expected": "localhost"
+      "count": 1,
+      "cases": [
+        {
+          "args": ["database.host"],
+          "expected": "localhost"
+        }
+      ]
     }
   },
   "meta": {"tags": ["dotted-keys"], "level": 4}
@@ -97,71 +103,99 @@ The test suite is organized by feature category:
 **Test runner example:**
 
 ```javascript
-for (const [validationType, validationData] of Object.entries(test.validations)) {
+for (const [validationType, validation] of Object.entries(test.validations)) {
   switch (validationType) {
     case 'parse':
-      const actual = parse(test.input);
-      // Handle both legacy array format and new counted format
-      const expected = Array.isArray(validationData) ? validationData : validationData.items;
-      expect(actual).toEqual(expected);
+      if (validation.error) {
+        expect(() => parse(test.input)).toThrow(validation.error_message);
+      } else {
+        const actual = parse(test.input);
+        expect(actual).toEqual(validation.expected);
+        expect(actual.length).toBe(validation.count); // Verify count
+      }
       break;
     case 'make_objects':
       const entries = parse(test.input);
       const objects = makeObjects(entries);
-      // Handle both legacy object format and new counted format  
-      const expectedObj = validationData.result || validationData;
-      expect(objects).toEqual(expectedObj);
+      expect(objects).toEqual(validation.expected);
       break;
     case 'get_string':
       const ccl = makeObjects(parse(test.input));
-      // Handle legacy single test, legacy array, and new counted format
-      const tests = validationData.cases || (Array.isArray(validationData) ? validationData : [validationData]);
-      tests.forEach(test => {
-        const value = getString(ccl, ...test.args);
-        expect(value).toBe(test.expected);
-      });
+      if (validation.error) {
+        expect(() => getString(ccl, ...validation.args)).toThrow();
+      } else {
+        validation.cases.forEach(testCase => {
+          if (testCase.error) {
+            expect(() => getString(ccl, ...testCase.args)).toThrow();
+          } else {
+            const value = getString(ccl, ...testCase.args);
+            expect(value).toBe(testCase.expected);
+          }
+        });
+        expect(validation.cases.length).toBe(validation.count); // Verify count
+      }
       break;
   }
 }
 ```
 
-### **Assertion Counting**
+### Assertion Counting
 
-The test suite supports **explicit assertion counting** to help implementers validate they're running the correct number of assertions:
+All validations now use the **counted format** with required `count` fields:
 
-**Legacy Format** (backwards compatible):
-
-```json
-{
-  "validations": {
-    "parse": [{"key": "name", "value": "Alice"}],
-    "get_string": {"args": ["name"], "expected": "Alice"}
-  }
-}
-```
-
-**New Counted Format** (optional, more explicit):
-
-```json
-{
-  "validations": {
-    "parse": {
-      "count": 1,
-      "items": [{"key": "name", "value": "Alice"}]
-    },
-    "get_string": {
-      "count": 1, 
-      "cases": [{"args": ["name"], "expected": "Alice"}]
-    }
-  }
-}
-```
+- **For array results** (`parse`, `filter`, `expand_dotted`): `count` = number of items in `expected` array
+- **For object results** (`make_objects`): `count` = typically 1 (single object)
+- **For typed access**: `count` = number of test cases in `cases` array
+- **For empty results**: `count` = 0 (e.g., empty input parsing)
 
 **Benefits:**
 
 - **Explicit counting**: Each validation declares exactly how many assertions it represents
 - **Self-validating**: Test runners can verify `count` matches actual array lengths
-- **Backwards compatible**: Existing tests continue working unchanged
+- **Test complexity tracking**: Enables precise measurement of implementation complexity
+
+## Go Test Runner
+
+This repository includes a comprehensive Go-based test runner for CCL implementations:
+
+### Commands
+
+```bash
+# Basic usage
+just build          # Build the test runner binary
+just generate       # Generate all Go test files
+just test           # Run all tests
+just list           # List available test packages
+
+# Mock implementation development
+just generate-mock  # Generate tests for mock implementation
+just test-mock      # Run tests suitable for mock implementation
+just dev-mock       # Full development cycle for mock
+
+# Level-specific testing
+just test-level1    # Run only Level 1 tests
+just test-level2    # Run only Level 2 tests
+just test-level3    # Run only Level 3 tests
+just test-level4    # Run only Level 4 tests
+
+# Feature-specific testing
+just test-comments  # Run comment-related tests
+just test-parsing   # Run parsing tests
+just test-objects   # Run object construction tests
+
+# Utilities
+just stats          # Show test generation statistics
+just validate       # Validate test files against schema
+just clean          # Clean generated files
+```
+
+### Mock Implementation
+
+The repository includes a basic Level 1 mock CCL implementation for testing and development:
+
+- **Location**: `internal/mock/ccl.go`
+- **Features**: Basic key-value parsing, comment handling, empty input support
+- **Usage**: Demonstrates test integration patterns
 
 ## Documentation
 
@@ -173,35 +207,43 @@ The test suite supports **explicit assertion counting** to help implementers val
 ### Test Suite Architecture
 
 - **[Test Architecture](docs/test-architecture.md)** - How to use this test suite
+- **[Test Filtering](docs/test-filtering.md)** - Advanced test filtering patterns
 
 ### General Implementation Guidance
 
 - **[Implementation Guide](https://ccl.tylerbutler.com/implementing-ccl)** - Complete CCL implementation guide
 - **[Test Architecture](https://ccl.tylerbutler.com/test-architecture)** - General testing concepts
 
-### Examples
-
-See `docs/examples/` for sample configurations and expected parsing results.
-
 ## Contributing
 
 When adding test cases:
 
 1. Add to appropriate JSON file by feature level
-1. Include descriptive name and metadata
-1. Validate JSON structure
-1. Update test counts in documentation
+2. Include descriptive name and metadata
+3. Use counted format with appropriate `count` values
+4. Validate JSON structure with `just validate`
+5. Update test counts in documentation
 
 ## Validation
 
 ```bash
 # Validate test suite structure
-npm run validate
+just validate
 
-# Run specific test category
-npm run test:parsing
-npm run test:objects
-npm run test:types
+# Run schema validation
+go run cmd/validate-schema/main.go tests/api-*.json
+
+# Generate and run all tests
+just dev
+
+# Quick development cycle for basic features
+just dev-basic
 ```
+
+### Current Test Statistics
+
+- **161 total tests** with **446 assertions**
+- **88 active tests** (307 assertions) for standard implementations
+- **73 skipped tests** (139 assertions) for advanced/optional features
 
 This test suite ensures consistent CCL behavior across all language implementations.
