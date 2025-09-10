@@ -37,9 +37,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "integer",
-          "basic"
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -78,9 +78,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "float",
-          "basic"
+          "function:get-float",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -119,9 +119,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "true"
+          "function:get-bool",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -160,10 +160,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "yes_no",
-          "needs-flexible-boolean-parsing"
+          "function:get-bool",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "flexible-boolean-parsing"
@@ -203,10 +202,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "yes_invalid",
-          "uses-strict-boolean-parsing"
+          "function:get-bool",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -245,9 +243,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "false"
+          "function:get-bool",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -286,9 +284,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "string",
-          "fallback"
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -327,9 +325,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "integer",
-          "negative"
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -400,10 +398,12 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "zero_values",
-          "mixed",
-          "needs-flexible-boolean-parsing"
+          "feature:empty-keys",
+          "function:get-bool",
+          "function:get-float",
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "flexible-boolean-parsing"
@@ -475,10 +475,12 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "zero_values",
-          "mixed",
-          "uses-strict-boolean-parsing"
+          "feature:empty-keys",
+          "function:get-bool",
+          "function:get-float",
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -558,10 +560,10 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "variants",
-          "needs-flexible-boolean-parsing"
+          "function:get-bool",
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "flexible-boolean-parsing"
@@ -642,10 +644,10 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "variants",
-          "uses-strict-boolean-parsing"
+          "function:get-bool",
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -737,10 +739,12 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "mixed_types",
-          "smart_parsing",
-          "needs-flexible-boolean-parsing"
+          "function:get-bool",
+          "function:get-float",
+          "function:get-int",
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "flexible-boolean-parsing"
@@ -832,10 +836,12 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "mixed_types",
-          "smart_parsing",
-          "uses-strict-boolean-parsing"
+          "function:get-bool",
+          "function:get-float",
+          "function:get-int",
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -874,9 +880,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "empty",
-          "edge_case"
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -931,9 +937,11 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "whitespace",
-          "trimming"
+          "feature:whitespace",
+          "function:get-bool",
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -998,9 +1006,10 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "parse_options",
-          "conservative"
+          "function:get-int",
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -1040,9 +1049,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "integer",
-          "error_handling"
+          "function:get-int",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -1082,9 +1091,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "float",
-          "error_handling"
+          "function:get-float",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -1124,9 +1133,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "boolean",
-          "error_handling"
+          "function:get-bool",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"
@@ -1166,9 +1175,9 @@
       },
       "meta": {
         "tags": [
-          "typed_parsing",
-          "missing_path",
-          "error_handling"
+          "function:get-string",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 4,
         "feature": "typed-parsing"

@@ -1,7 +1,7 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Pretty Printer (Validation Format)",
-  "version": "2.0", 
+  "version": "2.0",
   "description": "Pretty printing and round-trip testing - ensures canonical formatting and parse/pretty-print/parse identity",
   "tests": [
     {
@@ -13,7 +13,14 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "basic"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:parse",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "round_trip_whitespace_normalization",
@@ -24,7 +31,14 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "whitespace"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:whitespace",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "round_trip_empty_keys_lists",
@@ -35,7 +49,14 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "lists"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:empty-keys",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "round_trip_nested_structures",
@@ -46,7 +67,14 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "nested"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:make-objects",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "round_trip_multiline_values",
@@ -57,7 +85,14 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "multiline"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:multiline",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "round_trip_mixed_content",
@@ -68,7 +103,15 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "mixed"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "canonical_format_empty_values",
@@ -79,7 +122,17 @@
           "expected": "empty_key ="
         }
       },
-      "meta": {"tags": ["canonical", "empty", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "canonical_format_tab_preservation",
@@ -90,7 +143,19 @@
           "expected": "value_with_tabs = text\t\twith\ttabs"
         }
       },
-      "meta": {"tags": ["canonical", "tabs", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:tabs-preserve",
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:tabs-to-spaces",
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "canonical_format_unicode",
@@ -101,7 +166,18 @@
           "expected": "unicode = 你好世界\nemo = 🌟✨"
         }
       },
-      "meta": {"tags": ["canonical", "unicode", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:unicode",
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "round_trip_complex_nesting",
@@ -112,7 +188,15 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "complex"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "canonical_format_line_endings",
@@ -123,7 +207,19 @@
           "expected": "key1 = value1\nkey2 = value2"
         }
       },
-      "meta": {"tags": ["canonical", "crlf", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:crlf-preserve",
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:crlf-normalize",
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "round_trip_deeply_nested",
@@ -134,7 +230,15 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "deep"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:empty-keys",
+          "function:make-objects",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "canonical_format_consistent_spacing",
@@ -145,7 +249,19 @@
           "expected": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
         }
       },
-      "meta": {"tags": ["canonical", "spacing", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:strict-spacing",
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:loose-spacing",
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "round_trip_empty_multiline",
@@ -156,7 +272,15 @@
           "property": "identity"
         }
       },
-      "meta": {"tags": ["round-trip", "empty-multiline"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:empty-keys",
+          "feature:multiline",
+          "function:pretty-print"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "deterministic_output",
@@ -167,7 +291,17 @@
           "expected": "z = last\na = first\nm = middle"
         }
       },
-      "meta": {"tags": ["deterministic", "order", "proposed-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:pretty-print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
+      }
     },
     {
       "name": "canonical_format_empty_values_ocaml_reference",
@@ -178,7 +312,14 @@
           "expected": "empty_key =\n"
         }
       },
-      "meta": {"tags": ["canonical", "empty", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "canonical_format_tab_preservation_ocaml_reference",
@@ -189,7 +330,18 @@
           "expected": "value_with_tabs =\n  text\t\twith\ttabs =\n"
         }
       },
-      "meta": {"tags": ["canonical", "tabs", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:tabs-preserve",
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:tabs-to-spaces"
+        ]
+      }
     },
     {
       "name": "canonical_format_unicode_ocaml_reference",
@@ -200,7 +352,15 @@
           "expected": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
         }
       },
-      "meta": {"tags": ["canonical", "unicode", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "feature:unicode",
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     },
     {
       "name": "canonical_format_line_endings_ocaml_reference",
@@ -211,7 +371,18 @@
           "expected": "key1 =\n  value1 =\nkey2 =\n  value2 ="
         }
       },
-      "meta": {"tags": ["canonical", "crlf", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:crlf-preserve",
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:crlf-normalize"
+        ]
+      }
     },
     {
       "name": "canonical_format_consistent_spacing_ocaml_reference",
@@ -222,7 +393,18 @@
           "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
         }
       },
-      "meta": {"tags": ["canonical", "spacing", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "behavior:strict-spacing",
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:loose-spacing"
+        ]
+      }
     },
     {
       "name": "deterministic_output_ocaml_reference",
@@ -233,7 +415,14 @@
           "expected": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
         }
       },
-      "meta": {"tags": ["deterministic", "order", "reference-compliant-behavior"], "level": 4, "feature": "pretty-printing"}
+      "meta": {
+        "tags": [
+          "function:pretty-print",
+          "variant:reference-compliant"
+        ],
+        "level": 4,
+        "feature": "pretty-printing"
+      }
     }
   ]
 }

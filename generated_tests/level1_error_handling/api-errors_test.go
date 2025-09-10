@@ -2,6 +2,10 @@ package level1_error_handling_test
 
 import (
 	"testing"
+	
+	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 // Generated from tests/api-errors.json
@@ -9,32 +13,157 @@ import (
 // Version: 2.0
 // Description: Error handling tests - malformed input detection across all levels using validation format
 
-// just_key_error - error incomplete (level 1)
+
+// just_key_error - function:parse (level 1)
 func TestJustKeyError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+	
+	
+	ccl := mock.New()
+	input := `key`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
 
-// whitespace_only_error - error whitespace empty proposed (level 1)
+
+// whitespace_only_error - feature:whitespace function:parse (level 1)
 func TestWhitespaceOnlyError(t *testing.T) {
-	t.Skip("Error handling not implemented in mock CCL")
+	
+	
+	ccl := mock.New()
+	input := `   `
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
 
-// whitespace_only_error_ocaml_reference - whitespace empty success reference_compliant (level 1)
+
+// whitespace_only_error_ocaml_reference - feature:whitespace function:parse (level 1)
 func TestWhitespaceOnlyErrorOcamlReference(t *testing.T) {
-	t.Skip("Whitespace handling not fully implemented in mock CCL")
+	
+	
+	ccl := mock.New()
+	input := `   `
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
 
-// just_string_error - error incomplete (level 1)
+
+// just_string_error - function:parse (level 1)
 func TestJustStringError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+	
+	
+	ccl := mock.New()
+	input := `val`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
 
-// multiline_plain_error - error multiline incomplete (level 1)
+
+// multiline_plain_error - feature:multiline function:parse (level 1)
 func TestMultilinePlainError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+	
+	
+	ccl := mock.New()
+	input := `val
+  next`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
 
-// multiline_plain_nested_error - error multiline nested incomplete (level 1)
+
+// multiline_plain_nested_error - feature:multiline function:make-objects function:parse (level 1)
 func TestMultilinePlainNestedError(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+	
+	
+	ccl := mock.New()
+	input := `
+val
+  next`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err = ccl.Parse("")
+	require.NoError(t, err)
+	expectedParse := []mock.Entry{}
+	assert.Equal(t, expectedParse, parseResult)
+
 }
+
+

@@ -12,12 +12,14 @@
           "count": 1,
           "property": "semigroup_associativity",
           "left_assoc": "(a ⊕ b) ⊕ c - merge a with b, then merge result with c",
-          "right_assoc": "a ⊕ (b ⊕ c) - merge b with c, then merge a with result", 
+          "right_assoc": "a ⊕ (b ⊕ c) - merge b with c, then merge a with result",
           "should_be_equal": true
         }
       },
       "meta": {
-        "tags": ["algebraic", "associativity", "semigroup"],
+        "tags": [
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -35,7 +37,10 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "associativity", "nested", "semigroup"],
+        "tags": [
+          "function:compose",
+          "function:make-objects"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -53,7 +58,10 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "associativity", "lists", "semigroup"],
+        "tags": [
+          "feature:empty-keys",
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -71,13 +79,15 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "left"],
+        "tags": [
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
     },
     {
-      "name": "monoid_right_identity_basic", 
+      "name": "monoid_right_identity_basic",
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
         "associativity": {
@@ -89,7 +99,9 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "right"],
+        "tags": [
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -107,7 +119,10 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "left", "nested"],
+        "tags": [
+          "function:compose",
+          "function:make-objects"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -118,14 +133,17 @@
       "validations": {
         "associativity": {
           "count": 1,
-          "property": "monoid_identity_right", 
+          "property": "monoid_identity_right",
           "left_assoc": "nested_config - original nested structure",
           "right_assoc": "nested_config ⊕ ε - merge nested structure with empty",
           "should_be_equal": true
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "right", "nested"],
+        "tags": [
+          "function:compose",
+          "function:make-objects"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -143,7 +161,10 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "left", "lists"],
+        "tags": [
+          "feature:empty-keys",
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -155,13 +176,16 @@
         "associativity": {
           "count": 1,
           "property": "monoid_identity_right",
-          "left_assoc": "list - original list unchanged", 
+          "left_assoc": "list - original list unchanged",
           "right_assoc": "list ⊕ ε - merge list with empty",
           "should_be_equal": true
         }
       },
       "meta": {
-        "tags": ["algebraic", "monoid", "identity", "right", "lists"],
+        "tags": [
+          "feature:empty-keys",
+          "function:compose"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -176,7 +200,10 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "round-trip", "identity"],
+        "tags": [
+          "function:compose",
+          "function:pretty-print"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -191,7 +218,11 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "round-trip", "identity", "nested"],
+        "tags": [
+          "function:compose",
+          "function:make-objects",
+          "function:pretty-print"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }
@@ -206,7 +237,12 @@
         }
       },
       "meta": {
-        "tags": ["algebraic", "round-trip", "identity", "complex", "mixed"],
+        "tags": [
+          "feature:empty-keys",
+          "function:compose",
+          "function:make-objects",
+          "function:pretty-print"
+        ],
         "level": 4,
         "feature": "algebraic-properties"
       }

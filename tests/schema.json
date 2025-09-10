@@ -530,16 +530,45 @@
       "properties": {
         "tags": {
           "type": "array",
-          "description": "Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc.",
+          "description": "Feature-based tags for precise test selection. Categories: 'function:*' (required CCL functions), 'feature:*' (optional language features), 'behavior:*' (implementation choices), 'variant:*' (specification variants). Examples: 'function:parse', 'feature:comments', 'behavior:crlf-preserve', 'variant:proposed-behavior'",
           "items": {
             "type": "string",
-            "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*$"
+            "oneOf": [
+              {
+                "pattern": "^function:(parse|filter|compose|expand-dotted|make-objects|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
+                "description": "CCL function requirement tags"
+              },
+              {
+                "pattern": "^feature:(comments|dotted-keys|empty-keys|multiline|unicode|whitespace)$",
+                "description": "Optional CCL language feature tags"
+              },
+              {
+                "pattern": "^behavior:(crlf-preserve|crlf-normalize|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing)$",
+                "description": "Implementation behavioral choice tags"
+              },
+              {
+                "pattern": "^variant:(proposed-behavior|reference-compliant)$",
+                "description": "Specification variant tags"
+              },
+              {
+                "pattern": "^[a-z0-9]+([_-][a-z0-9]+)*$",
+                "description": "Legacy descriptive tags (deprecated, use structured tags above)"
+              }
+            ]
+          }
+        },
+        "conflicts": {
+          "type": "array",
+          "description": "Tags that are mutually exclusive with this test. Used for behavioral choices and implementation variants.",
+          "items": {
+            "type": "string",
+            "pattern": "^(function|feature|behavior|variant):[a-z0-9]+([_-][a-z0-9]+)*$"
           }
         },
         "level": {
           "type": "integer",
-          "enum": [1, 2, 3, 4],
-          "description": "CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed)"
+          "enum": [1, 2, 3, 4, 5],
+          "description": "CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed, 5=Formatting)"
         },
         "feature": {
           "type": "string",

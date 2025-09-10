@@ -37,9 +37,10 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "dotted-keys",
-          "single"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -88,10 +89,10 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "dotted-keys",
-          "multiple",
-          "same-parent"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -152,10 +153,10 @@
       },
       "meta": {
         "tags": [
-          "basic",
-          "dotted-keys",
-          "multiple",
-          "different-parents"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -201,9 +202,10 @@
       },
       "meta": {
         "tags": [
-          "deep-nesting",
-          "dotted-keys",
-          "three-levels"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -253,10 +255,10 @@
       },
       "meta": {
         "tags": [
-          "deep-nesting",
-          "dotted-keys",
-          "four-levels",
-          "extreme"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -324,9 +326,11 @@
       },
       "meta": {
         "tags": [
-          "mixed",
-          "dotted-keys",
-          "regular-keys"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -370,9 +374,10 @@
       },
       "meta": {
         "tags": [
-          "conflict-resolution",
-          "dotted-wins",
-          "merge"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -417,9 +422,10 @@
       },
       "meta": {
         "tags": [
-          "conflict-resolution",
-          "merge",
-          "order-independent"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -475,9 +481,10 @@
       },
       "meta": {
         "tags": [
-          "complex-conflict",
-          "multiple-sources",
-          "merge"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -521,9 +528,11 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "dotted-keys",
-          "edge-case"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -567,9 +576,11 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "dotted-keys",
-          "trailing-dot"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -617,9 +628,11 @@
       },
       "meta": {
         "tags": [
-          "edge-case",
-          "single-dot",
-          "empty-key"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -675,9 +688,10 @@
       },
       "meta": {
         "tags": [
-          "edge-case",
-          "consecutive-dots",
-          "empty-segments"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -728,9 +742,10 @@
       },
       "meta": {
         "tags": [
-          "list-style",
-          "dotted-keys",
-          "duplicate-keys"
+          "feature:dotted-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -781,10 +796,11 @@
       },
       "meta": {
         "tags": [
-          "empty-key",
-          "list-style",
-          "dotted-keys",
-          "mixed"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -839,9 +855,9 @@
       },
       "meta": {
         "tags": [
-          "backward-compatibility",
-          "no-dots",
-          "unchanged"
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -881,9 +897,9 @@
       },
       "meta": {
         "tags": [
-          "backward-compatibility",
-          "nested-syntax",
-          "unchanged"
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"
@@ -1007,10 +1023,11 @@
       },
       "meta": {
         "tags": [
-          "stress-test",
-          "complex",
-          "mixed",
-          "real-world"
+          "feature:dotted-keys",
+          "feature:empty-keys",
+          "function:expand-dotted",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 3,
         "feature": "dotted-keys"

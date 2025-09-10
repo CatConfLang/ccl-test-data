@@ -16,8 +16,7 @@
       },
       "meta": {
         "tags": [
-          "error",
-          "incomplete"
+          "function:parse"
         ],
         "level": 1,
         "feature": "error-handling"
@@ -35,10 +34,8 @@
       },
       "meta": {
         "tags": [
-          "error",
-          "whitespace",
-          "empty",
-          "proposed"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "error-handling"
@@ -55,10 +52,8 @@
       },
       "meta": {
         "tags": [
-          "whitespace",
-          "empty",
-          "success",
-          "reference_compliant"
+          "feature:whitespace",
+          "function:parse"
         ],
         "level": 1,
         "feature": "parsing"
@@ -76,8 +71,7 @@
       },
       "meta": {
         "tags": [
-          "error",
-          "incomplete"
+          "function:parse"
         ],
         "level": 1,
         "feature": "error-handling"
@@ -95,9 +89,8 @@
       },
       "meta": {
         "tags": [
-          "error",
-          "multiline",
-          "incomplete"
+          "feature:multiline",
+          "function:parse"
         ],
         "level": 1,
         "feature": "error-handling"
@@ -115,10 +108,9 @@
       },
       "meta": {
         "tags": [
-          "error",
-          "multiline",
-          "nested",
-          "incomplete"
+          "feature:multiline",
+          "function:make-objects",
+          "function:parse"
         ],
         "level": 1,
         "feature": "error-handling"
