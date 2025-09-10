@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"strings"
 	"text/template"
 
@@ -773,9 +774,16 @@ func formatGoValue(value interface{}) string {
 }
 
 func formatGoMap(m map[string]interface{}) string {
+	var keys []string
+	for k := range m {
+		keys = append(keys, k)
+	}
+	// Sort keys to ensure deterministic output
+	sort.Strings(keys)
+	
 	var parts []string
-	for k, v := range m {
-		parts = append(parts, fmt.Sprintf("%q: %s", k, formatGoValue(v)))
+	for _, k := range keys {
+		parts = append(parts, fmt.Sprintf("%q: %s", k, formatGoValue(m[k])))
 	}
 	return fmt.Sprintf("map[string]interface{}{%s}", strings.Join(parts, ", "))
 }
