@@ -11,9 +11,6 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
-  "devDependencies": {
-    "rimraf": "^5.0.0"
-  },
   "dependencies": {
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
