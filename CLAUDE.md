@@ -116,6 +116,7 @@ All tests use required `count` fields for precise validation:
 1. **Always run `just lint`** - formats and checks Go code
 2. **Ensure `just reset` passes** - verifies repository is in clean state
 3. **Validate changes with `just validate`** - checks JSON schema compliance
+4. **Include generated test files in commits** - changes to `internal/generator/` or test JSON files require committing updated `generated_tests/` files
 
 ### Adding Tests
 1. Add to appropriate `tests/api-*.json` file by feature level
