@@ -8,441 +8,1013 @@
       "name": "basic_single_dotted_key",
       "input": "database.host = localhost",
       "validations": {
-        "parse": [
-          {"key": "database.host", "value": "localhost"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  host = localhost"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "host": "localhost"
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost"
+            }
           }
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "single"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "basic",
+          "dotted-keys",
+          "single"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "basic_multiple_dotted_keys_same_parent",
       "input": "database.host = localhost\ndatabase.port = 5432\ndatabase.name = mydb",
       "validations": {
-        "parse": [
-          {"key": "database.host", "value": "localhost"},
-          {"key": "database.port", "value": "5432"},
-          {"key": "database.name", "value": "mydb"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  host = localhost\n  port = 5432\n  name = mydb"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "database.port",
+              "value": "5432"
+            },
+            {
+              "key": "database.name",
+              "value": "mydb"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432\n  name = mydb"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "host": "localhost",
-            "port": "5432",
-            "name": "mydb"
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "5432",
+              "name": "mydb"
+            }
           }
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "multiple", "same-parent"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "basic",
+          "dotted-keys",
+          "multiple",
+          "same-parent"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "multiple_dotted_keys_different_parents",
       "input": "database.host = localhost\nserver.port = 8080\ncache.enabled = true",
       "validations": {
-        "parse": [
-          {"key": "database.host", "value": "localhost"},
-          {"key": "server.port", "value": "8080"},
-          {"key": "cache.enabled", "value": "true"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  host = localhost"},
-          {"key": "server", "value": "\n  port = 8080"},
-          {"key": "cache", "value": "\n  enabled = true"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "server.port",
+              "value": "8080"
+            },
+            {
+              "key": "cache.enabled",
+              "value": "true"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            },
+            {
+              "key": "server",
+              "value": "\n  port = 8080"
+            },
+            {
+              "key": "cache",
+              "value": "\n  enabled = true"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "host": "localhost"
-          },
-          "server": {
-            "port": "8080"
-          },
-          "cache": {
-            "enabled": "true"
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost"
+            },
+            "server": {
+              "port": "8080"
+            },
+            "cache": {
+              "enabled": "true"
+            }
           }
         }
       },
-      "meta": {"tags": ["basic", "dotted-keys", "multiple", "different-parents"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "basic",
+          "dotted-keys",
+          "multiple",
+          "different-parents"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "deep_dotted_nesting_three_levels",
       "input": "app.database.host = localhost\napp.database.port = 5432",
       "validations": {
-        "parse": [
-          {"key": "app.database.host", "value": "localhost"},
-          {"key": "app.database.port", "value": "5432"}
-        ],
-        "expand_dotted": [
-          {"key": "app", "value": "\n  database =\n    host = localhost\n    port = 5432"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "app.database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "app.database.port",
+              "value": "5432"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "app",
+              "value": "\n  database =\n    host = localhost\n    port = 5432"
+            }
+          ]
+        },
         "make_objects": {
-          "app": {
-            "database": {
-              "host": "localhost",
-              "port": "5432"
+          "count": 1,
+          "expected": {
+            "app": {
+              "database": {
+                "host": "localhost",
+                "port": "5432"
+              }
             }
           }
         }
       },
-      "meta": {"tags": ["deep-nesting", "dotted-keys", "three-levels"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "deep-nesting",
+          "dotted-keys",
+          "three-levels"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "deep_dotted_nesting_four_levels",
       "input": "config.app.database.connection.host = localhost\nconfig.app.database.connection.timeout = 30s",
       "validations": {
-        "parse": [
-          {"key": "config.app.database.connection.host", "value": "localhost"},
-          {"key": "config.app.database.connection.timeout", "value": "30s"}
-        ],
-        "expand_dotted": [
-          {"key": "config", "value": "\n  app =\n    database =\n      connection =\n        host = localhost\n        timeout = 30s"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "config.app.database.connection.host",
+              "value": "localhost"
+            },
+            {
+              "key": "config.app.database.connection.timeout",
+              "value": "30s"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "config",
+              "value": "\n  app =\n    database =\n      connection =\n        host = localhost\n        timeout = 30s"
+            }
+          ]
+        },
         "make_objects": {
-          "config": {
-            "app": {
-              "database": {
-                "connection": {
-                  "host": "localhost",
-                  "timeout": "30s"
+          "count": 1,
+          "expected": {
+            "config": {
+              "app": {
+                "database": {
+                  "connection": {
+                    "host": "localhost",
+                    "timeout": "30s"
+                  }
                 }
               }
             }
           }
         }
       },
-      "meta": {"tags": ["deep-nesting", "dotted-keys", "four-levels", "extreme"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "deep-nesting",
+          "dotted-keys",
+          "four-levels",
+          "extreme"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "mixed_dotted_and_regular_keys",
       "input": "simple = value\ndatabase.host = localhost\nanother = test\nserver.port = 8080",
       "validations": {
-        "parse": [
-          {"key": "simple", "value": "value"},
-          {"key": "database.host", "value": "localhost"},
-          {"key": "another", "value": "test"},
-          {"key": "server.port", "value": "8080"}
-        ],
-        "expand_dotted": [
-          {"key": "simple", "value": "value"},
-          {"key": "database", "value": "\n  host = localhost"},
-          {"key": "another", "value": "test"},
-          {"key": "server", "value": "\n  port = 8080"}
-        ],
+        "parse": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "simple",
+              "value": "value"
+            },
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "another",
+              "value": "test"
+            },
+            {
+              "key": "server.port",
+              "value": "8080"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "simple",
+              "value": "value"
+            },
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            },
+            {
+              "key": "another",
+              "value": "test"
+            },
+            {
+              "key": "server",
+              "value": "\n  port = 8080"
+            }
+          ]
+        },
         "make_objects": {
-          "simple": "value",
-          "database": {
-            "host": "localhost"
-          },
-          "another": "test",
-          "server": {
-            "port": "8080"
+          "count": 1,
+          "expected": {
+            "simple": "value",
+            "database": {
+              "host": "localhost"
+            },
+            "another": "test",
+            "server": {
+              "port": "8080"
+            }
           }
         }
       },
-      "meta": {"tags": ["mixed", "dotted-keys", "regular-keys"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "mixed",
+          "dotted-keys",
+          "regular-keys"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "conflict_dotted_vs_nested_dotted_wins",
       "input": "database =\n  port = 3306\ndatabase.host = localhost",
       "validations": {
-        "parse": [
-          {"key": "database", "value": "\n  port = 3306"},
-          {"key": "database.host", "value": "localhost"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  port = 3306\n  host = localhost"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  port = 3306"
+            },
+            {
+              "key": "database.host",
+              "value": "localhost"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  port = 3306\n  host = localhost"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "port": "3306",
-            "host": "localhost"
+          "count": 1,
+          "expected": {
+            "database": {
+              "port": "3306",
+              "host": "localhost"
+            }
           }
         }
       },
-      "meta": {"tags": ["conflict-resolution", "dotted-wins", "merge"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "conflict-resolution",
+          "dotted-wins",
+          "merge"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "conflict_nested_vs_dotted_merge",
       "input": "database.host = localhost\ndatabase =\n  port = 3306\n  name = mydb",
       "validations": {
-        "parse": [
-          {"key": "database.host", "value": "localhost"},
-          {"key": "database", "value": "\n  port = 3306\n  name = mydb"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  host = localhost\n  port = 3306\n  name = mydb"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "database",
+              "value": "\n  port = 3306\n  name = mydb"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 3306\n  name = mydb"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "host": "localhost",
-            "port": "3306",
-            "name": "mydb"
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "3306",
+              "name": "mydb"
+            }
           }
         }
       },
-      "meta": {"tags": ["conflict-resolution", "merge", "order-independent"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "conflict-resolution",
+          "merge",
+          "order-independent"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "complex_conflict_multiple_sources",
       "input": "app.database.host = localhost\napp =\n  name = myapp\napp.database.port = 5432\napp =\n  version = 1.0",
       "validations": {
-        "parse": [
-          {"key": "app.database.host", "value": "localhost"},
-          {"key": "app", "value": "\n  name = myapp"},
-          {"key": "app.database.port", "value": "5432"},
-          {"key": "app", "value": "\n  version = 1.0"}
-        ],
-        "expand_dotted": [
-          {"key": "app", "value": "\n  database =\n    host = localhost\n    port = 5432\n  name = myapp\n  version = 1.0"}
-        ],
-        "make_objects": {
-          "app": {
-            "database": {
-              "host": "localhost",
-              "port": "5432"
+        "parse": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "app.database.host",
+              "value": "localhost"
             },
-            "name": "myapp",
-            "version": "1.0"
+            {
+              "key": "app",
+              "value": "\n  name = myapp"
+            },
+            {
+              "key": "app.database.port",
+              "value": "5432"
+            },
+            {
+              "key": "app",
+              "value": "\n  version = 1.0"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "app",
+              "value": "\n  database =\n    host = localhost\n    port = 5432\n  name = myapp\n  version = 1.0"
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "app": {
+              "database": {
+                "host": "localhost",
+                "port": "5432"
+              },
+              "name": "myapp",
+              "version": "1.0"
+            }
           }
         }
       },
-      "meta": {"tags": ["complex-conflict", "multiple-sources", "merge"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "complex-conflict",
+          "multiple-sources",
+          "merge"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "dotted_keys_with_empty_key_parent",
       "input": ".host = localhost\n.port = 8080",
       "validations": {
-        "parse": [
-          {"key": ".host", "value": "localhost"},
-          {"key": ".port", "value": "8080"}
-        ],
-        "expand_dotted": [
-          {"key": "", "value": "\n  host = localhost\n  port = 8080"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": ".host",
+              "value": "localhost"
+            },
+            {
+              "key": ".port",
+              "value": "8080"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": "\n  host = localhost\n  port = 8080"
+            }
+          ]
+        },
         "make_objects": {
-          "": {
-            "host": "localhost",
-            "port": "8080"
+          "count": 1,
+          "expected": {
+            "": {
+              "host": "localhost",
+              "port": "8080"
+            }
           }
         }
       },
-      "meta": {"tags": ["empty-key", "dotted-keys", "edge-case"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "dotted-keys",
+          "edge-case"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "dotted_keys_with_empty_key_child",
       "input": "database. = default_value\ndatabase.host = localhost",
       "validations": {
-        "parse": [
-          {"key": "database.", "value": "default_value"},
-          {"key": "database.host", "value": "localhost"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n   = default_value\n  host = localhost"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "database.",
+              "value": "default_value"
+            },
+            {
+              "key": "database.host",
+              "value": "localhost"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n   = default_value\n  host = localhost"
+            }
+          ]
+        },
         "make_objects": {
-          "database": {
-            "": "default_value",
-            "host": "localhost"
+          "count": 1,
+          "expected": {
+            "database": {
+              "": "default_value",
+              "host": "localhost"
+            }
           }
         }
       },
-      "meta": {"tags": ["empty-key", "dotted-keys", "trailing-dot"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "dotted-keys",
+          "trailing-dot"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "edge_case_single_dot",
       "input": ". = dot_value\nkey = normal",
       "validations": {
-        "parse": [
-          {"key": ".", "value": "dot_value"},
-          {"key": "key", "value": "normal"}
-        ],
-        "expand_dotted": [
-          {"key": "", "value": "\n   = dot_value"},
-          {"key": "key", "value": "normal"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": ".",
+              "value": "dot_value"
+            },
+            {
+              "key": "key",
+              "value": "normal"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "",
+              "value": "\n   = dot_value"
+            },
+            {
+              "key": "key",
+              "value": "normal"
+            }
+          ]
+        },
         "make_objects": {
-          "": {
-            "": "dot_value"
-          },
-          "key": "normal"
+          "count": 1,
+          "expected": {
+            "": {
+              "": "dot_value"
+            },
+            "key": "normal"
+          }
         }
       },
-      "meta": {"tags": ["edge-case", "single-dot", "empty-key"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "edge-case",
+          "single-dot",
+          "empty-key"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "edge_case_multiple_consecutive_dots",
       "input": "app..config = value\ndb...host = localhost",
       "validations": {
-        "parse": [
-          {"key": "app..config", "value": "value"},
-          {"key": "db...host", "value": "localhost"}
-        ],
-        "expand_dotted": [
-          {"key": "app", "value": "\n   =\n    config = value"},
-          {"key": "db", "value": "\n   =\n     =\n      host = localhost"}
-        ],
-        "make_objects": {
-          "app": {
-            "": {
-              "config": "value"
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "app..config",
+              "value": "value"
+            },
+            {
+              "key": "db...host",
+              "value": "localhost"
             }
-          },
-          "db": {
-            "": {
+          ]
+        },
+        "expand_dotted": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "app",
+              "value": "\n   =\n    config = value"
+            },
+            {
+              "key": "db",
+              "value": "\n   =\n     =\n      host = localhost"
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "app": {
               "": {
-                "host": "localhost"
+                "config": "value"
+              }
+            },
+            "db": {
+              "": {
+                "": {
+                  "host": "localhost"
+                }
               }
             }
           }
         }
       },
-      "meta": {"tags": ["edge-case", "consecutive-dots", "empty-segments"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "edge-case",
+          "consecutive-dots",
+          "empty-segments"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "dotted_keys_with_list_style",
       "input": "servers.production = server1\nservers.production = server2\nservers.staging = staging1",
       "validations": {
-        "parse": [
-          {"key": "servers.production", "value": "server1"},
-          {"key": "servers.production", "value": "server2"},
-          {"key": "servers.staging", "value": "staging1"}
-        ],
-        "expand_dotted": [
-          {"key": "servers", "value": "\n  production = server1\n  production = server2\n  staging = staging1"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "servers.production",
+              "value": "server1"
+            },
+            {
+              "key": "servers.production",
+              "value": "server2"
+            },
+            {
+              "key": "servers.staging",
+              "value": "staging1"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "servers",
+              "value": "\n  production = server1\n  production = server2\n  staging = staging1"
+            }
+          ]
+        },
         "make_objects": {
-          "servers": {
-            "production": ["server1", "server2"],
-            "staging": "staging1"
+          "count": 1,
+          "expected": {
+            "servers": {
+              "production": [
+                "server1",
+                "server2"
+              ],
+              "staging": "staging1"
+            }
           }
         }
       },
-      "meta": {"tags": ["list-style", "dotted-keys", "duplicate-keys"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "list-style",
+          "dotted-keys",
+          "duplicate-keys"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "dotted_keys_with_empty_key_lists",
       "input": "ports. = 8000\nports. = 8001\nports.admin = 9000",
       "validations": {
-        "parse": [
-          {"key": "ports.", "value": "8000"},
-          {"key": "ports.", "value": "8001"},
-          {"key": "ports.admin", "value": "9000"}
-        ],
-        "expand_dotted": [
-          {"key": "ports", "value": "\n   = 8000\n   = 8001\n  admin = 9000"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "ports.",
+              "value": "8000"
+            },
+            {
+              "key": "ports.",
+              "value": "8001"
+            },
+            {
+              "key": "ports.admin",
+              "value": "9000"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "ports",
+              "value": "\n   = 8000\n   = 8001\n  admin = 9000"
+            }
+          ]
+        },
         "make_objects": {
-          "ports": {
-            "": ["8000", "8001"],
-            "admin": "9000"
+          "count": 1,
+          "expected": {
+            "ports": {
+              "": [
+                "8000",
+                "8001"
+              ],
+              "admin": "9000"
+            }
           }
         }
       },
-      "meta": {"tags": ["empty-key", "list-style", "dotted-keys", "mixed"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "empty-key",
+          "list-style",
+          "dotted-keys",
+          "mixed"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "backward_compatibility_no_dots",
       "input": "database = value\nhost = localhost\nport = 5432",
       "validations": {
-        "parse": [
-          {"key": "database", "value": "value"},
-          {"key": "host", "value": "localhost"},
-          {"key": "port", "value": "5432"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "value"},
-          {"key": "host", "value": "localhost"},
-          {"key": "port", "value": "5432"}
-        ],
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database",
+              "value": "value"
+            },
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "5432"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database",
+              "value": "value"
+            },
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "5432"
+            }
+          ]
+        },
         "make_objects": {
-          "database": "value",
-          "host": "localhost",
-          "port": "5432"
-        }
-      },
-      "meta": {"tags": ["backward-compatibility", "no-dots", "unchanged"], "level": 3, "feature": "dotted-keys"}
-    },
-    {
-      "name": "backward_compatibility_nested_syntax",
-      "input": "database =\n  host = localhost\n  port = 5432",
-      "validations": {
-        "parse": [
-          {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
-        ],
-        "expand_dotted": [
-          {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
-        ],
-        "make_objects": {
-          "database": {
+          "count": 1,
+          "expected": {
+            "database": "value",
             "host": "localhost",
             "port": "5432"
           }
         }
       },
-      "meta": {"tags": ["backward-compatibility", "nested-syntax", "unchanged"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "backward-compatibility",
+          "no-dots",
+          "unchanged"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
+    },
+    {
+      "name": "backward_compatibility_nested_syntax",
+      "input": "database =\n  host = localhost\n  port = 5432",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "5432"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "backward-compatibility",
+          "nested-syntax",
+          "unchanged"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     },
     {
       "name": "stress_test_complex_mixed_scenario",
       "input": "/ = CCL with dotted keys\napp.name = MyApp\napp.version = 1.0\n\ndatabase =\n  enabled = true\n\ndatabase.connection.host = localhost\ndatabase.connection.port = 5432\ndatabase.pool.size = 10\n\nservers.web = server1\nservers.web = server2\nservers.api.endpoint = /api/v1\n\nconfig.debug = true\nconfig =\n  env = production",
       "validations": {
-        "parse": [
-          {"key": "/", "value": "CCL with dotted keys"},
-          {"key": "app.name", "value": "MyApp"},
-          {"key": "app.version", "value": "1.0"},
-          {"key": "database", "value": "\n  enabled = true"},
-          {"key": "database.connection.host", "value": "localhost"},
-          {"key": "database.connection.port", "value": "5432"},
-          {"key": "database.pool.size", "value": "10"},
-          {"key": "servers.web", "value": "server1"},
-          {"key": "servers.web", "value": "server2"},
-          {"key": "servers.api.endpoint", "value": "/api/v1"},
-          {"key": "config.debug", "value": "true"},
-          {"key": "config", "value": "\n  env = production"}
-        ],
-        "expand_dotted": [
-          {"key": "/", "value": "CCL with dotted keys"},
-          {"key": "app", "value": "\n  name = MyApp\n  version = 1.0"},
-          {"key": "database", "value": "\n  enabled = true\n  connection =\n    host = localhost\n    port = 5432\n  pool =\n    size = 10"},
-          {"key": "servers", "value": "\n  web = server1\n  web = server2\n  api =\n    endpoint = /api/v1"},
-          {"key": "config", "value": "\n  debug = true\n  env = production"}
-        ],
-        "make_objects": {
-          "/": "CCL with dotted keys",
-          "app": {
-            "name": "MyApp",
-            "version": "1.0"
-          },
-          "database": {
-            "enabled": "true",
-            "connection": {
-              "host": "localhost",
-              "port": "5432"
+        "parse": {
+          "count": 12,
+          "expected": [
+            {
+              "key": "/",
+              "value": "CCL with dotted keys"
             },
-            "pool": {
-              "size": "10"
+            {
+              "key": "app.name",
+              "value": "MyApp"
+            },
+            {
+              "key": "app.version",
+              "value": "1.0"
+            },
+            {
+              "key": "database",
+              "value": "\n  enabled = true"
+            },
+            {
+              "key": "database.connection.host",
+              "value": "localhost"
+            },
+            {
+              "key": "database.connection.port",
+              "value": "5432"
+            },
+            {
+              "key": "database.pool.size",
+              "value": "10"
+            },
+            {
+              "key": "servers.web",
+              "value": "server1"
+            },
+            {
+              "key": "servers.web",
+              "value": "server2"
+            },
+            {
+              "key": "servers.api.endpoint",
+              "value": "/api/v1"
+            },
+            {
+              "key": "config.debug",
+              "value": "true"
+            },
+            {
+              "key": "config",
+              "value": "\n  env = production"
             }
-          },
-          "servers": {
-            "web": ["server1", "server2"],
-            "api": {
-              "endpoint": "/api/v1"
+          ]
+        },
+        "expand_dotted": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "/",
+              "value": "CCL with dotted keys"
+            },
+            {
+              "key": "app",
+              "value": "\n  name = MyApp\n  version = 1.0"
+            },
+            {
+              "key": "database",
+              "value": "\n  enabled = true\n  connection =\n    host = localhost\n    port = 5432\n  pool =\n    size = 10"
+            },
+            {
+              "key": "servers",
+              "value": "\n  web = server1\n  web = server2\n  api =\n    endpoint = /api/v1"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true\n  env = production"
             }
-          },
-          "config": {
-            "debug": "true",
-            "env": "production"
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": {
+            "/": "CCL with dotted keys",
+            "app": {
+              "name": "MyApp",
+              "version": "1.0"
+            },
+            "database": {
+              "enabled": "true",
+              "connection": {
+                "host": "localhost",
+                "port": "5432"
+              },
+              "pool": {
+                "size": "10"
+              }
+            },
+            "servers": {
+              "web": [
+                "server1",
+                "server2"
+              ],
+              "api": {
+                "endpoint": "/api/v1"
+              }
+            },
+            "config": {
+              "debug": "true",
+              "env": "production"
+            }
           }
         }
       },
-      "meta": {"tags": ["stress-test", "complex", "mixed", "real-world"], "level": 3, "feature": "dotted-keys"}
+      "meta": {
+        "tags": [
+          "stress-test",
+          "complex",
+          "mixed",
+          "real-world"
+        ],
+        "level": 3,
+        "feature": "dotted-keys"
+      }
     }
   ]
 }

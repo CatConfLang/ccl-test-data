@@ -1,491 +1,551 @@
 {
-	"$schema": "./schema.json",
-	"suite": "CCL Essential Parsing (Validation Format)",
-	"version": "2.0",
-	"description": "Core parsing functionality - minimum viable CCL implementation. Start here for rapid prototyping.",
-	"tests": [
-		{
-			"name": "basic_pairs",
-			"input": "name = Alice\nage = 42",
-			"validations": {
-				"parse": [
-					{
-						"key": "name",
-						"value": "Alice"
-					},
-					{
-						"key": "age",
-						"value": "42"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"basic"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "equals_in_values",
-			"input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
-			"validations": {
-				"parse": {
-					"count": 2,
-					"expected": [
-						{
-							"key": "msg",
-							"value": "k=v pairs live happily here"
-						},
-						{
-							"key": "more",
-							"value": "a=b=c=d"
-						}
-					]
-				}
-			},
-			"meta": {
-				"tags": [
-					"basic",
-					"equals"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "trimming_rules",
-			"input": "  spaces around key   =    value with leading spaces removed and trailing tabs kept? \t\t",
-			"validations": {
-				"parse": [
-					{
-						"key": "spaces around key",
-						"value": "value with leading spaces removed and trailing tabs kept?"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"trimming"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "multiline_values",
-			"input": "description = First\n  Second line\n  Third line\ndone = yes",
-			"validations": {
-				"parse": [
-					{
-						"key": "description",
-						"value": "First\n  Second line\n  Third line"
-					},
-					{
-						"key": "done",
-						"value": "yes"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"multiline",
-					"continuation"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "blank_lines_in_values",
-			"input": "body = Line one\n\n  Line three after a blank line",
-			"validations": {
-				"parse": [
-					{
-						"key": "body",
-						"value": "Line one\n\n  Line three after a blank line"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"multiline",
-					"blank-lines"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "no_equals_continuation",
-			"input": "key = first line\nsecond line without equals\nthird line",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "first line\nsecond line without equals\nthird line"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"continuation",
-					"multiline",
-					"proposed-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "no_equals_continuation_ocaml_reference",
-			"input": "key = first line\nsecond line without equals\nthird line",
-			"validations": {
-				"parse": {
-					"error": true,
-					"error_message": "end_of_input"
-				}
-			},
-			"meta": {
-				"tags": [
-					"continuation",
-					"multiline",
-					"error_case",
-					"reference-compliant-behavior"
-				],
-				"level": 1,
-				"feature": "error-handling"
-			}
-		},
-		{
-			"name": "key_only_empty_value",
-			"input": "emptykey =\nother = value",
-			"validations": {
-				"parse": [
-					{
-						"key": "emptykey",
-						"value": ""
-					},
-					{
-						"key": "other",
-						"value": "value"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-value",
-					"basic"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_with_value",
-			"input": "= val",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": "val"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"lists"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_key_and_value",
-			"input": "=",
-			"validations": {
-				"parse": [
-					{
-						"key": "",
-						"value": ""
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"empty-key",
-					"empty-value"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "unicode_graphemes",
-			"input": "emoji = 😀😃😄",
-			"validations": {
-				"parse": [
-					{
-						"key": "emoji",
-						"value": "😀😃😄"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"unicode",
-					"basic"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "unicode_keys",
-			"input": "配置 = config in Chinese\nключ = key in Russian",
-			"validations": {
-				"parse": [
-					{
-						"key": "配置",
-						"value": "config in Chinese"
-					},
-					{
-						"key": "ключ",
-						"value": "key in Russian"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"unicode",
-					"keys"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "crlf_normalization",
-			"input": "key1 = value1\r\nkey2 = value2\r\n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key1",
-						"value": "value1"
-					},
-					{
-						"key": "key2",
-						"value": "value2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"line-endings",
-					"normalization",
-					"needs-crlf-normalization"
-				],
-				"level": 1,
-				"feature": "crlf-normalization"
-			}
-		},
-		{
-			"name": "crlf_normalization_strict",
-			"input": "key1 = value1\r\nkey2 = value2\r\n",
-			"validations": {
-				"parse": [
-					{
-						"key": "key1",
-						"value": "value1\r"
-					},
-					{
-						"key": "key2",
-						"value": "value2\r"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"line-endings",
-					"crlf-preserved",
-					"uses-strict-line-ending-parsing"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "empty_input",
-			"input": "",
-			"validations": {
-				"parse": []
-			},
-			"meta": {
-				"tags": [
-					"edge-cases",
-					"empty"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "eof_without_newline",
-			"input": "last = final value",
-			"validations": {
-				"parse": [
-					{
-						"key": "last",
-						"value": "final value"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"edge-cases",
-					"eof"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "tab_preservation_in_values",
-			"input": "mixed =    \tvalue with leading spaces and tabs\t",
-			"validations": {
-				"parse": [
-					{
-						"key": "mixed",
-						"value": "\tvalue with leading spaces and tabs"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"tabs",
-					"trimming",
-					"proposed-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "tab_preservation_in_values_ocaml_reference",
-			"input": "mixed =    \tvalue with leading spaces and tabs\t",
-			"validations": {
-				"parse": [
-					{
-						"key": "mixed",
-						"value": "value with leading spaces and tabs"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"whitespace",
-					"tabs",
-					"trimming",
-					"reference-compliant-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "mixed_indentation_continuation",
-			"input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
-			"validations": {
-				"parse": [
-					{
-						"key": "description",
-						"value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"multiline",
-					"indentation",
-					"mixed-whitespace",
-					"proposed-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "mixed_indentation_continuation_ocaml_reference",
-			"input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
-			"validations": {
-				"parse": [
-					{
-						"key": "description",
-						"value": "First line\n    spaces indented\n tab indented\n   mixed indent"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"multiline",
-					"indentation",
-					"mixed-whitespace",
-					"reference-compliant-behavior"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "indented_equals_continuation",
-			"input": "key1 = val1\n  inner = some\nkey2 = val2",
-			"validations": {
-				"parse": [
-					{
-						"key": "key1",
-						"value": "val1\n  inner = some"
-					},
-					{
-						"key": "key2",
-						"value": "val2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"continuation",
-					"indentation",
-					"equals"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		},
-		{
-			"name": "nested_key_value_pairs",
-			"input": "key =\n  field1 = value1\n  field2 = value2",
-			"validations": {
-				"parse": [
-					{
-						"key": "key",
-						"value": "\n  field1 = value1\n  field2 = value2"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"nested",
-					"indentation",
-					"equals",
-					"continuation"
-				],
-				"level": 1,
-				"feature": "parsing"
-			}
-		}
-	]
+  "$schema": "./schema.json",
+  "suite": "CCL Essential Parsing (Validation Format)",
+  "version": "2.0",
+  "description": "Core parsing functionality - minimum viable CCL implementation. Start here for rapid prototyping.",
+  "tests": [
+    {
+      "name": "basic_pairs",
+      "input": "name = Alice\nage = 42",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "basic"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "equals_in_values",
+      "input": "msg = k=v pairs live happily here\nmore = a=b=c=d",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "msg",
+              "value": "k=v pairs live happily here"
+            },
+            {
+              "key": "more",
+              "value": "a=b=c=d"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "basic",
+          "equals"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "trimming_rules",
+      "input": "  spaces around key   =    value with leading spaces removed and trailing tabs kept? \t\t",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "spaces around key",
+              "value": "value with leading spaces removed and trailing tabs kept?"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "trimming"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "multiline_values",
+      "input": "description = First\n  Second line\n  Third line\ndone = yes",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "description",
+              "value": "First\n  Second line\n  Third line"
+            },
+            {
+              "key": "done",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "multiline",
+          "continuation"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "blank_lines_in_values",
+      "input": "body = Line one\n\n  Line three after a blank line",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "body",
+              "value": "Line one\n\n  Line three after a blank line"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "multiline",
+          "blank-lines"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "no_equals_continuation",
+      "input": "key = first line\nsecond line without equals\nthird line",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "first line\nsecond line without equals\nthird line"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "continuation",
+          "multiline",
+          "proposed-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "no_equals_continuation_ocaml_reference",
+      "input": "key = first line\nsecond line without equals\nthird line",
+      "validations": {
+        "parse": {
+          "error": true,
+          "error_message": "end_of_input"
+        }
+      },
+      "meta": {
+        "tags": [
+          "continuation",
+          "multiline",
+          "error_case",
+          "reference-compliant-behavior"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
+    },
+    {
+      "name": "key_only_empty_value",
+      "input": "emptykey =\nother = value",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "emptykey",
+              "value": ""
+            },
+            {
+              "key": "other",
+              "value": "value"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-value",
+          "basic"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_with_value",
+      "input": "= val",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": "val"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "lists"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_key_and_value",
+      "input": "=",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "empty-key",
+          "empty-value"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "unicode_graphemes",
+      "input": "emoji = 😀😃😄",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "emoji",
+              "value": "😀😃😄"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "unicode",
+          "basic"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "unicode_keys",
+      "input": "配置 = config in Chinese\nключ = key in Russian",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "配置",
+              "value": "config in Chinese"
+            },
+            {
+              "key": "ключ",
+              "value": "key in Russian"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "unicode",
+          "keys"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "crlf_normalization",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "key1",
+              "value": "value1"
+            },
+            {
+              "key": "key2",
+              "value": "value2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "line-endings",
+          "normalization",
+          "needs-crlf-normalization"
+        ],
+        "level": 1,
+        "feature": "crlf-normalization"
+      }
+    },
+    {
+      "name": "crlf_normalization_strict",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "key1",
+              "value": "value1\r"
+            },
+            {
+              "key": "key2",
+              "value": "value2\r"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "line-endings",
+          "crlf-preserved",
+          "uses-strict-line-ending-parsing"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "empty_input",
+      "input": "",
+      "validations": {
+        "parse": {
+          "count": 0,
+          "expected": []
+        }
+      },
+      "meta": {
+        "tags": [
+          "edge-cases",
+          "empty"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "eof_without_newline",
+      "input": "last = final value",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "last",
+              "value": "final value"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "edge-cases",
+          "eof"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "tab_preservation_in_values",
+      "input": "mixed =    \tvalue with leading spaces and tabs\t",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "mixed",
+              "value": "\tvalue with leading spaces and tabs"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "tabs",
+          "trimming",
+          "proposed-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "tab_preservation_in_values_ocaml_reference",
+      "input": "mixed =    \tvalue with leading spaces and tabs\t",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "mixed",
+              "value": "value with leading spaces and tabs"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "whitespace",
+          "tabs",
+          "trimming",
+          "reference-compliant-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "mixed_indentation_continuation",
+      "input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "description",
+              "value": "First line\n    spaces indented\n\ttab indented\n  \tmixed indent"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "multiline",
+          "indentation",
+          "mixed-whitespace",
+          "proposed-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "mixed_indentation_continuation_ocaml_reference",
+      "input": "description = First line\n    spaces indented\n\ttab indented\n  \tmixed indent",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "description",
+              "value": "First line\n    spaces indented\n tab indented\n   mixed indent"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "multiline",
+          "indentation",
+          "mixed-whitespace",
+          "reference-compliant-behavior"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "indented_equals_continuation",
+      "input": "key1 = val1\n  inner = some\nkey2 = val2",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "key1",
+              "value": "val1\n  inner = some"
+            },
+            {
+              "key": "key2",
+              "value": "val2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "continuation",
+          "indentation",
+          "equals"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    },
+    {
+      "name": "nested_key_value_pairs",
+      "input": "key =\n  field1 = value1\n  field2 = value2",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "key",
+              "value": "\n  field1 = value1\n  field2 = value2"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "nested",
+          "indentation",
+          "equals",
+          "continuation"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
+    }
+  ]
 }

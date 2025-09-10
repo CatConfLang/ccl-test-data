@@ -8,35 +8,83 @@
       "name": "parse_basic_integer",
       "input": "port = 8080",
       "validations": {
-        "parse": [
-          {"key": "port", "value": "8080"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "port",
+              "value": "8080"
+            }
+          ]
+        },
         "make_objects": {
-          "port": "8080"
+          "count": 1,
+          "expected": {
+            "port": "8080"
+          }
         },
         "get_int": {
-          "args": ["port"],
-          "expected": 8080
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "port"
+              ],
+              "expected": 8080
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "integer", "basic"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "integer",
+          "basic"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_basic_float",
       "input": "temperature = 98.6",
       "validations": {
-        "parse": [
-          {"key": "temperature", "value": "98.6"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "temperature",
+              "value": "98.6"
+            }
+          ]
+        },
         "make_objects": {
-          "temperature": "98.6"
+          "count": 1,
+          "expected": {
+            "temperature": "98.6"
+          }
         },
         "get_float": {
-          "args": ["temperature"],
-          "expected": 98.6
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "temperature"
+              ],
+              "expected": 98.6
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "float", "basic"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "float",
+          "basic"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_boolean_true",
@@ -45,7 +93,10 @@
         "parse": {
           "count": 1,
           "expected": [
-            {"key": "enabled", "value": "true"}
+            {
+              "key": "enabled",
+              "value": "true"
+            }
           ]
         },
         "make_objects": {
@@ -58,99 +109,226 @@
           "count": 1,
           "cases": [
             {
-              "args": ["enabled"],
+              "args": [
+                "enabled"
+              ],
               "expected": true
             }
           ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "true"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "true"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_boolean_yes",
       "input": "active = yes",
       "validations": {
-        "parse": [
-          {"key": "active", "value": "yes"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "active",
+              "value": "yes"
+            }
+          ]
+        },
         "make_objects": {
-          "active": "yes"
+          "count": 1,
+          "expected": {
+            "active": "yes"
+          }
         },
         "get_bool": {
-          "args": ["active"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "active"
+              ],
+              "expected": true
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "yes_no", "needs-flexible-boolean-parsing"], "level": 4, "feature": "flexible-boolean-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "yes_no",
+          "needs-flexible-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "flexible-boolean-parsing"
+      }
     },
     {
       "name": "parse_boolean_yes_strict",
       "input": "active = yes",
       "validations": {
-        "parse": [
-          {"key": "active", "value": "yes"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "active",
+              "value": "yes"
+            }
+          ]
+        },
         "make_objects": {
-          "active": "yes"
+          "count": 1,
+          "expected": {
+            "active": "yes"
+          }
         },
         "get_bool": {
-          "args": ["active"],
+          "args": [
+            "active"
+          ],
           "error": true,
           "error_message": "Value is not a boolean"
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "yes_invalid", "uses-strict-boolean-parsing"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "yes_invalid",
+          "uses-strict-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_boolean_false",
       "input": "disabled = false",
       "validations": {
-        "parse": [
-          {"key": "disabled", "value": "false"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "disabled",
+              "value": "false"
+            }
+          ]
+        },
         "make_objects": {
-          "disabled": "false"
+          "count": 1,
+          "expected": {
+            "disabled": "false"
+          }
         },
         "get_bool": {
-          "args": ["disabled"],
-          "expected": false
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "disabled"
+              ],
+              "expected": false
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "false"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "false"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_string_fallback",
       "input": "name = Alice",
       "validations": {
-        "parse": [
-          {"key": "name", "value": "Alice"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "name",
+              "value": "Alice"
+            }
+          ]
+        },
         "make_objects": {
-          "name": "Alice"
+          "count": 1,
+          "expected": {
+            "name": "Alice"
+          }
         },
         "get_string": {
-          "args": ["name"],
-          "expected": "Alice"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "name"
+              ],
+              "expected": "Alice"
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "string", "fallback"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "string",
+          "fallback"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_negative_integer",
       "input": "offset = -42",
       "validations": {
-        "parse": [
-          {"key": "offset", "value": "-42"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "offset",
+              "value": "-42"
+            }
+          ]
+        },
         "make_objects": {
-          "offset": "-42"
+          "count": 1,
+          "expected": {
+            "offset": "-42"
+          }
         },
         "get_int": {
-          "args": ["offset"],
-          "expected": -42
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "offset"
+              ],
+              "expected": -42
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "integer", "negative"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "integer",
+          "negative"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_zero_values",
@@ -159,16 +337,25 @@
         "parse": {
           "count": 3,
           "expected": [
-            {"key": "count", "value": "0"},
-            {"key": "distance", "value": "0.0"},
-            {"key": "disabled", "value": "no"}
+            {
+              "key": "count",
+              "value": "0"
+            },
+            {
+              "key": "distance",
+              "value": "0.0"
+            },
+            {
+              "key": "disabled",
+              "value": "no"
+            }
           ]
         },
         "make_objects": {
           "count": 1,
           "expected": {
             "count": "0",
-            "distance": "0.0", 
+            "distance": "0.0",
             "disabled": "no"
           }
         },
@@ -176,7 +363,9 @@
           "count": 1,
           "cases": [
             {
-              "args": ["count"],
+              "args": [
+                "count"
+              ],
               "expected": 0
             }
           ]
@@ -185,7 +374,9 @@
           "count": 1,
           "cases": [
             {
-              "args": ["distance"],
+              "args": [
+                "distance"
+              ],
               "expected": 0.0
             }
           ]
@@ -194,13 +385,24 @@
           "count": 1,
           "cases": [
             {
-              "args": ["disabled"],
+              "args": [
+                "disabled"
+              ],
               "expected": false
             }
           ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "zero_values", "mixed", "needs-flexible-boolean-parsing"], "level": 4, "feature": "flexible-boolean-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "zero_values",
+          "mixed",
+          "needs-flexible-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "flexible-boolean-parsing"
+      }
     },
     {
       "name": "parse_zero_values_strict",
@@ -209,16 +411,25 @@
         "parse": {
           "count": 3,
           "expected": [
-            {"key": "count", "value": "0"},
-            {"key": "distance", "value": "0.0"},
-            {"key": "disabled", "value": "no"}
+            {
+              "key": "count",
+              "value": "0"
+            },
+            {
+              "key": "distance",
+              "value": "0.0"
+            },
+            {
+              "key": "disabled",
+              "value": "no"
+            }
           ]
         },
         "make_objects": {
           "count": 1,
           "expected": {
             "count": "0",
-            "distance": "0.0", 
+            "distance": "0.0",
             "disabled": "no"
           }
         },
@@ -226,7 +437,9 @@
           "count": 1,
           "cases": [
             {
-              "args": ["count"],
+              "args": [
+                "count"
+              ],
               "expected": 0
             }
           ]
@@ -235,7 +448,9 @@
           "count": 1,
           "cases": [
             {
-              "args": ["distance"],
+              "args": [
+                "distance"
+              ],
               "expected": 0.0
             }
           ]
@@ -244,294 +459,690 @@
           "count": 1,
           "cases": [
             {
-              "args": ["disabled"],
+              "args": [
+                "disabled"
+              ],
               "error": true,
               "error_message": "Value is not a boolean"
             }
           ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "zero_values", "mixed", "uses-strict-boolean-parsing"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "zero_values",
+          "mixed",
+          "uses-strict-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_boolean_variants",
-      "input": "flag1 = yes\\nflag2 = on\\nflag3 = 1\\nflag4 = false\\nflag5 = no\\nflag6 = off\\nflag7 = 0",
+      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
       "validations": {
-        "parse": [
-          {"key": "flag1", "value": "yes"},
-          {"key": "flag2", "value": "on"},
-          {"key": "flag3", "value": "1"},
-          {"key": "flag4", "value": "false"},
-          {"key": "flag5", "value": "no"},
-          {"key": "flag6", "value": "off"},
-          {"key": "flag7", "value": "0"}
-        ],
+        "parse": {
+          "count": 7,
+          "expected": [
+            {
+              "key": "flag1",
+              "value": "yes"
+            },
+            {
+              "key": "flag2",
+              "value": "on"
+            },
+            {
+              "key": "flag3",
+              "value": "1"
+            },
+            {
+              "key": "flag4",
+              "value": "false"
+            },
+            {
+              "key": "flag5",
+              "value": "no"
+            },
+            {
+              "key": "flag6",
+              "value": "off"
+            },
+            {
+              "key": "flag7",
+              "value": "0"
+            }
+          ]
+        },
         "make_objects": {
-          "flag1": "yes",
-          "flag2": "on",
-          "flag3": "1",
-          "flag4": "false",
-          "flag5": "no",
-          "flag6": "off",
-          "flag7": "0"
+          "count": 1,
+          "expected": {
+            "flag1": "yes",
+            "flag2": "on",
+            "flag3": "1",
+            "flag4": "false",
+            "flag5": "no",
+            "flag6": "off",
+            "flag7": "0"
+          }
         },
         "get_bool": {
-          "args": ["flag1"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "flag1"
+              ],
+              "expected": true
+            }
+          ]
         },
         "get_int": {
-          "args": ["flag3"],
-          "expected": 1
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "flag3"
+              ],
+              "expected": 1
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "variants", "needs-flexible-boolean-parsing"], "level": 4, "feature": "flexible-boolean-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "variants",
+          "needs-flexible-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "flexible-boolean-parsing"
+      }
     },
     {
       "name": "parse_boolean_variants_strict",
-      "input": "flag1 = yes\\nflag2 = on\\nflag3 = 1\\nflag4 = false\\nflag5 = no\\nflag6 = off\\nflag7 = 0",
+      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
       "validations": {
-        "parse": [
-          {"key": "flag1", "value": "yes"},
-          {"key": "flag2", "value": "on"},
-          {"key": "flag3", "value": "1"},
-          {"key": "flag4", "value": "false"},
-          {"key": "flag5", "value": "no"},
-          {"key": "flag6", "value": "off"},
-          {"key": "flag7", "value": "0"}
-        ],
+        "parse": {
+          "count": 7,
+          "expected": [
+            {
+              "key": "flag1",
+              "value": "yes"
+            },
+            {
+              "key": "flag2",
+              "value": "on"
+            },
+            {
+              "key": "flag3",
+              "value": "1"
+            },
+            {
+              "key": "flag4",
+              "value": "false"
+            },
+            {
+              "key": "flag5",
+              "value": "no"
+            },
+            {
+              "key": "flag6",
+              "value": "off"
+            },
+            {
+              "key": "flag7",
+              "value": "0"
+            }
+          ]
+        },
         "make_objects": {
-          "flag1": "yes",
-          "flag2": "on",
-          "flag3": "1",
-          "flag4": "false",
-          "flag5": "no",
-          "flag6": "off",
-          "flag7": "0"
+          "count": 1,
+          "expected": {
+            "flag1": "yes",
+            "flag2": "on",
+            "flag3": "1",
+            "flag4": "false",
+            "flag5": "no",
+            "flag6": "off",
+            "flag7": "0"
+          }
         },
         "get_bool": {
-          "args": ["flag1"],
+          "args": [
+            "flag1"
+          ],
           "error": true,
           "error_message": "Value is not a boolean"
         },
         "get_int": {
-          "args": ["flag3"],
-          "expected": 1
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "flag3"
+              ],
+              "expected": 1
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "variants", "uses-strict-boolean-parsing"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "variants",
+          "uses-strict-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_mixed_types",
-      "input": "host = localhost\\nport = 8080\\nssl = true\\ntimeout = 30.5\\ndebug = off",
+      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
       "validations": {
-        "parse": [
-          {"key": "host", "value": "localhost"},
-          {"key": "port", "value": "8080"},
-          {"key": "ssl", "value": "true"},
-          {"key": "timeout", "value": "30.5"},
-          {"key": "debug", "value": "off"}
-        ],
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            },
+            {
+              "key": "ssl",
+              "value": "true"
+            },
+            {
+              "key": "timeout",
+              "value": "30.5"
+            },
+            {
+              "key": "debug",
+              "value": "off"
+            }
+          ]
+        },
         "make_objects": {
-          "host": "localhost",
-          "port": "8080",
-          "ssl": "true",
-          "timeout": "30.5",
-          "debug": "off"
+          "count": 1,
+          "expected": {
+            "host": "localhost",
+            "port": "8080",
+            "ssl": "true",
+            "timeout": "30.5",
+            "debug": "off"
+          }
         },
         "get_string": {
-          "args": ["host"],
-          "expected": "localhost"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "host"
+              ],
+              "expected": "localhost"
+            }
+          ]
         },
         "get_int": {
-          "args": ["port"],
-          "expected": 8080
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "port"
+              ],
+              "expected": 8080
+            }
+          ]
         },
         "get_bool": {
-          "args": ["ssl"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "ssl"
+              ],
+              "expected": true
+            }
+          ]
         },
         "get_float": {
-          "args": ["timeout"],
-          "expected": 30.5
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "timeout"
+              ],
+              "expected": 30.5
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing", "needs-flexible-boolean-parsing"], "level": 4, "feature": "flexible-boolean-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "mixed_types",
+          "smart_parsing",
+          "needs-flexible-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "flexible-boolean-parsing"
+      }
     },
     {
       "name": "parse_mixed_types_strict",
-      "input": "host = localhost\\nport = 8080\\nssl = true\\ntimeout = 30.5\\ndebug = off",
+      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
       "validations": {
-        "parse": [
-          {"key": "host", "value": "localhost"},
-          {"key": "port", "value": "8080"},
-          {"key": "ssl", "value": "true"},
-          {"key": "timeout", "value": "30.5"},
-          {"key": "debug", "value": "off"}
-        ],
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            },
+            {
+              "key": "ssl",
+              "value": "true"
+            },
+            {
+              "key": "timeout",
+              "value": "30.5"
+            },
+            {
+              "key": "debug",
+              "value": "off"
+            }
+          ]
+        },
         "make_objects": {
-          "host": "localhost",
-          "port": "8080",
-          "ssl": "true",
-          "timeout": "30.5",
-          "debug": "off"
+          "count": 1,
+          "expected": {
+            "host": "localhost",
+            "port": "8080",
+            "ssl": "true",
+            "timeout": "30.5",
+            "debug": "off"
+          }
         },
         "get_string": {
-          "args": ["host"],
-          "expected": "localhost"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "host"
+              ],
+              "expected": "localhost"
+            }
+          ]
         },
         "get_int": {
-          "args": ["port"],
-          "expected": 8080
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "port"
+              ],
+              "expected": 8080
+            }
+          ]
         },
         "get_bool": {
-          "args": ["ssl"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "ssl"
+              ],
+              "expected": true
+            }
+          ]
         },
         "get_float": {
-          "args": ["timeout"],
-          "expected": 30.5
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "timeout"
+              ],
+              "expected": 30.5
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "mixed_types", "smart_parsing", "uses-strict-boolean-parsing"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "mixed_types",
+          "smart_parsing",
+          "uses-strict-boolean-parsing"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_empty_value",
       "input": "empty_key =",
       "validations": {
-        "parse": [
-          {"key": "empty_key", "value": ""}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "empty_key",
+              "value": ""
+            }
+          ]
+        },
         "make_objects": {
-          "empty_key": ""
+          "count": 1,
+          "expected": {
+            "empty_key": ""
+          }
         },
         "get_string": {
-          "args": ["empty_key"],
-          "expected": ""
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "empty_key"
+              ],
+              "expected": ""
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "empty", "edge_case"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "empty",
+          "edge_case"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_with_whitespace",
-      "input": "number =   42   \\nflag =  true  ",
+      "input": "number =   42   \nflag =  true  ",
       "validations": {
-        "parse": [
-          {"key": "number", "value": "42"},
-          {"key": "flag", "value": "true"}
-        ],
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "number",
+              "value": "42"
+            },
+            {
+              "key": "flag",
+              "value": "true"
+            }
+          ]
+        },
         "make_objects": {
-          "number": "42",
-          "flag": "true"
+          "count": 1,
+          "expected": {
+            "number": "42",
+            "flag": "true"
+          }
         },
         "get_int": {
-          "args": ["number"],
-          "expected": 42
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "number"
+              ],
+              "expected": 42
+            }
+          ]
         },
         "get_bool": {
-          "args": ["flag"],
-          "expected": true
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "flag"
+              ],
+              "expected": true
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "whitespace", "trimming"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "whitespace",
+          "trimming"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_with_conservative_options",
-      "input": "number = 42\\ndecimal = 3.14\\nflag = true\\ntext = hello",
+      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
       "validations": {
-        "parse": [
-          {"key": "number", "value": "42"},
-          {"key": "decimal", "value": "3.14"},
-          {"key": "flag", "value": "true"},
-          {"key": "text", "value": "hello"}
-        ],
+        "parse": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "number",
+              "value": "42"
+            },
+            {
+              "key": "decimal",
+              "value": "3.14"
+            },
+            {
+              "key": "flag",
+              "value": "true"
+            },
+            {
+              "key": "text",
+              "value": "hello"
+            }
+          ]
+        },
         "make_objects": {
-          "number": "42",
-          "decimal": "3.14",
-          "flag": "true",
-          "text": "hello"
+          "count": 1,
+          "expected": {
+            "number": "42",
+            "decimal": "3.14",
+            "flag": "true",
+            "text": "hello"
+          }
         },
         "get_int": {
-          "args": ["number"],
-          "expected": 42
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "number"
+              ],
+              "expected": 42
+            }
+          ]
         },
         "get_string": {
-          "args": ["decimal"],
-          "expected": "3.14"
+          "count": 1,
+          "cases": [
+            {
+              "args": [
+                "decimal"
+              ],
+              "expected": "3.14"
+            }
+          ]
         }
       },
-      "meta": {"tags": ["typed_parsing", "parse_options", "conservative"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "parse_options",
+          "conservative"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_integer_error",
       "input": "port = not_a_number",
       "validations": {
-        "parse": [
-          {"key": "port", "value": "not_a_number"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "port",
+              "value": "not_a_number"
+            }
+          ]
+        },
         "make_objects": {
-          "port": "not_a_number"
+          "count": 1,
+          "expected": {
+            "port": "not_a_number"
+          }
         },
         "get_int": {
-          "args": ["port"],
+          "args": [
+            "port"
+          ],
           "error": true,
           "error_message": "Cannot parse 'not_a_number' as integer at path 'port'"
         }
       },
-      "meta": {"tags": ["typed_parsing", "integer", "error_handling"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "integer",
+          "error_handling"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_float_error",
       "input": "temperature = invalid",
       "validations": {
-        "parse": [
-          {"key": "temperature", "value": "invalid"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "temperature",
+              "value": "invalid"
+            }
+          ]
+        },
         "make_objects": {
-          "temperature": "invalid"
+          "count": 1,
+          "expected": {
+            "temperature": "invalid"
+          }
         },
         "get_float": {
-          "args": ["temperature"],
+          "args": [
+            "temperature"
+          ],
           "error": true,
           "error_message": "Cannot parse 'invalid' as float at path 'temperature'"
         }
       },
-      "meta": {"tags": ["typed_parsing", "float", "error_handling"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "float",
+          "error_handling"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_boolean_error",
       "input": "enabled = maybe",
       "validations": {
-        "parse": [
-          {"key": "enabled", "value": "maybe"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "enabled",
+              "value": "maybe"
+            }
+          ]
+        },
         "make_objects": {
-          "enabled": "maybe"
+          "count": 1,
+          "expected": {
+            "enabled": "maybe"
+          }
         },
         "get_bool": {
-          "args": ["enabled"],
+          "args": [
+            "enabled"
+          ],
           "error": true,
           "error_message": "Cannot parse 'maybe' as boolean at path 'enabled'"
         }
       },
-      "meta": {"tags": ["typed_parsing", "boolean", "error_handling"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "boolean",
+          "error_handling"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     },
     {
       "name": "parse_missing_path_error",
       "input": "existing = value",
       "validations": {
-        "parse": [
-          {"key": "existing", "value": "value"}
-        ],
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "existing",
+              "value": "value"
+            }
+          ]
+        },
         "make_objects": {
-          "existing": "value"
+          "count": 1,
+          "expected": {
+            "existing": "value"
+          }
         },
         "get_string": {
-          "args": ["missing"],
+          "args": [
+            "missing"
+          ],
           "error": true,
           "error_message": "Path 'missing' not found."
         }
       },
-      "meta": {"tags": ["typed_parsing", "missing_path", "error_handling"], "level": 4, "feature": "typed-parsing"}
+      "meta": {
+        "tags": [
+          "typed_parsing",
+          "missing_path",
+          "error_handling"
+        ],
+        "level": 4,
+        "feature": "typed-parsing"
+      }
     }
   ]
 }

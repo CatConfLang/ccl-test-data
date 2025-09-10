@@ -1,109 +1,118 @@
 {
-	"$schema": "./schema.json",
-	"suite": "CCL Comment Filtering - Validation Format",
-	"version": "2.0",
-	"description": "Comment syntax and filtering functionality - remove documentation keys from configuration",
-	"tests": [
-		{
-			"name": "comment_extension",
-			"input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
-			"validations": {
-				"filter": [
-					{
-						"key": "/",
-						"value": "This is an environment section"
-					},
-					{
-						"key": "port",
-						"value": "8080"
-					},
-					{
-						"key": "serve",
-						"value": "index.html"
-					},
-					{
-						"key": "/",
-						"value": "Database section"
-					},
-					{
-						"key": "mode",
-						"value": "in-memory"
-					},
-					{
-						"key": "connections",
-						"value": "16"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"comments",
-					"extension"
-				],
-				"level": 2,
-				"feature": "comments"
-			}
-		},
-		{
-			"name": "comment_syntax_slash_equals",
-			"input": "/= this is a comment",
-			"validations": {
-				"filter": [
-					{
-						"key": "/",
-						"value": "this is a comment"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"comment",
-					"special-syntax"
-				],
-				"level": 2,
-				"feature": "comments"
-			}
-		},
-		{
-			"name": "section_headers_with_comments",
-			"input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
-			"validations": {
-				"filter": [
-					{
-						"key": "",
-						"value": "= Database Config =="
-					},
-					{
-						"key": "/",
-						"value": "Connection settings"
-					},
-					{
-						"key": "host",
-						"value": "localhost"
-					},
-					{
-						"key": "",
-						"value": "== Cache Config ==="
-					},
-					{
-						"key": "/",
-						"value": "Redis configuration"
-					},
-					{
-						"key": "port",
-						"value": "6379"
-					}
-				]
-			},
-			"meta": {
-				"tags": [
-					"section-headers",
-					"comments",
-					"mixed-content"
-				],
-				"level": 2,
-				"feature": "comments"
-			}
-		}
-	]
+  "$schema": "./schema.json",
+  "suite": "CCL Comment Filtering - Validation Format",
+  "version": "2.0",
+  "description": "Comment syntax and filtering functionality - remove documentation keys from configuration",
+  "tests": [
+    {
+      "name": "comment_extension",
+      "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
+      "validations": {
+        "filter": {
+          "count": 6,
+          "expected": [
+            {
+              "key": "/",
+              "value": "This is an environment section"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            },
+            {
+              "key": "serve",
+              "value": "index.html"
+            },
+            {
+              "key": "/",
+              "value": "Database section"
+            },
+            {
+              "key": "mode",
+              "value": "in-memory"
+            },
+            {
+              "key": "connections",
+              "value": "16"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "comments",
+          "extension"
+        ],
+        "level": 2,
+        "feature": "comments"
+      }
+    },
+    {
+      "name": "comment_syntax_slash_equals",
+      "input": "/= this is a comment",
+      "validations": {
+        "filter": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "/",
+              "value": "this is a comment"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "comment",
+          "special-syntax"
+        ],
+        "level": 2,
+        "feature": "comments"
+      }
+    },
+    {
+      "name": "section_headers_with_comments",
+      "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
+      "validations": {
+        "filter": {
+          "count": 6,
+          "expected": [
+            {
+              "key": "",
+              "value": "= Database Config =="
+            },
+            {
+              "key": "/",
+              "value": "Connection settings"
+            },
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "",
+              "value": "== Cache Config ==="
+            },
+            {
+              "key": "/",
+              "value": "Redis configuration"
+            },
+            {
+              "key": "port",
+              "value": "6379"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "section-headers",
+          "comments",
+          "mixed-content"
+        ],
+        "level": 2,
+        "feature": "comments"
+      }
+    }
+  ]
 }

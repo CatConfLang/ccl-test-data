@@ -13,7 +13,14 @@
           "error_message": "end_of_input"
         }
       },
-      "meta": {"tags": ["error", "incomplete"], "level": 1, "feature": "error-handling"}
+      "meta": {
+        "tags": [
+          "error",
+          "incomplete"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
     },
     {
       "name": "whitespace_only_error",
@@ -24,15 +31,36 @@
           "error_message": "not_enough_input"
         }
       },
-      "meta": {"tags": ["error", "whitespace", "empty", "proposed"], "level": 1, "feature": "error-handling"}
+      "meta": {
+        "tags": [
+          "error",
+          "whitespace",
+          "empty",
+          "proposed"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
     },
     {
       "name": "whitespace_only_error_ocaml_reference",
       "input": "   ",
       "validations": {
-        "parse": []
+        "parse": {
+          "count": 0,
+          "expected": []
+        }
       },
-      "meta": {"tags": ["whitespace", "empty", "success", "reference_compliant"], "level": 1, "feature": "parsing"}
+      "meta": {
+        "tags": [
+          "whitespace",
+          "empty",
+          "success",
+          "reference_compliant"
+        ],
+        "level": 1,
+        "feature": "parsing"
+      }
     },
     {
       "name": "just_string_error",
@@ -43,7 +71,14 @@
           "error_message": "not_enough_input"
         }
       },
-      "meta": {"tags": ["error", "incomplete"], "level": 1, "feature": "error-handling"}
+      "meta": {
+        "tags": [
+          "error",
+          "incomplete"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
     },
     {
       "name": "multiline_plain_error",
@@ -54,7 +89,15 @@
           "error_message": "not_enough_input"
         }
       },
-      "meta": {"tags": ["error", "multiline", "incomplete"], "level": 1, "feature": "error-handling"}
+      "meta": {
+        "tags": [
+          "error",
+          "multiline",
+          "incomplete"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
     },
     {
       "name": "multiline_plain_nested_error",
@@ -65,7 +108,16 @@
           "error_message": "end_of_input"
         }
       },
-      "meta": {"tags": ["error", "multiline", "nested", "incomplete"], "level": 1, "feature": "error-handling"}
+      "meta": {
+        "tags": [
+          "error",
+          "multiline",
+          "nested",
+          "incomplete"
+        ],
+        "level": 1,
+        "feature": "error-handling"
+      }
     }
   ]
 }

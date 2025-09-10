@@ -80,6 +80,27 @@ Each test case uses explicit `validations` objects that specify which API functi
 | `validations` | object | ✓ | Object containing API function validations to perform |
 | `meta` | object | ✓ | Test metadata including level and categorization |
 
+## Validation Format Requirements
+
+**IMPORTANT: All validations now use the counted format** with a required `count` field that specifies the number of assertions the validation represents.
+
+### Count Field
+
+The `count` field tracks assertion complexity for test generation and indicates how many individual tests this validation represents:
+
+- **For array results** (`parse`, `filter`, `expand_dotted`): `count` = number of items in `expected` array
+- **For object results** (`make_objects`): `count` = typically 1 (single object)
+- **For typed access**: `count` = number of test cases in `cases` array
+- **For empty results**: `count` = 0 (e.g., empty input parsing)
+
+```json
+// Examples of count values
+"parse": {"count": 3, "expected": [...]},     // 3 entries parsed
+"parse": {"count": 0, "expected": []},        // Empty input
+"make_objects": {"count": 1, "expected": {...}}, // Single object
+"get_bool": {"count": 2, "cases": [...]}      // 2 test cases
+```
+
 ## Validation Types Reference
 
 ### Level 1: Entry Parsing
@@ -87,11 +108,23 @@ Each test case uses explicit `validations` objects that specify which API functi
 #### `parse` Validation
 Tests the core `parse(text)` API function.
 
+**Standard Format:**
 ```json
-"parse": [
-  {"key": "database.host", "value": "localhost"},
-  {"key": "database.port", "value": "8080"}
-]
+"parse": {
+  "count": 2,
+  "expected": [
+    {"key": "database.host", "value": "localhost"},
+    {"key": "database.port", "value": "8080"}
+  ]
+}
+```
+
+**Empty Input Format:**
+```json
+"parse": {
+  "count": 0,
+  "expected": []
+}
 ```
 
 **Error Format:**
@@ -109,9 +142,12 @@ Tests the core `parse(text)` API function.
 Tests the `filter(entries)` API function for comment removal.
 
 ```json
-"filter": [
-  {"key": "key", "value": "value"}
-]
+"filter": {
+  "count": 1,
+  "expected": [
+    {"key": "key", "value": "value"}
+  ]
+}
 ```
 
 #### `compose` Validation  
@@ -132,9 +168,12 @@ Tests the `compose(left, right)` API function for entry composition.
 Tests dotted key expansion (e.g., `database.host` → nested structure).
 
 ```json
-"expand_dotted": [
-  {"key": "database", "value": "\n  host = localhost"}
-]
+"expand_dotted": {
+  "count": 1,
+  "expected": [
+    {"key": "database", "value": "\n  host = localhost"}
+  ]
+}
 ```
 
 ### Level 3: Object Construction
@@ -144,9 +183,12 @@ Tests the `make_objects(entries)` API function for hierarchical structure creati
 
 ```json
 "make_objects": {
-  "database": {
-    "host": "localhost", 
-    "port": "8080"
+  "count": 1,
+  "expected": {
+    "database": {
+      "host": "localhost", 
+      "port": "8080"
+    }
   }
 }
 ```
@@ -156,23 +198,38 @@ Tests the `make_objects(entries)` API function for hierarchical structure creati
 #### Typed Access Validations
 Test type-safe accessor functions with dual access patterns.
 
-**Simple Format:**
+**Single Test Case Format:**
 ```json
 "get_string": {
-  "args": ["database.host"],     // Dotted access
-  "expected": "localhost"
+  "count": 1,
+  "cases": [
+    {
+      "args": ["database.host"],     // Dotted access
+      "expected": "localhost"
+    }
+  ]
 },
 "get_int": {
-  "args": ["database", "port"],  // Hierarchical access  
-  "expected": 8080
+  "count": 1,
+  "cases": [
+    {
+      "args": ["database", "port"],  // Hierarchical access  
+      "expected": 8080
+    }
+  ]
 },
 "get_bool": {
-  "args": ["enabled"],
-  "expected": true
+  "count": 1,
+  "cases": [
+    {
+      "args": ["enabled"],
+      "expected": true
+    }
+  ]
 }
 ```
 
-**Counted Format (multiple test cases):**
+**Multiple Test Cases Format:**
 ```json
 "get_bool": {
   "count": 2,
@@ -199,7 +256,7 @@ Test type-safe accessor functions with dual access patterns.
 }
 ```
 
-**Counted Format with Mixed Success/Error Cases:**
+**Mixed Success/Error Cases:**
 ```json
 "get_bool": {
   "count": 2,
@@ -310,9 +367,12 @@ Every test case must include a `meta` object with categorization and level infor
   "name": "basic_key_value",
   "input": "key = value",
   "validations": {
-    "parse": [
-      {"key": "key", "value": "value"}
-    ]
+    "parse": {
+      "count": 1,
+      "expected": [
+        {"key": "key", "value": "value"}
+      ]
+    }
   },
   "meta": {
     "tags": ["basic"],
@@ -329,23 +389,42 @@ Every test case must include a `meta` object with categorization and level infor
   "name": "nested_with_typed_access",
   "input": "database.host = localhost\ndatabase.port = 8080",
   "validations": {
-    "parse": [
-      {"key": "database.host", "value": "localhost"},
-      {"key": "database.port", "value": "8080"}
-    ],
-    "expand_dotted": [
-      {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
-    ],
+    "parse": {
+      "count": 2,
+      "expected": [
+        {"key": "database.host", "value": "localhost"},
+        {"key": "database.port", "value": "8080"}
+      ]
+    },
+    "expand_dotted": {
+      "count": 1,
+      "expected": [
+        {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
+      ]
+    },
     "make_objects": {
-      "database": {"host": "localhost", "port": "8080"}
+      "count": 1,
+      "expected": {
+        "database": {"host": "localhost", "port": "8080"}
+      }
     },
     "get_string": {
-      "args": ["database.host"],
-      "expected": "localhost"
+      "count": 1,
+      "cases": [
+        {
+          "args": ["database.host"],
+          "expected": "localhost"
+        }
+      ]
     },
     "get_int": {
-      "args": ["database", "port"],
-      "expected": 8080
+      "count": 1,
+      "cases": [
+        {
+          "args": ["database", "port"],
+          "expected": 8080
+        }
+      ]
     }
   },
   "meta": {
@@ -435,33 +514,35 @@ The filtering system follows consistent patterns:
 ```javascript
 function runValidationTest(testCase) {
   // Iterate over all validations in the test
-  for (const [validationType, expected] of Object.entries(testCase.validations)) {
+  for (const [validationType, validation] of Object.entries(testCase.validations)) {
     switch (validationType) {
       case 'parse':
-        if (expected.error) {
+        if (validation.error) {
           // Test error case
-          expect(() => parse(testCase.input)).toThrow(expected.error_message);
+          expect(() => parse(testCase.input)).toThrow(validation.error_message);
         } else {
-          // Test success case
+          // Test success case with counted format
           const actual = parse(testCase.input);
-          expect(actual).toEqual(expected);
+          expect(actual).toEqual(validation.expected);
+          expect(actual.length).toBe(validation.count); // Verify count matches
         }
         break;
         
       case 'make_objects':
         const entries = parse(testCase.input);
         const actual = makeObjects(entries);
-        expect(actual).toEqual(expected);
+        expect(actual).toEqual(validation.expected);
+        // Count typically 1 for make_objects
         break;
         
       case 'get_string':
         const ccl = makeObjects(parse(testCase.input));
-        if (expected.error) {
-          // Simple error format
-          expect(() => getString(ccl, ...expected.args)).toThrow();
-        } else if (expected.cases) {
-          // Counted format with multiple cases
-          expected.cases.forEach(testCase => {
+        if (validation.error) {
+          // Error format
+          expect(() => getString(ccl, ...validation.args)).toThrow();
+        } else {
+          // Counted format with test cases
+          validation.cases.forEach(testCase => {
             if (testCase.error) {
               expect(() => getString(ccl, ...testCase.args)).toThrow();
             } else {
@@ -469,16 +550,14 @@ function runValidationTest(testCase) {
               expect(actual).toBe(testCase.expected);
             }
           });
-        } else {
-          // Simple success format
-          const actual = getString(ccl, ...expected.args);
-          expect(actual).toBe(expected.expected);
+          expect(validation.cases.length).toBe(validation.count); // Verify count
         }
         break;
         
       case 'filter':
         const filteredEntries = filter(parse(testCase.input));
-        expect(filteredEntries).toEqual(expected);
+        expect(filteredEntries).toEqual(validation.expected);
+        expect(filteredEntries.length).toBe(validation.count);
         break;
         
       case 'round_trip':
@@ -502,6 +581,7 @@ function runValidationTest(testCase) {
 4. **🔧 Extensible**: Easy to add additional validation types
 5. **✅ Explicit structure**: Clear mapping between tests and API functions
 6. **📊 Comprehensive coverage**: See exactly what APIs are tested per test case
+7. **🔢 Assertion tracking**: Count field enables precise test generation and complexity measurement
 
 ## Schema Validation
 
