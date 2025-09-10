@@ -133,7 +133,7 @@
           "properties": {
             "count": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "description": "Number of assertions this validation represents"
             },
             "expected": {
@@ -146,8 +146,23 @@
           }
         },
         {
-          "$ref": "#/definitions/error_validation",
-          "description": "Expected parse error"
+          "type": "object",
+          "description": "Expected parse error with assertion count",
+          "required": ["count", "error"],
+          "allOf": [
+            {
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Number of assertions this validation represents"
+                }
+              }
+            },
+            {
+              "$ref": "#/definitions/error_validation"
+            }
+          ]
         }
       ]
     },
@@ -160,7 +175,7 @@
           "properties": {
             "count": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "description": "Number of assertions this validation represents"
             },
             "expected": {
@@ -171,9 +186,6 @@
               }
             }
           }
-        },
-        {
-          "$ref": "#/definitions/error_validation"
         }
       ]
     },
@@ -214,7 +226,7 @@
           "properties": {
             "count": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "description": "Number of assertions this validation represents"
             },
             "expected": {
@@ -225,9 +237,6 @@
               }
             }
           }
-        },
-        {
-          "$ref": "#/definitions/error_validation"
         }
       ]
     },
@@ -240,7 +249,7 @@
           "properties": {
             "count": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "description": "Number of assertions this validation represents"
             },
             "expected": {
@@ -249,9 +258,6 @@
               "additionalProperties": true
             }
           }
-        },
-        {
-          "$ref": "#/definitions/error_validation"
         }
       ]
     },
@@ -264,7 +270,7 @@
           "properties": {
             "count": {
               "type": "integer",
-              "minimum": 0,
+              "minimum": 1,
               "description": "Number of assertions this validation represents"
             },
             "cases": {
@@ -313,23 +319,6 @@
               }
             }
           }
-        },
-        {
-          "type": "object",
-          "required": ["args", "error"],
-          "allOf": [
-            {
-              "properties": {
-                "args": {
-                  "type": "array",
-                  "items": {"type": "string"}
-                }
-              }
-            },
-            {
-              "$ref": "#/definitions/error_validation"
-            }
-          ]
         }
       ]
     },
@@ -338,16 +327,18 @@
         {
           "type": "string",
           "description": "Expected pretty-printed output"
-        },
-        {
-          "$ref": "#/definitions/error_validation"
         }
       ]
     },
     "round_trip_validation": {
       "type": "object",
-      "required": ["property"],
+      "required": ["count", "property"],
       "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of assertions this validation represents"
+        },
         "property": {
           "type": "string",
           "enum": ["identity"],
@@ -361,8 +352,13 @@
     },
     "canonical_format_validation": {
       "type": "object",
-      "required": ["expected"],
+      "required": ["count", "expected"],
       "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of assertions this validation represents"
+        },
         "expected": {
           "type": "string",
           "description": "Expected canonical formatted output"
@@ -375,8 +371,13 @@
     },
     "associativity_validation": {
       "type": "object",
-      "required": ["property", "should_be_equal"],
+      "required": ["count", "property", "should_be_equal"],
       "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of assertions this validation represents"
+        },
         "property": {
           "type": "string",
           "enum": ["semigroup_associativity", "monoid_identity_left", "monoid_identity_right"],

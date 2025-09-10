@@ -159,6 +159,7 @@
       "input": "key = first line\nsecond line without equals\nthird line",
       "validations": {
         "parse": {
+          "count": 1,
           "error": true,
           "error_message": "end_of_input"
         }
@@ -358,7 +359,7 @@
       "input": "",
       "validations": {
         "parse": {
-          "count": 0,
+          "count": 1,
           "expected": []
         }
       },
