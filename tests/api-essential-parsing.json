@@ -300,7 +300,7 @@
       }
     },
     {
-      "name": "crlf_normalization",
+      "name": "crlf_normalize_to_lf",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
         "parse": {
@@ -319,18 +319,18 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-preserve",
+          "behavior:crlf-normalize-to-lf",
           "function:parse"
         ],
         "level": 1,
         "feature": "crlf-normalization",
         "conflicts": [
-          "behavior:crlf-normalize"
+          "behavior:crlf-preserve-literal"
         ]
       }
     },
     {
-      "name": "crlf_normalization_strict",
+      "name": "crlf_preserve_literal",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
         "parse": {
@@ -349,13 +349,13 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-preserve",
+          "behavior:crlf-preserve-literal",
           "function:parse"
         ],
         "level": 1,
         "feature": "parsing",
         "conflicts": [
-          "behavior:crlf-normalize"
+          "behavior:crlf-normalize-to-lf"
         ]
       }
     },

@@ -209,14 +209,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-preserve",
+          "behavior:crlf-preserve-literal",
           "function:pretty-print",
           "variant:proposed-behavior"
         ],
         "level": 4,
         "feature": "pretty-printing",
         "conflicts": [
-          "behavior:crlf-normalize",
+          "behavior:crlf-normalize-to-lf",
           "variant:reference-compliant"
         ]
       }
@@ -373,14 +373,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-preserve",
+          "behavior:crlf-preserve-literal",
           "function:pretty-print",
           "variant:reference-compliant"
         ],
         "level": 4,
         "feature": "pretty-printing",
         "conflicts": [
-          "behavior:crlf-normalize"
+          "behavior:crlf-normalize-to-lf"
         ]
       }
     },

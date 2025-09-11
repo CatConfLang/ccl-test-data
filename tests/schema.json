@@ -543,7 +543,7 @@
                 "description": "Optional CCL language feature tags"
               },
               {
-                "pattern": "^behavior:(crlf-preserve|crlf-normalize|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing)$",
+                "pattern": "^behavior:(crlf-preserve-literal|crlf-normalize-to-lf|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing|boolean-lenient|boolean-strict)$",
                 "description": "Implementation behavioral choice tags"
               },
               {

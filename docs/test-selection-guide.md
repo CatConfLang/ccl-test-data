@@ -50,7 +50,8 @@ These indicate implementation choices that are mutually exclusive:
 
 | Tag Group | Options | Description |
 |-----------|---------|-------------|
-| Line Endings | `behavior:crlf-preserve` vs `behavior:crlf-normalize` | How to handle `\r\n` sequences |
+| Line Endings | `behavior:crlf-preserve-literal` vs `behavior:crlf-normalize-to-lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
+| Boolean Parsing | `behavior:boolean-lenient` vs `behavior:boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false" |
 | Tab Handling | `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` | Tab character processing |
 | Whitespace | `behavior:strict-spacing` vs `behavior:loose-spacing` | Whitespace sensitivity |
 
@@ -74,7 +75,8 @@ For rapid prototyping or minimal CCL support:
   "supported_functions": ["function:parse"],
   "skip_all_features": true,
   "behavior_choices": {
-    "line_endings": "behavior:crlf-normalize",
+    "line_endings": "behavior:crlf-normalize-to-lf",
+    "boolean_parsing": "behavior:boolean-lenient",
     "whitespace": "behavior:loose-spacing"
   }
 }

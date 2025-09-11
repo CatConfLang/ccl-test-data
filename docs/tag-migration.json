@@ -19,7 +19,7 @@
       "mixed": ["function:make-objects", "feature:empty-keys"],
       "deep": ["function:make-objects"],
       
-      "crlf": ["behavior:crlf-preserve"],
+      "crlf": ["behavior:crlf-preserve-literal"],
       "tabs": ["behavior:tabs-preserve"], 
       "spacing": ["behavior:strict-spacing"],
       
@@ -61,8 +61,8 @@
     "behavior": {
       "description": "Implementation behavioral choices (mutually exclusive within groups)",
       "tags": [
-        "crlf-preserve", "crlf-normalize", "tabs-preserve", 
-        "tabs-to-spaces", "strict-spacing", "loose-spacing"
+        "crlf-preserve-literal", "crlf-normalize-to-lf", "boolean-lenient", "boolean-strict",
+        "tabs-preserve", "tabs-to-spaces", "strict-spacing", "loose-spacing"
       ]
     },
     "variant": {
@@ -76,7 +76,8 @@
   "automatic_conflicts": {
     "description": "Tags that automatically conflict with each other",
     "conflicts": {
-      "behavior:crlf-preserve": ["behavior:crlf-normalize"],
+      "behavior:crlf-preserve-literal": ["behavior:crlf-normalize-to-lf"],
+      "behavior:boolean-lenient": ["behavior:boolean-strict"],
       "behavior:tabs-preserve": ["behavior:tabs-to-spaces"],
       "behavior:strict-spacing": ["behavior:loose-spacing"],
       "variant:proposed-behavior": ["variant:reference-compliant"]
@@ -94,7 +95,8 @@
       "supported_tags": ["function:parse", "function:make-objects", "function:get-string", "function:get-int", "function:get-bool", "function:get-float", "function:get-list"],
       "supported_features": ["feature:dotted-keys", "feature:empty-keys"],
       "behavioral_choices": {
-        "line_endings": "behavior:crlf-normalize",
+        "line_endings": "behavior:crlf-normalize-to-lf",
+        "boolean_parsing": "behavior:boolean-lenient", 
         "whitespace": "behavior:loose-spacing"
       }
     },
