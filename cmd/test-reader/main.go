@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
-	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -40,39 +39,32 @@ var (
 	testHeaderStyle = lipgloss.NewStyle().
 		Foreground(primaryColor).
 		Bold(true).
-		Border(lipgloss.RoundedBorder(), true, false, false, false).
-		BorderForeground(primaryColor).
-		Padding(0, 1).
 		Margin(1, 0, 0, 0)
 
 	descriptionStyle = lipgloss.NewStyle().
 		Foreground(warningColor).
 		Italic(true).
-		Margin(0, 1)
+		Margin(0, 0, 0, 2)
 
-	// Input CCL box
+	// Input CCL simple style
 	inputHeaderStyle = lipgloss.NewStyle().
 		Foreground(primaryColor).
 		Bold(true)
 
-	inputBoxStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(subtleColor).
-		Padding(1).
-		Margin(1, 1)
+	inputContentStyle = lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#FFFFFF")).
+		Background(lipgloss.Color("#1A1A1A")).
+		Padding(0, 1).
+		Margin(0, 0, 1, 2)
 
-	// Success/Error validation boxes
-	successBoxStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(successColor).
-		Padding(1).
-		Margin(1, 1)
+	// Compact validation styles (no boxes)
+	successHeaderStyle = lipgloss.NewStyle().
+		Foreground(successColor).
+		Bold(true)
 
-	errorBoxStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(errorColor).
-		Padding(1).
-		Margin(1, 1)
+	errorHeaderStyle = lipgloss.NewStyle().
+		Foreground(errorColor).
+		Bold(true)
 
 	successLabelStyle = lipgloss.NewStyle().
 		Foreground(successColor).
@@ -82,33 +74,55 @@ var (
 		Foreground(errorColor).
 		Bold(true)
 
-	// Metadata styles
-	metaBoxStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(warningColor).
-		Padding(1).
-		Margin(1, 1)
+	// Compact metadata styles
+	metaHeaderStyle = lipgloss.NewStyle().
+		Foreground(warningColor).
+		Bold(true)
 
 	tagStyle = lipgloss.NewStyle().
 		Foreground(warningColor).
-		Background(lipgloss.Color("#2A2A00")).
-		Padding(0, 1).
-		Margin(0, 1, 0, 0).
 		Bold(true)
 
 	conflictStyle = lipgloss.NewStyle().
 		Foreground(errorColor).
-		Background(lipgloss.Color("#2A0000")).
-		Padding(0, 1).
-		Margin(0, 1, 0, 0).
 		Bold(true)
+
+	// Entry display styles
+	entryKeyStyle = lipgloss.NewStyle().
+		Foreground(primaryColor).
+		Bold(true)
+
+	entryValueStyle = lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#FFFFFF"))
+
+	// Equals sign style
+	entryEqualsStyle = lipgloss.NewStyle().
+		Foreground(warningColor).
+		Bold(true)
+
+	// Entry box style - more visible border with tighter spacing
+	entryBoxStyle = lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(subtleColor).
+		Padding(0, 1).
+		Margin(0, 0, 0, 2)
+
+	// Whitespace indicator styles
+	whitespaceStyle = lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#555555"))
+
+	// Empty indicator styles - brighter for better visibility
+	emptyKeyStyle = lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#999999")).
+		Italic(true)
+
+	emptyValueStyle = lipgloss.NewStyle().
+		Foreground(lipgloss.Color("#999999")).
+		Italic(true)
 
 	summaryStyle = lipgloss.NewStyle().
 		Foreground(primaryColor).
 		Bold(true).
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(primaryColor).
-		Padding(0, 1).
 		Margin(1, 0)
 
 	// File selection styles
@@ -172,6 +186,37 @@ type ParseValidation struct {
 type Entry struct {
 	Key   string `json:"key"`
 	Value string `json:"value"`
+}
+
+// visualizeWhitespaceInline shows spaces as dots and tabs as arrows without styling
+func visualizeWhitespaceInline(s string) string {
+	result := strings.ReplaceAll(s, " ", "·")
+	result = strings.ReplaceAll(result, "\t", "→")
+	return result
+}
+
+// formatKey handles empty keys with special indicator
+func formatKey(key string) string {
+	if key == "" {
+		return emptyKeyStyle.Render("(empty-key)")
+	}
+	return entryKeyStyle.Render(visualizeWhitespaceInline(key))
+}
+
+// formatValue handles empty values with special indicator
+func formatValue(value string) string {
+	if value == "" {
+		return emptyValueStyle.Render("(empty)")
+	}
+	return entryValueStyle.Render(visualizeWhitespaceInline(value))
+}
+
+// formatInputContent shows input with whitespace indicators and proper background
+func formatInputContent(input string) string {
+	if input == "" {
+		return "(empty)"
+	}
+	return visualizeWhitespaceInline(input)
 }
 
 // FileInfo represents a test file with metadata
@@ -274,45 +319,40 @@ func runFileSelectionCLI(dir string) {
 	}
 
 	selectedFile := files[selection-1]
-	fmt.Printf("\nProcessing: %s\n\n", selectedFile.Name)
+	fmt.Printf("\nStarting TUI for: %s\n", selectedFile.Name)
 	
-	if err := processTestFile(selectedFile.Path); err != nil {
-		log.Printf("Error processing %s: %v", selectedFile.Path, err)
-	}
+	// Run TUI for the selected file
+	runTUI(selectedFile.Path)
 }
 
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: test-reader <test-file.json|directory> [--tui]")
-		fmt.Println("       test-reader tests/api-essential-parsing.json")
-		fmt.Println("       test-reader tests/api-essential-parsing.json --tui")
-		fmt.Println("       test-reader tests/")
-		fmt.Println("       test-reader tests/ --tui")
+		fmt.Println("Usage: test-reader <test-file.json|directory> [--static]")
+		fmt.Println("       test-reader tests/                              # Interactive TUI (default)")
+		fmt.Println("       test-reader tests/api-essential-parsing.json   # Interactive TUI (default)")
+		fmt.Println("       test-reader tests/ --static                     # Static CLI output")
+		fmt.Println("       test-reader tests/api-essential-parsing.json --static")
 		os.Exit(1)
 	}
 
-	// Check if TUI mode is requested
-	useTUI := false
 	path := os.Args[1]
-	if len(os.Args) > 2 && os.Args[2] == "--tui" {
-		useTUI = true
-	}
+	useStatic := len(os.Args) > 2 && os.Args[2] == "--static"
 
 	// Check if path is a directory
 	if info, err := os.Stat(path); err == nil && info.IsDir() {
-		if useTUI {
-			runFileSelectionTUI(path)
-		} else {
+		if useStatic {
 			runFileSelectionCLI(path)
+		} else {
+			runFileSelectionTUI(path)  // TUI is default for directories
 		}
 	} else {
 		// Handle as single file
-		if useTUI {
-			runTUI(path)
-		} else {
+		if useStatic {
 			if err := processTestFile(path); err != nil {
 				log.Printf("Error processing %s: %v", path, err)
 			}
+		} else {
+			runTUI(path)  // TUI is default for files
 		}
 	}
 }
@@ -371,22 +411,17 @@ func displayTest(test Test, index int) {
 		fmt.Println(descriptionStyle.Render("📝 " + test.Description))
 	}
 
-	// Display input in styled box
-	inputHeader := inputHeaderStyle.Render("📄 CCL INPUT")
-	inputContent := test.Input
-	if inputContent == "" {
-		inputContent = "(empty)"
-	}
-	inputBox := inputBoxStyle.Render(inputHeader + "\n\n" + inputContent)
-	fmt.Println(inputBox)
+	// Display input compactly
+	fmt.Println(inputHeaderStyle.Render("📄 CCL INPUT:"))
+	fmt.Println(inputContentStyle.Render(formatInputContent(test.Input)))
 
 	// Display parse validation if present
 	if parseData, ok := test.Validations["parse"]; ok {
 		displayParseValidation(parseData)
 	}
 
-	// Display metadata in styled box
-	displayMetadata(test)
+	// Display selective metadata
+	displaySelectiveMetadata(test)
 	fmt.Println()
 }
 
@@ -394,8 +429,7 @@ func displayParseValidation(parseData interface{}) {
 	// Convert to map first to handle the interface{}
 	parseMap, ok := parseData.(map[string]interface{})
 	if !ok {
-		errorContent := errorLabelStyle.Render("❌ Invalid parse validation format")
-		fmt.Println(errorBoxStyle.Render(errorContent))
+		fmt.Println(errorHeaderStyle.Render("❌ Invalid parse validation format"))
 		return
 	}
 
@@ -403,56 +437,69 @@ func displayParseValidation(parseData interface{}) {
 	
 	// Check if this is an error case
 	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
-		var content strings.Builder
-		content.WriteString(errorLabelStyle.Render("❌ EXPECTED: Parse Error") + "\n")
-		content.WriteString(fmt.Sprintf("Count: %.0f assertion(s)\n", count))
+		fmt.Println(errorHeaderStyle.Render("❌ EXPECTED: Parse Error"))
+		fmt.Printf("   Count: %.0f assertion(s)\n", count)
 		
 		if errorMsg, ok := parseMap["error_message"].(string); ok {
-			content.WriteString(fmt.Sprintf("Error: %s", errorMsg))
+			fmt.Printf("   Error: %s\n", errorMsg)
 		}
-		
-		fmt.Println(errorBoxStyle.Render(content.String()))
 		return
 	}
 
 	// Handle successful parse case
-	var content strings.Builder
-	content.WriteString(successLabelStyle.Render("✅ EXPECTED: Parse Success") + "\n")
-	content.WriteString(fmt.Sprintf("Count: %.0f assertion(s)\n", count))
+	fmt.Println(successHeaderStyle.Render("✅ EXPECTED: Parse Success"))
+	fmt.Printf("   Count: %.0f assertion(s)\n", count)
 
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok {
-		content.WriteString("\nEntries:\n")
-		for i, entryData := range expectedData {
+		fmt.Println("   Entries:")
+		for _, entryData := range expectedData {
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
-				content.WriteString(fmt.Sprintf("  %d. key=%q, value=%q\n", i+1, key, value))
+				
+				// Boxed entry content with key/equals on first line, value on second
+				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
+				valueLine := formatValue(value)
+				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
+				fmt.Println(entryBoxStyle.Render(entryContent))
 			}
 		}
 	}
-	
-	fmt.Println(successBoxStyle.Render(content.String()))
 }
 
-func displayMetadata(test Test) {
-	var content strings.Builder
-	
-	content.WriteString("🏷️  TAGS:\n")
+func displaySelectiveMetadata(test Test) {
+	// Show variant tags (behavior:* and variant:*)
+	variantTags := []string{}
 	for _, tag := range test.Meta.Tags {
-		content.WriteString(tagStyle.Render(tag))
-	}
-	content.WriteString("\n\n")
-	
-	content.WriteString(fmt.Sprintf("📊 LEVEL: %d | FEATURE: %s\n", test.Meta.Level, test.Meta.Feature))
-	
-	if len(test.Meta.Conflicts) > 0 {
-		content.WriteString("\n⚠️  CONFLICTS:\n")
-		for _, conflict := range test.Meta.Conflicts {
-			content.WriteString(conflictStyle.Render(conflict))
+		if strings.HasPrefix(tag, "variant:") || strings.HasPrefix(tag, "behavior:") {
+			variantTags = append(variantTags, tag)
 		}
 	}
 	
-	fmt.Println(metaBoxStyle.Render(content.String()))
+	if len(variantTags) > 0 {
+		fmt.Println(metaHeaderStyle.Render("🔄 VARIANTS:"))
+		fmt.Print("   ")
+		for i, tag := range variantTags {
+			if i > 0 {
+				fmt.Print(", ")
+			}
+			fmt.Print(tagStyle.Render(tag))
+		}
+		fmt.Println()
+	}
+	
+	// Show conflicts if they exist
+	if len(test.Meta.Conflicts) > 0 {
+		fmt.Println(metaHeaderStyle.Render("⚠️ CONFLICTS:"))
+		fmt.Print("   ")
+		for i, conflict := range test.Meta.Conflicts {
+			if i > 0 {
+				fmt.Print(", ")
+			}
+			fmt.Print(conflictStyle.Render(conflict))
+		}
+		fmt.Println()
+	}
 }
 
 // File Selection TUI Model
@@ -462,6 +509,7 @@ type fileSelectionModel struct {
 	selectedFile  int
 	width         int
 	height        int
+	fileSelected  bool
 }
 
 func initialFileSelectionModel(dir string) fileSelectionModel {
@@ -470,6 +518,7 @@ func initialFileSelectionModel(dir string) fileSelectionModel {
 		selectedFile: 0,
 		width:        80,
 		height:       24,
+		fileSelected: false,
 	}
 }
 
@@ -504,13 +553,7 @@ func (m fileSelectionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 		case "enter", " ":
 			if len(m.files) > 0 && m.selectedFile < len(m.files) {
-				selectedFile := m.files[m.selectedFile]
-				// Quit the file selection and run the test viewer
-				go func() {
-					// Small delay to ensure the file selection TUI has fully quit
-					time.Sleep(100 * time.Millisecond)
-					runTUI(selectedFile.Path)
-				}()
+				m.fileSelected = true
 				return m, tea.Quit
 			}
 		}
@@ -586,9 +629,17 @@ func runFileSelectionTUI(dir string) {
 	model.files = files
 
 	p := tea.NewProgram(model, tea.WithAltScreen())
-	if _, err := p.Run(); err != nil {
+	finalModel, err := p.Run()
+	if err != nil {
 		fmt.Printf("Error running file selection TUI: %v", err)
 		os.Exit(1)
+	}
+
+	// Check if a file was selected
+	if fsModel, ok := finalModel.(fileSelectionModel); ok && fsModel.fileSelected && fsModel.selectedFile >= 0 && fsModel.selectedFile < len(fsModel.files) {
+		selectedFile := fsModel.files[fsModel.selectedFile]
+		// Run TUI with directory context for back navigation
+		runTUIWithBackNav(selectedFile.Path, dir)
 	}
 }
 
@@ -597,10 +648,12 @@ type tuiModel struct {
 	tests       []Test
 	suite       TestSuite
 	filename    string
+	directory   string // For back navigation
 	currentTest int
 	showAll     bool
 	width       int
 	height      int
+	wantsBack   bool   // Track if user wants to go back
 }
 
 type testLoadedMsg struct {
@@ -637,6 +690,9 @@ func loadTestFileCmd(filename string) tea.Cmd {
 }
 
 func (m tuiModel) Init() tea.Cmd {
+	if m.filename != "" {
+		return loadTestFileCmd(m.filename)
+	}
 	return nil
 }
 
@@ -664,6 +720,12 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		switch msg.String() {
 		case "ctrl+c", "q":
 			return m, tea.Quit
+		case "esc":
+			if m.directory != "" {
+				// Set flag and quit to go back to directory selection
+				m.wantsBack = true
+				return m, tea.Quit
+			}
 		case "j", "down":
 			if m.currentTest < len(m.tests)-1 {
 				m.currentTest++
@@ -685,7 +747,7 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 func (m tuiModel) View() string {
 	if len(m.tests) == 0 {
-		return "Loading..."
+		return fmt.Sprintf("Loading... (tests=%d, suite=%s, filename=%s)", len(m.tests), m.suite.Suite, m.filename)
 	}
 
 	var content strings.Builder
@@ -716,6 +778,9 @@ func (m tuiModel) View() string {
 	// Navigation info
 	navInfo := fmt.Sprintf("Test %d of %d", m.currentTest+1, len(m.tests))
 	help := "j/k: navigate • g/G: first/last • a: toggle all • q: quit"
+	if m.directory != "" {
+		help += " • esc: back to file selection"
+	}
 	
 	content.WriteString("\n")
 	content.WriteString(summaryStyle.Render(navInfo) + "\n")
@@ -755,23 +820,18 @@ func (m tuiModel) renderTest(test Test, index int, compact bool) string {
 		content.WriteString(descriptionStyle.Render("📝 " + test.Description) + "\n")
 	}
 
-	// Input CCL box
-	inputHeader := inputHeaderStyle.Render("📄 CCL INPUT")
-	inputContent := test.Input
-	if inputContent == "" {
-		inputContent = "(empty)"
-	}
-	inputBox := inputBoxStyle.Render(inputHeader + "\n\n" + inputContent)
-	content.WriteString(inputBox + "\n")
+	// Input CCL compact
+	content.WriteString(inputHeaderStyle.Render("📄 CCL INPUT:") + "\n")
+	content.WriteString(inputContentStyle.Render(formatInputContent(test.Input)) + "\n")
 
 	// Parse validation
 	if parseData, ok := test.Validations["parse"]; ok {
 		content.WriteString(m.renderParseValidation(parseData, compact) + "\n")
 	}
 
-	// Metadata box (only if not compact)
+	// Selective metadata (only if not compact)
 	if !compact {
-		content.WriteString(m.renderMetadata(test) + "\n")
+		content.WriteString(m.renderSelectiveMetadata(test) + "\n")
 	}
 
 	return content.String()
@@ -780,8 +840,7 @@ func (m tuiModel) renderTest(test Test, index int, compact bool) string {
 func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) string {
 	parseMap, ok := parseData.(map[string]interface{})
 	if !ok {
-		errorContent := errorLabelStyle.Render("❌ Invalid parse validation format")
-		return errorBoxStyle.Render(errorContent)
+		return errorHeaderStyle.Render("❌ Invalid parse validation format")
 	}
 
 	count, _ := parseMap["count"].(float64)
@@ -789,79 +848,110 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 	// Check if this is an error case
 	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
 		var content strings.Builder
-		content.WriteString(errorLabelStyle.Render("❌ EXPECTED: Parse Error") + "\n")
-		content.WriteString(fmt.Sprintf("Count: %.0f assertion(s)\n", count))
+		content.WriteString(errorHeaderStyle.Render("❌ EXPECTED: Parse Error") + "\n")
+		content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
 		
 		if errorMsg, ok := parseMap["error_message"].(string); ok {
-			content.WriteString(fmt.Sprintf("Error: %s", errorMsg))
+			content.WriteString(fmt.Sprintf("   Error: %s\n", errorMsg))
 		}
-		
-		return errorBoxStyle.Render(content.String())
+		return content.String()
 	}
 
 	// Handle successful parse case
 	var content strings.Builder
-	content.WriteString(successLabelStyle.Render("✅ EXPECTED: Parse Success") + "\n")
-	content.WriteString(fmt.Sprintf("Count: %.0f assertion(s)\n", count))
+	content.WriteString(successHeaderStyle.Render("✅ EXPECTED: Parse Success") + "\n")
+	content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
 
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok && !compact {
-		content.WriteString("\nEntries:\n")
-		for i, entryData := range expectedData {
+		content.WriteString("   Entries:\n")
+		for _, entryData := range expectedData {
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
-				content.WriteString(fmt.Sprintf("  %d. key=%q, value=%q\n", i+1, key, value))
+				
+				// Boxed entry content with key/equals on first line, value on second
+				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
+				valueLine := formatValue(value)
+				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
+				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
 			}
 		}
 	}
 	
-	return successBoxStyle.Render(content.String())
+	return content.String()
 }
 
-func (m tuiModel) renderMetadata(test Test) string {
+func (m tuiModel) renderSelectiveMetadata(test Test) string {
 	var content strings.Builder
 	
-	content.WriteString("🏷️  TAGS:\n")
+	// Show variant tags (behavior:* and variant:*)
+	variantTags := []string{}
 	for _, tag := range test.Meta.Tags {
-		content.WriteString(tagStyle.Render(tag))
-	}
-	content.WriteString("\n\n")
-	
-	content.WriteString(fmt.Sprintf("📊 LEVEL: %d | FEATURE: %s\n", test.Meta.Level, test.Meta.Feature))
-	
-	if len(test.Meta.Conflicts) > 0 {
-		content.WriteString("\n⚠️  CONFLICTS:\n")
-		for _, conflict := range test.Meta.Conflicts {
-			content.WriteString(conflictStyle.Render(conflict))
+		if strings.HasPrefix(tag, "variant:") || strings.HasPrefix(tag, "behavior:") {
+			variantTags = append(variantTags, tag)
 		}
 	}
 	
-	return metaBoxStyle.Render(content.String())
+	if len(variantTags) > 0 {
+		content.WriteString(metaHeaderStyle.Render("🔄 VARIANTS:") + "\n")
+		content.WriteString("   ")
+		for i, tag := range variantTags {
+			if i > 0 {
+				content.WriteString(", ")
+			}
+			content.WriteString(tagStyle.Render(tag))
+		}
+		content.WriteString("\n")
+	}
+	
+	// Show conflicts if they exist
+	if len(test.Meta.Conflicts) > 0 {
+		content.WriteString(metaHeaderStyle.Render("⚠️ CONFLICTS:") + "\n")
+		content.WriteString("   ")
+		for i, conflict := range test.Meta.Conflicts {
+			if i > 0 {
+				content.WriteString(", ")
+			}
+			content.WriteString(conflictStyle.Render(conflict))
+		}
+		content.WriteString("\n")
+	}
+	
+	return content.String()
 }
 
 func runTUI(filename string) {
 	model := initialTUIModel()
+	model.filename = filename
+	
 	p := tea.NewProgram(model, tea.WithAltScreen())
-	
-	// Load the test file
-	if data, err := os.ReadFile(filename); err == nil {
-		var suite TestSuite
-		if err := json.Unmarshal(data, &suite); err == nil {
-			// Filter to only parse tests
-			parseTests := []Test{}
-			for _, test := range suite.Tests {
-				if _, hasParse := test.Validations["parse"]; hasParse {
-					parseTests = append(parseTests, test)
-				}
-			}
-			model.tests = parseTests
-			model.suite = suite
-			model.filename = filename
-		}
-	}
-	
 	if _, err := p.Run(); err != nil {
 		fmt.Printf("Error running TUI: %v", err)
 		os.Exit(1)
+	}
+}
+
+func runTUIWithBackNav(filename, directory string) {
+	for {
+		model := initialTUIModel()
+		model.filename = filename
+		model.directory = directory
+		
+		p := tea.NewProgram(model, tea.WithAltScreen())
+		finalModel, err := p.Run()
+		if err != nil {
+			fmt.Printf("Error running TUI: %v", err)
+			os.Exit(1)
+		}
+		
+		// Check if user pressed escape to go back
+		if tuiModel, ok := finalModel.(tuiModel); ok && tuiModel.wantsBack {
+			// Go back to directory selection
+			runFileSelectionTUI(directory)
+			break
+		} else {
+			// User quit normally, exit completely
+			break
+		}
 	}
 }
