@@ -89,7 +89,7 @@ The `internal/mock/ccl.go` contains a working CCL implementation that should pas
 All tests now use structured tags for precise test selection:
 
 **Function Tags** (`function:*`) - Required CCL functions:
-- `function:parse`, `function:filter`, `function:compose`, `function:expand-dotted`
+- `function:parse`, `function:parse-value`, `function:filter`, `function:compose`, `function:expand-dotted`
 - `function:make-objects`, `function:get-string`, `function:get-int`, `function:get-bool`, `function:get-float`, `function:get-list`
 - `function:pretty-print`
 
@@ -116,11 +116,12 @@ just generate --skip-tags feature:comments,feature:unicode,variant:proposed-beha
 ```
 
 **For Progressive Implementation:**
-1. Start with `function:parse` only
-2. Add `function:make-objects` for Level 3
-3. Add typed access: `function:get-string`, `function:get-int`, etc.
-4. Add processing: `function:filter`, `function:compose`, `function:expand-dotted`
-5. Add formatting: `function:pretty-print`
+1. Start with `function:parse` only (Level 1)
+2. Add `function:parse-value` for indentation-aware parsing (Level 2)
+3. Add `function:make-objects` for object construction (Level 3)
+4. Add typed access: `function:get-string`, `function:get-int`, etc. (Level 4)
+5. Add processing: `function:filter`, `function:compose`, `function:expand-dotted` (Level 2)
+6. Add formatting: `function:pretty-print` (Level 5)
 
 ## Test Data Format
 
