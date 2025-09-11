@@ -13,6 +13,11 @@ import (
 	"github.com/charmbracelet/lipgloss"
 )
 
+// Configuration constants
+const (
+	maxEntriesDisplay = 6 // Maximum entries to show before scrolling/truncation
+)
+
 // Color palette and styles
 var (
 	primaryColor   = lipgloss.Color("#00D7FF")
@@ -451,8 +456,16 @@ func displayParseValidation(parseData interface{}) {
 	fmt.Printf("   Count: %.0f assertion(s)\n", count)
 
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok {
-		fmt.Println("   Entries:")
-		for _, entryData := range expectedData {
+		totalEntries := len(expectedData)
+		fmt.Printf("   Entries (%d total):\n", totalEntries)
+		
+		// Show up to maxEntriesDisplay entries
+		entriesToShow := expectedData
+		if totalEntries > maxEntriesDisplay {
+			entriesToShow = expectedData[:maxEntriesDisplay]
+		}
+		
+		for _, entryData := range entriesToShow {
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
@@ -463,6 +476,14 @@ func displayParseValidation(parseData interface{}) {
 				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
 				fmt.Println(entryBoxStyle.Render(entryContent))
 			}
+		}
+		
+		// Show truncation indicator if there are more entries
+		if totalEntries > maxEntriesDisplay {
+			remaining := totalEntries - maxEntriesDisplay
+			truncationMsg := fmt.Sprintf("... and %d more entries (use TUI mode for scrolling)", remaining)
+			truncationStyle := lipgloss.NewStyle().Foreground(subtleColor)
+			fmt.Println(truncationStyle.Render("   " + truncationMsg))
 		}
 	}
 }
@@ -654,6 +675,7 @@ type tuiModel struct {
 	width       int
 	height      int
 	wantsBack   bool   // Track if user wants to go back
+	entryScroll int    // Current entry scroll offset
 }
 
 type testLoadedMsg struct {
@@ -729,17 +751,39 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "j", "down":
 			if m.currentTest < len(m.tests)-1 {
 				m.currentTest++
+				m.entryScroll = 0 // Reset scroll when changing tests
 			}
 		case "k", "up":
 			if m.currentTest > 0 {
 				m.currentTest--
+				m.entryScroll = 0 // Reset scroll when changing tests
 			}
 		case "g":
 			m.currentTest = 0
+			m.entryScroll = 0
 		case "G":
 			m.currentTest = len(m.tests) - 1
+			m.entryScroll = 0
 		case "a":
 			m.showAll = !m.showAll
+		case "left", "h":
+			if m.entryScroll > 0 {
+				m.entryScroll--
+			}
+		case "right", "l":
+			// Scroll entries forward if there are more to show
+			if m.currentTest < len(m.tests) {
+				if parseData, ok := m.tests[m.currentTest].Validations["parse"]; ok {
+					if parseMap, ok := parseData.(map[string]interface{}); ok {
+						if expectedData, ok := parseMap["expected"].([]interface{}); ok {
+							maxScroll := len(expectedData) - maxEntriesDisplay
+							if maxScroll > 0 && m.entryScroll < maxScroll {
+								m.entryScroll++
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	return m, nil
@@ -777,7 +821,7 @@ func (m tuiModel) View() string {
 
 	// Navigation info
 	navInfo := fmt.Sprintf("Test %d of %d", m.currentTest+1, len(m.tests))
-	help := "j/k: navigate • g/G: first/last • a: toggle all • q: quit"
+	help := "j/k: navigate • g/G: first/last • a: toggle all • h/l: scroll entries • q: quit"
 	if m.directory != "" {
 		help += " • esc: back to file selection"
 	}
@@ -863,8 +907,32 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 	content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
 
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok && !compact {
-		content.WriteString("   Entries:\n")
-		for _, entryData := range expectedData {
+		totalEntries := len(expectedData)
+		content.WriteString(fmt.Sprintf("   Entries (%d total):\n", totalEntries))
+		
+		// Handle scrolling
+		startIdx := m.entryScroll
+		if startIdx >= totalEntries {
+			startIdx = totalEntries - 1
+			if startIdx < 0 {
+				startIdx = 0
+			}
+		}
+		
+		endIdx := startIdx + maxEntriesDisplay
+		if endIdx > totalEntries {
+			endIdx = totalEntries
+		}
+		
+		// Show scroll indicators if needed
+		if startIdx > 0 {
+			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
+			content.WriteString(scrollStyle.Render("   ↑ More entries above (h/← to scroll up)\n"))
+		}
+		
+		// Show entries in current scroll window
+		for i := startIdx; i < endIdx; i++ {
+			entryData := expectedData[i]
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
@@ -875,6 +943,13 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
 				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
 			}
+		}
+		
+		// Show scroll indicator if there are more entries below
+		if endIdx < totalEntries {
+			remaining := totalEntries - endIdx
+			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
+			content.WriteString(scrollStyle.Render(fmt.Sprintf("   ↓ %d more entries below (l/→ to scroll down)\n", remaining)))
 		}
 	}
 	
