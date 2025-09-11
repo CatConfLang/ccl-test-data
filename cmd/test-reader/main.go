@@ -6,7 +6,9 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
+	"time"
 
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -108,6 +110,28 @@ var (
 		BorderForeground(primaryColor).
 		Padding(0, 1).
 		Margin(1, 0)
+
+	// File selection styles
+	selectedFileStyle = lipgloss.NewStyle().
+		Foreground(primaryColor).
+		Background(lipgloss.Color("#1A1A1A")).
+		Bold(true).
+		Padding(0, 1)
+
+	fileListStyle = lipgloss.NewStyle().
+		Border(lipgloss.RoundedBorder()).
+		BorderForeground(subtleColor).
+		Padding(1).
+		Margin(1, 0)
+
+	fileHeaderStyle = lipgloss.NewStyle().
+		Foreground(primaryColor).
+		Bold(true).
+		Align(lipgloss.Center).
+		Border(lipgloss.DoubleBorder()).
+		BorderForeground(primaryColor).
+		Padding(1, 2).
+		Margin(1, 0)
 )
 
 // TestSuite represents the structure of a test file
@@ -150,26 +174,145 @@ type Entry struct {
 	Value string `json:"value"`
 }
 
+// FileInfo represents a test file with metadata
+type FileInfo struct {
+	Path        string
+	Name        string
+	Description string
+	TestCount   int
+	ParseTests  int
+}
+
+func getJSONFiles(dir string) ([]FileInfo, error) {
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		return nil, err
+	}
+
+	var jsonFiles []FileInfo
+	for _, file := range files {
+		if !file.IsDir() && strings.HasSuffix(file.Name(), ".json") && !strings.Contains(file.Name(), "schema") {
+			filePath := filepath.Join(dir, file.Name())
+			fileInfo := FileInfo{
+				Path: filePath,
+				Name: file.Name(),
+			}
+
+			// Try to read suite info
+			if data, err := os.ReadFile(filePath); err == nil {
+				var suite TestSuite
+				if err := json.Unmarshal(data, &suite); err == nil {
+					fileInfo.Description = suite.Description
+					fileInfo.TestCount = len(suite.Tests)
+					
+					// Count parse tests
+					parseCount := 0
+					for _, test := range suite.Tests {
+						if _, hasParse := test.Validations["parse"]; hasParse {
+							parseCount++
+						}
+					}
+					fileInfo.ParseTests = parseCount
+				}
+			}
+
+			jsonFiles = append(jsonFiles, fileInfo)
+		}
+	}
+
+	// Sort by name
+	sort.Slice(jsonFiles, func(i, j int) bool {
+		return jsonFiles[i].Name < jsonFiles[j].Name
+	})
+
+	return jsonFiles, nil
+}
+
+func runFileSelectionCLI(dir string) {
+	files, err := getJSONFiles(dir)
+	if err != nil {
+		log.Printf("Error reading directory %s: %v", dir, err)
+		return
+	}
+
+	if len(files) == 0 {
+		fmt.Println("No JSON test files found in directory:", dir)
+		return
+	}
+
+	// Display header
+	header := fmt.Sprintf("📁 Available Test Files in %s", dir)
+	fmt.Println(fileHeaderStyle.Render(header))
+	fmt.Println()
+
+	// Display files
+	nameStyle := lipgloss.NewStyle().Foreground(primaryColor).Bold(true)
+	infoStyle := lipgloss.NewStyle().Foreground(subtleColor)
+	
+	for i, file := range files {
+		fmt.Printf("%2d. %s\n", i+1, nameStyle.Render(file.Name))
+		if file.Description != "" {
+			fmt.Printf("    %s\n", infoStyle.Render(file.Description))
+		}
+		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)))
+		fmt.Println()
+	}
+
+	// Interactive selection
+	fmt.Print("Select a file number (1-", len(files), ") or 'q' to quit: ")
+	var input string
+	fmt.Scanln(&input)
+
+	if input == "q" || input == "Q" {
+		return
+	}
+
+	var selection int
+	if _, err := fmt.Sscanf(input, "%d", &selection); err != nil || selection < 1 || selection > len(files) {
+		fmt.Println("Invalid selection")
+		return
+	}
+
+	selectedFile := files[selection-1]
+	fmt.Printf("\nProcessing: %s\n\n", selectedFile.Name)
+	
+	if err := processTestFile(selectedFile.Path); err != nil {
+		log.Printf("Error processing %s: %v", selectedFile.Path, err)
+	}
+}
+
 func main() {
 	if len(os.Args) < 2 {
-		fmt.Println("Usage: test-reader <test-file.json> [--tui]")
+		fmt.Println("Usage: test-reader <test-file.json|directory> [--tui]")
 		fmt.Println("       test-reader tests/api-essential-parsing.json")
 		fmt.Println("       test-reader tests/api-essential-parsing.json --tui")
+		fmt.Println("       test-reader tests/")
+		fmt.Println("       test-reader tests/ --tui")
 		os.Exit(1)
 	}
 
 	// Check if TUI mode is requested
 	useTUI := false
-	filename := os.Args[1]
+	path := os.Args[1]
 	if len(os.Args) > 2 && os.Args[2] == "--tui" {
 		useTUI = true
 	}
 
-	if useTUI {
-		runTUI(filename)
+	// Check if path is a directory
+	if info, err := os.Stat(path); err == nil && info.IsDir() {
+		if useTUI {
+			runFileSelectionTUI(path)
+		} else {
+			runFileSelectionCLI(path)
+		}
 	} else {
-		if err := processTestFile(filename); err != nil {
-			log.Printf("Error processing %s: %v", filename, err)
+		// Handle as single file
+		if useTUI {
+			runTUI(path)
+		} else {
+			if err := processTestFile(path); err != nil {
+				log.Printf("Error processing %s: %v", path, err)
+			}
 		}
 	}
 }
@@ -310,6 +453,143 @@ func displayMetadata(test Test) {
 	}
 	
 	fmt.Println(metaBoxStyle.Render(content.String()))
+}
+
+// File Selection TUI Model
+type fileSelectionModel struct {
+	files         []FileInfo
+	directory     string
+	selectedFile  int
+	width         int
+	height        int
+}
+
+func initialFileSelectionModel(dir string) fileSelectionModel {
+	return fileSelectionModel{
+		directory:    dir,
+		selectedFile: 0,
+		width:        80,
+		height:       24,
+	}
+}
+
+func (m fileSelectionModel) Init() tea.Cmd {
+	return nil
+}
+
+func (m fileSelectionModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	switch msg := msg.(type) {
+	case tea.WindowSizeMsg:
+		m.width = msg.Width
+		m.height = msg.Height
+		return m, nil
+
+	case tea.KeyMsg:
+		switch msg.String() {
+		case "ctrl+c", "q", "esc":
+			return m, tea.Quit
+		case "j", "down":
+			if m.selectedFile < len(m.files)-1 {
+				m.selectedFile++
+			}
+		case "k", "up":
+			if m.selectedFile > 0 {
+				m.selectedFile--
+			}
+		case "g":
+			m.selectedFile = 0
+		case "G":
+			if len(m.files) > 0 {
+				m.selectedFile = len(m.files) - 1
+			}
+		case "enter", " ":
+			if len(m.files) > 0 && m.selectedFile < len(m.files) {
+				selectedFile := m.files[m.selectedFile]
+				// Quit the file selection and run the test viewer
+				go func() {
+					// Small delay to ensure the file selection TUI has fully quit
+					time.Sleep(100 * time.Millisecond)
+					runTUI(selectedFile.Path)
+				}()
+				return m, tea.Quit
+			}
+		}
+	}
+	return m, nil
+}
+
+func (m fileSelectionModel) View() string {
+	if len(m.files) == 0 {
+		return "Loading files..."
+	}
+
+	var content strings.Builder
+
+	// Header
+	header := fmt.Sprintf("📁 Select Test File from %s", m.directory)
+	content.WriteString(fileHeaderStyle.Render(header) + "\n\n")
+
+	// File list
+	var fileList strings.Builder
+	for i, file := range m.files {
+		prefix := "  "
+		style := lipgloss.NewStyle()
+		
+		if i == m.selectedFile {
+			prefix = "► "
+			style = selectedFileStyle
+		}
+
+		// File name line
+		fileName := fmt.Sprintf("%s%s", prefix, file.Name)
+		fileList.WriteString(style.Render(fileName) + "\n")
+
+		// Description line (if selected or always show brief info)
+		if i == m.selectedFile && file.Description != "" {
+			desc := fmt.Sprintf("   %s", file.Description)
+			descStyle := lipgloss.NewStyle().Foreground(subtleColor)
+			fileList.WriteString(descStyle.Render(desc) + "\n")
+		}
+
+		// Stats line for selected file
+		if i == m.selectedFile {
+			stats := fmt.Sprintf("   Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)
+			statsStyle := lipgloss.NewStyle().Foreground(subtleColor)
+			fileList.WriteString(statsStyle.Render(stats) + "\n")
+		}
+
+		fileList.WriteString("\n")
+	}
+
+	content.WriteString(fileListStyle.Render(fileList.String()) + "\n")
+
+	// Navigation help
+	help := "j/k: navigate • g/G: first/last • enter/space: select • q/esc: quit"
+	content.WriteString(suiteInfoStyle.Render(help))
+
+	return content.String()
+}
+
+func runFileSelectionTUI(dir string) {
+	files, err := getJSONFiles(dir)
+	if err != nil {
+		log.Printf("Error reading directory %s: %v", dir, err)
+		return
+	}
+
+	if len(files) == 0 {
+		fmt.Println("No JSON test files found in directory:", dir)
+		return
+	}
+
+	model := initialFileSelectionModel(dir)
+	model.files = files
+
+	p := tea.NewProgram(model, tea.WithAltScreen())
+	if _, err := p.Run(); err != nil {
+		fmt.Printf("Error running file selection TUI: %v", err)
+		os.Exit(1)
+	}
 }
 
 // TUI Implementation
