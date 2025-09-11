@@ -169,12 +169,7 @@ func TestRealisticStressTest(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// ocaml_stress_test_original - feature:comments feature:empty-keys function:get-list function:get-string function:make-objects function:parse variant:proposed-behavior (level 4)
+// ocaml_stress_test_original - feature:comments feature:empty-keys function:get-string function:make-objects function:parse (level 4)
 func TestOcamlStressTestOriginal(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
-}
-
-// ocaml_stress_test_original_ocaml_reference - feature:comments feature:empty-keys function:get-string function:make-objects function:parse variant:reference-compliant (level 4)
-func TestOcamlStressTestOriginalOcamlReference(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
