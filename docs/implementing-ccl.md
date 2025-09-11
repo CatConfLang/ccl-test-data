@@ -541,6 +541,33 @@ Provide helpful error messages with:
 - **Expected vs actual** for type errors
 - **Suggestions** for common mistakes
 
+#### Error Message Testing
+The test suite supports two approaches for validating error messages:
+
+**Flexible Pattern Matching (Recommended):**
+```json
+{
+  "error": true,
+  "error_pattern": "(?i)path\\s+'[^']+'\\s+not\\s+found"
+}
+```
+
+**Exact String Matching:**
+```json
+{
+  "error": true,
+  "error_message": "Path 'missing' not found."
+}
+```
+
+**Pattern Best Practices:**
+- Use `(?i)` for case-insensitive matching
+- Use `\\s+` for flexible whitespace handling
+- Use `\\.?` for optional punctuation
+- Focus on semantic content over exact formatting
+
+This approach reduces implementation friction while maintaining test coverage, allowing different languages to use their natural error message conventions.
+
 ### Documentation Requirements
 - **API documentation** with examples
 - **Migration guide** from popular formats
