@@ -1,3 +1,25 @@
+// Package generator provides test file generation capabilities for CCL implementations.
+//
+// This package transforms JSON test suites into executable Go test files, supporting
+// feature-based tagging, object pooling for performance, and comprehensive assertion
+// tracking. The generator organizes tests by CCL implementation levels (1-5) and
+// features (parsing, comments, objects, etc.).
+//
+// Key Features:
+//   - Feature-based test selection via structured tagging
+//   - Object pooling to reduce memory allocations during generation
+//   - Template-based Go test file generation with proper package organization
+//   - Assertion counting and statistics collection for test suite analysis
+//   - Support for mock implementation development with selective test generation
+//
+// Example Usage:
+//
+//	gen := generator.New("tests", "generated_tests")
+//	if err := gen.GenerateAll(); err != nil {
+//	    log.Fatal(err)
+//	}
+//	stats := gen.GetStats()
+//	fmt.Printf("Generated %d tests with %d assertions\n", stats.TotalTests, stats.TotalAssertions)
 package generator
 
 import (
@@ -34,6 +56,7 @@ type Generator struct {
 	outputDir string
 	options   Options
 	stats     AssertionStats
+	pool      *Pool // Object pool for memory optimization
 }
 
 // New creates a new generator instance with default options
@@ -47,6 +70,7 @@ func New(inputDir, outputDir string) *Generator {
 		stats: AssertionStats{
 			TestCounts: make(map[string]int),
 		},
+		pool: NewPool(),
 	}
 }
 
@@ -59,6 +83,7 @@ func NewWithOptions(inputDir, outputDir string, options Options) *Generator {
 		stats: AssertionStats{
 			TestCounts: make(map[string]int),
 		},
+		pool: NewPool(),
 	}
 }
 
@@ -121,29 +146,32 @@ func (g *Generator) generateTestFile(jsonFile string) error {
 	// Read and parse JSON file
 	data, err := os.ReadFile(jsonFile)
 	if err != nil {
-		return fmt.Errorf("failed to read file %s: %w", jsonFile, err)
+		return fmt.Errorf("failed to read file %s at path %s: %w", filepath.Base(jsonFile), jsonFile, err)
 	}
 
-	var testSuite types.TestSuite
-	if err := json.Unmarshal(data, &testSuite); err != nil {
+	// Use pooled TestSuite to reduce allocations
+	testSuite := g.pool.GetTestSuite()
+	defer g.pool.PutTestSuite(testSuite)
+
+	if err := json.Unmarshal(data, testSuite); err != nil {
 		return fmt.Errorf("failed to parse JSON in %s: %w", jsonFile, err)
 	}
 
 	// Generate test file content
-	testContent, err := g.generateTestContent(testSuite, jsonFile)
+	testContent, err := g.generateTestContent(*testSuite, jsonFile)
 	if err != nil {
-		return fmt.Errorf("failed to generate test content: %w", err)
+		return fmt.Errorf("failed to generate test content for %s: %w", filepath.Base(jsonFile), err)
 	}
 
 	// Determine output file path
-	outputPath := g.getOutputPath(testSuite, jsonFile)
+	outputPath := g.getOutputPath(*testSuite, jsonFile)
 	if err := os.MkdirAll(filepath.Dir(outputPath), 0755); err != nil {
-		return fmt.Errorf("failed to create output directory: %w", err)
+		return fmt.Errorf("failed to create output directory %s: %w", filepath.Dir(outputPath), err)
 	}
 
 	// Write test file
 	if err := os.WriteFile(outputPath, []byte(testContent), 0644); err != nil {
-		return fmt.Errorf("failed to write test file: %w", err)
+		return fmt.Errorf("failed to write test file %s: %w", outputPath, err)
 	}
 
 	return nil
