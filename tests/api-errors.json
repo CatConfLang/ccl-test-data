@@ -48,7 +48,7 @@
       "input": "   ",
       "validations": {
         "parse": {
-          "count": 0,
+          "count": 1,
           "expected": []
         }
       },

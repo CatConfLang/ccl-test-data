@@ -946,7 +946,9 @@
         },
         "make_objects": {
           "count": 1,
-          "expected": "empty_key"
+          "expected": {
+            "empty_key": ""
+          }
         }
       },
       "meta": {
