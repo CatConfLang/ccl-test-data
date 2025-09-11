@@ -20,6 +20,7 @@ These indicate which CCL functions are required for a test to run:
 | Tag | Description | Level | Example Usage |
 |-----|-------------|--------|---------------|
 | `function:parse` | Basic key-value parsing | 1 | `Parse("key = value")` |
+| `function:parse-value` | Indentation-aware parsing | 2 | `ParseValue("key = val\n  sub")` |
 | `function:filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
 | `function:compose` | Entry composition | 2 | `Compose(left, right)` |
 | `function:expand-dotted` | Dotted key expansion | 2 | `ExpandDotted(entries)` |
@@ -130,6 +131,7 @@ For most CCL use cases:
 {
   "supported_functions": [
     "function:parse",
+    "function:parse-value",
     "function:make-objects", 
     "function:get-string",
     "function:get-int",
@@ -155,6 +157,7 @@ For advanced configuration manipulation:
 {
   "supported_functions": [
     "function:parse",
+    "function:parse-value",
     "function:filter",
     "function:compose", 
     "function:expand-dotted",
@@ -204,6 +207,7 @@ func TestCCLImplementation(t *testing.T) {
     // Define implementation capabilities
     supportedFunctions := []string{
         "function:parse", 
+        "function:parse-value",
         "function:make-objects", 
         "function:get-string",
     }
@@ -270,6 +274,7 @@ mod ccl_tests {
     fn test_ccl_implementation() {
         let supported_functions = vec![
             "function:parse",
+            "function:parse-value",
             "function:make-objects",
             "function:get-string",
         ];
@@ -314,6 +319,7 @@ import pytest
 # Define implementation capabilities
 SUPPORTED_FUNCTIONS = [
     "function:parse",
+    "function:parse-value",
     "function:make-objects", 
     "function:get-string"
 ]
@@ -367,6 +373,7 @@ def test_comment_parsing():
 describe('CCL Implementation', () => {
   const supportedFunctions = [
     'function:parse',
+    'function:parse-value',
     'function:make-objects',
     'function:get-string'
   ];
@@ -439,29 +446,35 @@ describe.skipIf(!SUPPORTS_UNICODE)('Unicode handling tests', () => {
 - **Goal**: Parse key-value pairs, handle empty input
 - **Time**: 1-2 days
 
-### Phase 2: Object Construction  
+### Phase 2: Enhanced Parsing
+- **Target**: Add `function:parse-value`
+- **Tests**: ~65 tests
+- **Goal**: Handle indentation-aware parsing
+- **Time**: 1-2 days
+
+### Phase 3: Object Construction  
 - **Target**: Add `function:make-objects`
 - **Tests**: ~80 tests
 - **Goal**: Convert flat entries to nested objects
 - **Features**: Consider adding `feature:dotted-keys`
 - **Time**: 2-3 days
 
-### Phase 3: Typed Access
+### Phase 4: Typed Access
 - **Target**: Add `function:get-string`, `function:get-int`, `function:get-bool`
 - **Tests**: ~120 tests  
 - **Goal**: Type-safe value extraction
 - **Time**: 1-2 days
 
-### Phase 4: Processing Functions
+### Phase 5: Processing Functions
 - **Target**: Add `function:filter`, `function:compose`, `function:expand-dotted`
 - **Tests**: ~150 tests
 - **Goal**: Advanced entry manipulation
 - **Features**: Consider adding `feature:comments`
 - **Time**: 3-4 days
 
-### Phase 5: Full Implementation
+### Phase 6: Full Implementation
 - **Target**: Add `function:pretty-print`, remaining features
-- **Tests**: All 167 tests
+- **Tests**: All tests
 - **Goal**: Complete CCL specification compliance
 - **Time**: 2-3 days
 
