@@ -10,8 +10,8 @@ alias t := test
 alias l := list
 alias v := test-verbose
 alias reset := dev-basic
-alias reader := read-essential
-alias tui := read-tui
+alias reader := read-dir
+alias tui := read-dir-tui
 
 # Build the ccl-test-runner binary
 build:
@@ -110,40 +110,15 @@ stats:
 stats-json:
     go run ./cmd/ccl-test-runner stats --format json
 
-# Build and run test-reader on essential parsing tests
-read-essential:
+# Build and run test-reader with directory selection (CLI mode)
+read-dir:
     just build-reader
-    ./bin/test-reader tests/api-essential-parsing.json
+    ./bin/test-reader tests/
 
-# Build and run test-reader on error cases
-read-errors:
+# Build and run test-reader with directory selection (TUI mode)
+read-dir-tui:
     just build-reader
-    ./bin/test-reader tests/api-errors.json
-
-# Build and run test-reader on comprehensive parsing tests
-read-comprehensive:
-    just build-reader
-    ./bin/test-reader tests/api-comprehensive-parsing.json
-
-# Build and run test-reader on object construction tests
-read-objects:
-    just build-reader
-    ./bin/test-reader tests/api-object-construction.json
-
-# Build and run test-reader on typed access tests
-read-typed:
-    just build-reader
-    ./bin/test-reader tests/api-typed-access.json
-
-# Build and run test-reader on comments tests
-read-comments:
-    just build-reader
-    ./bin/test-reader tests/api-comments.json
-
-# Build and run test-reader in TUI mode on essential parsing tests
-read-tui:
-    just build-reader
-    ./bin/test-reader tests/api-essential-parsing.json --tui
+    ./bin/test-reader tests/ --tui
 
 # Run test-reader on a specific file (pass filename as argument)
 read FILE:

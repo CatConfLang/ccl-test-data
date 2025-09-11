@@ -44,3 +44,5 @@ Thumbs.db
 
 # Claude local settings (keep global but ignore local)
 .claude/settings.local.json
+bin
+test-reader
