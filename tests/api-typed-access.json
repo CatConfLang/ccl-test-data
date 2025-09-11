@@ -120,15 +120,13 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
+          "behavior:boolean-lenient",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
-        "conflicts": [
-          "behavior:boolean-lenient"
-        ]
+        "feature": "typed-parsing"
       }
     },
     {
@@ -256,15 +254,13 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
+          "behavior:boolean-lenient",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
-        "conflicts": [
-          "behavior:boolean-lenient"
-        ]
+        "feature": "typed-parsing"
       }
     },
     {

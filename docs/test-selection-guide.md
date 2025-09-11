@@ -52,7 +52,7 @@ These indicate **implementation-level choices** - technical decisions about how 
 | Tag Group | Options | Description |
 |-----------|---------|-------------|
 | Line Endings | `behavior:crlf-preserve-literal` vs `behavior:crlf-normalize-to-lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
-| Boolean Parsing | `behavior:boolean-lenient` vs `behavior:boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false" |
+| Boolean Parsing | `behavior:boolean-lenient` vs `behavior:boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
 | Tab Handling | `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` | Tab character processing |
 | Whitespace | `behavior:strict-spacing` vs `behavior:loose-spacing` | Whitespace sensitivity |
 

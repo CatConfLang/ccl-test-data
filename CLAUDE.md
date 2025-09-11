@@ -171,7 +171,8 @@ All tests use required `count` fields for precise validation:
 2. Include structured tags:
    - Required: `function:*` tags based on validations used
    - Optional: `feature:*` tags for language features required
-   - Conflicts: `conflicts` array for mutually exclusive behaviors
+   - Behavior: `behavior:*` tags for implementation choices (some tests may have multiple behavior tags if they work in all modes)
+   - Conflicts: `conflicts` array for mutually exclusive behaviors (only when truly incompatible)
 3. Include proper `count` fields matching array lengths or case counts
 4. Run `just generate` and `just test-generated` to verify
 5. Check `just stats` to see impact on test coverage
