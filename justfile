@@ -188,12 +188,34 @@ dev-full:
     just generate
     just test
 
-# CI/CD pipeline
+# Run performance benchmarks
+benchmark:
+    go run ./cmd/ccl-test-runner benchmark
+
+# Run benchmarks with comparison to historical results
+benchmark-compare HISTORICAL_FILE:
+    go run ./cmd/ccl-test-runner benchmark --compare {{HISTORICAL_FILE}}
+
+# Run benchmarks and save as baseline
+benchmark-baseline:
+    mkdir -p benchmarks
+    go run ./cmd/ccl-test-runner benchmark --results benchmarks/baseline.json
+
+# CI/CD pipeline with benchmarking
 ci:
     just validate
     just generate
     just test-generated
     just docs-check
+    just benchmark-baseline
+
+# Enhanced CI with regression detection
+ci-benchmark BASELINE:
+    just validate
+    just generate
+    just test-generated
+    just docs-check
+    just benchmark-compare {{BASELINE}}
 
 # Quick development cycle for basic functionality
 dev-basic:

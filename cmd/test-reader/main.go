@@ -20,137 +20,137 @@ const (
 
 // Color palette and styles
 var (
-	primaryColor   = lipgloss.Color("#00D7FF")
-	successColor   = lipgloss.Color("#00D787")
-	errorColor     = lipgloss.Color("#FF5F87")
-	warningColor   = lipgloss.Color("#FFAF00")
-	subtleColor    = lipgloss.Color("#626262")
-	
+	primaryColor = lipgloss.Color("#00D7FF")
+	successColor = lipgloss.Color("#00D787")
+	errorColor   = lipgloss.Color("#FF5F87")
+	warningColor = lipgloss.Color("#FFAF00")
+	subtleColor  = lipgloss.Color("#626262")
+
 	// Suite header style
 	suiteHeaderStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true).
-		Border(lipgloss.DoubleBorder()).
-		BorderForeground(primaryColor).
-		Padding(1, 2).
-		Margin(1, 0)
+				Foreground(primaryColor).
+				Bold(true).
+				Border(lipgloss.DoubleBorder()).
+				BorderForeground(primaryColor).
+				Padding(1, 2).
+				Margin(1, 0)
 
 	suiteInfoStyle = lipgloss.NewStyle().
-		Foreground(subtleColor).
-		Italic(true).
-		Margin(0, 2)
+			Foreground(subtleColor).
+			Italic(true).
+			Margin(0, 2)
 
 	// Test case styles
 	testHeaderStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true).
-		Margin(1, 0, 0, 0)
+			Foreground(primaryColor).
+			Bold(true).
+			Margin(1, 0, 0, 0)
 
 	descriptionStyle = lipgloss.NewStyle().
-		Foreground(warningColor).
-		Italic(true).
-		Margin(0, 0, 0, 2)
+				Foreground(warningColor).
+				Italic(true).
+				Margin(0, 0, 0, 2)
 
 	// Input CCL simple style
 	inputHeaderStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true)
+				Foreground(primaryColor).
+				Bold(true)
 
 	inputContentStyle = lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#FFFFFF")).
-		Background(lipgloss.Color("#1A1A1A")).
-		Padding(0, 1).
-		Margin(0, 0, 1, 2)
+				Foreground(lipgloss.Color("#FFFFFF")).
+				Background(lipgloss.Color("#1A1A1A")).
+				Padding(0, 1).
+				Margin(0, 0, 1, 2)
 
 	// Compact validation styles (no boxes)
 	successHeaderStyle = lipgloss.NewStyle().
-		Foreground(successColor).
-		Bold(true)
+				Foreground(successColor).
+				Bold(true)
 
 	errorHeaderStyle = lipgloss.NewStyle().
-		Foreground(errorColor).
-		Bold(true)
+				Foreground(errorColor).
+				Bold(true)
 
 	successLabelStyle = lipgloss.NewStyle().
-		Foreground(successColor).
-		Bold(true)
+				Foreground(successColor).
+				Bold(true)
 
 	errorLabelStyle = lipgloss.NewStyle().
-		Foreground(errorColor).
-		Bold(true)
+			Foreground(errorColor).
+			Bold(true)
 
 	// Compact metadata styles
 	metaHeaderStyle = lipgloss.NewStyle().
-		Foreground(warningColor).
-		Bold(true)
+			Foreground(warningColor).
+			Bold(true)
 
 	tagStyle = lipgloss.NewStyle().
-		Foreground(warningColor).
-		Bold(true)
+			Foreground(warningColor).
+			Bold(true)
 
 	conflictStyle = lipgloss.NewStyle().
-		Foreground(errorColor).
-		Bold(true)
+			Foreground(errorColor).
+			Bold(true)
 
 	// Entry display styles
 	entryKeyStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true)
+			Foreground(primaryColor).
+			Bold(true)
 
 	entryValueStyle = lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#FFFFFF"))
+			Foreground(lipgloss.Color("#FFFFFF"))
 
 	// Equals sign style
 	entryEqualsStyle = lipgloss.NewStyle().
-		Foreground(warningColor).
-		Bold(true)
+				Foreground(warningColor).
+				Bold(true)
 
 	// Entry box style - more visible border with tighter spacing
 	entryBoxStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(subtleColor).
-		Padding(0, 1).
-		Margin(0, 0, 0, 2)
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(subtleColor).
+			Padding(0, 1).
+			Margin(0, 0, 0, 2)
 
 	// Whitespace indicator styles
 	whitespaceStyle = lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#555555"))
+			Foreground(lipgloss.Color("#555555"))
 
 	// Empty indicator styles - brighter for better visibility
 	emptyKeyStyle = lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#999999")).
-		Italic(true)
+			Foreground(lipgloss.Color("#999999")).
+			Italic(true)
 
 	emptyValueStyle = lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#999999")).
-		Italic(true)
+			Foreground(lipgloss.Color("#999999")).
+			Italic(true)
 
 	summaryStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true).
-		Margin(1, 0)
+			Foreground(primaryColor).
+			Bold(true).
+			Margin(1, 0)
 
 	// File selection styles
 	selectedFileStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Background(lipgloss.Color("#1A1A1A")).
-		Bold(true).
-		Padding(0, 1)
+				Foreground(primaryColor).
+				Background(lipgloss.Color("#1A1A1A")).
+				Bold(true).
+				Padding(0, 1)
 
 	fileListStyle = lipgloss.NewStyle().
-		Border(lipgloss.RoundedBorder()).
-		BorderForeground(subtleColor).
-		Padding(1).
-		Margin(1, 0)
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(subtleColor).
+			Padding(1).
+			Margin(1, 0)
 
 	fileHeaderStyle = lipgloss.NewStyle().
-		Foreground(primaryColor).
-		Bold(true).
-		Align(lipgloss.Center).
-		Border(lipgloss.DoubleBorder()).
-		BorderForeground(primaryColor).
-		Padding(1, 2).
-		Margin(1, 0)
+			Foreground(primaryColor).
+			Bold(true).
+			Align(lipgloss.Center).
+			Border(lipgloss.DoubleBorder()).
+			BorderForeground(primaryColor).
+			Padding(1, 2).
+			Margin(1, 0)
 )
 
 // TestSuite represents the structure of a test file
@@ -173,18 +173,18 @@ type Test struct {
 
 // Meta contains test metadata
 type Meta struct {
-	Tags     []string `json:"tags"`
-	Level    int      `json:"level"`
-	Feature  string   `json:"feature"`
+	Tags      []string `json:"tags"`
+	Level     int      `json:"level"`
+	Feature   string   `json:"feature"`
 	Conflicts []string `json:"conflicts,omitempty"`
 }
 
 // ParseValidation represents the parse validation structure
 type ParseValidation struct {
-	Count    int     `json:"count"`
-	Expected []Entry `json:"expected,omitempty"`
-	Error    bool    `json:"error,omitempty"`
-	ErrorMessage string `json:"error_message,omitempty"`
+	Count        int     `json:"count"`
+	Expected     []Entry `json:"expected,omitempty"`
+	Error        bool    `json:"error,omitempty"`
+	ErrorMessage string  `json:"error_message,omitempty"`
 }
 
 // Entry represents a key-value pair
@@ -254,7 +254,7 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 				if err := json.Unmarshal(data, &suite); err == nil {
 					fileInfo.Description = suite.Description
 					fileInfo.TestCount = len(suite.Tests)
-					
+
 					// Count parse tests
 					parseCount := 0
 					for _, test := range suite.Tests {
@@ -298,7 +298,7 @@ func runFileSelectionCLI(dir string) {
 	// Display files
 	nameStyle := lipgloss.NewStyle().Foreground(primaryColor).Bold(true)
 	infoStyle := lipgloss.NewStyle().Foreground(subtleColor)
-	
+
 	for i, file := range files {
 		fmt.Printf("%2d. %s\n", i+1, nameStyle.Render(file.Name))
 		if file.Description != "" {
@@ -325,7 +325,7 @@ func runFileSelectionCLI(dir string) {
 
 	selectedFile := files[selection-1]
 	fmt.Printf("\nStarting TUI for: %s\n", selectedFile.Name)
-	
+
 	// Run TUI for the selected file
 	runTUI(selectedFile.Path)
 }
@@ -348,7 +348,7 @@ func main() {
 		if useStatic {
 			runFileSelectionCLI(path)
 		} else {
-			runFileSelectionTUI(path)  // TUI is default for directories
+			runFileSelectionTUI(path) // TUI is default for directories
 		}
 	} else {
 		// Handle as single file
@@ -357,7 +357,7 @@ func main() {
 				log.Printf("Error processing %s: %v", path, err)
 			}
 		} else {
-			runTUI(path)  // TUI is default for files
+			runTUI(path) // TUI is default for files
 		}
 	}
 }
@@ -376,7 +376,7 @@ func processTestFile(filename string) error {
 	// Suite header with styled box
 	header := fmt.Sprintf("%s", suite.Suite)
 	info := fmt.Sprintf("File: %s | %s", filepath.Base(filename), suite.Description)
-	
+
 	fmt.Println(suiteHeaderStyle.Render(header))
 	fmt.Println(suiteInfoStyle.Render(info))
 	fmt.Println()
@@ -411,7 +411,7 @@ func displayTest(test Test, index int) {
 	// Test header
 	header := fmt.Sprintf("Test #%d: %s", index, test.Name)
 	fmt.Println(testHeaderStyle.Render(header))
-	
+
 	if test.Description != "" {
 		fmt.Println(descriptionStyle.Render("📝 " + test.Description))
 	}
@@ -439,12 +439,12 @@ func displayParseValidation(parseData interface{}) {
 	}
 
 	count, _ := parseMap["count"].(float64) // JSON numbers are float64
-	
+
 	// Check if this is an error case
 	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
 		fmt.Println(errorHeaderStyle.Render("❌ EXPECTED: Parse Error"))
 		fmt.Printf("   Count: %.0f assertion(s)\n", count)
-		
+
 		if errorMsg, ok := parseMap["error_message"].(string); ok {
 			fmt.Printf("   Error: %s\n", errorMsg)
 		}
@@ -458,18 +458,18 @@ func displayParseValidation(parseData interface{}) {
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok {
 		totalEntries := len(expectedData)
 		fmt.Printf("   Entries (%d total):\n", totalEntries)
-		
+
 		// Show up to maxEntriesDisplay entries
 		entriesToShow := expectedData
 		if totalEntries > maxEntriesDisplay {
 			entriesToShow = expectedData[:maxEntriesDisplay]
 		}
-		
+
 		for _, entryData := range entriesToShow {
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
-				
+
 				// Boxed entry content with key/equals on first line, value on second
 				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
 				valueLine := formatValue(value)
@@ -477,7 +477,7 @@ func displayParseValidation(parseData interface{}) {
 				fmt.Println(entryBoxStyle.Render(entryContent))
 			}
 		}
-		
+
 		// Show truncation indicator if there are more entries
 		if totalEntries > maxEntriesDisplay {
 			remaining := totalEntries - maxEntriesDisplay
@@ -496,7 +496,7 @@ func displaySelectiveMetadata(test Test) {
 			variantTags = append(variantTags, tag)
 		}
 	}
-	
+
 	if len(variantTags) > 0 {
 		fmt.Println(metaHeaderStyle.Render("🔄 VARIANTS:"))
 		fmt.Print("   ")
@@ -508,7 +508,7 @@ func displaySelectiveMetadata(test Test) {
 		}
 		fmt.Println()
 	}
-	
+
 	// Show conflicts if they exist
 	if len(test.Meta.Conflicts) > 0 {
 		fmt.Println(metaHeaderStyle.Render("⚠️ CONFLICTS:"))
@@ -525,12 +525,12 @@ func displaySelectiveMetadata(test Test) {
 
 // File Selection TUI Model
 type fileSelectionModel struct {
-	files         []FileInfo
-	directory     string
-	selectedFile  int
-	width         int
-	height        int
-	fileSelected  bool
+	files        []FileInfo
+	directory    string
+	selectedFile int
+	width        int
+	height       int
+	fileSelected bool
 }
 
 func initialFileSelectionModel(dir string) fileSelectionModel {
@@ -598,7 +598,7 @@ func (m fileSelectionModel) View() string {
 	for i, file := range m.files {
 		prefix := "  "
 		style := lipgloss.NewStyle()
-		
+
 		if i == m.selectedFile {
 			prefix = "► "
 			style = selectedFileStyle
@@ -674,8 +674,8 @@ type tuiModel struct {
 	showAll     bool
 	width       int
 	height      int
-	wantsBack   bool   // Track if user wants to go back
-	entryScroll int    // Current entry scroll offset
+	wantsBack   bool // Track if user wants to go back
+	entryScroll int  // Current entry scroll offset
 }
 
 type testLoadedMsg struct {
@@ -799,7 +799,7 @@ func (m tuiModel) View() string {
 	// Header
 	header := fmt.Sprintf("%s", m.suite.Suite)
 	info := fmt.Sprintf("File: %s | %s", filepath.Base(m.filename), m.suite.Description)
-	
+
 	content.WriteString(suiteHeaderStyle.Render(header) + "\n")
 	content.WriteString(suiteInfoStyle.Render(info) + "\n\n")
 
@@ -825,7 +825,7 @@ func (m tuiModel) View() string {
 	if m.directory != "" {
 		help += " • esc: back to file selection"
 	}
-	
+
 	content.WriteString("\n")
 	content.WriteString(summaryStyle.Render(navInfo) + "\n")
 	content.WriteString(suiteInfoStyle.Render(help))
@@ -838,14 +838,14 @@ func (m tuiModel) renderTestSummary(test Test, index int) string {
 	if index == m.currentTest+1 {
 		prefix = "► "
 	}
-	
+
 	status := "✅"
 	if parseData, ok := test.Validations["parse"].(map[string]interface{}); ok {
 		if errorVal, hasError := parseData["error"]; hasError && errorVal == true {
 			status = "❌"
 		}
 	}
-	
+
 	summary := fmt.Sprintf("%s%s %s", prefix, status, test.Name)
 	if index == m.currentTest+1 {
 		return testHeaderStyle.Render(summary)
@@ -859,9 +859,9 @@ func (m tuiModel) renderTest(test Test, index int, compact bool) string {
 	// Test header
 	header := fmt.Sprintf("Test #%d: %s", index, test.Name)
 	content.WriteString(testHeaderStyle.Render(header) + "\n")
-	
+
 	if test.Description != "" {
-		content.WriteString(descriptionStyle.Render("📝 " + test.Description) + "\n")
+		content.WriteString(descriptionStyle.Render("📝 "+test.Description) + "\n")
 	}
 
 	// Input CCL compact
@@ -888,13 +888,13 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 	}
 
 	count, _ := parseMap["count"].(float64)
-	
+
 	// Check if this is an error case
 	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
 		var content strings.Builder
 		content.WriteString(errorHeaderStyle.Render("❌ EXPECTED: Parse Error") + "\n")
 		content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
-		
+
 		if errorMsg, ok := parseMap["error_message"].(string); ok {
 			content.WriteString(fmt.Sprintf("   Error: %s\n", errorMsg))
 		}
@@ -909,7 +909,7 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 	if expectedData, ok := parseMap["expected"].([]interface{}); ok && !compact {
 		totalEntries := len(expectedData)
 		content.WriteString(fmt.Sprintf("   Entries (%d total):\n", totalEntries))
-		
+
 		// Handle scrolling
 		startIdx := m.entryScroll
 		if startIdx >= totalEntries {
@@ -918,25 +918,25 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 				startIdx = 0
 			}
 		}
-		
+
 		endIdx := startIdx + maxEntriesDisplay
 		if endIdx > totalEntries {
 			endIdx = totalEntries
 		}
-		
+
 		// Show scroll indicators if needed
 		if startIdx > 0 {
 			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
 			content.WriteString(scrollStyle.Render("   ↑ More entries above (h/← to scroll up)\n"))
 		}
-		
+
 		// Show entries in current scroll window
 		for i := startIdx; i < endIdx; i++ {
 			entryData := expectedData[i]
 			if entryMap, ok := entryData.(map[string]interface{}); ok {
 				key, _ := entryMap["key"].(string)
 				value, _ := entryMap["value"].(string)
-				
+
 				// Boxed entry content with key/equals on first line, value on second
 				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
 				valueLine := formatValue(value)
@@ -944,7 +944,7 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
 			}
 		}
-		
+
 		// Show scroll indicator if there are more entries below
 		if endIdx < totalEntries {
 			remaining := totalEntries - endIdx
@@ -952,13 +952,13 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 			content.WriteString(scrollStyle.Render(fmt.Sprintf("   ↓ %d more entries below (l/→ to scroll down)\n", remaining)))
 		}
 	}
-	
+
 	return content.String()
 }
 
 func (m tuiModel) renderSelectiveMetadata(test Test) string {
 	var content strings.Builder
-	
+
 	// Show variant tags (behavior:* and variant:*)
 	variantTags := []string{}
 	for _, tag := range test.Meta.Tags {
@@ -966,7 +966,7 @@ func (m tuiModel) renderSelectiveMetadata(test Test) string {
 			variantTags = append(variantTags, tag)
 		}
 	}
-	
+
 	if len(variantTags) > 0 {
 		content.WriteString(metaHeaderStyle.Render("🔄 VARIANTS:") + "\n")
 		content.WriteString("   ")
@@ -978,7 +978,7 @@ func (m tuiModel) renderSelectiveMetadata(test Test) string {
 		}
 		content.WriteString("\n")
 	}
-	
+
 	// Show conflicts if they exist
 	if len(test.Meta.Conflicts) > 0 {
 		content.WriteString(metaHeaderStyle.Render("⚠️ CONFLICTS:") + "\n")
@@ -991,14 +991,14 @@ func (m tuiModel) renderSelectiveMetadata(test Test) string {
 		}
 		content.WriteString("\n")
 	}
-	
+
 	return content.String()
 }
 
 func runTUI(filename string) {
 	model := initialTUIModel()
 	model.filename = filename
-	
+
 	p := tea.NewProgram(model, tea.WithAltScreen())
 	if _, err := p.Run(); err != nil {
 		fmt.Printf("Error running TUI: %v", err)
@@ -1011,14 +1011,14 @@ func runTUIWithBackNav(filename, directory string) {
 		model := initialTUIModel()
 		model.filename = filename
 		model.directory = directory
-		
+
 		p := tea.NewProgram(model, tea.WithAltScreen())
 		finalModel, err := p.Run()
 		if err != nil {
 			fmt.Printf("Error running TUI: %v", err)
 			os.Exit(1)
 		}
-		
+
 		// Check if user pressed escape to go back
 		if tuiModel, ok := finalModel.(tuiModel); ok && tuiModel.wantsBack {
 			// Go back to directory selection

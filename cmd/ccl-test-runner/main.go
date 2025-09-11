@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/ccl-test-data/test-runner/internal/benchmark"
 	"github.com/ccl-test-data/test-runner/internal/generator"
 	"github.com/ccl-test-data/test-runner/internal/stats"
 	"github.com/ccl-test-data/test-runner/internal/styles"
@@ -131,6 +132,47 @@ test counts, assertion counts, and categorization by feature areas.`,
 					},
 				},
 			},
+			{
+				Name:    "benchmark",
+				Aliases: []string{"bench", "b"},
+				Usage:   "Run performance benchmarks on core operations",
+				Description: `Run performance benchmarks to measure and track the performance of 
+core operations including test generation, statistics collection, and parsing.
+
+This command measures execution time and memory usage, comparing against historical 
+results to detect performance regressions.`,
+				Action: benchmarkAction,
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "input",
+						Aliases: []string{"i"},
+						Value:   "tests",
+						Usage:   "Input directory containing JSON test files",
+					},
+					&cli.StringFlag{
+						Name:    "output",
+						Aliases: []string{"o"},
+						Value:   "generated_tests",
+						Usage:   "Output directory for generated test files",
+					},
+					&cli.StringFlag{
+						Name:    "results",
+						Aliases: []string{"r"},
+						Value:   "benchmarks/results.json",
+						Usage:   "File to save benchmark results",
+					},
+					&cli.StringFlag{
+						Name:    "compare",
+						Aliases: []string{"c"},
+						Usage:   "Historical results file to compare against",
+					},
+					&cli.Float64Flag{
+						Name:  "threshold",
+						Value: 10.0,
+						Usage: "Regression threshold percentage (default: 10%)",
+					},
+				},
+			},
 		},
 	}
 
@@ -240,6 +282,72 @@ func statsAction(ctx *cli.Context) error {
 		// Use the enhanced stats printer
 		stats.PrintEnhancedStats(statistics)
 	}
+
+	return nil
+}
+
+func benchmarkAction(ctx *cli.Context) error {
+	inputDir := ctx.String("input")
+	outputDir := ctx.String("output")
+	resultsFile := ctx.String("results")
+	compareFile := ctx.String("compare")
+	threshold := ctx.Float64("threshold")
+
+	styles.Status("🚀", "Running performance benchmarks...")
+
+	// Create benchmark tracker
+	tracker := benchmark.NewTracker()
+
+	// Benchmark 1: Test Generation
+	tracker.StartBenchmark("test-generation")
+	gen := generator.New(inputDir, outputDir)
+	if err := gen.GenerateAll(); err != nil {
+		return fmt.Errorf("benchmark failed during test generation: %w", err)
+	}
+	genResult := tracker.EndBenchmark("test-generation")
+
+	// Benchmark 2: Statistics Collection
+	tracker.StartBenchmark("stats-collection")
+	collector := stats.NewEnhancedCollector(inputDir)
+	if _, err := collector.CollectEnhancedStats(); err != nil {
+		return fmt.Errorf("benchmark failed during stats collection: %w", err)
+	}
+	statsResult := tracker.EndBenchmark("stats-collection")
+
+	// Display results
+	results := tracker.GetAllResults()
+	benchmark.PrintResults(results)
+
+	// Save results
+	if err := os.MkdirAll(filepath.Dir(resultsFile), 0755); err != nil {
+		return fmt.Errorf("failed to create benchmark results directory: %w", err)
+	}
+
+	if err := tracker.SaveResults(resultsFile); err != nil {
+		return fmt.Errorf("failed to save benchmark results: %w", err)
+	}
+
+	styles.Success("✅ Benchmark results saved to %s", resultsFile)
+
+	// Compare with historical results if provided
+	if compareFile != "" {
+		if historical, err := benchmark.LoadResults(compareFile); err == nil {
+			alerts := benchmark.CompareResults(results, historical, threshold)
+			benchmark.PrintRegressionAlerts(alerts)
+
+			if len(alerts) > 0 {
+				styles.Warning("⚠️  Performance regressions detected!")
+				return fmt.Errorf("performance regression threshold exceeded")
+			}
+		} else {
+			styles.Warning("⚠️  Could not load historical results from %s: %v", compareFile, err)
+		}
+	}
+
+	styles.InfoLite("Test Generation: %v (%d bytes allocated)",
+		genResult.Duration, genResult.MemAllocBytes)
+	styles.InfoLite("Stats Collection: %v (%d bytes allocated)",
+		statsResult.Duration, statsResult.MemAllocBytes)
 
 	return nil
 }

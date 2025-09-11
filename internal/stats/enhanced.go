@@ -1,3 +1,30 @@
+// Package stats provides comprehensive test suite analysis and statistics collection.
+//
+// This package analyzes JSON test files to provide detailed metrics about test coverage,
+// feature usage, assertion counts, and implementation requirements. It supports both
+// basic and enhanced statistics collection with feature-based categorization.
+//
+// Key Features:
+//   - Enhanced statistics with function, feature, behavior, and variant analysis
+//   - Object pooling to reduce memory allocations during collection
+//   - Structured tagging system analysis (function:*, feature:*, behavior:*, variant:*)
+//   - Conflict relationship tracking for mutually exclusive implementation choices
+//   - JSON and pretty-print output formats for both human and machine consumption
+//
+// Statistics Categories:
+//   - Function Requirements: Which CCL functions are tested (parse, make-objects, etc.)
+//   - Language Features: Optional features like comments, unicode, multiline support
+//   - Behavioral Choices: Implementation-specific behaviors (tabs-preserve vs tabs-to-spaces)
+//   - Implementation Variants: Specification variants (proposed-behavior vs reference-compliant)
+//
+// Example Usage:
+//
+//	collector := stats.NewEnhancedCollector("tests")
+//	statistics, err := collector.CollectEnhancedStats()
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	stats.PrintEnhancedStats(statistics)
 package stats
 
 import (
@@ -8,9 +35,30 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+	"sync"
 
 	"github.com/ccl-test-data/test-runner/internal/types"
 )
+
+// String slice pool for reducing allocations during stats collection
+var stringSlicePool = sync.Pool{
+	New: func() interface{} {
+		return make([]string, 0, 16) // Pre-allocate capacity
+	},
+}
+
+// getStringSlice returns a reusable string slice from the pool
+func getStringSlice() []string {
+	slice := stringSlicePool.Get().([]string)
+	return slice[:0] // Reset length but keep capacity
+}
+
+// putStringSlice returns a string slice to the pool
+func putStringSlice(slice []string) {
+	if slice != nil && cap(slice) <= 256 { // Avoid holding onto huge slices
+		stringSlicePool.Put(slice)
+	}
+}
 
 // Enhanced statistics structures
 type FunctionStats struct {
@@ -26,10 +74,10 @@ type FeatureStats struct {
 }
 
 type BehaviorStats struct {
-	Tests      int               `json:"tests"`
-	Assertions int               `json:"assertions"`
-	Files      []string          `json:"files"`
-	Conflicts  map[string]int    `json:"conflicts"`
+	Tests      int            `json:"tests"`
+	Assertions int            `json:"assertions"`
+	Files      []string       `json:"files"`
+	Conflicts  map[string]int `json:"conflicts"`
 }
 
 type VariantStats struct {
@@ -44,27 +92,27 @@ type ConflictGroup struct {
 }
 
 type EnhancedStatistics struct {
-	Structure        string                     `json:"structure"`
-	TotalTests       int                        `json:"totalTests"`
-	TotalAssertions  int                        `json:"totalAssertions"`
-	TotalFiles       int                        `json:"totalFiles"`
-	
+	Structure       string `json:"structure"`
+	TotalTests      int    `json:"totalTests"`
+	TotalAssertions int    `json:"totalAssertions"`
+	TotalFiles      int    `json:"totalFiles"`
+
 	// Feature-based analysis
-	Functions        map[string]*FunctionStats  `json:"functions"`
-	Features         map[string]*FeatureStats   `json:"features"`
-	Behaviors        map[string]*BehaviorStats  `json:"behaviors"`
-	Variants         map[string]*VariantStats   `json:"variants"`
-	
+	Functions map[string]*FunctionStats `json:"functions"`
+	Features  map[string]*FeatureStats  `json:"features"`
+	Behaviors map[string]*BehaviorStats `json:"behaviors"`
+	Variants  map[string]*VariantStats  `json:"variants"`
+
 	// Conflict analysis
-	ConflictPairs    map[string][]string        `json:"conflictPairs"`
-	ConflictGroups   []ConflictGroup            `json:"conflictGroups"`
-	MutuallyExclusive int                       `json:"mutuallyExclusiveTests"`
-	
+	ConflictPairs     map[string][]string `json:"conflictPairs"`
+	ConflictGroups    []ConflictGroup     `json:"conflictGroups"`
+	MutuallyExclusive int                 `json:"mutuallyExclusiveTests"`
+
 	// Level breakdown
-	LevelBreakdown   map[string]int             `json:"levelBreakdown"`
-	
+	LevelBreakdown map[string]int `json:"levelBreakdown"`
+
 	// Legacy compatibility
-	Categories       map[string]*CategoryStats  `json:"categories"`
+	Categories map[string]*CategoryStats `json:"categories"`
 }
 
 // EnhancedCollector provides detailed statistics about the new tagging system
@@ -131,12 +179,20 @@ func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string
 			}
 		}
 
-		// Analyze tags
-		functions := []string{}
-		features := []string{}
-		behaviors := []string{}
-		variants := []string{}
-		
+		// Analyze tags using pooled slices
+		functions := getStringSlice()
+		features := getStringSlice()
+		behaviors := getStringSlice()
+		variants := getStringSlice()
+
+		// Ensure slices are returned to pool after use
+		defer func() {
+			putStringSlice(functions)
+			putStringSlice(features)
+			putStringSlice(behaviors)
+			putStringSlice(variants)
+		}()
+
 		for _, tag := range test.Meta.Tags {
 			category, name := parseTag(tag)
 			switch category {
@@ -151,15 +207,25 @@ func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string
 			}
 		}
 
+		// Create copies of slices before returning them to pool
+		functionsCopy := make([]string, len(functions))
+		copy(functionsCopy, functions)
+		featuresCopy := make([]string, len(features))
+		copy(featuresCopy, features)
+		behaviorsCopy := make([]string, len(behaviors))
+		copy(behaviorsCopy, behaviors)
+		variantsCopy := make([]string, len(variants))
+		copy(variantsCopy, variants)
+
 		testData := map[string]interface{}{
 			"name":       test.Name,
 			"level":      test.Meta.Level,
 			"feature":    test.Meta.Feature,
 			"assertions": assertions,
-			"functions":  functions,
-			"features":   features,
-			"behaviors":  behaviors,
-			"variants":   variants,
+			"functions":  functionsCopy,
+			"features":   featuresCopy,
+			"behaviors":  behaviorsCopy,
+			"variants":   variantsCopy,
 			"conflicts":  test.Meta.Conflicts,
 		}
 
@@ -177,14 +243,14 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 	}
 
 	stats := &EnhancedStatistics{
-		Structure:       "feature-based-enhanced",
-		Functions:       make(map[string]*FunctionStats),
-		Features:        make(map[string]*FeatureStats),
-		Behaviors:       make(map[string]*BehaviorStats),
-		Variants:        make(map[string]*VariantStats),
-		ConflictPairs:   make(map[string][]string),
-		LevelBreakdown:  make(map[string]int),
-		Categories:      make(map[string]*CategoryStats),
+		Structure:      "feature-based-enhanced",
+		Functions:      make(map[string]*FunctionStats),
+		Features:       make(map[string]*FeatureStats),
+		Behaviors:      make(map[string]*BehaviorStats),
+		Variants:       make(map[string]*VariantStats),
+		ConflictPairs:  make(map[string][]string),
+		LevelBreakdown: make(map[string]int),
+		Categories:     make(map[string]*CategoryStats),
 	}
 
 	// Initialize legacy categories for compatibility
@@ -288,11 +354,11 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 			if conflictSlice, ok := testData["conflicts"].([]string); ok && len(conflictSlice) > 0 {
 				// Count this as a mutually exclusive test
 				stats.MutuallyExclusive++
-				
+
 				// Track conflict relationships for each tag in this test
 				allTags := append([]string{}, behaviors...)
 				allTags = append(allTags, variants...)
-				
+
 				for _, tag := range allTags {
 					// Determine the full tag with prefix
 					var fullTag string
@@ -301,12 +367,12 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 					} else {
 						fullTag = "variant:" + tag
 					}
-					
+
 					// Record what this tag conflicts with
 					if conflictPairs[fullTag] == nil {
 						conflictPairs[fullTag] = make(map[string]int)
 					}
-					
+
 					for _, conflict := range conflictSlice {
 						conflictPairs[fullTag][conflict]++
 					}
@@ -381,7 +447,7 @@ func contains(slice []string, item string) bool {
 // PrintEnhancedStats prints enhanced statistics in a human-readable format
 func PrintEnhancedStats(stats *EnhancedStatistics) {
 	fmt.Printf("📊 Enhanced CCL Test Suite Statistics\n\n")
-	
+
 	// Overall summary
 	fmt.Printf("🔍 Overview:\n")
 	fmt.Printf("  Total Tests: %d\n", stats.TotalTests)
@@ -406,10 +472,10 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 		functionKeys = append(functionKeys, k)
 	}
 	sort.Strings(functionKeys)
-	
+
 	for _, fn := range functionKeys {
 		fnStats := stats.Functions[fn]
-		fmt.Printf("  function:%s: %d tests (%d assertions) across %d files\n", 
+		fmt.Printf("  function:%s: %d tests (%d assertions) across %d files\n",
 			fn, fnStats.Tests, fnStats.Assertions, len(fnStats.Files))
 	}
 	fmt.Println()
@@ -422,10 +488,10 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 			featureKeys = append(featureKeys, k)
 		}
 		sort.Strings(featureKeys)
-		
+
 		for _, feat := range featureKeys {
 			featStats := stats.Features[feat]
-			fmt.Printf("  feature:%s: %d tests (%d assertions) across %d files\n", 
+			fmt.Printf("  feature:%s: %d tests (%d assertions) across %d files\n",
 				feat, featStats.Tests, featStats.Assertions, len(featStats.Files))
 		}
 		fmt.Println()
@@ -439,10 +505,10 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 			behaviorKeys = append(behaviorKeys, k)
 		}
 		sort.Strings(behaviorKeys)
-		
+
 		for _, behav := range behaviorKeys {
 			behavStats := stats.Behaviors[behav]
-			fmt.Printf("  behavior:%s: %d tests (%d assertions)\n", 
+			fmt.Printf("  behavior:%s: %d tests (%d assertions)\n",
 				behav, behavStats.Tests, behavStats.Assertions)
 		}
 		fmt.Println()
@@ -456,10 +522,10 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 			variantKeys = append(variantKeys, k)
 		}
 		sort.Strings(variantKeys)
-		
+
 		for _, variant := range variantKeys {
 			varStats := stats.Variants[variant]
-			fmt.Printf("  variant:%s: %d tests (%d assertions)\n", 
+			fmt.Printf("  variant:%s: %d tests (%d assertions)\n",
 				variant, varStats.Tests, varStats.Assertions)
 		}
 		fmt.Println()
@@ -473,7 +539,7 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 			conflictKeys = append(conflictKeys, k)
 		}
 		sort.Strings(conflictKeys)
-		
+
 		for _, tag := range conflictKeys {
 			conflicts := stats.ConflictPairs[tag]
 			if len(conflicts) > 0 {

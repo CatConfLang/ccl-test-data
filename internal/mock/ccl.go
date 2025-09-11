@@ -1,3 +1,33 @@
+// Package mock provides a working CCL (Categorical Configuration Language) implementation.
+//
+// This package contains a functional CCL parser and processor that implements the core
+// CCL specification across multiple levels. It serves as both a reference implementation
+// for testing and a development tool for progressive CCL implementation.
+//
+// CCL Implementation Levels:
+//   - Level 1: Raw parsing (Parse) - Convert text to flat key-value entries
+//   - Level 2: Entry processing (Filter, Compose, ExpandDotted) - Transform and combine entries
+//   - Level 3: Object construction (MakeObjects) - Build nested object hierarchies
+//   - Level 4: Typed access (GetString, GetInt, etc.) - Type-safe value extraction
+//   - Level 5: Formatting (PrettyPrint) - Generate formatted output
+//
+// Key Features:
+//   - Comment support using '/=' syntax
+//   - Dotted key expansion (database.host → nested objects)
+//   - Duplicate key handling (converts to lists)
+//   - Empty key support for array-style syntax
+//   - Enhanced error messages with debugging context
+//   - Type conversion with detailed error reporting
+//
+// Example Usage:
+//
+//	ccl := mock.New()
+//	entries, err := ccl.Parse("key = value\n/= This is a comment")
+//	if err != nil {
+//	    log.Fatal(err)
+//	}
+//	obj := ccl.MakeObjects(entries)
+//	value, err := ccl.GetString(obj, []string{"key"})
 package mock
 
 import (
@@ -194,7 +224,7 @@ func (c *CCL) GetInt(obj map[string]interface{}, path []string) (int, error) {
 		return i, nil
 	}
 
-	return 0, fmt.Errorf("cannot convert %v to int", value)
+	return 0, fmt.Errorf("cannot convert value %v (type %T) to int at path %s", value, value, strings.Join(path, "."))
 }
 
 // GetBool implements Level 4: Boolean access
@@ -212,7 +242,7 @@ func (c *CCL) GetBool(obj map[string]interface{}, path []string) (bool, error) {
 		return b, nil
 	}
 
-	return false, fmt.Errorf("cannot convert %v to bool", value)
+	return false, fmt.Errorf("cannot convert value %v (type %T) to bool at path %s", value, value, strings.Join(path, "."))
 }
 
 // GetFloat implements Level 4: Float access
@@ -230,7 +260,7 @@ func (c *CCL) GetFloat(obj map[string]interface{}, path []string) (float64, erro
 		return f, nil
 	}
 
-	return 0, fmt.Errorf("cannot convert %v to float64", value)
+	return 0, fmt.Errorf("cannot convert value %v (type %T) to float64 at path %s", value, value, strings.Join(path, "."))
 }
 
 // GetList implements Level 4: List access
@@ -252,7 +282,7 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 		return list, nil
 	}
 
-	return nil, fmt.Errorf("cannot convert %v to []string", value)
+	return nil, fmt.Errorf("cannot convert value %v (type %T) to []string at path %s", value, value, strings.Join(path, "."))
 }
 
 // PrettyPrint implements Level 5: Pretty printing
@@ -273,7 +303,7 @@ func (c *CCL) getValue(obj map[string]interface{}, path []string) (interface{}, 
 			if value, exists := current[key]; exists {
 				return value, nil
 			}
-			return nil, fmt.Errorf("key not found: %s", strings.Join(path, "."))
+			return nil, fmt.Errorf("key not found: %s (available keys: %v)", strings.Join(path, "."), getMapKeys(current))
 		} else {
 			// Intermediate key - navigate deeper
 			if value, exists := current[key]; exists {
@@ -283,7 +313,7 @@ func (c *CCL) getValue(obj map[string]interface{}, path []string) (interface{}, 
 					return nil, fmt.Errorf("not an object at key: %s", key)
 				}
 			} else {
-				return nil, fmt.Errorf("key not found: %s", key)
+				return nil, fmt.Errorf("intermediate key not found: %s in path %s (available keys: %v)", key, strings.Join(path, "."), getMapKeys(current))
 			}
 		}
 	}
@@ -299,4 +329,13 @@ func (c *CCL) prettyPrintObject(obj map[string]interface{}, prefix string, lines
 			*lines = append(*lines, fmt.Sprintf("%s%s = %v", prefix, key, value))
 		}
 	}
+}
+
+// getMapKeys returns a slice of keys from a map for debugging purposes
+func getMapKeys(m map[string]interface{}) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	return keys
 }

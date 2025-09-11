@@ -66,7 +66,13 @@
       "Bash(just:*)",
       "Bash(go install:*)",
       "Bash(git checkout:*)",
-      "Read(//tmp/**)"
+      "Read(//tmp/**)",
+      "mcp__serena__check_onboarding_performed",
+      "mcp__serena__list_memories",
+      "mcp__basic-memory__get_current_project",
+      "mcp__basic-memory__switch_project",
+      "mcp__basic-memory__create_memory_project",
+      "mcp__basic-memory__write_note"
     ],
     "deny": [],
     "ask": []
