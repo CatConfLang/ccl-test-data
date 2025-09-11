@@ -119,12 +119,16 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -160,16 +164,20 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-lenient",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing"
+        "feature": "flexible-boolean-parsing",
+        "conflicts": [
+          "behavior:boolean-strict"
+        ]
       }
     },
     {
-      "name": "parse_boolean_yes_strict",
+      "name": "parse_boolean_yes_strict_literal",
       "input": "active = yes",
       "validations": {
         "parse": {
@@ -202,12 +210,16 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -243,12 +255,16 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -398,6 +414,7 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-lenient",
           "feature:empty-keys",
           "function:get-bool",
           "function:get-float",
@@ -406,11 +423,14 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing"
+        "feature": "flexible-boolean-parsing",
+        "conflicts": [
+          "behavior:boolean-strict"
+        ]
       }
     },
     {
-      "name": "parse_zero_values_strict",
+      "name": "parse_zero_values_strict_literal",
       "input": "count = 0\ndistance = 0.0\ndisabled = no",
       "validations": {
         "parse": {
@@ -475,6 +495,7 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "feature:empty-keys",
           "function:get-bool",
           "function:get-float",
@@ -483,7 +504,10 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -560,17 +584,21 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-lenient",
           "function:get-bool",
           "function:get-int",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing"
+        "feature": "flexible-boolean-parsing",
+        "conflicts": [
+          "behavior:boolean-strict"
+        ]
       }
     },
     {
-      "name": "parse_boolean_variants_strict",
+      "name": "parse_boolean_variants_strict_literal",
       "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
       "validations": {
         "parse": {
@@ -644,13 +672,17 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:get-int",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -739,6 +771,7 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-lenient",
           "function:get-bool",
           "function:get-float",
           "function:get-int",
@@ -747,11 +780,14 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing"
+        "feature": "flexible-boolean-parsing",
+        "conflicts": [
+          "behavior:boolean-strict"
+        ]
       }
     },
     {
-      "name": "parse_mixed_types_strict",
+      "name": "parse_mixed_types_strict_literal",
       "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
       "validations": {
         "parse": {
@@ -836,6 +872,7 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:get-float",
           "function:get-int",
@@ -844,7 +881,10 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
@@ -1133,12 +1173,16 @@
       },
       "meta": {
         "tags": [
+          "behavior:boolean-strict",
           "function:get-bool",
           "function:make-objects",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": [
+          "behavior:boolean-lenient"
+        ]
       }
     },
     {
