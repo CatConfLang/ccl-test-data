@@ -35,10 +35,12 @@
       "meta": {
         "tags": [
           "feature:whitespace",
-          "function:parse"
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 1,
-        "feature": "error-handling"
+        "feature": "error-handling",
+        "conflicts": ["variant:reference-compliant"]
       }
     },
     {
@@ -46,17 +48,19 @@
       "input": "   ",
       "validations": {
         "parse": {
-          "count": 1,
+          "count": 0,
           "expected": []
         }
       },
       "meta": {
         "tags": [
           "feature:whitespace",
-          "function:parse"
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 1,
-        "feature": "parsing"
+        "feature": "parsing",
+        "conflicts": ["variant:proposed-behavior"]
       }
     },
     {

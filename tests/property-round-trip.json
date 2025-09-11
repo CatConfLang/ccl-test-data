@@ -199,7 +199,7 @@
       }
     },
     {
-      "name": "canonical_format_line_endings",
+      "name": "canonical_format_line_endings_proposed",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
         "canonical_format": {
@@ -363,12 +363,12 @@
       }
     },
     {
-      "name": "canonical_format_line_endings_ocaml_reference",
+      "name": "canonical_format_line_endings_reference_behavior",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
         "canonical_format": {
           "count": 1,
-          "expected": "key1 =\n  value1 =\nkey2 =\n  value2 ="
+          "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
         }
       },
       "meta": {
@@ -380,7 +380,8 @@
         "level": 4,
         "feature": "pretty-printing",
         "conflicts": [
-          "behavior:crlf-normalize-to-lf"
+          "behavior:crlf-normalize-to-lf",
+          "variant:proposed-behavior"
         ]
       }
     },

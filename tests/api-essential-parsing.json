@@ -320,7 +320,8 @@
       "meta": {
         "tags": [
           "behavior:crlf-normalize-to-lf",
-          "function:parse"
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 1,
         "feature": "crlf-normalization",
@@ -350,7 +351,8 @@
       "meta": {
         "tags": [
           "behavior:crlf-preserve-literal",
-          "function:parse"
+          "function:parse",
+          "variant:reference-compliant"
         ],
         "level": 1,
         "feature": "parsing",

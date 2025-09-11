@@ -922,10 +922,42 @@
         "tags": [
           "function:get-string",
           "function:make-objects",
-          "function:parse"
+          "function:parse",
+          "variant:proposed-behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed-parsing",
+        "conflicts": ["variant:reference-compliant"]
+      }
+    },
+    {
+      "name": "empty_value_reference_behavior",
+      "description": "OCaml reference treats empty values as literal string keys",
+      "input": "empty_key =",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "empty_key",
+              "value": ""
+            }
+          ]
+        },
+        "make_objects": {
+          "count": 1,
+          "expected": "empty_key"
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "function:make-objects",
+          "variant:reference-compliant"
+        ],
+        "level": 3,
+        "feature": "object-construction",
+        "conflicts": ["variant:proposed-behavior"]
       }
     },
     {
