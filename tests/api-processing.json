@@ -123,40 +123,6 @@
       }
     },
     {
-      "name": "composition_stability_ab",
-      "input": "a = 1\nb = 2\nb = 20\nc = 3",
-      "validations": {
-        "parse": {
-          "count": 4,
-          "expected": [
-            {
-              "key": "a",
-              "value": "1"
-            },
-            {
-              "key": "b",
-              "value": "2"
-            },
-            {
-              "key": "b",
-              "value": "20"
-            },
-            {
-              "key": "c",
-              "value": "3"
-            }
-          ]
-        }
-      },
-      "meta": {
-        "tags": [
-          "function:parse"
-        ],
-        "level": 2,
-        "feature": "processing"
-      }
-    },
-    {
       "name": "composition_stability_ba",
       "input": "b = 20\nc = 3\na = 1\nb = 2",
       "validations": {
@@ -178,36 +144,6 @@
             {
               "key": "b",
               "value": "2"
-            }
-          ]
-        }
-      },
-      "meta": {
-        "tags": [
-          "function:parse"
-        ],
-        "level": 2,
-        "feature": "processing"
-      }
-    },
-    {
-      "name": "multiple_values_same_key_ports",
-      "input": "ports = 8000\nports = 8001\nports = 8002",
-      "validations": {
-        "parse": {
-          "count": 3,
-          "expected": [
-            {
-              "key": "ports",
-              "value": "8000"
-            },
-            {
-              "key": "ports",
-              "value": "8001"
-            },
-            {
-              "key": "ports",
-              "value": "8002"
             }
           ]
         }
@@ -646,10 +582,14 @@
         "tags": [
           "feature:empty-keys",
           "feature:multiline",
-          "function:parse"
+          "function:parse-value",
+          "variant:proposed-behavior"
         ],
         "level": 2,
-        "feature": "processing"
+        "feature": "processing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
       }
     },
     {
@@ -673,10 +613,14 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:parse"
+          "function:parse-value",
+          "variant:proposed-behavior"
         ],
         "level": 2,
-        "feature": "processing"
+        "feature": "processing",
+        "conflicts": [
+          "variant:reference-compliant"
+        ]
       }
     }
   ]

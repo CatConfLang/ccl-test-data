@@ -46,7 +46,7 @@ These indicate optional language features that may not be supported by all imple
 
 ### Behavior Tags (`behavior:*`)
 
-These indicate implementation choices that are mutually exclusive:
+These indicate **implementation-level choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
 
 | Tag Group | Options | Description |
 |-----------|---------|-------------|
@@ -55,14 +55,51 @@ These indicate implementation choices that are mutually exclusive:
 | Tab Handling | `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` | Tab character processing |
 | Whitespace | `behavior:strict-spacing` vs `behavior:loose-spacing` | Whitespace sensitivity |
 
-### Variant Tags (`variant:*`)
+### Variant Tags (`variant:*`) - Temporary Disambiguation
 
-These indicate different specification interpretations:
+These indicate **specification-level interpretations** for areas where the CCL specification is currently ambiguous or evolving. These tags exist to handle cases where the spec doesn't clearly define behavior, allowing both the OCaml reference implementation approach and proposed enhanced approaches to coexist during spec evolution.
 
-| Tag | Description |
-|-----|-------------|
-| `variant:proposed-behavior` | Follows proposed CCL specification |
-| `variant:reference-compliant` | Matches OCaml reference implementation |
+| Tag | Description | Status |
+|-----|-------------|--------|
+| `variant:proposed-behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
+| `variant:reference-compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
+
+**Important:** These variant tags are **temporary disambiguation mechanisms**. Once the CCL specification owners clarify these ambiguities, the variant system will be eliminated and these choices will be converted to specific `behavior:*` tags (e.g., `behavior:multiline-flexible` vs `behavior:multiline-strict`).
+
+## Behavior vs Variant: When to Use Which
+
+### Use `behavior:*` tags for:
+- **Technical implementation details** (CRLF handling, tab processing, boolean parsing)
+- **Choices that are implementation-specific** regardless of spec interpretation
+- **Stable decisions** that won't change based on spec evolution
+
+### Use `variant:*` tags for:
+- **Specification ambiguities** where the "correct" behavior is unclear
+- **Cases where OCaml reference and proposed spec differ**
+- **Temporary disambiguation** pending spec clarification
+
+### Examples:
+
+**Implementation Choice (behavior):**
+```json
+// Technical decision: How to handle line endings
+"tags": ["behavior:crlf-normalize-to-lf"]
+"conflicts": ["behavior:crlf-preserve-literal"]
+```
+
+**Specification Ambiguity (variant):**
+```json
+// Spec unclear: Should multiline values work without explicit continuation?
+"tags": ["variant:proposed-behavior"]  // Allow implicit continuation
+"conflicts": ["variant:reference-compliant"]  // Require explicit syntax
+```
+
+### Future Evolution
+
+When CCL spec owners resolve ambiguities, tests will be migrated:
+- If "reference is canonical" → Remove `variant:proposed-behavior` tests
+- If "proposed is canonical" → Remove `variant:reference-compliant` tests  
+- Remaining variant behaviors become specific `behavior:*` tags
 
 ## Implementation Strategies
 

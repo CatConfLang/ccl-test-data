@@ -535,7 +535,7 @@
             "type": "string",
             "oneOf": [
               {
-                "pattern": "^function:(parse|filter|compose|expand-dotted|make-objects|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
+                "pattern": "^function:(parse|parse-value|filter|compose|expand-dotted|make-objects|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
                 "description": "CCL function requirement tags"
               },
               {

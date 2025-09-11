@@ -66,7 +66,7 @@
       "meta": {
         "tags": [
           "feature:whitespace",
-          "function:parse"
+          "function:parse-value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -227,7 +227,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:parse"
+          "function:parse-value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -404,7 +404,8 @@
         "level": 1,
         "feature": "parsing",
         "conflicts": [
-          "behavior:tabs-to-spaces"
+          "behavior:tabs-to-spaces",
+          "variant:proposed-behavior"
         ]
       }
     },
@@ -450,7 +451,7 @@
         "tags": [
           "behavior:tabs-preserve",
           "feature:whitespace",
-          "function:parse",
+          "function:parse-value",
           "variant:proposed-behavior"
         ],
         "level": 2,
@@ -479,7 +480,7 @@
         "tags": [
           "behavior:tabs-preserve",
           "feature:whitespace",
-          "function:parse",
+          "function:parse-value",
           "variant:reference-compliant"
         ],
         "level": 2,
@@ -718,7 +719,7 @@
         "tags": [
           "feature:multiline",
           "function:make-objects",
-          "function:parse"
+          "function:parse-value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -741,7 +742,7 @@
       "meta": {
         "tags": [
           "function:make-objects",
-          "function:parse"
+          "function:parse-value"
         ],
         "level": 2,
         "feature": "parsing"
