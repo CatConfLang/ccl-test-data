@@ -34,7 +34,7 @@ func TestCompositionStabilityBa(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// mixed_keys_with_duplicates - feature:empty-keys function:make-objects function:parse (level 2)
+// mixed_keys_with_duplicates - feature:empty-keys function:build-hierarchy function:parse (level 2)
 func TestMixedKeysWithDuplicates(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

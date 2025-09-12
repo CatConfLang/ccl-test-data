@@ -6,8 +6,8 @@
 //
 // CCL Implementation Levels:
 //   - Level 1: Raw parsing (Parse) - Convert text to flat key-value entries
-//   - Level 2: Entry processing (Filter, Compose, ExpandDotted) - Transform and combine entries
-//   - Level 3: Object construction (MakeObjects) - Build nested object hierarchies
+//   - Level 2: Entry processing (Filter, Combine, ExpandDotted) - Transform and combine entries
+//   - Level 3: Object construction (BuildHierarchy) - Build nested object hierarchies
 //   - Level 4: Typed access (GetString, GetInt, etc.) - Type-safe value extraction
 //   - Level 5: Formatting (PrettyPrint) - Generate formatted output
 //
@@ -26,7 +26,7 @@
 //	if err != nil {
 //	    log.Fatal(err)
 //	}
-//	obj := ccl.MakeObjects(entries)
+//	obj := ccl.BuildHierarchy(entries)
 //	value, err := ccl.GetString(obj, []string{"key"})
 package mock
 
@@ -114,8 +114,8 @@ func (c *CCL) Filter(entries []Entry) []Entry {
 	return entries
 }
 
-// Compose implements Level 2: Entry composition
-func (c *CCL) Compose(left, right []Entry) []Entry {
+// Combine implements Level 2: Entry composition
+func (c *CCL) Combine(left, right []Entry) []Entry {
 	// Simple concatenation for mock
 	result := make([]Entry, len(left)+len(right))
 	copy(result, left)
@@ -137,8 +137,8 @@ func (c *CCL) ExpandDotted(entries []Entry) []Entry {
 	return expanded
 }
 
-// MakeObjects implements Level 3: Object construction
-func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
+// BuildHierarchy implements Level 3: Object construction
+func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{} {
 	result := make(map[string]interface{})
 
 	for _, entry := range entries {

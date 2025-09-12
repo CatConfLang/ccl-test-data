@@ -12,7 +12,7 @@
 //   - JSON and pretty-print output formats for both human and machine consumption
 //
 // Statistics Categories:
-//   - Function Requirements: Which CCL functions are tested (parse, make-objects, etc.)
+//   - Function Requirements: Which CCL functions are tested (parse, build-hierarchy, etc.)
 //   - Language Features: Optional features like comments, unicode, multiline support
 //   - Behavioral Choices: Implementation-specific behaviors (tabs-preserve vs tabs-to-spaces)
 //   - Implementation Variants: Specification variants (proposed-behavior vs reference-compliant)
@@ -159,9 +159,9 @@ func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string
 			"parse":            test.Validations.Parse,
 			"parse_value":      test.Validations.ParseValue,
 			"filter":           test.Validations.Filter,
-			"compose":          test.Validations.Compose,
+			"combine":          test.Validations.Combine,
 			"expand_dotted":    test.Validations.ExpandDotted,
-			"make_objects":     test.Validations.MakeObjects,
+			"build_hierarchy":  test.Validations.BuildHierarchy,
 			"get_string":       test.Validations.GetString,
 			"get_int":          test.Validations.GetInt,
 			"get_bool":         test.Validations.GetBool,

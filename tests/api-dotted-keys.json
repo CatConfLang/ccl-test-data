@@ -1,8 +1,24 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Dotted Key Expansion - Validation Format",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Expanding dotted keys (e.g., 'database.host') into hierarchical structures - enables dual access patterns",
+  "llm_metadata": {
+    "llm_description": "CCL dotted key expansion - converts 'foo.bar.baz' syntax to nested object structure for hierarchical access",
+    "complexity_level": "Level 3 Feature",
+    "prerequisite_tests": ["api-essential-parsing.json", "api-object-construction.json"],
+    "related_functions": ["make-objects", "expand-dotted"],
+    "implementation_notes": "Advanced Level 3 feature. Requires object construction foundation. Handles key.subkey.value syntax expansion.",
+    "test_count": 18,
+    "assertion_count": 102,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#expand_dotted",
+      "go_reference": "internal/mock/ccl.go#ExpandDotted",
+      "documentation": "https://ccl.tylerbutler.com/syntax-reference#dotted-keys"
+    },
+    "feature_flag": "feature:dotted-keys",
+    "learning_path": "Requires Level 1-3 foundation → implement this feature → advanced object access patterns"
+  },
   "tests": [
     {
       "name": "basic_single_dotted_key",
@@ -26,7 +42,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -39,7 +55,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -76,7 +92,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -91,7 +107,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -136,7 +152,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -155,7 +171,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -188,7 +204,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "app": {
@@ -204,7 +220,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -237,7 +253,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "config": {
@@ -257,7 +273,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -310,7 +326,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "simple": "value",
@@ -329,7 +345,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -362,7 +378,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -376,7 +392,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -409,7 +425,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -424,7 +440,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -465,7 +481,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "app": {
@@ -483,7 +499,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -516,7 +532,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "": {
@@ -531,7 +547,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -564,7 +580,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -579,7 +595,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -616,7 +632,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "": {
@@ -631,7 +647,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -668,7 +684,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "app": {
@@ -690,7 +706,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -727,7 +743,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "servers": {
@@ -744,7 +760,7 @@
         "tags": [
           "feature:dotted-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -781,7 +797,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "ports": {
@@ -799,7 +815,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -844,7 +860,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": "value",
@@ -856,7 +872,7 @@
       "meta": {
         "tags": [
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -885,7 +901,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -898,7 +914,7 @@
       "meta": {
         "tags": [
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -987,7 +1003,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "/": "CCL with dotted keys",
@@ -1026,7 +1042,7 @@
           "feature:dotted-keys",
           "feature:empty-keys",
           "function:expand-dotted",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,

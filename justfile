@@ -129,6 +129,11 @@ read FILE:
 validate:
     jv tests/schema.json tests/api-*.json tests/property-*.json
 
+# Validate enhanced LLM metadata in test files
+validate-metadata:
+    @echo "🤖 Validating enhanced LLM metadata in test files..."
+    @go run scripts/validate-enhanced-metadata.go "tests/api-*.json"
+
 # Clean up generated files (cross-platform)
 clean:
     go run ./cmd/clean generated_tests bin

@@ -114,7 +114,27 @@ func TestIndentedEqualsContinuation(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// nested_key_value_pairs - function:make-objects function:parse (level 1)
+// nested_key_value_pairs - function:build-hierarchy function:parse (level 1)
 func TestNestedKeyValuePairs(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// parse_comment_syntax_slash_equals - feature:comments function:parse (level 1)
+func TestParseCommentSyntaxSlashEquals(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// parse_comment_syntax_double_slash - feature:comments function:parse (level 1)
+func TestParseCommentSyntaxDoubleSlash(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// parse_comment_syntax_hash - feature:comments function:parse (level 1)
+func TestParseCommentSyntaxHash(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
+}
+
+// parse_mixed_comments_and_values - feature:comments function:parse (level 1)
+func TestParseMixedCommentsAndValues(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

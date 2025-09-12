@@ -24,21 +24,21 @@ type TestCase struct {
 // ValidationSet contains all possible validation types
 // Using interface{} to handle the flexible oneOf schema structures
 type ValidationSet struct {
-	Parse         interface{} `json:"parse,omitempty"`
-	ParseValue    interface{} `json:"parse_value,omitempty"`
-	Filter        interface{} `json:"filter,omitempty"`
-	Compose       interface{} `json:"compose,omitempty"`
-	ExpandDotted  interface{} `json:"expand_dotted,omitempty"`
-	MakeObjects   interface{} `json:"make_objects,omitempty"`
-	GetString     interface{} `json:"get_string,omitempty"`
-	GetInt        interface{} `json:"get_int,omitempty"`
-	GetBool       interface{} `json:"get_bool,omitempty"`
-	GetFloat      interface{} `json:"get_float,omitempty"`
-	GetList       interface{} `json:"get_list,omitempty"`
-	PrettyPrint   interface{} `json:"pretty_print,omitempty"`
-	RoundTrip     interface{} `json:"round_trip,omitempty"`
-	Canonical     interface{} `json:"canonical_format,omitempty"`
-	Associativity interface{} `json:"associativity,omitempty"`
+	Parse          interface{} `json:"parse,omitempty"`
+	ParseValue     interface{} `json:"parse_value,omitempty"`
+	Filter         interface{} `json:"filter,omitempty"`
+	Combine        interface{} `json:"combine,omitempty"`
+	ExpandDotted   interface{} `json:"expand_dotted,omitempty"`
+	BuildHierarchy interface{} `json:"build_hierarchy,omitempty"`
+	GetString      interface{} `json:"get_string,omitempty"`
+	GetInt         interface{} `json:"get_int,omitempty"`
+	GetBool        interface{} `json:"get_bool,omitempty"`
+	GetFloat       interface{} `json:"get_float,omitempty"`
+	GetList        interface{} `json:"get_list,omitempty"`
+	PrettyPrint    interface{} `json:"pretty_print,omitempty"`
+	RoundTrip      interface{} `json:"round_trip,omitempty"`
+	Canonical      interface{} `json:"canonical_format,omitempty"`
+	Associativity  interface{} `json:"associativity,omitempty"`
 }
 
 // TestMetadata contains test categorization information
@@ -62,8 +62,8 @@ type Entry struct {
 type ParseValidation json.RawMessage
 type FilterValidation json.RawMessage
 type ExpandDottedValidation json.RawMessage
-type ComposeValidation json.RawMessage
-type MakeObjectsValidation json.RawMessage
+type CombineValidation json.RawMessage
+type BuildHierarchyValidation json.RawMessage
 type TypedAccessValidation json.RawMessage
 type PrettyPrintValidation json.RawMessage
 type RoundTripValidation json.RawMessage

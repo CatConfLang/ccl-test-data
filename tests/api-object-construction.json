@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Object Construction - Validation Format",
-  "version": "2.0",
-  "description": "Converting flat Entry[] to nested objects via make_objects() - essential for hierarchical access",
+  "version": "2.1",
+  "description": "Converting flat Entry[] to nested objects via build_hierarchy() - essential for hierarchical access",
+  "llm_metadata": {
+    "llm_description": "Level 3 CCL object construction - converts flat entries to nested objects for hierarchical data access",
+    "complexity_level": "Level 3",
+    "prerequisite_tests": ["api-essential-parsing.json", "api-processing.json"],
+    "related_functions": ["make-objects", "build-hierarchy"],
+    "implementation_notes": "Level 3 core functionality. Transforms flat key-value pairs into hierarchical objects with proper nesting.",
+    "test_count": 9,
+    "assertion_count": 29,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#build_hierarchy",
+      "go_reference": "internal/mock/ccl.go#MakeObjects",
+      "documentation": "https://ccl.tylerbutler.com/api-reference#object-construction"
+    },
+    "learning_path": "Requires Level 1-2 → Complete here → api-typed-access.json for Level 4"
+  },
   "tests": [
     {
       "name": "recursive_nested_single",
@@ -17,7 +32,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -28,7 +43,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -48,7 +63,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "database": {
@@ -61,7 +76,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -81,7 +96,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "server": {
@@ -98,7 +113,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -122,7 +137,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "user": {
@@ -134,7 +149,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -154,7 +169,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "ports": {
@@ -170,7 +185,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -198,7 +213,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "": [
@@ -212,7 +227,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse",
           "variant:proposed-behavior"
         ],
@@ -244,7 +259,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "": [
@@ -258,7 +273,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse",
           "variant:reference-compliant"
         ],
@@ -287,7 +302,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "simple": "value",
@@ -302,7 +317,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
@@ -338,7 +353,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "/": "This is a CCL document",
@@ -368,7 +383,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 3,
