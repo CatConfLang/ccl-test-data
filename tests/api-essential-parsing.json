@@ -556,6 +556,114 @@
         "level": 1,
         "feature": "parsing"
       }
+    },
+    {
+      "name": "parse_comment_syntax_slash_equals",
+      "input": "/= this is a comment",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "/",
+              "value": "this is a comment"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:comments",
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "comments"
+      }
+    },
+    {
+      "name": "parse_comment_syntax_double_slash",
+      "input": "//= this is a C-style comment",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "//",
+              "value": "this is a C-style comment"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:comments",
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "comments"
+      }
+    },
+    {
+      "name": "parse_comment_syntax_hash",
+      "input": "#= this is a Python-style comment",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "#",
+              "value": "this is a Python-style comment"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:comments",
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "comments"
+      }
+    },
+    {
+      "name": "parse_mixed_comments_and_values",
+      "input": "/= Header comment\nname = Alice\n//= C-style comment\nage = 42\n#= Python-style comment",
+      "validations": {
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "/",
+              "value": "Header comment"
+            },
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "//",
+              "value": "C-style comment"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            },
+            {
+              "key": "#",
+              "value": "Python-style comment"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:comments",
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "comments"
+      }
     }
   ]
 }
