@@ -72,7 +72,14 @@
       "mcp__basic-memory__get_current_project",
       "mcp__basic-memory__switch_project",
       "mcp__basic-memory__create_memory_project",
-      "mcp__basic-memory__write_note"
+      "mcp__basic-memory__write_note",
+      "mcp__serena__list_dir",
+      "Bash(./ccl-test-runner stats --format json)",
+      "Bash(for:*)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(grep:*)",
+      "mcp__serena__write_memory",
+      "mcp__serena__think_about_collected_information"
     ],
     "deny": [],
     "ask": []

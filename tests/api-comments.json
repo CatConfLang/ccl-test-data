@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Comment Filtering - Validation Format",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Comment syntax and filtering functionality - remove documentation keys from configuration",
+  "llm_metadata": {
+    "llm_description": "CCL comment syntax handling - '/=' prefix comment processing and filtering from configuration",
+    "complexity_level": "Level 2 Feature",
+    "prerequisite_tests": ["api-essential-parsing.json"],
+    "related_functions": ["parse", "filter"],
+    "implementation_notes": "Optional feature. Add after basic parsing works. Filter '/=' comments during or after parsing step.",
+    "test_count": 3,
+    "assertion_count": 15,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#filter_comments",
+      "go_reference": "internal/mock/ccl.go#Parse",
+      "documentation": "https://ccl.tylerbutler.com/syntax-reference#comments"
+    },
+    "feature_flag": "feature:comments"
+  },
   "tests": [
     {
       "name": "comment_extension",

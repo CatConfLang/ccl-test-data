@@ -72,16 +72,16 @@
               "$ref": "#/definitions/filter_validation",
               "description": "API: Level 2 entry filtering validation"
             },
-            "compose": {
-              "$ref": "#/definitions/compose_validation",
+            "combine": {
+              "$ref": "#/definitions/combine_validation",
               "description": "API: Level 2 entry composition validation"
             },
             "expand_dotted": {
               "$ref": "#/definitions/expand_dotted_validation",
               "description": "API: Level 2 dotted key expansion validation"
             },
-            "make_objects": {
-              "$ref": "#/definitions/make_objects_validation",
+            "build_hierarchy": {
+              "$ref": "#/definitions/build_hierarchy_validation",
               "description": "API: Level 3 object construction validation"
             },
             "get_string": {
@@ -211,7 +211,7 @@
         }
       ]
     },
-    "compose_validation": {
+    "combine_validation": {
       "oneOf": [
         {
           "type": "object",
@@ -300,7 +300,7 @@
         }
       ]
     },
-    "make_objects_validation": {
+    "build_hierarchy_validation": {
       "oneOf": [
         {
           "type": "object",
@@ -535,7 +535,7 @@
             "type": "string",
             "oneOf": [
               {
-                "pattern": "^function:(parse|parse-value|filter|compose|expand-dotted|make-objects|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
+                "pattern": "^function:(parse|parse-value|filter|combine|expand-dotted|build-hierarchy|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
                 "description": "CCL function requirement tags"
               },
               {

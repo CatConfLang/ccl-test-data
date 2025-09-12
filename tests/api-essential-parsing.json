@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Essential Parsing (Validation Format)",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Core parsing functionality - minimum viable CCL implementation. Start here for rapid prototyping.",
+  "llm_metadata": {
+    "llm_description": "Level 1 CCL parsing tests - converts text to flat key-value pairs without object construction",
+    "complexity_level": "Level 1",
+    "prerequisite_tests": [],
+    "related_functions": ["parse", "load"],
+    "implementation_notes": "Start here for new CCL implementations. Validates core parsing without advanced features.",
+    "test_count": 26,
+    "assertion_count": 38,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#parse",
+      "go_reference": "internal/mock/ccl.go#Parse",
+      "documentation": "https://ccl.tylerbutler.com/api-reference#parsing"
+    },
+    "learning_path": "Begin → api-processing.json → api-object-construction.json → api-typed-access.json"
+  },
   "tests": [
     {
       "name": "basic_pairs",
@@ -550,7 +565,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 1,

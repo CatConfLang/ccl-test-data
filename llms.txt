@@ -1,0 +1,59 @@
+# CCL Test Data Repository
+
+Official JSON test suite for CCL implementations with feature-based tagging.
+
+## Key Resources
+- [Test Index](tests/README.md) - Complete test suite overview
+- [Implementation Levels](docs/levels.md) - Progressive implementation guide  
+- [API Reference](docs/api.md) - Function specifications
+- [Feature Tags](docs/tags.md) - Tag taxonomy and usage
+
+## Test Categories
+- Level 1: Basic parsing (45 tests) - api-essential-parsing.json
+- Level 2: Processing (67 tests) - api-processing.json  
+- Level 3: Object construction (89 tests) - api-object-construction.json
+- Level 4: Typed access (151 tests) - api-typed-access.json
+
+## Progressive Implementation Path
+
+### Level 1: Essential Parsing
+Start with `api-essential-parsing.json` for basic CCL parsing functionality:
+- Convert CCL text to flat key-value pairs
+- Handle basic syntax: keys, values, indentation
+- Required functions: `parse`, `load`
+
+### Level 2: Advanced Processing  
+Add `api-processing.json` for entry composition and processing:
+- Entry merging and composition
+- Whitespace handling
+- Comment processing (`/=` syntax)
+
+### Level 3: Object Construction
+Implement `api-object-construction.json` for structured data:
+- Convert flat entries to nested objects
+- Handle dotted key expansion (`foo.bar.baz`)
+- Required function: `make-objects`
+
+### Level 4: Typed Access
+Complete with `api-typed-access.json` for type-aware value extraction:
+- Type-specific accessors: `get-string`, `get-int`, `get-bool`, `get-float`
+- Array and object access patterns
+- Type validation and conversion
+
+## Feature Tags
+Use these tags to filter tests by specific CCL features:
+- `function:parse` - Basic parsing functionality
+- `function:make-objects` - Object construction
+- `function:get-*` - Typed access functions
+- `feature:comments` - Comment syntax support
+- `feature:dotted-keys` - Dotted key expansion
+- `feature:unicode` - Unicode content handling
+
+## Test File Structure
+Each JSON test file contains:
+- `metadata`: LLM-friendly descriptions and implementation guidance
+- `tags`: Feature-based classification tags
+- `tests`: Array of test cases with assertions
+- `count`: Required assertion count for validation
+
+Total: 452 test assertions across 167 tests in 10 JSON files

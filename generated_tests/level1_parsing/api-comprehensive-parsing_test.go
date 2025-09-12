@@ -144,22 +144,22 @@ func TestQuotesTreatedAsLiteralQuoted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// nested_single_line - function:make-objects function:parse (level 1)
+// nested_single_line - function:build-hierarchy function:parse (level 1)
 func TestNestedSingleLine(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// nested_multi_line - feature:multiline function:make-objects function:parse (level 1)
+// nested_multi_line - feature:multiline function:build-hierarchy function:parse (level 1)
 func TestNestedMultiLine(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// nested_with_blank_line - feature:multiline function:make-objects function:parse-value (level 2)
+// nested_with_blank_line - feature:multiline function:build-hierarchy function:parse-value (level 2)
 func TestNestedWithBlankLine(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// deep_nested_structure - function:make-objects function:parse-value (level 2)
+// deep_nested_structure - function:build-hierarchy function:parse-value (level 2)
 func TestDeepNestedStructure(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -169,7 +169,7 @@ func TestRealisticStressTest(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// ocaml_stress_test_original - feature:comments feature:empty-keys function:get-string function:make-objects function:parse (level 4)
+// ocaml_stress_test_original - feature:comments feature:empty-keys function:get-string function:build-hierarchy function:parse (level 4)
 func TestOcamlStressTestOriginal(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

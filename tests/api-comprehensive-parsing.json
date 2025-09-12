@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Comprehensive Parsing - Validation Format",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.",
+  "llm_metadata": {
+    "llm_description": "Level 1+ CCL comprehensive parsing tests - edge cases, whitespace variations, and production-ready validation",
+    "complexity_level": "Level 1+",
+    "prerequisite_tests": ["api-essential-parsing.json"],
+    "related_functions": ["parse", "load"],
+    "implementation_notes": "Advanced Level 1 parsing. Handle edge cases and whitespace variations after basic parsing works. Production validation.",
+    "test_count": 33,
+    "assertion_count": 47,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#parse",
+      "go_reference": "internal/mock/ccl.go#Parse",
+      "documentation": "https://ccl.tylerbutler.com/api-reference#parsing"
+    },
+    "learning_path": "After basic parsing works → validate edge cases here → proceed to Level 2"
+  },
   "tests": [
     {
       "name": "basic_single_no_spaces",
@@ -670,7 +685,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 1,
@@ -694,7 +709,7 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 1,
@@ -718,7 +733,7 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse-value"
         ],
         "level": 2,
@@ -741,7 +756,7 @@
       },
       "meta": {
         "tags": [
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse-value"
         ],
         "level": 2,
@@ -811,7 +826,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "/": "This is a CCL document",
@@ -854,7 +869,7 @@
           "feature:comments",
           "feature:empty-keys",
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,

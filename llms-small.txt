@@ -1,0 +1,28 @@
+# CCL Test Data - Compact Reference
+
+## Test Files (452 assertions, 167 tests)
+1. api-essential-parsing.json - Level 1 basic parsing
+2. api-comprehensive-parsing.json - Extended parsing edge cases  
+3. api-processing.json - Level 2 entry processing
+4. api-comments.json - Comment syntax handling
+5. api-object-construction.json - Level 3 object building
+6. api-dotted-keys.json - Dotted key expansion
+7. api-typed-access.json - Level 4 type-aware access
+8. api-errors.json - Error handling validation
+9. property-round-trip.json - Round-trip validation
+10. property-algebraic.json - Algebraic properties
+
+## Implementation Levels
+- Level 1: parse() → flat key-value pairs
+- Level 2: Processing → entry composition, comments
+- Level 3: make-objects() → nested structures  
+- Level 4: get-*() → typed value extraction
+
+## Key Functions
+- parse, load - Basic parsing
+- make-objects - Object construction
+- get-string, get-int, get-bool, get-float - Typed access
+
+## Essential Tags
+- function:parse, function:make-objects, function:get-*
+- feature:comments, feature:dotted-keys, feature:unicode

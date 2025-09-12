@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Error Cases (Validation Format)",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Error handling tests - malformed input detection across all levels using validation format",
+  "llm_metadata": {
+    "llm_description": "CCL error handling validation - malformed input detection and graceful failure across all implementation levels",
+    "complexity_level": "Level 5",
+    "prerequisite_tests": ["api-essential-parsing.json"],
+    "related_functions": ["parse", "make-objects", "get-string", "get-int"],
+    "implementation_notes": "Error handling tests for all levels. Validates graceful failure modes and appropriate error messages for malformed input.",
+    "test_count": 6,
+    "assertion_count": 6,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#error_handling",
+      "go_reference": "internal/mock/ccl.go#error_cases",
+      "documentation": "https://ccl.tylerbutler.com/implementing-ccl#error-handling"
+    },
+    "learning_path": "Implement alongside each level - essential for production readiness"
+  },
   "tests": [
     {
       "name": "just_key_error",
@@ -113,7 +128,7 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 1,

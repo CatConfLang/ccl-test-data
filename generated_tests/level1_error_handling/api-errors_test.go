@@ -34,7 +34,7 @@ func TestMultilinePlainError(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// multiline_plain_nested_error - feature:multiline function:make-objects function:parse (level 1)
+// multiline_plain_nested_error - feature:multiline function:build-hierarchy function:parse (level 1)
 func TestMultilinePlainNestedError(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

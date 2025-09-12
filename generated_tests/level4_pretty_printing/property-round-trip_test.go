@@ -24,7 +24,7 @@ func TestRoundTripEmptyKeysLists(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// round_trip_nested_structures - function:make-objects function:pretty-print (level 4)
+// round_trip_nested_structures - function:build-hierarchy function:pretty-print (level 4)
 func TestRoundTripNestedStructures(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -34,7 +34,7 @@ func TestRoundTripMultilineValues(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// round_trip_mixed_content - feature:empty-keys function:make-objects function:pretty-print (level 4)
+// round_trip_mixed_content - feature:empty-keys function:build-hierarchy function:pretty-print (level 4)
 func TestRoundTripMixedContent(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -54,7 +54,7 @@ func TestCanonicalFormatUnicode(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// round_trip_complex_nesting - feature:empty-keys function:make-objects function:pretty-print (level 4)
+// round_trip_complex_nesting - feature:empty-keys function:build-hierarchy function:pretty-print (level 4)
 func TestRoundTripComplexNesting(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
@@ -64,7 +64,7 @@ func TestCanonicalFormatLineEndingsProposed(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }
 
-// round_trip_deeply_nested - feature:empty-keys function:make-objects function:pretty-print (level 4)
+// round_trip_deeply_nested - feature:empty-keys function:build-hierarchy function:pretty-print (level 4)
 func TestRoundTripDeeplyNested(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [basic essential-parsing empty redundant quotes realistic line-endings]")
 }

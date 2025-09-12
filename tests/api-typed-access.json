@@ -1,8 +1,23 @@
 {
   "$schema": "./schema.json",
   "suite": "CCL Typed Access - Validation Format",
-  "version": "2.0",
+  "version": "2.1",
   "description": "Type-aware value extraction with validation and smart type inference using new validation-based format - get_string(), get_int(), get_bool(), get_float()",
+  "llm_metadata": {
+    "llm_description": "Level 4 CCL typed access - type-aware value extraction with conversion and validation",
+    "complexity_level": "Level 4",
+    "prerequisite_tests": ["api-essential-parsing.json", "api-object-construction.json"],
+    "related_functions": ["get-string", "get-int", "get-bool", "get-float", "get-list"],
+    "implementation_notes": "Level 4 completion. Requires Level 3 object construction for navigation. Handles type conversion and validation.",
+    "test_count": 22,
+    "assertion_count": 107,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#get_string",
+      "go_reference": "internal/mock/ccl.go#GetString",
+      "documentation": "https://ccl.tylerbutler.com/api-reference#typed-access"
+    },
+    "learning_path": "Final Level 4 - completes full CCL implementation capability"
+  },
   "tests": [
     {
       "name": "parse_basic_integer",
@@ -17,7 +32,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "port": "8080"
@@ -38,7 +53,7 @@
       "meta": {
         "tags": [
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -58,7 +73,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "temperature": "98.6"
@@ -79,7 +94,7 @@
       "meta": {
         "tags": [
           "function:get-float",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -99,7 +114,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "enabled": "true"
@@ -122,7 +137,7 @@
           "behavior:boolean-strict",
           "behavior:boolean-lenient",
           "function:get-bool",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -142,7 +157,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "active": "yes"
@@ -164,7 +179,7 @@
         "tags": [
           "behavior:boolean-lenient",
           "function:get-bool",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -187,7 +202,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "active": "yes"
@@ -210,7 +225,7 @@
         "tags": [
           "behavior:boolean-strict",
           "function:get-bool",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -233,7 +248,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "disabled": "false"
@@ -256,7 +271,7 @@
           "behavior:boolean-strict",
           "behavior:boolean-lenient",
           "function:get-bool",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -276,7 +291,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "name": "Alice"
@@ -297,7 +312,7 @@
       "meta": {
         "tags": [
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -317,7 +332,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "offset": "-42"
@@ -338,7 +353,7 @@
       "meta": {
         "tags": [
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -366,7 +381,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "count": "0",
@@ -415,7 +430,7 @@
           "function:get-bool",
           "function:get-float",
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -446,7 +461,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "count": "0",
@@ -496,7 +511,7 @@
           "function:get-bool",
           "function:get-float",
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -543,7 +558,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "flag1": "yes",
@@ -583,7 +598,7 @@
           "behavior:boolean-lenient",
           "function:get-bool",
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -630,7 +645,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "flag1": "yes",
@@ -671,7 +686,7 @@
           "behavior:boolean-strict",
           "function:get-bool",
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -710,7 +725,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "host": "localhost",
@@ -772,7 +787,7 @@
           "function:get-float",
           "function:get-int",
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -811,7 +826,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "host": "localhost",
@@ -873,7 +888,7 @@
           "function:get-float",
           "function:get-int",
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -896,7 +911,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "empty_key": ""
@@ -917,7 +932,7 @@
       "meta": {
         "tags": [
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse",
           "variant:proposed-behavior"
         ],
@@ -940,7 +955,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "empty_key": ""
@@ -950,7 +965,7 @@
       "meta": {
         "tags": [
           "function:parse",
-          "function:make-objects",
+          "function:build-hierarchy",
           "variant:reference-compliant"
         ],
         "level": 3,
@@ -975,7 +990,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "number": "42",
@@ -1010,7 +1025,7 @@
           "feature:whitespace",
           "function:get-bool",
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1042,7 +1057,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "number": "42",
@@ -1078,7 +1093,7 @@
         "tags": [
           "function:get-int",
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1098,7 +1113,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "port": "not_a_number"
@@ -1120,7 +1135,7 @@
       "meta": {
         "tags": [
           "function:get-int",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1140,7 +1155,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "temperature": "invalid"
@@ -1162,7 +1177,7 @@
       "meta": {
         "tags": [
           "function:get-float",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1182,7 +1197,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "enabled": "maybe"
@@ -1205,7 +1220,7 @@
         "tags": [
           "behavior:boolean-strict",
           "function:get-bool",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1228,7 +1243,7 @@
             }
           ]
         },
-        "make_objects": {
+        "build_hierarchy": {
           "count": 1,
           "expected": {
             "existing": "value"
@@ -1250,7 +1265,7 @@
       "meta": {
         "tags": [
           "function:get-string",
-          "function:make-objects",
+          "function:build-hierarchy",
           "function:parse"
         ],
         "level": 4,

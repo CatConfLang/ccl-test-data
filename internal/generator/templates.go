@@ -237,8 +237,8 @@ func (g *Generator) generateValidations(validations types.ValidationSet) ([]stri
 		}
 	}
 
-	if validations.MakeObjects != nil {
-		assertion, err := g.generateMakeObjectsValidation(validations.MakeObjects)
+	if validations.BuildHierarchy != nil {
+		assertion, err := g.generateBuildHierarchyValidation(validations.BuildHierarchy)
 		if err != nil {
 			return nil, err
 		}
@@ -357,14 +357,14 @@ func (g *Generator) generateFilterValidation(validation interface{}) (string, er
 	return g.generateComplexValidation("Filter", validation)
 }
 
-// generateMakeObjectsValidation creates assertion for make_objects validation
-func (g *Generator) generateMakeObjectsValidation(validation interface{}) (string, error) {
+// generateBuildHierarchyValidation creates assertion for make_objects validation
+func (g *Generator) generateBuildHierarchyValidation(validation interface{}) (string, error) {
 	// Try to parse as counted format first
 	if countedValidation, ok := g.parseAsCountedObjectValidation(validation); ok {
-		return fmt.Sprintf(`// MakeObjects validation
+		return fmt.Sprintf(`// BuildHierarchy validation
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
-	objectResult = ccl.MakeObjects(parseResult)
+	objectResult = ccl.BuildHierarchy(parseResult)
 	expectedObjects := %s
 	assert.Equal(t, expectedObjects, objectResult)`, formatGoValue(countedValidation.Expected)), nil
 	}
@@ -373,17 +373,17 @@ func (g *Generator) generateMakeObjectsValidation(validation interface{}) (strin
 	if obj, ok := validation.(map[string]interface{}); ok {
 		// Check if it has count field (which would make it counted format we missed)
 		if _, hasCount := obj["count"]; hasCount {
-			return g.generateComplexValidation("MakeObjects", validation)
+			return g.generateComplexValidation("BuildHierarchy", validation)
 		}
-		return fmt.Sprintf(`// MakeObjects validation
+		return fmt.Sprintf(`// BuildHierarchy validation
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
-	objectResult = ccl.MakeObjects(parseResult)
+	objectResult = ccl.BuildHierarchy(parseResult)
 	expectedObjects := %s
 	assert.Equal(t, expectedObjects, objectResult)`, formatGoValue(obj)), nil
 	}
 
-	return g.generateComplexValidation("MakeObjects", validation)
+	return g.generateComplexValidation("BuildHierarchy", validation)
 }
 
 // generateTypedAccessValidation creates assertion for typed access validation
@@ -395,7 +395,7 @@ func (g *Generator) generateTypedAccessValidation(method string, validation inte
 			return fmt.Sprintf(`// %s validation
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
-	objectResult = ccl.MakeObjects(parseResult)
+	objectResult = ccl.BuildHierarchy(parseResult)
 	_, err = ccl.%s(objectResult, %s)
 	require.Error(t, err)
 	assert.Contains(t, err.Error(), "%s")`,
@@ -405,7 +405,7 @@ func (g *Generator) generateTypedAccessValidation(method string, validation inte
 			return fmt.Sprintf(`// %s validation
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
-	objectResult = ccl.MakeObjects(parseResult)
+	objectResult = ccl.BuildHierarchy(parseResult)
 	%sResult, err := ccl.%s(objectResult, %s)
 	require.NoError(t, err)
 	assert.Equal(t, %s, %sResult)`,
@@ -707,9 +707,9 @@ func hasValidations(validations types.ValidationSet) bool {
 	return validations.Parse != nil ||
 		validations.ParseValue != nil ||
 		validations.Filter != nil ||
-		validations.Compose != nil ||
+		validations.Combine != nil ||
 		validations.ExpandDotted != nil ||
-		validations.MakeObjects != nil ||
+		validations.BuildHierarchy != nil ||
 		validations.GetString != nil ||
 		validations.GetInt != nil ||
 		validations.GetBool != nil ||
@@ -726,7 +726,7 @@ func (g *Generator) hasImplementedValidations(validations types.ValidationSet) b
 	// Only check validation types that are actually implemented in the generator
 	return validations.Parse != nil ||
 		validations.Filter != nil ||
-		validations.MakeObjects != nil ||
+		validations.BuildHierarchy != nil ||
 		validations.GetString != nil ||
 		validations.GetInt != nil ||
 		validations.GetBool != nil ||
@@ -801,7 +801,7 @@ func formatGoSlice(s []interface{}) string {
 func (g *Generator) needsParseResult(validations types.ValidationSet) bool {
 	return validations.Parse != nil ||
 		validations.Filter != nil ||
-		validations.MakeObjects != nil ||
+		validations.BuildHierarchy != nil ||
 		validations.GetString != nil ||
 		validations.GetInt != nil ||
 		validations.GetBool != nil ||
@@ -809,7 +809,7 @@ func (g *Generator) needsParseResult(validations types.ValidationSet) bool {
 }
 
 func (g *Generator) needsObjectResult(validations types.ValidationSet) bool {
-	return validations.MakeObjects != nil ||
+	return validations.BuildHierarchy != nil ||
 		validations.GetString != nil ||
 		validations.GetInt != nil ||
 		validations.GetBool != nil ||
@@ -833,14 +833,14 @@ func (g *Generator) countAssertions(validations types.ValidationSet) int {
 	if validations.Filter != nil {
 		count += g.getValidationCount(validations.Filter)
 	}
-	if validations.Compose != nil {
-		count += g.getValidationCount(validations.Compose)
+	if validations.Combine != nil {
+		count += g.getValidationCount(validations.Combine)
 	}
 	if validations.ExpandDotted != nil {
 		count += g.getValidationCount(validations.ExpandDotted)
 	}
-	if validations.MakeObjects != nil {
-		count += g.getValidationCount(validations.MakeObjects)
+	if validations.BuildHierarchy != nil {
+		count += g.getValidationCount(validations.BuildHierarchy)
 	}
 	if validations.GetString != nil {
 		count += g.getValidationCount(validations.GetString)
