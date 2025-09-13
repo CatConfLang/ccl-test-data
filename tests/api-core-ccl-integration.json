@@ -1,0 +1,289 @@
+{
+  "$schema": "./schema.json",
+  "suite": "CCL Core Integration - Validation Format",
+  "version": "2.1",
+  "description": "Core CCL complete workflow validation - tests the atomic text → objects transformation as users experience it.",
+  "llm_metadata": {
+    "llm_description": "Level 1 Core CCL Integration - complete workflow validation demonstrating atomic text → hierarchical objects transformation (what users actually see)",
+    "complexity_level": "Level 1 (Core CCL Integration)",
+    "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json"],
+    "related_functions": ["load", "parse", "build-hierarchy"],
+    "implementation_notes": "Integration tests demonstrating Core CCL as atomic operation. These tests show what users actually experience - complete text to objects transformation.",
+    "test_count": 6,
+    "assertion_count": 18,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#load",
+      "go_reference": "internal/mock/ccl.go#CoreCCL",
+      "ocaml_reference": "Parser.parse |> Model.fix",
+      "documentation": "https://ccl.tylerbutler.com/core-concepts#complete-workflow"
+    },
+    "learning_path": "Requires api-core-ccl-parsing.json + api-core-ccl-hierarchy.json → Complete here → api-typed-access.json (Level 2)"
+  },
+  "tests": [
+    {
+      "name": "complete_basic_workflow",
+      "input": "name = Alice\nage = 42",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "name": "Alice",
+            "age": "42"
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    },
+    {
+      "name": "complete_nested_workflow",
+      "input": "database =\n  host = localhost\n  port = 5432\n  enabled = true",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432\n  enabled = true"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "5432",
+              "enabled": "true"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    },
+    {
+      "name": "complete_mixed_workflow",
+      "input": "app = MyApp\nversion = 1.0.0\nconfig =\n  debug = true\n  features =\n    feature1 = enabled\n    feature2 = disabled",
+      "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "app",
+              "value": "MyApp"
+            },
+            {
+              "key": "version",
+              "value": "1.0.0"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true\n  features =\n    feature1 = enabled\n    feature2 = disabled"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "app": "MyApp",
+            "version": "1.0.0",
+            "config": {
+              "debug": "true",
+              "features": {
+                "feature1": "enabled",
+                "feature2": "disabled"
+              }
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    },
+    {
+      "name": "complete_lists_workflow",
+      "input": "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "servers",
+              "value": "\n  server = web1\n  server = web2\n  server = web3"
+            },
+            {
+              "key": "ports",
+              "value": "\n  port = 80\n  port = 443"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "servers": {
+              "server": ["web1", "web2", "web3"]
+            },
+            "ports": {
+              "port": ["80", "443"]
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    },
+    {
+      "name": "complete_multiline_workflow",
+      "input": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "description",
+              "value": "Welcome to our app\n  This is a multi-line description\n  With several lines"
+            },
+            {
+              "key": "config",
+              "value": "\n  settings =\n    value1 = one\n    value2 = two"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "description": "Welcome to our app\n  This is a multi-line description\n  With several lines",
+            "config": {
+              "settings": {
+                "value1": "one",
+                "value2": "two"
+              }
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy",
+          "feature:multiline"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    },
+    {
+      "name": "real_world_complete_workflow",
+      "input": "service = MyMicroservice\nversion = 2.1.0\ndatabase =\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2\nlogging =\n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog\nfeatures =\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental",
+      "validations": {
+        "parse": {
+          "count": 5,
+          "expected": [
+            {
+              "key": "service",
+              "value": "MyMicroservice"
+            },
+            {
+              "key": "version",
+              "value": "2.1.0"
+            },
+            {
+              "key": "database",
+              "value": "\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2"
+            },
+            {
+              "key": "logging",
+              "value": "\n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog"
+            },
+            {
+              "key": "features",
+              "value": "\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "service": "MyMicroservice",
+            "version": "2.1.0",
+            "database": {
+              "host": "db.example.com",
+              "port": "5432",
+              "credentials": {
+                "user": "service_user",
+                "password": "secret123"
+              },
+              "pools": {
+                "read": "5",
+                "write": "2"
+              }
+            },
+            "logging": {
+              "level": "info",
+              "outputs": {
+                "output": ["console", "file", "syslog"]
+              }
+            },
+            "features": {
+              "feature_a": "enabled",
+              "feature_b": "disabled",
+              "feature_c": "experimental"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:load",
+          "function:parse",
+          "function:build-hierarchy"
+        ],
+        "level": 1,
+        "feature": "core-ccl-integration"
+      }
+    }
+  ]
+}

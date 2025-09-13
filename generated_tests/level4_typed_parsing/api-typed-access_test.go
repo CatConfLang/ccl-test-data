@@ -6,7 +6,7 @@ import (
 
 // Generated from tests/api-typed-access.json
 // Suite: CCL Typed Access - Validation Format
-// Version: 2.0
+// Version: 2.1
 // Description: Type-aware value extraction with validation and smart type inference using new validation-based format - get_string(), get_int(), get_bool(), get_float()
 
 // parse_basic_integer - function:get-int function:build-hierarchy function:parse (level 4)

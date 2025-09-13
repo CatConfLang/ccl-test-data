@@ -1,0 +1,425 @@
+{
+  "$schema": "./schema.json",
+  "suite": "CCL Experimental Features - Validation Format",
+  "version": "2.1",
+  "description": "Experimental and implementation-specific CCL features - NOT part of standard specification, subject to change.",
+  "llm_metadata": {
+    "llm_description": "Level 4 CCL experimental features - implementation-specific extensions like dotted keys (Go implementation only), subject to design changes",
+    "complexity_level": "Level 4 (Experimental)",
+    "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json", "api-typed-access.json"],
+    "related_functions": ["expand-dotted"],
+    "implementation_notes": "Level 4 experimental features. Go implementation only. NOT standardized - design may change. Use with caution in production.",
+    "test_count": 8,
+    "assertion_count": 35,
+    "cross_references": {
+      "go_reference": "internal/mock/ccl.go#ExpandDotted",
+      "documentation": "https://ccl.tylerbutler.com/experimental#dotted-keys"
+    },
+    "feature_flag": "feature:experimental-dotted-keys",
+    "experimental_warning": "These features are NOT part of the Core CCL specification and may change or be removed in future versions.",
+    "learning_path": "Complete all Level 1-3 → Experimental features for specific implementations only"
+  },
+  "tests": [
+    {
+      "name": "basic_dotted_key_expansion",
+      "input": "database.host = localhost",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "multiple_dotted_keys",
+      "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+      "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "database.port",
+              "value": "5432"
+            },
+            {
+              "key": "app.name",
+              "value": "MyApp"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            },
+            {
+              "key": "app",
+              "value": "\n  name = MyApp"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost",
+              "port": "5432"
+            },
+            "app": {
+              "name": "MyApp"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "deep_dotted_nesting",
+      "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "server.database.credentials.user",
+              "value": "admin"
+            },
+            {
+              "key": "server.database.credentials.pass",
+              "value": "secret"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "server",
+              "value": "\n  database =\n    credentials =\n      user = admin\n      pass = secret"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "server": {
+              "database": {
+                "credentials": {
+                  "user": "admin",
+                  "pass": "secret"
+                }
+              }
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "mixed_dotted_and_regular_keys",
+      "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+      "validations": {
+        "parse": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "app",
+              "value": "MyApp"
+            },
+            {
+              "key": "database.host",
+              "value": "localhost"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true"
+            },
+            {
+              "key": "logging.level",
+              "value": "info"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 4,
+          "expected": [
+            {
+              "key": "app",
+              "value": "MyApp"
+            },
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true"
+            },
+            {
+              "key": "logging",
+              "value": "\n  level = info"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "app": "MyApp",
+            "database": {
+              "host": "localhost"
+            },
+            "config": {
+              "debug": "true"
+            },
+            "logging": {
+              "level": "info"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "dotted_key_conflicts_resolution",
+      "input": "database = old_value\ndatabase.host = localhost",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "database",
+              "value": "old_value"
+            },
+            {
+              "key": "database.host",
+              "value": "localhost"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "database": {
+              "host": "localhost"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "dotted_keys_with_lists",
+      "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+      "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {
+              "key": "servers.web",
+              "value": "web1"
+            },
+            {
+              "key": "servers.web",
+              "value": "web2"
+            },
+            {
+              "key": "servers.api",
+              "value": "api1"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "servers",
+              "value": "\n  web = web1\n  web = web2\n  api = api1"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "servers": {
+              "web": ["web1", "web2"],
+              "api": "api1"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "empty_dotted_key_segments",
+      "input": "a..b = value",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a..b",
+              "value": "value"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a",
+              "value": "\n   =\n    b = value"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "a": {
+              "": {
+                "b": "value"
+              }
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy",
+          "feature:empty-keys"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    },
+    {
+      "name": "single_dot_key",
+      "input": "a. = value",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a.",
+              "value": "value"
+            }
+          ]
+        },
+        "expand_dotted": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "a",
+              "value": "\n   = value"
+            }
+          ]
+        },
+        "build_hierarchy": {
+          "count": 1,
+          "expected": {
+            "a": {
+              "": "value"
+            }
+          }
+        }
+      },
+      "meta": {
+        "tags": [
+          "feature:experimental-dotted-keys",
+          "function:expand-dotted",
+          "function:build-hierarchy",
+          "feature:empty-keys"
+        ],
+        "level": 4,
+        "feature": "experimental-dotted-keys"
+      }
+    }
+  ]
+}

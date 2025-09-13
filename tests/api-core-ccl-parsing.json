@@ -1,0 +1,223 @@
+{
+  "$schema": "./schema.json",
+  "suite": "CCL Core Parsing - Validation Format",
+  "version": "2.1",
+  "description": "Core CCL text parsing fundamentals - validates correct text → entry conversion as foundation for hierarchy building.",
+  "llm_metadata": {
+    "llm_description": "Level 1 Core CCL Parsing - text parsing fundamentals that feed into hierarchy construction (part of atomic Core CCL)",
+    "complexity_level": "Level 1 (Core CCL Parsing)",
+    "prerequisite_tests": [],
+    "related_functions": ["parse", "parse-value"],
+    "implementation_notes": "Core parsing functionality tests. While users never see flat entries, these tests validate the parsing foundation of Core CCL atomic operation.",
+    "test_count": 8,
+    "assertion_count": 15,
+    "cross_references": {
+      "gleam_implementation": "packages/ccl/src/ccl.gleam#parse",
+      "go_reference": "internal/mock/ccl.go#Parse",
+      "ocaml_reference": "Parser.parse",
+      "documentation": "https://ccl.tylerbutler.com/core-concepts#parsing-foundation"
+    },
+    "learning_path": "Start here → api-core-ccl-hierarchy.json → api-core-ccl-integration.json"
+  },
+  "tests": [
+    {
+      "name": "basic_key_value_pairs",
+      "input": "name = Alice\nage = 42",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "equals_in_values",
+      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "msg",
+              "value": "k=v pairs work fine"
+            },
+            {
+              "key": "path",
+              "value": "/bin/app=prod"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "whitespace_trimming",
+      "input": "  key   =    value with spaces   \nother = normal",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "key",
+              "value": "value with spaces"
+            },
+            {
+              "key": "other",
+              "value": "normal"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "feature:whitespace"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "multiline_values",
+      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "description",
+              "value": "First line\n  Second line\n  Third line"
+            },
+            {
+              "key": "done",
+              "value": "yes"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "feature:multiline"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "empty_values",
+      "input": "empty =\nother = value",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "empty",
+              "value": ""
+            },
+            {
+              "key": "other",
+              "value": "value"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "feature:empty-keys"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "nested_structure_parsing",
+      "input": "database =\n  host = localhost\n  port = 5432",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "unicode_parsing",
+      "input": "emoji = 😀😃😄\n配置 = config",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {
+              "key": "emoji",
+              "value": "😀😃😄"
+            },
+            {
+              "key": "配置",
+              "value": "config"
+            }
+          ]
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "feature:unicode"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    },
+    {
+      "name": "empty_input",
+      "input": "",
+      "validations": {
+        "parse": {
+          "count": 1,
+          "expected": []
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse"
+        ],
+        "level": 1,
+        "feature": "core-ccl-parsing"
+      }
+    }
+  ]
+}

@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-// Generated from tests/api-processing.json
-// Suite: CCL Entry Processing - Validation Format
-// Version: 2.0
-// Description: Entry composition, merging, and advanced processing - optional functionality for complex configurations (validation-based format)
+// Generated from tests/api-advanced-processing.json
+// Suite: CCL Advanced Processing - Validation Format
+// Version: 2.1
+// Description: Advanced entry processing, composition, and merging - Level 3 power user functionality for complex configurations.
 
 // composition_stability_duplicate_keys - function:parse (level 2)
 func TestCompositionStabilityDuplicateKeys(t *testing.T) {
