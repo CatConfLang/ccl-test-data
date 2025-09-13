@@ -1,14 +1,14 @@
 {
   "$schema": "./schema.json",
-  "suite": "CCL Comprehensive Parsing - Validation Format",
+  "suite": "CCL Edge Cases - Validation Format",
   "version": "2.1",
-  "description": "Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.",
+  "description": "Cross-level edge cases, stress tests, and production validation - whitespace variations, unicode, complex scenarios spanning all levels.",
   "llm_metadata": {
-    "llm_description": "Level 1+ CCL comprehensive parsing tests - edge cases, whitespace variations, and production-ready validation",
-    "complexity_level": "Level 1+",
-    "prerequisite_tests": ["api-essential-parsing.json"],
+    "llm_description": "Cross-level CCL edge cases and stress tests - production validation covering whitespace, unicode, and complex scenarios across all implementation levels",
+    "complexity_level": "Cross-Level (Edge Cases)",
+    "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json"],
     "related_functions": ["parse", "load"],
-    "implementation_notes": "Advanced Level 1 parsing. Handle edge cases and whitespace variations after basic parsing works. Production validation.",
+    "implementation_notes": "Cross-level stress testing. Validates implementation robustness across edge cases, unicode, whitespace, and complex scenarios. Production validation.",
     "test_count": 33,
     "assertion_count": 47,
     "cross_references": {
@@ -16,7 +16,7 @@
       "go_reference": "internal/mock/ccl.go#Parse",
       "documentation": "https://ccl.tylerbutler.com/api-reference#parsing"
     },
-    "learning_path": "After basic parsing works → validate edge cases here → proceed to Level 2"
+    "learning_path": "After Core CCL implementation complete → validate production readiness with stress tests"
   },
   "tests": [
     {

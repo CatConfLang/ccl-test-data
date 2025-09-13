@@ -6,7 +6,7 @@ import (
 
 // Generated from tests/api-comments.json
 // Suite: CCL Comment Filtering - Validation Format
-// Version: 2.0
+// Version: 2.1
 // Description: Comment syntax and filtering functionality - remove documentation keys from configuration
 
 // comment_extension - feature:comments function:filter (level 2)

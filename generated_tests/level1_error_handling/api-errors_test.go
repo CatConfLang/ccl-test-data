@@ -6,7 +6,7 @@ import (
 
 // Generated from tests/api-errors.json
 // Suite: CCL Error Cases (Validation Format)
-// Version: 2.0
+// Version: 2.1
 // Description: Error handling tests - malformed input detection across all levels using validation format
 
 // just_key_error - function:parse (level 1)

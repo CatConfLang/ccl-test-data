@@ -4,10 +4,10 @@ import (
 	"testing"
 )
 
-// Generated from tests/api-comprehensive-parsing.json
-// Suite: CCL Comprehensive Parsing - Validation Format
-// Version: 2.0
-// Description: Thorough parsing validation - edge cases, whitespace variations, and production-ready testing. Run these for comprehensive validation. Converted to validation-based format.
+// Generated from tests/api-edge-cases.json
+// Suite: CCL Edge Cases - Validation Format
+// Version: 2.1
+// Description: Cross-level edge cases, stress tests, and production validation - whitespace variations, unicode, complex scenarios spanning all levels.
 
 // basic_single_no_spaces - function:parse (level 1)
 func TestBasicSingleNoSpaces(t *testing.T) {

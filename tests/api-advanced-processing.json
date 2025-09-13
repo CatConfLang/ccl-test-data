@@ -1,14 +1,14 @@
 {
   "$schema": "./schema.json",
-  "suite": "CCL Entry Processing - Validation Format",
+  "suite": "CCL Advanced Processing - Validation Format",
   "version": "2.1",
-  "description": "Entry composition, merging, and advanced processing - optional functionality for complex configurations (validation-based format)",
+  "description": "Advanced entry processing, composition, and merging - Level 3 power user functionality for complex configurations.",
   "llm_metadata": {
-    "llm_description": "Level 2 CCL entry processing - composition, merging, and advanced text handling after basic parsing",
-    "complexity_level": "Level 2",
-    "prerequisite_tests": ["api-essential-parsing.json"],
+    "llm_description": "Level 3 CCL advanced processing - composition, merging, and power user functionality for complex configuration manipulation",
+    "complexity_level": "Level 3 (Advanced Processing)",
+    "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json", "api-typed-access.json"],
     "related_functions": ["filter", "compose", "expand-dotted"],
-    "implementation_notes": "Level 2 functionality. Requires working Level 1 parsing foundation. Handles entry composition and duplicate key merging.",
+    "implementation_notes": "Level 3 advanced functionality. Requires working Core CCL (Level 1) and typed access (Level 2). Power user features for complex config manipulation.",
     "test_count": 19,
     "assertion_count": 67,
     "cross_references": {
@@ -16,7 +16,7 @@
       "go_reference": "internal/mock/ccl.go#Compose",
       "documentation": "https://ccl.tylerbutler.com/api-reference#processing"
     },
-    "learning_path": "Requires Level 1 → Implements here → Continue to Level 3 object construction"
+    "learning_path": "Requires Core CCL (Level 1) + Typed Access (Level 2) → Implement here → api-experimental.json (Level 4)"
   },
   "tests": [
     {
