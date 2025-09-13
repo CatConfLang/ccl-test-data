@@ -57,6 +57,11 @@ When contributing to the project, please ensure documentation is updated:
 3. **CLI Modifications** - Update CLI_REFERENCE.md with new commands or options
 4. **Implementation Patterns** - Document new patterns in MOCK_IMPLEMENTATION.md
 
+### External References
+
+For conceptual explanations of Core CCL, see [Core Concepts](https://ccl.tylerbutler.com/core-concepts)
+For API compatibility across implementations, see [Higher-Level APIs](https://ccl.tylerbutler.com/higher-level-apis)
+
 ### Getting Help
 
 For questions about the documentation:

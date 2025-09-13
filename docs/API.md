@@ -58,58 +58,35 @@ func New() *CCL
 
 Creates a new mock CCL implementation instance.
 
-### Level 1: Raw Parsing
+### Level 1: Core CCL (text → hierarchical objects)
 
 ```go
 func (c *CCL) Parse(input string) ([]Entry, error)
+func (c *CCL) MakeObjects(entries []Entry) map[string]interface{}
 ```
 
-**Purpose**: Convert CCL text input into flat key-value entries.
+**Purpose**: Complete Core CCL functionality - what users expect from any CCL implementation.
+
+**Functions**: parse() + build_hierarchy() - the universal expectation for CCL implementations.
 
 **Features**:
 - Basic key-value pair parsing
-- Comment support using '/=' syntax
+- Comment support using '/=' syntax  
+- Hierarchical object construction via fixpoint algorithm
 - Line-by-line processing with error context
 - Whitespace normalization
 
-**Returns**: Array of Entry structures or parsing error with line context.
+**Returns**: Nested configuration objects ready for application use.
 
 **Example**:
 ```go
 ccl := mock.New()
 entries, err := ccl.Parse("key = value\n/= comment\nother = data")
-// Returns: [{"key": "key", "value": "value"}, {"key": "other", "value": "data"}]
+objects := ccl.MakeObjects(entries)
+// Returns complete hierarchical configuration structure
 ```
 
-### Level 2: Entry Processing
-
-```go
-func (c *CCL) Filter(entries []Entry, predicate func(Entry) bool) []Entry
-func (c *CCL) Compose(entries1, entries2 []Entry) []Entry
-func (c *CCL) ExpandDotted(entries []Entry) []Entry
-```
-
-**Filter**: Remove entries based on predicate function
-**Compose**: Merge two entry arrays with duplicate handling
-**ExpandDotted**: Convert dotted keys to nested structure preparation
-
-### Level 3: Object Construction
-
-```go
-func (c *CCL) MakeObjects(entries []Entry) map[string]interface{}
-```
-
-**Purpose**: Transform flat entries into nested object hierarchies.
-
-**Features**:
-- Dotted key expansion (`database.host` → `{"database": {"host": "value"}}`)
-- Duplicate key handling (converts to arrays)
-- Empty key support for array-style syntax
-- Type preservation for nested structures
-
-**Returns**: Nested map structure representing the configuration object.
-
-### Level 4: Typed Access
+### Level 2: Typed Access (type-safe value extraction)
 
 ```go
 func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error)
@@ -274,7 +251,7 @@ The CLI application provides four main commands:
 ### Test Filtering
 
 All commands support filtering by:
-- **Levels**: CCL implementation levels (1-5)
+- **Levels**: CCL implementation levels (1-4)
 - **Features**: Feature categories (parsing, objects, comments, etc.)
 - **Tags**: Structured tags for precise selection
 
@@ -290,22 +267,22 @@ Multiple output formats supported:
 
 ### Progressive Implementation
 
-1. **Start with Level 1**: Basic parsing functionality
+1. **Start with Level 1**: Core CCL functionality
    ```bash
-   ./ccl-test-runner generate --run-only function:parse
+   ./ccl-test-runner generate --run-only function:parse,function:make-objects
    ./ccl-test-runner test --levels 1
    ```
 
-2. **Add Object Construction**: Level 3 functionality
-   ```bash
-   ./ccl-test-runner generate --run-only function:parse,function:make-objects
-   ./ccl-test-runner test --levels 1,3
-   ```
-
-3. **Complete Type System**: Add Level 4 typed access
+2. **Add Type System**: Level 2 typed access
    ```bash
    ./ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string
-   ./ccl-test-runner test --levels 1,3,4
+   ./ccl-test-runner test --levels 1,2
+   ```
+
+3. **Complete Advanced Processing**: Add Level 3 processing features
+   ```bash
+   ./ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string,function:filter
+   ./ccl-test-runner test --levels 1,2,3
    ```
 
 ### Feature-Specific Development
