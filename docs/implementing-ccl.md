@@ -18,13 +18,13 @@ This guide helps you implement a CCL parser in your programming language using t
 
 ## Implementation Roadmap
 
-### Phase 1: Essential Parsing
-**Goal:** Parse CCL text into flat key-value entries  
-**Test Suite:** `tests/essential-parsing.json` (18 tests)
+### Level 1: Core CCL (text → hierarchical objects)
+**Functions:** parse() + build_hierarchy() - what users expect from any CCL implementation
+**Test Coverage:** api-essential-parsing.json + api-object-construction.json
 
-Start here for rapid prototyping - covers 80% of real-world CCL usage.
+Start here for rapid prototyping - covers what users actually expect from CCL. **Core CCL** combines parsing with hierarchical object construction via the fixpoint algorithm.
 
-#### Essential Algorithm
+#### Core CCL Algorithm
 ```pseudocode
 function parse(text: string) -> Result<List<Entry>, ParseError> {
   entries = []
@@ -48,6 +48,23 @@ function parse(text: string) -> Result<List<Entry>, ParseError> {
   }
   
   return Ok(entries)
+}
+
+function make_objects(entries: List<Entry>) -> CCL {
+  result = {}
+  
+  for entry in entries {
+    if entry.value.contains_ccl_syntax() {
+      // Recursively parse nested content
+      nested_entries = parse(entry.value)
+      nested_object = make_objects(nested_entries)
+      result = merge_into_result(result, entry.key, nested_object)
+    } else {
+      result = merge_into_result(result, entry.key, entry.value)
+    }
+  }
+  
+  return result
 }
 ```
 
@@ -73,31 +90,8 @@ function parse(text: string) -> Result<List<Entry>, ParseError> {
 - Preserve relative indentation in multiline values
 - Handle mixed tabs and spaces (warn in strict mode)
 
-### Phase 2: Object Construction  
-**Goal:** Convert flat entries to nested objects  
-**Test Suite:** `tests/object-construction.json` (8 tests)
-
-Required for hierarchical configuration access.
-
-#### Fixed-Point Algorithm
+**Fixed-Point Algorithm:**
 ```pseudocode
-function make_objects(entries: List<Entry>) -> CCL {
-  result = {}
-  
-  for entry in entries {
-    if entry.value.contains_ccl_syntax() {
-      // Recursively parse nested content
-      nested_entries = parse(entry.value)
-      nested_object = make_objects(nested_entries)
-      result = merge_into_result(result, entry.key, nested_object)
-    } else {
-      result = merge_into_result(result, entry.key, entry.value)
-    }
-  }
-  
-  return result
-}
-
 function contains_ccl_syntax(value: string) -> boolean {
   // Check if value looks like CCL (contains "=")
   lines = split_lines(value)
@@ -108,10 +102,7 @@ function contains_ccl_syntax(value: string) -> boolean {
   }
   return false
 }
-```
 
-#### Duplicate Key Handling
-```pseudocode
 function merge_into_result(result: CCL, key: string, value: any) {
   if key == "" {
     // Empty keys create lists
@@ -129,49 +120,11 @@ function merge_into_result(result: CCL, key: string, value: any) {
 }
 ```
 
-### Phase 3: Production Readiness
-**Goal:** Comprehensive parsing validation  
-**Test Suite:** `tests/comprehensive-parsing.json` (30 tests)
+### Level 2: Typed Access (type-safe value extraction)
+**Functions:** get_string(), get_int(), get_bool(), get_float(), get_list()
+**Test Coverage:** api-typed-access.json (107 assertions)
 
-Handle edge cases and production scenarios robustly.
-
-#### Comment Filtering
-```pseudocode
-function filter_comments(entries: List<Entry>) -> List<Entry> {
-  return entries.filter(entry -> !entry.key.starts_with("/"))
-}
-
-// Alternative: filter by custom comment prefixes
-function filter_by_prefixes(entries: List<Entry>, prefixes: List<string>) {
-  return entries.filter(entry -> !any(prefixes, prefix -> entry.key.starts_with(prefix)))
-}
-```
-
-#### Entry Composition
-```pseudocode
-function compose(left: List<Entry>, right: List<Entry>) -> List<Entry> {
-  // Simple concatenation - merging happens at object level
-  return left + right
-}
-```
-
-### Phase 4: Optional Features
-**Goal:** Choose features based on your needs
-
-#### Dotted Key Support
-**Test Suite:** `tests/dotted-keys.json` (18 tests)  
-Enable dual access patterns (`database.host` ↔ hierarchical).
-
-#### Comment Filtering  
-**Test Suite:** `tests/comments.json` (3 tests)  
-Remove documentation keys from configuration.
-
-#### Entry Processing
-**Test Suite:** `tests/processing.json` (21 tests)  
-Advanced composition and merging capabilities.
-
-#### Type-Safe Access
-**Test Suite:** `tests/typed-access.json` (17 tests)
+Required for production applications that need type safety and validation.
 
 #### Type-Safe Accessors
 
@@ -195,6 +148,60 @@ port = get_int(ccl, "database", "port")        // ✓ Works
 host = get_string(ccl, "database.host")        // ✓ Also works
 port = get_int(ccl, "database.port")           // ✓ Also works
 ```
+
+### Level 3: Advanced Processing (entry manipulation and composition)
+**Functions:** filter(), compose(), expand_dotted()
+**Test Coverage:** api-processing.json + api-comments.json
+
+Required for advanced configuration management, composition, and preprocessing workflows. The `expand_dotted()` function provides dotted representation of hierarchical data.
+
+#### Comment Filtering
+```pseudocode
+function filter_comments(entries: List<Entry>) -> List<Entry> {
+  return entries.filter(entry -> !entry.key.starts_with("/"))
+}
+
+// Alternative: filter by custom comment prefixes
+function filter_by_prefixes(entries: List<Entry>, prefixes: List<string>) {
+  return entries.filter(entry -> !any(prefixes, prefix -> entry.key.starts_with(prefix)))
+}
+```
+
+#### Entry Composition
+```pseudocode
+function compose(left: List<Entry>, right: List<Entry>) -> List<Entry> {
+  // Simple concatenation - merging happens at object level
+  return left + right
+}
+```
+
+#### Dotted Representation Support
+```pseudocode
+function expand_dotted(entries: List<Entry>) -> List<Entry> {
+  result = []
+  for entry in entries {
+    if entry.key.contains(".") {
+      // Convert dotted key "database.host" to nested structure 
+      // This enables dotted representation of hierarchical data
+      expanded = convert_dotted_to_nested(entry.key, entry.value)
+      result.append(expanded)
+    } else {
+      result.append(entry)
+    }
+  }
+  return result
+}
+```
+
+**Note**: This function name `expand_dotted` is used in test APIs, but conceptually it provides "dotted representation of hierarchical data" - allowing both dotted and hierarchical access patterns to work on the same data structure.
+
+**For a complete explanation of dotted keys vs hierarchical data, see [Dotted Keys Explained](https://ccl.tylerbutler.com/dotted-keys-explained).**
+
+### Level 4: Experimental Features (implementation-specific extensions)
+**Functions:** dotted representation features, pretty_print(), round_trip validation
+**Test Coverage:** api-dotted-keys.json + property-*.json
+
+Implementation-specific features that may vary between CCL implementations. Include based on your implementation's goals and user needs.
 
 #### Reusable Implementation Pattern
 
