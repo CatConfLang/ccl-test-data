@@ -18,6 +18,10 @@
       "type": "string",
       "description": "Description of the test suite purpose and scope"
     },
+    "llm_metadata": {
+      "$ref": "#/definitions/llm_metadata",
+      "description": "Optional metadata for LLM context and understanding"
+    },
     "tests": {
       "type": "array",
       "description": "Array of test cases with validation-based structure",
@@ -535,11 +539,11 @@
             "type": "string",
             "oneOf": [
               {
-                "pattern": "^function:(parse|parse-value|filter|combine|expand-dotted|build-hierarchy|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
+                "pattern": "^function:(parse|parse-value|filter|combine|expand-dotted|build-hierarchy|load|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
                 "description": "CCL function requirement tags"
               },
               {
-                "pattern": "^feature:(comments|dotted-keys|empty-keys|multiline|unicode|whitespace)$",
+                "pattern": "^feature:(comments|dotted-keys|empty-keys|multiline|unicode|whitespace|experimental-dotted-keys)$",
                 "description": "Optional CCL language feature tags"
               },
               {
@@ -583,7 +587,11 @@
             "error-handling", 
             "algebraic-properties",
             "flexible-boolean-parsing",
-            "crlf-normalization"
+            "crlf-normalization",
+            "core-ccl-parsing",
+            "core-ccl-hierarchy",
+            "core-ccl-integration",
+            "experimental-dotted-keys"
           ],
           "description": "Feature category for test organization and filtering"
         },
@@ -591,6 +599,63 @@
           "type": "string",
           "enum": ["basic", "intermediate", "advanced"],
           "description": "Test difficulty level"
+        }
+      }
+    },
+    "llm_metadata": {
+      "type": "object",
+      "description": "Metadata for LLM context and understanding",
+      "required": [],
+      "additionalProperties": false,
+      "properties": {
+        "llm_description": {
+          "type": "string",
+          "description": "LLM-friendly description of the test suite purpose"
+        },
+        "complexity_level": {
+          "type": "string",
+          "description": "Complexity level description for LLM understanding"
+        },
+        "prerequisite_tests": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Array of prerequisite test file names"
+        },
+        "related_functions": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Array of related CCL function names"
+        },
+        "implementation_notes": {
+          "type": "string",
+          "description": "Implementation guidance and notes"
+        },
+        "test_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of tests in this suite"
+        },
+        "assertion_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of assertions across all tests"
+        },
+        "cross_references": {
+          "type": "object",
+          "description": "Cross-references to implementations and documentation",
+          "additionalProperties": {"type": "string"}
+        },
+        "learning_path": {
+          "type": "string",
+          "description": "Learning path and progression guidance"
+        },
+        "feature_flag": {
+          "type": "string",
+          "description": "Optional feature flag associated with this test suite"
+        },
+        "experimental_warning": {
+          "type": "string",
+          "description": "Optional warning message for experimental features"
         }
       }
     }
