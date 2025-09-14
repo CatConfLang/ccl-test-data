@@ -1033,8 +1033,7 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "function:expand_dotted",
-          "feature:dotted_keys"
+          "function:expand_dotted"
         ],
         "level": 4,
         "feature": "typed_parsing"

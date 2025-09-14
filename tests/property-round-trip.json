@@ -331,9 +331,16 @@
       }
     },
     {
-      "name": "crlf_normalize_to_lf_reference",
+      "name": "crlf_normalize_to_lf_indented_proposed",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key1", "value": "value1"},
+            {"key": "key2", "value": "value2"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
@@ -341,6 +348,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "behavior:crlf_normalize_to_lf",
           "function:pretty_print",
           "variant:proposed_behavior"
@@ -531,6 +539,13 @@
       "name": "canonical_format_line_endings_reference_behavior",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key1", "value": "value1\r"},
+            {"key": "key2", "value": "value2\r"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
@@ -538,6 +553,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "behavior:crlf_preserve_literal",
           "function:pretty_print",
           "variant:reference_compliant"

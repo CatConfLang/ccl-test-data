@@ -563,7 +563,7 @@
                 "description": "CCL function requirement tags"
               },
               {
-                "pattern": "^feature:(comments|dotted_keys|empty_keys|multiline|unicode|whitespace|experimental_dotted_keys)$",
+                "pattern": "^feature:(comments|empty_keys|multiline|unicode|whitespace|experimental_dotted_keys)$",
                 "description": "Optional CCL language feature tags"
               },
               {
@@ -601,7 +601,6 @@
             "processing", 
             "comments", 
             "object_construction", 
-            "dotted_keys", 
             "typed_parsing", 
             "pretty_printing", 
             "error_handling", 
