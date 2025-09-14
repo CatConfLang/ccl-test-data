@@ -200,7 +200,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 2,
@@ -597,7 +597,7 @@
         "tags": [
           "feature:empty-keys",
           "feature:multiline",
-          "function:parse-value",
+          "function:parse_value",
           "variant:proposed-behavior"
         ],
         "level": 2,
@@ -628,7 +628,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:parse-value",
+          "function:parse_value",
           "variant:proposed-behavior"
         ],
         "level": 2,

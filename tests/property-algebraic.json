@@ -8,6 +8,14 @@
       "name": "semigroup_associativity_basic",
       "input": "a = 1\nb = 2\nc = 3",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "a", "value": "1"},
+            {"key": "b", "value": "2"},
+            {"key": "c", "value": "3"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "semigroup_associativity",
@@ -18,6 +26,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine"
         ],
         "level": 4,
@@ -28,6 +37,13 @@
       "name": "semigroup_associativity_nested",
       "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "config", "value": "\n  host = localhost\n  port = 8080"},
+            {"key": "db", "value": "\n  name = test"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "semigroup_associativity",
@@ -38,8 +54,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 4,
         "feature": "algebraic-properties"
@@ -49,6 +66,14 @@
       "name": "semigroup_associativity_lists",
       "input": "= item1\n= item2\n= item3",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "", "value": "item3"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "semigroup_associativity",
@@ -59,6 +84,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
           "function:combine"
         ],
@@ -70,6 +96,13 @@
       "name": "monoid_left_identity_basic",
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key", "value": "value"},
+            {"key": "nested", "value": "\n  sub = val"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_left",
@@ -80,6 +113,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine"
         ],
         "level": 4,
@@ -90,6 +124,13 @@
       "name": "monoid_right_identity_basic",
       "input": "key = value\nnested =\n  sub = val",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key", "value": "value"},
+            {"key": "nested", "value": "\n  sub = val"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_right",
@@ -100,6 +141,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine"
         ],
         "level": 4,
@@ -110,6 +152,12 @@
       "name": "monoid_left_identity_nested",
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "config", "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_left",
@@ -120,8 +168,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 4,
         "feature": "algebraic-properties"
@@ -131,6 +180,12 @@
       "name": "monoid_right_identity_nested",
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "config", "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_right",
@@ -141,8 +196,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 4,
         "feature": "algebraic-properties"
@@ -152,6 +208,14 @@
       "name": "monoid_left_identity_lists",
       "input": "= item1\n= item2\n= item3",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "", "value": "item3"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_left",
@@ -162,6 +226,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
           "function:combine"
         ],
@@ -173,6 +238,14 @@
       "name": "monoid_right_identity_lists",
       "input": "= item1\n= item2\n= item3",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "", "value": "item3"}
+          ]
+        },
         "associativity": {
           "count": 1,
           "property": "monoid_identity_right",
@@ -183,6 +256,7 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
           "function:combine"
         ],
@@ -194,6 +268,13 @@
       "name": "round_trip_property_basic",
       "input": "key = value\nanother = test",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key", "value": "value"},
+            {"key": "another", "value": "test"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -201,8 +282,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "algebraic-properties"
@@ -212,6 +294,12 @@
       "name": "round_trip_property_nested",
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "config", "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -219,9 +307,10 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "function:combine",
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "algebraic-properties"
@@ -231,6 +320,15 @@
       "name": "round_trip_property_complex",
       "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
       "validations": {
+        "parse": {
+          "count": 4,
+          "expected": [
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "config", "value": "\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c"},
+            {"key": "final", "value": "end"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -238,10 +336,11 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
           "function:combine",
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "algebraic-properties"

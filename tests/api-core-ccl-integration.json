@@ -49,7 +49,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-integration"
@@ -83,7 +83,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-integration"
@@ -129,7 +129,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-integration"
@@ -168,7 +168,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-integration"
@@ -208,7 +208,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "feature:multiline"
         ],
         "level": 1,
@@ -279,7 +279,7 @@
         "tags": [
           "function:load",
           "function:parse",
-          "function:build-hierarchy"
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-integration"

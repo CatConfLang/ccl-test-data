@@ -376,7 +376,27 @@
                           {"type": "boolean"},
                           {"type": "array", "items": {"type": "string"}}
                         ],
-                        "description": "Expected typed value"
+                        "description": "Expected typed value (order-dependent)"
+                      }
+                    }
+                  },
+                  {
+                    "type": "object",
+                    "required": ["args", "expected_unordered"],
+                    "properties": {
+                      "args": {
+                        "type": "array",
+                        "description": "Path arguments for access",
+                        "items": {"type": "string"}
+                      },
+                      "expected_unordered": {
+                        "oneOf": [
+                          {"type": "string"},
+                          {"type": "number"},
+                          {"type": "boolean"},
+                          {"type": "array", "items": {"type": "string"}}
+                        ],
+                        "description": "Expected typed value (order-agnostic comparison, duplicates preserved)"
                       }
                     }
                   },
@@ -547,7 +567,7 @@
                 "description": "Optional CCL language feature tags"
               },
               {
-                "pattern": "^behavior:(crlf-preserve-literal|crlf-normalize-to-lf|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing|boolean-lenient|boolean-strict)$",
+                "pattern": "^behavior:(crlf-preserve-literal|crlf-normalize-to-lf|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing|boolean-lenient|boolean-strict|list-coercion-enabled|list-coercion-disabled)$",
                 "description": "Implementation behavioral choice tags"
               },
               {

@@ -81,7 +81,7 @@
       "meta": {
         "tags": [
           "feature:whitespace",
-          "function:parse-value"
+          "function:parse_value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -242,7 +242,7 @@
       "meta": {
         "tags": [
           "feature:empty-keys",
-          "function:parse-value"
+          "function:parse_value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -466,7 +466,7 @@
         "tags": [
           "behavior:tabs-preserve",
           "feature:whitespace",
-          "function:parse-value",
+          "function:parse_value",
           "variant:proposed-behavior"
         ],
         "level": 2,
@@ -495,7 +495,7 @@
         "tags": [
           "behavior:tabs-preserve",
           "feature:whitespace",
-          "function:parse-value",
+          "function:parse_value",
           "variant:reference-compliant"
         ],
         "level": 2,
@@ -685,7 +685,7 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 1,
@@ -709,7 +709,7 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 1,
@@ -733,8 +733,8 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:build-hierarchy",
-          "function:parse-value"
+          "function:build_hierarchy",
+          "function:parse_value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -756,8 +756,8 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy",
-          "function:parse-value"
+          "function:build_hierarchy",
+          "function:parse_value"
         ],
         "level": 2,
         "feature": "parsing"
@@ -868,8 +868,8 @@
         "tags": [
           "feature:comments",
           "feature:empty-keys",
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
