@@ -7,7 +7,7 @@
     "llm_description": "Level 1 Core CCL Hierarchy - object construction from flat entries including nesting, lists, and complex structures (part of atomic Core CCL)",
     "complexity_level": "Level 1 (Core CCL Hierarchy)",
     "prerequisite_tests": ["api-core-ccl-parsing.json"],
-    "related_functions": ["build-hierarchy"],
+    "related_functions": ["build_hierarchy"],
     "implementation_notes": "Core hierarchy construction tests. Validates the object building part of Core CCL atomic operation. Tests assume parsing is working.",
     "test_count": 7,
     "assertion_count": 19,

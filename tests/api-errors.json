@@ -7,7 +7,7 @@
     "llm_description": "CCL error handling validation - malformed input detection and graceful failure across all implementation levels",
     "complexity_level": "Level 5",
     "prerequisite_tests": ["api-essential-parsing.json"],
-    "related_functions": ["parse", "make-objects", "get-string", "get-int"],
+    "related_functions": ["parse", "build_hierarchy", "get_string", "get_int"],
     "implementation_notes": "Error handling tests for all levels. Validates graceful failure modes and appropriate error messages for malformed input.",
     "test_count": 6,
     "assertion_count": 6,

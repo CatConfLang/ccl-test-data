@@ -7,7 +7,7 @@
     "llm_description": "Level 1 Core CCL Parsing - text parsing fundamentals that feed into hierarchy construction (part of atomic Core CCL)",
     "complexity_level": "Level 1 (Core CCL Parsing)",
     "prerequisite_tests": [],
-    "related_functions": ["parse", "parse-value"],
+    "related_functions": ["parse", "parse_value"],
     "implementation_notes": "Core parsing functionality tests. While users never see flat entries, these tests validate the parsing foundation of Core CCL atomic operation.",
     "test_count": 8,
     "assertion_count": 15,

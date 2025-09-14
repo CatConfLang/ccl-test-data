@@ -7,7 +7,7 @@
     "llm_description": "Level 2 CCL typed access - type-aware value extraction with conversion and validation (most common extension)",
     "complexity_level": "Level 2 (Typed Access)",
     "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json"],
-    "related_functions": ["get-string", "get-int", "get-bool", "get-float", "get-list"],
+    "related_functions": ["get_string", "get_int", "get_bool", "get_float", "get_list"],
     "implementation_notes": "Level 2 common extension. Requires Core CCL (Level 1) foundation. Most implementations provide type-safe value extraction.",
     "test_count": 22,
     "assertion_count": 107,

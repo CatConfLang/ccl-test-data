@@ -7,7 +7,7 @@
     "llm_description": "Level 1 Core CCL Integration - complete workflow validation demonstrating atomic text → hierarchical objects transformation (what users actually see)",
     "complexity_level": "Level 1 (Core CCL Integration)",
     "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json"],
-    "related_functions": ["load", "parse", "build-hierarchy"],
+    "related_functions": ["load", "parse", "build_hierarchy"],
     "implementation_notes": "Integration tests demonstrating Core CCL as atomic operation. These tests show what users actually experience - complete text to objects transformation.",
     "test_count": 6,
     "assertion_count": 18,
