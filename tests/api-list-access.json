@@ -7,7 +7,7 @@
     "llm_description": "Level 4 CCL list access - get_list() function for extracting lists created by duplicate keys or empty keys",
     "complexity_level": "Level 4 (List Access)",
     "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json"],
-    "related_functions": ["get-list", "get-string", "get-int", "get-bool", "get-float"],
+    "related_functions": ["get_list", "get_string", "get_int", "get_bool", "get_float"],
     "implementation_notes": "Level 4 extension for list access. Requires Core CCL (Level 1-3) foundation. Tests list creation via duplicate keys and empty keys, then validates get_list() extraction.",
     "test_count": 22,
     "assertion_count": 88,
@@ -945,7 +945,7 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "performance-test"
+          "performance_test"
         ],
         "level": 4,
         "feature": "typed_parsing"
@@ -1348,7 +1348,7 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "empty-input-test"
+          "empty_input_test"
         ],
         "level": 4,
         "feature": "typed_parsing"
@@ -1396,7 +1396,7 @@
           "function:build_hierarchy",
           "function:parse",
           "behavior:list_coercion_enabled",
-          "security-test",
+          "security_test",
           "variant:proposed_behavior"
         ],
         "level": 4,
@@ -1447,7 +1447,7 @@
           "function:build_hierarchy",
           "function:parse",
           "behavior:list_coercion_disabled",
-          "security-test",
+          "security_test",
           "variant:reference_compliant"
         ],
         "level": 4,

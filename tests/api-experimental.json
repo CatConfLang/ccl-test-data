@@ -7,7 +7,7 @@
     "llm_description": "Level 4 CCL experimental features - implementation-specific extensions like dotted keys (Go implementation only), subject to design changes",
     "complexity_level": "Level 4 (Experimental)",
     "prerequisite_tests": ["api-core-ccl-parsing.json", "api-core-ccl-hierarchy.json", "api-core-ccl-integration.json", "api-typed-access.json"],
-    "related_functions": ["expand-dotted"],
+    "related_functions": ["expand_dotted"],
     "implementation_notes": "Level 4 experimental features. Go implementation only. NOT standardized - design may change. Use with caution in production.",
     "test_count": 8,
     "assertion_count": 35,
