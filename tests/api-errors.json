@@ -34,7 +34,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "error-handling"
+        "feature": "error_handling"
       }
     },
     {
@@ -51,11 +51,11 @@
         "tags": [
           "feature:whitespace",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 1,
-        "feature": "error-handling",
-        "conflicts": ["variant:reference-compliant"]
+        "feature": "error_handling",
+        "conflicts": ["variant:reference_compliant"]
       }
     },
     {
@@ -71,11 +71,11 @@
         "tags": [
           "feature:whitespace",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 1,
         "feature": "parsing",
-        "conflicts": ["variant:proposed-behavior"]
+        "conflicts": ["variant:proposed_behavior"]
       }
     },
     {
@@ -93,7 +93,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "error-handling"
+        "feature": "error_handling"
       }
     },
     {
@@ -112,7 +112,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "error-handling"
+        "feature": "error_handling"
       }
     },
     {
@@ -132,7 +132,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "error-handling"
+        "feature": "error_handling"
       }
     }
   ]

@@ -52,7 +52,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     },
     {
@@ -86,7 +86,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     },
     {
@@ -132,7 +132,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     },
     {
@@ -171,7 +171,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     },
     {
@@ -212,7 +212,7 @@
           "feature:multiline"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     },
     {
@@ -282,7 +282,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-integration"
+        "feature": "core_ccl_integration"
       }
     }
   ]

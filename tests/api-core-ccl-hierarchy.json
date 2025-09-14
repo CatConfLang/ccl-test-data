@@ -46,7 +46,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -84,7 +84,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -119,7 +119,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -148,7 +148,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -178,7 +178,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -212,7 +212,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     },
     {
@@ -248,7 +248,7 @@
           "function:build_hierarchy"
         ],
         "level": 1,
-        "feature": "core-ccl-hierarchy"
+        "feature": "core_ccl_hierarchy"
       }
     }
   ]

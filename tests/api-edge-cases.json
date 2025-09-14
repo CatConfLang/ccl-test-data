@@ -171,7 +171,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:parse"
         ],
         "level": 1,
@@ -194,7 +194,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:parse"
         ],
         "level": 1,
@@ -217,7 +217,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -241,7 +241,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:parse_value"
         ],
         "level": 2,
@@ -264,7 +264,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:parse"
         ],
         "level": 1,
@@ -287,7 +287,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -382,16 +382,16 @@
       },
       "meta": {
         "tags": [
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "feature:whitespace",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 1,
         "feature": "parsing",
         "conflicts": [
-          "behavior:tabs-to-spaces",
-          "variant:reference-compliant"
+          "behavior:tabs_to_spaces",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -411,16 +411,16 @@
       },
       "meta": {
         "tags": [
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "feature:whitespace",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 1,
         "feature": "parsing",
         "conflicts": [
-          "behavior:tabs-to-spaces",
-          "variant:proposed-behavior"
+          "behavior:tabs_to_spaces",
+          "variant:proposed_behavior"
         ]
       }
     },
@@ -440,7 +440,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -464,16 +464,16 @@
       },
       "meta": {
         "tags": [
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "feature:whitespace",
           "function:parse_value",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 2,
         "feature": "parsing",
         "conflicts": [
-          "behavior:tabs-to-spaces",
-          "variant:reference-compliant"
+          "behavior:tabs_to_spaces",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -493,15 +493,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "feature:whitespace",
           "function:parse_value",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 2,
         "feature": "parsing",
         "conflicts": [
-          "behavior:tabs-to-spaces"
+          "behavior:tabs_to_spaces"
         ]
       }
     },
@@ -521,7 +521,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -545,7 +545,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -569,7 +569,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -593,7 +593,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -617,7 +617,7 @@
       },
       "meta": {
         "tags": [
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:whitespace",
           "function:parse"
         ],
@@ -867,7 +867,7 @@
       "meta": {
         "tags": [
           "feature:comments",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:get_string",
           "function:build_hierarchy",
           "function:parse"

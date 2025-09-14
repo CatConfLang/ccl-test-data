@@ -43,7 +43,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -69,7 +69,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -96,7 +96,7 @@
           "feature:whitespace"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -123,7 +123,7 @@
           "feature:multiline"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -147,10 +147,10 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys"
+          "feature:empty_keys"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -172,7 +172,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -199,7 +199,7 @@
           "feature:unicode"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     },
     {
@@ -216,7 +216,7 @@
           "function:parse"
         ],
         "level": 1,
-        "feature": "core-ccl-parsing"
+        "feature": "core_ccl_parsing"
       }
     }
   ]

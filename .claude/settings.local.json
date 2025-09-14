@@ -82,7 +82,14 @@
       "mcp__serena__think_about_collected_information",
       "mcp__basic-memory__recent_activity",
       "mcp__basic-memory__read_note",
-      "mcp__sequential-thinking__sequentialthinking"
+      "mcp__sequential-thinking__sequentialthinking",
+      "mcp__context7__resolve-library-id",
+      "mcp__basic-memory__search_notes",
+      "Bash(jv:*)",
+      "mcp__serena__search_for_pattern",
+      "Bash(do echo -n \"$file: \")",
+      "mcp__serena__read_memory",
+      "mcp__serena__think_about_whether_you_are_done"
     ],
     "deny": [],
     "ask": []

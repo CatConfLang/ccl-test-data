@@ -54,7 +54,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -88,13 +88,13 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-enabled",
-          "variant:proposed-behavior"
+          "behavior:list_coercion_enabled",
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests single-value coercion to list behavior",
-        "conflicts": ["behavior:list-coercion-disabled"]
+        "conflicts": ["behavior:list_coercion_disabled"]
       }
     },
     {
@@ -129,13 +129,13 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-disabled",
-          "variant:reference-compliant"
+          "behavior:list_coercion_disabled",
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant behavior: single values should error",
-        "conflicts": ["behavior:list-coercion-enabled"]
+        "conflicts": ["behavior:list_coercion_enabled"]
       }
     },
     {
@@ -176,11 +176,11 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-enabled",
-          "variant:proposed-behavior"
+          "behavior:list_coercion_enabled",
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests mixed duplicate and single keys with coercion behavior"
       }
     },
@@ -223,13 +223,13 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-disabled",
-          "variant:reference-compliant"
+          "behavior:list_coercion_disabled",
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant: duplicate keys work, single values error",
-        "conflicts": ["behavior:list-coercion-enabled"]
+        "conflicts": ["behavior:list_coercion_enabled"]
       }
     },
     {
@@ -270,11 +270,11 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse_value",
-          "behavior:list-coercion-enabled",
-          "variant:proposed-behavior"
+          "behavior:list_coercion_enabled",
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests nested list access with hierarchical structures (requires advanced object construction)"
       }
     },
@@ -317,13 +317,13 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse_value",
-          "behavior:list-coercion-disabled",
-          "variant:reference-compliant"
+          "behavior:list_coercion_disabled",
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant nested list access: single values should error",
-        "conflicts": ["behavior:list-coercion-enabled"]
+        "conflicts": ["behavior:list_coercion_enabled"]
       }
     },
     {
@@ -357,10 +357,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests empty value coercion to single-element list behavior"
       }
     },
@@ -396,10 +396,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant behavior: empty values should error"
       }
     },
@@ -437,10 +437,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving list behavior for numbers"
       }
     },
@@ -478,10 +478,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-agnostic list behavior for numbers"
       }
     },
@@ -519,10 +519,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving list behavior for booleans"
       }
     },
@@ -560,10 +560,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-agnostic list behavior for booleans"
       }
     },
@@ -602,10 +602,10 @@
           "function:build_hierarchy",
           "function:parse",
           "feature:whitespace",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving list behavior with whitespace"
       }
     },
@@ -644,10 +644,10 @@
           "function:build_hierarchy",
           "function:parse",
           "feature:whitespace",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-agnostic list behavior with whitespace"
       }
     },
@@ -693,10 +693,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving deeply nested list behavior"
       }
     },
@@ -737,10 +737,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse_value",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-agnostic deeply nested list behavior"
       }
     },
@@ -779,10 +779,10 @@
           "function:build_hierarchy",
           "function:parse",
           "feature:unicode",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving list behavior with unicode"
       }
     },
@@ -821,10 +821,10 @@
           "function:build_hierarchy",
           "function:parse",
           "feature:unicode",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-agnostic list behavior with unicode"
       }
     },
@@ -862,10 +862,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests special characters with = in values - requires proposed parser behavior"
       }
     },
@@ -902,10 +902,10 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference behavior with = in values causing parse split"
       }
     },
@@ -948,7 +948,7 @@
           "performance-test"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -990,7 +990,7 @@
           "feature:comments"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1034,10 +1034,10 @@
           "function:build_hierarchy",
           "function:parse",
           "function:expand_dotted",
-          "feature:dotted-keys"
+          "feature:dotted_keys"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1074,7 +1074,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1113,7 +1113,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1150,7 +1150,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1189,10 +1189,10 @@
           "function:build_hierarchy", 
           "function:parse_value",
           "feature:multiline",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests unindented multiline continuation - requires proposed behavior"
       }
     },
@@ -1257,11 +1257,11 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse_value",
-          "behavior:list-coercion-enabled",
-          "variant:proposed-behavior"
+          "behavior:list_coercion_enabled",
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests order-preserving complex nested list scenarios"
       }
     },
@@ -1311,13 +1311,13 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse_value",
-          "behavior:list-coercion-disabled",
-          "variant:reference-compliant"
+          "behavior:list_coercion_disabled",
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant complex nested list scenarios: single values should error",
-        "conflicts": ["behavior:list-coercion-enabled"]
+        "conflicts": ["behavior:list_coercion_enabled"]
       }
     },
     {
@@ -1351,7 +1351,7 @@
           "empty-input-test"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1395,12 +1395,12 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-enabled",
+          "behavior:list_coercion_enabled",
           "security-test",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests path traversal protection with single-value coercion"
       }
     },
@@ -1446,14 +1446,14 @@
           "function:get_list",
           "function:build_hierarchy",
           "function:parse",
-          "behavior:list-coercion-disabled",
+          "behavior:list_coercion_disabled",
           "security-test",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "description": "Tests reference-compliant path traversal protection without coercion",
-        "conflicts": ["behavior:list-coercion-enabled"]
+        "conflicts": ["behavior:list_coercion_enabled"]
       }
     }
   ]

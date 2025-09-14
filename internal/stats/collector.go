@@ -16,11 +16,11 @@ var FeatureCategories = map[string]string{
 	"parsing":             "core-parsing",
 	"processing":          "advanced-processing",
 	"comments":            "advanced-processing",
-	"object-construction": "object-construction",
-	"dotted-keys":         "object-construction",
-	"typed-parsing":       "type-system",
-	"pretty-printing":     "output-validation",
-	"error-handling":      "output-validation",
+	"object_construction": "object-construction",
+	"dotted_keys":         "object-construction",
+	"typed_parsing":       "type-system",
+	"pretty_printing":     "output-validation",
+	"error_handling":      "output-validation",
 }
 
 // FileStats represents statistics for a single test file

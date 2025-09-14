@@ -30,7 +30,7 @@
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -59,7 +59,7 @@
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -85,11 +85,11 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -117,7 +117,7 @@
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -145,7 +145,7 @@
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -173,7 +173,7 @@
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -201,7 +201,7 @@
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -227,11 +227,11 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -257,11 +257,11 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:combine"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -287,7 +287,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -313,7 +313,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     },
     {
@@ -337,13 +337,13 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:combine",
           "function:build_hierarchy",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "algebraic-properties"
+        "feature": "algebraic_properties"
       }
     }
   ]
