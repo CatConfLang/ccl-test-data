@@ -19,7 +19,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -44,7 +44,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -67,11 +67,11 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -96,7 +96,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -121,7 +121,7 @@
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -146,12 +146,12 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:build_hierarchy",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -173,12 +173,12 @@
         "tags": [
           "function:parse",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ]
       }
     },
@@ -200,15 +200,15 @@
       "meta": {
         "tags": [
           "function:parse",
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:tabs-to-spaces",
-          "variant:reference-compliant"
+          "behavior:tabs_to_spaces",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -233,12 +233,12 @@
           "function:parse",
           "feature:unicode",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ]
       }
     },
@@ -260,12 +260,12 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:build_hierarchy",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -287,15 +287,15 @@
       "meta": {
         "tags": [
           "function:parse",
-          "behavior:crlf-preserve-literal",
+          "behavior:crlf_preserve_literal",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:crlf-normalize-to-lf",
-          "variant:reference-compliant"
+          "behavior:crlf_normalize_to_lf",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -318,15 +318,15 @@
       "meta": {
         "tags": [
           "function:parse",
-          "behavior:crlf-normalize-to-lf",
+          "behavior:crlf_normalize_to_lf",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:crlf-preserve-literal",
-          "variant:reference-compliant"
+          "behavior:crlf_preserve_literal",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -341,15 +341,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-normalize-to-lf",
+          "behavior:crlf_normalize_to_lf",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:crlf-preserve-literal",
-          "variant:reference-compliant"
+          "behavior:crlf_preserve_literal",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -371,12 +371,12 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:build_hierarchy",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -399,15 +399,15 @@
       "meta": {
         "tags": [
           "function:parse",
-          "behavior:strict-spacing",
+          "behavior:strict_spacing",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:loose-spacing",
-          "variant:reference-compliant"
+          "behavior:loose_spacing",
+          "variant:reference_compliant"
         ]
       }
     },
@@ -430,12 +430,12 @@
       "meta": {
         "tags": [
           "function:parse",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "feature:multiline",
           "function:pretty_print"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -459,12 +459,12 @@
         "tags": [
           "function:parse",
           "function:pretty_print",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ]
       }
     },
@@ -480,10 +480,10 @@
       "meta": {
         "tags": [
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -497,14 +497,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:tabs-preserve",
+          "behavior:tabs_preserve",
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:tabs-to-spaces"
+          "behavior:tabs_to_spaces"
         ]
       }
     },
@@ -521,10 +521,10 @@
         "tags": [
           "feature:unicode",
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     },
     {
@@ -538,15 +538,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:crlf-preserve-literal",
+          "behavior:crlf_preserve_literal",
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:crlf-normalize-to-lf",
-          "variant:proposed-behavior"
+          "behavior:crlf_normalize_to_lf",
+          "variant:proposed_behavior"
         ]
       }
     },
@@ -561,14 +561,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:strict-spacing",
+          "behavior:strict_spacing",
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing",
+        "feature": "pretty_printing",
         "conflicts": [
-          "behavior:loose-spacing"
+          "behavior:loose_spacing"
         ]
       }
     },
@@ -584,10 +584,10 @@
       "meta": {
         "tags": [
           "function:pretty_print",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 4,
-        "feature": "pretty-printing"
+        "feature": "pretty_printing"
       }
     }
   ]

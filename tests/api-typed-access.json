@@ -57,7 +57,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -98,7 +98,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -134,14 +134,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
-          "behavior:boolean-lenient",
+          "behavior:boolean_strict",
+          "behavior:boolean_lenient",
           "function:get_bool",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -177,15 +177,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-lenient",
+          "behavior:boolean_lenient",
           "function:get_bool",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing",
+        "feature": "flexible_boolean_parsing",
         "conflicts": [
-          "behavior:boolean-strict"
+          "behavior:boolean_strict"
         ]
       }
     },
@@ -223,15 +223,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
+          "behavior:boolean_strict",
           "function:get_bool",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "conflicts": [
-          "behavior:boolean-lenient"
+          "behavior:boolean_lenient"
         ]
       }
     },
@@ -268,14 +268,14 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
-          "behavior:boolean-lenient",
+          "behavior:boolean_strict",
+          "behavior:boolean_lenient",
           "function:get_bool",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -316,7 +316,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -357,7 +357,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -425,8 +425,8 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-lenient",
-          "feature:empty-keys",
+          "behavior:boolean_lenient",
+          "feature:empty_keys",
           "function:get_bool",
           "function:get_float",
           "function:get_int",
@@ -434,9 +434,9 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing",
+        "feature": "flexible_boolean_parsing",
         "conflicts": [
-          "behavior:boolean-strict"
+          "behavior:boolean_strict"
         ]
       }
     },
@@ -506,8 +506,8 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
-          "feature:empty-keys",
+          "behavior:boolean_strict",
+          "feature:empty_keys",
           "function:get_bool",
           "function:get_float",
           "function:get_int",
@@ -515,9 +515,9 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "conflicts": [
-          "behavior:boolean-lenient"
+          "behavior:boolean_lenient"
         ]
       }
     },
@@ -595,16 +595,16 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-lenient",
+          "behavior:boolean_lenient",
           "function:get_bool",
           "function:get_int",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing",
+        "feature": "flexible_boolean_parsing",
         "conflicts": [
-          "behavior:boolean-strict"
+          "behavior:boolean_strict"
         ]
       }
     },
@@ -683,16 +683,16 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
+          "behavior:boolean_strict",
           "function:get_bool",
           "function:get_int",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "conflicts": [
-          "behavior:boolean-lenient"
+          "behavior:boolean_lenient"
         ]
       }
     },
@@ -782,7 +782,7 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-lenient",
+          "behavior:boolean_lenient",
           "function:get_bool",
           "function:get_float",
           "function:get_int",
@@ -791,9 +791,9 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "flexible-boolean-parsing",
+        "feature": "flexible_boolean_parsing",
         "conflicts": [
-          "behavior:boolean-strict"
+          "behavior:boolean_strict"
         ]
       }
     },
@@ -883,7 +883,7 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
+          "behavior:boolean_strict",
           "function:get_bool",
           "function:get_float",
           "function:get_int",
@@ -892,9 +892,9 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "conflicts": [
-          "behavior:boolean-lenient"
+          "behavior:boolean_lenient"
         ]
       }
     },
@@ -934,11 +934,11 @@
           "function:get_string",
           "function:build_hierarchy",
           "function:parse",
-          "variant:proposed-behavior"
+          "variant:proposed_behavior"
         ],
         "level": 4,
-        "feature": "typed-parsing",
-        "conflicts": ["variant:reference-compliant"]
+        "feature": "typed_parsing",
+        "conflicts": ["variant:reference_compliant"]
       }
     },
     {
@@ -966,11 +966,11 @@
         "tags": [
           "function:parse",
           "function:build_hierarchy",
-          "variant:reference-compliant"
+          "variant:reference_compliant"
         ],
         "level": 3,
-        "feature": "object-construction",
-        "conflicts": ["variant:proposed-behavior"]
+        "feature": "object_construction",
+        "conflicts": ["variant:proposed_behavior"]
       }
     },
     {
@@ -1029,7 +1029,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1097,7 +1097,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1139,7 +1139,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1181,7 +1181,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     },
     {
@@ -1218,15 +1218,15 @@
       },
       "meta": {
         "tags": [
-          "behavior:boolean-strict",
+          "behavior:boolean_strict",
           "function:get_bool",
           "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing",
+        "feature": "typed_parsing",
         "conflicts": [
-          "behavior:boolean-lenient"
+          "behavior:boolean_lenient"
         ]
       }
     },
@@ -1269,7 +1269,7 @@
           "function:parse"
         ],
         "level": 4,
-        "feature": "typed-parsing"
+        "feature": "typed_parsing"
       }
     }
   ]

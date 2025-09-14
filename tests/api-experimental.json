@@ -15,7 +15,7 @@
       "go_reference": "internal/mock/ccl.go#ExpandDotted",
       "documentation": "https://ccl.tylerbutler.com/experimental#dotted-keys"
     },
-    "feature_flag": "feature:experimental-dotted-keys",
+    "feature_flag": "feature:experimental_dotted_keys",
     "experimental_warning": "These features are NOT part of the Core CCL specification and may change or be removed in future versions.",
     "learning_path": "Complete all Level 1-3 → Experimental features for specific implementations only"
   },
@@ -53,12 +53,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -110,12 +110,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -160,12 +160,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -232,12 +232,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -277,12 +277,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -327,12 +327,12 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -370,13 +370,13 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy",
-          "feature:empty-keys"
+          "feature:empty_keys"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     },
     {
@@ -412,13 +412,13 @@
       },
       "meta": {
         "tags": [
-          "feature:experimental-dotted-keys",
+          "feature:experimental_dotted_keys",
           "function:expand_dotted",
           "function:build_hierarchy",
-          "feature:empty-keys"
+          "feature:empty_keys"
         ],
         "level": 4,
-        "feature": "experimental-dotted-keys"
+        "feature": "experimental_dotted_keys"
       }
     }
   ]

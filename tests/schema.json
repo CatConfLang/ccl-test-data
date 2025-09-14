@@ -559,19 +559,19 @@
             "type": "string",
             "oneOf": [
               {
-                "pattern": "^function:(parse|parse-value|filter|combine|expand-dotted|build-hierarchy|load|get-string|get-int|get-bool|get-float|get-list|pretty-print)$",
+                "pattern": "^function:(parse|parse_value|filter|combine|expand_dotted|build_hierarchy|load|get_string|get_int|get_bool|get_float|get_list|pretty_print)$",
                 "description": "CCL function requirement tags"
               },
               {
-                "pattern": "^feature:(comments|dotted-keys|empty-keys|multiline|unicode|whitespace|experimental-dotted-keys)$",
+                "pattern": "^feature:(comments|dotted_keys|empty_keys|multiline|unicode|whitespace|experimental_dotted_keys)$",
                 "description": "Optional CCL language feature tags"
               },
               {
-                "pattern": "^behavior:(crlf-preserve-literal|crlf-normalize-to-lf|tabs-preserve|tabs-to-spaces|strict-spacing|loose-spacing|boolean-lenient|boolean-strict|list-coercion-enabled|list-coercion-disabled)$",
+                "pattern": "^behavior:(crlf_preserve_literal|crlf_normalize_to_lf|tabs_preserve|tabs_to_spaces|strict_spacing|loose_spacing|boolean_lenient|boolean_strict|list_coercion_enabled|list_coercion_disabled)$",
                 "description": "Implementation behavioral choice tags"
               },
               {
-                "pattern": "^variant:(proposed-behavior|reference-compliant)$",
+                "pattern": "^variant:(proposed_behavior|reference_compliant)$",
                 "description": "Specification variant tags"
               },
               {
@@ -600,18 +600,18 @@
             "parsing", 
             "processing", 
             "comments", 
-            "object-construction", 
-            "dotted-keys", 
-            "typed-parsing", 
-            "pretty-printing", 
-            "error-handling", 
-            "algebraic-properties",
-            "flexible-boolean-parsing",
-            "crlf-normalization",
-            "core-ccl-parsing",
-            "core-ccl-hierarchy",
-            "core-ccl-integration",
-            "experimental-dotted-keys"
+            "object_construction", 
+            "dotted_keys", 
+            "typed_parsing", 
+            "pretty_printing", 
+            "error_handling", 
+            "algebraic_properties",
+            "flexible_boolean_parsing",
+            "crlf_normalization",
+            "core_ccl_parsing",
+            "core_ccl_hierarchy",
+            "core_ccl_integration",
+            "experimental_dotted_keys"
           ],
           "description": "Feature category for test organization and filtering"
         },

@@ -192,7 +192,7 @@
         "tags": [
           "function:parse",
           "feature:comments",
-          "feature:empty-keys",
+          "feature:empty_keys",
           "function:filter"
         ],
         "level": 2,

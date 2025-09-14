@@ -121,9 +121,9 @@ The test suite is organized by feature category:
     }
   },
   "meta": {
-    "tags": ["function:parse", "function:make-objects", "function:get-string", "feature:dotted-keys"],
+    "tags": ["function:parse", "function:build_hierarchy", "function:get_string", "feature:dotted_keys"],
     "level": 3,
-    "feature": "dotted-keys"
+    "feature": "dotted_keys"
   }
 }
 ```
@@ -131,7 +131,7 @@ The test suite is organized by feature category:
 ## Feature-Based Test Selection
 
 > \[!TIP]
-> **Progressive Implementation**: Start with `function:parse` only, then gradually add `function:make-objects`, typed access functions (`function:get-string`), and advanced features (`feature:comments`, `feature:dotted-keys`) as your implementation matures.
+> **Progressive Implementation**: Start with `function:parse` only, then gradually add `function:build_hierarchy`, typed access functions (`function:get_string`), and advanced features (`feature:comments`, `feature:dotted_keys`) as your implementation matures.
 
 The test suite uses **structured tags** to enable precise test selection based on implementation capabilities:
 
@@ -141,7 +141,7 @@ The test suite uses **structured tags** to enable precise test selection based o
 
 - `function:parse` - Basic key-value parsing (Level 1)
 - `function:parse_value` - Indentation-aware parsing (Level 2)
-- `function:build_hierarchy` - Object construction from flat entries (Level 1)
+- `function:build_hierarchy` - Object construction from flat entries (Level 3)
 - `function:filter` - Entry filtering (Level 2)
 - `function:combine` - Entry composition (Level 2)
 - `function:expand_dotted` - Dotted key expansion (Level 2, optional)
@@ -151,24 +151,24 @@ The test suite uses **structured tags** to enable precise test selection based o
 #### Feature Tags (`feature:*`) - Optional language features:
 
 - `feature:comments` - `/=` comment syntax
-- `feature:dotted-keys` - `foo.bar.baz` key syntax
-- `feature:empty-keys` - `= value` anonymous list items
+- `feature:dotted_keys` - `foo.bar.baz` key syntax
+- `feature:empty_keys` - `= value` anonymous list items
 - `feature:multiline` - Multi-line value support
 - `feature:unicode` - Unicode content handling
 - `feature:whitespace` - Complex whitespace preservation
 
 #### Behavior Tags (`behavior:*`) - Implementation choices (mutually exclusive):
 
-- `behavior:crlf-preserve-literal` vs `behavior:crlf-normalize-to-lf` - Line ending handling
-- `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` - Tab handling
-- `behavior:strict-spacing` vs `behavior:loose-spacing` - Whitespace sensitivity
-- `behavior:boolean-strict` vs `behavior:boolean-lenient` - Boolean parsing (strict: only true/false, lenient: yes/no/on/off/1/0)
-- `behavior:list-coercion-enabled` vs `behavior:list-coercion-disabled` - List access behavior for single values
+- `behavior:crlf_preserve_literal` vs `behavior:crlf_normalize_to_lf` - Line ending handling
+- `behavior:tabs_preserve` vs `behavior:tabs_to_spaces` - Tab handling
+- `behavior:strict_spacing` vs `behavior:loose_spacing` - Whitespace sensitivity
+- `behavior:boolean_strict` vs `behavior:boolean_lenient` - Boolean parsing (strict: only true/false, lenient: yes/no/on/off/1/0)
+- `behavior:list_coercion_enabled` vs `behavior:list_coercion_disabled` - List access behavior for single values
 
 #### Variant Tags (`variant:*`) - Specification variants:
 
-- `variant:proposed-behavior` - Proposed specification behavior
-- `variant:reference-compliant` - OCaml reference implementation behavior
+- `variant:proposed_behavior` - Proposed specification behavior
+- `variant:reference_compliant` - OCaml reference implementation behavior
 
 ### Test Selection Examples
 
@@ -185,9 +185,9 @@ The test suite uses **structured tags** to enable precise test selection based o
 
 ```json
 {
-  "supported_functions": ["function:parse", "function:make-objects", "function:get-string"],
-  "supported_features": ["feature:dotted-keys"],
-  "behavior_choices": {"line_endings": "behavior:crlf-normalize"}
+  "supported_functions": ["function:parse", "function:build_hierarchy", "function:get_string"],
+  "supported_features": ["feature:dotted_keys"],
+  "behavior_choices": {"line_endings": "behavior:crlf_normalize_to_lf"}
 }
 ```
 
@@ -197,7 +197,7 @@ The test suite uses **structured tags** to enable precise test selection based o
 {
   "supported_functions": ["function:*"],
   "optional_features": ["feature:comments", "feature:unicode"],
-  "skip_variants": ["variant:proposed-behavior"]
+  "skip_variants": ["variant:proposed_behavior"]
 }
 ```
 
@@ -212,13 +212,13 @@ Tests with conflicting behaviors are automatically excluded:
 {
   "name": "crlf_preservation_test",
   "meta": {
-    "tags": ["function:parse", "behavior:crlf-preserve"],
-    "conflicts": ["behavior:crlf-normalize"]
+    "tags": ["function:parse", "behavior:crlf_preserve_literal"],
+    "conflicts": ["behavior:crlf_normalize_to_lf"]
   }
 }
 ```
 
-If your implementation chooses `behavior:crlf-normalize`, tests tagged with `behavior:crlf-preserve` are automatically skipped.
+If your implementation chooses `behavior:crlf_normalize_to_lf`, tests tagged with `behavior:crlf_preserve_literal` are automatically skipped.
 
 ### Feature Field vs Feature Tags
 
@@ -230,12 +230,12 @@ There are two distinct "feature" concepts that serve different purposes:
 #### `feature` field (organizational) - File/suite categorization:
 
 - `"feature": "parsing"` - This test belongs to parsing test suite
-- `"feature": "dotted-keys"` - This test belongs to dotted-keys test suite
-- `"feature": "object-construction"` - This test belongs to object construction suite
+- `"feature": "dotted_keys"` - This test belongs to dotted-keys test suite
+- `"feature": "object_construction"` - This test belongs to object construction suite
 
 #### `feature:*` tags (requirement-based) - Implementation requirements:
 
-- `"feature:dotted-keys"` - This test requires dotted key support to run
+- `"feature:dotted_keys"` - This test requires dotted key support to run
 - `"feature:comments"` - This test requires comment parsing support
 - `"feature:unicode"` - This test requires Unicode handling
 
@@ -260,13 +260,13 @@ for (const [validationType, validation] of Object.entries(test.validations)) {
         expect(actual.length).toBe(validation.count); // Verify count
       }
       break;
-    case 'make_objects':
+    case 'build_hierarchy':
       const entries = parse(test.input);
-      const objects = makeObjects(entries);
+      const objects = buildHierarchy(entries);
       expect(objects).toEqual(validation.expected);
       break;
     case 'get_string':
-      const ccl = makeObjects(parse(test.input));
+      const ccl = buildHierarchy(parse(test.input));
       if (validation.error) {
         expect(() => getString(ccl, ...validation.args)).toThrow();
       } else {

@@ -233,11 +233,11 @@ func (g *Generator) inferFeature(testSuite types.TestSuite) string {
 	// Fall back to parsing suite name
 	suiteName := strings.ToLower(testSuite.Suite)
 	if strings.Contains(suiteName, "typed") {
-		return "typed-parsing"
+		return "typed_parsing"
 	} else if strings.Contains(suiteName, "object") {
-		return "object-construction"
+		return "object_construction"
 	} else if strings.Contains(suiteName, "dotted") {
-		return "dotted-keys"
+		return "dotted_keys"
 	} else if strings.Contains(suiteName, "comment") {
 		return "comments"
 	} else if strings.Contains(suiteName, "processing") {
