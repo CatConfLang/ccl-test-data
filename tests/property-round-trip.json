@@ -16,7 +16,7 @@
       "meta": {
         "tags": [
           "function:parse",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -26,6 +26,12 @@
       "name": "round_trip_whitespace_normalization",
       "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "key", "value": "value  \n  nested  = \n    sub  =  val"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -33,8 +39,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:whitespace",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -44,6 +51,14 @@
       "name": "round_trip_empty_keys_lists",
       "input": "= item1\n= item2\nregular = value",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "regular", "value": "value"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -51,8 +66,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -62,6 +78,12 @@
       "name": "round_trip_nested_structures",
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "config", "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -69,8 +91,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:parse",
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -80,6 +103,12 @@
       "name": "round_trip_multiline_values",
       "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "script", "value": "\n  #!/bin/bash\n  echo hello\n  exit 0"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -87,8 +116,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:multiline",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -98,6 +128,16 @@
       "name": "round_trip_mixed_content",
       "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
       "validations": {
+        "parse": {
+          "count": 5,
+          "expected": [
+            {"key": "name", "value": "Alice"},
+            {"key": "", "value": "first item"},
+            {"key": "config", "value": "\n  port = 3000"},
+            {"key": "", "value": "second item"},
+            {"key": "final", "value": "value"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -105,9 +145,10 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -117,6 +158,12 @@
       "name": "canonical_format_empty_values",
       "input": "empty_key =",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "empty_key", "value": ""}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "empty_key ="
@@ -124,7 +171,8 @@
       },
       "meta": {
         "tags": [
-          "function:pretty-print",
+          "function:parse",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -138,6 +186,12 @@
       "name": "canonical_format_tab_preservation",
       "input": "value_with_tabs = text\t\twith\ttabs\t",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "value_with_tabs", "value": "text\t\twith\ttabs\t"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "value_with_tabs = text\t\twith\ttabs"
@@ -145,8 +199,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "behavior:tabs-preserve",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -161,6 +216,13 @@
       "name": "canonical_format_unicode",
       "input": "unicode = 你好世界\nemo = 🌟✨",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "unicode", "value": "你好世界"},
+            {"key": "emo", "value": "🌟✨"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "unicode = 你好世界\nemo = 🌟✨"
@@ -168,8 +230,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:unicode",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -183,6 +246,12 @@
       "name": "round_trip_complex_nesting",
       "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "app", "value": "\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -190,9 +259,10 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -202,6 +272,13 @@
       "name": "canonical_format_line_endings_proposed",
       "input": "key1 = value1\r\nkey2 = value2\r\n",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key1", "value": "value1"},
+            {"key": "key2", "value": "value2"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "key1 = value1\nkey2 = value2"
@@ -209,8 +286,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "behavior:crlf-preserve-literal",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -222,9 +300,69 @@
       }
     },
     {
+      "name": "crlf_normalize_to_lf_proposed",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "key1", "value": "value1"},
+            {"key": "key2", "value": "value2"}
+          ]
+        },
+        "canonical_format": {
+          "count": 1,
+          "expected": "key1 = value1\nkey2 = value2"
+        }
+      },
+      "meta": {
+        "tags": [
+          "function:parse",
+          "behavior:crlf-normalize-to-lf",
+          "function:pretty_print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:crlf-preserve-literal",
+          "variant:reference-compliant"
+        ]
+      }
+    },
+    {
+      "name": "crlf_normalize_to_lf_reference",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validations": {
+        "canonical_format": {
+          "count": 1,
+          "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+        }
+      },
+      "meta": {
+        "tags": [
+          "behavior:crlf-normalize-to-lf",
+          "function:pretty_print",
+          "variant:proposed-behavior"
+        ],
+        "level": 4,
+        "feature": "pretty-printing",
+        "conflicts": [
+          "behavior:crlf-preserve-literal",
+          "variant:reference-compliant"
+        ]
+      }
+    },
+    {
       "name": "round_trip_deeply_nested",
       "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "level1", "value": "\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -232,9 +370,10 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
-          "function:build-hierarchy",
-          "function:pretty-print"
+          "function:build_hierarchy",
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -244,6 +383,14 @@
       "name": "canonical_format_consistent_spacing",
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "key1", "value": "value1"},
+            {"key": "key2", "value": "value2"},
+            {"key": "key3", "value": "\tvalue3"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
@@ -251,8 +398,9 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "behavior:strict-spacing",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -267,6 +415,13 @@
       "name": "round_trip_empty_multiline",
       "input": "empty_section =\n\nother = value",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "empty_section", "value": ""},
+            {"key": "other", "value": "value"}
+          ]
+        },
         "round_trip": {
           "count": 1,
           "property": "identity"
@@ -274,9 +429,10 @@
       },
       "meta": {
         "tags": [
+          "function:parse",
           "feature:empty-keys",
           "feature:multiline",
-          "function:pretty-print"
+          "function:pretty_print"
         ],
         "level": 4,
         "feature": "pretty-printing"
@@ -286,6 +442,14 @@
       "name": "deterministic_output",
       "input": "z = last\na = first\nm = middle",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "z", "value": "last"},
+            {"key": "a", "value": "first"},
+            {"key": "m", "value": "middle"}
+          ]
+        },
         "canonical_format": {
           "count": 1,
           "expected": "z = last\na = first\nm = middle"
@@ -293,7 +457,8 @@
       },
       "meta": {
         "tags": [
-          "function:pretty-print",
+          "function:parse",
+          "function:pretty_print",
           "variant:proposed-behavior"
         ],
         "level": 4,
@@ -314,7 +479,7 @@
       },
       "meta": {
         "tags": [
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,
@@ -333,7 +498,7 @@
       "meta": {
         "tags": [
           "behavior:tabs-preserve",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,
@@ -355,7 +520,7 @@
       "meta": {
         "tags": [
           "feature:unicode",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,
@@ -374,7 +539,7 @@
       "meta": {
         "tags": [
           "behavior:crlf-preserve-literal",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,
@@ -397,7 +562,7 @@
       "meta": {
         "tags": [
           "behavior:strict-spacing",
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,
@@ -418,7 +583,7 @@
       },
       "meta": {
         "tags": [
-          "function:pretty-print",
+          "function:pretty_print",
           "variant:reference-compliant"
         ],
         "level": 4,

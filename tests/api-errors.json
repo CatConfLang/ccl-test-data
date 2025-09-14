@@ -128,7 +128,7 @@
       "meta": {
         "tags": [
           "feature:multiline",
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 1,

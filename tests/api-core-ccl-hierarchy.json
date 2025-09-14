@@ -10,7 +10,7 @@
     "related_functions": ["build-hierarchy"],
     "implementation_notes": "Core hierarchy construction tests. Validates the object building part of Core CCL atomic operation. Tests assume parsing is working.",
     "test_count": 7,
-    "assertion_count": 12,
+    "assertion_count": 19,
     "cross_references": {
       "gleam_implementation": "packages/ccl/src/ccl.gleam#build_hierarchy",
       "go_reference": "internal/mock/ccl.go#MakeObjects",
@@ -24,6 +24,13 @@
       "name": "basic_object_construction",
       "input": "name = Alice\nage = 42",
       "validations": {
+        "parse": {
+          "count": 2,
+          "expected": [
+            {"key": "name", "value": "Alice"},
+            {"key": "age", "value": "42"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -34,7 +41,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -44,6 +53,20 @@
       "name": "single_nested_object",
       "input": "database =\n  enabled = true\n  port = 5432",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "database", "value": "\n  enabled = true\n  port = 5432"}
+          ]
+        },
+        "expand_dotted": {
+          "count": 3,
+          "expected": [
+            {"key": "database", "value": ""},
+            {"key": "database.enabled", "value": "true"},
+            {"key": "database.port", "value": "5432"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -56,7 +79,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -66,6 +91,12 @@
       "name": "deep_nested_objects",
       "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "server", "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -83,7 +114,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -93,6 +126,14 @@
       "name": "duplicate_keys_to_lists",
       "input": "item = first\nitem = second\nitem = third",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "item", "value": "first"},
+            {"key": "item", "value": "second"},
+            {"key": "item", "value": "third"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -102,7 +143,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -112,6 +155,12 @@
       "name": "nested_duplicate_keys",
       "input": "config =\n  server = web1\n  server = web2\n  port = 80",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "config", "value": "\n  server = web1\n  server = web2\n  port = 80"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -124,7 +173,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -134,6 +185,14 @@
       "name": "mixed_flat_and_nested",
       "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
       "validations": {
+        "parse": {
+          "count": 3,
+          "expected": [
+            {"key": "name", "value": "Alice"},
+            {"key": "config", "value": "\n  debug = true\n  timeout = 30"},
+            {"key": "version", "value": "1.0"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -148,7 +207,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"
@@ -158,6 +219,12 @@
       "name": "nested_objects_with_lists",
       "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
       "validations": {
+        "parse": {
+          "count": 1,
+          "expected": [
+            {"key": "environments", "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"}
+          ]
+        },
         "build_hierarchy": {
           "count": 1,
           "expected": {
@@ -176,7 +243,9 @@
       },
       "meta": {
         "tags": [
-          "function:build-hierarchy"
+          "function:parse",
+          "function:expand_dotted",
+          "function:build_hierarchy"
         ],
         "level": 1,
         "feature": "core-ccl-hierarchy"

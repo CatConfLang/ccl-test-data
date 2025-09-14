@@ -140,12 +140,13 @@ The test suite uses **structured tags** to enable precise test selection based o
 #### Function Tags (`function:*`) - Required CCL functions:
 
 - `function:parse` - Basic key-value parsing (Level 1)
+- `function:parse_value` - Indentation-aware parsing (Level 2)
+- `function:build_hierarchy` - Object construction from flat entries (Level 1)
 - `function:filter` - Entry filtering (Level 2)
-- `function:compose` - Entry composition (Level 2)
-- `function:expand-dotted` - Dotted key expansion (Level 2)
-- `function:make-objects` - Object construction (Level 3)
-- `function:get-string`, `function:get-int`, `function:get-bool`, `function:get-float`, `function:get-list` - Typed access (Level 4)
-- `function:pretty-print` - Formatting (Level 5)
+- `function:combine` - Entry composition (Level 2)
+- `function:expand_dotted` - Dotted key expansion (Level 2, optional)
+- `function:get_string`, `function:get_int`, `function:get_bool`, `function:get_float`, `function:get_list` - Typed access (Level 4)
+- `function:pretty_print` - Formatting (Level 5)
 
 #### Feature Tags (`feature:*`) - Optional language features:
 
@@ -158,9 +159,11 @@ The test suite uses **structured tags** to enable precise test selection based o
 
 #### Behavior Tags (`behavior:*`) - Implementation choices (mutually exclusive):
 
-- `behavior:crlf-preserve` vs `behavior:crlf-normalize` - Line ending handling
+- `behavior:crlf-preserve-literal` vs `behavior:crlf-normalize-to-lf` - Line ending handling
 - `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` - Tab handling
 - `behavior:strict-spacing` vs `behavior:loose-spacing` - Whitespace sensitivity
+- `behavior:boolean-strict` vs `behavior:boolean-lenient` - Boolean parsing (strict: only true/false, lenient: yes/no/on/off/1/0)
+- `behavior:list-coercion-enabled` vs `behavior:list-coercion-disabled` - List access behavior for single values
 
 #### Variant Tags (`variant:*`) - Specification variants:
 

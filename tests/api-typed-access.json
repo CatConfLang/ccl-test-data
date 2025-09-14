@@ -52,8 +52,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -93,8 +93,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-float",
-          "function:build-hierarchy",
+          "function:get_float",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -136,8 +136,8 @@
         "tags": [
           "behavior:boolean-strict",
           "behavior:boolean-lenient",
-          "function:get-bool",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -178,8 +178,8 @@
       "meta": {
         "tags": [
           "behavior:boolean-lenient",
-          "function:get-bool",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -224,8 +224,8 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
-          "function:get-bool",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -270,8 +270,8 @@
         "tags": [
           "behavior:boolean-strict",
           "behavior:boolean-lenient",
-          "function:get-bool",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -311,8 +311,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -352,8 +352,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -427,10 +427,10 @@
         "tags": [
           "behavior:boolean-lenient",
           "feature:empty-keys",
-          "function:get-bool",
-          "function:get-float",
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_float",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -508,10 +508,10 @@
         "tags": [
           "behavior:boolean-strict",
           "feature:empty-keys",
-          "function:get-bool",
-          "function:get-float",
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_float",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -596,9 +596,9 @@
       "meta": {
         "tags": [
           "behavior:boolean-lenient",
-          "function:get-bool",
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -684,9 +684,9 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
-          "function:get-bool",
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -783,11 +783,11 @@
       "meta": {
         "tags": [
           "behavior:boolean-lenient",
-          "function:get-bool",
-          "function:get-float",
-          "function:get-int",
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_float",
+          "function:get_int",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -884,11 +884,11 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
-          "function:get-bool",
-          "function:get-float",
-          "function:get-int",
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_float",
+          "function:get_int",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -931,8 +931,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse",
           "variant:proposed-behavior"
         ],
@@ -965,7 +965,7 @@
       "meta": {
         "tags": [
           "function:parse",
-          "function:build-hierarchy",
+          "function:build_hierarchy",
           "variant:reference-compliant"
         ],
         "level": 3,
@@ -1023,9 +1023,9 @@
       "meta": {
         "tags": [
           "feature:whitespace",
-          "function:get-bool",
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1091,9 +1091,9 @@
       },
       "meta": {
         "tags": [
-          "function:get-int",
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_int",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1134,8 +1134,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-int",
-          "function:build-hierarchy",
+          "function:get_int",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1176,8 +1176,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-float",
-          "function:build-hierarchy",
+          "function:get_float",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1219,8 +1219,8 @@
       "meta": {
         "tags": [
           "behavior:boolean-strict",
-          "function:get-bool",
-          "function:build-hierarchy",
+          "function:get_bool",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
@@ -1264,8 +1264,8 @@
       },
       "meta": {
         "tags": [
-          "function:get-string",
-          "function:build-hierarchy",
+          "function:get_string",
+          "function:build_hierarchy",
           "function:parse"
         ],
         "level": 4,
