@@ -37,9 +37,10 @@ import (
 
 // Options configures test generation behavior
 type Options struct {
-	SkipDisabled bool     // Skip tests with disabled feature tags
-	SkipTags     []string // Additional tags to skip
-	RunOnly      []string // Only run tests with these tags (overrides skip behavior)
+	SkipDisabled    bool     // Skip tests with disabled feature tags
+	SkipTags        []string // Additional tags to skip
+	SkipTestsByName []string // Skip specific tests by name
+	RunOnly         []string // Only run tests with these tags (overrides skip behavior)
 }
 
 // AssertionStats tracks assertion counts from test generation
@@ -64,7 +65,7 @@ type Generator struct {
 // New creates a new generator instance with default options and configuration
 func New(inputDir, outputDir string) *Generator {
 	cfg := config.DefaultConfig()
-	
+
 	return &Generator{
 		inputDir:  inputDir,
 		outputDir: outputDir,
@@ -90,9 +91,10 @@ func NewWithConfig(inputDir, outputDir string, cfg *config.RunnerConfig) (*Gener
 		inputDir:  inputDir,
 		outputDir: outputDir,
 		options: Options{
-			SkipDisabled: cfg.TestFiltering.SkipDisabled,
-			RunOnly:      cfg.TestFiltering.RunOnlyFunctions,
-			SkipTags:     cfg.TestFiltering.SkipTags,
+			SkipDisabled:    cfg.TestFiltering.SkipDisabled,
+			RunOnly:         cfg.TestFiltering.RunOnlyFunctions,
+			SkipTags:        cfg.TestFiltering.SkipTags,
+			SkipTestsByName: cfg.TestFiltering.SkipTestsByName,
 		},
 		config: cfg,
 		stats: AssertionStats{
@@ -105,7 +107,7 @@ func NewWithConfig(inputDir, outputDir string, cfg *config.RunnerConfig) (*Gener
 // NewWithOptions creates a new generator instance with custom options
 func NewWithOptions(inputDir, outputDir string, options Options) *Generator {
 	cfg := config.DefaultConfig()
-	
+
 	return &Generator{
 		inputDir:  inputDir,
 		outputDir: outputDir,
@@ -176,7 +178,7 @@ func (g *Generator) findTestFiles() ([]string, error) {
 func (g *Generator) generateTestFile(jsonFile string) error {
 	// Convert centralized config to ccl-test-lib format
 	impl := g.config.ToImplementationConfig()
-	
+
 	// Add conflicting tags to skip list for behavior/variant filtering
 	conflictingTags := g.config.GetConflictingTags()
 	allSkipTags := append(g.options.SkipTags, conflictingTags...)
@@ -191,7 +193,7 @@ func (g *Generator) generateTestFile(jsonFile string) error {
 				}
 			}
 		}
-		
+
 		// If run-only tags are specified, check if test has any of them
 		if len(g.options.RunOnly) > 0 {
 			hasRunOnlyTag := false
@@ -210,7 +212,7 @@ func (g *Generator) generateTestFile(jsonFile string) error {
 				return false // Skip if no run-only tag found
 			}
 		}
-		
+
 		return true // Include this test
 	}
 

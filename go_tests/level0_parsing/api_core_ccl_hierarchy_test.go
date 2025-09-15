@@ -2,7 +2,7 @@ package level0_parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,25 +12,17 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // basic_object_construction_parse - function:parse (level 0)
 func TestBasicObjectConstructionParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -39,33 +31,14 @@ age = 42`
 
 }
 
-
 // basic_object_construction_buildhierarchy - function:buildhierarchy (level 0)
 func TestBasicObjectConstructionBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `name = Alice
-age = 42`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // deep_nested_objects_parse - function:parse (level 0)
 func TestDeepNestedObjectsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `server =
   database =
@@ -73,16 +46,11 @@ func TestDeepNestedObjectsParse(t *testing.T) {
     port = 5432
   cache =
     enabled = true`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -91,51 +59,23 @@ func TestDeepNestedObjectsParse(t *testing.T) {
 
 }
 
-
 // deep_nested_objects_buildhierarchy - function:buildhierarchy (level 0)
 func TestDeepNestedObjectsBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `server =
-  database =
-    host = localhost
-    port = 5432
-  cache =
-    enabled = true`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // duplicate_keys_to_lists_parse - function:parse (level 0)
 func TestDuplicateKeysToListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `item = first
 item = second
 item = third`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -144,49 +84,24 @@ item = third`
 
 }
 
-
 // duplicate_keys_to_lists_buildhierarchy - function:buildhierarchy (level 0)
 func TestDuplicateKeysToListsBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `item = first
-item = second
-item = third`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // nested_duplicate_keys_parse - function:parse (level 0)
 func TestNestedDuplicateKeysParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `config =
   server = web1
   server = web2
   port = 80`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -195,51 +110,25 @@ func TestNestedDuplicateKeysParse(t *testing.T) {
 
 }
 
-
 // nested_duplicate_keys_buildhierarchy - function:buildhierarchy (level 0)
 func TestNestedDuplicateKeysBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  server = web1
-  server = web2
-  port = 80`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // mixed_flat_and_nested_parse - function:parse (level 0)
 func TestMixedFlatAndNestedParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `name = Alice
 config =
   debug = true
   timeout = 30
 version = 1.0`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -248,36 +137,14 @@ version = 1.0`
 
 }
 
-
 // mixed_flat_and_nested_buildhierarchy - function:buildhierarchy (level 0)
 func TestMixedFlatAndNestedBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `name = Alice
-config =
-  debug = true
-  timeout = 30
-version = 1.0`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // nested_objects_with_lists_parse - function:parse (level 0)
 func TestNestedObjectsWithListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `environments =
   prod =
@@ -287,16 +154,11 @@ func TestNestedObjectsWithListsParse(t *testing.T) {
   dev =
     server = localhost
     port = 3000`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -305,32 +167,7 @@ func TestNestedObjectsWithListsParse(t *testing.T) {
 
 }
 
-
 // nested_objects_with_lists_buildhierarchy - function:buildhierarchy (level 0)
 func TestNestedObjectsWithListsBuildhierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `environments =
-  prod =
-    server = web1
-    server = web2
-    port = 80
-  dev =
-    server = localhost
-    port = 3000`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement buildhierarchy validation
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-

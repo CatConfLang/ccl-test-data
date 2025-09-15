@@ -113,7 +113,7 @@ func (g *Generator) generateTestContentFromTemplate(testSuite types.TestSuite, s
 		// Check if this test is not skipped using generator options
 		// For flat format, use Functions field instead of Meta.Tags
 		tags := g.getTestTags(test)
-		isSkipped := g.shouldSkipTest(tags)
+		isSkipped := g.shouldSkipTestByName(test.Name, tags)
 		if isSkipped {
 			g.stats.SkippedTests++
 			g.stats.SkippedAssertions += assertionCount
@@ -173,9 +173,9 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 
 	// Check if test should be skipped using generator options
 	tags := g.getTestTags(test)
-	if g.shouldSkipTest(tags) {
+	if g.shouldSkipTestByName(test.Name, tags) {
 		data.ShouldSkip = true
-		data.SkipReason = g.getSkipReason(tags)
+		data.SkipReason = g.getSkipReasonByName(test.Name, tags)
 	}
 
 	// Generate actual validation for flat format
@@ -931,6 +931,21 @@ func (g *Generator) shouldSkipTest(tags []string) bool {
 	return false
 }
 
+// shouldSkipTestByName determines if a test should be skipped based on tags, name, and generator options
+// shouldSkipTestByName determines if a test should be skipped based on tags, name, and generator options
+// shouldSkipTestByName determines if a test should be skipped based on name first, then tags and generator options
+func (g *Generator) shouldSkipTestByName(testName string, tags []string) bool {
+	// Check if test name is in skip list FIRST (highest precedence)
+	for _, skipName := range g.options.SkipTestsByName {
+		if testName == skipName {
+			return true
+		}
+	}
+
+	// Delegate to existing tag-based filtering
+	return g.shouldSkipTest(tags)
+}
+
 // getSkipReason determines the reason for skipping a test based on its tags and options
 func (g *Generator) getSkipReason(tags []string) string {
 	// Check if skipped due to run-only filter
@@ -979,6 +994,19 @@ func (g *Generator) getSkipReason(tags []string) string {
 		}
 	}
 	return "Skipped test"
+}
+
+// getSkipReasonByName determines the reason for skipping a test based on name, tags and options
+func (g *Generator) getSkipReasonByName(testName string, tags []string) string {
+	// Check if skipped by name first
+	for _, skipName := range g.options.SkipTestsByName {
+		if testName == skipName {
+			return fmt.Sprintf("Test skipped by name filter: %s", skipName)
+		}
+	}
+
+	// Delegate to existing tag-based skip reason logic
+	return g.getSkipReason(tags)
 }
 
 // hasValidations checks if the ValidationSet has any non-nil validations
