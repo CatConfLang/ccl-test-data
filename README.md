@@ -31,7 +31,7 @@ This repository contains the **official JSON test suite** for CCL implementation
 > \[!IMPORTANT]
 > All tests use a **counted format** with required `count` fields for precise validation verification. Each validation declares exactly how many assertions it represents.
 
-✅ **Feature-based tagging** - Structured tags for precise test selection (`function:*`, `feature:*`, `behavior:*`, `variant:*`)\
+✅ **Dual-format architecture** - Source format for maintainability, generated flat format for implementation\
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
 ✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
 ✅ **Conflict resolution** - Automatic handling of mutually exclusive behaviors\
@@ -95,7 +95,7 @@ The test suite is organized by feature category:
 > \[!IMPORTANT]
 > **Counted Format Required**: All validations must include a `count` field that matches the number of expected results. This enables precise assertion counting and self-validating test suites.
 
-#### Test Format Structure
+#### Source Format Structure (Maintainable)
 
 ```json
 {
@@ -106,7 +106,7 @@ The test suite is organized by feature category:
       "count": 1,
       "expected": [{"key": "database.host", "value": "localhost"}]
     },
-    "make_objects": {
+    "build_hierarchy": {
       "count": 1,
       "expected": {"database": {"host": "localhost"}}
     },
@@ -128,161 +128,224 @@ The test suite is organized by feature category:
 }
 ```
 
-## Feature-Based Test Selection
+#### Generated Format Structure (Implementation-Friendly)
+
+```json
+{
+  "name": "basic_multi_level_test_parse",
+  "input": "database.host = localhost",
+  "validation": "parse",
+  "expected": {
+    "count": 1,
+    "entries": [{"key": "database.host", "value": "localhost"}]
+  },
+  "functions": ["parse"],
+  "features": ["dotted_keys"],
+  "level": 3,
+  "source_test": "basic_multi_level_test"
+}
+```
+
+## Dual-Format Architecture
 
 > \[!TIP]
-> **Progressive Implementation**: Start with `function:parse` only, then gradually add `function:build_hierarchy`, typed access functions (`function:get_string`), and advanced features (`feature:comments`, `feature:dotted_keys`) as your implementation matures.
+> **Implementation Strategy**: Use the generated flat format for your test runner implementation. The separate typed fields provide excellent API ergonomics and type safety compared to parsing structured tags.
 
-The test suite uses **structured tags** to enable precise test selection based on implementation capabilities:
+The test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
-### Tag Categories
+### Source Format (Maintainable)
 
-#### Function Tags (`function:*`) - Required CCL functions:
+The **source format** maintains readability and ease of authoring:
+- Multiple validations per test in a single object
+- Structured tags for comprehensive metadata
+- Located in `tests/` directory
 
-- `function:parse` - Basic key-value parsing (Level 1)
-- `function:parse_value` - Indentation-aware parsing (Level 2)
-- `function:build_hierarchy` - Object construction from flat entries (Level 3)
-- `function:filter` - Entry filtering (Level 2)
-- `function:combine` - Entry composition (Level 2)
-- `function:expand_dotted` - Dotted key expansion (Level 2, optional)
-- `function:get_string`, `function:get_int`, `function:get_bool`, `function:get_float`, `function:get_list` - Typed access (Level 4)
-- `function:pretty_print` - Formatting (Level 5)
+### Generated Format (Implementation-Friendly)
 
-#### Feature Tags (`feature:*`) - Optional language features:
+The **generated format** provides optimal implementation ergonomics:
+- One test per validation function (1:N transformation)
+- Separate typed fields instead of string parsing
+- Type-safe enums with validation
+- Direct field access for filtering
 
-- `feature:comments` - `/=` comment syntax
-- `feature:dotted_keys` - `foo.bar.baz` key syntax
-- `feature:empty_keys` - `= value` anonymous list items
-- `feature:multiline` - Multi-line value support
-- `feature:unicode` - Unicode content handling
-- `feature:whitespace` - Complex whitespace preservation
+### Test Metadata Categories
 
-#### Behavior Tags (`behavior:*`) - Implementation choices (mutually exclusive):
+#### Functions Array - Required CCL functions:
 
-- `behavior:crlf_preserve_literal` vs `behavior:crlf_normalize_to_lf` - Line ending handling
-- `behavior:tabs_preserve` vs `behavior:tabs_to_spaces` - Tab handling
-- `behavior:strict_spacing` vs `behavior:loose_spacing` - Whitespace sensitivity
-- `behavior:boolean_strict` vs `behavior:boolean_lenient` - Boolean parsing (strict: only true/false, lenient: yes/no/on/off/1/0)
-- `behavior:list_coercion_enabled` vs `behavior:list_coercion_disabled` - List access behavior for single values
+- `parse` - Basic key-value parsing (Level 1)
+- `parse_value` - Indentation-aware parsing (Level 2)
+- `build_hierarchy` - Object construction from flat entries (Level 3)
+- `filter` - Entry filtering (Level 2)
+- `combine` - Entry composition (Level 2)
+- `expand_dotted` - Dotted key expansion (Level 2, optional)
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Typed access (Level 4)
+- `pretty_print` - Formatting (Level 5)
 
-#### Variant Tags (`variant:*`) - Specification variants:
+#### Features Array - Optional language features:
 
-- `variant:proposed_behavior` - Proposed specification behavior
-- `variant:reference_compliant` - OCaml reference implementation behavior
+- `comments` - `/=` comment syntax
+- `experimental_dotted_keys` - `foo.bar.baz` key syntax
+- `empty_keys` - `= value` anonymous list items
+- `multiline` - Multi-line value support
+- `unicode` - Unicode content handling
+- `whitespace` - Complex whitespace preservation
 
-### Test Selection Examples
+#### Behaviors Array - Implementation choices (mutually exclusive):
+
+- `crlf_preserve_literal` vs `crlf_normalize_to_lf` - Line ending handling
+- `tabs_preserve` vs `tabs_to_spaces` - Tab handling
+- `strict_spacing` vs `loose_spacing` - Whitespace sensitivity
+- `boolean_strict` vs `boolean_lenient` - Boolean parsing
+- `list_coercion_enabled` vs `list_coercion_disabled` - List access behavior
+
+#### Variants Array - Specification variants:
+
+- `proposed_behavior` - Proposed specification behavior
+- `reference_compliant` - OCaml reference implementation behavior
+
+### Test Filtering Examples
 
 > \[!NOTE]
-> **Implementation Strategy**: Use these examples as templates for your test runner configuration. Start minimal and expand gradually as features are implemented.
+> **Type-Safe Filtering**: Use direct field access instead of string parsing for better performance and type safety. The generated format provides enum validation and excellent API ergonomics.
 
 #### Minimal Implementation (Parse only)
 
-```json
-{"supported_tags": ["function:parse"]}
+```javascript
+// Filter for basic parsing tests only
+const parseTests = flatTests.filter(test => 
+  test.functions.includes('parse') && 
+  test.functions.length === 1
+);
 ```
 
 #### Basic Implementation (Parse + Objects + Typed Access)
 
-```json
-{
-  "supported_functions": ["function:parse", "function:build_hierarchy", "function:get_string"],
-  "supported_features": ["feature:dotted_keys"],
-  "behavior_choices": {"line_endings": "behavior:crlf_normalize_to_lf"}
-}
+```javascript
+// Filter for core functionality with dotted keys
+const coreTests = flatTests.filter(test => 
+  test.functions.some(f => ['parse', 'build_hierarchy', 'get_string'].includes(f)) &&
+  !test.features.some(f => ['comments', 'unicode'].includes(f))
+);
 ```
 
-#### Advanced Implementation (All functions, optional features)
+#### Advanced Implementation (All functions, behavior choices)
 
-```json
-{
-  "supported_functions": ["function:*"],
-  "optional_features": ["feature:comments", "feature:unicode"],
-  "skip_variants": ["variant:proposed_behavior"]
-}
+```javascript
+// Filter based on implementation behavior choices
+const advancedTests = flatTests.filter(test => {
+  const hasConflictingBehavior = test.conflicts.behaviors?.some(b => 
+    ['crlf_preserve_literal', 'boolean_lenient'].includes(b)
+  );
+  return !hasConflictingBehavior;
+});
+```
+
+#### Progressive Implementation Strategy
+
+```javascript
+// Level-based progressive implementation
+const level1Tests = flatTests.filter(test => test.level <= 1);
+const level2Tests = flatTests.filter(test => test.level <= 2);
+const level3Tests = flatTests.filter(test => test.level <= 3);
 ```
 
 ### Conflict Resolution
 
 > \[!WARNING]
-> **Mutually Exclusive Behaviors**: Tests with conflicting behavioral tags are automatically excluded based on your implementation choices. Choose one behavior per category to avoid test conflicts.
+> **Mutually Exclusive Behaviors**: Tests with conflicting behaviors should be filtered based on your implementation choices. The conflicts object provides categorized exclusion lists for precise filtering.
 
-Tests with conflicting behaviors are automatically excluded:
+Tests specify conflicting behaviors in categorized structure:
 
 ```json
 {
-  "name": "crlf_preservation_test",
-  "meta": {
-    "tags": ["function:parse", "behavior:crlf_preserve_literal"],
-    "conflicts": ["behavior:crlf_normalize_to_lf"]
+  "name": "crlf_preservation_test_parse",
+  "behaviors": ["crlf_preserve_literal"],
+  "conflicts": {
+    "behaviors": ["crlf_normalize_to_lf"]
   }
 }
 ```
 
-If your implementation chooses `behavior:crlf_normalize_to_lf`, tests tagged with `behavior:crlf_preserve_literal` are automatically skipped.
+If your implementation chooses `crlf_normalize_to_lf`, filter out tests with that value in `conflicts.behaviors`.
 
-### Feature Field vs Feature Tags
+### Generating Flat Format Tests
 
-> \[!NOTE]
-> **Two Types of Features**: Don't confuse the organizational `feature` field (for test suite grouping) with requirement-based `feature:*` tags (for implementation filtering).
+> \[!IMPORTANT]
+> **Required Step**: You must generate the flat format tests from the source format before running your test suite. The flat format provides the type-safe, implementation-friendly structure your test runner needs.
 
-There are two distinct "feature" concepts that serve different purposes:
+Generate flat format tests from the maintainable source format:
 
-#### `feature` field (organizational) - File/suite categorization:
+```bash
+# Generate flat format tests for implementation
+just generate-flat
 
-- `"feature": "parsing"` - This test belongs to parsing test suite
-- `"feature": "dotted_keys"` - This test belongs to dotted-keys test suite
-- `"feature": "object_construction"` - This test belongs to object construction suite
+# Validate generated tests against schema
+just validate-flat
 
-#### `feature:*` tags (requirement-based) - Implementation requirements:
+# Run your test suite against generated tests
+# (your implementation reads from generated-tests/ directory)
+```
 
-- `"feature:dotted_keys"` - This test requires dotted key support to run
-- `"feature:comments"` - This test requires comment parsing support
-- `"feature:unicode"` - This test requires Unicode handling
-
-**Example:** A test in the "parsing" suite (`"feature": "parsing"`) might still have `"feature:comments"` tag if it tests comment parsing, indicating that implementations without comment support should skip it.
-
-#### Usage Guidelines:
-
-- **File organization**: Use `feature` field for test suite grouping
-- **Test filtering**: Use `feature:*` tags for implementation-based filtering
+The generator:
+- Transforms 1:N (one source test → multiple flat tests)
+- Parses structured tags into separate typed fields
+- Adds auto-generated function tags
+- Provides categorized conflicts structure
+- Maintains full traceability to source tests
 
 ### Test Runner Implementation Example
 
 ```javascript
-for (const [validationType, validation] of Object.entries(test.validations)) {
-  switch (validationType) {
+// Load flat format tests (type-safe with excellent API ergonomics)
+const flatTests = loadFlatTests('generated-tests/');
+
+// Filter tests based on implementation capabilities
+const supportedTests = flatTests.filter(test => {
+  // Check if we support all required functions
+  const unsupportedFunctions = test.functions.filter(f => 
+    !implementedFunctions.includes(f)
+  );
+  if (unsupportedFunctions.length > 0) return false;
+
+  // Check if we support all required features  
+  const unsupportedFeatures = test.features.filter(f => 
+    !implementedFeatures.includes(f)
+  );
+  if (unsupportedFeatures.length > 0) return false;
+
+  // Check for conflicting behaviors
+  const hasConflicts = test.conflicts.behaviors?.some(b => 
+    implementationBehaviors.includes(b)
+  );
+  if (hasConflicts) return false;
+
+  return true;
+});
+
+// Run tests with type-safe validation switching
+supportedTests.forEach(test => {
+  switch (test.validation) {
     case 'parse':
-      if (validation.error) {
-        expect(() => parse(test.input)).toThrow(validation.error_message);
+      if (test.expect_error) {
+        expect(() => parse(test.input)).toThrow(test.error_type);
       } else {
         const actual = parse(test.input);
-        expect(actual).toEqual(validation.expected);
-        expect(actual.length).toBe(validation.count); // Verify count
+        expect(actual).toEqual(test.expected.entries);
+        expect(actual.length).toBe(test.expected.count);
       }
       break;
     case 'build_hierarchy':
       const entries = parse(test.input);
       const objects = buildHierarchy(entries);
-      expect(objects).toEqual(validation.expected);
+      expect(objects).toEqual(test.expected.object);
       break;
     case 'get_string':
       const ccl = buildHierarchy(parse(test.input));
-      if (validation.error) {
-        expect(() => getString(ccl, ...validation.args)).toThrow();
-      } else {
-        validation.cases.forEach(testCase => {
-          if (testCase.error) {
-            expect(() => getString(ccl, ...testCase.args)).toThrow();
-          } else {
-            const value = getString(ccl, ...testCase.args);
-            expect(value).toBe(testCase.expected);
-          }
-        });
-        expect(validation.cases.length).toBe(validation.count); // Verify count
-      }
+      const value = getString(ccl, ...test.args);
+      expect(value).toBe(test.expected.value);
       break;
   }
-}
+});
 ```
 
 ## Assertion Counting
@@ -315,10 +378,13 @@ This repository includes a comprehensive Go-based test runner for CCL implementa
 ### Available Commands
 
 ```bash
-# Basic usage
-just build          # Build the test runner binary
-just generate       # Generate all Go test files
-just test           # Run all tests
+# Flat format generation (recommended for implementations)
+just generate-flat   # Generate implementation-friendly flat format tests
+just validate-flat   # Validate generated flat tests against schema
+
+# Go mock implementation development  
+just generate       # Generate Go test files for mock implementation
+just test           # Run all Go tests
 just list           # List available test packages
 
 # Mock implementation development
@@ -339,7 +405,8 @@ just test-objects   # Run object construction tests
 
 # Utilities
 just stats          # Show test generation statistics
-just validate       # Validate test files against schema
+just validate       # Validate source test files against schema
+just validate-all   # Validate both source and generated formats
 just clean          # Clean generated files
 ```
 
@@ -370,7 +437,7 @@ just generate-level1  # Generate only basic Level 1 tests
 just test-level1      # Run Level 1 tests (all should pass)
 ```
 
-**This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (`basic`, `essential-parsing`, `empty` tags) and skips advanced features that would fail in the current mock implementation. This ensures:
+**This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (basic functions: `parse`, `make-objects`) and skips advanced features that would fail in the current mock implementation. This ensures:
 
 - **Clean commits**: All enabled tests pass before committing
 - **Stable CI**: Continuous integration runs pass consistently
@@ -396,14 +463,15 @@ just test-level1      # Run Level 1 tests (all should pass)
 ## Contributing
 
 > \[!IMPORTANT]
-> **Test Quality Standards**: All new tests must use the counted format, include proper metadata tags, and pass JSON schema validation before being accepted.
+> **Test Quality Standards**: All new tests must use the counted format, include proper typed fields metadata, and pass JSON schema validation before being accepted.
 
 When adding test cases:
 
 1. **Add to appropriate JSON file** by feature level and category
-1. **Include descriptive name and metadata** with proper tag classification
+1. **Include descriptive name and metadata** with typed fields (functions, features, behaviors, variants)
 1. **Use counted format** with appropriate `count` values matching result arrays
 1. **Validate JSON structure** with `just validate` before submitting
+1. **Generate flat format** with `just generate-flat` and ensure tests pass
 1. **Update test counts** in documentation and ensure `just stats` reflects changes
 
 ## Validation
@@ -457,11 +525,11 @@ just stats
 
 **⚙️ Function Coverage:**
 
-- `function:parse`: 132 tests (most essential)
-- `function:make-objects`: 66 tests
-- `function:get-*`: 38 tests (typed access)
-- `function:pretty-print`: 24 tests
-- `function:compose`: 12 tests
-- Other functions: 35 tests
+- **parse**: 132 tests (most essential)
+- **make-objects**: 66 tests
+- **get-string, get-int, get-bool, get-float, get-list**: 38 tests (typed access)
+- **pretty-print**: 24 tests
+- **compose**: 12 tests
+- **Other functions**: 35 tests (filter, expand-dotted, parse-value)
 
 This test suite ensures consistent CCL behavior across all language implementations with precise control over which features to test.
