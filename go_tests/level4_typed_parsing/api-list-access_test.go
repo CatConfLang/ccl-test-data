@@ -895,7 +895,7 @@ func TestListEdgeCaseZeroLength(t *testing.T) {
 	expectedParse := []mock.Entry{}
 	assert.Equal(t, expectedParse, parseResult)
 	// BuildHierarchy validation
-	parseResult, err = ccl.Parse(input)
+	parseResult, err = ccl.Parse("")
 	require.NoError(t, err)
 	objectResult = ccl.BuildHierarchy(parseResult)
 	expectedObjects := map[string]interface{}{}

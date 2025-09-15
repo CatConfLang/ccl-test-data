@@ -17,7 +17,6 @@ import (
 func TestJustKeyError(t *testing.T) {
 
 	ccl := mock.New()
-	input := `key`
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
@@ -36,7 +35,6 @@ func TestJustKeyError(t *testing.T) {
 func TestWhitespaceOnlyError(t *testing.T) {
 
 	ccl := mock.New()
-	input := `   `
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
@@ -55,7 +53,6 @@ func TestWhitespaceOnlyError(t *testing.T) {
 func TestWhitespaceOnlyErrorOcamlReference(t *testing.T) {
 
 	ccl := mock.New()
-	input := `   `
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
@@ -74,7 +71,6 @@ func TestWhitespaceOnlyErrorOcamlReference(t *testing.T) {
 func TestJustStringError(t *testing.T) {
 
 	ccl := mock.New()
-	input := `val`
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
@@ -93,8 +89,6 @@ func TestJustStringError(t *testing.T) {
 func TestMultilinePlainError(t *testing.T) {
 
 	ccl := mock.New()
-	input := `val
-  next`
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
@@ -113,9 +107,6 @@ func TestMultilinePlainError(t *testing.T) {
 func TestMultilinePlainNestedError(t *testing.T) {
 
 	ccl := mock.New()
-	input := `
-val
-  next`
 
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
