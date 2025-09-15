@@ -1,0 +1,915 @@
+[
+  {
+    "name": "parse_basic_integer",
+    "input": "port = 8080",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "port",
+            "value": "8080"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "port": "8080"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": 8080,
+        "args": [
+          "port"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_basic_float",
+    "input": "temperature = 98.6",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "temperature",
+            "value": "98.6"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "temperature": "98.6"
+        }
+      },
+      {
+        "function": "get_float",
+        "expect": 98.6,
+        "args": [
+          "temperature"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_true",
+    "input": "enabled = true",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "enabled",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "enabled": "true"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "enabled"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_yes",
+    "input": "active = yes",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "active",
+            "value": "yes"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "active": "yes"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "active"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_yes_strict_literal",
+    "input": "active = yes",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "active": "yes"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": null,
+        "args": [
+          "active"
+        ]
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "active",
+            "value": "yes"
+          }
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_false",
+    "input": "disabled = false",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "disabled",
+            "value": "false"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "disabled": "false"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": false,
+        "args": [
+          "disabled"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_string_fallback",
+    "input": "name = Alice",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "name",
+            "value": "Alice"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "name": "Alice"
+        }
+      },
+      {
+        "function": "get_string",
+        "expect": "Alice",
+        "args": [
+          "name"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_negative_integer",
+    "input": "offset = -42",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "offset",
+            "value": "-42"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "offset": "-42"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": -42,
+        "args": [
+          "offset"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_zero_values",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "count": "0",
+          "disabled": "no",
+          "distance": "0.0"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": 0,
+        "args": [
+          "count"
+        ]
+      },
+      {
+        "function": "get_float",
+        "expect": 0,
+        "args": [
+          "distance"
+        ]
+      },
+      {
+        "function": "get_bool",
+        "expect": false,
+        "args": [
+          "disabled"
+        ]
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "count",
+            "value": "0"
+          },
+          {
+            "key": "distance",
+            "value": "0.0"
+          },
+          {
+            "key": "disabled",
+            "value": "no"
+          }
+        ]
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_zero_values_strict_literal",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "count",
+            "value": "0"
+          },
+          {
+            "key": "distance",
+            "value": "0.0"
+          },
+          {
+            "key": "disabled",
+            "value": "no"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "count": "0",
+          "disabled": "no",
+          "distance": "0.0"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": 0,
+        "args": [
+          "count"
+        ]
+      },
+      {
+        "function": "get_float",
+        "expect": 0,
+        "args": [
+          "distance"
+        ]
+      },
+      {
+        "function": "get_bool",
+        "expect": null,
+        "args": [
+          "disabled"
+        ]
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_variants",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "flag1",
+            "value": "yes"
+          },
+          {
+            "key": "flag2",
+            "value": "on"
+          },
+          {
+            "key": "flag3",
+            "value": "1"
+          },
+          {
+            "key": "flag4",
+            "value": "false"
+          },
+          {
+            "key": "flag5",
+            "value": "no"
+          },
+          {
+            "key": "flag6",
+            "value": "off"
+          },
+          {
+            "key": "flag7",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "flag1": "yes",
+          "flag2": "on",
+          "flag3": "1",
+          "flag4": "false",
+          "flag5": "no",
+          "flag6": "off",
+          "flag7": "0"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "flag1"
+        ]
+      },
+      {
+        "function": "get_int",
+        "expect": 1,
+        "args": [
+          "flag3"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_variants_strict_literal",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "tests": [
+      {
+        "function": "get_int",
+        "expect": 1,
+        "args": [
+          "flag3"
+        ]
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "flag1",
+            "value": "yes"
+          },
+          {
+            "key": "flag2",
+            "value": "on"
+          },
+          {
+            "key": "flag3",
+            "value": "1"
+          },
+          {
+            "key": "flag4",
+            "value": "false"
+          },
+          {
+            "key": "flag5",
+            "value": "no"
+          },
+          {
+            "key": "flag6",
+            "value": "off"
+          },
+          {
+            "key": "flag7",
+            "value": "0"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "flag1": "yes",
+          "flag2": "on",
+          "flag3": "1",
+          "flag4": "false",
+          "flag5": "no",
+          "flag6": "off",
+          "flag7": "0"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": null,
+        "args": [
+          "flag1"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_mixed_types",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "host",
+            "value": "localhost"
+          },
+          {
+            "key": "port",
+            "value": "8080"
+          },
+          {
+            "key": "ssl",
+            "value": "true"
+          },
+          {
+            "key": "timeout",
+            "value": "30.5"
+          },
+          {
+            "key": "debug",
+            "value": "off"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "debug": "off",
+          "host": "localhost",
+          "port": "8080",
+          "ssl": "true",
+          "timeout": "30.5"
+        }
+      },
+      {
+        "function": "get_string",
+        "expect": "localhost",
+        "args": [
+          "host"
+        ]
+      },
+      {
+        "function": "get_int",
+        "expect": 8080,
+        "args": [
+          "port"
+        ]
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "ssl"
+        ]
+      },
+      {
+        "function": "get_float",
+        "expect": 30.5,
+        "args": [
+          "timeout"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_mixed_types_strict_literal",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "debug": "off",
+          "host": "localhost",
+          "port": "8080",
+          "ssl": "true",
+          "timeout": "30.5"
+        }
+      },
+      {
+        "function": "get_string",
+        "expect": "localhost",
+        "args": [
+          "host"
+        ]
+      },
+      {
+        "function": "get_int",
+        "expect": 8080,
+        "args": [
+          "port"
+        ]
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "ssl"
+        ]
+      },
+      {
+        "function": "get_float",
+        "expect": 30.5,
+        "args": [
+          "timeout"
+        ]
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "host",
+            "value": "localhost"
+          },
+          {
+            "key": "port",
+            "value": "8080"
+          },
+          {
+            "key": "ssl",
+            "value": "true"
+          },
+          {
+            "key": "timeout",
+            "value": "30.5"
+          },
+          {
+            "key": "debug",
+            "value": "off"
+          }
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_empty_value",
+    "input": "empty_key =",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "empty_key": ""
+        }
+      },
+      {
+        "function": "get_string",
+        "expect": "",
+        "args": [
+          "empty_key"
+        ]
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "empty_key",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "empty_value_reference_behavior",
+    "input": "empty_key =",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "empty_key": ""
+        }
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "empty_key",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "level": 3
+  },
+  {
+    "name": "parse_with_whitespace",
+    "input": "number =   42   \nflag =  true  ",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "number",
+            "value": "42"
+          },
+          {
+            "key": "flag",
+            "value": "true"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "flag": "true",
+          "number": "42"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": 42,
+        "args": [
+          "number"
+        ]
+      },
+      {
+        "function": "get_bool",
+        "expect": true,
+        "args": [
+          "flag"
+        ]
+      }
+    ],
+    "features": [
+      "whitespace"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_with_conservative_options",
+    "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "number",
+            "value": "42"
+          },
+          {
+            "key": "decimal",
+            "value": "3.14"
+          },
+          {
+            "key": "flag",
+            "value": "true"
+          },
+          {
+            "key": "text",
+            "value": "hello"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "decimal": "3.14",
+          "flag": "true",
+          "number": "42",
+          "text": "hello"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": 42,
+        "args": [
+          "number"
+        ]
+      },
+      {
+        "function": "get_string",
+        "expect": "3.14",
+        "args": [
+          "decimal"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_integer_error",
+    "input": "port = not_a_number",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "port",
+            "value": "not_a_number"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "port": "not_a_number"
+        }
+      },
+      {
+        "function": "get_int",
+        "expect": null,
+        "args": [
+          "port"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_float_error",
+    "input": "temperature = invalid",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "temperature",
+            "value": "invalid"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "temperature": "invalid"
+        }
+      },
+      {
+        "function": "get_float",
+        "expect": null,
+        "args": [
+          "temperature"
+        ]
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_boolean_error",
+    "input": "enabled = maybe",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "enabled",
+            "value": "maybe"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "enabled": "maybe"
+        }
+      },
+      {
+        "function": "get_bool",
+        "expect": null,
+        "args": [
+          "enabled"
+        ]
+      }
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "level": 4
+  },
+  {
+    "name": "parse_missing_path_error",
+    "input": "existing = value",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "existing",
+            "value": "value"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "existing": "value"
+        }
+      },
+      {
+        "function": "get_string",
+        "expect": null,
+        "args": [
+          "missing"
+        ]
+      }
+    ],
+    "level": 4
+  }
+]

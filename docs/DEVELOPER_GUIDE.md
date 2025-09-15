@@ -45,7 +45,7 @@ internal/
 └── types/              # Common data structures
 
 tests/                  # JSON test data files
-generated_tests/        # Generated Go test files
+go_tests/        # Generated Go test files
 docs/                   # Documentation
 ```
 
@@ -101,7 +101,7 @@ just benchmark              # Performance measurement
 1. **Format and lint**: `just lint`
 2. **Validate clean state**: `just reset` (must pass)
 3. **Schema validation**: `just validate`
-4. **Include generated files**: Commit updated `generated_tests/` files
+4. **Include generated files**: Commit updated `go_tests/` files
 
 ## Adding New Tests
 
@@ -508,7 +508,7 @@ styles.Info("Processing %d test files", count)
 styles.InfoLite("Found %d assertions", assertions)
 
 // Command display
-styles.Command("gotestsum --format testname ./generated_tests/...")
+styles.Command("gotestsum --format testname ./go_tests/...")
 ```
 
 ### Flag Handling
@@ -655,7 +655,7 @@ pprof.WriteHeapProfile(f)
 
 1. **Feature Branches**: Use descriptive branch names
 2. **Atomic Commits**: Each commit should represent one logical change
-3. **Generated Files**: Always commit updated generated_tests/ files
+3. **Generated Files**: Always commit updated go_tests/ files
 4. **Clean History**: Rebase to maintain clean commit history
 
 ### Documentation

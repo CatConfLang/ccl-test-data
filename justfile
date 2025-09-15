@@ -149,11 +149,11 @@ validate-metadata:
 
 # Clean up generated files (cross-platform)
 clean:
-    go run ./cmd/clean generated_tests bin
+    go run ./cmd/clean go_tests bin
 
 # Clean everything including node_modules (cross-platform)
 clean-all:
-    go run ./cmd/clean generated_tests bin scripts/node_modules
+    go run ./cmd/clean go_tests bin scripts/node_modules
 
 # Update documentation with current stats (replaces npm run docs:update)
 docs-update:

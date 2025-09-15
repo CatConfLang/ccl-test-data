@@ -1,0 +1,80 @@
+[
+  {
+    "name": "just_key_error",
+    "input": "key",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": null
+      }
+    ],
+    "level": 1
+  },
+  {
+    "name": "whitespace_only_error",
+    "input": "   ",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": null
+      }
+    ],
+    "features": [
+      "whitespace"
+    ],
+    "level": 1
+  },
+  {
+    "name": "whitespace_only_error_ocaml_reference",
+    "input": "   ",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": []
+      }
+    ],
+    "features": [
+      "whitespace"
+    ],
+    "level": 1
+  },
+  {
+    "name": "just_string_error",
+    "input": "val",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": null
+      }
+    ],
+    "level": 1
+  },
+  {
+    "name": "multiline_plain_error",
+    "input": "val\n  next",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": null
+      }
+    ],
+    "features": [
+      "multiline"
+    ],
+    "level": 1
+  },
+  {
+    "name": "multiline_plain_nested_error",
+    "input": "\nval\n  next",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": null
+      }
+    ],
+    "features": [
+      "multiline"
+    ],
+    "level": 1
+  }
+]

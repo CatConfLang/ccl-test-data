@@ -1,0 +1,314 @@
+[
+  {
+    "name": "semigroup_associativity_basic",
+    "input": "a = 1\nb = 2\nc = 3",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "a",
+            "value": "1"
+          },
+          {
+            "key": "b",
+            "value": "2"
+          },
+          {
+            "key": "c",
+            "value": "3"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "semigroup_associativity_nested",
+    "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "config",
+            "value": "\n  host = localhost\n  port = 8080"
+          },
+          {
+            "key": "db",
+            "value": "\n  name = test"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "semigroup_associativity_lists",
+    "input": "= item1\n= item2\n= item3",
+    "tests": [
+      {
+        "function": "associativity",
+        "expect": null
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "",
+            "value": "item1"
+          },
+          {
+            "key": "",
+            "value": "item2"
+          },
+          {
+            "key": "",
+            "value": "item3"
+          }
+        ]
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_left_identity_basic",
+    "input": "key = value\nnested =\n  sub = val",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "nested",
+            "value": "\n  sub = val"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_right_identity_basic",
+    "input": "key = value\nnested =\n  sub = val",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "nested",
+            "value": "\n  sub = val"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_left_identity_nested",
+    "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "config",
+            "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_right_identity_nested",
+    "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "config",
+            "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_left_identity_lists",
+    "input": "= item1\n= item2\n= item3",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "",
+            "value": "item1"
+          },
+          {
+            "key": "",
+            "value": "item2"
+          },
+          {
+            "key": "",
+            "value": "item3"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "monoid_right_identity_lists",
+    "input": "= item1\n= item2\n= item3",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "",
+            "value": "item1"
+          },
+          {
+            "key": "",
+            "value": "item2"
+          },
+          {
+            "key": "",
+            "value": "item3"
+          }
+        ]
+      },
+      {
+        "function": "associativity",
+        "expect": null
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "round_trip_property_basic",
+    "input": "key = value\nanother = test",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "another",
+            "value": "test"
+          }
+        ]
+      },
+      {
+        "function": "round_trip",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "round_trip_property_nested",
+    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "config",
+            "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+          }
+        ]
+      },
+      {
+        "function": "round_trip",
+        "expect": null
+      }
+    ],
+    "level": 4
+  },
+  {
+    "name": "round_trip_property_complex",
+    "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "",
+            "value": "item1"
+          },
+          {
+            "key": "",
+            "value": "item2"
+          },
+          {
+            "key": "config",
+            "value": "\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c"
+          },
+          {
+            "key": "final",
+            "value": "end"
+          }
+        ]
+      },
+      {
+        "function": "round_trip",
+        "expect": null
+      }
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "level": 4
+  }
+]

@@ -156,6 +156,7 @@ The test suite uses a **dual-format architecture** optimized for both maintainab
 ### Source Format (Maintainable)
 
 The **source format** maintains readability and ease of authoring:
+
 - Multiple validations per test in a single object
 - Structured tags for comprehensive metadata
 - Located in `tests/` directory
@@ -163,6 +164,7 @@ The **source format** maintains readability and ease of authoring:
 ### Generated Format (Implementation-Friendly)
 
 The **generated format** provides optimal implementation ergonomics:
+
 - One test per validation function (1:N transformation)
 - Separate typed fields instead of string parsing
 - Type-safe enums with validation
@@ -287,6 +289,7 @@ just validate-flat
 ```
 
 The generator:
+
 - Transforms 1:N (one source test → multiple flat tests)
 - Parses structured tags into separate typed fields
 - Adds auto-generated function tags

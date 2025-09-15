@@ -1,0 +1,471 @@
+[
+  {
+    "name": "basic_dotted_key_expansion",
+    "input": "database.host = localhost",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "database.host",
+            "value": "localhost"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "database",
+            "value": "\n  host = localhost"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "database": {
+            "host": "localhost"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "multiple_dotted_keys",
+    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "database.host",
+            "value": "localhost"
+          },
+          {
+            "key": "database.port",
+            "value": "5432"
+          },
+          {
+            "key": "app.name",
+            "value": "MyApp"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "database",
+            "value": "\n  host = localhost\n  port = 5432"
+          },
+          {
+            "key": "app",
+            "value": "\n  name = MyApp"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "app": {
+            "name": "MyApp"
+          },
+          "database": {
+            "host": "localhost",
+            "port": "5432"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "deep_dotted_nesting",
+    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "server.database.credentials.user",
+            "value": "admin"
+          },
+          {
+            "key": "server.database.credentials.pass",
+            "value": "secret"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "server",
+            "value": "\n  database =\n    credentials =\n      user = admin\n      pass = secret"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "server": {
+            "database": {
+              "credentials": {
+                "pass": "secret",
+                "user": "admin"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "mixed_dotted_and_regular_keys",
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "app",
+            "value": "MyApp"
+          },
+          {
+            "key": "database.host",
+            "value": "localhost"
+          },
+          {
+            "key": "config",
+            "value": "\n  debug = true"
+          },
+          {
+            "key": "logging.level",
+            "value": "info"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "app",
+            "value": "MyApp"
+          },
+          {
+            "key": "database",
+            "value": "\n  host = localhost"
+          },
+          {
+            "key": "config",
+            "value": "\n  debug = true"
+          },
+          {
+            "key": "logging",
+            "value": "\n  level = info"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "app": "MyApp",
+          "config": {
+            "debug": "true"
+          },
+          "database": {
+            "host": "localhost"
+          },
+          "logging": {
+            "level": "info"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "dotted_key_conflicts_resolution",
+    "input": "database = old_value\ndatabase.host = localhost",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "database",
+            "value": "old_value"
+          },
+          {
+            "key": "database.host",
+            "value": "localhost"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "database",
+            "value": "\n  host = localhost"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "database": {
+            "host": "localhost"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "dotted_keys_with_lists",
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "servers.web",
+            "value": "web1"
+          },
+          {
+            "key": "servers.web",
+            "value": "web2"
+          },
+          {
+            "key": "servers.api",
+            "value": "api1"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "servers",
+            "value": "\n  web = web1\n  web = web2\n  api = api1"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "servers": {
+            "api": "api1",
+            "web": [
+              "web1",
+              "web2"
+            ]
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "empty_dotted_key_segments",
+    "input": "a..b = value",
+    "tests": [
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "a": {
+            "": {
+              "b": "value"
+            }
+          }
+        }
+      },
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "a..b",
+            "value": "value"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "a",
+            "value": "\n   =\n    b = value"
+          }
+        ]
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "single_dot_key",
+    "input": "a. = value",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "a.",
+            "value": "value"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "a",
+            "value": "\n   = value"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "a": {
+            "": "value"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "hierarchical_with_expand_dotted_validation",
+    "input": "database =\n  enabled = true\n  port = 5432",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "database",
+            "value": "\n  enabled = true\n  port = 5432"
+          }
+        ]
+      },
+      {
+        "function": "expand_dotted",
+        "expect": [
+          {
+            "key": "database",
+            "value": ""
+          },
+          {
+            "key": "database.enabled",
+            "value": "true"
+          },
+          {
+            "key": "database.port",
+            "value": "5432"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "database": {
+            "enabled": "true",
+            "port": "5432"
+          }
+        }
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  },
+  {
+    "name": "dotted_key_list_access",
+    "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
+    "tests": [
+      {
+        "function": "parse",
+        "expect": [
+          {
+            "key": "database.hosts",
+            "value": "primary"
+          },
+          {
+            "key": "database.hosts",
+            "value": "secondary"
+          },
+          {
+            "key": "database.port",
+            "value": "5432"
+          }
+        ]
+      },
+      {
+        "function": "build_hierarchy",
+        "expect": {
+          "database": {
+            "hosts": [
+              "primary",
+              "secondary"
+            ],
+            "port": "5432"
+          }
+        }
+      },
+      {
+        "function": "get_list",
+        "expect": [
+          "primary",
+          "secondary"
+        ],
+        "args": [
+          "database",
+          "hosts"
+        ]
+      },
+      {
+        "function": "get_list",
+        "expect": [
+          "5432"
+        ],
+        "args": [
+          "database",
+          "port"
+        ]
+      }
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "level": 4
+  }
+]
