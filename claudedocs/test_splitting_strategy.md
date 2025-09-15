@@ -86,10 +86,10 @@ level1_parsing/
 ### Monitoring Commands
 ```bash
 # Check file sizes
-find generated_tests -name "*.go" -exec wc -l {} + | sort -nr
+find go_tests -name "*.go" -exec wc -l {} + | sort -nr
 
 # Count tests per file
-grep -c "^func Test" generated_tests/*/*.go | sort -t: -k2 -nr
+grep -c "^func Test" go_tests/*/*.go | sort -t: -k2 -nr
 
 # Test file health check
 just stats  # Shows comprehensive test metrics

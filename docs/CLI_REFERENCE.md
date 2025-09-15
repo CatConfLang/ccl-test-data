@@ -67,7 +67,7 @@ ccl-test-runner generate [OPTIONS]
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--input` | `-i` | `tests` | Input directory containing JSON test files |
-| `--output` | `-o` | `generated_tests` | Output directory for generated test files |
+| `--output` | `-o` | `go_tests` | Output directory for generated test files |
 | `--skip-disabled` | | `true` | Skip tests with disabled feature tags |
 | `--skip-tags` | | | Additional tags to skip (comma-separated) |
 | `--run-only` | | | Only generate tests with these tags (overrides skip behavior) |
@@ -342,7 +342,7 @@ ccl-test-runner benchmark [OPTIONS]
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--input` | `-i` | `tests` | Input directory containing JSON test files |
-| `--output` | `-o` | `generated_tests` | Output directory for generated test files |
+| `--output` | `-o` | `go_tests` | Output directory for generated test files |
 | `--results` | `-r` | `benchmarks/results.json` | File to save benchmark results |
 | `--compare` | `-c` | | Historical results file to compare against |
 | `--threshold` | | `10.0` | Regression threshold percentage |

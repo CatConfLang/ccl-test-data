@@ -14,7 +14,7 @@
 //
 // Example Usage:
 //
-//	gen := generator.New("tests", "generated_tests")
+//	gen := generator.New("tests", "go_tests")
 //	if err := gen.GenerateAll(); err != nil {
 //	    log.Fatal(err)
 //	}

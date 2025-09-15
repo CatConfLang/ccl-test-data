@@ -10,29 +10,46 @@ import (
 
 // SourceTestSuite represents the top-level test suite structure
 type SourceTestSuite struct {
-	Schema       string            `json:"$schema"`
-	Suite        string            `json:"suite"`
-	Version      string            `json:"version"`
-	Description  string            `json:"description"`
-	LLMMetadata  *json.RawMessage  `json:"llm_metadata,omitempty"`
-	FeatureFlag  string            `json:"feature_flag,omitempty"`
-	Tests        []SourceTest      `json:"tests"`
+	Schema      string           `json:"$schema"`
+	Suite       string           `json:"suite"`
+	Version     string           `json:"version"`
+	Description string           `json:"description"`
+	LLMMetadata *json.RawMessage `json:"llm_metadata,omitempty"`
+	FeatureFlag string           `json:"feature_flag,omitempty"`
+	Tests       []SourceTest     `json:"tests"`
 }
 
 // SourceTest represents a single test case in the original format
 type SourceTest struct {
-	Name        string                    `json:"name"`
-	Input       string                    `json:"input"`
-	Validations map[string]interface{}    `json:"validations"`
-	Meta        SourceTestMeta            `json:"meta"`
+	Name        string                 `json:"name"`
+	Input       string                 `json:"input"`
+	Validations map[string]interface{} `json:"validations"`
+	Meta        SourceTestMeta         `json:"meta"`
 }
 
 // SourceTestMeta represents the metadata structure with structured tags
 type SourceTestMeta struct {
-	Tags      []string  `json:"tags"`
-	Level     int       `json:"level,omitempty"`
-	Feature   string    `json:"feature,omitempty"`
-	Conflicts []string  `json:"conflicts,omitempty"`
+	Tags      []string `json:"tags"`
+	Level     int      `json:"level,omitempty"`
+	Feature   string   `json:"feature,omitempty"`
+	Conflicts []string `json:"conflicts,omitempty"`
+}
+
+// SourceTestCase represents a single test case within a source test
+type SourceTestCase struct {
+	Function string      `json:"function"`
+	Expect   interface{} `json:"expect"`
+	Args     []string    `json:"args,omitempty"`
+	Count    int         `json:"count,omitempty"`
+}
+
+// SourceTestNew represents the actual source format used in source-tests/
+type SourceTestNew struct {
+	Name  string           `json:"name"`
+	Input string           `json:"input"`
+	Tests []SourceTestCase `json:"tests"`
+	Meta  SourceTestMeta   `json:"meta,omitempty"`
+	Level int              `json:"level,omitempty"`
 }
 
 // FlatTest represents the generated flat format for implementations
@@ -64,10 +81,10 @@ type ConflictsByCategory struct {
 
 // ExpectedResult standardized result format
 type ExpectedResult struct {
-	Count   int         `json:"count"`
-	Entries []Entry     `json:"entries,omitempty"`
-	Object  interface{} `json:"object,omitempty"`
-	Value   interface{} `json:"value,omitempty"`
+	Count   int           `json:"count"`
+	Entries []Entry       `json:"entries,omitempty"`
+	Object  interface{}   `json:"object,omitempty"`
+	Value   interface{}   `json:"value,omitempty"`
 	List    []interface{} `json:"list,omitempty"`
 }
 
@@ -103,7 +120,7 @@ func GenerateFlatTests(sourceTests []SourceTest) ([]FlatTest, error) {
 		for validationName, validationData := range sourceTest.Validations {
 			flatTest, err := convertToFlatTest(sourceTest, validationName, validationData)
 			if err != nil {
-				return nil, fmt.Errorf("error converting test %s validation %s: %w", 
+				return nil, fmt.Errorf("error converting test %s validation %s: %w",
 					sourceTest.Name, validationName, err)
 			}
 			flatTests = append(flatTests, flatTest)
@@ -173,7 +190,7 @@ func convertToFlatTest(source SourceTest, validationName string, validationData 
 
 	// Parse structured tags into separate fields
 	functions, behaviors, variants, features := parseStructuredTags(source.Meta.Tags)
-	
+
 	// Add the validation function if not already present
 	if !contains(functions, validationName) {
 		functions = append(functions, validationName)
@@ -311,9 +328,46 @@ func LoadSourceTests(sourceDir string) ([]SourceTest, error) {
 			return fmt.Errorf("error reading file %s: %w", path, err)
 		}
 
+		// Try to parse as new source format first (source-tests format)
+		var newSourceTests []SourceTestNew
+		if err := json.Unmarshal(data, &newSourceTests); err == nil {
+			// Convert new format to old format for compatibility with existing generation logic
+			for _, newTest := range newSourceTests {
+				oldTest := SourceTest{
+					Name:        newTest.Name,
+					Input:       newTest.Input,
+					Validations: make(map[string]interface{}),
+					Meta:        newTest.Meta,
+				}
+
+				// Convert tests array to validations map
+				for _, testCase := range newTest.Tests {
+					validationData := map[string]interface{}{
+						"expected": testCase.Expect,
+					}
+					if len(testCase.Args) > 0 {
+						validationData["args"] = testCase.Args
+					}
+					if testCase.Count > 0 {
+						validationData["count"] = testCase.Count
+					}
+					oldTest.Validations[testCase.Function] = validationData
+				}
+
+				// Set level from new format if available, otherwise use meta
+				if newTest.Level > 0 {
+					oldTest.Meta.Level = newTest.Level
+				}
+
+				allTests = append(allTests, oldTest)
+			}
+			return nil
+		}
+
+		// Fall back to SourceTestSuite format (legacy tests format)
 		var testSuite SourceTestSuite
 		if err := json.Unmarshal(data, &testSuite); err != nil {
-			return fmt.Errorf("error parsing JSON in %s: %w", path, err)
+			return fmt.Errorf("error parsing JSON in %s (tried both new source and legacy test suite formats): %w", path, err)
 		}
 
 		allTests = append(allTests, testSuite.Tests...)
@@ -364,10 +418,10 @@ func parseStructuredTags(tags []string) (functions, behaviors, variants, feature
 		if len(parts) != 2 {
 			continue
 		}
-		
+
 		category := parts[0]
 		value := parts[1]
-		
+
 		switch category {
 		case "function":
 			functions = append(functions, value)
@@ -385,16 +439,16 @@ func parseStructuredTags(tags []string) (functions, behaviors, variants, feature
 // parseConflicts parses conflict tags into categorized structure
 func parseConflicts(conflicts []string) ConflictsByCategory {
 	var result ConflictsByCategory
-	
+
 	for _, conflict := range conflicts {
 		parts := strings.SplitN(conflict, ":", 2)
 		if len(parts) != 2 {
 			continue
 		}
-		
+
 		category := parts[0]
 		value := parts[1]
-		
+
 		switch category {
 		case "function":
 			result.Functions = append(result.Functions, value)

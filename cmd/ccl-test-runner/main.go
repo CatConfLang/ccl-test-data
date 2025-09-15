@@ -50,7 +50,7 @@ with proper organization by level and feature.`,
 					&cli.StringFlag{
 						Name:    "output",
 						Aliases: []string{"o"},
-						Value:   "generated_tests",
+						Value:   "go_tests",
 						Usage:   "Output directory for generated test files",
 					},
 					&cli.BoolFlag{
@@ -152,7 +152,7 @@ results to detect performance regressions.`,
 					&cli.StringFlag{
 						Name:    "output",
 						Aliases: []string{"o"},
-						Value:   "generated_tests",
+						Value:   "go_tests",
 						Usage:   "Output directory for generated test files",
 					},
 					&cli.StringFlag{
@@ -262,7 +262,7 @@ func testAction(ctx *cli.Context) error {
 		styles.Info("📋 Available test packages:")
 		if len(packages) == 0 {
 			// List all packages
-			if matches, err := filepath.Glob("./generated_tests/*"); err == nil {
+			if matches, err := filepath.Glob("./go_tests/*"); err == nil {
 				for _, match := range matches {
 					styles.InfoLite("  %s", match)
 				}
@@ -404,7 +404,7 @@ func runTestsWithGotestsum(format string, levels []int, tags []string, features 
 	packages := buildPackagePatterns(levels, tags, features)
 
 	if len(packages) == 0 {
-		cmd.Args = append(cmd.Args, "--", "./generated_tests/...")
+		cmd.Args = append(cmd.Args, "--", "./go_tests/...")
 	} else {
 		cmd.Args = append(cmd.Args, "--")
 		cmd.Args = append(cmd.Args, packages...)
@@ -429,7 +429,7 @@ func runWithGoTest(levels []int, tags []string, features []string, extraArgs []s
 	packages := buildPackagePatterns(levels, tags, features)
 
 	if len(packages) == 0 {
-		cmd.Args = append(cmd.Args, "./generated_tests/...")
+		cmd.Args = append(cmd.Args, "./go_tests/...")
 	} else {
 		cmd.Args = append(cmd.Args, packages...)
 	}
@@ -452,7 +452,7 @@ func buildPackagePatterns(levels []int, tags []string, features []string) []stri
 	// If levels are specified, filter by level
 	if len(levels) > 0 {
 		for _, level := range levels {
-			pattern := fmt.Sprintf("generated_tests/level%d*", level)
+			pattern := fmt.Sprintf("go_tests/level%d*", level)
 			if matches, err := filepath.Glob(pattern); err == nil {
 				for _, match := range matches {
 					// Ensure the package pattern is correct for go test
@@ -465,7 +465,7 @@ func buildPackagePatterns(levels []int, tags []string, features []string) []stri
 	// If features are specified, filter by feature names
 	if len(features) > 0 {
 		for _, feature := range features {
-			pattern := fmt.Sprintf("generated_tests/*%s*", feature)
+			pattern := fmt.Sprintf("go_tests/*%s*", feature)
 			if matches, err := filepath.Glob(pattern); err == nil {
 				for _, match := range matches {
 					packages = append(packages, "./"+match)

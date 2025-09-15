@@ -38,7 +38,7 @@ cmd/              # CLI applications (ccl-test-runner, test-reader, etc.)
 │   ├── types/        # Shared type definitions
 │   └── styles/       # Output formatting
 ├── tests/        # JSON test data
-└── generated_tests/  # Auto-generated Go tests
+└── go_tests/  # Auto-generated Go tests
 ```
 
 **Strengths:**
