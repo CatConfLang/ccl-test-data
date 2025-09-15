@@ -44,7 +44,7 @@ with proper organization by level and feature.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "tests",
+						Value:   "source-tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -121,7 +121,7 @@ test counts, assertion counts, and categorization by feature areas.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "tests",
+						Value:   "source-tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -146,7 +146,7 @@ results to detect performance regressions.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "tests",
+						Value:   "source-tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -170,6 +170,31 @@ results to detect performance regressions.`,
 						Name:  "threshold",
 						Value: 10.0,
 						Usage: "Regression threshold percentage (default: 10%)",
+					},
+				},
+			},
+			{
+				Name:    "generate-flat",
+				Aliases: []string{"flat"},
+				Usage:   "Generate flat format tests from source format",
+				Description: `Generate implementation-friendly flat format tests from maintainable 
+source format tests. Each source test with multiple validations becomes 
+multiple flat tests (one per validation).
+
+This creates a simple, uniform format that's easy for test runners to process.`,
+				Action: generateFlatAction,
+				Flags: []cli.Flag{
+					&cli.StringFlag{
+						Name:    "source",
+						Aliases: []string{"s"},
+						Value:   "source-tests",
+						Usage:   "Source directory with source format tests",
+					},
+					&cli.StringFlag{
+						Name:    "generated",
+						Aliases: []string{"g"},
+						Value:   "generated-tests",
+						Usage:   "Output directory for flat format tests",
 					},
 				},
 			},

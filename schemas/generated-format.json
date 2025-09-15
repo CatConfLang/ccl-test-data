@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ccl-test-generated-format",
+  "title": "CCL Test Generated Format", 
+  "description": "Flat, implementation-friendly format for CCL test execution",
+  "type": "array",
+  "items": {
+    "type": "object",
+  "required": ["name", "input", "validation", "expected"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique test name (generated from source name + validation)",
+      "pattern": "^[a-zA-Z0-9_]+$"
+    },
+    "input": {
+      "type": "string",
+      "description": "CCL input text to be tested", 
+      "minLength": 0
+    },
+    "validation": {
+      "type": "string",
+      "description": "Single CCL function to validate",
+      "enum": [
+        "parse", "parse_value", "filter", "compose", "expand_dotted",
+        "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list", 
+        "pretty_print", "load", "round_trip", "canonical_format", "associativity"
+      ]
+    },
+    "expected": {
+      "type": "object",
+      "description": "Standardized expected result format",
+      "required": ["count"],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "description": "Number of expected results/assertions",
+          "minimum": 0
+        },
+        "entries": {
+          "type": "array",
+          "description": "Expected entries for parse functions",
+          "items": {
+            "type": "object", 
+            "properties": {
+              "key": {"type": "string"},
+              "value": {"type": "string"}
+            }
+          }
+        },
+        "object": {
+          "description": "Expected object for hierarchy functions"
+        },
+        "value": {
+          "description": "Expected single value for typed access functions"
+        },
+        "list": {
+          "type": "array",
+          "description": "Expected list for list access functions"
+        }
+      },
+      "additionalProperties": false
+    },
+    "args": {
+      "type": "array",
+      "description": "Optional arguments for parameterized functions",
+      "items": {
+        "type": "string"
+      }
+    },
+    "functions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "parse", "parse_value", "filter", "combine", "expand_dotted",
+          "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
+          "pretty_print", "load"
+        ]
+      },
+      "description": "CCL functions tested by this test",
+      "default": []
+    },
+    "behaviors": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "boolean_strict", "boolean_lenient",
+          "crlf_preserve_literal", "crlf_normalize_to_lf",
+          "tabs_preserve", "tabs_to_spaces",
+          "strict_spacing", "loose_spacing",
+          "list_coercion_enabled", "list_coercion_disabled"
+        ]
+      },
+      "description": "Implementation behavior choices",
+      "default": []
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "proposed_behavior", "reference_compliant"
+        ]
+      },
+      "description": "Specification variants",
+      "default": []
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "comments", "empty_keys", "experimental_dotted_keys",
+          "multiline", "unicode", "whitespace"
+        ]
+      },
+      "description": "Required language features",
+      "default": []
+    },
+    "conflicts": {
+      "type": "object",
+      "properties": {
+        "functions": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "behaviors": {
+          "type": "array", 
+          "items": {"type": "string"}
+        },
+        "variants": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "features": {
+          "type": "array",
+          "items": {"type": "string"}
+        }
+      },
+      "description": "Mutually exclusive options by category"
+    },
+    "requires": {
+      "type": "array",
+      "description": "Functions that must be implemented as prerequisites",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "level": {
+      "type": "integer",
+      "description": "CCL implementation level (1-5)",
+      "minimum": 1,
+      "maximum": 5
+    },
+    "source_test": {
+      "type": "string", 
+      "description": "Original source test name for traceability"
+    },
+    "expect_error": {
+      "type": "boolean",
+      "description": "Whether this test should produce an error",
+      "default": false
+    },
+    "error_type": {
+      "type": "string",
+      "description": "Expected error type for error tests"
+    }
+    },
+    "additionalProperties": false
+  }
+}
