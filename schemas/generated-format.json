@@ -7,7 +7,7 @@
   "minItems": 1,
   "items": {
     "type": "object",
-    "required": ["name", "input", "validation", "expected", "behaviors", "variants", "features", "conflicts"],
+    "required": ["name", "input", "validation", "expected", "behaviors", "variants", "features"],
     "properties": {
       "name": {
         "type": "string",
@@ -124,7 +124,7 @@
         "uniqueItems": true
       },
       "conflicts": {
-        "type": "object",
+        "type": ["object", "null"],
         "description": "Mutually exclusive options by category",
         "properties": {
           "functions": {

@@ -7,6 +7,7 @@ default:
 # Core aliases
 alias t := test
 alias gen := generate
+alias flat := generate-flat
 alias reset := dev-basic
 
 # === BUILD ===
@@ -40,9 +41,13 @@ ci:
 
 # === GENERATION ===
 
-# Generate tests (with optional filtering)
+# Generate Go test files from flat JSON files (with optional filtering)
 generate *ARGS="":
     go run ./cmd/ccl-test-runner generate {{ARGS}}
+
+# Generate flat JSON files from source JSON files (source-to-flat conversion)
+generate-flat *ARGS="":
+    go run ./cmd/ccl-test-runner generate-flat {{ARGS}}
 
 # === TESTING ===
 

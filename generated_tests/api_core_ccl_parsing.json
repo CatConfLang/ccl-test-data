@@ -1,0 +1,193 @@
+{
+  "suite": "Compact Format",
+  "version": "1.0",
+  "description": " (flat format)",
+  "tests": [
+    {
+      "name": "basic_key_value_pairs_parse",
+      "input": "name = Alice\nage = 42",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "age",
+          "value": "42"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "basic_key_value_pairs"
+    },
+    {
+      "name": "equals_in_values_parse",
+      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "msg",
+          "value": "k=v pairs work fine"
+        },
+        {
+          "key": "path",
+          "value": "/bin/app=prod"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "equals_in_values"
+    },
+    {
+      "name": "whitespace_trimming_parse",
+      "input": "  key   =    value with spaces   \nother = normal",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key",
+          "value": "value with spaces"
+        },
+        {
+          "key": "other",
+          "value": "normal"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "whitespace_trimming"
+    },
+    {
+      "name": "multiline_values_parse",
+      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "description",
+          "value": "First line\n  Second line\n  Third line"
+        },
+        {
+          "key": "done",
+          "value": "yes"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "multiline_values"
+    },
+    {
+      "name": "empty_values_parse",
+      "input": "empty =\nother = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "empty",
+          "value": ""
+        },
+        {
+          "key": "other",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "empty_values"
+    },
+    {
+      "name": "nested_structure_parsing_parse",
+      "input": "database =\n  host = localhost\n  port = 5432",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "database",
+          "value": "\n  host = localhost\n  port = 5432"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "nested_structure_parsing"
+    },
+    {
+      "name": "unicode_parsing_parse",
+      "input": "emoji = 😀😃😄\n配置 = config",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "emoji",
+          "value": "😀😃😄"
+        },
+        {
+          "key": "配置",
+          "value": "config"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "unicode_parsing"
+    },
+    {
+      "name": "empty_input_parse",
+      "validation": "parse",
+      "expected": [],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 1
+      },
+      "source_test": "empty_input"
+    }
+  ]
+}

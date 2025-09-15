@@ -1,0 +1,582 @@
+{
+  "suite": "Compact Format",
+  "version": "1.0",
+  "description": " (flat format)",
+  "tests": [
+    {
+      "name": "composition_stability_duplicate_keys_parse",
+      "input": "a = 1\nb = 2\nb = 20\nc = 3",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "a",
+          "value": "1"
+        },
+        {
+          "key": "b",
+          "value": "2"
+        },
+        {
+          "key": "b",
+          "value": "20"
+        },
+        {
+          "key": "c",
+          "value": "3"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "composition_stability_duplicate_keys"
+    },
+    {
+      "name": "multiple_values_same_key_parse",
+      "input": "ports = 8000\nports = 8001\nports = 8002",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "ports",
+          "value": "8000"
+        },
+        {
+          "key": "ports",
+          "value": "8001"
+        },
+        {
+          "key": "ports",
+          "value": "8002"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "multiple_values_same_key"
+    },
+    {
+      "name": "list_with_empty_keys_parse",
+      "input": "= 3\n= 1\n= 2",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "3"
+        },
+        {
+          "key": "",
+          "value": "1"
+        },
+        {
+          "key": "",
+          "value": "2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "list_with_empty_keys"
+    },
+    {
+      "name": "section_style_syntax_parse",
+      "input": "== Section 2 ==",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Section 2 =="
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_style_syntax"
+    },
+    {
+      "name": "composition_stability_ba_parse",
+      "input": "b = 20\nc = 3\na = 1\nb = 2",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "b",
+          "value": "20"
+        },
+        {
+          "key": "c",
+          "value": "3"
+        },
+        {
+          "key": "a",
+          "value": "1"
+        },
+        {
+          "key": "b",
+          "value": "2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "composition_stability_ba"
+    },
+    {
+      "name": "mixed_keys_with_duplicates_parse",
+      "input": "name = app\nports = 8000\nname = service\nports = 8001",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "name",
+          "value": "app"
+        },
+        {
+          "key": "ports",
+          "value": "8000"
+        },
+        {
+          "key": "name",
+          "value": "service"
+        },
+        {
+          "key": "ports",
+          "value": "8001"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "mixed_keys_with_duplicates"
+    },
+    {
+      "name": "array_style_list_parse",
+      "input": "1 =\n2 =\n3 =",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "1",
+          "value": ""
+        },
+        {
+          "key": "2",
+          "value": ""
+        },
+        {
+          "key": "3",
+          "value": ""
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "array_style_list"
+    },
+    {
+      "name": "section_header_double_equals_parse",
+      "input": "== Database Config ==\nhost = localhost\nport = 5432",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Database Config =="
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        },
+        {
+          "key": "port",
+          "value": "5432"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_header_double_equals"
+    },
+    {
+      "name": "section_header_triple_equals_parse",
+      "input": "=== Server Settings ===\nhost = 0.0.0.0\nssl = true",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "== Server Settings ==="
+        },
+        {
+          "key": "host",
+          "value": "0.0.0.0"
+        },
+        {
+          "key": "ssl",
+          "value": "true"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_header_triple_equals"
+    },
+    {
+      "name": "multiple_sections_with_entries_parse",
+      "input": "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Database =="
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        },
+        {
+          "key": "",
+          "value": "== Cache ==="
+        },
+        {
+          "key": "redis",
+          "value": "enabled"
+        },
+        {
+          "key": "",
+          "value": "= Logging =="
+        },
+        {
+          "key": "level",
+          "value": "info"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "multiple_sections_with_entries"
+    },
+    {
+      "name": "section_headers_mixed_with_lists_parse",
+      "input": "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Configuration =="
+        },
+        {
+          "key": "",
+          "value": "item1"
+        },
+        {
+          "key": "",
+          "value": "item2"
+        },
+        {
+          "key": "key",
+          "value": "value"
+        },
+        {
+          "key": "",
+          "value": "== Next Section ==="
+        },
+        {
+          "key": "other",
+          "value": "data"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_headers_mixed_with_lists"
+    },
+    {
+      "name": "empty_section_header_only_parse",
+      "input": "== Empty Section ==",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Empty Section =="
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "empty_section_header_only"
+    },
+    {
+      "name": "section_header_at_end_parse",
+      "input": "key = value\n== Final Section ==",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key",
+          "value": "value"
+        },
+        {
+          "key": "",
+          "value": "= Final Section =="
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_header_at_end"
+    },
+    {
+      "name": "section_headers_no_trailing_equals_parse",
+      "input": "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Database Config"
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        },
+        {
+          "key": "",
+          "value": "== Server Settings"
+        },
+        {
+          "key": "port",
+          "value": "8080"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_headers_no_trailing_equals"
+    },
+    {
+      "name": "section_headers_with_colons_parse",
+      "input": "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Database: Production =="
+        },
+        {
+          "key": "host",
+          "value": "db.prod.com"
+        },
+        {
+          "key": "",
+          "value": "== Cache: Redis Config ==="
+        },
+        {
+          "key": "port",
+          "value": "6379"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "section_headers_with_colons"
+    },
+    {
+      "name": "spaced_equals_not_section_header_parse",
+      "input": "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= spaced equals"
+        },
+        {
+          "key": "",
+          "value": "= wide spaces"
+        },
+        {
+          "key": "",
+          "value": "= Real Header =="
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "spaced_equals_not_section_header"
+    },
+    {
+      "name": "consecutive_section_headers_parse",
+      "input": "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "= First Section =="
+        },
+        {
+          "key": "",
+          "value": "== Nested Section ==="
+        },
+        {
+          "key": "",
+          "value": "=== Deep Section ===="
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "consecutive_section_headers"
+    },
+    {
+      "name": "multiline_section_header_value_parsevalue",
+      "input": "== Section Header =\n  This continues the header\nkey = value",
+      "validation": "parsevalue",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Section Header =\n  This continues the header"
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parsevalue"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "multiline_section_header_value"
+    },
+    {
+      "name": "unindented_multiline_becomes_continuation_parsevalue",
+      "input": "== Section Header =\nThis continues the header\nkey = value",
+      "validation": "parsevalue",
+      "expected": [
+        {
+          "key": "",
+          "value": "= Section Header =\nThis continues the header"
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parsevalue"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 2
+      },
+      "source_test": "unindented_multiline_becomes_continuation"
+    }
+  ]
+}

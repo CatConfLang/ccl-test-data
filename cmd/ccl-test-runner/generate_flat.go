@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/ccl-test-data/test-runner/internal/generator"
 	"github.com/ccl-test-data/test-runner/internal/styles"
+	"github.com/tylerbu/ccl-test-lib/generator"
 	"github.com/urfave/cli/v2"
 )
 
@@ -14,26 +14,17 @@ func generateFlatAction(ctx *cli.Context) error {
 
 	styles.Status("⚡", fmt.Sprintf("Generating flat tests from %s to %s...", sourceDir, generatedDir))
 
-	// Load source format tests
-	sourceTests, err := generator.LoadSourceTests(sourceDir)
-	if err != nil {
-		return fmt.Errorf("error loading source tests: %w", err)
-	}
+	// Create ccl-test-lib generator with compact format support
+	flatGen := generator.NewFlatGenerator(sourceDir, generatedDir, generator.GenerateOptions{
+		Verbose:           true,
+		SourceFormat:      generator.FormatCompact, // Use compact format
+		SkipPropertyTests: false,
+	})
 
-	styles.InfoLite("Loaded %d source tests", len(sourceTests))
-
-	// Generate flat format tests
-	flatTests, err := generator.GenerateFlatTests(sourceTests)
+	// Generate all flat format files
+	err := flatGen.GenerateAll()
 	if err != nil {
 		return fmt.Errorf("error generating flat tests: %w", err)
-	}
-
-	styles.InfoLite("Generated %d flat tests", len(flatTests))
-
-	// Save flat format tests
-	err = generator.SaveFlatTests(flatTests, generatedDir)
-	if err != nil {
-		return fmt.Errorf("error saving flat tests: %w", err)
 	}
 
 	styles.Success("✅ Flat test generation completed successfully!")
