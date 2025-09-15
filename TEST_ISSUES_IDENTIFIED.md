@@ -1,7 +1,7 @@
 # CCL Test Suite Issues Identified
 
 **Date**: 2025-01-13  
-**Analysis**: Comprehensive review of `api-list-access.json` test failures  
+**Analysis**: Comprehensive review of `api_list-access.json` test failures  
 **Implementation**: OCaml reference implementation  
 
 This document catalogs test data issues discovered through systematic analysis of test failures, distinguishing between implementation bugs vs. test categorization problems.
@@ -242,7 +242,7 @@ All fixes are **equal priority** as they address fundamental test suite quality 
 ## Impact Assessment
 
 ### Before Fixes
-- ❌ **15 failing tests** in `api-list-access.json`
+- ❌ **15 failing tests** in `api_list-access.json`
 - ❌ Mixed behavioral expectations 
 - ❌ Confusing error messages
 - ❌ Poor implementation coverage

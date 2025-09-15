@@ -1,0 +1,54 @@
+[
+  {
+    "name": "nested_objects_with_lists_parse",
+    "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "environments",
+          "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "nested_objects_with_lists"
+  },
+  {
+    "name": "nested_objects_with_lists_build_hierarchy",
+    "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "environments": {
+          "dev": {
+            "port": "3000",
+            "server": "localhost"
+          },
+          "prod": {
+            "port": "80",
+            "server": [
+              "web1",
+              "web2"
+            ]
+          }
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "nested_objects_with_lists"
+  }
+]

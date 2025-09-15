@@ -89,7 +89,7 @@ This comprehensive mapping analyzes the OCaml manual tests from `../ccl-ocaml/te
 
 3. **Whitespace Edge Cases**: JSON tests are more thorough with whitespace handling, tab preservation, and mixed indentation scenarios.
 
-4. **Property Tests Coverage**: OCaml property-based tests (roundtrip, associativity, monoid laws) are now fully represented in the `algebraic-properties.json` test suite.
+4. **Property Tests Coverage**: OCaml property_based tests (roundtrip, associativity, monoid laws) are now fully represented in the `algebraic-properties.json` test suite.
 
 5. **Complete Stress Test Coverage**: The realistic CCL document from `test_stress.ml` is now fully represented as `ocaml_stress_test_original`.
 

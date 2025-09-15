@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-edge-cases.json
+// Generated from tests/api_edge-cases.json
 // Suite: CCL Edge Cases - Validation Format
 // Version: 2.1
 // Description: Cross-level edge cases, stress tests, and production validation - whitespace variations, unicode, complex scenarios spanning all levels.

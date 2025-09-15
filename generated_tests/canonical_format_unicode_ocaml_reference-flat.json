@@ -1,0 +1,20 @@
+[
+  {
+    "name": "canonical_format_unicode_ocaml_reference_canonical_format",
+    "input": "unicode = 你好世界\nemo = 🌟✨",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_unicode_ocaml_reference"
+  }
+]

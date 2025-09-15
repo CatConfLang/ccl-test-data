@@ -1,0 +1,69 @@
+[
+  {
+    "name": "nested_list_access_parse",
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "database",
+          "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "nested_list_access"
+  },
+  {
+    "name": "nested_list_access_build_hierarchy",
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "database": {
+          "hosts": [
+            "primary",
+            "secondary"
+          ],
+          "port": "5432"
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "nested_list_access"
+  },
+  {
+    "name": "nested_list_access_get_list",
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "validation": "get_list",
+    "expected": {
+      "count": 1,
+      "list": [
+        "5432"
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "nested_list_access"
+  }
+]

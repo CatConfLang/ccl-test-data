@@ -1,0 +1,72 @@
+[
+  {
+    "name": "mixed_duplicate_single_keys_reference_build_hierarchy",
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "host": "localhost",
+        "ports": [
+          "443",
+          "80"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "mixed_duplicate_single_keys_reference"
+  },
+  {
+    "name": "mixed_duplicate_single_keys_reference_get_list",
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "validation": "get_list",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "mixed_duplicate_single_keys_reference"
+  },
+  {
+    "name": "mixed_duplicate_single_keys_reference_parse",
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "ports",
+          "value": "80"
+        },
+        {
+          "key": "ports",
+          "value": "443"
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "mixed_duplicate_single_keys_reference"
+  }
+]

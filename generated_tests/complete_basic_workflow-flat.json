@@ -1,0 +1,47 @@
+[
+  {
+    "name": "complete_basic_workflow_parse",
+    "input": "name = Alice\nage = 42",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "age",
+          "value": "42"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "complete_basic_workflow"
+  },
+  {
+    "name": "complete_basic_workflow_build_hierarchy",
+    "input": "name = Alice\nage = 42",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "age": "42",
+        "name": "Alice"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "complete_basic_workflow"
+  }
+]

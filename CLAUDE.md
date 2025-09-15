@@ -16,7 +16,7 @@ Official JSON test suite for CCL (Categorical Configuration Language) implementa
 - **Level 5**: Validation/formatting - `PrettyPrint()`
 
 **Key Components:**
-- `tests/api-*.json` - Feature-specific test suites with structured tagging and counted assertions
+- `tests/api_*.json` - Feature-specific test suites with structured tagging and counted assertions
 - `cmd/ccl-test-runner/` - CLI for test generation and execution with enhanced statistics
 - `internal/mock/ccl.go` - Working CCL implementation (should pass most Level 1-4 tests)
 - `internal/generator/` - Go test file generation from JSON data
@@ -151,12 +151,12 @@ All tests use required `count` fields for precise validation:
 ```
 
 ### Test Organization
-- **Essential**: `api-essential-parsing.json` (basic Level 1 functionality)
-- **Comprehensive**: `api-comprehensive-parsing.json` (edge cases, whitespace)
-- **Processing**: `api-processing.json` (Level 2 composition and filtering)
-- **Objects**: `api-object-construction.json` (Level 3 nested object creation)
-- **Typed**: `api-typed-access.json` (Level 4 type-safe access)
-- **Comments**: `api-comments.json` (comment syntax and filtering)
+- **Essential**: `api_essential-parsing.json` (basic Level 1 functionality)
+- **Comprehensive**: `api_comprehensive-parsing.json` (edge cases, whitespace)
+- **Processing**: `api_processing.json` (Level 2 composition and filtering)
+- **Objects**: `api_object-construction.json` (Level 3 nested object creation)
+- **Typed**: `api_typed-access.json` (Level 4 type-safe access)
+- **Comments**: `api_comments.json` (comment syntax and filtering)
 
 ## Implementation Guidelines
 
@@ -167,7 +167,7 @@ All tests use required `count` fields for precise validation:
 4. **Include generated test files in commits** - changes to `internal/generator/` or test JSON files require committing updated `go_tests/` files
 
 ### Adding Tests
-1. Add to appropriate `tests/api-*.json` file by feature level
+1. Add to appropriate `tests/api_*.json` file by feature level
 2. Include structured tags:
    - Required: `function:*` tags based on validations used
    - Optional: `feature:*` tags for language features required

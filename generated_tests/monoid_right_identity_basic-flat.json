@@ -1,0 +1,43 @@
+[
+  {
+    "name": "monoid_right_identity_basic_parse",
+    "input": "key = value\nnested =\n  sub = val",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key",
+          "value": "value"
+        },
+        {
+          "key": "nested",
+          "value": "\n  sub = val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "monoid_right_identity_basic"
+  },
+  {
+    "name": "monoid_right_identity_basic_associativity",
+    "input": "key = value\nnested =\n  sub = val",
+    "validation": "associativity",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "associativity"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "monoid_right_identity_basic"
+  }
+]

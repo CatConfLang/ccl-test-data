@@ -1,0 +1,63 @@
+[
+  {
+    "name": "empty_list_parse",
+    "input": "empty_list =",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "empty_list",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "empty_list"
+  },
+  {
+    "name": "empty_list_build_hierarchy",
+    "input": "empty_list =",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "empty_list": ""
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "empty_list"
+  },
+  {
+    "name": "empty_list_get_list",
+    "input": "empty_list =",
+    "validation": "get_list",
+    "expected": {
+      "count": 1,
+      "list": [
+        ""
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "empty_list"
+  }
+]

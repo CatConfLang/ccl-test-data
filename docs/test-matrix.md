@@ -4,43 +4,43 @@
 
 | File | Level | Tests | Assertions | Functions | Features | Purpose |
 |------|-------|-------|------------|-----------|----------|---------|
-| **api-essential-parsing.json** | 1 | 45 | 89 | parse, load | - | Foundation parsing |
-| **api-comprehensive-parsing.json** | 1+ | 23 | 47 | parse, load | unicode, whitespace | Advanced parsing |
-| **api-processing.json** | 2 | 67 | 134 | filter, compose, expand-dotted | comments | Entry processing |
-| **api-comments.json** | 2 | 15 | 30 | parse, filter | comments | Comment handling |
-| **api-object-construction.json** | 3 | 89 | 178 | make-objects, build-hierarchy | dotted-keys | Object building |
-| **api-dotted-keys.json** | 3 | 34 | 68 | make-objects, expand-dotted | dotted-keys | Key expansion |
-| **api-typed-access.json** | 4 | 151 | 302 | get-string, get-int, get-bool, get-float | - | Type access |
-| **api-errors.json** | All | 18 | 36 | All functions | error-handling | Error validation |
-| **property-round-trip.json** | 4 | 12 | 24 | parse, pretty-print | round-trip | Consistency |
-| **property-algebraic.json** | 4 | 8 | 16 | All functions | algebraic | Properties |
+| **api_essential-parsing.json** | 1 | 45 | 89 | parse, load | - | Foundation parsing |
+| **api_comprehensive-parsing.json** | 1+ | 23 | 47 | parse, load | unicode, whitespace | Advanced parsing |
+| **api_processing.json** | 2 | 67 | 134 | filter, compose, expand-dotted | comments | Entry processing |
+| **api_comments.json** | 2 | 15 | 30 | parse, filter | comments | Comment handling |
+| **api_object-construction.json** | 3 | 89 | 178 | make-objects, build-hierarchy | dotted-keys | Object building |
+| **api_dotted-keys.json** | 3 | 34 | 68 | make-objects, expand-dotted | dotted-keys | Key expansion |
+| **api_typed-access.json** | 4 | 151 | 302 | get-string, get-int, get-bool, get-float | - | Type access |
+| **api_errors.json** | All | 18 | 36 | All functions | error-handling | Error validation |
+| **property_round-trip.json** | 4 | 12 | 24 | parse, pretty-print | round-trip | Consistency |
+| **property_algebraic.json** | 4 | 8 | 16 | All functions | algebraic | Properties |
 
 **Total**: 462 tests, 924 assertions across 10 files
 
 ## Progressive Implementation Matrix
 
 ### Level 1: Core CCL (parse + build_hierarchy)
-**Required Files**: api-essential-parsing.json, api-object-construction.json  
-**Optional Files**: api-comprehensive-parsing.json, api-dotted-keys.json  
+**Required Files**: api_essential-parsing.json, api_object-construction.json  
+**Optional Files**: api_comprehensive-parsing.json, api_dotted-keys.json  
 **Functions**: `parse()`, `load()`, `build-hierarchy()`  
 **Coverage**: 191 tests, 382 assertions
 
 ### Level 2: Typed Access
-**Required Files**: api-typed-access.json  
+**Required Files**: api_typed-access.json  
 **Prerequisites**: Level 1 complete  
 **Functions**: `get-string()`, `get-int()`, `get-bool()`, `get-float()`, `get-list()`  
 **Coverage**: 151 tests, 302 assertions
 
 ### Level 3: Advanced Processing
-**Required Files**: api-processing.json  
-**Optional Files**: api-comments.json  
+**Required Files**: api_processing.json  
+**Optional Files**: api_comments.json  
 **Prerequisites**: Level 1-2 complete  
 **Functions**: `filter()`, `compose()`, `expand-dotted()`  
 **Coverage**: 82 tests, 164 assertions
 
 ### Level 4: Experimental Features
-**Required Files**: property-round-trip.json, property-algebraic.json  
-**Optional Files**: api-errors.json  
+**Required Files**: property_round-trip.json, property_algebraic.json  
+**Optional Files**: api_errors.json  
 **Prerequisites**: Level 1-3 complete  
 **Functions**: `pretty-print()`, error handling  
 **Coverage**: 38 tests, 76 assertions
@@ -49,33 +49,33 @@
 
 | Function | Level | Required Files | Test Count | Implementation Priority |
 |----------|-------|----------------|------------|------------------------|
-| **parse()** | 1 | api-essential-parsing.json | 45 | 🔴 Critical - Start Here |
-| **load()** | 1 | api-essential-parsing.json | 12 | 🔴 Critical |
-| **filter()** | 3 | api-processing.json, api-comments.json | 25 | 🟡 Important |
-| **compose()** | 3 | api-processing.json | 18 | 🟡 Important |
-| **expand-dotted()** | 3 | api-processing.json, api-dotted-keys.json | 24 | 🟢 Optional |
-| **make-objects()** | 1 | api-object-construction.json | 89 | 🔴 Critical |
-| **build-hierarchy()** | 1 | api-object-construction.json | 89 | 🔴 Critical |
-| **get-string()** | 2 | api-typed-access.json | 45 | 🟡 Important |
-| **get-int()** | 2 | api-typed-access.json | 38 | 🟡 Important |
-| **get-bool()** | 2 | api-typed-access.json | 32 | 🟡 Important |
-| **get-float()** | 2 | api-typed-access.json | 26 | 🟡 Important |
-| **get-list()** | 2 | api-typed-access.json | 10 | 🟢 Optional |
-| **pretty-print()** | 4 | property-round-trip.json | 12 | 🟢 Optional |
+| **parse()** | 1 | api_essential-parsing.json | 45 | 🔴 Critical - Start Here |
+| **load()** | 1 | api_essential-parsing.json | 12 | 🔴 Critical |
+| **filter()** | 3 | api_processing.json, api_comments.json | 25 | 🟡 Important |
+| **compose()** | 3 | api_processing.json | 18 | 🟡 Important |
+| **expand-dotted()** | 3 | api_processing.json, api_dotted-keys.json | 24 | 🟢 Optional |
+| **make-objects()** | 1 | api_object-construction.json | 89 | 🔴 Critical |
+| **build-hierarchy()** | 1 | api_object-construction.json | 89 | 🔴 Critical |
+| **get-string()** | 2 | api_typed-access.json | 45 | 🟡 Important |
+| **get-int()** | 2 | api_typed-access.json | 38 | 🟡 Important |
+| **get-bool()** | 2 | api_typed-access.json | 32 | 🟡 Important |
+| **get-float()** | 2 | api_typed-access.json | 26 | 🟡 Important |
+| **get-list()** | 2 | api_typed-access.json | 10 | 🟢 Optional |
+| **pretty-print()** | 4 | property_round-trip.json | 12 | 🟢 Optional |
 
 ## Feature Implementation Matrix
 
 | Feature | Tag | Files Using Feature | Implementation Complexity |
 |---------|-----|-------------------|---------------------------|
-| **Basic Parsing** | function:parse | api-essential-parsing.json | 🟢 Simple |
-| **Comments** | feature:comments | api-comments.json, api-processing.json | 🟡 Medium |
-| **Unicode** | feature:unicode | api-comprehensive-parsing.json | 🟡 Medium |
-| **Dotted Keys** | feature:dotted-keys | api-dotted-keys.json, api-object-construction.json | 🔴 Complex |
-| **Multiline Values** | feature:multiline | api-comprehensive-parsing.json | 🟡 Medium |
-| **Empty Keys** | feature:empty-keys | api-processing.json | 🟢 Simple |
-| **Whitespace Handling** | feature:whitespace | api-comprehensive-parsing.json | 🟡 Medium |
-| **Error Handling** | behavior:error-handling | api-errors.json | 🔴 Complex |
-| **Round-trip** | property:round-trip | property-round-trip.json | 🔴 Complex |
+| **Basic Parsing** | function:parse | api_essential-parsing.json | 🟢 Simple |
+| **Comments** | feature:comments | api_comments.json, api_processing.json | 🟡 Medium |
+| **Unicode** | feature:unicode | api_comprehensive-parsing.json | 🟡 Medium |
+| **Dotted Keys** | feature:dotted-keys | api_dotted-keys.json, api_object-construction.json | 🔴 Complex |
+| **Multiline Values** | feature:multiline | api_comprehensive-parsing.json | 🟡 Medium |
+| **Empty Keys** | feature:empty-keys | api_processing.json | 🟢 Simple |
+| **Whitespace Handling** | feature:whitespace | api_comprehensive-parsing.json | 🟡 Medium |
+| **Error Handling** | behavior:error-handling | api_errors.json | 🔴 Complex |
+| **Round-trip** | property:round-trip | property_round-trip.json | 🔴 Complex |
 
 ## Cross-Repository Implementation Status
 
@@ -126,29 +126,29 @@ just test-typed-access  # Type-aware value extraction
 ## Quality Gates
 
 ### Gate 1: Foundation (Level 1)
-- ✅ api-essential-parsing.json: 100% pass rate
+- ✅ api_essential-parsing.json: 100% pass rate
 - ✅ Parse function handles basic key-value pairs
 - ✅ Load function processes CCL text files
 
 ### Gate 2: Types (Level 2)
-- ✅ api-typed-access.json: 85%+ pass rate
+- ✅ api_typed-access.json: 85%+ pass rate
 - ✅ Type conversion and validation work
 - ✅ Error handling for invalid types
 
 ### Gate 3: Processing (Level 3)  
-- ✅ api-processing.json: 90%+ pass rate
+- ✅ api_processing.json: 90%+ pass rate
 - ✅ Comment filtering works correctly
 - ✅ Entry composition handles indentation
 
 ### Gate 4: Production (Level 4)
-- ✅ property-round-trip.json: 100% pass rate
+- ✅ property_round-trip.json: 100% pass rate
 - ✅ All error conditions handled gracefully
 - ✅ Performance meets requirements
 
 ## Implementation Guidance
 
 ### Start Here (New Implementation)
-1. **Choose Level 1**: Start with api-essential-parsing.json and api-object-construction.json
+1. **Choose Level 1**: Start with api_essential-parsing.json and api_object-construction.json
 2. **Implement parse() + build-hierarchy()**: Core CCL functionality
 3. **Validate Early**: Run tests frequently during development
 4. **Add Level 2**: Implement typed access for full functionality
@@ -157,8 +157,8 @@ just test-typed-access  # Type-aware value extraction
 ### Common Pitfalls
 - **Skipping Object Construction**: Level 2 typed access requires hierarchical objects
 - **Overengineering Level 3**: Entry processing is optional for MVP
-- **Ignoring Edge Cases**: api-comprehensive-parsing.json catches boundary conditions
-- **Poor Error Handling**: api-errors.json validates graceful failure modes
+- **Ignoring Edge Cases**: api_comprehensive-parsing.json catches boundary conditions
+- **Poor Error Handling**: api_errors.json validates graceful failure modes
 
 ### Success Metrics
 - **Functional**: 85%+ pass rate on required test files

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "round_trip_property_nested_parse",
+    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "config",
+          "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_property_nested"
+  },
+  {
+    "name": "round_trip_property_nested_round_trip",
+    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_property_nested"
+  }
+]

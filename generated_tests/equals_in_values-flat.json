@@ -1,0 +1,26 @@
+[
+  {
+    "name": "equals_in_values_parse",
+    "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "msg",
+          "value": "k=v pairs work fine"
+        },
+        {
+          "key": "path",
+          "value": "/bin/app=prod"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "equals_in_values"
+  }
+]

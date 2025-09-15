@@ -1,0 +1,61 @@
+[
+  {
+    "name": "parse_negative_integer_parse",
+    "input": "offset = -42",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "offset",
+          "value": "-42"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "parse_negative_integer"
+  },
+  {
+    "name": "parse_negative_integer_build_hierarchy",
+    "input": "offset = -42",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "offset": "-42"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_negative_integer"
+  },
+  {
+    "name": "parse_negative_integer_get_int",
+    "input": "offset = -42",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": -42
+    },
+    "functions": [
+      "get_int"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_negative_integer"
+  }
+]

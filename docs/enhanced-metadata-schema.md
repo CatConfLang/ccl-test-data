@@ -44,7 +44,7 @@
     "cross_references": {
       "gleam_implementation": "packages/ccl/src/ccl.gleam#parse",
       "go_reference": "internal/mock/ccl.go#Parse",
-      "documentation": "https://ccl.tylerbutler.com/api-reference#parsing"
+      "documentation": "https://ccl.tylerbutler.com/api_reference#parsing"
     }
   },
   "tests": [...]
@@ -88,7 +88,7 @@
 
 ### Phase 1: File-Level Metadata (All 10 JSON Files)
 
-#### api-essential-parsing.json
+#### api_essential-parsing.json
 ```json
 "llm_metadata": {
   "llm_description": "Level 1 CCL parsing tests - basic key-value pair extraction from text",
@@ -98,16 +98,16 @@
   "implementation_notes": "Start here for new CCL implementations. Foundation parsing without object construction.",
   "test_count": 45,
   "assertion_count": 89,
-  "learning_path": "Begin → api-processing.json → api-object-construction.json → api-typed-access.json"
+  "learning_path": "Begin → api_processing.json → api_object-construction.json → api_typed-access.json"
 }
 ```
 
-#### api-comprehensive-parsing.json  
+#### api_comprehensive-parsing.json  
 ```json
 "llm_metadata": {
   "llm_description": "Level 1 CCL parsing edge cases - whitespace, unicode, complex syntax validation",
   "complexity_level": "Level 1+",
-  "prerequisite_tests": ["api-essential-parsing.json"],
+  "prerequisite_tests": ["api_essential-parsing.json"],
   "related_functions": ["parse", "load"],
   "implementation_notes": "Advanced Level 1 parsing. Handle edge cases after basic parsing works.",
   "test_count": 23,
@@ -115,12 +115,12 @@
 }
 ```
 
-#### api-processing.json
+#### api_processing.json
 ```json
 "llm_metadata": {
   "llm_description": "Level 2 CCL entry processing - composition, filtering, and advanced text handling",
   "complexity_level": "Level 2", 
-  "prerequisite_tests": ["api-essential-parsing.json"],
+  "prerequisite_tests": ["api_essential-parsing.json"],
   "related_functions": ["filter", "compose", "expand-dotted"],
   "implementation_notes": "Level 2 functionality. Requires working Level 1 parsing foundation.",
   "test_count": 67,
@@ -128,12 +128,12 @@
 }
 ```
 
-#### api-object-construction.json
+#### api_object-construction.json
 ```json
 "llm_metadata": {
   "llm_description": "Level 3 CCL object construction - converts flat entries to nested objects",
   "complexity_level": "Level 3",
-  "prerequisite_tests": ["api-essential-parsing.json", "api-processing.json"],
+  "prerequisite_tests": ["api_essential-parsing.json", "api_processing.json"],
   "related_functions": ["make-objects"],
   "implementation_notes": "Level 3 core functionality. Transforms flat key-value pairs into hierarchical objects.",
   "test_count": 89, 
@@ -141,12 +141,12 @@
 }
 ```
 
-#### api-typed-access.json
+#### api_typed-access.json
 ```json
 "llm_metadata": {
   "llm_description": "Level 4 CCL typed access - type-aware value extraction with conversion",
   "complexity_level": "Level 4",
-  "prerequisite_tests": ["api-essential-parsing.json", "api-object-construction.json"],
+  "prerequisite_tests": ["api_essential-parsing.json", "api_object-construction.json"],
   "related_functions": ["get-string", "get-int", "get-bool", "get-float", "get-list"],
   "implementation_notes": "Level 4 completion. Requires Level 3 object construction for navigation.",
   "test_count": 151,
@@ -154,24 +154,24 @@
 }
 ```
 
-#### api-comments.json
+#### api_comments.json
 ```json
 "llm_metadata": {
   "llm_description": "CCL comment syntax handling - '/=' prefix comment processing",
   "complexity_level": "Level 2 Feature",
-  "prerequisite_tests": ["api-essential-parsing.json"],
+  "prerequisite_tests": ["api_essential-parsing.json"],
   "related_functions": ["parse", "filter"],
   "implementation_notes": "Optional feature. Add after basic parsing works. Filter '/=' comments.",
   "feature_flag": "feature:comments"
 }
 ```
 
-#### api-dotted-keys.json
+#### api_dotted-keys.json
 ```json
 "llm_metadata": {
   "llm_description": "CCL dotted key expansion - converts 'foo.bar.baz' to nested object structure",
   "complexity_level": "Level 3 Feature",
-  "prerequisite_tests": ["api-essential-parsing.json", "api-object-construction.json"],
+  "prerequisite_tests": ["api_essential-parsing.json", "api_object-construction.json"],
   "related_functions": ["make-objects", "expand-dotted"],
   "implementation_notes": "Advanced Level 3 feature. Requires object construction foundation.",
   "feature_flag": "feature:dotted-keys"
@@ -219,13 +219,13 @@ Priority tests for detailed LLM guidance:
     "line_reference": "#L23-L45"
   },
   "documentation": {
-    "api_reference": "https://ccl.tylerbutler.com/api-reference#parsing",
+    "api_reference": "https://ccl.tylerbutler.com/api_reference#parsing",
     "implementation_guide": "https://ccl.tylerbutler.com/implementing-ccl",
     "parsing_algorithm": "https://ccl.tylerbutler.com/parsing-algorithm"
   },
   "related_test_files": [
-    "api-comprehensive-parsing.json",
-    "api-processing.json"
+    "api_comprehensive-parsing.json",
+    "api_processing.json"
   ]
 }
 ```

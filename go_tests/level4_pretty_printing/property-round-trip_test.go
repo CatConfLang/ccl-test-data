@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/property-round-trip.json
+// Generated from tests/property_round-trip.json
 // Suite: CCL Pretty Printer (Validation Format)
 // Version: 2.0
 // Description: Pretty printing and round-trip testing - ensures canonical formatting and parse/pretty-print/parse identity

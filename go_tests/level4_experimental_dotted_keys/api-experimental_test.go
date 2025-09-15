@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-experimental.json
+// Generated from tests/api_experimental.json
 // Suite: CCL Experimental Features - Validation Format
 // Version: 2.1
 // Description: Experimental and implementation-specific CCL features - NOT part of standard specification, subject to change.

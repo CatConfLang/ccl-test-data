@@ -1,0 +1,22 @@
+[
+  {
+    "name": "value_trailing_spaces_parse",
+    "input": "key = val  ",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "value_trailing_spaces"
+  }
+]

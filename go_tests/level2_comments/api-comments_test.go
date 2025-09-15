@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-comments.json
+// Generated from tests/api_comments.json
 // Suite: CCL Comment Filtering - Validation Format
 // Version: 2.1
 // Description: Comment syntax and filtering functionality - remove documentation keys from configuration

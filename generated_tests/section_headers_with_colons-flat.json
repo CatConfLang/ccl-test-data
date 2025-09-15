@@ -1,0 +1,34 @@
+[
+  {
+    "name": "section_headers_with_colons_parse",
+    "input": "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "",
+          "value": "= Database: Production =="
+        },
+        {
+          "key": "host",
+          "value": "db.prod.com"
+        },
+        {
+          "key": "",
+          "value": "== Cache: Redis Config ==="
+        },
+        {
+          "key": "port",
+          "value": "6379"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "section_headers_with_colons"
+  }
+]

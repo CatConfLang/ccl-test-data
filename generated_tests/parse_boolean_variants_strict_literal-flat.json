@@ -1,0 +1,109 @@
+[
+  {
+    "name": "parse_boolean_variants_strict_literal_get_int",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 1
+    },
+    "functions": [
+      "get_int"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_variants_strict_literal"
+  },
+  {
+    "name": "parse_boolean_variants_strict_literal_parse",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "validation": "parse",
+    "expected": {
+      "count": 7,
+      "entries": [
+        {
+          "key": "flag1",
+          "value": "yes"
+        },
+        {
+          "key": "flag2",
+          "value": "on"
+        },
+        {
+          "key": "flag3",
+          "value": "1"
+        },
+        {
+          "key": "flag4",
+          "value": "false"
+        },
+        {
+          "key": "flag5",
+          "value": "no"
+        },
+        {
+          "key": "flag6",
+          "value": "off"
+        },
+        {
+          "key": "flag7",
+          "value": "0"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "parse_boolean_variants_strict_literal"
+  },
+  {
+    "name": "parse_boolean_variants_strict_literal_build_hierarchy",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "flag1": "yes",
+        "flag2": "on",
+        "flag3": "1",
+        "flag4": "false",
+        "flag5": "no",
+        "flag6": "off",
+        "flag7": "0"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_variants_strict_literal"
+  },
+  {
+    "name": "parse_boolean_variants_strict_literal_get_bool",
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "validation": "get_bool",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_variants_strict_literal"
+  }
+]

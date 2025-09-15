@@ -1,0 +1,22 @@
+[
+  {
+    "name": "complex_multi_newline_whitespace_parse",
+    "input": "  \n key  \n=  val  \n",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "complex_multi_newline_whitespace"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "name": "mixed_dotted_and_regular_keys_parse",
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "app",
+          "value": "MyApp"
+        },
+        {
+          "key": "database.host",
+          "value": "localhost"
+        },
+        {
+          "key": "config",
+          "value": "\n  debug = true"
+        },
+        {
+          "key": "logging.level",
+          "value": "info"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "mixed_dotted_and_regular_keys"
+  },
+  {
+    "name": "mixed_dotted_and_regular_keys_expand_dotted",
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "validation": "expand_dotted",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "app",
+          "value": "MyApp"
+        },
+        {
+          "key": "database",
+          "value": "\n  host = localhost"
+        },
+        {
+          "key": "config",
+          "value": "\n  debug = true"
+        },
+        {
+          "key": "logging",
+          "value": "\n  level = info"
+        }
+      ]
+    },
+    "functions": [
+      "expand_dotted"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "mixed_dotted_and_regular_keys"
+  },
+  {
+    "name": "mixed_dotted_and_regular_keys_build_hierarchy",
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "app": "MyApp",
+        "config": {
+          "debug": "true"
+        },
+        "database": {
+          "host": "localhost"
+        },
+        "logging": {
+          "level": "info"
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "mixed_dotted_and_regular_keys"
+  }
+]

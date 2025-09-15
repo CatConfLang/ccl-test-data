@@ -1,0 +1,39 @@
+[
+  {
+    "name": "round_trip_multiline_values_parse",
+    "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "script",
+          "value": "\n  #!/bin/bash\n  echo hello\n  exit 0"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_multiline_values"
+  },
+  {
+    "name": "round_trip_multiline_values_round_trip",
+    "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_multiline_values"
+  }
+]

@@ -1,0 +1,78 @@
+[
+  {
+    "name": "duplicate_keys_to_lists_build_hierarchy",
+    "input": "item = first\nitem = second\nitem = third",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "item": [
+          "first",
+          "second",
+          "third"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "duplicate_keys_to_lists"
+  },
+  {
+    "name": "duplicate_keys_to_lists_load",
+    "input": "item = first\nitem = second\nitem = third",
+    "validation": "load",
+    "expected": {
+      "count": 1,
+      "value": {
+        "item": [
+          "first",
+          "second",
+          "third"
+        ]
+      }
+    },
+    "functions": [
+      "load"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "duplicate_keys_to_lists"
+  },
+  {
+    "name": "duplicate_keys_to_lists_parse",
+    "input": "item = first\nitem = second\nitem = third",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "item",
+          "value": "first"
+        },
+        {
+          "key": "item",
+          "value": "second"
+        },
+        {
+          "key": "item",
+          "value": "third"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "duplicate_keys_to_lists"
+  }
+]

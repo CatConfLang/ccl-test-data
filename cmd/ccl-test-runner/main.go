@@ -44,7 +44,7 @@ with proper organization by level and feature.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "source-tests",
+						Value:   "source_tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -121,7 +121,7 @@ test counts, assertion counts, and categorization by feature areas.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "source-tests",
+						Value:   "source_tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -146,7 +146,7 @@ results to detect performance regressions.`,
 					&cli.StringFlag{
 						Name:    "input",
 						Aliases: []string{"i"},
-						Value:   "source-tests",
+						Value:   "source_tests",
 						Usage:   "Input directory containing JSON test files",
 					},
 					&cli.StringFlag{
@@ -187,13 +187,13 @@ This creates a simple, uniform format that's easy for test runners to process.`,
 					&cli.StringFlag{
 						Name:    "source",
 						Aliases: []string{"s"},
-						Value:   "source-tests",
+						Value:   "source_tests",
 						Usage:   "Source directory with source format tests",
 					},
 					&cli.StringFlag{
 						Name:    "generated",
 						Aliases: []string{"g"},
-						Value:   "generated-tests",
+						Value:   "generated_tests",
 						Usage:   "Output directory for flat format tests",
 					},
 				},

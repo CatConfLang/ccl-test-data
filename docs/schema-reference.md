@@ -11,11 +11,11 @@ This document provides comprehensive documentation for both the **source format*
 The CCL test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
 - **Source Format** (`tests/`): Maintainable format with grouped validations per test
-- **Generated Flat Format** (`generated-tests/`): Implementation-friendly with separate typed fields
+- **Generated Flat Format** (`generated_tests/`): Implementation-friendly with separate typed fields
 
 **Schema Locations**: 
 - Source: `tests/schema.json` (JSON Schema Draft 07)
-- Generated: `generated-tests/flat-test-schema.json` (JSON Schema Draft 07)
+- Generated: `generated_tests/flat-test-schema.json` (JSON Schema Draft 07)
 
 ## Architecture Benefits
 
@@ -54,7 +54,7 @@ The source format in `tests/` directory maintains readability for test authoring
 
 ## Generated Flat Format Structure
 
-The generated flat format in `generated-tests/` directory provides optimal implementation ergonomics:
+The generated flat format in `generated_tests/` directory provides optimal implementation ergonomics:
 
 ```json
 {

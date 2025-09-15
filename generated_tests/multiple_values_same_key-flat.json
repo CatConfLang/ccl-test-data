@@ -1,0 +1,30 @@
+[
+  {
+    "name": "multiple_values_same_key_parse",
+    "input": "ports = 8000\nports = 8001\nports = 8002",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "ports",
+          "value": "8000"
+        },
+        {
+          "key": "ports",
+          "value": "8001"
+        },
+        {
+          "key": "ports",
+          "value": "8002"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "multiple_values_same_key"
+  }
+]

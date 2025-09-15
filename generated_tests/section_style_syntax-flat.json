@@ -1,0 +1,22 @@
+[
+  {
+    "name": "section_style_syntax_parse",
+    "input": "== Section 2 ==",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "",
+          "value": "= Section 2 =="
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "section_style_syntax"
+  }
+]

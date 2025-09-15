@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-advanced-processing.json
+// Generated from tests/api_advanced-processing.json
 // Suite: CCL Advanced Processing - Validation Format
 // Version: 2.1
 // Description: Advanced entry processing, composition, and merging - Level 3 power user functionality for complex configurations.

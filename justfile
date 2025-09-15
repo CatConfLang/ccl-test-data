@@ -131,11 +131,11 @@ read FILE:
 
 # Validate all test files against schema
 validate:
-    jv tests/schema.json tests/api-*.json tests/property-*.json
+    jv tests/schema.json tests/api_*.json tests/property_*.json
 
 # Validate generated flat format tests against generated schema  
 validate-flat:
-    jv schemas/generated-format.json generated-tests/*.json
+    jv schemas/generated-format.json generated_tests/*.json
 
 # Validate both source and generated formats
 validate-all:
@@ -145,7 +145,7 @@ validate-all:
 # Validate enhanced LLM metadata in test files
 validate-metadata:
     @echo "🤖 Validating enhanced LLM metadata in test files..."
-    @go run scripts/validate-enhanced-metadata.go "tests/api-*.json"
+    @go run scripts/validate-enhanced-metadata.go "tests/api_*.json"
 
 # Clean up generated files (cross-platform)
 clean:

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "quotes_treated_as_literal_quoted_parse",
+    "input": "host = \"localhost\"",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "host",
+          "value": "\"localhost\""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "quotes_treated_as_literal_quoted"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "round_trip_whitespace_normalization_round_trip",
+    "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_whitespace_normalization"
+  },
+  {
+    "name": "round_trip_whitespace_normalization_parse",
+    "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "value  \n  nested  = \n    sub  =  val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_whitespace_normalization"
+  }
+]

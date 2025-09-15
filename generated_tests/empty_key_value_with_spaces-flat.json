@@ -1,0 +1,22 @@
+[
+  {
+    "name": "empty_key_value_with_spaces_parse",
+    "input": "  =  ",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "empty_key_value_with_spaces"
+  }
+]

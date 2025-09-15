@@ -28,12 +28,12 @@ func main() {
 		}
 
 		if info.IsDir() {
-			// Find all api-*.json files in the directory (excluding schema.json)
+			// Find all api_*.json files in the directory (excluding schema.json)
 			err := filepath.Walk(arg, func(path string, info os.FileInfo, err error) error {
 				if err != nil {
 					return err
 				}
-				if !info.IsDir() && strings.HasPrefix(filepath.Base(path), "api-") &&
+				if !info.IsDir() && strings.HasPrefix(filepath.Base(path), "api_") &&
 					strings.HasSuffix(path, ".json") && filepath.Base(path) != "schema.json" {
 					testFiles = append(testFiles, path)
 				}

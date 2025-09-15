@@ -1,0 +1,83 @@
+[
+  {
+    "name": "list_with_numbers_parse",
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "numbers",
+          "value": "1"
+        },
+        {
+          "key": "numbers",
+          "value": "42"
+        },
+        {
+          "key": "numbers",
+          "value": "-17"
+        },
+        {
+          "key": "numbers",
+          "value": "0"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "list_with_numbers"
+  },
+  {
+    "name": "list_with_numbers_build_hierarchy",
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "numbers": [
+          "1",
+          "42",
+          "-17",
+          "0"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_with_numbers"
+  },
+  {
+    "name": "list_with_numbers_get_list",
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "validation": "get_list",
+    "expected": {
+      "count": 4,
+      "list": [
+        "1",
+        "42",
+        "-17",
+        "0"
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "list_with_numbers"
+  }
+]

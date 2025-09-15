@@ -1,0 +1,40 @@
+[
+  {
+    "name": "canonical_format_empty_values_parse",
+    "input": "empty_key =",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "empty_key",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "canonical_format_empty_values"
+  },
+  {
+    "name": "canonical_format_empty_values_canonical_format",
+    "input": "empty_key =",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "empty_key ="
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_empty_values"
+  }
+]

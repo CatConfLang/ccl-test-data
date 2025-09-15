@@ -1,0 +1,30 @@
+[
+  {
+    "name": "list_with_empty_keys_parse",
+    "input": "= 3\n= 1\n= 2",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "",
+          "value": "3"
+        },
+        {
+          "key": "",
+          "value": "1"
+        },
+        {
+          "key": "",
+          "value": "2"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "list_with_empty_keys"
+  }
+]

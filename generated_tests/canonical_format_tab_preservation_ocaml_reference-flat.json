@@ -1,0 +1,20 @@
+[
+  {
+    "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
+    "input": "value_with_tabs = text\t\twith\ttabs\t",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "value_with_tabs =\n  text\t\twith\ttabs =\n"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_tab_preservation_ocaml_reference"
+  }
+]

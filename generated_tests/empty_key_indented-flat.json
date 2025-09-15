@@ -1,0 +1,25 @@
+[
+  {
+    "name": "empty_key_indented_parse_value",
+    "input": "  = val",
+    "validation": "parse_value",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "",
+          "value": "val"
+        }
+      ]
+    },
+    "functions": [
+      "parse_value"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 2,
+    "source_test": "empty_key_indented"
+  }
+]

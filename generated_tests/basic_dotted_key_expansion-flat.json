@@ -1,0 +1,67 @@
+[
+  {
+    "name": "basic_dotted_key_expansion_parse",
+    "input": "database.host = localhost",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "database.host",
+          "value": "localhost"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "basic_dotted_key_expansion"
+  },
+  {
+    "name": "basic_dotted_key_expansion_expand_dotted",
+    "input": "database.host = localhost",
+    "validation": "expand_dotted",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "database",
+          "value": "\n  host = localhost"
+        }
+      ]
+    },
+    "functions": [
+      "expand_dotted"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "basic_dotted_key_expansion"
+  },
+  {
+    "name": "basic_dotted_key_expansion_build_hierarchy",
+    "input": "database.host = localhost",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "database": {
+          "host": "localhost"
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "basic_dotted_key_expansion"
+  }
+]

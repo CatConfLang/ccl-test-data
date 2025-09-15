@@ -1,0 +1,30 @@
+[
+  {
+    "name": "section_header_triple_equals_parse",
+    "input": "=== Server Settings ===\nhost = 0.0.0.0\nssl = true",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "",
+          "value": "== Server Settings ==="
+        },
+        {
+          "key": "host",
+          "value": "0.0.0.0"
+        },
+        {
+          "key": "ssl",
+          "value": "true"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "section_header_triple_equals"
+  }
+]

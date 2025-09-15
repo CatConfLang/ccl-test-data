@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-core-ccl-hierarchy.json
+// Generated from tests/api_core-ccl-hierarchy.json
 // Suite: CCL Core Hierarchy - Validation Format
 // Version: 2.1
 // Description: Core CCL hierarchy construction - validates flat entries → nested objects transformation as part of atomic Core CCL.

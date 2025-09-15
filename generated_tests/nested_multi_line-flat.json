@@ -1,0 +1,22 @@
+[
+  {
+    "name": "nested_multi_line_parse",
+    "input": "key =\n  line1\n  line2",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "\n  line1\n  line2"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "nested_multi_line"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "equals_in_value_with_spaces_parse",
+    "input": "a = b = c",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "a",
+          "value": "b = c"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "equals_in_value_with_spaces"
+  }
+]

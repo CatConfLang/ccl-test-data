@@ -1,0 +1,48 @@
+[
+  {
+    "name": "deterministic_output_parse",
+    "input": "z = last\na = first\nm = middle",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "z",
+          "value": "last"
+        },
+        {
+          "key": "a",
+          "value": "first"
+        },
+        {
+          "key": "m",
+          "value": "middle"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "deterministic_output"
+  },
+  {
+    "name": "deterministic_output_canonical_format",
+    "input": "z = last\na = first\nm = middle",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "z = last\na = first\nm = middle"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "deterministic_output"
+  }
+]

@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/property-algebraic.json
+// Generated from tests/property_algebraic.json
 // Suite: CCL Algebraic Properties
 // Version: 2.0
 // Description: Algebraic property tests including semigroup associativity, monoid identity laws, and round-trip properties that ensure mathematical correctness of CCL operations

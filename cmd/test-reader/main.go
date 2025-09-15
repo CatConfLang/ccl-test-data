@@ -334,9 +334,9 @@ func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: test-reader <test-file.json|directory> [--static]")
 		fmt.Println("       test-reader tests/                              # Interactive TUI (default)")
-		fmt.Println("       test-reader tests/api-essential-parsing.json   # Interactive TUI (default)")
+		fmt.Println("       test-reader tests/api_essential-parsing.json   # Interactive TUI (default)")
 		fmt.Println("       test-reader tests/ --static                     # Static CLI output")
-		fmt.Println("       test-reader tests/api-essential-parsing.json --static")
+		fmt.Println("       test-reader tests/api_essential-parsing.json --static")
 		os.Exit(1)
 	}
 

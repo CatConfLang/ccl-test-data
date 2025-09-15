@@ -1,0 +1,22 @@
+[
+  {
+    "name": "nested_single_line_parse",
+    "input": "key =\n  val",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "\n  val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "nested_single_line"
+  }
+]

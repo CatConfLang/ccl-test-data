@@ -109,14 +109,14 @@ just benchmark              # Performance measurement
 
 Tests are organized by feature category in the `tests/` directory:
 
-- **`api-essential-parsing.json`** - Basic Level 1 functionality
-- **`api-comprehensive-parsing.json`** - Advanced parsing with edge cases
-- **`api-comments.json`** - Comment syntax support
-- **`api-dotted-keys.json`** - Dotted key expansion
-- **`api-object-construction.json`** - Level 1 object building
-- **`api-typed-access.json`** - Level 2 type-safe access
-- **`api-processing.json`** - Level 3 composition and filtering
-- **`api-errors.json`** - Error handling validation
+- **`api_essential-parsing.json`** - Basic Level 1 functionality
+- **`api_comprehensive-parsing.json`** - Advanced parsing with edge cases
+- **`api_comments.json`** - Comment syntax support
+- **`api_dotted-keys.json`** - Dotted key expansion
+- **`api_object-construction.json`** - Level 1 object building
+- **`api_typed-access.json`** - Level 2 type-safe access
+- **`api_processing.json`** - Level 3 composition and filtering
+- **`api_errors.json`** - Error handling validation
 
 ### Test Structure
 

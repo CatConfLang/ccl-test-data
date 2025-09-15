@@ -1,0 +1,85 @@
+[
+  {
+    "name": "list_multiline_values_build_hierarchy",
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "descriptions": [
+          "First line",
+          "Another item",
+          "Third item"
+        ],
+        "second line": ""
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_multiline_values"
+  },
+  {
+    "name": "list_multiline_values_get_list",
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "validation": "get_list",
+    "expected": {
+      "count": 3,
+      "list": [
+        "First line",
+        "Another item",
+        "Third item"
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "list_multiline_values"
+  },
+  {
+    "name": "list_multiline_values_parse_value",
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "validation": "parse_value",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "descriptions",
+          "value": "First line"
+        },
+        {
+          "key": "second line",
+          "value": ""
+        },
+        {
+          "key": "descriptions",
+          "value": "Another item"
+        },
+        {
+          "key": "descriptions",
+          "value": "Third item"
+        }
+      ]
+    },
+    "functions": [
+      "parse_value"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_multiline_values"
+  }
+]

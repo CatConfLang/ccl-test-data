@@ -1,0 +1,51 @@
+[
+  {
+    "name": "round_trip_property_complex_parse",
+    "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "",
+          "value": "item1"
+        },
+        {
+          "key": "",
+          "value": "item2"
+        },
+        {
+          "key": "config",
+          "value": "\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c"
+        },
+        {
+          "key": "final",
+          "value": "end"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_property_complex"
+  },
+  {
+    "name": "round_trip_property_complex_round_trip",
+    "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_property_complex"
+  }
+]

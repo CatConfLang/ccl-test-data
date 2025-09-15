@@ -1,0 +1,26 @@
+[
+  {
+    "name": "section_header_at_end_parse",
+    "input": "key = value\n== Final Section ==",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key",
+          "value": "value"
+        },
+        {
+          "key": "",
+          "value": "= Final Section =="
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "section_header_at_end"
+  }
+]

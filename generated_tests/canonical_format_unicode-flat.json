@@ -1,0 +1,44 @@
+[
+  {
+    "name": "canonical_format_unicode_parse",
+    "input": "unicode = 你好世界\nemo = 🌟✨",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "unicode",
+          "value": "你好世界"
+        },
+        {
+          "key": "emo",
+          "value": "🌟✨"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "canonical_format_unicode"
+  },
+  {
+    "name": "canonical_format_unicode_canonical_format",
+    "input": "unicode = 你好世界\nemo = 🌟✨",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "unicode = 你好世界\nemo = 🌟✨"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_unicode"
+  }
+]

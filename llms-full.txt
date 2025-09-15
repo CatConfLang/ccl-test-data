@@ -11,47 +11,47 @@ Official JSON test suite for CCL (Configuration and Control Language) implementa
 ## Test File Detailed Breakdown
 
 ### Core Parsing Tests
-**api-essential-parsing.json** (Level 1)
+**api_essential-parsing.json** (Level 1)
 - Basic CCL parsing functionality
 - Converts text to flat key-value pairs
 - Tests fundamental syntax: keys, values, indentation
 - Required functions: parse(), load()
 - Foundation for all CCL implementations
 
-**api-comprehensive-parsing.json**
+**api_comprehensive-parsing.json**
 - Extended parsing with edge cases
 - Complex syntax variations
 - Boundary condition validation
 - Advanced parsing scenario coverage
 
 ### Processing and Enhancement Tests
-**api-processing.json** (Level 2)  
+**api_processing.json** (Level 2)  
 - Entry composition and merging
 - Whitespace handling and normalization
 - Advanced text processing patterns
 - Prerequisites: Level 1 parsing complete
 
-**api-comments.json**
+**api_comments.json**
 - Comment syntax handling (`/=` prefix)
 - Comment filtering and preservation
 - Mixed content with comments
 - Feature tag: feature:comments
 
 ### Object Construction Tests
-**api-object-construction.json** (Level 3)
+**api_object-construction.json** (Level 3)
 - Converts flat entries to nested objects
 - Complex object hierarchy building
 - Required function: make-objects()
 - Prerequisites: Level 1-2 complete
 
-**api-dotted-keys.json**
+**api_dotted-keys.json**
 - Dotted key expansion (foo.bar.baz → nested objects)
 - Key conflict resolution
 - Hierarchical structure creation
 - Feature tag: feature:dotted-keys
 
 ### Type System Tests  
-**api-typed-access.json** (Level 4)
+**api_typed-access.json** (Level 4)
 - Type-aware value extraction
 - Required functions: get-string(), get-int(), get-bool(), get-float()
 - Array and object access patterns
@@ -59,18 +59,18 @@ Official JSON test suite for CCL (Configuration and Control Language) implementa
 - Prerequisites: Level 1-3 complete
 
 ### Validation and Properties
-**api-errors.json**
+**api_errors.json**
 - Error handling validation
 - Invalid input scenarios
 - Error message consistency
 - Graceful failure patterns
 
-**property-round-trip.json**
+**property_round-trip.json**
 - Round-trip validation properties
 - Parse → serialize → parse consistency
 - Data integrity verification
 
-**property-algebraic.json**  
+**property_algebraic.json**  
 - Algebraic properties validation
 - Mathematical consistency checks
 - Formal property verification
@@ -78,22 +78,22 @@ Official JSON test suite for CCL (Configuration and Control Language) implementa
 ## Progressive Implementation Strategy
 
 ### Implementation Sequence
-1. **Level 1 Foundation**: Start with api-essential-parsing.json
+1. **Level 1 Foundation**: Start with api_essential-parsing.json
    - Implement basic parse() and load() functions
    - Handle fundamental CCL syntax
    - Establish flat key-value pair processing
 
-2. **Level 2 Enhancement**: Add api-processing.json capabilities
+2. **Level 2 Enhancement**: Add api_processing.json capabilities
    - Implement entry composition and merging
    - Add whitespace normalization
    - Include comment processing if needed
 
-3. **Level 3 Structure**: Implement api-object-construction.json
+3. **Level 3 Structure**: Implement api_object-construction.json
    - Add make-objects() function
    - Convert flat entries to nested objects
    - Handle complex object hierarchies
 
-4. **Level 4 Completion**: Add api-typed-access.json functionality
+4. **Level 4 Completion**: Add api_typed-access.json functionality
    - Implement typed accessor functions
    - Add type validation and conversion
    - Complete full CCL specification

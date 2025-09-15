@@ -1,0 +1,45 @@
+[
+  {
+    "name": "comment_syntax_slash_equals_filter",
+    "input": "/= this is a comment",
+    "validation": "filter",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "/",
+          "value": "this is a comment"
+        }
+      ]
+    },
+    "functions": [
+      "filter"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 2,
+    "source_test": "comment_syntax_slash_equals"
+  },
+  {
+    "name": "comment_syntax_slash_equals_parse",
+    "input": "/= this is a comment",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "/",
+          "value": "this is a comment"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "comment_syntax_slash_equals"
+  }
+]

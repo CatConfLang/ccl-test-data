@@ -1,0 +1,58 @@
+[
+  {
+    "name": "complete_lists_workflow_parse",
+    "input": "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "servers",
+          "value": "\n  server = web1\n  server = web2\n  server = web3"
+        },
+        {
+          "key": "ports",
+          "value": "\n  port = 80\n  port = 443"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "complete_lists_workflow"
+  },
+  {
+    "name": "complete_lists_workflow_build_hierarchy",
+    "input": "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "ports": {
+          "port": [
+            "80",
+            "443"
+          ]
+        },
+        "servers": {
+          "server": [
+            "web1",
+            "web2",
+            "web3"
+          ]
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "complete_lists_workflow"
+  }
+]

@@ -1,0 +1,126 @@
+[
+  {
+    "name": "complex_mixed_list_scenarios_get_list",
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "validation": "get_list",
+    "expected": {
+      "count": 3,
+      "list": [
+        "auth",
+        "api",
+        "ui"
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "complex_mixed_list_scenarios"
+  },
+  {
+    "name": "complex_mixed_list_scenarios_parse_value",
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "validation": "parse_value",
+    "expected": {
+      "count": 11,
+      "entries": [
+        {
+          "key": "config",
+          "value": ""
+        },
+        {
+          "key": "servers",
+          "value": "web1"
+        },
+        {
+          "key": "servers",
+          "value": "web2"
+        },
+        {
+          "key": "database",
+          "value": ""
+        },
+        {
+          "key": "hosts",
+          "value": "primary"
+        },
+        {
+          "key": "hosts",
+          "value": "backup"
+        },
+        {
+          "key": "port",
+          "value": "5432"
+        },
+        {
+          "key": "cache",
+          "value": "redis"
+        },
+        {
+          "key": "features",
+          "value": "auth"
+        },
+        {
+          "key": "features",
+          "value": "api"
+        },
+        {
+          "key": "features",
+          "value": "ui"
+        }
+      ]
+    },
+    "functions": [
+      "parse_value"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "complex_mixed_list_scenarios"
+  },
+  {
+    "name": "complex_mixed_list_scenarios_build_hierarchy",
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "config": {
+          "cache": "redis",
+          "database": {
+            "hosts": [
+              "primary",
+              "backup"
+            ],
+            "port": "5432"
+          },
+          "servers": [
+            "web1",
+            "web2"
+          ]
+        },
+        "features": [
+          "auth",
+          "api",
+          "ui"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "complex_mixed_list_scenarios"
+  }
+]

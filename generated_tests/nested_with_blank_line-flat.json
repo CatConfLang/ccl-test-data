@@ -1,0 +1,25 @@
+[
+  {
+    "name": "nested_with_blank_line_parse_value",
+    "input": "key =\n  line1\n\n  line2",
+    "validation": "parse_value",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "\n  line1\n\n  line2"
+        }
+      ]
+    },
+    "functions": [
+      "parse_value"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 2,
+    "source_test": "nested_with_blank_line"
+  }
+]
