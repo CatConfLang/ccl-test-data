@@ -1,0 +1,131 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "ccl-test-source-format",
+  "title": "CCL Test Source Format",
+  "description": "Source format matching original CCL test structure with structured tagging",
+  "type": "object",
+  "required": ["$schema", "suite", "version", "description", "tests"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "suite": {
+      "type": "string",
+      "description": "Test suite name"
+    },
+    "version": {
+      "type": "string",
+      "description": "Test suite version"
+    },
+    "description": {
+      "type": "string",
+      "description": "Test suite description"
+    },
+    "llm_metadata": {
+      "type": "object",
+      "description": "LLM-specific metadata for generated tests"
+    },
+    "feature_flag": {
+      "type": "string",
+      "description": "Feature flag for experimental features",
+      "pattern": "^feature:[a-z_]+$"
+    },
+    "tests": {
+      "type": "array",
+      "description": "Array of test cases",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "input", "validations", "meta"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Unique test name identifier"
+          },
+          "input": {
+            "type": "string", 
+            "description": "CCL input text to be tested"
+          },
+          "validations": {
+            "type": "object",
+            "description": "Function validation tests",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "count": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Expected number of results"
+                },
+                "expected": {
+                  "oneOf": [
+                    {"type": "array"},
+                    {"type": "object"},
+                    {"type": "string"},
+                    {"type": "number"},
+                    {"type": "boolean"},
+                    {"type": "null"}
+                  ],
+                  "description": "Expected result"
+                },
+                "cases": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["args", "expected"],
+                    "properties": {
+                      "args": {"type": "array"},
+                      "expected": {}
+                    }
+                  },
+                  "description": "Test cases with arguments"
+                },
+                "error": {
+                  "type": "boolean",
+                  "description": "Whether function should error"
+                },
+                "error_message": {
+                  "type": "string",
+                  "description": "Expected error message"
+                }
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "required": ["tags"],
+            "properties": {
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(function|behavior|variant|feature):[a-z_]+$"
+                },
+                "description": "Structured tags: function:*, behavior:*, variant:*, feature:*"
+              },
+              "level": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5,
+                "description": "CCL implementation level (1-5)"
+              },
+              "feature": {
+                "type": "string",
+                "description": "Primary feature category"
+              },
+              "conflicts": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(function|behavior|variant|feature):[a-z_]+$"
+                },
+                "description": "Mutually exclusive tags"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

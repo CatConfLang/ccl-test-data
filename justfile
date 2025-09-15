@@ -27,7 +27,11 @@ install:
 
 # Generate Go test files from JSON test data
 generate:
-    go run ./cmd/ccl-test-runner generate
+    go run ./cmd/ccl-test-runner generate --input tests
+
+# Generate implementation-friendly flat tests from source format
+generate-flat:
+    go run ./cmd/ccl-test-runner generate-flat
 
 # Generate tests optimized for mock implementation (skip advanced features)
 generate-mock:
@@ -104,11 +108,11 @@ list:
 
 # Show comprehensive test suite statistics
 stats:
-    go run ./cmd/ccl-test-runner stats
+    go run ./cmd/ccl-test-runner stats --input tests
 
 # Show test statistics in JSON format
 stats-json:
-    go run ./cmd/ccl-test-runner stats --format json
+    go run ./cmd/ccl-test-runner stats --input tests --format json
 
 # Build and run test-reader with directory selection (CLI mode)
 read-dir:
@@ -128,6 +132,15 @@ read FILE:
 # Validate all test files against schema
 validate:
     jv tests/schema.json tests/api-*.json tests/property-*.json
+
+# Validate generated flat format tests against generated schema  
+validate-flat:
+    jv schemas/generated-format.json generated-tests/*.json
+
+# Validate both source and generated formats
+validate-all:
+    just validate
+    just validate-flat
 
 # Validate enhanced LLM metadata in test files
 validate-metadata:
