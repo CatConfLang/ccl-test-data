@@ -1,0 +1,680 @@
+{
+  "suite": "Compact Format",
+  "version": "1.0",
+  "description": " (flat format)",
+  "tests": [
+    {
+      "name": "round_trip_whitespace_normalization_parse",
+      "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key",
+          "value": "value  \n  nested  = \n    sub  =  val"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_whitespace_normalization"
+    },
+    {
+      "name": "round_trip_empty_keys_lists_parse",
+      "input": "= item1\n= item2\nregular = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "",
+          "value": "item1"
+        },
+        {
+          "key": "",
+          "value": "item2"
+        },
+        {
+          "key": "regular",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_empty_keys_lists"
+    },
+    {
+      "name": "round_trip_nested_structures_parse",
+      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "config",
+          "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_nested_structures"
+    },
+    {
+      "name": "round_trip_multiline_values_parse",
+      "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "script",
+          "value": "\n  #!/bin/bash\n  echo hello\n  exit 0"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_multiline_values"
+    },
+    {
+      "name": "round_trip_mixed_content_parse",
+      "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "",
+          "value": "first item"
+        },
+        {
+          "key": "config",
+          "value": "\n  port = 3000"
+        },
+        {
+          "key": "",
+          "value": "second item"
+        },
+        {
+          "key": "final",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_mixed_content"
+    },
+    {
+      "name": "canonical_format_empty_values_parse",
+      "input": "empty_key =",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "empty_key",
+          "value": ""
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_empty_values"
+    },
+    {
+      "name": "canonical_format_empty_values_canonical",
+      "input": "empty_key =",
+      "validation": "canonical",
+      "expected": "empty_key =",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_empty_values"
+    },
+    {
+      "name": "canonical_format_tab_preservation_parse",
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "value_with_tabs",
+          "value": "text\t\twith\ttabs\t"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_tab_preservation"
+    },
+    {
+      "name": "canonical_format_tab_preservation_canonical",
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "validation": "canonical",
+      "expected": "value_with_tabs = text\t\twith\ttabs",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_tab_preservation"
+    },
+    {
+      "name": "canonical_format_unicode_parse",
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "unicode",
+          "value": "你好世界"
+        },
+        {
+          "key": "emo",
+          "value": "🌟✨"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_unicode"
+    },
+    {
+      "name": "canonical_format_unicode_canonical",
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "validation": "canonical",
+      "expected": "unicode = 你好世界\nemo = 🌟✨",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_unicode"
+    },
+    {
+      "name": "round_trip_complex_nesting_parse",
+      "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "app",
+          "value": "\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_complex_nesting"
+    },
+    {
+      "name": "canonical_format_line_endings_proposed_parse",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key1",
+          "value": "value1"
+        },
+        {
+          "key": "key2",
+          "value": "value2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_line_endings_proposed"
+    },
+    {
+      "name": "canonical_format_line_endings_proposed_canonical",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "canonical",
+      "expected": "key1 = value1\nkey2 = value2",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_line_endings_proposed"
+    },
+    {
+      "name": "crlf_normalize_to_lf_proposed_parse",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key1",
+          "value": "value1"
+        },
+        {
+          "key": "key2",
+          "value": "value2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "crlf_normalize_to_lf_proposed"
+    },
+    {
+      "name": "crlf_normalize_to_lf_proposed_canonical",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "canonical",
+      "expected": "key1 = value1\nkey2 = value2",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "crlf_normalize_to_lf_proposed"
+    },
+    {
+      "name": "crlf_normalize_to_lf_indented_proposed_parse",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key1",
+          "value": "value1"
+        },
+        {
+          "key": "key2",
+          "value": "value2"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "crlf_normalize_to_lf_indented_proposed"
+    },
+    {
+      "name": "crlf_normalize_to_lf_indented_proposed_canonical",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "canonical",
+      "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "crlf_normalize_to_lf_indented_proposed"
+    },
+    {
+      "name": "round_trip_deeply_nested_parse",
+      "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "level1",
+          "value": "\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_deeply_nested"
+    },
+    {
+      "name": "canonical_format_consistent_spacing_parse",
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key1",
+          "value": "value1"
+        },
+        {
+          "key": "key2",
+          "value": "value2"
+        },
+        {
+          "key": "key3",
+          "value": "\tvalue3"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_consistent_spacing"
+    },
+    {
+      "name": "canonical_format_consistent_spacing_canonical",
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "validation": "canonical",
+      "expected": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_consistent_spacing"
+    },
+    {
+      "name": "round_trip_empty_multiline_parse",
+      "input": "empty_section =\n\nother = value",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "empty_section",
+          "value": ""
+        },
+        {
+          "key": "other",
+          "value": "value"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "round_trip_empty_multiline"
+    },
+    {
+      "name": "deterministic_output_parse",
+      "input": "z = last\na = first\nm = middle",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "z",
+          "value": "last"
+        },
+        {
+          "key": "a",
+          "value": "first"
+        },
+        {
+          "key": "m",
+          "value": "middle"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "deterministic_output"
+    },
+    {
+      "name": "deterministic_output_canonical",
+      "input": "z = last\na = first\nm = middle",
+      "validation": "canonical",
+      "expected": "z = last\na = first\nm = middle",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "deterministic_output"
+    },
+    {
+      "name": "canonical_format_empty_values_ocaml_reference_canonical",
+      "input": "empty_key =",
+      "validation": "canonical",
+      "expected": "empty_key =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_empty_values_ocaml_reference"
+    },
+    {
+      "name": "canonical_format_tab_preservation_ocaml_reference_canonical",
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "validation": "canonical",
+      "expected": "value_with_tabs =\n  text\t\twith\ttabs =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_tab_preservation_ocaml_reference"
+    },
+    {
+      "name": "canonical_format_unicode_ocaml_reference_canonical",
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "validation": "canonical",
+      "expected": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_unicode_ocaml_reference"
+    },
+    {
+      "name": "canonical_format_line_endings_reference_behavior_parse",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "parse",
+      "expected": [
+        {
+          "key": "key1",
+          "value": "value1\r"
+        },
+        {
+          "key": "key2",
+          "value": "value2\r"
+        }
+      ],
+      "functions": [
+        "parse"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_line_endings_reference_behavior"
+    },
+    {
+      "name": "canonical_format_line_endings_reference_behavior_canonical",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "validation": "canonical",
+      "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_line_endings_reference_behavior"
+    },
+    {
+      "name": "canonical_format_consistent_spacing_ocaml_reference_canonical",
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "validation": "canonical",
+      "expected": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "canonical_format_consistent_spacing_ocaml_reference"
+    },
+    {
+      "name": "deterministic_output_ocaml_reference_canonical",
+      "input": "z = last\na = first\nm = middle",
+      "validation": "canonical",
+      "expected": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n",
+      "functions": [
+        "canonical"
+      ],
+      "features": [],
+      "behaviors": [],
+      "variants": [],
+      "meta": {
+        "level": 4
+      },
+      "source_test": "deterministic_output_ocaml_reference"
+    }
+  ]
+}

@@ -237,7 +237,11 @@ func (c *EnhancedCollector) analyzeSourceTests(sourceTests []SourceTest, filePat
 			"features":   featuresCopy,
 			"behaviors":  behaviorsCopy,
 			"variants":   variantsCopy,
-			"conflicts":  conflictSlice,
+		}
+		
+		// Only include conflicts field if it has actual values
+		if len(conflictSlice) > 0 {
+			testData["conflicts"] = conflictSlice
 		}
 
 		result["tests"] = append(result["tests"].([]map[string]interface{}), testData)
@@ -329,7 +333,11 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 			"features":   featuresCopy,
 			"behaviors":  behaviorsCopy,
 			"variants":   variantsCopy,
-			"conflicts":  test.Meta.Conflicts,
+		}
+		
+		// Only include conflicts field if it has actual values
+		if len(test.Meta.Conflicts) > 0 {
+			testData["conflicts"] = test.Meta.Conflicts
 		}
 
 		result["tests"] = append(result["tests"].([]map[string]interface{}), testData)

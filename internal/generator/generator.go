@@ -165,7 +165,7 @@ func (g *Generator) generateTestFile(jsonFile string) error {
 		},
 	}
 
-	// Use ccl-test-lib loader to load the flat format test file
+	// Use ccl-test-lib loader to load the test file from flat format
 	testLoader := loader.NewTestLoader(".", impl)
 	testSuite, err := testLoader.LoadTestFile(jsonFile, loader.LoadOptions{
 		Format:     loader.FormatFlat,
