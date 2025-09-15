@@ -25,21 +25,23 @@ var (
 func main() {
 	app := &cli.App{
 		Name:  "ccl-test-runner",
-		Usage: "Generate and run tests for CCL implementations",
+		Usage: "Generate and run Go tests from flat JSON test data",
 		Description: `A test runner for CCL (Categorical Configuration Language) implementations.
 		
-This tool generates Go test files from JSON test data and provides enhanced
-output formatting for both human and machine consumption.`,
+This tool consumes flat JSON test files and generates corresponding Go test files
+with proper organization by level and feature. Provides enhanced output formatting
+for both human and machine consumption.`,
 		Version: fmt.Sprintf("%s (commit: %s, built: %s)", version, commit, date),
 		Commands: []*cli.Command{
 			{
 				Name:    "generate",
 				Aliases: []string{"gen", "g"},
-				Usage:   "Generate Go test files from JSON test data",
-				Description: `Generate Go test files from the JSON test suite data.
+				Usage:   "Generate Go test files from flat JSON test data",
+				Description: `Generate Go test files from flat JSON test suite data.
 				
-This command reads the JSON test files and generates corresponding Go test files
-with proper organization by level and feature.`,
+This command reads flat JSON test files and generates corresponding Go test files
+with proper organization by level and feature. Uses configuration-based filtering
+to exclude tests incompatible with implementation choices.`,
 				Action: generateAction,
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -113,9 +115,9 @@ compatibility with standard go test flags.`,
 				Name:    "stats",
 				Aliases: []string{"statistics", "s"},
 				Usage:   "Collect and display test suite statistics",
-				Description: `Analyze test files and display comprehensive statistics about the test suite.
+				Description: `Analyze flat JSON test files and display comprehensive statistics.
 				
-This command scans all JSON test files and provides detailed statistics including
+This command scans flat JSON test files and provides detailed statistics including
 test counts, assertion counts, and categorization by feature areas.`,
 				Action: statsAction,
 				Flags: []cli.Flag{
@@ -177,12 +179,15 @@ results to detect performance regressions.`,
 			{
 				Name:    "generate-flat",
 				Aliases: []string{"flat"},
-				Usage:   "Generate flat format tests from source format",
+				Usage:   "Generate flat format tests from source format (delegates to ccl-test-lib)",
 				Description: `Generate implementation-friendly flat format tests from maintainable 
-source format tests. Each source test with multiple validations becomes 
-multiple flat tests (one per validation).
+source format tests. This command is a thin CLI wrapper around ccl-test-lib.
 
-This creates a simple, uniform format that's easy for test runners to process.`,
+ARCHITECTURE: The actual conversion logic lives in ccl-test-lib/generator where it belongs.
+This CLI command provides convenient access while maintaining proper separation of concerns.
+
+Each source test with multiple validations becomes multiple flat tests (one per validation),
+creating a simple, uniform format that's easy for test runners to process.`,
 				Action: generateFlatAction,
 				Flags: []cli.Flag{
 					&cli.StringFlag{
@@ -220,7 +225,7 @@ func generateAction(ctx *cli.Context) error {
 
 	// Load centralized configuration with validation
 	cfg := config.DefaultConfig()
-	
+
 	// Override test filtering settings from CLI flags
 	cfg.TestFiltering.SkipDisabled = skipDisabled
 	cfg.TestFiltering.SkipTags = skipTags
