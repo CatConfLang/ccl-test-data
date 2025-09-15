@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-core-ccl-parsing.json
+// Generated from tests/api_core-ccl-parsing.json
 // Suite: CCL Core Parsing - Validation Format
 // Version: 2.1
 // Description: Core CCL text parsing fundamentals - validates correct text → entry conversion as foundation for hierarchy building.

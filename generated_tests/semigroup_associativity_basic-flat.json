@@ -1,0 +1,47 @@
+[
+  {
+    "name": "semigroup_associativity_basic_parse",
+    "input": "a = 1\nb = 2\nc = 3",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "a",
+          "value": "1"
+        },
+        {
+          "key": "b",
+          "value": "2"
+        },
+        {
+          "key": "c",
+          "value": "3"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "semigroup_associativity_basic"
+  },
+  {
+    "name": "semigroup_associativity_basic_associativity",
+    "input": "a = 1\nb = 2\nc = 3",
+    "validation": "associativity",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "associativity"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "semigroup_associativity_basic"
+  }
+]

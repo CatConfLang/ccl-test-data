@@ -1,7 +1,7 @@
 # CCL Dual-Format Migration Analysis - Phase 1 Complete
 
 ## Discovery Summary
-**Root Cause Identified**: The `generate-flat` command exists and is implemented, but it expects `SourceTestSuite` format while `source-tests/` contains direct JSON arrays.
+**Root Cause Identified**: The `generate-flat` command exists and is implemented, but it expects `SourceTestSuite` format while `source_tests/` contains direct JSON arrays.
 
 ## Technical Analysis
 
@@ -19,7 +19,7 @@ type SourceTestSuite struct {
 }
 ```
 
-**Actual in source-tests/** (Direct Array):
+**Actual in source_tests/** (Direct Array):
 ```json
 [
   {
@@ -32,7 +32,7 @@ type SourceTestSuite struct {
 ```
 
 **Solution Required**: Either:
-1. Wrap arrays in `{"tests": [...]}` format in source-tests/
+1. Wrap arrays in `{"tests": [...]}` format in source_tests/
 2. Modify `LoadSourceTests` to handle direct arrays
 
 ## January 2025 Vision vs Reality
@@ -50,11 +50,11 @@ type SourceTestSuite struct {
 
 ## Resolution Strategy
 **Option 1** (Recommended): Update `LoadSourceTests` to handle direct arrays
-- Pro: Maintains current source-tests/ format (simpler)
+- Pro: Maintains current source_tests/ format (simpler)
 - Pro: Less file changes required
 - Con: Slightly different from original vision
 
-**Option 2**: Wrap all source-tests/ files in SourceTestSuite format
+**Option 2**: Wrap all source_tests/ files in SourceTestSuite format
 - Pro: Matches original SourceTestSuite design
 - Con: Requires updating 12 JSON files
 - Con: Adds wrapper layer to otherwise clean format

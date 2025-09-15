@@ -1,0 +1,26 @@
+[
+  {
+    "name": "basic_key_value_pairs_parse",
+    "input": "name = Alice\nage = 42",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "age",
+          "value": "42"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "basic_key_value_pairs"
+  }
+]

@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-list-access.json
+// Generated from tests/api_list-access.json
 // Suite: CCL List Access - get_list() Function
 // Version: 2.1
 // Description: Level 4 CCL list access - type-aware list extraction with validation and conversion support using get_list() function

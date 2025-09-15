@@ -1,0 +1,47 @@
+[
+  {
+    "name": "round_trip_empty_keys_lists_parse",
+    "input": "= item1\n= item2\nregular = value",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "",
+          "value": "item1"
+        },
+        {
+          "key": "",
+          "value": "item2"
+        },
+        {
+          "key": "regular",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_empty_keys_lists"
+  },
+  {
+    "name": "round_trip_empty_keys_lists_round_trip",
+    "input": "= item1\n= item2\nregular = value",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_empty_keys_lists"
+  }
+]

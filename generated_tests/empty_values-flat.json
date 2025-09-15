@@ -1,0 +1,26 @@
+[
+  {
+    "name": "empty_values_parse",
+    "input": "empty =\nother = value",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "empty",
+          "value": ""
+        },
+        {
+          "key": "other",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "empty_values"
+  }
+]

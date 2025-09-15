@@ -2,7 +2,7 @@
 
 **Session Date**: January 13, 2025  
 **Session Type**: Collaborative CCL Test Analysis  
-**Focus**: api-list-access.json test failures investigation
+**Focus**: api_list-access.json test failures investigation
 
 ## Executive Summary
 
@@ -12,7 +12,7 @@ Comprehensive analysis of failing CCL tests revealed **systematic test data issu
 
 ### Workspace Structure
 - **Primary Focus**: `/home/tylerbu/code/claude-workspace/ccl-test-data/`
-- **Test File**: `tests/api-list-access.json`
+- **Test File**: `tests/api_list-access.json`
 - **Implementation**: OCaml reference with known limitations
 - **Test Runner**: Go-based with feature tagging and skip logic
 

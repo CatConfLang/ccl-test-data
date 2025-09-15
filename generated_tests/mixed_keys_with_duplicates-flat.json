@@ -1,0 +1,34 @@
+[
+  {
+    "name": "mixed_keys_with_duplicates_parse",
+    "input": "name = app\nports = 8000\nname = service\nports = 8001",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "name",
+          "value": "app"
+        },
+        {
+          "key": "ports",
+          "value": "8000"
+        },
+        {
+          "key": "name",
+          "value": "service"
+        },
+        {
+          "key": "ports",
+          "value": "8001"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "mixed_keys_with_duplicates"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "whitespace_trimming_parse",
+    "input": "  key   =    value with spaces   \nother = normal",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key",
+          "value": "value with spaces"
+        },
+        {
+          "key": "other",
+          "value": "normal"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "whitespace_trimming"
+  }
+]

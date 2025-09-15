@@ -1,0 +1,22 @@
+[
+  {
+    "name": "key_empty_value_parse",
+    "input": "key =",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "key_empty_value"
+  }
+]

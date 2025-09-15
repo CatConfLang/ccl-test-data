@@ -1,0 +1,43 @@
+[
+  {
+    "name": "round_trip_property_basic_parse",
+    "input": "key = value\nanother = test",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key",
+          "value": "value"
+        },
+        {
+          "key": "another",
+          "value": "test"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_property_basic"
+  },
+  {
+    "name": "round_trip_property_basic_round_trip",
+    "input": "key = value\nanother = test",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_property_basic"
+  }
+]

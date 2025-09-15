@@ -1,0 +1,34 @@
+[
+  {
+    "name": "consecutive_section_headers_parse",
+    "input": "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "",
+          "value": "= First Section =="
+        },
+        {
+          "key": "",
+          "value": "== Nested Section ==="
+        },
+        {
+          "key": "",
+          "value": "=== Deep Section ===="
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "consecutive_section_headers"
+  }
+]

@@ -1,0 +1,69 @@
+[
+  {
+    "name": "empty_dotted_key_segments_build_hierarchy",
+    "input": "a..b = value",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "a": {
+          "": {
+            "b": "value"
+          }
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "empty_dotted_key_segments"
+  },
+  {
+    "name": "empty_dotted_key_segments_parse",
+    "input": "a..b = value",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "a..b",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "empty_dotted_key_segments"
+  },
+  {
+    "name": "empty_dotted_key_segments_expand_dotted",
+    "input": "a..b = value",
+    "validation": "expand_dotted",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "a",
+          "value": "\n   =\n    b = value"
+        }
+      ]
+    },
+    "functions": [
+      "expand_dotted"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "empty_dotted_key_segments"
+  }
+]

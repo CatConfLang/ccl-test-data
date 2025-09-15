@@ -11,20 +11,20 @@ Successfully migrated tests requiring the `expand_dotted` function to the experi
 - **Corrected**: Removed incorrect `function:expand_dotted` tags from tests using standard indented syntax
 
 ### 2. Test Migration Results
-**Moved from `api-core-ccl-hierarchy.json`:**
+**Moved from `api_core-ccl-hierarchy.json`:**
 - `single_nested_object` test → renamed to `hierarchical_with_expand_dotted_validation`
 - Only test with actual `expand_dotted` validation section
 - **Reason**: Had explicit expand_dotted validation for converting indented to dotted format
 
-**Moved from `api-list-access.json`:**
+**Moved from `api_list-access.json`:**
 - `dotted_key_list` test → renamed to `dotted_key_list_access` 
 - Uses actual dotted key syntax in input (`database.hosts = primary`)
 - **Reason**: Input contains experimental dotted key syntax
 
 **Updated test counts:**
-- `api-experimental.json`: 8 → 10 tests, 35 → 43 assertions
-- `api-core-ccl-hierarchy.json`: 7 → 6 tests, 19 → 16 assertions  
-- `api-list-access.json`: 22 → 21 tests
+- `api_experimental.json`: 8 → 10 tests, 35 → 43 assertions
+- `api_core-ccl-hierarchy.json`: 7 → 6 tests, 19 → 16 assertions  
+- `api_list-access.json`: 22 → 21 tests
 
 ### 3. Tag Cleanup
 - Removed incorrect `function:expand_dotted` tags from 6 hierarchy tests
@@ -81,9 +81,9 @@ Created comprehensive guide at `docs/test-runner-implementation-guide.md` coveri
 ## Technical Implementation
 
 ### Files Modified
-- `tests/api-experimental.json` - Added 2 tests with experimental features
-- `tests/api-core-ccl-hierarchy.json` - Removed 1 test, cleaned tags from 6 tests
-- `tests/api-list-access.json` - Removed 1 test with dotted syntax
+- `tests/api_experimental.json` - Added 2 tests with experimental features
+- `tests/api_core-ccl-hierarchy.json` - Removed 1 test, cleaned tags from 6 tests
+- `tests/api_list-access.json` - Removed 1 test with dotted syntax
 - `docs/test-runner-implementation-guide.md` - New comprehensive guide
 
 ### Current State

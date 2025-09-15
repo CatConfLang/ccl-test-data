@@ -30,7 +30,7 @@ Comprehensive enhancement of the CCL OCaml test runner with 7 major improvements
 ### Key Files Modified
 - `../ccl-ocaml/test_json_suite/json_test_runner.ml` - Main smart runner
 - `../ccl-ocaml/test_json_suite/json_test_types.ml` - Added conflicts parsing
-- `tests/property-round-trip.json` - Added missing CRLF test cases
+- `tests/property_round-trip.json` - Added missing CRLF test cases
 
 ### Configuration Pattern
 ```ocaml

@@ -1,0 +1,55 @@
+[
+  {
+    "name": "round_trip_mixed_content_parse",
+    "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+    "validation": "parse",
+    "expected": {
+      "count": 5,
+      "entries": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "",
+          "value": "first item"
+        },
+        {
+          "key": "config",
+          "value": "\n  port = 3000"
+        },
+        {
+          "key": "",
+          "value": "second item"
+        },
+        {
+          "key": "final",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_mixed_content"
+  },
+  {
+    "name": "round_trip_mixed_content_round_trip",
+    "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_mixed_content"
+  }
+]

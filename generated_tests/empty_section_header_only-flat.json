@@ -1,0 +1,22 @@
+[
+  {
+    "name": "empty_section_header_only_parse",
+    "input": "== Empty Section ==",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "",
+          "value": "= Empty Section =="
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "empty_section_header_only"
+  }
+]

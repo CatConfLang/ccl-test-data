@@ -1,0 +1,16 @@
+[
+  {
+    "name": "whitespace_only_error_ocaml_reference_parse",
+    "input": "   ",
+    "validation": "parse",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "whitespace_only_error_ocaml_reference"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "empty_input_parse",
+    "input": "",
+    "validation": "parse",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "empty_input"
+  }
+]

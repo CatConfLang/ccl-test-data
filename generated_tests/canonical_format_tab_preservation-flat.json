@@ -1,0 +1,40 @@
+[
+  {
+    "name": "canonical_format_tab_preservation_parse",
+    "input": "value_with_tabs = text\t\twith\ttabs\t",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "value_with_tabs",
+          "value": "text\t\twith\ttabs\t"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "canonical_format_tab_preservation"
+  },
+  {
+    "name": "canonical_format_tab_preservation_canonical_format",
+    "input": "value_with_tabs = text\t\twith\ttabs\t",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "value_with_tabs = text\t\twith\ttabs"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_tab_preservation"
+  }
+]

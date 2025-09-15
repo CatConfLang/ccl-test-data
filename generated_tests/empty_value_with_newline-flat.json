@@ -1,0 +1,22 @@
+[
+  {
+    "name": "empty_value_with_newline_parse",
+    "input": "key =\n",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "empty_value_with_newline"
+  }
+]

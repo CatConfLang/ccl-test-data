@@ -32,9 +32,9 @@ permalink: architecture/test-architecture
 - `variant:proposed-behavior` vs `variant:reference-compliant`
 
 ## Test Organization
-- **Essential**: `api-essential-parsing.json` - Basic Level 1 functionality
-- **Comprehensive**: `api-comprehensive-parsing.json` - Edge cases, whitespace
-- **Processing**: `api-processing.json` - Level 2 composition and filtering
-- **Objects**: `api-object-construction.json` - Level 3 nested object creation
-- **Typed**: `api-typed-access.json` - Level 4 type-safe access
-- **Comments**: `api-comments.json` - Comment syntax and filtering
+- **Essential**: `api_essential-parsing.json` - Basic Level 1 functionality
+- **Comprehensive**: `api_comprehensive-parsing.json` - Edge cases, whitespace
+- **Processing**: `api_processing.json` - Level 2 composition and filtering
+- **Objects**: `api_object-construction.json` - Level 3 nested object creation
+- **Typed**: `api_typed-access.json` - Level 4 type-safe access
+- **Comments**: `api_comments.json` - Comment syntax and filtering

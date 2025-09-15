@@ -1,0 +1,48 @@
+[
+  {
+    "name": "canonical_format_consistent_spacing_canonical_format",
+    "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_consistent_spacing"
+  },
+  {
+    "name": "canonical_format_consistent_spacing_parse",
+    "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "key1",
+          "value": "value1"
+        },
+        {
+          "key": "key2",
+          "value": "value2"
+        },
+        {
+          "key": "key3",
+          "value": "\tvalue3"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "canonical_format_consistent_spacing"
+  }
+]

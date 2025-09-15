@@ -1,0 +1,16 @@
+[
+  {
+    "name": "just_string_error_parse",
+    "input": "val",
+    "validation": "parse",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "just_string_error"
+  }
+]

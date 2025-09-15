@@ -60,7 +60,7 @@ find tests -name "*.json" -not -name "schema.json" -exec sed -i 's/function:buil
 ## Key Insights Discovered
 
 ### **CCL API Documentation Source**
-- Located official API reference: `/tools-monorepo/packages/ccl-docs/src/content/docs/api-reference.md`
+- Located official API reference: `/tools-monorepo/packages/ccl-docs/src/content/docs/api_reference.md`
 - Confirmed `combine` (not `compose`) is correct function name
 - Verified Level 2 functions: `filter`, `combine`, `parse_value`
 

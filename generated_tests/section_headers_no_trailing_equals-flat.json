@@ -1,0 +1,34 @@
+[
+  {
+    "name": "section_headers_no_trailing_equals_parse",
+    "input": "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "",
+          "value": "= Database Config"
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        },
+        {
+          "key": "",
+          "value": "== Server Settings"
+        },
+        {
+          "key": "port",
+          "value": "8080"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "section_headers_no_trailing_equals"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "round_trip_basic_round_trip",
+    "input": "key = value\nnested =\n  sub = val",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_basic"
+  }
+]

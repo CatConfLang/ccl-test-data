@@ -18,7 +18,7 @@ Performed comprehensive cleanup and clarification of CCL test suite tagging and 
 - Added `function:parse` tags to both tests for completeness
 
 **Files Modified**:
-- `tests/property-round-trip.json` - Updated both CRLF variant tests
+- `tests/property_round-trip.json` - Updated both CRLF variant tests
 
 ### 2. Dotted Keys Feature Consolidation
 **Problem**: Inconsistent feature tagging with `feature:dotted_keys` 
@@ -26,12 +26,12 @@ Performed comprehensive cleanup and clarification of CCL test suite tagging and 
 - Unclear distinction between "standard" and "experimental" dotted key features
 
 **Solution**: Removed underrepresented `feature:dotted_keys` tag
-- Removed `feature:dotted_keys` from `dotted_key_list` test in `api-list-access.json`
+- Removed `feature:dotted_keys` from `dotted_key_list` test in `api_list-access.json`
 - Updated `tests/schema.json` to remove `dotted_keys` from allowed feature patterns
 - Consolidated around single `feature:experimental_dotted_keys` for clarity
 
 **Files Modified**:
-- `tests/api-list-access.json` - Removed `feature:dotted_keys` tag
+- `tests/api_list-access.json` - Removed `feature:dotted_keys` tag
 - `tests/schema.json` - Updated feature pattern validation
 
 ## Insights Discovered
@@ -61,14 +61,14 @@ Performed comprehensive cleanup and clarification of CCL test suite tagging and 
 
 ## Files Modified Summary
 ```
-tests/property-round-trip.json:
+tests/property_round-trip.json:
 - Line 334: Renamed test to `crlf_normalize_to_lf_indented_proposed`
 - Lines 337-342: Added parse validation showing immediate normalization
 - Lines 351: Added `function:parse` tag
 - Lines 534-539: Added parse validation showing CRLF preservation  
 - Line 548: Added `function:parse` tag
 
-tests/api-list-access.json:
+tests/api_list-access.json:
 - Lines 1032-1037: Removed `feature:dotted_keys` tag
 
 tests/schema.json:

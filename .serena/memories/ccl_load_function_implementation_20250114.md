@@ -28,7 +28,7 @@ Successfully implemented the missing `load` function validation system in the CC
 **Rationale**: Reuses `build_hierarchy_validation` schema since output format is identical (nested objects).
 
 ### Test Implementation
-**Added `load` validations to 3 tests in `api-core-ccl-hierarchy.json`:**
+**Added `load` validations to 3 tests in `api_core-ccl-hierarchy.json`:**
 
 1. **Basic flat structure**:
    - Input: `"name = Alice\nage = 42"`
@@ -68,7 +68,7 @@ Atomic: load(text) → Object              (Complete pipeline)
 This maintains clean separation while providing atomic operation for convenience.
 
 ### Existing Load Usage Discovery
-Found that `api-core-ccl-integration.json` already had `function:load` tags in 6 tests but no actual `load` validations. This explains why the function tag appeared orphaned in the schema - the integration tests were expecting `load` functionality but missing validation definitions.
+Found that `api_core-ccl-integration.json` already had `function:load` tags in 6 tests but no actual `load` validations. This explains why the function tag appeared orphaned in the schema - the integration tests were expecting `load` functionality but missing validation definitions.
 
 ## Validation Results
 
@@ -82,8 +82,8 @@ Found that `api-core-ccl-integration.json` already had `function:load` tags in 6
 **After**: `function:load: 9 tests (30 assertions) across 2 files`
 
 The 9 tests come from:
-- 3 tests in `api-core-ccl-hierarchy.json` (newly added validations)
-- 6 tests in `api-core-ccl-integration.json` (existing tags, inferred validations)
+- 3 tests in `api_core-ccl-hierarchy.json` (newly added validations)
+- 6 tests in `api_core-ccl-integration.json` (existing tags, inferred validations)
 
 ## Implementation Benefits
 

@@ -13,7 +13,7 @@ The test suite contained 57+ variant pairs (`variant:proposed-behavior` vs `vari
 
 ## Key Discovery
 
-The primary issue was in `api-comprehensive-parsing.json` where the `ocaml_stress_test_original` variants demonstrated an API separation violation:
+The primary issue was in `api_comprehensive-parsing.json` where the `ocaml_stress_test_original` variants demonstrated an API separation violation:
 
 - **Proposed behavior**: `parse` function filtered out comment entries (returned 4 results)
 - **Reference behavior**: `parse` function returned all entries including comments (returned 5 results)

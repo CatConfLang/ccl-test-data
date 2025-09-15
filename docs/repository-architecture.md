@@ -35,22 +35,22 @@ tools-monorepo/packages/ccl-docs/ # Documentation site (Astro Starlight)
 
 #### ccl-test-data → ccl_gleam
 ```
-tests/api-essential-parsing.json → packages/ccl/test/level1_tests.gleam
-tests/api-object-construction.json → packages/ccl/test/level3_tests.gleam
-tests/api-typed-access.json → packages/ccl/test/level4_tests.gleam
+tests/api_essential-parsing.json → packages/ccl/test/level1_tests.gleam
+tests/api_object-construction.json → packages/ccl/test/level3_tests.gleam
+tests/api_typed-access.json → packages/ccl/test/level4_tests.gleam
 internal/mock/ccl.go → Reference patterns for Gleam implementation
 ```
 
 #### ccl-test-data → ccl-docs
 ```
-tests/*.json metadata → src/content/docs/api-reference.md
+tests/*.json metadata → src/content/docs/api_reference.md
 docs/levels.md → src/content/docs/implementation-levels.md
 internal/mock/ patterns → src/content/docs/implementing-ccl.md examples
 ```
 
 #### ccl_gleam → ccl-docs
 ```
-packages/ccl/src/ API → src/content/docs/api-reference.md Gleam examples
+packages/ccl/src/ API → src/content/docs/api_reference.md Gleam examples
 packages/ccl_core/ architecture → src/content/docs/core-concepts.md
 Level 1-4 implementation → src/content/docs/parsing-algorithm.md patterns
 ```
@@ -100,22 +100,22 @@ Level 1-4 implementation → src/content/docs/parsing-algorithm.md patterns
 Level 1: Entry Parsing
 ├── Go: Parse() → []Entry
 ├── Gleam: parse(text) → Result(List(Entry), ParseError)  
-└── Tests: api-essential-parsing.json (45 tests)
+└── Tests: api_essential-parsing.json (45 tests)
 
 Level 2: Entry Processing  
 ├── Go: Filter(), Compose(), ExpandDotted() → []Entry
 ├── Gleam: Comment filtering, composition functions
-└── Tests: api-processing.json (67 tests)
+└── Tests: api_processing.json (67 tests)
 
 Level 3: Object Construction
 ├── Go: MakeObjects(entries) → map[string]any
 ├── Gleam: build_hierarchy(entries) → CCL
-└── Tests: api-object-construction.json (89 tests)
+└── Tests: api_object-construction.json (89 tests)
 
 Level 4: Typed Access
 ├── Go: GetString(), GetInt(), GetBool(), GetFloat() → (T, error)
 ├── Gleam: get_string(), get_int(), get_bool() → Result(T, Error)
-└── Tests: api-typed-access.json (151 tests)
+└── Tests: api_typed-access.json (151 tests)
 ```
 
 ### Feature Tag Consistency

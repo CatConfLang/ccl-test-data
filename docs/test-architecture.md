@@ -28,7 +28,7 @@ Each category has specific APIs, test suites, and implementation requirements.
 ## Dual-Format Architecture
 
 ### Source Format (Maintainable)
-Files: `tests/api-*.json` - Grouped validations for easy test authoring
+Files: `tests/api_*.json` - Grouped validations for easy test authoring
 
 ```json
 {
@@ -60,7 +60,7 @@ Files: `tests/api-*.json` - Grouped validations for easy test authoring
 ```
 
 ### Generated Flat Format (Implementation-Friendly)
-Files: `generated-tests/` - One test per validation with typed fields
+Files: `generated_tests/` - One test per validation with typed fields
 
 ```json
 // Generated from above source test
@@ -82,7 +82,7 @@ Files: `generated-tests/` - One test per validation with typed fields
 ```
 
 ### Property Tests (Mathematical Properties)  
-Files: `tests/property-*.json` - Custom test runner logic required
+Files: `tests/property_*.json` - Custom test runner logic required
 
 **Source Format:**
 ```json
@@ -205,7 +205,7 @@ const compatibleTests = flatTests.filter(test => {
 ## Core Functionality (Required)
 
 ### Essential Parsing
-**Files**: `tests/api-essential-parsing.json` (18 tests)  
+**Files**: `tests/api_essential-parsing.json` (18 tests)  
 **API:** `parse(text) → Result<Entry[], ParseError>`  
 **Status:** Required for all CCL implementations
 
@@ -247,7 +247,7 @@ function parse(text) {
 ```
 
 ### Comprehensive Parsing  
-**Files**: `tests/api-comprehensive-parsing.json` (30 tests)
+**Files**: `tests/api_comprehensive-parsing.json` (30 tests)
 **Purpose:** Production-ready validation with comprehensive edge cases
 **Status:** Recommended for production systems
 
@@ -264,7 +264,7 @@ function parse(text) {
 - **Robustness:** Handles malformed input gracefully
 
 ### Object Construction
-**Files**: `tests/api-object-construction.json` (8 tests)  
+**Files**: `tests/api_object-construction.json` (8 tests)  
 **API:** `make_objects(entries) → CCL`  
 **Status:** Required for hierarchical access
 
@@ -296,7 +296,7 @@ function make_objects(entries) {
 ## Optional Features (Choose Based on Needs)
 
 ### Dotted Key Expansion
-**Files**: `tests/api-dotted-keys.json` (18 tests)  
+**Files**: `tests/api_dotted-keys.json` (18 tests)  
 **Purpose:** Enable dual access patterns for convenience
 **Status:** Recommended for user-friendly APIs
 
@@ -312,7 +312,7 @@ function make_objects(entries) {
 - Flexible configuration authoring
 
 ### Comment Filtering
-**Files**: `tests/api-comments.json` (3 tests)  
+**Files**: `tests/api_comments.json` (3 tests)  
 **API:** `filter(entries)`  
 **Purpose:** Remove documentation keys from configuration
 
@@ -322,7 +322,7 @@ function make_objects(entries) {
 - Preserve structure while removing documentation
 
 ### Entry Processing
-**Files**: `tests/api-processing.json` (21 tests)
+**Files**: `tests/api_processing.json` (21 tests)
 **API:** `compose()`, advanced processing
 **Purpose:** Advanced composition and merging capabilities
 
@@ -333,7 +333,7 @@ function make_objects(entries) {
 - Associative and commutative operations
 
 ### Typed Access
-**Files**: `tests/api-typed-access.json` (17 tests)  
+**Files**: `tests/api_typed-access.json` (17 tests)  
 **API:** `get_string()`, `get_int()`, `get_bool()`, etc.  
 **Purpose:** Type-safe value extraction with validation
 
@@ -372,7 +372,7 @@ function get_bool(ccl_obj, ...path) {
 ## Integration & Validation
 
 ### Error Handling
-**Files**: `tests/api-errors.json` (5 tests)  
+**Files**: `tests/api_errors.json` (5 tests)  
 **Purpose:** Malformed input detection across all functionality
 **Status:** Recommended for robust implementations
 
@@ -411,18 +411,18 @@ function get_bool(ccl_obj, ...path) {
 ### Test-Driven Development
 ```bash
 # API Tests (Direct function mapping)
-npm run validate:api-essential-parsing       # Essential tests (18)
-npm run validate:api-object-construction     # Object construction (8)
-npm run validate:api-comprehensive-parsing   # Comprehensive tests (30)
-npm run validate:api-dotted-keys            # Dotted key support (18)
-npm run validate:api-typed-access           # Type-safe APIs (17)
-npm run validate:api-comments               # Comment filtering (3)
-npm run validate:api-processing             # Entry processing (21)
-npm run validate:api-errors                 # Error handling (5)
+npm run validate:api_essential-parsing       # Essential tests (18)
+npm run validate:api_object-construction     # Object construction (8)
+npm run validate:api_comprehensive-parsing   # Comprehensive tests (30)
+npm run validate:api_dotted-keys            # Dotted key support (18)
+npm run validate:api_typed-access           # Type-safe APIs (17)
+npm run validate:api_comments               # Comment filtering (3)
+npm run validate:api_processing             # Entry processing (21)
+npm run validate:api_errors                 # Error handling (5)
 
 # Property Tests (Custom logic required)  
-npm run validate:property-round-trip        # Round-trip validation (15)
-npm run validate:property-algebraic         # Algebraic properties (5)
+npm run validate:property_round-trip        # Round-trip validation (15)
+npm run validate:property_algebraic         # Algebraic properties (5)
 
 # Full validation  
 npm test                                     # All 135 tests
@@ -453,7 +453,7 @@ get_string(obj, ...path) → string
 ## Test Runner Implementation
 
 ### Source Format Test Runner
-**For files:** `tests/api-*.json` - Multi-validation test cases
+**For files:** `tests/api_*.json` - Multi-validation test cases
 
 ```pseudocode
 function run_source_test(test_case) {
@@ -486,7 +486,7 @@ function run_source_test(test_case) {
 ```
 
 ### Generated Flat Format Test Runner (Recommended)
-**For files:** `generated-tests/` - Type-safe single-validation tests
+**For files:** `generated_tests/` - Type-safe single-validation tests
 
 ```pseudocode
 function run_flat_test(flat_test) {
@@ -542,7 +542,7 @@ function run_compatible_tests(flat_tests, capabilities) {
 ```
 
 ### Full Property Test Runner (100+ lines) 
-**For files:** `property-*.json` - Requires custom mathematical property logic
+**For files:** `property_*.json` - Requires custom mathematical property logic
 
 ```pseudocode
 function run_property_validation_test(test_case) {
@@ -586,13 +586,13 @@ function run_property_validation_test(test_case) {
 **Start Here (Simple):**
 ```bash
 # Only run API tests - direct function mapping
-validate_tests("tests/api-*.json")           # ~90 tests
+validate_tests("tests/api_*.json")           # ~90 tests
 ```
 
 **Advanced (Full Features):**
 ```bash  
 # Add property tests - custom logic required
-validate_tests("tests/property-*.json")      # ~45 tests  
+validate_tests("tests/property_*.json")      # ~45 tests  
 validate_tests("tests/*.json")               # All 135 tests
 ```
 

@@ -1,0 +1,85 @@
+[
+  {
+    "name": "parse_with_whitespace_parse",
+    "input": "number =   42   \nflag =  true  ",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "number",
+          "value": "42"
+        },
+        {
+          "key": "flag",
+          "value": "true"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "parse_with_whitespace"
+  },
+  {
+    "name": "parse_with_whitespace_build_hierarchy",
+    "input": "number =   42   \nflag =  true  ",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "flag": "true",
+        "number": "42"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_with_whitespace"
+  },
+  {
+    "name": "parse_with_whitespace_get_int",
+    "input": "number =   42   \nflag =  true  ",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 42
+    },
+    "functions": [
+      "get_int"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_with_whitespace"
+  },
+  {
+    "name": "parse_with_whitespace_get_bool",
+    "input": "number =   42   \nflag =  true  ",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": true
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_with_whitespace"
+  }
+]

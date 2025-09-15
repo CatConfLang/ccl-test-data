@@ -1,0 +1,62 @@
+[
+  {
+    "name": "list_error_nested_missing_key_parse",
+    "input": "config =\n  server = web1",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "config",
+          "value": "\n  server = web1"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "list_error_nested_missing_key"
+  },
+  {
+    "name": "list_error_nested_missing_key_build_hierarchy",
+    "input": "config =\n  server = web1",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "config": {
+          "server": "web1"
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_error_nested_missing_key"
+  },
+  {
+    "name": "list_error_nested_missing_key_get_list",
+    "input": "config =\n  server = web1",
+    "validation": "get_list",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "list_error_nested_missing_key"
+  }
+]

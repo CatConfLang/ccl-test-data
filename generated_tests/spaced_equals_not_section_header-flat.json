@@ -1,0 +1,34 @@
+[
+  {
+    "name": "spaced_equals_not_section_header_parse",
+    "input": "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "",
+          "value": "= spaced equals"
+        },
+        {
+          "key": "",
+          "value": "= wide spaces"
+        },
+        {
+          "key": "",
+          "value": "= Real Header =="
+        },
+        {
+          "key": "key",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "spaced_equals_not_section_header"
+  }
+]

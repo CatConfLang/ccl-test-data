@@ -69,26 +69,26 @@ The test suite is organized by feature category:
 
 #### Core Parsing
 
-- **`tests/api-essential-parsing.json`** - Basic parsing functionality for rapid prototyping
-- **`tests/api-comprehensive-parsing.json`** - Thorough parsing with edge cases and whitespace variations
+- **`tests/api_essential-parsing.json`** - Basic parsing functionality for rapid prototyping
+- **`tests/api_comprehensive-parsing.json`** - Thorough parsing with edge cases and whitespace variations
 
 #### Advanced Processing
 
-- **`tests/api-processing.json`** - Entry composition, merging, and advanced processing
-- **`tests/api-comments.json`** - Comment syntax and filtering functionality
+- **`tests/api_processing.json`** - Entry composition, merging, and advanced processing
+- **`tests/api_comments.json`** - Comment syntax and filtering functionality
 
 #### Object Construction
 
-- **`tests/api-object-construction.json`** - Converting flat entries to nested objects
-- **`tests/api-dotted-keys.json`** - Dotted key expansion and conflict resolution
+- **`tests/api_object-construction.json`** - Converting flat entries to nested objects
+- **`tests/api_dotted-keys.json`** - Dotted key expansion and conflict resolution
 
 #### Type System
 
-- **`tests/api-typed-access.json`** - Type-aware value extraction with smart inference
+- **`tests/api_typed-access.json`** - Type-aware value extraction with smart inference
 
 #### Error Handling
 
-- **`tests/api-errors.json`** - Error handling validation
+- **`tests/api_errors.json`** - Error handling validation
 
 ### Using the Test Suite
 
@@ -285,7 +285,7 @@ just generate-flat
 just validate-flat
 
 # Run your test suite against generated tests
-# (your implementation reads from generated-tests/ directory)
+# (your implementation reads from generated_tests/ directory)
 ```
 
 The generator:
@@ -300,7 +300,7 @@ The generator:
 
 ```javascript
 // Load flat format tests (type-safe with excellent API ergonomics)
-const flatTests = loadFlatTests('generated-tests/');
+const flatTests = loadFlatTests('generated_tests/');
 
 // Filter tests based on implementation capabilities
 const supportedTests = flatTests.filter(test => {
@@ -487,7 +487,7 @@ When adding test cases:
 just validate
 
 # Run schema validation
-go run cmd/validate-schema/main.go tests/api-*.json
+go run cmd/validate-schema/main.go tests/api_*.json
 
 # Generate and run all tests
 just dev

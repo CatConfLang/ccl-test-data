@@ -1,0 +1,39 @@
+[
+  {
+    "name": "round_trip_deeply_nested_parse",
+    "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "level1",
+          "value": "\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "round_trip_deeply_nested"
+  },
+  {
+    "name": "round_trip_deeply_nested_round_trip",
+    "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+    "validation": "round_trip",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "round_trip"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "round_trip_deeply_nested"
+  }
+]

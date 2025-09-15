@@ -1,0 +1,61 @@
+[
+  {
+    "name": "parse_boolean_true_parse",
+    "input": "enabled = true",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "enabled",
+          "value": "true"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "parse_boolean_true"
+  },
+  {
+    "name": "parse_boolean_true_build_hierarchy",
+    "input": "enabled = true",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "enabled": "true"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_true"
+  },
+  {
+    "name": "parse_boolean_true_get_bool",
+    "input": "enabled = true",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": true
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_true"
+  }
+]

@@ -1,0 +1,86 @@
+[
+  {
+    "name": "real_world_complete_workflow_parse",
+    "input": "service = MyMicroservice\nversion = 2.1.0\ndatabase =\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2\nlogging =\n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog\nfeatures =\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental",
+    "validation": "parse",
+    "expected": {
+      "count": 5,
+      "entries": [
+        {
+          "key": "service",
+          "value": "MyMicroservice"
+        },
+        {
+          "key": "version",
+          "value": "2.1.0"
+        },
+        {
+          "key": "database",
+          "value": "\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2"
+        },
+        {
+          "key": "logging",
+          "value": "\n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog"
+        },
+        {
+          "key": "features",
+          "value": "\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "real_world_complete_workflow"
+  },
+  {
+    "name": "real_world_complete_workflow_build_hierarchy",
+    "input": "service = MyMicroservice\nversion = 2.1.0\ndatabase =\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2\nlogging =\n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog\nfeatures =\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "database": {
+          "credentials": {
+            "password": "secret123",
+            "user": "service_user"
+          },
+          "host": "db.example.com",
+          "pools": {
+            "read": "5",
+            "write": "2"
+          },
+          "port": "5432"
+        },
+        "features": {
+          "feature_a": "enabled",
+          "feature_b": "disabled",
+          "feature_c": "experimental"
+        },
+        "logging": {
+          "level": "info",
+          "outputs": {
+            "output": [
+              "console",
+              "file",
+              "syslog"
+            ]
+          }
+        },
+        "service": "MyMicroservice",
+        "version": "2.1.0"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "real_world_complete_workflow"
+  }
+]

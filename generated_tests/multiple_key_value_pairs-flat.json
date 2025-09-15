@@ -1,0 +1,26 @@
+[
+  {
+    "name": "multiple_key_value_pairs_parse",
+    "input": "key1 = val1\nkey2 = val2",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key1",
+          "value": "val1"
+        },
+        {
+          "key": "key2",
+          "value": "val2"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "multiple_key_value_pairs"
+  }
+]

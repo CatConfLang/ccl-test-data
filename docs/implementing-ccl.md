@@ -20,7 +20,7 @@ This guide helps you implement a CCL parser in your programming language using t
 
 ### Level 1: Core CCL (text → hierarchical objects)
 **Functions:** parse() + build_hierarchy() - what users expect from any CCL implementation
-**Test Coverage:** api-essential-parsing.json + api-object-construction.json
+**Test Coverage:** api_essential-parsing.json + api_object-construction.json
 
 Start here for rapid prototyping - covers what users actually expect from CCL. **Core CCL** combines parsing with hierarchical object construction via the fixpoint algorithm.
 
@@ -122,7 +122,7 @@ function merge_into_result(result: CCL, key: string, value: any) {
 
 ### Level 2: Typed Access (type-safe value extraction)
 **Functions:** get_string(), get_int(), get_bool(), get_float(), get_list()
-**Test Coverage:** api-typed-access.json (107 assertions)
+**Test Coverage:** api_typed-access.json (107 assertions)
 
 Required for production applications that need type safety and validation.
 
@@ -151,7 +151,7 @@ port = get_int(ccl, "database.port")           // ✓ Also works
 
 ### Level 3: Advanced Processing (entry manipulation and composition)
 **Functions:** filter(), compose(), expand_dotted()
-**Test Coverage:** api-processing.json + api-comments.json
+**Test Coverage:** api_processing.json + api_comments.json
 
 Required for advanced configuration management, composition, and preprocessing workflows. The `expand_dotted()` function provides dotted representation of hierarchical data.
 
@@ -199,7 +199,7 @@ function expand_dotted(entries: List<Entry>) -> List<Entry> {
 
 ### Level 4: Experimental Features (implementation-specific extensions)
 **Functions:** dotted representation features, pretty_print(), round_trip validation
-**Test Coverage:** api-dotted-keys.json + property-*.json
+**Test Coverage:** api_dotted-keys.json + property_*.json
 
 Implementation-specific features that may vary between CCL implementations. Include based on your implementation's goals and user needs.
 

@@ -3,8 +3,8 @@
 ## Current Test Organization Analysis
 
 ### File Size Distribution
-- **Largest**: `api-comprehensive-parsing_test.go` (180 LOC, 34 tests)
-- **Medium**: `api-typed-access_test.go`, `api-essential-parsing_test.go` (120 LOC each)
+- **Largest**: `api_comprehensive-parsing_test.go` (180 LOC, 34 tests)
+- **Medium**: `api_typed-access_test.go`, `api_essential-parsing_test.go` (120 LOC each)
 - **Small**: Most other files (40-115 LOC)
 
 ### Current Organization Assessment
@@ -26,21 +26,21 @@
 ### Current File Organization
 ```
 level1_parsing/
-├── api-essential-parsing_test.go     (34 tests, 120 LOC)
-├── api-comprehensive-parsing_test.go (34 tests, 180 LOC)
+├── api_essential-parsing_test.go     (34 tests, 120 LOC)
+├── api_comprehensive-parsing_test.go (34 tests, 180 LOC)
 
 level2_processing/
-├── api-processing_test.go            (24 tests, 105 LOC)
-├── api-comments_test.go              (6 tests, 25 LOC)
+├── api_processing_test.go            (24 tests, 105 LOC)
+├── api_comments_test.go              (6 tests, 25 LOC)
 
 level3_object_construction/
-├── api-object-construction_test.go   (13 tests, 55 LOC)
+├── api_object-construction_test.go   (13 tests, 55 LOC)
 
 level3_dotted_keys/
-├── api-dotted-keys_test.go           (22 tests, 100 LOC)
+├── api_dotted-keys_test.go           (22 tests, 100 LOC)
 
 level4_typed_parsing/
-├── api-typed-access_test.go          (26 tests, 120 LOC)
+├── api_typed-access_test.go          (26 tests, 120 LOC)
 ```
 
 ## Recommendation: **NO SPLITTING REQUIRED**
@@ -64,10 +64,10 @@ level4_typed_parsing/
 **Example Future Split** (if needed):
 ```
 level1_parsing/
-├── api-essential-parsing-basic_test.go      (simple cases)
-├── api-essential-parsing-edge_test.go       (edge cases)
-├── api-comprehensive-parsing-whitespace_test.go (whitespace tests)
-├── api-comprehensive-parsing-unicode_test.go    (unicode tests)
+├── api_essential-parsing-basic_test.go      (simple cases)
+├── api_essential-parsing-edge_test.go       (edge cases)
+├── api_comprehensive-parsing-whitespace_test.go (whitespace tests)
+├── api_comprehensive-parsing-unicode_test.go    (unicode tests)
 ```
 
 ## Implementation Guidelines

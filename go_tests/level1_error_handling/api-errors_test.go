@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-errors.json
+// Generated from tests/api_errors.json
 // Suite: CCL Error Cases (Validation Format)
 // Version: 2.1
 // Description: Error handling tests - malformed input detection across all levels using validation format

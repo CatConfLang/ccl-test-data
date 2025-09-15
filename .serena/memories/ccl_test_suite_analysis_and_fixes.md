@@ -38,7 +38,7 @@ skip_variants = [
 - Removed unused `prefer_behaviors` field from configuration type
 - Simplified filtering logic to use only `skip_variants` and `skip_behaviors`
 
-### 3. Fixed Test Specification (property-round-trip.json)
+### 3. Fixed Test Specification (property_round-trip.json)
 ```json
 // Changed crlf_normalize_to_lf_reference test
 "variant:reference-compliant" → "variant:proposed-behavior"
@@ -49,7 +49,7 @@ skip_variants = [
 
 ### Before Fixes:
 - Success Rate: **93.3%**
-- Failed Suites: **5** (api-advanced-processing, api-errors, api-list-access, api-typed-access, property-round-trip)
+- Failed Suites: **5** (api_advanced-processing, api_errors, api_list-access, api_typed-access, property_round-trip)
 - Failed Tests: **9**
 
 ### After Fixes:
@@ -93,7 +93,7 @@ type test_config = {
 ## Files Modified
 1. `/home/tylerbu/code/claude-workspace/ccl-ocaml/test_json_suite/json_test_runner.ml`
 2. `/home/tylerbu/code/claude-workspace/ccl-ocaml/test_json_suite/json_test_types.ml` 
-3. `/home/tylerbu/code/claude-workspace/ccl-test-data/tests/property-round-trip.json`
+3. `/home/tylerbu/code/claude-workspace/ccl-test-data/tests/property_round-trip.json`
 
 ## Testing Validation
 - **Full test suite**: `just test` → 100% success rate

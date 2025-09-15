@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from tests/api-core-ccl-integration.json
+// Generated from tests/api_core-ccl-integration.json
 // Suite: CCL Core Integration - Validation Format
 // Version: 2.1
 // Description: Core CCL complete workflow validation - tests the atomic text → objects transformation as users experience it.

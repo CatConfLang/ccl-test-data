@@ -1,0 +1,55 @@
+[
+  {
+    "name": "mixed_flat_and_nested_parse",
+    "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "name",
+          "value": "Alice"
+        },
+        {
+          "key": "config",
+          "value": "\n  debug = true\n  timeout = 30"
+        },
+        {
+          "key": "version",
+          "value": "1.0"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "mixed_flat_and_nested"
+  },
+  {
+    "name": "mixed_flat_and_nested_build_hierarchy",
+    "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "config": {
+          "debug": "true",
+          "timeout": "30"
+        },
+        "name": "Alice",
+        "version": "1.0"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "mixed_flat_and_nested"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "whitespace_only_value_parse",
+    "input": "onlyspaces =     ",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "onlyspaces",
+          "value": ""
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "whitespace_only_value"
+  }
+]

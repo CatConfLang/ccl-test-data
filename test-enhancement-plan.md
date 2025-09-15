@@ -11,7 +11,7 @@ Comprehensive plan to address critical gaps in the CCL test suite based on syste
 ## ✅ Completed: Phase 1 - Critical Function Coverage
 
 ### function:get-list Implementation (COMPLETE)
-- **File**: `tests/api-list-access.json`
+- **File**: `tests/api_list-access.json`
 - **Coverage**: 22 tests, 88 assertions
 - **Impact**: Closed critical gap - Level 4 list access was completely missing
 - **Features**: Duplicate key lists, nested access, error handling, edge cases
@@ -22,8 +22,8 @@ Comprehensive plan to address critical gaps in the CCL test suite based on syste
 ### Expand Level 2 Processing Tests (25+ tests needed)
 **Priority**: HIGH - Core functionality severely under-tested  
 **Target Files**: 
-- `tests/api-advanced-processing.json` (expand existing)
-- `tests/api-level2-processing.json` (new file)
+- `tests/api_advanced-processing.json` (expand existing)
+- `tests/api_level2-processing.json` (new file)
 
 #### function:filter Enhancement
 **Current**: 3 basic tests  
@@ -59,7 +59,7 @@ Comprehensive plan to address critical gaps in the CCL test suite based on syste
 
 ### Add Cross-Feature Integration Tests (30+ tests needed)
 **Priority**: IMPORTANT - Real-world usage patterns missing  
-**Target File**: `tests/api-cross-feature-integration.json` (new)
+**Target File**: `tests/api_cross-feature-integration.json` (new)
 
 #### Integration Scenarios
 - **Parsing + Comments + Dotted Keys**: Comments within dotted key hierarchies
@@ -79,7 +79,7 @@ Comprehensive plan to address critical gaps in the CCL test suite based on syste
 
 ### Add Performance Edge Case Tests (15+ tests needed)  
 **Priority**: IMPORTANT - Production readiness validation  
-**Target File**: `tests/api-performance-edge-cases.json` (new)
+**Target File**: `tests/api_performance-edge-cases.json` (new)
 
 #### Performance Scenarios
 - **Large Input Handling**: 1000+ key-value pairs
@@ -98,7 +98,7 @@ Comprehensive plan to address critical gaps in the CCL test suite based on syste
 
 ### Enhance Error Handling Tests (12+ tests needed)
 **Priority**: IMPORTANT - System robustness  
-**Target File**: `tests/api-enhanced-error-handling.json` (new)
+**Target File**: `tests/api_enhanced-error-handling.json` (new)
 
 #### Advanced Error Scenarios  
 - **Malformed Structures**: Deeply nested corruption

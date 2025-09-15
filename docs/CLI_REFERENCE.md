@@ -283,13 +283,13 @@ Produces formatted output:
     feature:multiline          12 tests
 
 📁 FILE BREAKDOWN
-  api-essential-parsing.json:     34 tests (89 assertions)
-  api-comprehensive-parsing.json: 23 tests (67 assertions)
-  api-comments.json:             18 tests (45 assertions)
-  api-object-construction.json:   25 tests (76 assertions)
-  api-typed-access.json:         31 tests (84 assertions)
-  api-dotted-keys.json:          15 tests (38 assertions)
-  api-processing.json:           11 tests (24 assertions)
+  api_essential-parsing.json:     34 tests (89 assertions)
+  api_comprehensive-parsing.json: 23 tests (67 assertions)
+  api_comments.json:             18 tests (45 assertions)
+  api_object-construction.json:   25 tests (76 assertions)
+  api_typed-access.json:         31 tests (84 assertions)
+  api_dotted-keys.json:          15 tests (38 assertions)
+  api_processing.json:           11 tests (24 assertions)
 ```
 
 **JSON Format:**
@@ -448,7 +448,7 @@ validate-schema [FILES...]
 validate-schema tests/*.json
 
 # Validate specific file
-validate-schema tests/api-parsing.json
+validate-schema tests/api_parsing.json
 
 # Used internally by 'just validate'
 ```

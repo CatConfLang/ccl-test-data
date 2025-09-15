@@ -1,0 +1,22 @@
+[
+  {
+    "name": "key_with_tabs_parse",
+    "input": "\tkey\t=\tvalue",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "\tvalue"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "key_with_tabs"
+  }
+]

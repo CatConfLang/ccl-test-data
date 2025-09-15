@@ -20,7 +20,7 @@ Review CCL test suite for tag and documentation discrepancies, then harmonize fu
 - **README**: Mixed naming and some outdated function references
 
 ### **CCL API Documentation Location** 
-- **Local Source**: `/tools-monorepo/packages/ccl-docs/src/content/docs/api-reference.md`
+- **Local Source**: `/tools-monorepo/packages/ccl-docs/src/content/docs/api_reference.md`
 - **Key Functions**: `combine` (not compose), `build_hierarchy` (not make-objects)
 - **Level Structure**: Confirmed 4-level progressive implementation model
 

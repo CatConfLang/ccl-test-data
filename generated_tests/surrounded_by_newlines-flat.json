@@ -1,0 +1,22 @@
+[
+  {
+    "name": "surrounded_by_newlines_parse",
+    "input": "\nkey = val\n",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "key",
+          "value": "val"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "surrounded_by_newlines"
+  }
+]

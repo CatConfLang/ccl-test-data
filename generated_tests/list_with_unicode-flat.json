@@ -1,0 +1,83 @@
+[
+  {
+    "name": "list_with_unicode_parse",
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "validation": "parse",
+    "expected": {
+      "count": 4,
+      "entries": [
+        {
+          "key": "names",
+          "value": "张三"
+        },
+        {
+          "key": "names",
+          "value": "José"
+        },
+        {
+          "key": "names",
+          "value": "François"
+        },
+        {
+          "key": "names",
+          "value": "العربية"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "list_with_unicode"
+  },
+  {
+    "name": "list_with_unicode_build_hierarchy",
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "names": [
+          "张三",
+          "José",
+          "François",
+          "العربية"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_with_unicode"
+  },
+  {
+    "name": "list_with_unicode_get_list",
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "validation": "get_list",
+    "expected": {
+      "count": 4,
+      "list": [
+        "张三",
+        "José",
+        "François",
+        "العربية"
+      ]
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "list_with_unicode"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "complex_mixed_list_scenarios_reference_build_hierarchy",
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "config": {
+          "cache": "redis",
+          "database": {
+            "hosts": [
+              "backup",
+              "primary"
+            ],
+            "port": "5432"
+          },
+          "servers": [
+            "web2",
+            "web1"
+          ]
+        },
+        "features": [
+          "api",
+          "auth",
+          "ui"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "complex_mixed_list_scenarios_reference"
+  },
+  {
+    "name": "complex_mixed_list_scenarios_reference_get_list",
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "validation": "get_list",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "get_list"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "complex_mixed_list_scenarios_reference"
+  }
+]

@@ -21,7 +21,7 @@ Official JSON test suite for CCL (Categorical Configuration Language) implementa
 - `internal/mock/ccl.go` - Working CCL implementation for testing
 - `internal/generator/` - Go test file generation from JSON data
 - `internal/stats/` - Enhanced statistics and analysis
-- `tests/api-*.json` - Feature-specific test suites with structured tagging
+- `tests/api_*.json` - Feature-specific test suites with structured tagging
 
 ## Development Workflow
 ```bash

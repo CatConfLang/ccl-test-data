@@ -1,0 +1,25 @@
+[
+  {
+    "name": "spaces_vs_tabs_continuation_parse_value",
+    "input": "text = First\n    four spaces\n\ttab preserved",
+    "validation": "parse_value",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "text",
+          "value": "First\n    four spaces\n\ttab preserved"
+        }
+      ]
+    },
+    "functions": [
+      "parse_value"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 2,
+    "source_test": "spaces_vs_tabs_continuation"
+  }
+]

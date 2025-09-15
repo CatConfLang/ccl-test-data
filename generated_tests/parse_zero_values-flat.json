@@ -1,0 +1,109 @@
+[
+  {
+    "name": "parse_zero_values_build_hierarchy",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "count": "0",
+        "disabled": "no",
+        "distance": "0.0"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_zero_values"
+  },
+  {
+    "name": "parse_zero_values_get_int",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 0
+    },
+    "functions": [
+      "get_int"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_zero_values"
+  },
+  {
+    "name": "parse_zero_values_get_float",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "get_float",
+    "expected": {
+      "count": 1,
+      "value": 0
+    },
+    "functions": [
+      "get_float"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_zero_values"
+  },
+  {
+    "name": "parse_zero_values_get_bool",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": false
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_zero_values"
+  },
+  {
+    "name": "parse_zero_values_parse",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "count",
+          "value": "0"
+        },
+        {
+          "key": "distance",
+          "value": "0.0"
+        },
+        {
+          "key": "disabled",
+          "value": "no"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "parse_zero_values"
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "multiline_plain_error_parse",
+    "input": "val\n  next",
+    "validation": "parse",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "multiline_plain_error"
+  }
+]

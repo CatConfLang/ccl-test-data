@@ -1,0 +1,42 @@
+[
+  {
+    "name": "multiple_sections_with_entries_parse",
+    "input": "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info",
+    "validation": "parse",
+    "expected": {
+      "count": 6,
+      "entries": [
+        {
+          "key": "",
+          "value": "= Database =="
+        },
+        {
+          "key": "host",
+          "value": "localhost"
+        },
+        {
+          "key": "",
+          "value": "== Cache ==="
+        },
+        {
+          "key": "redis",
+          "value": "enabled"
+        },
+        {
+          "key": "",
+          "value": "= Logging =="
+        },
+        {
+          "key": "level",
+          "value": "info"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 2,
+    "source_test": "multiple_sections_with_entries"
+  }
+]

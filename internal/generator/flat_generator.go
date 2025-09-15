@@ -43,7 +43,7 @@ type SourceTestCase struct {
 	Count    int         `json:"count,omitempty"`
 }
 
-// SourceTestNew represents the actual source format used in source-tests/
+// SourceTestNew represents the actual source format used in source_tests/
 type SourceTestNew struct {
 	Name  string           `json:"name"`
 	Input string           `json:"input"`
@@ -328,7 +328,7 @@ func LoadSourceTests(sourceDir string) ([]SourceTest, error) {
 			return fmt.Errorf("error reading file %s: %w", path, err)
 		}
 
-		// Try to parse as new source format first (source-tests format)
+		// Try to parse as new source format first (source_tests format)
 		var newSourceTests []SourceTestNew
 		if err := json.Unmarshal(data, &newSourceTests); err == nil {
 			// Convert new format to old format for compatibility with existing generation logic

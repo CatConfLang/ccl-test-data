@@ -1,0 +1,22 @@
+[
+  {
+    "name": "multiple_empty_equality_parse",
+    "input": " =  = ",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "",
+          "value": "="
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "multiple_empty_equality"
+  }
+]

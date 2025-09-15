@@ -1,0 +1,79 @@
+[
+  {
+    "name": "dotted_keys_with_lists_parse",
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "validation": "parse",
+    "expected": {
+      "count": 3,
+      "entries": [
+        {
+          "key": "servers.web",
+          "value": "web1"
+        },
+        {
+          "key": "servers.web",
+          "value": "web2"
+        },
+        {
+          "key": "servers.api",
+          "value": "api1"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "dotted_keys_with_lists"
+  },
+  {
+    "name": "dotted_keys_with_lists_expand_dotted",
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "validation": "expand_dotted",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "servers",
+          "value": "\n  web = web1\n  web = web2\n  api = api1"
+        }
+      ]
+    },
+    "functions": [
+      "expand_dotted"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "dotted_keys_with_lists"
+  },
+  {
+    "name": "dotted_keys_with_lists_build_hierarchy",
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "servers": {
+          "api": "api1",
+          "web": [
+            "web1",
+            "web2"
+          ]
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "dotted_keys_with_lists"
+  }
+]

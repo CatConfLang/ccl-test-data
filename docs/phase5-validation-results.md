@@ -20,14 +20,14 @@ Total:         10,775 bytes  (~2,690 tokens) - Multi-tier consumption
 **Validation Results:**
 ```
 📁 Validated 8 JSON test files:
-✅ api-essential-parsing.json      - Level 1 foundation
-✅ api-comprehensive-parsing.json  - Level 1+ edge cases
-✅ api-processing.json            - Level 2 entry processing  
-✅ api-comments.json              - Level 2 feature (comments)
-✅ api-object-construction.json   - Level 3 object building
-✅ api-dotted-keys.json          - Level 3 feature (dotted keys)
-✅ api-typed-access.json         - Level 4 type-aware access
-✅ api-errors.json               - Level 5 error handling
+✅ api_essential-parsing.json      - Level 1 foundation
+✅ api_comprehensive-parsing.json  - Level 1+ edge cases
+✅ api_processing.json            - Level 2 entry processing  
+✅ api_comments.json              - Level 2 feature (comments)
+✅ api_object-construction.json   - Level 3 object building
+✅ api_dotted-keys.json          - Level 3 feature (dotted keys)
+✅ api_typed-access.json         - Level 4 type-aware access
+✅ api_errors.json               - Level 5 error handling
 
 Schema Version: 2.1 (enhanced with llm_metadata)
 Validation Script: 100% compliance achieved

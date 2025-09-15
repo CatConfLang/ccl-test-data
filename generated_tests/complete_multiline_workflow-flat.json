@@ -1,0 +1,52 @@
+[
+  {
+    "name": "complete_multiline_workflow_build_hierarchy",
+    "input": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "config": {
+          "settings": {
+            "value1": "one",
+            "value2": "two"
+          }
+        },
+        "description": "Welcome to our app\n  This is a multi-line description\n  With several lines"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 1,
+    "source_test": "complete_multiline_workflow"
+  },
+  {
+    "name": "complete_multiline_workflow_parse",
+    "input": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "description",
+          "value": "Welcome to our app\n  This is a multi-line description\n  With several lines"
+        },
+        {
+          "key": "config",
+          "value": "\n  settings =\n    value1 = one\n    value2 = two"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "complete_multiline_workflow"
+  }
+]

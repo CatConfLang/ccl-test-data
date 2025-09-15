@@ -1,0 +1,44 @@
+[
+  {
+    "name": "canonical_format_line_endings_reference_behavior_canonical_format",
+    "input": "key1 = value1\r\nkey2 = value2\r\n",
+    "validation": "canonical_format",
+    "expected": {
+      "count": 1,
+      "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+    },
+    "functions": [
+      "canonical_format"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "canonical_format_line_endings_reference_behavior"
+  },
+  {
+    "name": "canonical_format_line_endings_reference_behavior_parse",
+    "input": "key1 = value1\r\nkey2 = value2\r\n",
+    "validation": "parse",
+    "expected": {
+      "count": 2,
+      "entries": [
+        {
+          "key": "key1",
+          "value": "value1\r"
+        },
+        {
+          "key": "key2",
+          "value": "value2\r"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 4,
+    "source_test": "canonical_format_line_endings_reference_behavior"
+  }
+]
