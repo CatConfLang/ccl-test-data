@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/ccl-test-data/test-runner/internal/types"
+	"github.com/tylerbu/ccl-test-lib/types"
 )
 
 const testFileTemplate = `package {{.PackageName}}_test
@@ -36,7 +36,7 @@ func Test{{.TestFuncName}}(t *testing.T) {
 	{{if .ShouldSkip}}t.Skip("{{.SkipReason}}"){{else}}
 	
 	ccl := mock.New()
-	{{if .Input}}input := {{.InputString}}{{end}}
+	{{if .HasInput}}input := {{.InputString}}{{end}}
 	{{if .Input1}}input1 := {{.Input1String}}{{end}}
 	{{if .Input2}}input2 := {{.Input2String}}{{end}}
 	{{if .Input3}}input3 := {{.Input3String}}{{end}}
@@ -50,7 +50,7 @@ func Test{{.TestFuncName}}(t *testing.T) {
 {{range .Validations}}	{{.}}
 {{end}}{{if not .HasValidations}}	// TODO: Implement test validations
 	_ = ccl // Prevent unused variable warning
-{{if .Input}}	_ = input // Prevent unused variable warning
+{{if .HasInput}}	_ = input // Prevent unused variable warning
 {{end}}{{end}}{{end}}
 }
 `
@@ -77,6 +77,7 @@ type TestCaseData struct {
 	SkipReason        string
 	Input             string
 	InputString       string
+	HasInput          bool // True if input field exists (including empty strings)
 	Input1            string
 	Input1String      string
 	Input2            string
@@ -104,21 +105,23 @@ func (g *Generator) generateTestContentFromTemplate(testSuite types.TestSuite, s
 		}
 		testCases = append(testCases, testCase)
 
-		// Count assertions and track statistics
-		assertionCount := g.countAssertions(test.Validations)
+		// Count assertions and track statistics (flat format has 1 assertion per test)
+		assertionCount := 1 // Each flat test case is exactly 1 assertion
 		g.stats.TestCounts[test.Name] = assertionCount
 		g.stats.TotalTests++
 
 		// Check if this test is not skipped using generator options
-		isSkipped := g.shouldSkipTest(test.Meta.Tags)
+		// For flat format, use Functions field instead of Meta.Tags
+		tags := g.getTestTags(test)
+		isSkipped := g.shouldSkipTest(tags)
 		if isSkipped {
 			g.stats.SkippedTests++
 			g.stats.SkippedAssertions += assertionCount
 		} else {
 			hasActiveTests = true
 			g.stats.TotalAssertions += assertionCount
-			// Check if this test has implemented assertions (not just TODO validations)
-			if g.hasImplementedValidations(test.Validations) {
+			// Check if this test has implemented assertions (flat format always has assertions)
+			if test.Validation != "" {
 				hasAssertions = true
 			}
 		}
@@ -155,10 +158,11 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 	data := TestCaseData{
 		Name:         test.Name,
 		TestFuncName: toPascalCase(test.Name),
-		TagsString:   strings.Join(test.Meta.Tags, " "),
+		TagsString:   strings.Join(g.getTestTags(test), " "),
 		Level:        test.Meta.Level,
 		Input:        test.Input,
 		InputString:  escapeGoString(test.Input),
+		HasInput:     true, // Flat format always has input field (including empty strings)
 		Input1:       test.Input1,
 		Input1String: escapeGoString(test.Input1),
 		Input2:       test.Input2,
@@ -168,35 +172,26 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 	}
 
 	// Check if test should be skipped using generator options
-	if g.shouldSkipTest(test.Meta.Tags) {
+	tags := g.getTestTags(test)
+	if g.shouldSkipTest(tags) {
 		data.ShouldSkip = true
-		data.SkipReason = g.getSkipReason(test.Meta.Tags)
+		data.SkipReason = g.getSkipReason(tags)
 	}
 
-	// Generate validation assertions
-	validations, err := g.generateValidations(test.Validations)
+	// Generate actual validation for flat format
+	validation, err := g.generateFlatFormatValidation(test)
 	if err != nil {
-		return "", fmt.Errorf("failed to generate validations: %w", err)
+		return "", fmt.Errorf("failed to generate flat format validation: %w", err)
 	}
-	data.Validations = validations
+	data.Validations = []string{validation}
 
-	// Check if there are actual implemented validations (not just TODOs)
-	hasImplementedValidations := false
-	for _, validation := range validations {
-		if !strings.Contains(validation, "// TODO: Implement") {
-			hasImplementedValidations = true
-			break
-		}
-	}
+	// Flat format has real validations
+	data.HasValidations = true
 
-	data.HasValidations = hasImplementedValidations
-
-	// Determine which variables are needed (only if there are implemented validations)
-	if hasImplementedValidations {
-		data.NeedsParseResult = g.needsParseResult(test.Validations)
-		data.NeedsObjectResult = g.needsObjectResult(test.Validations)
-		data.NeedsFilterResult = g.needsFilterResult(test.Validations)
-	}
+	// No variables needed for TODO validations
+	data.NeedsParseResult = false
+	data.NeedsObjectResult = false
+	data.NeedsFilterResult = false
 
 	// Execute template
 	tmpl, err := template.New("testcase").Parse(testCaseTemplate)
@@ -213,7 +208,10 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 }
 
 // generateValidations creates validation assertions for a test case
-func (g *Generator) generateValidations(validations types.ValidationSet) ([]string, error) {
+func (g *Generator) generateValidations(validations *types.ValidationSet) ([]string, error) {
+	if validations == nil {
+		return []string{}, nil
+	}
 	var assertions []string
 
 	// Handle each validation type
@@ -594,6 +592,287 @@ func escapeGoString(s string) string {
 	return fmt.Sprintf("`%s`", s)
 }
 
+// generateFlatFormatValidation creates validation code for flat format tests
+func (g *Generator) generateFlatFormatValidation(test types.TestCase) (string, error) {
+	switch test.Validation {
+	case "parse":
+		return g.generateFlatParseValidation(test)
+	case "build_hierarchy":
+		return g.generateFlatBuildHierarchyValidation(test)
+	case "get_string", "get_int", "get_bool", "get_float", "get_list":
+		return g.generateFlatTypedAccessValidation(test, test.Validation)
+	default:
+		// For unimplemented validations, generate a safe comment
+		return fmt.Sprintf("// TODO: Implement %s validation", test.Validation), nil
+	}
+}
+
+// generateFlatParseValidation generates parse validation for flat format
+func (g *Generator) generateFlatParseValidation(test types.TestCase) (string, error) {
+	// Parse expected result from flat format
+	expectedMap, ok := test.Expected.(map[string]interface{})
+	if !ok {
+		return "", fmt.Errorf("expected map for parse validation, got %T", test.Expected)
+	}
+
+	// Check for error expectation first
+	if errorExpected, ok := expectedMap["error"]; ok {
+		if errorBool, ok := errorExpected.(bool); ok && errorBool {
+			return `// Parse validation (expects error)
+	_, err := ccl.Parse(input)
+	require.Error(t, err)`, nil
+		}
+	}
+
+	// Handle normal case with entries or empty result
+	if entries, ok := expectedMap["entries"]; ok {
+		entriesArray, ok := entries.([]interface{})
+		if !ok {
+			return "", fmt.Errorf("expected entries array, got %T", entries)
+		}
+
+		// Convert to Go-formatted entry array
+		var goEntries []string
+		for _, entry := range entriesArray {
+			entryMap, ok := entry.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			key, _ := entryMap["key"].(string)
+			value, _ := entryMap["value"].(string)
+			goEntries = append(goEntries, fmt.Sprintf(`mock.Entry{Key: %q, Value: %q}`, key, value))
+		}
+
+		entryArrayStr := "[]mock.Entry{" + strings.Join(goEntries, ", ") + "}"
+
+		return fmt.Sprintf(`// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := %s
+	assert.Equal(t, expected, parseResult)`, entryArrayStr), nil
+	} else {
+		// Handle case with only count (empty result) - schema says count is always required
+		return `// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{}
+	assert.Equal(t, expected, parseResult)`, nil
+	}
+}
+
+// generateFlatBuildHierarchyValidation generates build_hierarchy validation for flat format
+func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (string, error) {
+	// For build_hierarchy, expected is usually a nested object
+	expectedMap, ok := test.Expected.(map[string]interface{})
+	if !ok {
+		return "", fmt.Errorf("expected map for build_hierarchy validation, got %T", test.Expected)
+	}
+
+	// Check for error expectation first
+	if errorExpected, ok := expectedMap["error"]; ok {
+		if errorBool, ok := errorExpected.(bool); ok && errorBool {
+			return `// BuildHierarchy validation (expects error)
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	_, err = ccl.BuildHierarchy(parseResult)
+	require.Error(t, err)`, nil
+		}
+	}
+
+	// Handle normal case with object result
+	if object, ok := expectedMap["object"]; ok {
+		return fmt.Sprintf(`// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := %s
+	assert.Equal(t, expected, objectResult)`, formatGoValue(object)), nil
+	} else {
+		// Handle case with only count (empty result)
+		return `// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)`, nil
+	}
+}
+
+// generateFlatTypedAccessValidation generates typed access validation for flat format
+func (g *Generator) generateFlatTypedAccessValidation(test types.TestCase, validation string) (string, error) {
+	expectedMap, ok := test.Expected.(map[string]interface{})
+	if !ok {
+		return "", fmt.Errorf("expected must be a map for typed access validation")
+	}
+
+	// Check for error expectation first
+	if errorExpected, ok := expectedMap["error"]; ok {
+		if errorBool, ok := errorExpected.(bool); ok && errorBool {
+			// Use args if provided, otherwise use a default key
+			args := test.Args
+			if len(args) == 0 {
+				args = []string{"nonexistent"}
+			}
+
+			return fmt.Sprintf(`// %s validation (expects error)
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	_, err = ccl.%s(hierarchy, %s)
+	require.Error(t, err)`, validation, validation, formatArgs(args)), nil
+		}
+	}
+
+	// Determine args and expected value based on schema
+	var args []string
+	var expectedValue interface{}
+
+	// Use explicit args if provided
+	if len(test.Args) > 0 {
+		args = test.Args
+	} else {
+		// Infer args based on expected result fields
+		if _, ok := expectedMap["value"]; ok {
+			args = []string{"key"} // Generic fallback for single values
+		} else if _, ok := expectedMap["list"]; ok {
+			args = []string{"servers"} // Common list key
+		} else {
+			// For cases with only count=0, this is testing non-existent keys
+			args = []string{"nonexistent"}
+		}
+	}
+
+	// Get expected value from appropriate field
+	if value, ok := expectedMap["value"]; ok {
+		expectedValue = value
+	} else if list, ok := expectedMap["list"]; ok {
+		expectedValue = list
+	} else {
+		// Only count field - this means empty/error result
+		expectedValue = nil
+	}
+
+	var template string
+	switch validation {
+	case "get_string":
+		if expectedValue == nil {
+			template = `	result, err := ccl.GetString(hierarchy, %s)
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, "", result)
+	}`
+		} else {
+			template = `	result, err := ccl.GetString(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+		}
+	case "get_int":
+		if expectedValue == nil {
+			template = `	result, err := ccl.GetInt(hierarchy, %s)
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0, result)
+	}`
+		} else {
+			template = `	result, err := ccl.GetInt(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+		}
+	case "get_bool":
+		if expectedValue == nil {
+			template = `	result, err := ccl.GetBool(hierarchy, %s)
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}`
+		} else {
+			template = `	result, err := ccl.GetBool(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+		}
+	case "get_float":
+		if expectedValue == nil {
+			template = `	result, err := ccl.GetFloat(hierarchy, %s)
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0.0, result)
+	}`
+		} else {
+			template = `	result, err := ccl.GetFloat(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+		}
+	case "get_list":
+		if expectedValue == nil {
+			template = `	result, err := ccl.GetList(hierarchy, %s)
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Empty(t, result)
+	}`
+			return fmt.Sprintf(`// %s validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+%s`, validation, fmt.Sprintf(template, formatArgs(args))), nil
+		} else {
+			template = `	result, err := ccl.GetList(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+		}
+	default:
+		return "", fmt.Errorf("unknown typed access validation: %s", validation)
+	}
+
+	if expectedValue == nil {
+		return fmt.Sprintf(`// %s validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+%s`, validation, fmt.Sprintf(template, formatArgs(args))), nil
+	}
+
+	return fmt.Sprintf(`// %s validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+%s`, validation, fmt.Sprintf(template, formatArgs(args), expectedValue)), nil
+}
+
+// getTestTags converts flat format test fields to structured tags for filtering
+func (g *Generator) getTestTags(test types.TestCase) []string {
+	var tags []string
+
+	// Convert Functions to function: tags
+	for _, fn := range test.Functions {
+		tags = append(tags, "function:"+fn)
+	}
+
+	// Convert Features to feature: tags
+	for _, feat := range test.Features {
+		tags = append(tags, "feature:"+feat)
+	}
+
+	// Convert Behaviors to behavior: tags
+	for _, behav := range test.Behaviors {
+		tags = append(tags, "behavior:"+behav)
+	}
+
+	// Convert Variants to variant: tags
+	for _, variant := range test.Variants {
+		tags = append(tags, "variant:"+variant)
+	}
+
+	// Also include any existing Meta.Tags
+	tags = append(tags, test.Meta.Tags...)
+
+	return tags
+}
+
 // shouldSkipTest determines if a test should be skipped based on tags and generator options
 func (g *Generator) shouldSkipTest(tags []string) bool {
 	// If runOnly is specified, only run tests with those tags
@@ -722,7 +1001,10 @@ func hasValidations(validations types.ValidationSet) bool {
 }
 
 // hasImplementedValidations checks if the ValidationSet has any validations that generate actual assertions (not just TODOs)
-func (g *Generator) hasImplementedValidations(validations types.ValidationSet) bool {
+func (g *Generator) hasImplementedValidations(validations *types.ValidationSet) bool {
+	if validations == nil {
+		return false
+	}
 	// Only check validation types that are actually implemented in the generator
 	return validations.Parse != nil ||
 		validations.Filter != nil ||
@@ -796,9 +1078,27 @@ func formatGoSlice(s []interface{}) string {
 	return fmt.Sprintf("[]interface{}{%s}", strings.Join(parts, ", "))
 }
 
+func formatArgs(args []string) string {
+	if len(args) == 0 {
+		return ""
+	}
+	if len(args) == 1 {
+		return fmt.Sprintf("%#v", args[0])
+	}
+	// Format multiple args as separate parameters
+	var parts []string
+	for _, arg := range args {
+		parts = append(parts, fmt.Sprintf("%#v", arg))
+	}
+	return strings.Join(parts, ", ")
+}
+
 // Helper functions to determine which variables are needed
 
-func (g *Generator) needsParseResult(validations types.ValidationSet) bool {
+func (g *Generator) needsParseResult(validations *types.ValidationSet) bool {
+	if validations == nil {
+		return false
+	}
 	return validations.Parse != nil ||
 		validations.Filter != nil ||
 		validations.BuildHierarchy != nil ||
@@ -808,7 +1108,10 @@ func (g *Generator) needsParseResult(validations types.ValidationSet) bool {
 		validations.GetFloat != nil
 }
 
-func (g *Generator) needsObjectResult(validations types.ValidationSet) bool {
+func (g *Generator) needsObjectResult(validations *types.ValidationSet) bool {
+	if validations == nil {
+		return false
+	}
 	return validations.BuildHierarchy != nil ||
 		validations.GetString != nil ||
 		validations.GetInt != nil ||
@@ -816,12 +1119,18 @@ func (g *Generator) needsObjectResult(validations types.ValidationSet) bool {
 		validations.GetFloat != nil
 }
 
-func (g *Generator) needsFilterResult(validations types.ValidationSet) bool {
+func (g *Generator) needsFilterResult(validations *types.ValidationSet) bool {
+	if validations == nil {
+		return false
+	}
 	return validations.Filter != nil
 }
 
 // countAssertions counts the total number of assertions for a validation set
-func (g *Generator) countAssertions(validations types.ValidationSet) int {
+func (g *Generator) countAssertions(validations *types.ValidationSet) int {
+	if validations == nil {
+		return 0
+	}
 	count := 0
 
 	if validations.Parse != nil {
