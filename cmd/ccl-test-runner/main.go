@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/ccl-test-data/test-runner/internal/benchmark"
+	"github.com/ccl-test-data/test-runner/internal/config"
 	"github.com/ccl-test-data/test-runner/internal/generator"
 	"github.com/ccl-test-data/test-runner/internal/stats"
 	"github.com/ccl-test-data/test-runner/internal/styles"
@@ -217,14 +218,29 @@ func generateAction(ctx *cli.Context) error {
 	skipTags := ctx.StringSlice("skip-tags")
 	runOnly := ctx.StringSlice("run-only")
 
-	// Create generator options
-	options := generator.Options{
-		SkipDisabled: skipDisabled,
-		SkipTags:     skipTags,
-		RunOnly:      runOnly,
+	// Load centralized configuration with validation
+	cfg := config.DefaultConfig()
+	
+	// Override test filtering settings from CLI flags
+	cfg.TestFiltering.SkipDisabled = skipDisabled
+	cfg.TestFiltering.SkipTags = skipTags
+	cfg.TestFiltering.RunOnlyFunctions = runOnly
+
+	// Validate configuration (will error if required choices aren't made)
+	if err := cfg.Validate(); err != nil {
+		styles.Error("Configuration validation failed:")
+		styles.Error("  %v", err)
+		styles.Info("\nTo fix this, all mutually exclusive behavioral choices must be explicitly configured.")
+		styles.Info("Check internal/config/runner_config.go DefaultConfig() for required settings.")
+		return fmt.Errorf("invalid configuration: %w", err)
 	}
 
-	gen := generator.NewWithOptions(inputDir, outputDir, options)
+	// Create generator with validated configuration
+	gen, err := generator.NewWithConfig(inputDir, outputDir, cfg)
+	if err != nil {
+		return fmt.Errorf("failed to create generator: %w", err)
+	}
+
 	if err := gen.GenerateAll(); err != nil {
 		return fmt.Errorf("failed to generate tests: %w", err)
 	}

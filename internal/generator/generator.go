@@ -29,8 +29,8 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/ccl-test-data/test-runner/internal/config"
 	"github.com/ccl-test-data/test-runner/internal/styles"
-	"github.com/tylerbu/ccl-test-lib/config"
 	"github.com/tylerbu/ccl-test-lib/loader"
 	"github.com/tylerbu/ccl-test-lib/types"
 )
@@ -56,18 +56,22 @@ type Generator struct {
 	inputDir  string
 	outputDir string
 	options   Options
+	config    *config.RunnerConfig // Centralized configuration with behavioral choices
 	stats     AssertionStats
 	pool      *Pool // Object pool for memory optimization
 }
 
-// New creates a new generator instance with default options
+// New creates a new generator instance with default options and configuration
 func New(inputDir, outputDir string) *Generator {
+	cfg := config.DefaultConfig()
+	
 	return &Generator{
 		inputDir:  inputDir,
 		outputDir: outputDir,
 		options: Options{
 			SkipDisabled: true, // Default behavior
 		},
+		config: cfg,
 		stats: AssertionStats{
 			TestCounts: make(map[string]int),
 		},
@@ -75,12 +79,38 @@ func New(inputDir, outputDir string) *Generator {
 	}
 }
 
+// NewWithConfig creates a new generator instance with custom configuration
+func NewWithConfig(inputDir, outputDir string, cfg *config.RunnerConfig) (*Generator, error) {
+	// Validate configuration before using it
+	if err := cfg.Validate(); err != nil {
+		return nil, fmt.Errorf("invalid configuration: %w", err)
+	}
+
+	return &Generator{
+		inputDir:  inputDir,
+		outputDir: outputDir,
+		options: Options{
+			SkipDisabled: cfg.TestFiltering.SkipDisabled,
+			RunOnly:      cfg.TestFiltering.RunOnlyFunctions,
+			SkipTags:     cfg.TestFiltering.SkipTags,
+		},
+		config: cfg,
+		stats: AssertionStats{
+			TestCounts: make(map[string]int),
+		},
+		pool: NewPool(),
+	}, nil
+}
+
 // NewWithOptions creates a new generator instance with custom options
 func NewWithOptions(inputDir, outputDir string, options Options) *Generator {
+	cfg := config.DefaultConfig()
+	
 	return &Generator{
 		inputDir:  inputDir,
 		outputDir: outputDir,
 		options:   options,
+		config:    cfg,
 		stats: AssertionStats{
 			TestCounts: make(map[string]int),
 		},
@@ -144,32 +174,52 @@ func (g *Generator) findTestFiles() ([]string, error) {
 
 // generateTestFile generates a Go test file from a flat format JSON test file
 func (g *Generator) generateTestFile(jsonFile string) error {
-	// Create a basic implementation config that supports all functions
-	impl := config.ImplementationConfig{
-		Name:    "ccl-test-data-generator",
-		Version: "1.0.0",
-		SupportedFunctions: []config.CCLFunction{
-			config.FunctionParse,
-			config.FunctionBuildHierarchy,
-			config.FunctionGetString,
-			config.FunctionGetInt,
-			config.FunctionGetBool,
-			config.FunctionGetFloat,
-			config.FunctionGetList,
-			config.FunctionFilter,
-		},
-		SupportedFeatures: []config.CCLFeature{
-			config.FeatureComments,
-			config.FeatureExperimentalDottedKeys,
-			config.FeatureUnicode,
-		},
+	// Convert centralized config to ccl-test-lib format
+	impl := g.config.ToImplementationConfig()
+	
+	// Add conflicting tags to skip list for behavior/variant filtering
+	conflictingTags := g.config.GetConflictingTags()
+	allSkipTags := append(g.options.SkipTags, conflictingTags...)
+
+	// Create custom filter function for tag-based filtering
+	customFilter := func(test types.TestCase) bool {
+		// Check if any test tags are in the skip list
+		for _, testTag := range test.Meta.Tags {
+			for _, skipTag := range allSkipTags {
+				if testTag == skipTag {
+					return false // Skip this test
+				}
+			}
+		}
+		
+		// If run-only tags are specified, check if test has any of them
+		if len(g.options.RunOnly) > 0 {
+			hasRunOnlyTag := false
+			for _, testTag := range test.Meta.Tags {
+				for _, runOnlyTag := range g.options.RunOnly {
+					if testTag == runOnlyTag {
+						hasRunOnlyTag = true
+						break
+					}
+				}
+				if hasRunOnlyTag {
+					break
+				}
+			}
+			if !hasRunOnlyTag {
+				return false // Skip if no run-only tag found
+			}
+		}
+		
+		return true // Include this test
 	}
 
 	// Use ccl-test-lib loader to load the test file from flat format
 	testLoader := loader.NewTestLoader(".", impl)
 	testSuite, err := testLoader.LoadTestFile(jsonFile, loader.LoadOptions{
-		Format:     loader.FormatFlat,
-		FilterMode: loader.FilterAll, // Load all tests regardless of compatibility
+		Format:       loader.FormatFlat,
+		FilterMode:   loader.FilterCustom,
+		CustomFilter: customFilter,
 	})
 	if err != nil {
 		return fmt.Errorf("failed to load flat format test file %s: %w", jsonFile, err)
