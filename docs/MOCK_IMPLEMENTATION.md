@@ -105,48 +105,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 - Focus on extracting valid key-value pairs
 - Detailed error messages for debugging when needed
 
-### Level 2: Entry Processing
-
-Entry processing functions transform and combine parsed entries.
-
-#### Filter Implementation
-
-```go
-func (c *CCL) Filter(entries []Entry) []Entry {
-    // Mock implementation preserves all entries
-    // Real implementation might filter based on criteria
-    return entries
-}
-```
-
-**Design Pattern**: The mock keeps filtering simple but extensible.
-
-#### Compose Implementation
-
-```go
-func (c *CCL) Compose(left, right []Entry) []Entry {
-    // Simple concatenation for mock
-    result := make([]Entry, len(left)+len(right))
-    copy(result, left)
-    copy(result[len(left):], right)
-    return result
-}
-```
-
-**Merge Strategy**: Concatenation allows duplicate keys to be handled at Level 3.
-
-#### ExpandDotted Implementation
-
-```go
-func (c *CCL) ExpandDotted(entries []Entry) []Entry {
-    // Mock implementation passes through - expansion happens in MakeObjects
-    return entries
-}
-```
-
-**Deferred Processing**: Dotted key expansion is handled during object construction for simplicity.
-
-### Level 3: Object Construction (`MakeObjects`)
+### Level 1: Object Construction (`MakeObjects`)
 
 The most complex level transforms flat entries into nested object hierarchies.
 
@@ -240,7 +199,7 @@ func handleRegularKey(result map[string]interface{}, key, value string) {
 
 **List Conversion**: Duplicate keys automatically become arrays.
 
-### Level 4: Typed Access
+### Level 2: Typed Access
 
 Type-safe value extraction with automatic conversion.
 
@@ -362,7 +321,48 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 }
 ```
 
-### Level 5: Pretty Printing (`PrettyPrint`)
+### Level 3: Advanced Processing
+
+Entry processing functions transform and combine parsed entries.
+
+#### Filter Implementation
+
+```go
+func (c *CCL) Filter(entries []Entry) []Entry {
+    // Mock implementation preserves all entries
+    // Real implementation might filter based on criteria
+    return entries
+}
+```
+
+**Design Pattern**: The mock keeps filtering simple but extensible.
+
+#### Compose Implementation
+
+```go
+func (c *CCL) Compose(left, right []Entry) []Entry {
+    // Simple concatenation for mock
+    result := make([]Entry, len(left)+len(right))
+    copy(result, left)
+    copy(result[len(left):], right)
+    return result
+}
+```
+
+**Merge Strategy**: Concatenation allows duplicate keys to be handled at Level 1.
+
+#### ExpandDotted Implementation
+
+```go
+func (c *CCL) ExpandDotted(entries []Entry) []Entry {
+    // Mock implementation passes through - expansion happens in MakeObjects
+    return entries
+}
+```
+
+**Deferred Processing**: Dotted key expansion is handled during object construction for simplicity.
+
+### Level 4: Pretty Printing (`PrettyPrint`)
 
 Generate formatted CCL output from object structures.
 
@@ -484,7 +484,7 @@ if value, exists := current[key]; exists {
 The mock implementation is designed to pass specific test categories:
 
 ```go
-// Supported functions (Level 1, 3, 4)
+// Supported functions (Level 1, 2)
 var supportedTags = []string{
     "function:parse",
     "function:make-objects", 
@@ -523,8 +523,8 @@ The mock supports incremental testing:
 # Test Level 1 only
 just test-level1
 
-# Test Levels 1 and 3
-just test --levels 1,3
+# Test Levels 1 and 2
+just test --levels 1,2
 
 # Test specific features
 just test --features parsing,objects

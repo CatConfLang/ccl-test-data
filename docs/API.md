@@ -31,18 +31,27 @@ The fundamental data structure representing a key-value pair from CCL parsing. U
 
 ```go
 type TestMeta struct {
-    Tags     []string `json:"tags"`
-    Level    int      `json:"level"`
-    Feature  string   `json:"feature"`
-    Conflicts []string `json:"conflicts,omitempty"`
+    Functions []string `json:"functions"`
+    Features  []string `json:"features"`
+    Behaviors []string `json:"behaviors"`
+    Variants  []string `json:"variants"`
+    Level     int      `json:"level"`
+    Conflicts ConflictSpec `json:"conflicts,omitempty"`
+}
+
+type ConflictSpec struct {
+    Behaviors []string `json:"behaviors,omitempty"`
+    Variants  []string `json:"variants,omitempty"`
 }
 ```
 
 Metadata structure for test categorization and progressive implementation support:
-- **Tags**: Structured feature tags for precise test selection (`function:*`, `feature:*`, `behavior:*`)
-- **Level**: CCL implementation level (1-5)
-- **Feature**: Primary feature category being tested
-- **Conflicts**: Mutually exclusive behaviors for this test
+- **Functions**: Required CCL functions (`parse`, `make-objects`, `get-string`, etc.)
+- **Features**: Optional language features (`comments`, `dotted-keys`, `unicode`, etc.)
+- **Behaviors**: Implementation choices (`crlf-preserve-literal`, `boolean-strict`, etc.)
+- **Variants**: Specification variants (`proposed-behavior`, `reference-compliant`)
+- **Level**: CCL implementation level (1-4)
+- **Conflicts**: Categorized structure for mutually exclusive behaviors and variants
 
 ## Package: internal/mock
 

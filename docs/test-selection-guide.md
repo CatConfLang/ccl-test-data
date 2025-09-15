@@ -11,61 +11,90 @@ The CCL test suite uses **structured tags** to enable precise test selection bas
 - Avoid conflicting behavioral tests
 - Progress incrementally from basic to full CCL support
 
-## Tag Categories
+## Typed Fields Architecture
 
-### Function Tags (`function:*`)
+### Functions Array (`test.functions[]`)
 
-These indicate which CCL functions are required for a test to run:
+Direct array containing CCL functions required for a test to run:
 
-| Tag | Description | Level | Example Usage |
-|-----|-------------|--------|---------------|
-| `function:parse` | Basic key-value parsing | 1 | `Parse("key = value")` |
-| `function:parse-value` | Indentation-aware parsing | 2 | `ParseValue("key = val\n  sub")` |
-| `function:filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
-| `function:compose` | Entry composition | 2 | `Compose(left, right)` |
-| `function:expand-dotted` | Dotted key expansion | 2 | `ExpandDotted(entries)` |
-| `function:make-objects` | Object construction | 3 | `MakeObjects(entries)` |
-| `function:get-string` | String value access | 4 | `GetString(obj, "key")` |
-| `function:get-int` | Integer value access | 4 | `GetInt(obj, "count")` |
-| `function:get-bool` | Boolean value access | 4 | `GetBool(obj, "enabled")` |
-| `function:get-float` | Float value access | 4 | `GetFloat(obj, "rate")` |
-| `function:get-list` | List value access | 4 | `GetList(obj, "items")` |
-| `function:pretty-print` | Formatting output | 5 | `PrettyPrint(obj)` |
+| Function | Description | Level | Example Usage |
+|----------|-------------|--------|---------------|
+| `parse` | Basic key-value parsing | 1 | `Parse("key = value")` |
+| `parse-value` | Indentation-aware parsing | 2 | `ParseValue("key = val\n  sub")` |
+| `filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
+| `compose` | Entry composition | 2 | `Compose(left, right)` |
+| `expand-dotted` | Dotted key expansion | 2 | `ExpandDotted(entries)` |
+| `make-objects` | Object construction | 3 | `MakeObjects(entries)` |
+| `get-string` | String value access | 4 | `GetString(obj, "key")` |
+| `get-int` | Integer value access | 4 | `GetInt(obj, "count")` |
+| `get-bool` | Boolean value access | 4 | `GetBool(obj, "enabled")` |
+| `get-float` | Float value access | 4 | `GetFloat(obj, "rate")` |
+| `get-list` | List value access | 4 | `GetList(obj, "items")` |
+| `pretty-print` | Formatting output | 5 | `PrettyPrint(obj)` |
 
-### Feature Tags (`feature:*`)
+**Type-safe filtering:**
+```javascript
+// Check if implementation supports all required functions
+const functionsSupported = test.functions.every(fn => 
+  implementedFunctions.includes(fn)
+);
+```
 
-These indicate optional language features that may not be supported by all implementations:
+### Features Array (`test.features[]`)
 
-| Tag | Description | Example |
-|-----|-------------|---------|
-| `feature:comments` | `/=` comment syntax | `/= This is a comment` |
-| `feature:dotted-keys` | Hierarchical key syntax | `database.host = localhost` |
-| `feature:empty-keys` | Anonymous list items | `= item1\n= item2` |
-| `feature:multiline` | Multi-line values | `description = Line 1\nLine 2` |
-| `feature:unicode` | Unicode content | `name = José` |
-| `feature:whitespace` | Complex whitespace handling | Preserving tabs, spaces |
+Direct array containing optional language features that may not be supported by all implementations:
 
-### Behavior Tags (`behavior:*`)
+| Feature | Description | Example |
+|---------|-------------|---------|
+| `comments` | `/=` comment syntax | `/= This is a comment` |
+| `dotted-keys` | Hierarchical key syntax | `database.host = localhost` |
+| `empty-keys` | Anonymous list items | `= item1\n= item2` |
+| `multiline` | Multi-line values | `description = Line 1\nLine 2` |
+| `unicode` | Unicode content | `name = José` |
+| `whitespace` | Complex whitespace handling | Preserving tabs, spaces |
 
-These indicate **implementation-level choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
+**Type-safe filtering:**
+```javascript
+// Check if implementation supports all required features
+const featuresSupported = test.features.every(feature => 
+  implementedFeatures.includes(feature)
+);
+```
 
-| Tag Group | Options | Description |
-|-----------|---------|-------------|
-| Line Endings | `behavior:crlf-preserve-literal` vs `behavior:crlf-normalize-to-lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
-| Boolean Parsing | `behavior:boolean-lenient` vs `behavior:boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
-| Tab Handling | `behavior:tabs-preserve` vs `behavior:tabs-to-spaces` | Tab character processing |
-| Whitespace | `behavior:strict-spacing` vs `behavior:loose-spacing` | Whitespace sensitivity |
+### Behaviors Array (`test.behaviors[]`)
 
-### Variant Tags (`variant:*`) - Temporary Disambiguation
+Direct array containing **implementation-level choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
 
-These indicate **specification-level interpretations** for areas where the CCL specification is currently ambiguous or evolving. These tags exist to handle cases where the spec doesn't clearly define behavior, allowing both the OCaml reference implementation approach and proposed enhanced approaches to coexist during spec evolution.
+| Behavior Group | Options | Description |
+|----------------|---------|-------------|
+| Line Endings | `crlf-preserve-literal` vs `crlf-normalize-to-lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
+| Boolean Parsing | `boolean-lenient` vs `boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
+| Tab Handling | `tabs-preserve` vs `tabs-to-spaces` | Tab character processing |
+| Whitespace | `strict-spacing` vs `loose-spacing` | Whitespace sensitivity |
+| List Access | `list-coercion-enabled` vs `list-coercion-disabled` | List access behavior |
 
-| Tag | Description | Status |
-|-----|-------------|--------|
-| `variant:proposed-behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
-| `variant:reference-compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
+### Variants Array (`test.variants[]`) - Temporary Disambiguation
 
-**Important:** These variant tags are **temporary disambiguation mechanisms**. Once the CCL specification owners clarify these ambiguities, the variant system will be eliminated and these choices will be converted to specific `behavior:*` tags (e.g., `behavior:multiline-flexible` vs `behavior:multiline-strict`).
+Direct array containing **specification-level interpretations** for areas where the CCL specification is currently ambiguous or evolving. These exist to handle cases where the spec doesn't clearly define behavior, allowing both the OCaml reference implementation approach and proposed enhanced approaches to coexist during spec evolution.
+
+| Variant | Description | Status |
+|---------|-------------|--------|
+| `proposed-behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
+| `reference-compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
+
+**Type-safe filtering:**
+```javascript
+// Check for conflicting implementation choices
+const hasConflictingBehavior = test.conflicts?.behaviors?.some(behavior => 
+  implementationBehaviors.includes(behavior)
+);
+const hasConflictingVariant = test.conflicts?.variants?.some(variant => 
+  implementationVariants.includes(variant)
+);
+const isCompatible = !hasConflictingBehavior && !hasConflictingVariant;
+```
+
+**Important:** These variant values are **temporary disambiguation mechanisms**. Once the CCL specification owners clarify these ambiguities, the variant system will be eliminated and these choices will be converted to specific behaviors (e.g., `multiline-flexible` vs `multiline-strict`).
 
 ## Behavior vs Variant: When to Use Which
 

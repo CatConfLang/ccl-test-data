@@ -1,26 +1,38 @@
-# CCL Test Suite JSON Schema Reference
+# CCL Test Suite Schema Reference
 
-This document provides implementation-focused documentation for the JSON schema used in the CCL test suite files. All test files in the `tests/` directory specify which CCL parsing functions to validate and their expected outputs.
+This document provides comprehensive documentation for both the **source format** (maintainable) and **generated flat format** (implementation-friendly) used in the CCL test suite's dual-format architecture.
 
 > **📋 Complete Technical Reference:** For exhaustive field-by-field documentation, see [`generated-schema.md`](generated-schema.md) - automatically generated from the schema with complete type information and field listings.
 
-> **🛠️ Implementation Guide:** This document focuses on practical usage, examples, and implementation patterns for working with the CCL test suite schema.
+> **🛠️ Implementation Guide:** This document focuses on practical usage, examples, and implementation patterns for working with both schema formats.
 
-## Schema Overview
+## Dual-Format Architecture Overview
 
-The CCL test suite uses a JSON schema (`tests/schema.json`) that makes API function testing explicit. Each test specifies exactly which API functions to validate.
+The CCL test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
-**Schema Location**: `tests/schema.json`  
-**Schema Version**: JSON Schema Draft 07
+- **Source Format** (`tests/`): Maintainable format with grouped validations per test
+- **Generated Flat Format** (`generated-tests/`): Implementation-friendly with separate typed fields
 
-## Test Format Features
+**Schema Locations**: 
+- Source: `tests/schema.json` (JSON Schema Draft 07)
+- Generated: `generated-tests/flat-test-schema.json` (JSON Schema Draft 07)
 
-✅ **Direct API mapping**: Each validation maps to a specific API function  
-✅ **Multi-level testing**: Tests declare expected outputs for different parsing levels
-✅ **Simple test runners**: Direct iteration over `validations` object keys  
-✅ **Clear intent**: Obvious what functions to test and what results to expect
+## Architecture Benefits
 
-## Root Object Structure
+### Source Format (Maintainable)
+✅ **Grouped validations**: Multiple validations per test reduce input duplication  
+✅ **Clear structure**: Logical organization with direct API mapping  
+✅ **Readable format**: Easy to author and maintain test cases
+
+### Generated Flat Format (Implementation-Friendly)
+✅ **Type-safe filtering**: Direct field access with `test.functions[]`, `test.features[]`  
+✅ **Excellent API ergonomics**: No string parsing, better performance
+✅ **Simple test runners**: One test per validation function (1:N transformation)
+✅ **Schema validation**: Enum constraints ensure consistent values
+
+## Source Format Structure
+
+The source format in `tests/` directory maintains readability for test authoring:
 
 ```json
 {
@@ -31,16 +43,58 @@ The CCL test suite uses a JSON schema (`tests/schema.json`) that makes API funct
 }
 ```
 
-### Root Fields
+### Source Format Root Fields
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `suite` | string | ✓ | Name of the test suite (e.g., "CCL Essential Parsing (Validation Format)") |
 | `version` | string | ✓ | Version of the test suite format |
 | `description` | string |  | Description of the test suite purpose and scope |
-| `tests` | array | ✓ | Array of test cases |
+| `tests` | array | ✓ | Array of source test cases with grouped validations |
 
-## Test Case Structure
+## Generated Flat Format Structure
+
+The generated flat format in `generated-tests/` directory provides optimal implementation ergonomics:
+
+```json
+{
+  "name": "basic_parsing_workflow_parse",
+  "input": "database.host = localhost",
+  "validation": "parse",
+  "expected": {
+    "count": 1,
+    "entries": [{"key": "database.host", "value": "localhost"}]
+  },
+  "functions": ["parse"],
+  "features": ["dotted-keys"],
+  "behaviors": ["crlf-normalize-to-lf"],
+  "variants": ["reference-compliant"],
+  "level": 3,
+  "source_test": "basic_parsing_workflow",
+  "conflicts": {
+    "behaviors": ["crlf-preserve-literal"],
+    "variants": ["proposed-behavior"]
+  }
+}
+```
+
+### Generated Format Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `name` | string | ✓ | Unique test name (source_test + validation type) |
+| `input` | string | ✓ | CCL input string to parse |
+| `validation` | string | ✓ | Single validation type (parse, make-objects, etc.) |
+| `expected` | object | ✓ | Expected result with count field |
+| `functions` | array | ✓ | Required CCL functions |
+| `features` | array | ✓ | Required optional language features |
+| `behaviors` | array | ✓ | Implementation behavior choices |
+| `variants` | array | ✓ | Specification variant choices |
+| `level` | number | ✓ | CCL implementation level (1-5) |
+| `source_test` | string | ✓ | Original source test name |
+| `conflicts` | object |  | Mutually exclusive behaviors/variants |
+
+## Source Test Case Structure
 
 Each test case uses explicit `validations` objects that specify which API functions to test:
 
@@ -456,75 +510,126 @@ Every test case must include a `meta` object with categorization and level infor
 }
 ```
 
-## Test Filtering Architecture
+## Type-Safe Test Filtering
 
-The CCL test suite uses a dual filtering system enabling implementations to run different test subsets based on:
+The generated flat format enables type-safe filtering through direct field access:
 
-1. **Feature capabilities** - What functionality does your implementation support?
-2. **Behavioral compliance** - How does your implementation handle spec ambiguities?
+### Function-Based Filtering
 
-### Feature-Based Filtering
-
-Filter tests by `meta.feature` to match your implementation's capabilities:
+Filter tests by required CCL functions using `test.functions[]` array:
 
 ```javascript
-// Basic implementation
-const basicFeatures = ["parsing", "typed-parsing", "object-construction"];
-const myTests = tests.filter(test => basicFeatures.includes(test.meta.feature));
+// Basic implementation - core functions only
+const implementedFunctions = ["parse", "make-objects", "get-string"];
+const supportedTests = flatTests.filter(test => 
+  test.functions.every(fn => implementedFunctions.includes(fn))
+);
 
-// Enhanced implementation with optional features  
-const enhancedFeatures = [
-  "parsing", "typed-parsing", "object-construction",
-  "flexible-boolean-parsing", "crlf-normalization"
+// Enhanced implementation - includes processing functions
+const implementedFunctions = [
+  "parse", "make-objects", "get-string", "get-int", "get-bool",
+  "filter", "compose", "expand-dotted"
 ];
-const myTests = tests.filter(test => enhancedFeatures.includes(test.meta.feature));
+const supportedTests = flatTests.filter(test => 
+  test.functions.every(fn => implementedFunctions.includes(fn))
+);
 ```
 
-### Compliance-Based Filtering
+### Feature and Behavior Filtering
 
-Filter tests by `meta.tags` to choose your interpretation of spec ambiguities:
+Filter by optional features and implementation choices:
 
 ```javascript
-// CCL proposed behavior (enhanced/flexible)
-const proposedTests = tests.filter(test => 
-  !test.meta.tags.includes("reference-compliant-behavior")
-);
+// Implementation with optional features
+const implementedFeatures = ["comments", "dotted-keys"];
+const implementationBehaviors = ["crlf-normalize-to-lf", "boolean-strict"];
+const implementationVariants = ["reference-compliant"];
 
-// OCaml reference compliant behavior (strict/baseline)
-const referenceTests = tests.filter(test => 
-  !test.meta.tags.includes("proposed-behavior") ||
-   test.meta.tags.includes("reference-compliant-behavior")
-);
+const compatibleTests = flatTests.filter(test => {
+  // Check feature support
+  const featuresSupported = test.features.every(feature => 
+    implementedFeatures.includes(feature)
+  );
+  
+  // Check for behavioral conflicts
+  const hasConflictingBehavior = test.conflicts?.behaviors?.some(b => 
+    implementationBehaviors.includes(b)
+  );
+  const hasConflictingVariant = test.conflicts?.variants?.some(v => 
+    implementationVariants.includes(v)
+  );
+  
+  return featuresSupported && !hasConflictingBehavior && !hasConflictingVariant;
+});
 ```
 
-### Tag-Feature Design Pattern
+### Complete Implementation Example
 
-The filtering system follows consistent patterns:
+```javascript
+function getCompatibleTests(flatTests, capabilities) {
+  return flatTests.filter(test => {
+    // Check function support
+    const functionsSupported = test.functions.every(fn => 
+      capabilities.functions.includes(fn)
+    );
+    
+    // Check feature support
+    const featuresSupported = test.features.every(feature => 
+      capabilities.features.includes(feature)
+    );
+    
+    // Check for behavioral conflicts
+    const hasConflictingBehavior = test.conflicts?.behaviors?.some(b => 
+      capabilities.behaviors.includes(b)
+    );
+    const hasConflictingVariant = test.conflicts?.variants?.some(v => 
+      capabilities.variants.includes(v)
+    );
+    
+    return functionsSupported && featuresSupported && 
+           !hasConflictingBehavior && !hasConflictingVariant;
+  });
+}
 
-- **Optional features**: Clear requirement tags (e.g., `needs-flexible-boolean-parsing` tag + `flexible-boolean-parsing` feature)
-- **Baseline behavior**: Descriptive behavior tags with base feature category (e.g., `uses-strict-boolean-parsing` tag + `typed-parsing` feature)
-- **Spec ambiguities**: `proposed-behavior` vs `reference-compliant-behavior` tags with same base feature
+// Usage
+const capabilities = {
+  functions: ["parse", "make-objects", "get-string", "get-int"],
+  features: ["comments"],
+  behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
+  variants: ["reference-compliant"]
+};
 
-> **📖 Complete Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for comprehensive documentation of the filtering architecture, patterns, and examples.
+const runnableTests = getCompatibleTests(flatTests, capabilities);
+```
+
+### Benefits of Typed Fields Architecture
+
+- **Type-safe filtering**: Direct array access vs string parsing
+- **Better performance**: `test.functions.includes()` vs `test.meta.tags.includes('function:*')`
+- **Excellent API ergonomics**: Intuitive filtering patterns
+- **Schema validation**: Enum constraints ensure consistent values
+- **Conflict resolution**: Categorized conflicts structure
+
+> **📖 Complete Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for comprehensive documentation of the typed fields filtering architecture, patterns, and examples.
 
 ## Implementation Guidelines
 
-### Test Runner
+### Test Runners
+
+#### Source Format Test Runner (Multi-validation)
 
 ```javascript
-function runValidationTest(testCase) {
-  // Iterate over all validations in the test
+function runSourceTest(testCase) {
+  // Iterate over all validations in the source test
   for (const [validationType, validation] of Object.entries(testCase.validations)) {
     switch (validationType) {
       case 'parse':
         if (validation.error) {
-          // Test error case
           expect(() => parse(testCase.input)).toThrow(validation.error_message);
         } else {
-          // Test success case with counted format
           const actual = parse(testCase.input);
           expect(actual).toEqual(validation.expected);
-          expect(actual.length).toBe(validation.count); // Verify count matches
+          expect(actual.length).toBe(validation.count);
         }
         break;
         
@@ -532,39 +637,6 @@ function runValidationTest(testCase) {
         const entries = parse(testCase.input);
         const actual = makeObjects(entries);
         expect(actual).toEqual(validation.expected);
-        // Count typically 1 for make_objects
-        break;
-        
-      case 'get_string':
-        const ccl = makeObjects(parse(testCase.input));
-        if (validation.error) {
-          // Error format
-          expect(() => getString(ccl, ...validation.args)).toThrow();
-        } else {
-          // Counted format with test cases
-          validation.cases.forEach(testCase => {
-            if (testCase.error) {
-              expect(() => getString(ccl, ...testCase.args)).toThrow();
-            } else {
-              const actual = getString(ccl, ...testCase.args);
-              expect(actual).toBe(testCase.expected);
-            }
-          });
-          expect(validation.cases.length).toBe(validation.count); // Verify count
-        }
-        break;
-        
-      case 'filter':
-        const filteredEntries = filter(parse(testCase.input));
-        expect(filteredEntries).toEqual(validation.expected);
-        expect(filteredEntries.length).toBe(validation.count);
-        break;
-        
-      case 'round_trip':
-        const originalEntries = parse(testCase.input);
-        const formatted = prettyPrint(originalEntries);
-        const reparsedEntries = parse(formatted);
-        expect(reparsedEntries).toEqual(originalEntries);
         break;
         
       // ... handle other validation types
@@ -573,15 +645,63 @@ function runValidationTest(testCase) {
 }
 ```
 
-### Test Format Benefits
+#### Generated Flat Format Test Runner (Single-validation)
 
-1. **🎯 Clear intent**: Each test shows which API functions to test
-2. **🚀 Simple implementation**: Test runners iterate over validation keys
-3. **📚 Self-documenting**: Validation names explain what's being tested
-4. **🔧 Extensible**: Easy to add additional validation types
-5. **✅ Explicit structure**: Clear mapping between tests and API functions
-6. **📊 Comprehensive coverage**: See exactly what APIs are tested per test case
-7. **🔢 Assertion tracking**: Count field enables precise test generation and complexity measurement
+```javascript
+function runFlatTest(flatTest) {
+  // Each flat test has exactly one validation
+  switch (flatTest.validation) {
+    case 'parse':
+      if (flatTest.expect_error) {
+        expect(() => parse(flatTest.input)).toThrow(flatTest.error_type);
+      } else {
+        const actual = parse(flatTest.input);
+        expect(actual).toEqual(flatTest.expected.entries);
+        expect(actual.length).toBe(flatTest.expected.count);
+      }
+      break;
+      
+    case 'make_objects':
+      const entries = parse(flatTest.input);
+      const actual = makeObjects(entries);
+      expect(actual).toEqual(flatTest.expected.object);
+      break;
+      
+    case 'get_string':
+      const ccl = makeObjects(parse(flatTest.input));
+      if (flatTest.expect_error) {
+        expect(() => getString(ccl, ...flatTest.args)).toThrow();
+      } else {
+        const actual = getString(ccl, ...flatTest.args);
+        expect(actual).toBe(flatTest.expected.value);
+      }
+      break;
+      
+    // ... handle other validation types
+  }
+}
+
+// Usage with type-safe filtering
+const compatibleTests = getCompatibleTests(flatTests, capabilities);
+compatibleTests.forEach(test => runFlatTest(test));
+```
+
+### Dual-Format Benefits
+
+#### Source Format Benefits
+1. **📝 Maintainable**: Grouped validations reduce input duplication
+2. **📚 Readable**: Clear structure for test authoring
+3. **🔧 Extensible**: Easy to add validation types per test
+4. **🎯 Clear intent**: Direct mapping of test to API functions
+
+#### Generated Flat Format Benefits
+1. **⚡ Type-safe filtering**: Direct field access vs string parsing
+2. **🚀 Excellent performance**: Array methods faster than tag parsing
+3. **🛠️ API ergonomics**: Intuitive filtering patterns
+4. **🔍 Simple test runners**: One validation per test (no complex logic)
+5. **📋 Schema validation**: Enum constraints ensure consistency
+6. **🔢 Assertion tracking**: Count field enables precise measurement
+7. **⚙️ Conflict resolution**: Categorized conflicts structure
 
 ## Schema Validation
 

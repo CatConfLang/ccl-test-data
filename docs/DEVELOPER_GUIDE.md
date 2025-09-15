@@ -17,18 +17,16 @@ This guide provides comprehensive instructions for developers working on the CCL
 
 ### Multi-Level CCL Implementation
 
-The CCL Test Suite implements a 5-level architecture that allows for progressive implementation:
+The CCL Test Suite implements a 4-level architecture that allows for progressive implementation:
 
 ```
-Level 1: Raw Parsing (Parse)
+Level 1: Core CCL (Parse + MakeObjects)
     ↓
-Level 2: Entry Processing (Filter, Compose, ExpandDotted)
+Level 2: Typed Access (GetString, GetInt, GetBool, GetFloat, GetList)
     ↓
-Level 3: Object Construction (MakeObjects)
+Level 3: Advanced Processing (Filter, Compose, ExpandDotted)
     ↓
-Level 4: Typed Access (GetString, GetInt, GetBool, GetFloat, GetList)
-    ↓
-Level 5: Formatting (PrettyPrint)
+Level 4: Experimental Features (PrettyPrint)
 ```
 
 ### Package Structure
@@ -115,9 +113,9 @@ Tests are organized by feature category in the `tests/` directory:
 - **`api-comprehensive-parsing.json`** - Advanced parsing with edge cases
 - **`api-comments.json`** - Comment syntax support
 - **`api-dotted-keys.json`** - Dotted key expansion
-- **`api-object-construction.json`** - Level 3 object building
-- **`api-typed-access.json`** - Level 4 type-safe access
-- **`api-processing.json`** - Level 2 composition and filtering
+- **`api-object-construction.json`** - Level 1 object building
+- **`api-typed-access.json`** - Level 2 type-safe access
+- **`api-processing.json`** - Level 3 composition and filtering
 - **`api-errors.json`** - Error handling validation
 
 ### Test Structure
@@ -197,8 +195,8 @@ Tag tests with the CCL functions they validate:
 ```json
 "tags": [
   "function:parse",           // Level 1: Parse function
-  "function:make-objects",    // Level 3: Object construction
-  "function:get-string"       // Level 4: String access
+  "function:make-objects",    // Level 1: Object construction
+  "function:get-string"       // Level 2: String access
 ]
 ```
 
@@ -319,7 +317,7 @@ func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
 }
 ```
 
-#### Level 4: Typed Access
+#### Level 2: Typed Access
 
 ```go
 func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error) {
