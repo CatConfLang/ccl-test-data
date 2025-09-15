@@ -1,13 +1,9 @@
-{
-  "suite": "Compact Format",
-  "version": "1.0",
-  "description": " (flat format)",
-  "tests": [
-    {
-      "name": "comment_extension_parse",
-      "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
-      "validation": "parse",
-      "expected": [
+[
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 6,
+      "entries": [
         {
           "key": "/",
           "value": "This is an environment section"
@@ -32,23 +28,24 @@
           "key": "connections",
           "value": "16"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "comment_extension"
+      ]
     },
-    {
-      "name": "comment_extension_filter",
-      "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
-      "validation": "filter",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
+    "level": 2,
+    "name": "comment_extension_parse",
+    "source_test": "comment_extension",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 6,
+      "entries": [
         {
           "key": "/",
           "value": "This is an environment section"
@@ -73,69 +70,72 @@
           "key": "connections",
           "value": "16"
         }
-      ],
-      "functions": [
-        "filter"
-      ],
-      "features": [
-        "comments"
-      ],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "comment_extension"
+      ]
     },
-    {
-      "name": "comment_syntax_slash_equals_parse",
-      "input": "/= this is a comment",
-      "validation": "parse",
-      "expected": [
+    "features": [
+      "comments"
+    ],
+    "functions": [
+      "filter"
+    ],
+    "input": "/= This is an environment section\nport = 8080\nserve = index.html\n/= Database section\nmode = in-memory\nconnections = 16",
+    "level": 2,
+    "name": "comment_extension_filter",
+    "source_test": "comment_extension",
+    "validation": "filter",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "/",
           "value": "this is a comment"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "comment_syntax_slash_equals"
+      ]
     },
-    {
-      "name": "comment_syntax_slash_equals_filter",
-      "input": "/= this is a comment",
-      "validation": "filter",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "/= this is a comment",
+    "level": 2,
+    "name": "comment_syntax_slash_equals_parse",
+    "source_test": "comment_syntax_slash_equals",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "/",
           "value": "this is a comment"
         }
-      ],
-      "functions": [
-        "filter"
-      ],
-      "features": [
-        "comments"
-      ],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "comment_syntax_slash_equals"
+      ]
     },
-    {
-      "name": "section_headers_with_comments_parse",
-      "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
-      "validation": "parse",
-      "expected": [
+    "features": [
+      "comments"
+    ],
+    "functions": [
+      "filter"
+    ],
+    "input": "/= this is a comment",
+    "level": 2,
+    "name": "comment_syntax_slash_equals_filter",
+    "source_test": "comment_syntax_slash_equals",
+    "validation": "filter",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 6,
+      "entries": [
         {
           "key": "",
           "value": "= Database Config =="
@@ -160,23 +160,24 @@
           "key": "port",
           "value": "6379"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "section_headers_with_comments"
+      ]
     },
-    {
-      "name": "section_headers_with_comments_filter",
-      "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
-      "validation": "filter",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
+    "level": 2,
+    "name": "section_headers_with_comments_parse",
+    "source_test": "section_headers_with_comments",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 6,
+      "entries": [
         {
           "key": "",
           "value": "= Database Config =="
@@ -201,19 +202,19 @@
           "key": "port",
           "value": "6379"
         }
-      ],
-      "functions": [
-        "filter"
-      ],
-      "features": [
-        "comments"
-      ],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 2
-      },
-      "source_test": "section_headers_with_comments"
-    }
-  ]
-}
+      ]
+    },
+    "features": [
+      "comments"
+    ],
+    "functions": [
+      "filter"
+    ],
+    "input": "== Database Config ==\n/= Connection settings\nhost = localhost\n=== Cache Config ===\n/= Redis configuration\nport = 6379",
+    "level": 2,
+    "name": "section_headers_with_comments_filter",
+    "source_test": "section_headers_with_comments",
+    "validation": "filter",
+    "variants": null
+  }
+]

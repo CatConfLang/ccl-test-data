@@ -238,7 +238,7 @@ func (c *EnhancedCollector) analyzeSourceTests(sourceTests []SourceTest, filePat
 			"behaviors":  behaviorsCopy,
 			"variants":   variantsCopy,
 		}
-		
+
 		// Only include conflicts field if it has actual values
 		if len(conflictSlice) > 0 {
 			testData["conflicts"] = conflictSlice
@@ -334,7 +334,7 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 			"behaviors":  behaviorsCopy,
 			"variants":   variantsCopy,
 		}
-		
+
 		// Only include conflicts field if it has actual values
 		if len(test.Meta.Conflicts) > 0 {
 			testData["conflicts"] = test.Meta.Conflicts
