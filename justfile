@@ -46,6 +46,10 @@ generate *ARGS="":
     go run ./cmd/ccl-test-runner generate {{ARGS}}
 
 # Generate flat JSON files from source JSON files (source-to-flat conversion)
+# ARCHITECTURE NOTE: This delegates to ccl-test-lib via a thin CLI wrapper
+# - Logic lives in: ccl-test-lib/generator.NewFlatGenerator()
+# - CLI wrapper: cmd/ccl-test-runner/generate_flat.go
+# - Separation: Library contains logic, CLI provides convenience interface
 generate-flat *ARGS="":
     go run ./cmd/ccl-test-runner generate-flat {{ARGS}}
 
