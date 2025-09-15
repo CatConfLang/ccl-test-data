@@ -134,7 +134,7 @@ ccl-test-runner test [OPTIONS] [GO_TEST_FLAGS...]
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--format` | `-f` | `pretty` | Output format (pretty, table, verbose, json) |
-| `--levels` | `-l` | | Filter by CCL levels (1,2,3,4,5) |
+| `--levels` | `-l` | | Filter by CCL levels (1,2,3,4) |
 | `--features` | | | Filter by features (comments, parsing, objects, etc) |
 | `--tags` | | | Filter by tags (not yet implemented) |
 | `--list` | | | List available test packages without running |
@@ -183,7 +183,7 @@ ccl-test-runner test --levels 1
 ccl-test-runner test --levels 1,3
 
 # Test all levels
-ccl-test-runner test --levels 1,2,3,4,5
+ccl-test-runner test --levels 1,2,3,4
 ```
 
 **By Feature:**
@@ -264,11 +264,10 @@ Produces formatted output:
   Average Assertions: 2.7 per test
 
 🏗️  IMPLEMENTATION LEVELS
-  Level 1 (Raw Parsing):          47 tests (145 assertions)
-  Level 2 (Entry Processing):     23 tests (67 assertions)
-  Level 3 (Object Construction):  34 tests (89 assertions)
-  Level 4 (Typed Access):         41 tests (98 assertions)
-  Level 5 (Pretty Printing):      12 tests (24 assertions)
+  Level 1 (Core CCL):              81 tests (234 assertions)
+  Level 2 (Typed Access):         41 tests (98 assertions)
+  Level 3 (Advanced Processing):  23 tests (67 assertions)
+  Level 4 (Experimental):         12 tests (24 assertions)
 
 🏷️  STRUCTURED TAGS
   Function Tags:
@@ -309,11 +308,10 @@ Produces machine-readable JSON output suitable for automation and further proces
     "averageAssertions": 2.7
   },
   "levels": {
-    "level1": {"tests": 47, "assertions": 145},
-    "level2": {"tests": 23, "assertions": 67},
-    "level3": {"tests": 34, "assertions": 89},
-    "level4": {"tests": 41, "assertions": 98},
-    "level5": {"tests": 12, "assertions": 24}
+    "level1": {"tests": 81, "assertions": 234},
+    "level2": {"tests": 41, "assertions": 98},
+    "level3": {"tests": 23, "assertions": 67},
+    "level4": {"tests": 12, "assertions": 24}
   },
   "tags": {
     "function": {
@@ -557,17 +555,17 @@ The CLI uses standard exit codes:
 ccl-test-runner generate --run-only function:parse
 ccl-test-runner test --levels 1
 
-# 2. Add object construction (Level 3)
+# 2. Add object construction (Level 1 core)
 ccl-test-runner generate --run-only function:parse,function:make-objects
-ccl-test-runner test --levels 1,3
+ccl-test-runner test --levels 1
 
-# 3. Add typed access (Level 4)
+# 3. Add typed access (Level 2)
 ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string
-ccl-test-runner test --levels 1,3,4
+ccl-test-runner test --levels 1,2
 
 # 4. Add remaining typed access functions
 ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string,function:get-int,function:get-bool
-ccl-test-runner test --levels 1,3,4
+ccl-test-runner test --levels 1,2
 ```
 
 ### Feature Development Workflow

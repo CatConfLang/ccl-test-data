@@ -1,8 +1,8 @@
 # CCL Test Suite Architecture
 
-CCL tests specify exactly which API functions to validate and their expected outputs.
+The CCL test suite uses a **dual-format architecture** optimized for both maintainability and implementation, with type-safe filtering through separate typed fields.
 
-CCL implementations use a feature-based test organization that provides clear implementation milestones while allowing developers to choose their level of CCL support based on actual needs rather than artificial levels.
+The architecture provides clear implementation milestones while enabling developers to choose their level of CCL support based on actual needs rather than artificial constraints.
 
 ## Architecture Overview
 
@@ -25,31 +25,66 @@ Integration           ← Validation & edge cases
 
 Each category has specific APIs, test suites, and implementation requirements.
 
-## Test Format
+## Dual-Format Architecture
 
-CCL tests are organized into two categories based on implementation complexity:
-
-### API Tests (Direct Function Mapping)
-Files: `api-*.json` - Simple test runners that directly call API functions
+### Source Format (Maintainable)
+Files: `tests/api-*.json` - Grouped validations for easy test authoring
 
 ```json
 {
   "name": "basic_object_construction", 
   "input": "database.host = localhost",
   "validations": {
-    "parse": [{"key": "database.host", "value": "localhost"}],
-    "make_objects": {"database": {"host": "localhost"}},
+    "parse": {
+      "count": 1,
+      "expected": [{"key": "database.host", "value": "localhost"}]
+    },
+    "make_objects": {
+      "count": 1,
+      "expected": {"database": {"host": "localhost"}}
+    },
     "get_string": {
-      "args": ["database.host"],
-      "expected": "localhost"
+      "count": 1,
+      "cases": [{
+        "args": ["database.host"],
+        "expected": "localhost"
+      }]
     }
+  },
+  "meta": {
+    "tags": ["function:parse", "function:make-objects", "function:get-string"],
+    "level": 4,
+    "feature": "dotted-keys"
   }
 }
 ```
 
-### Property Tests (Mathematical Properties)  
-Files: `property-*.json` - Custom test runner logic required
+### Generated Flat Format (Implementation-Friendly)
+Files: `generated-tests/` - One test per validation with typed fields
 
+```json
+// Generated from above source test
+{
+  "name": "basic_object_construction_parse",
+  "input": "database.host = localhost",
+  "validation": "parse",
+  "expected": {
+    "count": 1,
+    "entries": [{"key": "database.host", "value": "localhost"}]
+  },
+  "functions": ["parse"],
+  "features": ["dotted-keys"],
+  "behaviors": [],
+  "variants": [],
+  "level": 4,
+  "source_test": "basic_object_construction"
+}
+```
+
+### Property Tests (Mathematical Properties)  
+Files: `tests/property-*.json` - Custom test runner logic required
+
+**Source Format:**
 ```json
 {
   "name": "round_trip_basic",
@@ -58,7 +93,28 @@ Files: `property-*.json` - Custom test runner logic required
     "round_trip": {
       "property": "identity"
     }
+  },
+  "meta": {
+    "tags": ["function:parse", "function:pretty-print"],
+    "level": 5,
+    "feature": "pretty-printing"
   }
+}
+```
+
+**Generated Flat Format:**
+```json
+{
+  "name": "round_trip_basic_round_trip",
+  "input": "key = value\nnested =\n  sub = val",
+  "validation": "round_trip",
+  "expected": {"property": "identity"},
+  "functions": ["parse", "pretty-print"],
+  "features": [],
+  "behaviors": [],
+  "variants": [],
+  "level": 5,
+  "source_test": "round_trip_basic"
 }
 ```
 
@@ -75,11 +131,76 @@ Files: `property-*.json` - Custom test runner logic required
 - **`associativity`** - Algebraic composition properties
 - **`canonical_format`** - Canonical formatting validation
 
-### Implementation Complexity
-✅ **API Tests** - Simple iteration over validations → direct API calls  
-⚠️ **Property Tests** - Requires custom mathematical property implementations  
-✅ **Progressive adoption** - Start with API tests, add properties later  
-✅ **Clear separation** - File naming shows implementation burden
+## Type-Safe Test Filtering
+
+The generated flat format enables efficient, type-safe test selection:
+
+### Function-Based Filtering
+```javascript
+// Basic implementation - core functions only
+const implementedFunctions = ["parse", "make-objects", "get-string"];
+const supportedTests = flatTests.filter(test => 
+  test.functions.every(fn => implementedFunctions.includes(fn))
+);
+
+// Advanced implementation - includes processing
+const implementedFunctions = [
+  "parse", "make-objects", "get-string", "get-int", "get-bool",
+  "filter", "compose", "expand-dotted", "pretty-print"
+];
+```
+
+### Feature and Behavior Filtering
+```javascript
+// Implementation capabilities
+const capabilities = {
+  functions: ["parse", "make-objects", "get-string"],
+  features: ["comments", "dotted-keys"],
+  behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
+  variants: ["reference-compliant"]
+};
+
+// Type-safe filtering with conflict resolution
+const compatibleTests = flatTests.filter(test => {
+  const functionsSupported = test.functions.every(fn => 
+    capabilities.functions.includes(fn)
+  );
+  const featuresSupported = test.features.every(feature => 
+    capabilities.features.includes(feature)
+  );
+  const hasConflicts = test.conflicts?.behaviors?.some(b => 
+    capabilities.behaviors.includes(b)
+  ) || test.conflicts?.variants?.some(v => 
+    capabilities.variants.includes(v)
+  );
+  
+  return functionsSupported && featuresSupported && !hasConflicts;
+});
+```
+
+### Benefits
+- **Type-safe**: Direct field access vs string parsing
+- **Performance**: Array methods faster than tag matching
+- **API ergonomics**: Intuitive filtering patterns
+- **Schema validation**: Enum constraints ensure consistency
+
+### Implementation Benefits
+
+**Source Format:**
+✅ **Maintainable** - Grouped validations reduce input duplication  
+✅ **Readable** - Clear structure for test authoring  
+✅ **Extensible** - Easy to add validation types per test
+
+**Generated Flat Format:**
+✅ **Type-safe filtering** - Direct field access with `test.functions[]`, `test.features[]`  
+✅ **Simple test runners** - One validation per test (no complex iteration)  
+✅ **Excellent performance** - Array methods faster than string parsing  
+✅ **API ergonomics** - Intuitive filtering patterns
+
+**Architecture:**
+✅ **Progressive adoption** - Start with core functions, add features incrementally  
+✅ **Clear separation** - API tests vs property tests clearly distinguished  
+⚠️ **Property Tests** - Requires custom mathematical property implementations
 
 ## Core Functionality (Required)
 
@@ -331,37 +452,92 @@ get_string(obj, ...path) → string
 
 ## Test Runner Implementation
 
-### Simple API Test Runner (30 lines)
-**For files:** `api-*.json` - Direct function mapping only
+### Source Format Test Runner
+**For files:** `tests/api-*.json` - Multi-validation test cases
 
 ```pseudocode
-function run_api_validation_test(test_case) {
-  // Simple iteration over API validations
-  for (validation_type, expected) in test_case.validations {
+function run_source_test(test_case) {
+  // Iterate over multiple validations per test
+  for (validation_type, validation_spec) in test_case.validations {
     switch validation_type {
       case "parse":
         actual = parse(test_case.input)
-        assert_equal(actual, expected)
+        assert_equal(actual, validation_spec.expected)
+        assert_equal(actual.length, validation_spec.count)
         
       case "make_objects":
         entries = parse(test_case.input)
         actual = make_objects(entries)
-        assert_equal(actual, expected)
+        assert_equal(actual, validation_spec.expected)
         
       case "get_string":
         entries = parse(test_case.input)
         ccl = make_objects(entries)
-        actual = get_string(ccl, ...expected.args)
-        assert_equal(actual, expected.expected)
+        for case in validation_spec.cases {
+          actual = get_string(ccl, ...case.args)
+          assert_equal(actual, case.expected)
+        }
+        assert_equal(validation_spec.cases.length, validation_spec.count)
         
-      case "filter":
-        entries = parse(test_case.input)
-        actual = filter(entries)
-        assert_equal(actual, expected)
-        
-      // ... other direct API calls
+      // ... other API validations
     }
   }
+}
+```
+
+### Generated Flat Format Test Runner (Recommended)
+**For files:** `generated-tests/` - Type-safe single-validation tests
+
+```pseudocode
+function run_flat_test(flat_test) {
+  // Each flat test has exactly one validation
+  switch flat_test.validation {
+    case "parse":
+      if flat_test.expect_error {
+        assert_throws(() => parse(flat_test.input))
+      } else {
+        actual = parse(flat_test.input)
+        assert_equal(actual, flat_test.expected.entries)
+        assert_equal(actual.length, flat_test.expected.count)
+      }
+      
+    case "make_objects":
+      entries = parse(flat_test.input)
+      actual = make_objects(entries)
+      assert_equal(actual, flat_test.expected.object)
+      
+    case "get_string":
+      entries = parse(flat_test.input)
+      ccl = make_objects(entries)
+      if flat_test.expect_error {
+        assert_throws(() => get_string(ccl, ...flat_test.args))
+      } else {
+        actual = get_string(ccl, ...flat_test.args)
+        assert_equal(actual, flat_test.expected.value)
+      }
+      
+    // ... other validations
+  }
+}
+
+// Usage with type-safe filtering
+function run_compatible_tests(flat_tests, capabilities) {
+  compatible_tests = flat_tests.filter(test => {
+    // Type-safe filtering
+    functions_supported = test.functions.every(fn => 
+      capabilities.functions.includes(fn)
+    )
+    features_supported = test.features.every(feature => 
+      capabilities.features.includes(feature)
+    )
+    no_conflicts = !test.conflicts?.behaviors?.some(b => 
+      capabilities.behaviors.includes(b)
+    )
+    
+    return functions_supported && features_supported && no_conflicts
+  })
+  
+  compatible_tests.forEach(test => run_flat_test(test))
 }
 ```
 
