@@ -21,9 +21,9 @@ install:
 # Basic development: generate Level 1 tests and verify they pass
 dev-basic:
     just clean
-    just generate --level 1
+    just generate --run-only function:parse
     just lint
-    just test --level 1
+    just test --levels 1
 
 # Full development: comprehensive test suite
 dev:

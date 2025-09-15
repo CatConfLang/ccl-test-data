@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ccl-test-data/test-runner/internal/types"
+	"github.com/tylerbu/ccl-test-lib/types"
 )
 
 // FeatureCategories maps feature names to categories

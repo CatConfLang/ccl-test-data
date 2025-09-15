@@ -23,7 +23,6 @@
 package generator
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/fs"
 	"os"
@@ -31,7 +30,9 @@ import (
 	"strings"
 
 	"github.com/ccl-test-data/test-runner/internal/styles"
-	"github.com/ccl-test-data/test-runner/internal/types"
+	"github.com/tylerbu/ccl-test-lib/config"
+	"github.com/tylerbu/ccl-test-lib/loader"
+	"github.com/tylerbu/ccl-test-lib/types"
 )
 
 // Options configures test generation behavior
@@ -141,20 +142,37 @@ func (g *Generator) findTestFiles() ([]string, error) {
 	return files, err
 }
 
-// generateTestFile generates a Go test file from a JSON test suite
+// generateTestFile generates a Go test file from a flat format JSON test file
 func (g *Generator) generateTestFile(jsonFile string) error {
-	// Read and parse JSON file
-	data, err := os.ReadFile(jsonFile)
-	if err != nil {
-		return fmt.Errorf("failed to read file %s at path %s: %w", filepath.Base(jsonFile), jsonFile, err)
+	// Create a basic implementation config that supports all functions
+	impl := config.ImplementationConfig{
+		Name:    "ccl-test-data-generator",
+		Version: "1.0.0",
+		SupportedFunctions: []config.CCLFunction{
+			config.FunctionParse,
+			config.FunctionBuildHierarchy,
+			config.FunctionGetString,
+			config.FunctionGetInt,
+			config.FunctionGetBool,
+			config.FunctionGetFloat,
+			config.FunctionGetList,
+			config.FunctionFilter,
+		},
+		SupportedFeatures: []config.CCLFeature{
+			config.FeatureComments,
+			config.FeatureExperimentalDottedKeys,
+			config.FeatureUnicode,
+		},
 	}
 
-	// Use pooled TestSuite to reduce allocations
-	testSuite := g.pool.GetTestSuite()
-	defer g.pool.PutTestSuite(testSuite)
-
-	if err := json.Unmarshal(data, testSuite); err != nil {
-		return fmt.Errorf("failed to parse JSON in %s: %w", jsonFile, err)
+	// Use ccl-test-lib loader to load the flat format test file
+	testLoader := loader.NewTestLoader(".", impl)
+	testSuite, err := testLoader.LoadTestFile(jsonFile, loader.LoadOptions{
+		Format:     loader.FormatFlat,
+		FilterMode: loader.FilterAll, // Load all tests regardless of compatibility
+	})
+	if err != nil {
+		return fmt.Errorf("failed to load flat format test file %s: %w", jsonFile, err)
 	}
 
 	// Generate test file content
