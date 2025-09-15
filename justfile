@@ -70,7 +70,7 @@ docs-check:
 # === UTILITIES ===
 
 stats:
-    go run ./cmd/ccl-test-runner stats --input tests
+    go run ./cmd/ccl-test-runner stats --input source_tests
 
 list:
     go run ./cmd/ccl-test-runner test --list

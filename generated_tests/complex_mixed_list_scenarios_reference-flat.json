@@ -30,6 +30,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -46,6 +49,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
     ],
     "conflicts": {},
     "requires": [

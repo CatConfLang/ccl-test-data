@@ -35,6 +35,10 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "comments",
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 2,
     "source_test": "section_headers_with_comments"
@@ -74,6 +78,10 @@
     },
     "functions": [
       "filter"
+    ],
+    "features": [
+      "comments",
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [

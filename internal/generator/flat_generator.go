@@ -25,6 +25,10 @@ type SourceTest struct {
 	Input       string                 `json:"input"`
 	Validations map[string]interface{} `json:"validations"`
 	Meta        SourceTestMeta         `json:"meta"`
+	Behaviors   []string               `json:"behaviors,omitempty"`
+	Variants    []string               `json:"variants,omitempty"`
+	Features    []string               `json:"features,omitempty"`
+	Conflicts   ConflictsByCategory    `json:"conflicts,omitempty"`
 }
 
 // SourceTestMeta represents the metadata structure with structured tags
@@ -45,11 +49,15 @@ type SourceTestCase struct {
 
 // SourceTestNew represents the actual source format used in source_tests/
 type SourceTestNew struct {
-	Name  string           `json:"name"`
-	Input string           `json:"input"`
-	Tests []SourceTestCase `json:"tests"`
-	Meta  SourceTestMeta   `json:"meta,omitempty"`
-	Level int              `json:"level,omitempty"`
+	Name      string                  `json:"name"`
+	Input     string                  `json:"input"`
+	Tests     []SourceTestCase        `json:"tests"`
+	Meta      SourceTestMeta          `json:"meta,omitempty"`
+	Level     int                     `json:"level,omitempty"`
+	Behaviors []string                `json:"behaviors,omitempty"`
+	Variants  []string                `json:"variants,omitempty"`
+	Features  []string                `json:"features,omitempty"`
+	Conflicts ConflictsByCategory     `json:"conflicts,omitempty"`
 }
 
 // FlatTest represents the generated flat format for implementations
@@ -60,10 +68,10 @@ type FlatTest struct {
 	Expected    ExpectedResult      `json:"expected"`
 	Args        []string            `json:"args,omitempty"`
 	Functions   []string            `json:"functions,omitempty"`
-	Behaviors   []string            `json:"behaviors,omitempty"`
-	Variants    []string            `json:"variants,omitempty"`
-	Features    []string            `json:"features,omitempty"`
-	Conflicts   ConflictsByCategory `json:"conflicts,omitempty"`
+	Behaviors   []string            `json:"behaviors"`
+	Variants    []string            `json:"variants"`
+	Features    []string            `json:"features"`
+	Conflicts   ConflictsByCategory `json:"conflicts"`
 	Requires    []string            `json:"requires,omitempty"`
 	Level       int                 `json:"level,omitempty"`
 	SourceTest  string              `json:"source_test,omitempty"`
@@ -73,10 +81,10 @@ type FlatTest struct {
 
 // ConflictsByCategory represents conflicts organized by tag type
 type ConflictsByCategory struct {
-	Functions []string `json:"functions,omitempty"`
-	Behaviors []string `json:"behaviors,omitempty"`
-	Variants  []string `json:"variants,omitempty"`
-	Features  []string `json:"features,omitempty"`
+	Functions []string `json:"functions"`
+	Behaviors []string `json:"behaviors"`
+	Variants  []string `json:"variants"`
+	Features  []string `json:"features"`
 }
 
 // ExpectedResult standardized result format
@@ -188,16 +196,57 @@ func convertToFlatTest(source SourceTest, validationName string, validationData 
 		return FlatTest{}, fmt.Errorf("error standardizing expected result: %w", err)
 	}
 
-	// Parse structured tags into separate fields
-	functions, behaviors, variants, features := parseStructuredTags(source.Meta.Tags)
+	// Parse structured tags into separate fields from meta tags
+	functions, metaBehaviors, metaVariants, metaFeatures := parseStructuredTags(source.Meta.Tags)
+	
+	// Ensure functions is never nil
+	if functions == nil {
+		functions = []string{}
+	}
+
+	// Combine meta tags with top-level fields (top-level takes precedence)
+	// Always ensure non-nil slices for consistent JSON output
+	behaviors := []string{}
+	if len(source.Behaviors) > 0 {
+		behaviors = source.Behaviors
+	} else if len(metaBehaviors) > 0 {
+		behaviors = metaBehaviors
+	}
+
+	variants := []string{}
+	if len(source.Variants) > 0 {
+		variants = source.Variants
+	} else if len(metaVariants) > 0 {
+		variants = metaVariants
+	}
+
+	features := []string{}
+	if len(source.Features) > 0 {
+		features = source.Features
+	} else if len(metaFeatures) > 0 {
+		features = metaFeatures
+	}
 
 	// Add the validation function if not already present
 	if !contains(functions, validationName) {
 		functions = append(functions, validationName)
 	}
 
-	// Parse conflicts into categorized structure
-	conflictsByCategory := parseConflicts(source.Meta.Conflicts)
+	// Use conflicts directly from top-level field (which is already in ConflictsByCategory format)
+	// Ensure all conflict slices are never nil
+	conflictsByCategory := source.Conflicts
+	if conflictsByCategory.Functions == nil {
+		conflictsByCategory.Functions = []string{}
+	}
+	if conflictsByCategory.Behaviors == nil {
+		conflictsByCategory.Behaviors = []string{}
+	}
+	if conflictsByCategory.Variants == nil {
+		conflictsByCategory.Variants = []string{}
+	}
+	if conflictsByCategory.Features == nil {
+		conflictsByCategory.Features = []string{}
+	}
 
 	flatTest := FlatTest{
 		Name:        fmt.Sprintf("%s_%s", source.Name, validationName),
@@ -338,6 +387,10 @@ func LoadSourceTests(sourceDir string) ([]SourceTest, error) {
 					Input:       newTest.Input,
 					Validations: make(map[string]interface{}),
 					Meta:        newTest.Meta,
+					Behaviors:   newTest.Behaviors,
+					Variants:    newTest.Variants,
+					Features:    newTest.Features,
+					Conflicts:   newTest.Conflicts,
 				}
 
 				// Convert tests array to validations map

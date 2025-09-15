@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 2,
     "source_test": "section_header_at_end"

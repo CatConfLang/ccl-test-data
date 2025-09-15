@@ -1,24 +1,5 @@
 [
   {
-    "name": "parse_zero_values_strict_literal_get_int",
-    "input": "count = 0\ndistance = 0.0\ndisabled = no",
-    "validation": "get_int",
-    "expected": {
-      "count": 1,
-      "value": 0
-    },
-    "functions": [
-      "get_int"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_zero_values_strict_literal"
-  },
-  {
     "name": "parse_zero_values_strict_literal_get_float",
     "input": "count = 0\ndistance = 0.0\ndisabled = no",
     "validation": "get_float",
@@ -28,6 +9,12 @@
     },
     "functions": [
       "get_float"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -46,6 +33,12 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -79,6 +72,12 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_zero_values_strict_literal"
@@ -98,9 +97,40 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_zero_values_strict_literal"
+  },
+  {
+    "name": "parse_zero_values_strict_literal_get_int",
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 0
+    },
+    "functions": [
+      "get_int"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "features": [
+      "empty_keys"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
     ],
     "level": 4,
     "source_test": "parse_zero_values_strict_literal"

@@ -1,31 +1,5 @@
 [
   {
-    "name": "multiple_dotted_keys_build_hierarchy",
-    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
-    "validation": "build_hierarchy",
-    "expected": {
-      "count": 1,
-      "object": {
-        "app": {
-          "name": "MyApp"
-        },
-        "database": {
-          "host": "localhost",
-          "port": "5432"
-        }
-      }
-    },
-    "functions": [
-      "build_hierarchy"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse"
-    ],
-    "level": 4,
-    "source_test": "multiple_dotted_keys"
-  },
-  {
     "name": "multiple_dotted_keys_parse",
     "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
     "validation": "parse",
@@ -48,6 +22,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "level": 4,
@@ -72,6 +49,38 @@
     },
     "functions": [
       "expand_dotted"
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "multiple_dotted_keys"
+  },
+  {
+    "name": "multiple_dotted_keys_build_hierarchy",
+    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "app": {
+          "name": "MyApp"
+        },
+        "database": {
+          "host": "localhost",
+          "port": "5432"
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "requires": [

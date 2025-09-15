@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "unicode"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "canonical_format_unicode"
@@ -33,6 +36,9 @@
     },
     "functions": [
       "canonical_format"
+    ],
+    "features": [
+      "unicode"
     ],
     "conflicts": {},
     "requires": [

@@ -9,6 +9,9 @@
     "functions": [
       "round_trip"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -31,6 +34,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "whitespace"
     ],
     "conflicts": {},
     "level": 4,

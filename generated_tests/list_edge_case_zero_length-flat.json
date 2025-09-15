@@ -1,5 +1,23 @@
 [
   {
+    "name": "list_edge_case_zero_length_build_hierarchy",
+    "input": "",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {}
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "list_edge_case_zero_length"
+  },
+  {
     "name": "list_edge_case_zero_length_get_list",
     "input": "",
     "validation": "get_list",
@@ -28,24 +46,6 @@
       "parse"
     ],
     "conflicts": {},
-    "level": 4,
-    "source_test": "list_edge_case_zero_length"
-  },
-  {
-    "name": "list_edge_case_zero_length_build_hierarchy",
-    "input": "",
-    "validation": "build_hierarchy",
-    "expected": {
-      "count": 1,
-      "object": {}
-    },
-    "functions": [
-      "build_hierarchy"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse"
-    ],
     "level": 4,
     "source_test": "list_edge_case_zero_length"
   }

@@ -1,25 +1,5 @@
 [
   {
-    "name": "deeply_nested_list_reference_parse",
-    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-    "validation": "parse",
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "config",
-          "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-        }
-      ]
-    },
-    "functions": [
-      "parse"
-    ],
-    "conflicts": {},
-    "level": 4,
-    "source_test": "deeply_nested_list_reference"
-  },
-  {
     "name": "deeply_nested_list_reference_build_hierarchy",
     "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
     "validation": "build_hierarchy",
@@ -64,6 +44,26 @@
       "parse",
       "build_hierarchy"
     ],
+    "level": 4,
+    "source_test": "deeply_nested_list_reference"
+  },
+  {
+    "name": "deeply_nested_list_reference_parse",
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "config",
+          "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
     "level": 4,
     "source_test": "deeply_nested_list_reference"
   }

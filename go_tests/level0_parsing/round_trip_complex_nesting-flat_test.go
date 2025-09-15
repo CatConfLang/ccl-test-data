@@ -2,7 +2,7 @@ package level0_parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,9 +12,12 @@ import (
 // Suite: Generated Flat Format
 // Version: 1.0
 
-// round_trip_complex_nesting_parse - function:parse (level 0)
-func TestRoundTripComplexNestingParse(t *testing.T) {
 
+
+// round_trip_complex_nesting_parse - function:parse feature:empty_keys (level 0)
+func TestRoundTripComplexNestingParse(t *testing.T) {
+	
+	
 	ccl := mock.New()
 	input := `app =
   = item1
@@ -24,11 +27,16 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
       host = localhost
       = db_item
   = item2`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -37,7 +45,10 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
 
 }
 
-// round_trip_complex_nesting_round_trip - function:round_trip (level 0)
+
+// round_trip_complex_nesting_round_trip - function:round_trip feature:empty_keys (level 0)
 func TestRoundTripComplexNestingRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
+

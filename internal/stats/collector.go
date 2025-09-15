@@ -98,6 +98,26 @@ func countAssertions(validationData interface{}) int {
 	return 1
 }
 
+// SourceTest represents a single test in source format
+type SourceTest struct {
+	Name      string                   `json:"name"`
+	Input     string                   `json:"input"`
+	Tests     []SourceTestValidation   `json:"tests"`
+	Level     int                      `json:"level,omitempty"`
+	Features  []string                 `json:"features,omitempty"`
+	Behaviors []string                 `json:"behaviors,omitempty"`
+	Variants  []string                 `json:"variants,omitempty"`
+	Conflicts map[string][]string      `json:"conflicts,omitempty"`
+}
+
+// SourceTestValidation represents a single validation in source format
+type SourceTestValidation struct {
+	Function string      `json:"function"`
+	Expect   interface{} `json:"expect"`
+	Args     []string    `json:"args,omitempty"`
+	Error    bool        `json:"error,omitempty"`
+}
+
 // analyzeTestFile analyzes a single test file and returns its statistics
 func (c *Collector) analyzeTestFile(filePath string) (*FileStats, string, error) {
 	data, err := os.ReadFile(filePath)
@@ -105,11 +125,52 @@ func (c *Collector) analyzeTestFile(filePath string) (*FileStats, string, error)
 		return nil, "", fmt.Errorf("reading file %s: %w", filePath, err)
 	}
 
-	var testSuite types.TestSuite
-	if err := json.Unmarshal(data, &testSuite); err != nil {
-		return nil, "", fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+	// Try to parse as source format (array of tests)
+	var sourceTests []SourceTest
+	if err := json.Unmarshal(data, &sourceTests); err != nil {
+		// Fallback to flat format (TestSuite)
+		var testSuite types.TestSuite
+		if err := json.Unmarshal(data, &testSuite); err != nil {
+			return nil, "", fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+		}
+		return c.analyzeTestSuite(testSuite)
 	}
 
+	return c.analyzeSourceTests(sourceTests)
+}
+
+// analyzeSourceTests analyzes source format tests
+func (c *Collector) analyzeSourceTests(sourceTests []SourceTest) (*FileStats, string, error) {
+	if len(sourceTests) == 0 {
+		return &FileStats{}, "", nil
+	}
+
+	// Get feature from first test that has one
+	feature := ""
+	for _, test := range sourceTests {
+		if len(test.Features) > 0 {
+			feature = test.Features[0] // Use first feature
+			break
+		}
+	}
+
+	// Count tests and assertions
+	totalTests := len(sourceTests)
+	totalAssertions := 0
+	
+	for _, test := range sourceTests {
+		// Each validation in the tests array is one assertion
+		totalAssertions += len(test.Tests)
+	}
+
+	return &FileStats{
+		Tests:      totalTests,
+		Assertions: totalAssertions,
+	}, feature, nil
+}
+
+// analyzeTestSuite analyzes flat format test suite (fallback)
+func (c *Collector) analyzeTestSuite(testSuite types.TestSuite) (*FileStats, string, error) {
 	if len(testSuite.Tests) == 0 {
 		return &FileStats{}, "", nil
 	}

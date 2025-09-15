@@ -17,6 +17,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "multiline"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -38,6 +41,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "features": [
+      "multiline"
     ],
     "conflicts": {},
     "requires": [
@@ -74,6 +80,9 @@
     },
     "functions": [
       "parse_value"
+    ],
+    "features": [
+      "multiline"
     ],
     "conflicts": {},
     "requires": [

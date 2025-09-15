@@ -16,6 +16,10 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -39,6 +43,10 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "empty_dotted_key_segments"
@@ -58,6 +66,10 @@
     },
     "functions": [
       "expand_dotted"
+    ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [

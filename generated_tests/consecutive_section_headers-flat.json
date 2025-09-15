@@ -27,6 +27,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 2,
     "source_test": "consecutive_section_headers"

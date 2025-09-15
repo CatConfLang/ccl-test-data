@@ -191,24 +191,24 @@
   },
   {
     "name": "canonical_format_unicode",
-    "input": "unicode = 你好世界\nemo = 🌟✨",
+    "input": "unicode = \u4f60\u597d\u4e16\u754c\nemo = \ud83c\udf1f\u2728",
     "tests": [
       {
         "function": "parse",
         "expect": [
           {
             "key": "unicode",
-            "value": "你好世界"
+            "value": "\u4f60\u597d\u4e16\u754c"
           },
           {
             "key": "emo",
-            "value": "🌟✨"
+            "value": "\ud83c\udf1f\u2728"
           }
         ]
       },
       {
         "function": "canonical_format",
-        "expect": "unicode = 你好世界\nemo = 🌟✨"
+        "expect": "unicode = \u4f60\u597d\u4e16\u754c\nemo = \ud83c\udf1f\u2728"
       }
     ],
     "features": [
@@ -457,11 +457,11 @@
   },
   {
     "name": "canonical_format_unicode_ocaml_reference",
-    "input": "unicode = 你好世界\nemo = 🌟✨",
+    "input": "unicode = \u4f60\u597d\u4e16\u754c\nemo = \ud83c\udf1f\u2728",
     "tests": [
       {
         "function": "canonical_format",
-        "expect": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+        "expect": "emo =\n  \ud83c\udf1f\u2728 =\nunicode =\n  \u4f60\u597d\u4e16\u754c =\n"
       }
     ],
     "features": [

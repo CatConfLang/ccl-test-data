@@ -1,25 +1,5 @@
 [
   {
-    "name": "single_item_as_list_parse",
-    "input": "item = single",
-    "validation": "parse",
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "item",
-          "value": "single"
-        }
-      ]
-    },
-    "functions": [
-      "parse"
-    ],
-    "conflicts": {},
-    "level": 4,
-    "source_test": "single_item_as_list"
-  },
-  {
     "name": "single_item_as_list_build_hierarchy",
     "input": "item = single",
     "validation": "build_hierarchy",
@@ -31,6 +11,9 @@
     },
     "functions": [
       "build_hierarchy"
+    ],
+    "behaviors": [
+      "list_coercion_enabled"
     ],
     "conflicts": {},
     "requires": [
@@ -52,11 +35,37 @@
     "functions": [
       "get_list"
     ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse",
       "build_hierarchy"
     ],
+    "level": 4,
+    "source_test": "single_item_as_list"
+  },
+  {
+    "name": "single_item_as_list_parse",
+    "input": "item = single",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "item",
+          "value": "single"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "conflicts": {},
     "level": 4,
     "source_test": "single_item_as_list"
   }

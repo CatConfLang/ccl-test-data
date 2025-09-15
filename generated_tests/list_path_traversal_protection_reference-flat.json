@@ -1,5 +1,26 @@
 [
   {
+    "name": "list_path_traversal_protection_reference_get_list",
+    "input": "safe = value",
+    "validation": "get_list",
+    "expected": {
+      "count": 0
+    },
+    "functions": [
+      "get_list"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "list_path_traversal_protection_reference"
+  },
+  {
     "name": "list_path_traversal_protection_reference_parse",
     "input": "safe = value",
     "validation": "parse",
@@ -14,6 +35,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
     ],
     "conflicts": {},
     "level": 4,
@@ -32,27 +56,12 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
-    ],
-    "level": 4,
-    "source_test": "list_path_traversal_protection_reference"
-  },
-  {
-    "name": "list_path_traversal_protection_reference_get_list",
-    "input": "safe = value",
-    "validation": "get_list",
-    "expected": {
-      "count": 0
-    },
-    "functions": [
-      "get_list"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
     ],
     "level": 4,
     "source_test": "list_path_traversal_protection_reference"

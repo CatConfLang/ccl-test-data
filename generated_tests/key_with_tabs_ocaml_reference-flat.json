@@ -15,6 +15,12 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "tabs_preserve"
+    ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "key_with_tabs_ocaml_reference"

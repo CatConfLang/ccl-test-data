@@ -1,5 +1,71 @@
 [
   {
+    "name": "parse_mixed_types_get_int",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 8080
+    },
+    "functions": [
+      "get_int"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types"
+  },
+  {
+    "name": "parse_mixed_types_get_bool",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": true
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types"
+  },
+  {
+    "name": "parse_mixed_types_get_float",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_float",
+    "expected": {
+      "count": 1,
+      "value": 30.5
+    },
+    "functions": [
+      "get_float"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types"
+  },
+  {
     "name": "parse_mixed_types_parse",
     "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
     "validation": "parse",
@@ -31,6 +97,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_mixed_types"
@@ -52,6 +121,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -70,62 +142,8 @@
     "functions": [
       "get_string"
     ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types"
-  },
-  {
-    "name": "parse_mixed_types_get_int",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_int",
-    "expected": {
-      "count": 1,
-      "value": 8080
-    },
-    "functions": [
-      "get_int"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types"
-  },
-  {
-    "name": "parse_mixed_types_get_bool",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_bool",
-    "expected": {
-      "count": 1,
-      "value": true
-    },
-    "functions": [
-      "get_bool"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types"
-  },
-  {
-    "name": "parse_mixed_types_get_float",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_float",
-    "expected": {
-      "count": 1,
-      "value": 30.5
-    },
-    "functions": [
-      "get_float"
+    "behaviors": [
+      "boolean_lenient"
     ],
     "conflicts": {},
     "requires": [

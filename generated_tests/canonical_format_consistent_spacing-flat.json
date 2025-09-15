@@ -10,6 +10,9 @@
     "functions": [
       "canonical_format"
     ],
+    "behaviors": [
+      "strict_spacing"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -40,6 +43,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "behaviors": [
+      "strict_spacing"
     ],
     "conflicts": {},
     "level": 4,

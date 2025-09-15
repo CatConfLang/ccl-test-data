@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "crlf_preserve_literal"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "canonical_format_line_endings_proposed"
@@ -33,6 +36,9 @@
     },
     "functions": [
       "canonical_format"
+    ],
+    "behaviors": [
+      "crlf_preserve_literal"
     ],
     "conflicts": {},
     "requires": [

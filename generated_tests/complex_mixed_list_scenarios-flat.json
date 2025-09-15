@@ -14,6 +14,9 @@
     "functions": [
       "get_list"
     ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse",
@@ -78,6 +81,9 @@
     "functions": [
       "parse_value"
     ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -115,6 +121,9 @@
     },
     "functions": [
       "build_hierarchy"
+    ],
+    "behaviors": [
+      "list_coercion_enabled"
     ],
     "conflicts": {},
     "requires": [

@@ -15,6 +15,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "single_item_as_list_reference"
@@ -32,6 +35,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -48,6 +54,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
     ],
     "conflicts": {},
     "requires": [

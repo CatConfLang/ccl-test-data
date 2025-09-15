@@ -1,5 +1,120 @@
 [
   {
+    "name": "parse_mixed_types_strict_literal_build_hierarchy",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "debug": "off",
+        "host": "localhost",
+        "port": "8080",
+        "ssl": "true",
+        "timeout": "30.5"
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types_strict_literal"
+  },
+  {
+    "name": "parse_mixed_types_strict_literal_get_string",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_string",
+    "expected": {
+      "count": 1,
+      "value": "localhost"
+    },
+    "functions": [
+      "get_string"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types_strict_literal"
+  },
+  {
+    "name": "parse_mixed_types_strict_literal_get_int",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_int",
+    "expected": {
+      "count": 1,
+      "value": 8080
+    },
+    "functions": [
+      "get_int"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types_strict_literal"
+  },
+  {
+    "name": "parse_mixed_types_strict_literal_get_bool",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": true
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types_strict_literal"
+  },
+  {
+    "name": "parse_mixed_types_strict_literal_get_float",
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "validation": "get_float",
+    "expected": {
+      "count": 1,
+      "value": 30.5
+    },
+    "functions": [
+      "get_float"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_mixed_types_strict_literal"
+  },
+  {
     "name": "parse_mixed_types_strict_literal_parse",
     "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
     "validation": "parse",
@@ -31,107 +146,10 @@
     "functions": [
       "parse"
     ],
-    "conflicts": {},
-    "level": 4,
-    "source_test": "parse_mixed_types_strict_literal"
-  },
-  {
-    "name": "parse_mixed_types_strict_literal_build_hierarchy",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "build_hierarchy",
-    "expected": {
-      "count": 1,
-      "object": {
-        "debug": "off",
-        "host": "localhost",
-        "port": "8080",
-        "ssl": "true",
-        "timeout": "30.5"
-      }
-    },
-    "functions": [
-      "build_hierarchy"
+    "behaviors": [
+      "boolean_strict"
     ],
     "conflicts": {},
-    "requires": [
-      "parse"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types_strict_literal"
-  },
-  {
-    "name": "parse_mixed_types_strict_literal_get_string",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_string",
-    "expected": {
-      "count": 1,
-      "value": "localhost"
-    },
-    "functions": [
-      "get_string"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types_strict_literal"
-  },
-  {
-    "name": "parse_mixed_types_strict_literal_get_int",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_int",
-    "expected": {
-      "count": 1,
-      "value": 8080
-    },
-    "functions": [
-      "get_int"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types_strict_literal"
-  },
-  {
-    "name": "parse_mixed_types_strict_literal_get_bool",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_bool",
-    "expected": {
-      "count": 1,
-      "value": true
-    },
-    "functions": [
-      "get_bool"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
-    "level": 4,
-    "source_test": "parse_mixed_types_strict_literal"
-  },
-  {
-    "name": "parse_mixed_types_strict_literal_get_float",
-    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-    "validation": "get_float",
-    "expected": {
-      "count": 1,
-      "value": 30.5
-    },
-    "functions": [
-      "get_float"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
-    ],
     "level": 4,
     "source_test": "parse_mixed_types_strict_literal"
   }

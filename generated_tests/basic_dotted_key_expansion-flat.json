@@ -1,25 +1,5 @@
 [
   {
-    "name": "basic_dotted_key_expansion_parse",
-    "input": "database.host = localhost",
-    "validation": "parse",
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "database.host",
-          "value": "localhost"
-        }
-      ]
-    },
-    "functions": [
-      "parse"
-    ],
-    "conflicts": {},
-    "level": 4,
-    "source_test": "basic_dotted_key_expansion"
-  },
-  {
     "name": "basic_dotted_key_expansion_expand_dotted",
     "input": "database.host = localhost",
     "validation": "expand_dotted",
@@ -34,6 +14,9 @@
     },
     "functions": [
       "expand_dotted"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -57,10 +40,36 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
     ],
+    "level": 4,
+    "source_test": "basic_dotted_key_expansion"
+  },
+  {
+    "name": "basic_dotted_key_expansion_parse",
+    "input": "database.host = localhost",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "database.host",
+          "value": "localhost"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "conflicts": {},
     "level": 4,
     "source_test": "basic_dotted_key_expansion"
   }

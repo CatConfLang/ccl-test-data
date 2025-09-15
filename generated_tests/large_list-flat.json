@@ -1,5 +1,46 @@
 [
   {
+    "name": "large_list_build_hierarchy",
+    "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "items": [
+          "item01",
+          "item02",
+          "item03",
+          "item04",
+          "item05",
+          "item06",
+          "item07",
+          "item08",
+          "item09",
+          "item10",
+          "item11",
+          "item12",
+          "item13",
+          "item14",
+          "item15",
+          "item16",
+          "item17",
+          "item18",
+          "item19",
+          "item20"
+        ]
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "large_list"
+  },
+  {
     "name": "large_list_get_list",
     "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
     "validation": "get_list",
@@ -132,47 +173,6 @@
       "parse"
     ],
     "conflicts": {},
-    "level": 4,
-    "source_test": "large_list"
-  },
-  {
-    "name": "large_list_build_hierarchy",
-    "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-    "validation": "build_hierarchy",
-    "expected": {
-      "count": 1,
-      "object": {
-        "items": [
-          "item01",
-          "item02",
-          "item03",
-          "item04",
-          "item05",
-          "item06",
-          "item07",
-          "item08",
-          "item09",
-          "item10",
-          "item11",
-          "item12",
-          "item13",
-          "item14",
-          "item15",
-          "item16",
-          "item17",
-          "item18",
-          "item19",
-          "item20"
-        ]
-      }
-    },
-    "functions": [
-      "build_hierarchy"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse"
-    ],
     "level": 4,
     "source_test": "large_list"
   }

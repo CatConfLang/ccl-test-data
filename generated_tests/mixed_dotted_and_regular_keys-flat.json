@@ -27,6 +27,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "mixed_dotted_and_regular_keys"
@@ -59,6 +62,9 @@
     "functions": [
       "expand_dotted"
     ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -87,6 +93,9 @@
     },
     "functions": [
       "build_hierarchy"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "requires": [

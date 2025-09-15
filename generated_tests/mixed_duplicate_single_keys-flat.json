@@ -23,6 +23,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "mixed_duplicate_single_keys"
@@ -44,6 +47,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -63,6 +69,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "behaviors": [
+      "list_coercion_enabled"
     ],
     "conflicts": {},
     "requires": [

@@ -19,6 +19,10 @@
     "functions": [
       "parse_value"
     ],
+    "features": [
+      "empty_keys",
+      "multiline"
+    ],
     "conflicts": {},
     "requires": [
       "parse"

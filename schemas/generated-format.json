@@ -7,7 +7,7 @@
   "minItems": 1,
   "items": {
     "type": "object",
-    "required": ["name", "input", "validation", "expected"],
+    "required": ["name", "input", "validation", "expected", "behaviors", "variants", "features", "conflicts"],
     "properties": {
       "name": {
         "type": "string",
@@ -85,8 +85,7 @@
             "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
             "pretty_print", "load", "canonical_format", "round_trip", "associativity"
           ]
-        },
-        "default": []
+        }
       },
       "behaviors": {
         "type": "array",
@@ -101,8 +100,7 @@
             "list_coercion_enabled", "list_coercion_disabled"
           ]
         },
-        "uniqueItems": true,
-        "default": []
+        "uniqueItems": true
       },
       "variants": {
         "type": "array",
@@ -111,8 +109,7 @@
           "type": "string",
           "enum": ["proposed_behavior", "reference_compliant"]
         },
-        "uniqueItems": true,
-        "default": []
+        "uniqueItems": true
       },
       "features": {
         "type": "array",
@@ -124,8 +121,7 @@
             "multiline", "unicode", "whitespace"
           ]
         },
-        "uniqueItems": true,
-        "default": []
+        "uniqueItems": true
       },
       "conflicts": {
         "type": "object",
@@ -148,16 +144,14 @@
             "items": {"type": "string"}
           }
         },
-        "additionalProperties": false,
-        "default": {}
+        "additionalProperties": false
       },
       "requires": {
         "type": "array",
         "description": "Functions that must be implemented as prerequisites",
         "items": {
           "type": "string"
-        },
-        "default": []
+        }
       },
       "level": {
         "type": "integer",
