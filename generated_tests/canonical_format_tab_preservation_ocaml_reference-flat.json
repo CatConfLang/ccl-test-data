@@ -10,6 +10,9 @@
     "functions": [
       "canonical_format"
     ],
+    "behaviors": [
+      "tabs_preserve"
+    ],
     "conflicts": {},
     "requires": [
       "parse"

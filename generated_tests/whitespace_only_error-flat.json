@@ -9,6 +9,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "whitespace_only_error"

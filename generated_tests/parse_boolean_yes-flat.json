@@ -1,5 +1,27 @@
 [
   {
+    "name": "parse_boolean_yes_get_bool",
+    "input": "active = yes",
+    "validation": "get_bool",
+    "expected": {
+      "count": 1,
+      "value": true
+    },
+    "functions": [
+      "get_bool"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "parse_boolean_yes"
+  },
+  {
     "name": "parse_boolean_yes_parse",
     "input": "active = yes",
     "validation": "parse",
@@ -14,6 +36,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "behaviors": [
+      "boolean_lenient"
     ],
     "conflicts": {},
     "level": 4,
@@ -32,28 +57,12 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
-    ],
-    "level": 4,
-    "source_test": "parse_boolean_yes"
-  },
-  {
-    "name": "parse_boolean_yes_get_bool",
-    "input": "active = yes",
-    "validation": "get_bool",
-    "expected": {
-      "count": 1,
-      "value": true
-    },
-    "functions": [
-      "get_bool"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
     ],
     "level": 4,
     "source_test": "parse_boolean_yes"

@@ -1,25 +1,5 @@
 [
   {
-    "name": "single_dot_key_parse",
-    "input": "a. = value",
-    "validation": "parse",
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "a.",
-          "value": "value"
-        }
-      ]
-    },
-    "functions": [
-      "parse"
-    ],
-    "conflicts": {},
-    "level": 4,
-    "source_test": "single_dot_key"
-  },
-  {
     "name": "single_dot_key_expand_dotted",
     "input": "a. = value",
     "validation": "expand_dotted",
@@ -34,6 +14,10 @@
     },
     "functions": [
       "expand_dotted"
+    ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -57,10 +41,38 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
     ],
+    "level": 4,
+    "source_test": "single_dot_key"
+  },
+  {
+    "name": "single_dot_key_parse",
+    "input": "a. = value",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "a.",
+          "value": "value"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "features": [
+      "experimental_dotted_keys",
+      "empty_keys"
+    ],
+    "conflicts": {},
     "level": 4,
     "source_test": "single_dot_key"
   }

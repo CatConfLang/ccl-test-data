@@ -1,130 +1,46 @@
-# Test Runner Implementation Guide
+# CCL Test Runner Implementation Guide
 
-This guide provides patterns and strategies for implementing test runners that work with the CCL test suite's separate typed fields architecture. It addresses real-world scenarios like progressive implementation, mixed function requirements, and robust result reporting.
+This guide explains how to implement test runners for the CCL flat test format. The flat format simplifies test execution by having one test per validation, making implementation straightforward.
 
-## Test Execution Strategies
+## Flat Test Format Overview
 
-When a test contains multiple validations but your implementation doesn't support all required functions, you have several execution strategies to choose from.
-
-### 1. Partial Validation Execution (Recommended)
-
-**Strategy**: Execute only the validations for implemented functions, skip unimplemented ones.
+Each test file contains an array of independent tests. Each test validates exactly one CCL function:
 
 ```json
-{
-  "name": "mixed_requirements_test",
-  "input": "database.host = localhost\ndatabase.port = 5432",
-  "validations": {
-    "parse": {
-      "count": 2,
-      "expected": [
-        {"key": "database.host", "value": "localhost"},
-        {"key": "database.port", "value": "5432"}
-      ]
-    },
-    "expand_dotted": {
+[
+  {
+    "name": "basic_parsing_parse",
+    "input": "key = value",
+    "validation": "parse",
+    "expected": {
       "count": 1,
-      "expected": [
-        {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
-      ]
+      "entries": [{"key": "key", "value": "value"}]
     },
-    "build_hierarchy": {
-      "count": 1,
-      "expected": {
-        "database": {"host": "localhost", "port": "5432"}
-      }
-    }
-  },
-  "functions": ["parse", "expand_dotted", "build_hierarchy"],
-  "features": [],
-  "behaviors": [],
-  "variants": [],
-  "level": 1
-}
-```
-
-**If `expand_dotted` is unimplemented:**
-- ✅ Execute `parse` validation
-- ⏭️ Skip `expand_dotted` validation 
-- ✅ Execute `build_hierarchy` validation
-- 📊 Report: **PARTIAL** (2/3 validations executed)
-
-**Benefits:**
-- Tests implemented functionality, providing valuable feedback
-- Supports progressive development workflows
-- Provides partial progress rather than complete silence
-
-**Trade-offs:**
-- May miss integration issues between implemented and unimplemented parts
-- Requires more complex result interpretation
-
-### 2. Skip Entire Test (Conservative)
-
-**Strategy**: Skip the entire test if any required function is unimplemented.
-
-**Implementation:**
-```pseudocode
-function should_skip_test(test, implemented_functions) {
-  for function_name in test.functions {
-    if function_name not in implemented_functions {
-      return true
-    }
+    "functions": ["parse"],
+    "behaviors": [],
+    "variants": [],
+    "features": [],
+    "level": 1
   }
-  return false
-}
+]
 ```
 
-**Benefits:**
-- Clean, no partial results to confuse interpretation
-- Ensures test integrity - only run tests that can be fully validated
-- Simple implementation and clear semantics
+## Test Selection Strategy
 
-**Trade-offs:**
-- Loses valuable testing of working functionality
-- Not progressive-implementation friendly
-- Can result in too many skipped tests during development
-
-### 3. Fail Fast (Strict)
-
-**Strategy**: Fail immediately when encountering an unimplemented function.
-
-**Implementation:**
-```pseudocode
-function execute_test(test, implementation) {
-  for validation_name in test.validations.keys() {
-    if not implementation.supports(validation_name) {
-      throw UnimplementedFunctionError(validation_name)
-    }
-    // Execute validation...
-  }
-}
-```
-
-**Benefits:**
-- Forces complete implementation before testing
-- Clear signal that implementation is incomplete
-- Strict enforcement of completeness
-
-**Trade-offs:**
-- Not suitable for progressive implementation workflows
-- Discourages incremental development
-- Can block all testing until everything is implemented
-
-## Progressive Implementation Patterns
+Since each test validates exactly one function, test execution is simple: **run tests for implemented functions, skip tests for unimplemented functions**.
 
 ### Function-Based Filtering
 
-Use separate typed fields to filter tests based on implemented functions:
+Filter tests based on your implementation's capabilities:
 
 ```pseudocode
-// Pre-filter tests during test discovery
 function get_runnable_tests(all_tests, implemented_functions) {
   runnable_tests = []
   
   for test in all_tests {
     required_functions = test.functions
     
-    if all_required_functions_implemented(required_functions, implemented_functions) {
+    if all_functions_implemented(required_functions, implemented_functions) {
       runnable_tests.append(test)
     }
   }
@@ -132,74 +48,21 @@ function get_runnable_tests(all_tests, implemented_functions) {
   return runnable_tests
 }
 
-// Function extraction is no longer needed with separate fields
-// Functions are directly available in test.functions array
-```
-
-### Runtime Validation Skipping
-
-Skip individual validations at runtime:
-
-```pseudocode
-function execute_test_validations(test, implementation) {
-  results = []
-  
-  for validation_name, validation_spec in test.validations {
-    if implementation.supports(validation_name) {
-      try {
-        result = execute_validation(validation_name, validation_spec, test.input)
-        results.append(ValidationResult(validation_name, "passed", result))
-      } catch (error) {
-        results.append(ValidationResult(validation_name, "failed", error))
-      }
-    } else {
-      results.append(ValidationResult(validation_name, "skipped", "function not implemented"))
+function all_functions_implemented(required, implemented) {
+  for function_name in required {
+    if function_name not in implemented {
+      return false
     }
   }
-  
-  return determine_overall_result(results)
-}
-
-function determine_overall_result(validation_results) {
-  passed = validation_results.count(r => r.status == "passed")
-  failed = validation_results.count(r => r.status == "failed")
-  skipped = validation_results.count(r => r.status == "skipped")
-  
-  if failed > 0 {
-    return "failed"
-  } else if passed > 0 and skipped > 0 {
-    return "partial"
-  } else if passed > 0 {
-    return "passed"
-  } else {
-    return "skipped"
-  }
+  return true
 }
 ```
 
-### Feature-Based Test Organization
+### Behavior and Feature Filtering
 
-Organize test execution based on features and capabilities:
+Filter tests based on implementation behaviors and supported features:
 
 ```pseudocode
-type TestCapabilities = {
-  functions: Set<string>,     // "parse", "build_hierarchy", "get_string", etc.
-  features: Set<string>,      // "comments", "dotted_keys", "unicode", etc.
-  behaviors: Set<string>      // "crlf_normalize", "tabs_preserve", etc.
-}
-
-function filter_tests_by_capabilities(tests, capabilities) {
-  compatible_tests = []
-  
-  for test in tests {
-    if test_is_compatible(test, capabilities) {
-      compatible_tests.append(test)
-    }
-  }
-  
-  return compatible_tests
-}
-
 function test_is_compatible(test, capabilities) {
   // Check function requirements
   for function_name in test.functions {
@@ -222,173 +85,129 @@ function test_is_compatible(test, capabilities) {
     }
   }
   
-  // Check variant compatibility
-  for variant_name in test.variants {
-    if variant_name not in capabilities.variants {
-      return false
-    }
-  }
-  
   return true
 }
 ```
 
-## Standard Test Result Schema
+## Behavior Conflicts and Resolution
 
-### Test Result Types
+### Understanding Behavior Conflicts
 
-Define clear result categories for consistent reporting:
-
-```pseudocode
-enum TestStatus {
-  PASSED,     // All validations executed and passed
-  FAILED,     // At least one validation failed
-  PARTIAL,    // Some validations passed, others skipped
-  SKIPPED     // Entire test skipped due to missing requirements
-}
-
-enum ValidationStatus {
-  PASSED,          // Validation executed and passed
-  FAILED,          // Validation executed but failed
-  SKIPPED,         // Validation skipped (function not implemented)
-  ERROR            // Validation couldn't execute due to test runner error
-}
-```
-
-### Detailed Result Structure
+Some behaviors are mutually exclusive - implementations must choose one approach:
 
 ```pseudocode
-type ValidationResult = {
-  name: string,
-  status: ValidationStatus,
-  message: string,
-  expected?: any,
-  actual?: any,
-  execution_time?: duration
-}
-
-type TestResult = {
-  test_name: string,
-  status: TestStatus,
-  validations: ValidationResult[],
-  summary: string,
-  execution_time: duration,
-  metadata: {
-    functions: string[],
-    features: string[],
-    behaviors: string[],
-    variants: string[],
-    functions_executed: string[],
-    functions_skipped: string[]
-  }
+// Conflicting behavior groups
+conflicts = {
+  "line_endings": ["crlf_preserve_literal", "crlf_normalize_to_lf"],
+  "boolean_parsing": ["boolean_lenient", "boolean_strict"], 
+  "spacing": ["strict_spacing", "loose_spacing"],
+  "tab_handling": ["tabs_preserve", "tabs_to_spaces"],
+  "list_coercion": ["list_coercion_enabled", "list_coercion_disabled"]
 }
 ```
 
-### Result Reporting Examples
+### Automatic Conflict Resolution
 
-#### Successful Partial Execution
-```json
-{
-  "test_name": "basic_dotted_key_parsing",
-  "status": "PARTIAL",
-  "validations": [
-    {
-      "name": "parse",
-      "status": "PASSED",
-      "message": "All 2 assertions passed"
-    },
-    {
-      "name": "expand_dotted", 
-      "status": "SKIPPED",
-      "message": "Function not implemented"
-    },
-    {
-      "name": "build_hierarchy",
-      "status": "PASSED", 
-      "message": "All 1 assertions passed"
-    }
-  ],
-  "summary": "2/3 validations executed successfully",
-  "metadata": {
-    "functions": ["parse", "expand_dotted", "build_hierarchy"],
-    "features": [],
-    "behaviors": [],
-    "variants": [],
-    "functions_executed": ["parse", "build_hierarchy"],
-    "functions_skipped": ["expand_dotted"]
+When generating tests, skip conflicting behaviors your implementation doesn't support:
+
+```pseudocode
+function resolve_behavior_conflicts(desired_behaviors, implementation_choices) {
+  skip_behaviors = []
+  
+  // Skip CRLF preservation if implementation normalizes to LF
+  if "crlf_normalize_to_lf" in implementation_choices {
+    skip_behaviors.append("crlf_preserve_literal")
   }
+  
+  // Skip strict spacing if implementation uses loose spacing
+  if "loose_spacing" in implementation_choices {
+    skip_behaviors.append("strict_spacing")
+  }
+  
+  // Skip tab preservation if implementation doesn't handle tabs
+  if "tabs_normalize" in implementation_choices {
+    skip_behaviors.append("tabs_preserve")
+  }
+  
+  return skip_behaviors
 }
 ```
 
-#### Complete Skip
-```json
-{
-  "test_name": "advanced_typed_access",
-  "status": "SKIPPED",
-  "validations": [],
-  "summary": "Test requires unimplemented functions: get_string, get_int",
-  "metadata": {
-    "functions": ["parse", "build_hierarchy", "get_string", "get_int"],
-    "features": [],
-    "behaviors": [],
-    "variants": [],
-    "functions_executed": [],
-    "functions_skipped": ["get_string", "get_int"]
-  }
+### CLI Conflict Resolution Examples
+
+```bash
+# Implementation that normalizes CRLF to LF - skip literal preservation
+ccl-test-runner generate \
+  --run-only function:parse \
+  --skip-tags behavior:crlf_preserve_literal,behavior:strict_spacing
+
+# Implementation with loose spacing - skip strict spacing tests  
+ccl-test-runner generate \
+  --run-only function:parse,function:make_objects \
+  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+
+# Implementation with specific boolean handling - skip conflicting approach
+ccl-test-runner generate \
+  --run-only function:get_bool \
+  --skip-tags behavior:boolean_strict  # Use lenient parsing
+```
+
+## Implementation Examples by Level
+
+### Level 1: Parse Only
+```pseudocode
+capabilities = {
+  functions: ["parse"],
+  features: [],
+  behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
+}
+
+// Filters to only function:parse tests
+// Skips tests requiring behaviors like tabs_preserve, strict_spacing
+```
+
+### Level 2: Parse + Processing  
+```pseudocode
+capabilities = {
+  functions: ["parse", "filter", "compose", "expand_dotted"],
+  features: ["comments"],
+  behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 ```
 
-#### Test Failure
-```json
-{
-  "test_name": "basic_parsing",
-  "status": "FAILED",
-  "validations": [
-    {
-      "name": "parse",
-      "status": "FAILED",
-      "message": "Expected 2 entries, got 1",
-      "expected": [
-        {"key": "name", "value": "Alice"},
-        {"key": "age", "value": "42"}
-      ],
-      "actual": [
-        {"key": "name", "value": "Alice"}
-      ]
-    }
-  ],
-  "summary": "Parse validation failed",
-  "metadata": {
-    "functions": ["parse"],
-    "features": [],
-    "behaviors": [],
-    "variants": [],
-    "functions_executed": ["parse"],
-    "functions_skipped": []
-  }
+### Level 3: Parse + Objects
+```pseudocode
+capabilities = {
+  functions: ["parse", "make_objects"],
+  features: ["dotted_keys", "empty_keys"],
+  behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 ```
 
-## Implementation Examples
+### Level 4: Parse + Objects + Typed Access
+```pseudocode
+capabilities = {
+  functions: ["parse", "make_objects", "get_string", "get_int", "get_bool", "get_float", "get_list"],
+  features: ["dotted_keys", "empty_keys", "comments"],
+  behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
+}
+```
 
-### Basic Test Runner Structure
+## Test Execution
+
+### Simple Test Runner Structure
 
 ```pseudocode
 class CCLTestRunner {
   implementation: CCLImplementation
   capabilities: TestCapabilities
   
-  constructor(implementation, capabilities) {
-    this.implementation = implementation
-    this.capabilities = capabilities
-  }
-  
   function run_test_suite(test_files) {
     all_results = []
     
     for test_file in test_files {
       tests = load_json(test_file)
-      compatible_tests = filter_tests_by_capabilities(tests, this.capabilities)
+      compatible_tests = filter_compatible_tests(tests, this.capabilities)
       
       for test in compatible_tests {
         result = this.execute_test(test)
@@ -400,294 +219,230 @@ class CCLTestRunner {
   }
   
   function execute_test(test) {
-    validation_results = []
     start_time = now()
     
-    for validation_name, validation_spec in test.validations {
-      if this.supports_validation(validation_name) {
-        validation_result = this.execute_validation(validation_name, validation_spec, test.input)
-        validation_results.append(validation_result)
-      } else {
-        skip_result = ValidationResult(validation_name, "SKIPPED", "Function not implemented")
-        validation_results.append(skip_result)
-      }
+    try {
+      result = this.execute_validation(test.validation, test.expected, test.input)
+      status = "PASSED"
+      message = "All assertions passed"
+    } catch (error) {
+      status = "FAILED" 
+      message = error.message
+      result = null
     }
     
     execution_time = now() - start_time
-    overall_status = determine_overall_status(validation_results)
-    
-    return TestResult(test.name, overall_status, validation_results, execution_time)
+    return TestResult(test.name, status, result, message, execution_time)
   }
   
-  function supports_validation(validation_name) {
-    return validation_name in this.capabilities.functions
-  }
-  
-  function execute_validation(validation_name, validation_spec, input) {
-    try {
-      switch validation_name {
-        case "parse":
-          actual = this.implementation.parse(input)
-          assert_equal(actual, validation_spec.expected)
-          return ValidationResult("parse", "PASSED", "All assertions passed")
-          
-        case "build_hierarchy":
-          entries = this.implementation.parse(input)
-          actual = this.implementation.build_hierarchy(entries)
-          assert_equal(actual, validation_spec.expected)
-          return ValidationResult("build_hierarchy", "PASSED", "All assertions passed")
-          
-        case "get_string":
-          entries = this.implementation.parse(input)
-          obj = this.implementation.build_hierarchy(entries)
-          for case in validation_spec.cases {
-            actual = this.implementation.get_string(obj, case.args)
-            assert_equal(actual, case.expected)
-          }
-          return ValidationResult("get_string", "PASSED", "All assertions passed")
-          
-        // ... handle other validation types
-      }
-    } catch (error) {
-      return ValidationResult(validation_name, "FAILED", error.message)
+  function execute_validation(validation_name, expected, input) {
+    switch validation_name {
+      case "parse":
+        actual = this.implementation.parse(input)
+        assert_entries_equal(actual, expected.entries, expected.count)
+        return actual
+        
+      case "make_objects":
+        entries = this.implementation.parse(input)
+        actual = this.implementation.make_objects(entries)
+        assert_equal(actual, expected.object)
+        return actual
+        
+      case "get_string":
+        entries = this.implementation.parse(input)
+        obj = this.implementation.make_objects(entries)
+        actual = this.implementation.get_string(obj, expected.args)
+        assert_equal(actual, expected.value)
+        return actual
+        
+      // ... handle other validation types
     }
   }
 }
 ```
 
-### Configuration-Driven Test Execution
+## CLI Integration Patterns
+
+### Generation Filtering
+
+Use CLI flags to generate only compatible tests:
+
+```bash
+# Level 1: Parse only
+ccl-test-runner generate --run-only function:parse
+
+# Level 3: Parse + Objects, skip problematic behaviors  
+ccl-test-runner generate \
+  --run-only function:parse,function:make_objects \
+  --skip-tags behavior:strict_spacing,behavior:tabs_preserve,behavior:crlf_preserve_literal
+
+# Level 4: Full typed access
+ccl-test-runner generate \
+  --run-only function:parse,function:make_objects,function:get_string,function:get_int,function:get_bool \
+  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+```
+
+### Test Execution
+
+Run the generated compatible tests:
+
+```bash
+# Run all generated tests
+ccl-test-runner test
+
+# Run specific levels
+ccl-test-runner test --levels 1,3
+
+# Run with verbose output
+ccl-test-runner test --format verbose
+```
+
+## Configuration-Driven Approach
+
+### Test Configuration
+
+```json
+{
+  "implementation_name": "my_ccl_parser",
+  "capabilities": {
+    "functions": ["parse", "make_objects", "get_string", "get_int"],
+    "features": ["dotted_keys", "empty_keys"],
+    "behaviors": ["crlf_normalize_to_lf", "boolean_lenient"]
+  },
+  "test_selection": {
+    "skip_behaviors": ["strict_spacing", "tabs_preserve", "crlf_preserve_literal"],
+    "skip_features": ["unicode", "multiline"],
+    "skip_variants": ["proposed_behavior"]
+  }
+}
+```
+
+### Usage
 
 ```pseudocode
-type TestConfiguration = {
-  enabled_functions: string[],
-  enabled_features: string[],
-  enabled_behaviors: string[],
-  execution_strategy: "partial" | "skip_entire" | "fail_fast",
+function create_test_runner_from_config(config_file) {
+  config = load_json(config_file)
+  capabilities = config.capabilities
   
-  // Alternative filtering strategies (use one approach, not both)
-  filter_mode: "inclusive" | "exclusive",
+  // Generate CLI args for test generation
+  run_only_tags = []
+  run_only_tags.extend("function:" + f for f in capabilities.functions)
+  run_only_tags.extend("feature:" + f for f in capabilities.features) 
+  run_only_tags.extend("behavior:" + b for b in capabilities.behaviors)
   
-  // Inclusive filtering (only run tests with these)
-  only_functions?: string[],
-  only_features?: string[],
+  skip_tags = []
+  skip_tags.extend("behavior:" + b for b in config.test_selection.skip_behaviors)
+  skip_tags.extend("feature:" + f for f in config.test_selection.skip_features)
   
-  // Exclusive filtering (run everything except these)  
-  skip_functions?: string[],
-  skip_features?: string[]
+  return TestRunner(capabilities, run_only_tags, skip_tags)
 }
-
-function create_test_runner(implementation, config) {
-  capabilities = TestCapabilities(
-    functions: Set(config.enabled_functions),
-    features: Set(config.enabled_features), 
-    behaviors: Set(config.enabled_behaviors)
-  )
-  
-  return CCLTestRunner(implementation, capabilities, config.execution_strategy)
-}
-
-// Usage examples:
-
-// Minimal implementation - only core parsing
-minimal_config = TestConfiguration(
-  enabled_functions: ["parse", "build_hierarchy"],
-  enabled_features: [],
-  enabled_behaviors: [],
-  execution_strategy: "partial"
-)
-
-// Standard implementation - parsing + typed access
-standard_config = TestConfiguration(
-  enabled_functions: ["parse", "build_hierarchy", "get_string", "get_int", "get_bool"],
-  enabled_features: ["comments"],
-  enabled_behaviors: ["crlf_normalize"],
-  execution_strategy: "partial"
-)
-
-// Experimental implementation - includes experimental features
-experimental_config = TestConfiguration(
-  enabled_functions: ["parse", "expand_dotted", "build_hierarchy"],
-  enabled_features: ["dotted_keys", "comments"],
-  enabled_behaviors: ["crlf_normalize"],
-  execution_strategy: "partial",
-  filter_mode: "inclusive",
-  only_features: ["experimental_dotted_keys"]
-)
 ```
 
-## Test Discovery and Filtering
+## Result Reporting
 
-### Tag-Based Test Discovery
+### Test Result Types
 
 ```pseudocode
-function discover_tests(test_directory, filter_config) {
-  all_test_files = find_json_files(test_directory)
-  discovered_tests = []
-  
-  for file in all_test_files {
-    tests = load_json(file)
-    
-    for test in tests {
-      if should_include_test(test, filter_config) {
-        discovered_tests.append(test)
-      }
-    }
-  }
-  
-  return discovered_tests
+enum TestStatus {
+  PASSED,   // Test executed and all assertions passed
+  FAILED,   // Test executed but assertions failed
+  SKIPPED   // Test skipped due to missing requirements
 }
 
-function should_include_test(test, filter_config) {
-  // Check if all required functions are available
-  for function in test.functions {
-    if function not in filter_config.enabled_functions {
-      return false
-    }
+type TestResult = {
+  test_name: string,
+  status: TestStatus,
+  message: string,
+  execution_time: duration,
+  metadata: {
+    validation: string,
+    functions: string[],
+    features: string[],
+    behaviors: string[],
+    level: int
   }
-  
-  // Apply filtering strategy
-  if filter_config.filter_mode == "inclusive" {
-    // Inclusive: only run tests with specified functions/features
-    if filter_config.only_functions {
-      has_required_function = false
-      for only_function in filter_config.only_functions {
-        if only_function in test.functions {
-          has_required_function = true
-          break
-        }
-      }
-      if not has_required_function {
-        return false
-      }
-    }
-    
-    if filter_config.only_features {
-      has_required_feature = false
-      for only_feature in filter_config.only_features {
-        if only_feature in test.features {
-          has_required_feature = true
-          break
-        }
-      }
-      if not has_required_feature {
-        return false
-      }
-    }
-  } else if filter_config.filter_mode == "exclusive" {
-    // Exclusive: skip tests with specified functions/features
-    if filter_config.skip_functions {
-      for skip_function in filter_config.skip_functions {
-        if skip_function in test.functions {
-          return false
-        }
-      }
-    }
-    
-    if filter_config.skip_features {
-      for skip_feature in filter_config.skip_features {
-        if skip_feature in test.features {
-          return false
-        }
-      }
-    }
-  }
-  
-  return true
 }
 ```
 
-### Smart Test Prioritization
+### Summary Reporting
 
 ```pseudocode
-function prioritize_tests(tests, capabilities) {
-  // Categorize tests by implementation readiness
-  categories = {
-    fully_supported: [],    // All required functions implemented
-    partially_supported: [], // Some functions implemented
-    unsupported: []         // No functions implemented
-  }
+function generate_summary_report(results) {
+  passed = results.count(r => r.status == "PASSED")
+  failed = results.count(r => r.status == "FAILED") 
+  skipped = results.count(r => r.status == "SKIPPED")
+  total = results.length
   
-  for test in tests {
-    required_functions = test.functions
-    supported_count = count_supported_functions(required_functions, capabilities)
+  return {
+    total_tests: total,
+    passed: passed,
+    failed: failed,
+    skipped: skipped,
+    success_rate: passed / (passed + failed) * 100,
+    coverage_rate: (passed + failed) / total * 100,
     
-    if supported_count == required_functions.length {
-      categories.fully_supported.append(test)
-    } else if supported_count > 0 {
-      categories.partially_supported.append(test)
-    } else {
-      categories.unsupported.append(test)
-    }
-  }
-  
-  // Return in priority order: fully supported first, then partial, then unsupported
-  return categories.fully_supported + categories.partially_supported + categories.unsupported
-}
-```
-
-## Error Handling and Edge Cases
-
-### Graceful Degradation
-
-```pseudocode
-function execute_validation_safely(validation_name, validation_spec, input, implementation) {
-  try {
-    return execute_validation(validation_name, validation_spec, input, implementation)
-  } catch (UnimplementedFunctionError e) {
-    return ValidationResult(validation_name, "SKIPPED", "Function not implemented: " + e.function_name)
-  } catch (ParseError e) {
-    return ValidationResult(validation_name, "FAILED", "Parse error: " + e.message)
-  } catch (ValidationError e) {
-    return ValidationResult(validation_name, "FAILED", "Validation failed: " + e.message)
-  } catch (TestRunnerError e) {
-    return ValidationResult(validation_name, "ERROR", "Test runner error: " + e.message)
+    by_level: group_by_level(results),
+    by_function: group_by_function(results),
+    
+    failed_tests: results.filter(r => r.status == "FAILED"),
+    execution_time: sum(r.execution_time for r in results)
   }
 }
 ```
 
-### Dependency Resolution
+## Progressive Implementation Workflow
 
-Some validations may depend on others. Handle dependencies gracefully:
-
-```pseudocode
-function execute_test_with_dependencies(test, implementation) {
-  validation_order = resolve_validation_dependencies(test.validations.keys())
-  results = {}
-  
-  for validation_name in validation_order {
-    dependencies_met = check_dependencies(validation_name, results)
-    
-    if not dependencies_met {
-      results[validation_name] = ValidationResult(
-        validation_name, 
-        "SKIPPED", 
-        "Dependencies not met"
-      )
-      continue
-    }
-    
-    if implementation.supports(validation_name) {
-      results[validation_name] = execute_validation(validation_name, test.validations[validation_name], test.input)
-    } else {
-      results[validation_name] = ValidationResult(validation_name, "SKIPPED", "Function not implemented")
-    }
-  }
-  
-  return results
-}
-
-function resolve_validation_dependencies(validation_names) {
-  // Define dependency relationships
-  dependencies = {
-    "build_hierarchy": ["parse"],
-    "get_string": ["parse", "build_hierarchy"],
-    "get_int": ["parse", "build_hierarchy"],
-    "expand_dotted": ["parse"]
-  }
-  
-  // Return topologically sorted order
-  return topological_sort(validation_names, dependencies)
-}
+### 1. Start with Level 1
+```bash
+# Generate and run basic parsing tests
+ccl-test-runner generate --run-only function:parse
+ccl-test-runner test --levels 1
 ```
 
-This guide provides a comprehensive foundation for implementing robust test runners that can handle the complexities of progressive CCL implementation while providing clear, actionable feedback to developers.
+### 2. Add Object Construction  
+```bash
+# Add Level 3 functionality
+ccl-test-runner generate --run-only function:parse,function:make_objects
+ccl-test-runner test --levels 1,3
+```
+
+### 3. Add Typed Access
+```bash
+# Add Level 4 functionality
+ccl-test-runner generate --run-only function:parse,function:make_objects,function:get_string,function:get_int
+ccl-test-runner test --levels 1,3,4
+```
+
+### 4. Handle Behaviors
+```bash
+# Skip conflicting behaviors as you encounter them
+ccl-test-runner generate \
+  --run-only function:parse,function:make_objects,function:get_string \
+  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+```
+
+## Common Patterns
+
+### Mock Implementation Testing
+```bash
+# Generate tests that match current mock capabilities
+ccl-test-runner generate \
+  --run-only function:parse,function:make_objects,function:get_string,function:get_int,function:get_bool \
+  --skip-tags behavior:strict_spacing,behavior:tabs_preserve,behavior:crlf_preserve_literal
+```
+
+### Production Implementation Testing  
+```bash
+# Generate comprehensive test suite
+ccl-test-runner generate
+ccl-test-runner test --format json > results.json
+```
+
+### Feature Development Testing
+```bash
+# Test specific features during development
+ccl-test-runner generate --run-only feature:comments
+ccl-test-runner test --features comments
+```
+
+This simplified approach eliminates the complexity of partial validation execution while providing clear, predictable test behavior that matches the flat format's design.

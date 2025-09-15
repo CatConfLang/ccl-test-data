@@ -1,32 +1,5 @@
 [
   {
-    "name": "deep_dotted_nesting_build_hierarchy",
-    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
-    "validation": "build_hierarchy",
-    "expected": {
-      "count": 1,
-      "object": {
-        "server": {
-          "database": {
-            "credentials": {
-              "pass": "secret",
-              "user": "admin"
-            }
-          }
-        }
-      }
-    },
-    "functions": [
-      "build_hierarchy"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse"
-    ],
-    "level": 4,
-    "source_test": "deep_dotted_nesting"
-  },
-  {
     "name": "deep_dotted_nesting_parse",
     "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
     "validation": "parse",
@@ -45,6 +18,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "level": 4,
@@ -65,6 +41,39 @@
     },
     "functions": [
       "expand_dotted"
+    ],
+    "features": [
+      "experimental_dotted_keys"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse"
+    ],
+    "level": 4,
+    "source_test": "deep_dotted_nesting"
+  },
+  {
+    "name": "deep_dotted_nesting_build_hierarchy",
+    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+    "validation": "build_hierarchy",
+    "expected": {
+      "count": 1,
+      "object": {
+        "server": {
+          "database": {
+            "credentials": {
+              "pass": "secret",
+              "user": "admin"
+            }
+          }
+        }
+      }
+    },
+    "functions": [
+      "build_hierarchy"
+    ],
+    "features": [
+      "experimental_dotted_keys"
     ],
     "conflicts": {},
     "requires": [

@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "unicode"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "unicode_parsing"

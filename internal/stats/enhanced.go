@@ -141,10 +141,113 @@ func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string
 		return nil, fmt.Errorf("reading file %s: %w", filePath, err)
 	}
 
-	var testSuite types.TestSuite
-	if err := json.Unmarshal(data, &testSuite); err != nil {
-		return nil, fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+	// Try to parse as source format (array of tests) first
+	var sourceTests []SourceTest
+	if err := json.Unmarshal(data, &sourceTests); err != nil {
+		// Fallback to flat format (TestSuite)
+		var testSuite types.TestSuite
+		if err := json.Unmarshal(data, &testSuite); err != nil {
+			return nil, fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+		}
+		return c.analyzeTestSuite(testSuite, filePath)
 	}
+
+	return c.analyzeSourceTests(sourceTests, filePath)
+}
+
+// analyzeSourceTests analyzes source format tests for enhanced stats
+func (c *EnhancedCollector) analyzeSourceTests(sourceTests []SourceTest, filePath string) (map[string]interface{}, error) {
+	fileName := strings.TrimSuffix(filepath.Base(filePath), ".json")
+	result := map[string]interface{}{
+		"fileName": fileName,
+		"tests":    []map[string]interface{}{},
+	}
+
+	for _, test := range sourceTests {
+		// Count assertions for this test (each validation is one assertion)
+		assertions := len(test.Tests)
+
+		// Build tag arrays from top-level fields and convert to structured tags
+		functions := getStringSlice()
+		features := getStringSlice()
+		behaviors := getStringSlice()
+		variants := getStringSlice()
+
+		// Ensure slices are returned to pool after use
+		defer func() {
+			putStringSlice(functions)
+			putStringSlice(features)
+			putStringSlice(behaviors)
+			putStringSlice(variants)
+		}()
+
+		// Extract functions from the test validations
+		for _, validation := range test.Tests {
+			functions = append(functions, validation.Function)
+		}
+
+		// Copy features, behaviors, variants from top-level fields
+		features = append(features, test.Features...)
+		behaviors = append(behaviors, test.Behaviors...)
+		variants = append(variants, test.Variants...)
+
+		// Create copies of slices before returning them to pool
+		functionsCopy := make([]string, len(functions))
+		copy(functionsCopy, functions)
+		featuresCopy := make([]string, len(features))
+		copy(featuresCopy, features)
+		behaviorsCopy := make([]string, len(behaviors))
+		copy(behaviorsCopy, behaviors)
+		variantsCopy := make([]string, len(variants))
+		copy(variantsCopy, variants)
+
+		// Convert conflicts to string slice (flatten all conflict categories)
+		var conflictSlice []string
+		if test.Conflicts != nil {
+			for _, conflicts := range test.Conflicts {
+				conflictSlice = append(conflictSlice, conflicts...)
+			}
+		}
+
+		// Determine feature for categorization (use first feature or derive from filename)
+		feature := ""
+		if len(test.Features) > 0 {
+			feature = test.Features[0]
+		} else {
+			// Derive feature from filename
+			if strings.Contains(fileName, "parsing") {
+				feature = "parsing"
+			} else if strings.Contains(fileName, "object") {
+				feature = "object_construction"
+			} else if strings.Contains(fileName, "typed") {
+				feature = "typed_parsing"
+			} else if strings.Contains(fileName, "comments") {
+				feature = "comments"
+			} else if strings.Contains(fileName, "processing") {
+				feature = "processing"
+			}
+		}
+
+		testData := map[string]interface{}{
+			"name":       test.Name,
+			"level":      test.Level,
+			"feature":    feature,
+			"assertions": assertions,
+			"functions":  functionsCopy,
+			"features":   featuresCopy,
+			"behaviors":  behaviorsCopy,
+			"variants":   variantsCopy,
+			"conflicts":  conflictSlice,
+		}
+
+		result["tests"] = append(result["tests"].([]map[string]interface{}), testData)
+	}
+
+	return result, nil
+}
+
+// analyzeTestSuite analyzes flat format test suite (fallback)
+func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath string) (map[string]interface{}, error) {
 
 	fileName := strings.TrimSuffix(filepath.Base(filePath), ".json")
 	result := map[string]interface{}{

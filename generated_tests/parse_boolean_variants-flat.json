@@ -39,6 +39,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_boolean_variants"
@@ -62,6 +65,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -79,6 +85,9 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "behaviors": [
+      "boolean_lenient"
     ],
     "conflicts": {},
     "requires": [
@@ -98,6 +107,9 @@
     },
     "functions": [
       "get_int"
+    ],
+    "behaviors": [
+      "boolean_lenient"
     ],
     "conflicts": {},
     "requires": [

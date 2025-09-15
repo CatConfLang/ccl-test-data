@@ -2,7 +2,7 @@ package level0_parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,9 +12,18 @@ import (
 // Suite: Generated Flat Format
 // Version: 1.0
 
-// ocaml_stress_test_original_parse - function:parse (level 0)
-func TestOcamlStressTestOriginalParse(t *testing.T) {
 
+
+// ocaml_stress_test_original_get_string - function:get_string feature:comments feature:empty_keys (level 0)
+func TestOcamlStressTestOriginalGetString(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// ocaml_stress_test_original_parse - function:parse feature:comments feature:empty_keys (level 0)
+func TestOcamlStressTestOriginalParse(t *testing.T) {
+	
+	
 	ccl := mock.New()
 	input := `/= This is a CCL document
 title = CCL Example
@@ -35,11 +44,16 @@ user =
 user =
   login = chshersh
   createdAt = 2024-12-31`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -48,12 +62,10 @@ user =
 
 }
 
-// ocaml_stress_test_original_build_hierarchy - function:build_hierarchy (level 0)
+
+// ocaml_stress_test_original_build_hierarchy - function:build_hierarchy feature:comments feature:empty_keys (level 0)
 func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// ocaml_stress_test_original_get_string - function:get_string (level 0)
-func TestOcamlStressTestOriginalGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
+

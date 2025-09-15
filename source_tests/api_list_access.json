@@ -781,26 +781,26 @@
   },
   {
     "name": "list_with_unicode",
-    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "input": "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
     "tests": [
       {
         "function": "parse",
         "expect": [
           {
             "key": "names",
-            "value": "张三"
+            "value": "\u5f20\u4e09"
           },
           {
             "key": "names",
-            "value": "José"
+            "value": "Jos\u00e9"
           },
           {
             "key": "names",
-            "value": "François"
+            "value": "Fran\u00e7ois"
           },
           {
             "key": "names",
-            "value": "العربية"
+            "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
           }
         ]
       },
@@ -808,20 +808,20 @@
         "function": "build_hierarchy",
         "expect": {
           "names": [
-            "张三",
-            "José",
-            "François",
-            "العربية"
+            "\u5f20\u4e09",
+            "Jos\u00e9",
+            "Fran\u00e7ois",
+            "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
           ]
         }
       },
       {
         "function": "get_list",
         "expect": [
-          "张三",
-          "José",
-          "François",
-          "العربية"
+          "\u5f20\u4e09",
+          "Jos\u00e9",
+          "Fran\u00e7ois",
+          "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
         ],
         "args": [
           "names"
@@ -835,26 +835,26 @@
   },
   {
     "name": "list_with_unicode_reference",
-    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "input": "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629",
     "tests": [
       {
         "function": "parse",
         "expect": [
           {
             "key": "names",
-            "value": "张三"
+            "value": "\u5f20\u4e09"
           },
           {
             "key": "names",
-            "value": "José"
+            "value": "Jos\u00e9"
           },
           {
             "key": "names",
-            "value": "François"
+            "value": "Fran\u00e7ois"
           },
           {
             "key": "names",
-            "value": "العربية"
+            "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
           }
         ]
       },
@@ -862,10 +862,10 @@
         "function": "build_hierarchy",
         "expect": {
           "names": [
-            "张三",
-            "José",
-            "François",
-            "العربية"
+            "\u5f20\u4e09",
+            "Jos\u00e9",
+            "Fran\u00e7ois",
+            "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
           ]
         }
       },
@@ -884,7 +884,7 @@
   },
   {
     "name": "list_with_special_characters",
-    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+    "input": "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+",
     "tests": [
       {
         "function": "parse",
@@ -895,7 +895,7 @@
           },
           {
             "key": "symbols",
-            "value": "!^\u0026*()"
+            "value": "!^&*()"
           },
           {
             "key": "symbols",
@@ -903,7 +903,7 @@
           },
           {
             "key": "symbols",
-            "value": "\u003c\u003e=+"
+            "value": "<>=+"
           }
         ]
       },
@@ -912,9 +912,9 @@
         "expect": {
           "symbols": [
             "@#$%",
-            "!^\u0026*()",
+            "!^&*()",
             "[]{}|",
-            "\u003c\u003e=+"
+            "<>=+"
           ]
         }
       },
@@ -922,9 +922,9 @@
         "function": "get_list",
         "expect": [
           "@#$%",
-          "!^\u0026*()",
+          "!^&*()",
           "[]{}|",
-          "\u003c\u003e=+"
+          "<>=+"
         ],
         "args": [
           "symbols"
@@ -935,7 +935,7 @@
   },
   {
     "name": "list_with_special_characters_reference",
-    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
+    "input": "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|",
     "tests": [
       {
         "function": "get_list",
@@ -953,7 +953,7 @@
           },
           {
             "key": "symbols",
-            "value": "!^\u0026*()"
+            "value": "!^&*()"
           },
           {
             "key": "symbols",
@@ -966,7 +966,7 @@
         "expect": {
           "symbols": [
             "@#$%",
-            "!^\u0026*()",
+            "!^&*()",
             "[]{}|"
           ]
         }

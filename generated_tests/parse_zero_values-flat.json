@@ -14,6 +14,12 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -31,6 +37,12 @@
     },
     "functions": [
       "get_int"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -51,6 +63,12 @@
     "functions": [
       "get_float"
     ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse",
@@ -69,6 +87,12 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
@@ -101,6 +125,12 @@
     },
     "functions": [
       "parse"
+    ],
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "level": 4,

@@ -10,6 +10,9 @@
     "functions": [
       "get_int"
     ],
+    "behaviors": [
+      "boolean_strict"
+    ],
     "conflicts": {},
     "requires": [
       "parse",
@@ -58,6 +61,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "boolean_strict"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_boolean_variants_strict_literal"
@@ -81,6 +87,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "behaviors": [
+      "boolean_strict"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -97,6 +106,9 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "behaviors": [
+      "boolean_strict"
     ],
     "conflicts": {},
     "requires": [

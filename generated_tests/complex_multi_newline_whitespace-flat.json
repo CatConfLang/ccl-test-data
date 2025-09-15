@@ -15,6 +15,10 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys",
+      "whitespace"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "complex_multi_newline_whitespace"

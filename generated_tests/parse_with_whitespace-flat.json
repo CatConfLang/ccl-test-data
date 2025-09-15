@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_with_whitespace"
@@ -36,6 +39,9 @@
     },
     "functions": [
       "build_hierarchy"
+    ],
+    "features": [
+      "whitespace"
     ],
     "conflicts": {},
     "requires": [
@@ -55,6 +61,9 @@
     "functions": [
       "get_int"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "requires": [
       "parse",
@@ -73,6 +82,9 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "features": [
+      "whitespace"
     ],
     "conflicts": {},
     "requires": [

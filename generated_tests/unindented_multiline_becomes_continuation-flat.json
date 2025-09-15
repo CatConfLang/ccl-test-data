@@ -19,6 +19,9 @@
     "functions": [
       "parse_value"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"

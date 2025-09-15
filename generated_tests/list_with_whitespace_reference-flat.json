@@ -27,6 +27,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "list_with_whitespace_reference"
@@ -47,6 +50,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "whitespace"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -63,6 +69,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "features": [
+      "whitespace"
     ],
     "conflicts": {},
     "requires": [

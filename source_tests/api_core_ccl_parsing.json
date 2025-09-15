@@ -126,17 +126,17 @@
   },
   {
     "name": "unicode_parsing",
-    "input": "emoji = 😀😃😄\n配置 = config",
+    "input": "emoji = \ud83d\ude00\ud83d\ude03\ud83d\ude04\n\u914d\u7f6e = config",
     "tests": [
       {
         "function": "parse",
         "expect": [
           {
             "key": "emoji",
-            "value": "😀😃😄"
+            "value": "\ud83d\ude00\ud83d\ude03\ud83d\ude04"
           },
           {
-            "key": "配置",
+            "key": "\u914d\u7f6e",
             "value": "config"
           }
         ]

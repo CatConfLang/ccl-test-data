@@ -46,3 +46,4 @@ Thumbs.db
 .claude/settings.local.json
 bin
 test-reader
+.serena/

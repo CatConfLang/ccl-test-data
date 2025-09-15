@@ -15,6 +15,9 @@
     "functions": [
       "filter"
     ],
+    "features": [
+      "comments"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -37,6 +40,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "comments"
     ],
     "conflicts": {},
     "level": 2,

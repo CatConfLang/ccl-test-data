@@ -9,6 +9,10 @@
     "functions": [
       "round_trip"
     ],
+    "features": [
+      "empty_keys",
+      "multiline"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -35,6 +39,10 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "empty_keys",
+      "multiline"
     ],
     "conflicts": {},
     "level": 4,

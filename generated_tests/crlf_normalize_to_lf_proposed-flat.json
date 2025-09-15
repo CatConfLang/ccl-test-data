@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "crlf_normalize_to_lf"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "crlf_normalize_to_lf_proposed"
@@ -33,6 +36,9 @@
     },
     "functions": [
       "canonical_format"
+    ],
+    "behaviors": [
+      "crlf_normalize_to_lf"
     ],
     "conflicts": {},
     "requires": [

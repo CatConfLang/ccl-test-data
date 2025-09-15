@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "multiline"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "multiline_values"

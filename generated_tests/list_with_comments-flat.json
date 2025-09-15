@@ -31,6 +31,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "comments"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "list_with_comments"
@@ -56,6 +59,9 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "comments"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -77,6 +83,9 @@
     },
     "functions": [
       "get_list"
+    ],
+    "features": [
+      "comments"
     ],
     "conflicts": {},
     "requires": [

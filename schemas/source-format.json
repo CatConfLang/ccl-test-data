@@ -114,8 +114,8 @@
         "uniqueItems": true
       },
       "behaviors": {
-        "type": "array",
-        "description": "Implementation behavior requirements",
+        "type": "array", 
+        "description": "Implementation behavior requirements (optional)",
         "items": {
           "type": "string",
           "enum": [
@@ -130,12 +130,39 @@
       },
       "variants": {
         "type": "array",
-        "description": "Specification variants",
+        "description": "Specification variants (optional)",
         "items": {
           "type": "string",
           "enum": ["proposed_behavior", "reference_compliant"]
         },
         "uniqueItems": true
+      },
+      "conflicts": {
+        "type": "object",
+        "description": "Mutually exclusive options by category (optional)",
+        "properties": {
+          "functions": {
+            "type": "array",
+            "description": "Functions that conflict with this test",
+            "items": {"type": "string"}
+          },
+          "behaviors": {
+            "type": "array", 
+            "description": "Behaviors that conflict with this test's requirements",
+            "items": {"type": "string"}
+          },
+          "variants": {
+            "type": "array",
+            "description": "Variants that conflict with this test",
+            "items": {"type": "string"}
+          },
+          "features": {
+            "type": "array",
+            "description": "Features that conflict with this test",
+            "items": {"type": "string"}
+          }
+        },
+        "additionalProperties": false
       }
     },
     "additionalProperties": false

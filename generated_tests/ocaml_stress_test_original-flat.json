@@ -1,5 +1,28 @@
 [
   {
+    "name": "ocaml_stress_test_original_get_string",
+    "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
+    "validation": "get_string",
+    "expected": {
+      "count": 1,
+      "value": "CCL Example"
+    },
+    "functions": [
+      "get_string"
+    ],
+    "features": [
+      "comments",
+      "empty_keys"
+    ],
+    "conflicts": {},
+    "requires": [
+      "parse",
+      "build_hierarchy"
+    ],
+    "level": 4,
+    "source_test": "ocaml_stress_test_original"
+  },
+  {
     "name": "ocaml_stress_test_original_parse",
     "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
     "validation": "parse",
@@ -30,6 +53,10 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "comments",
+      "empty_keys"
     ],
     "conflicts": {},
     "level": 4,
@@ -68,28 +95,13 @@
     "functions": [
       "build_hierarchy"
     ],
+    "features": [
+      "comments",
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
-    ],
-    "level": 4,
-    "source_test": "ocaml_stress_test_original"
-  },
-  {
-    "name": "ocaml_stress_test_original_get_string",
-    "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
-    "validation": "get_string",
-    "expected": {
-      "count": 1,
-      "value": "CCL Example"
-    },
-    "functions": [
-      "get_string"
-    ],
-    "conflicts": {},
-    "requires": [
-      "parse",
-      "build_hierarchy"
     ],
     "level": 4,
     "source_test": "ocaml_stress_test_original"

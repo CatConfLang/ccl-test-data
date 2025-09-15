@@ -23,6 +23,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "round_trip_empty_keys_lists"
@@ -36,6 +39,9 @@
     },
     "functions": [
       "round_trip"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [

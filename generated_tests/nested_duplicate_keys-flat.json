@@ -1,5 +1,25 @@
 [
   {
+    "name": "nested_duplicate_keys_parse",
+    "input": "config =\n  server = web1\n  server = web2\n  port = 80",
+    "validation": "parse",
+    "expected": {
+      "count": 1,
+      "entries": [
+        {
+          "key": "config",
+          "value": "\n  server = web1\n  server = web2\n  port = 80"
+        }
+      ]
+    },
+    "functions": [
+      "parse"
+    ],
+    "conflicts": {},
+    "level": 1,
+    "source_test": "nested_duplicate_keys"
+  },
+  {
     "name": "nested_duplicate_keys_build_hierarchy",
     "input": "config =\n  server = web1\n  server = web2\n  port = 80",
     "validation": "build_hierarchy",
@@ -22,26 +42,6 @@
     "requires": [
       "parse"
     ],
-    "level": 1,
-    "source_test": "nested_duplicate_keys"
-  },
-  {
-    "name": "nested_duplicate_keys_parse",
-    "input": "config =\n  server = web1\n  server = web2\n  port = 80",
-    "validation": "parse",
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "config",
-          "value": "\n  server = web1\n  server = web2\n  port = 80"
-        }
-      ]
-    },
-    "functions": [
-      "parse"
-    ],
-    "conflicts": {},
     "level": 1,
     "source_test": "nested_duplicate_keys"
   }

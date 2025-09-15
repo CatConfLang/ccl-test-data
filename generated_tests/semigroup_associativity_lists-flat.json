@@ -9,6 +9,9 @@
     "functions": [
       "associativity"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "requires": [
       "parse"
@@ -39,6 +42,9 @@
     },
     "functions": [
       "parse"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "level": 4,

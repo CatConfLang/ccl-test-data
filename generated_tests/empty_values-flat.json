@@ -19,6 +19,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 1,
     "source_test": "empty_values"

@@ -27,6 +27,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 2,
     "source_test": "spaced_equals_not_section_header"

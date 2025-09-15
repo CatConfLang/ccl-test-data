@@ -15,6 +15,10 @@
     "functions": [
       "parse"
     ],
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "parse_boolean_false"
@@ -31,6 +35,10 @@
     },
     "functions": [
       "build_hierarchy"
+    ],
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
     ],
     "conflicts": {},
     "requires": [
@@ -49,6 +57,10 @@
     },
     "functions": [
       "get_bool"
+    ],
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
     ],
     "conflicts": {},
     "requires": [

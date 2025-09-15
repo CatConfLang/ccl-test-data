@@ -23,6 +23,9 @@
     "functions": [
       "parse"
     ],
+    "features": [
+      "empty_keys"
+    ],
     "conflicts": {},
     "level": 4,
     "source_test": "monoid_right_identity_lists"
@@ -36,6 +39,9 @@
     },
     "functions": [
       "associativity"
+    ],
+    "features": [
+      "empty_keys"
     ],
     "conflicts": {},
     "requires": [
