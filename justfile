@@ -1,243 +1,112 @@
-# CCL Test Runner Justfile
+# CCL Test Runner Justfile (Streamlined)
 
 # Show available commands
 default:
     @just --list
 
-# Common aliases
-alias gen := generate
+# Core aliases
 alias t := test
-alias l := list
-alias v := test-verbose
+alias gen := generate
 alias reset := dev-basic
-alias reader := read-dir
-alias tui := read-dir-tui
 
-# Build the ccl-test-runner binary
+# === BUILD ===
 build:
     go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
 
-# Build the test-reader CLI
-build-reader:
-    go build -o bin/test-reader ./cmd/test-reader
-
-# Install ccl-test-runner to $GOPATH/bin
 install:
     go install ./cmd/ccl-test-runner
 
-# Generate Go test files from JSON test data
-generate:
-    go run ./cmd/ccl-test-runner generate --input tests
+# === ESSENTIAL WORKFLOWS ===
 
-# Generate implementation-friendly flat tests from source format
-generate-flat:
-    go run ./cmd/ccl-test-runner generate-flat
+# Basic development: generate Level 1 tests and verify they pass
+dev-basic:
+    just clean
+    just generate --level 1
+    just lint
+    just test --level 1
 
-# Generate tests optimized for mock implementation (skip advanced features)
-generate-mock:
-    go run ./cmd/ccl-test-runner generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior
-
-# Generate tests for basic Level 1 functionality only
-generate-level1:
-    go run ./cmd/ccl-test-runner generate --run-only basic,essential-parsing,empty,redundant,quotes,realistic,line-endings
-
-# Generate tests for mock implementation development (Level 1 + comments)
-generate-mock-dev:
-    go run ./cmd/ccl-test-runner generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior,reference-compliant-behavior --run-only basic,essential-parsing,empty,comments
-
-# Run comprehensive test suite including validation and docs (replaces npm test)
-test:
-    just validate
-    just docs-check
+# Full development: comprehensive test suite
+dev:
+    just clean
     just generate
-    just test-generated
+    just test
 
-# Run generated Go tests only
-test-generated:
-    go run ./cmd/ccl-test-runner test
+# Production CI: complete validation pipeline
+ci:
+    just validate
+    just generate
+    just test
+    just docs-check
 
-# Run tests suitable for mock implementation
-test-mock:
-    just generate-mock
-    go run ./cmd/ccl-test-runner test
+# === GENERATION ===
 
-# Run only basic tests for mock development
-test-mock-basic:
-    just generate-mock-dev
-    go run ./cmd/ccl-test-runner test
+# Generate tests (with optional filtering)
+generate *ARGS="":
+    go run ./cmd/ccl-test-runner generate {{ARGS}}
 
-# Run only level 1 tests
-test-level1:
-    go run ./cmd/ccl-test-runner test --levels 1
+# === TESTING ===
 
-# Run only level 2 tests  
-test-level2:
-    go run ./cmd/ccl-test-runner test --levels 2
+# Run tests (with optional filtering)  
+test *ARGS="":
+    #!/usr/bin/env bash
+    if [[ "{{ARGS}}" == *"--full"* ]]; then
+        just validate
+        just docs-check
+        just generate
+        go run ./cmd/ccl-test-runner test
+    else
+        go run ./cmd/ccl-test-runner test {{ARGS}}
+    fi
 
-# Run only level 3 tests
-test-level3:
-    go run ./cmd/ccl-test-runner test --levels 3
+# === VALIDATION ===
 
-# Run only level 4 tests
-test-level4:
-    go run ./cmd/ccl-test-runner test --levels 4
-
-# Run only comment-related tests
-test-comments:
-    go run ./cmd/ccl-test-runner test --features comments
-
-# Run only parsing tests
-test-parsing:
-    go run ./cmd/ccl-test-runner test --features parsing
-
-# Run only object construction tests
-test-objects:
-    go run ./cmd/ccl-test-runner test --features object
-
-# Run all tests with verbose output
-test-verbose:
-    go run ./cmd/ccl-test-runner test --verbose
-
-# Run all tests with table format
-test-table:
-    go run ./cmd/ccl-test-runner test --format table
-
-# List all available test packages
-list:
-    go run ./cmd/ccl-test-runner test --list
-
-# Show comprehensive test suite statistics
-stats:
-    go run ./cmd/ccl-test-runner stats --input tests
-
-# Show test statistics in JSON format
-stats-json:
-    go run ./cmd/ccl-test-runner stats --input tests --format json
-
-# Build and run test-reader with directory selection (CLI mode)
-read-dir:
-    just build-reader
-    ./bin/test-reader tests/
-
-# Build and run test-reader with directory selection (TUI mode)
-read-dir-tui:
-    just build-reader
-    ./bin/test-reader tests/ --tui
-
-# Run test-reader on a specific file (pass filename as argument)
-read FILE:
-    just build-reader
-    ./bin/test-reader {{FILE}}
-
-# Validate source test files against source schema
 validate:
     jv schemas/source-format.json source_tests/api_*.json source_tests/property_*.json
 
-# Validate generated flat format tests against generated schema  
-validate-flat:
-    jv schemas/generated-format.json generated_tests/*-flat.json
-
-# Validate both source and generated formats
-validate-all:
-    just validate
-    just validate-flat
-
-# Validate enhanced LLM metadata in test files
-validate-metadata:
-    @echo "🤖 Validating enhanced LLM metadata in test files..."
-    @go run scripts/validate-enhanced-metadata.go "source_tests/api_*.json"
-
-# Clean up generated files (cross-platform)
-clean:
-    go run ./cmd/clean go_tests bin
-
-# Clean everything including node_modules (cross-platform)
-clean-all:
-    go run ./cmd/clean go_tests bin scripts/node_modules
-
-# Update documentation with current stats (replaces npm run docs:update)
-docs-update:
-    cd scripts && node update-readme-remark.mjs
-
-# Check if documentation is up to date (replaces npm run docs:check)
 docs-check:
     cd scripts && node update-readme-remark.mjs
     git diff --exit-code README.md
 
-# Generate schema documentation (replaces npm run docs:schema)
-docs-schema:
-    cd scripts && node generate-schema-docs.mjs
+# === UTILITIES ===
 
-# Run go mod tidy and format code
-check:
-    go mod tidy
-    go fmt ./...
-    
-# Lint and format all code
+stats:
+    go run ./cmd/ccl-test-runner stats --input tests
+
+list:
+    go run ./cmd/ccl-test-runner test --list
+
+clean:
+    go run ./cmd/clean go_tests bin
+
 lint:
     go mod tidy
     go fmt ./...
     go vet ./...
 
-# Install Node.js dependencies (in scripts folder)
-deps-node:
+deps:
     cd scripts && npm install
-
-# Install all dependencies (Node.js + Go modules + tools)
-deps: deps-node
     go mod download
     go install github.com/santhosh-tekuri/jsonschema/cmd/jv
 
-# Full development cycle: clean, generate, and test
-dev:
-    just clean
-    just generate
-    just test-generated
+# === LEGACY COMMANDS (for compatibility) ===
 
-# Mock development cycle: clean, generate mock tests, and run them
-dev-mock:
-    just clean
-    just generate-mock
-    just test-mock
+# Generate only basic tests for mock implementation
+generate-mock:
+    just generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior
 
-# Full development workflow with docs
-dev-full:
-    just clean
-    just generate
-    just test
+# Test with verbose output
+test-verbose:
+    just test --verbose
 
-# Run performance benchmarks
-benchmark:
-    go run ./cmd/ccl-test-runner benchmark
+# Test specific levels
+test-level1:
+    just test --levels 1
 
-# Run benchmarks with comparison to historical results
-benchmark-compare HISTORICAL_FILE:
-    go run ./cmd/ccl-test-runner benchmark --compare {{HISTORICAL_FILE}}
+test-level2:
+    just test --levels 2
 
-# Run benchmarks and save as baseline
-benchmark-baseline:
-    mkdir -p benchmarks
-    go run ./cmd/ccl-test-runner benchmark --results benchmarks/baseline.json
+test-level3:
+    just test --levels 3
 
-# CI/CD pipeline with benchmarking
-ci:
-    just validate
-    just generate
-    just test-generated
-    just docs-check
-    just benchmark-baseline
-
-# Enhanced CI with regression detection
-ci-benchmark BASELINE:
-    just validate
-    just generate
-    just test-generated
-    just docs-check
-    just benchmark-compare {{BASELINE}}
-
-# Quick development cycle for basic functionality
-dev-basic:
-    just clean
-    just generate-level1
-    just lint
-    just test-level1
+test-level4:
+    just test --levels 4
