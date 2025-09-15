@@ -129,13 +129,13 @@ read FILE:
     just build-reader
     ./bin/test-reader {{FILE}}
 
-# Validate all test files against schema
+# Validate source test files against source schema
 validate:
-    jv tests/schema.json tests/api_*.json tests/property_*.json
+    jv schemas/source-format.json source_tests/api_*.json source_tests/property_*.json
 
 # Validate generated flat format tests against generated schema  
 validate-flat:
-    jv schemas/generated-format.json generated_tests/*.json
+    jv schemas/generated-format.json generated_tests/*-flat.json
 
 # Validate both source and generated formats
 validate-all:
@@ -145,7 +145,7 @@ validate-all:
 # Validate enhanced LLM metadata in test files
 validate-metadata:
     @echo "🤖 Validating enhanced LLM metadata in test files..."
-    @go run scripts/validate-enhanced-metadata.go "tests/api_*.json"
+    @go run scripts/validate-enhanced-metadata.go "source_tests/api_*.json"
 
 # Clean up generated files (cross-platform)
 clean:
