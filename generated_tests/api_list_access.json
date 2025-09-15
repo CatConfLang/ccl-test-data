@@ -1,13 +1,9 @@
-{
-  "suite": "Compact Format",
-  "version": "1.0",
-  "description": " (flat format)",
-  "tests": [
-    {
-      "name": "basic_list_from_duplicates_parse",
-      "input": "servers = web1\nservers = web2\nservers = web3",
-      "validation": "parse",
-      "expected": [
+[
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "servers",
           "value": "web1"
@@ -20,171 +16,181 @@
           "key": "servers",
           "value": "web3"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_list_from_duplicates"
+      ]
     },
-    {
-      "name": "basic_list_from_duplicates_buildhierarchy",
-      "input": "servers = web1\nservers = web2\nservers = web3",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "servers = web1\nservers = web2\nservers = web3",
+    "level": 4,
+    "name": "basic_list_from_duplicates_parse",
+    "source_test": "basic_list_from_duplicates",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "servers": [
           "web1",
           "web2",
           "web3"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_list_from_duplicates"
+      }
     },
-    {
-      "name": "basic_list_from_duplicates_getlist",
-      "input": "servers = web1\nservers = web2\nservers = web3",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "servers = web1\nservers = web2\nservers = web3",
+    "level": 4,
+    "name": "basic_list_from_duplicates_buildhierarchy",
+    "source_test": "basic_list_from_duplicates",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "web1",
         "web2",
         "web3"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_list_from_duplicates"
+      ]
     },
-    {
-      "name": "single_item_as_list_parse",
-      "input": "item = single",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "servers = web1\nservers = web2\nservers = web3",
+    "level": 4,
+    "name": "basic_list_from_duplicates_getlist",
+    "source_test": "basic_list_from_duplicates",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "item",
           "value": "single"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_item_as_list"
+      ]
     },
-    {
-      "name": "single_item_as_list_buildhierarchy",
-      "input": "item = single",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_parse",
+    "source_test": "single_item_as_list",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "item": "single"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_item_as_list"
+      }
     },
-    {
-      "name": "single_item_as_list_getlist",
-      "input": "item = single",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_buildhierarchy",
+    "source_test": "single_item_as_list",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         "single"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_item_as_list"
+      ]
     },
-    {
-      "name": "single_item_as_list_reference_parse",
-      "input": "item = single",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_getlist",
+    "source_test": "single_item_as_list",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "item",
           "value": "single"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_item_as_list_reference"
+      ]
     },
-    {
-      "name": "single_item_as_list_reference_buildhierarchy",
-      "input": "item = single",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_reference_parse",
+    "source_test": "single_item_as_list_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "item": "single"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_item_as_list_reference"
+      }
     },
-    {
-      "name": "mixed_duplicate_single_keys_parse",
-      "input": "ports = 80\nports = 443\nhost = localhost",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_reference_buildhierarchy",
+    "source_test": "single_item_as_list_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "ports",
           "value": "80"
@@ -197,69 +203,72 @@
           "key": "host",
           "value": "localhost"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_duplicate_single_keys"
+      ]
     },
-    {
-      "name": "mixed_duplicate_single_keys_buildhierarchy",
-      "input": "ports = 80\nports = 443\nhost = localhost",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_parse",
+    "source_test": "mixed_duplicate_single_keys",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "host": "localhost",
         "ports": [
           "80",
           "443"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_duplicate_single_keys"
+      }
     },
-    {
-      "name": "mixed_duplicate_single_keys_getlist",
-      "input": "ports = 80\nports = 443\nhost = localhost",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_buildhierarchy",
+    "source_test": "mixed_duplicate_single_keys",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         "localhost"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_duplicate_single_keys"
+      ]
     },
-    {
-      "name": "mixed_duplicate_single_keys_reference_parse",
-      "input": "ports = 80\nports = 443\nhost = localhost",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_getlist",
+    "source_test": "mixed_duplicate_single_keys",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "ports",
           "value": "80"
@@ -272,72 +281,75 @@
           "key": "host",
           "value": "localhost"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_duplicate_single_keys_reference"
+      ]
     },
-    {
-      "name": "mixed_duplicate_single_keys_reference_buildhierarchy",
-      "input": "ports = 80\nports = 443\nhost = localhost",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_reference_parse",
+    "source_test": "mixed_duplicate_single_keys_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "host": "localhost",
         "ports": [
           "443",
           "80"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_duplicate_single_keys_reference"
+      }
     },
-    {
-      "name": "nested_list_access_parse",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_reference_buildhierarchy",
+    "source_test": "mixed_duplicate_single_keys_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "database",
           "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "nested_list_access"
+      ]
     },
-    {
-      "name": "nested_list_access_buildhierarchy",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_parse",
+    "source_test": "nested_list_access",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "hosts": [
             "primary",
@@ -345,68 +357,71 @@
           ],
           "port": "5432"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "nested_list_access"
+      }
     },
-    {
-      "name": "nested_list_access_getlist",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_buildhierarchy",
+    "source_test": "nested_list_access",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         "5432"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "nested_list_access"
+      ]
     },
-    {
-      "name": "nested_list_access_reference_parse",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_getlist",
+    "source_test": "nested_list_access",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "database",
           "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "nested_list_access_reference"
+      ]
     },
-    {
-      "name": "nested_list_access_reference_buildhierarchy",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_reference_parse",
+    "source_test": "nested_list_access_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "hosts": [
             "primary",
@@ -414,121 +429,125 @@
           ],
           "port": "5432"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "nested_list_access_reference"
+      }
     },
-    {
-      "name": "empty_list_parse",
-      "input": "empty_list =",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_reference_buildhierarchy",
+    "source_test": "nested_list_access_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "empty_list",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_list"
+      ]
     },
-    {
-      "name": "empty_list_buildhierarchy",
-      "input": "empty_list =",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_parse",
+    "source_test": "empty_list",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "empty_list": ""
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_list"
+      }
     },
-    {
-      "name": "empty_list_getlist",
-      "input": "empty_list =",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_buildhierarchy",
+    "source_test": "empty_list",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         ""
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_list"
+      ]
     },
-    {
-      "name": "empty_list_reference_parse",
-      "input": "empty_list =",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_getlist",
+    "source_test": "empty_list",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "empty_list",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_list_reference"
+      ]
     },
-    {
-      "name": "empty_list_reference_buildhierarchy",
-      "input": "empty_list =",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_reference_parse",
+    "source_test": "empty_list_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "empty_list": ""
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_list_reference"
+      }
     },
-    {
-      "name": "list_with_numbers_parse",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_reference_buildhierarchy",
+    "source_test": "empty_list_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "numbers",
           "value": "1"
@@ -545,67 +564,70 @@
           "key": "numbers",
           "value": "0"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_numbers"
+      ]
     },
-    {
-      "name": "list_with_numbers_buildhierarchy",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_parse",
+    "source_test": "list_with_numbers",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "numbers": [
           "1",
           "42",
           "-17",
           "0"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_numbers"
+      }
     },
-    {
-      "name": "list_with_numbers_getlist",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_buildhierarchy",
+    "source_test": "list_with_numbers",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "1",
         "42",
         "-17",
         "0"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_numbers"
+      ]
     },
-    {
-      "name": "list_with_numbers_reference_parse",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_getlist",
+    "source_test": "list_with_numbers",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "numbers",
           "value": "1"
@@ -622,46 +644,48 @@
           "key": "numbers",
           "value": "0"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_numbers_reference"
+      ]
     },
-    {
-      "name": "list_with_numbers_reference_buildhierarchy",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_reference_parse",
+    "source_test": "list_with_numbers_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "numbers": [
           "1",
           "42",
           "-17",
           "0"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_numbers_reference"
+      }
     },
-    {
-      "name": "list_with_booleans_parse",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_reference_buildhierarchy",
+    "source_test": "list_with_numbers_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "flags",
           "value": "true"
@@ -678,67 +702,70 @@
           "key": "flags",
           "value": "no"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_booleans"
+      ]
     },
-    {
-      "name": "list_with_booleans_buildhierarchy",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_parse",
+    "source_test": "list_with_booleans",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "flags": [
           "true",
           "false",
           "yes",
           "no"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_booleans"
+      }
     },
-    {
-      "name": "list_with_booleans_getlist",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_buildhierarchy",
+    "source_test": "list_with_booleans",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "true",
         "false",
         "yes",
         "no"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_booleans"
+      ]
     },
-    {
-      "name": "list_with_booleans_reference_parse",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_getlist",
+    "source_test": "list_with_booleans",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "flags",
           "value": "true"
@@ -755,46 +782,48 @@
           "key": "flags",
           "value": "no"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_booleans_reference"
+      ]
     },
-    {
-      "name": "list_with_booleans_reference_buildhierarchy",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_reference_parse",
+    "source_test": "list_with_booleans_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "flags": [
           "true",
           "false",
           "yes",
           "no"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_booleans_reference"
+      }
     },
-    {
-      "name": "list_with_whitespace_parse",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_reference_buildhierarchy",
+    "source_test": "list_with_booleans_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "items",
           "value": "spaced"
@@ -811,67 +840,70 @@
           "key": "items",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_whitespace"
+      ]
     },
-    {
-      "name": "list_with_whitespace_buildhierarchy",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_parse",
+    "source_test": "list_with_whitespace",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "items": [
           "spaced",
           "normal",
           "",
           ""
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_whitespace"
+      }
     },
-    {
-      "name": "list_with_whitespace_getlist",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_buildhierarchy",
+    "source_test": "list_with_whitespace",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "spaced",
         "normal",
         "",
         ""
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_whitespace"
+      ]
     },
-    {
-      "name": "list_with_whitespace_reference_parse",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_getlist",
+    "source_test": "list_with_whitespace",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "items",
           "value": "spaced"
@@ -888,44 +920,46 @@
           "key": "items",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_whitespace_reference"
+      ]
     },
-    {
-      "name": "list_with_whitespace_reference_buildhierarchy",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_reference_parse",
+    "source_test": "list_with_whitespace_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "items": [
           "spaced",
           "normal"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_whitespace_reference"
+      }
     },
-    {
-      "name": "deeply_nested_list_parse",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_reference_buildhierarchy",
+    "source_test": "list_with_whitespace_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 6,
+      "entries": [
         {
           "key": "config",
           "value": ""
@@ -950,23 +984,24 @@
           "key": "servers",
           "value": "api1"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deeply_nested_list"
+      ]
     },
-    {
-      "name": "deeply_nested_list_buildhierarchy",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_parse",
+    "source_test": "deeply_nested_list",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "config": {
           "environments": {
             "production": {
@@ -978,64 +1013,67 @@
             }
           }
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deeply_nested_list"
+      }
     },
-    {
-      "name": "deeply_nested_list_getlist",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_buildhierarchy",
+    "source_test": "deeply_nested_list",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "web1",
         "web2",
         "api1"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deeply_nested_list"
+      ]
     },
-    {
-      "name": "deeply_nested_list_reference_parse",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_getlist",
+    "source_test": "deeply_nested_list",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "config",
           "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deeply_nested_list_reference"
+      ]
     },
-    {
-      "name": "deeply_nested_list_reference_buildhierarchy",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_reference_parse",
+    "source_test": "deeply_nested_list_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "config": {
           "environments": {
             "production": {
@@ -1047,23 +1085,24 @@
             }
           }
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deeply_nested_list_reference"
+      }
     },
-    {
-      "name": "list_with_unicode_parse",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_reference_buildhierarchy",
+    "source_test": "deeply_nested_list_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "names",
           "value": "张三"
@@ -1080,67 +1119,70 @@
           "key": "names",
           "value": "العربية"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_unicode"
+      ]
     },
-    {
-      "name": "list_with_unicode_buildhierarchy",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_parse",
+    "source_test": "list_with_unicode",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "names": [
           "张三",
           "José",
           "François",
           "العربية"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_unicode"
+      }
     },
-    {
-      "name": "list_with_unicode_getlist",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_buildhierarchy",
+    "source_test": "list_with_unicode",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "张三",
         "José",
         "François",
         "العربية"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_unicode"
+      ]
     },
-    {
-      "name": "list_with_unicode_reference_parse",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_getlist",
+    "source_test": "list_with_unicode",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "names",
           "value": "张三"
@@ -1157,46 +1199,48 @@
           "key": "names",
           "value": "العربية"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_unicode_reference"
+      ]
     },
-    {
-      "name": "list_with_unicode_reference_buildhierarchy",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_reference_parse",
+    "source_test": "list_with_unicode_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "names": [
           "张三",
           "José",
           "François",
           "العربية"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_unicode_reference"
+      }
     },
-    {
-      "name": "list_with_special_characters_parse",
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_reference_buildhierarchy",
+    "source_test": "list_with_unicode_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "symbols",
           "value": "@#$%"
@@ -1213,67 +1257,70 @@
           "key": "symbols",
           "value": "\u003c\u003e=+"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_special_characters"
+      ]
     },
-    {
-      "name": "list_with_special_characters_buildhierarchy",
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+    "level": 4,
+    "name": "list_with_special_characters_parse",
+    "source_test": "list_with_special_characters",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "symbols": [
           "@#$%",
           "!^\u0026*()",
           "[]{}|",
           "\u003c\u003e=+"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_special_characters"
+      }
     },
-    {
-      "name": "list_with_special_characters_getlist",
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+    "level": 4,
+    "name": "list_with_special_characters_buildhierarchy",
+    "source_test": "list_with_special_characters",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "@#$%",
         "!^\u0026*()",
         "[]{}|",
         "\u003c\u003e=+"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_special_characters"
+      ]
     },
-    {
-      "name": "list_with_special_characters_reference_parse",
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+    "level": 4,
+    "name": "list_with_special_characters_getlist",
+    "source_test": "list_with_special_characters",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "symbols",
           "value": "@#$%"
@@ -1286,45 +1333,47 @@
           "key": "symbols",
           "value": "[]{}|"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_special_characters_reference"
+      ]
     },
-    {
-      "name": "list_with_special_characters_reference_buildhierarchy",
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
+    "level": 4,
+    "name": "list_with_special_characters_reference_parse",
+    "source_test": "list_with_special_characters_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "symbols": [
           "@#$%",
           "!^\u0026*()",
           "[]{}|"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_special_characters_reference"
+      }
     },
-    {
-      "name": "large_list_parse",
-      "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
+    "level": 4,
+    "name": "list_with_special_characters_reference_buildhierarchy",
+    "source_test": "list_with_special_characters_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 20,
+      "entries": [
         {
           "key": "items",
           "value": "item01"
@@ -1405,23 +1454,24 @@
           "key": "items",
           "value": "item20"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "large_list"
+      ]
     },
-    {
-      "name": "large_list_buildhierarchy",
-      "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
+    "level": 4,
+    "name": "large_list_parse",
+    "source_test": "large_list",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "items": [
           "item01",
           "item02",
@@ -1444,23 +1494,24 @@
           "item19",
           "item20"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "large_list"
+      }
     },
-    {
-      "name": "large_list_getlist",
-      "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
+    "level": 4,
+    "name": "large_list_buildhierarchy",
+    "source_test": "large_list",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "item01",
         "item02",
         "item03",
@@ -1481,23 +1532,24 @@
         "item18",
         "item19",
         "item20"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "large_list"
+      ]
     },
-    {
-      "name": "list_with_comments_parse",
-      "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
+    "level": 4,
+    "name": "large_list_getlist",
+    "source_test": "large_list",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 5,
+      "entries": [
         {
           "key": "servers",
           "value": "web1"
@@ -1518,23 +1570,24 @@
           "key": "/",
           "value": "End of list"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_comments"
+      ]
     },
-    {
-      "name": "list_with_comments_buildhierarchy",
-      "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
+    "level": 4,
+    "name": "list_with_comments_parse",
+    "source_test": "list_with_comments",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "/": [
           "Production servers",
           "End of list"
@@ -1544,162 +1597,170 @@
           "web2",
           "web3"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_comments"
+      }
     },
-    {
-      "name": "list_with_comments_getlist",
-      "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
+    "level": 4,
+    "name": "list_with_comments_buildhierarchy",
+    "source_test": "list_with_comments",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "web1",
         "web2",
         "web3"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_with_comments"
+      ]
     },
-    {
-      "name": "list_error_missing_key_parse",
-      "input": "existing = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
+    "level": 4,
+    "name": "list_with_comments_getlist",
+    "source_test": "list_with_comments",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "existing",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_missing_key"
+      ]
     },
-    {
-      "name": "list_error_missing_key_buildhierarchy",
-      "input": "existing = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "list_error_missing_key_parse",
+    "source_test": "list_error_missing_key",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "existing": "value"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_missing_key"
+      }
     },
-    {
-      "name": "list_error_nested_missing_key_parse",
-      "input": "config =\n  server = web1",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "list_error_missing_key_buildhierarchy",
+    "source_test": "list_error_missing_key",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "config",
           "value": "\n  server = web1"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_nested_missing_key"
+      ]
     },
-    {
-      "name": "list_error_nested_missing_key_buildhierarchy",
-      "input": "config =\n  server = web1",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "config =\n  server = web1",
+    "level": 4,
+    "name": "list_error_nested_missing_key_parse",
+    "source_test": "list_error_nested_missing_key",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "config": {
           "server": "web1"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_nested_missing_key"
+      }
     },
-    {
-      "name": "list_error_non_object_path_parse",
-      "input": "value = simple",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "config =\n  server = web1",
+    "level": 4,
+    "name": "list_error_nested_missing_key_buildhierarchy",
+    "source_test": "list_error_nested_missing_key",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "value",
           "value": "simple"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_non_object_path"
+      ]
     },
-    {
-      "name": "list_error_non_object_path_buildhierarchy",
-      "input": "value = simple",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "value = simple",
+    "level": 4,
+    "name": "list_error_non_object_path_parse",
+    "source_test": "list_error_non_object_path",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "value": "simple"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_error_non_object_path"
+      }
     },
-    {
-      "name": "list_multiline_values_parsevalue",
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "validation": "parsevalue",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "value = simple",
+    "level": 4,
+    "name": "list_error_non_object_path_buildhierarchy",
+    "source_test": "list_error_non_object_path",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "descriptions",
           "value": "First line"
@@ -1716,66 +1777,71 @@
           "key": "descriptions",
           "value": "Third item"
         }
-      ],
-      "functions": [
-        "parsevalue"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_multiline_values"
+      ]
     },
-    {
-      "name": "list_multiline_values_buildhierarchy",
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parsevalue"
+    ],
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "level": 4,
+    "name": "list_multiline_values_parsevalue",
+    "source_test": "list_multiline_values",
+    "validation": "parsevalue",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "descriptions": [
           "First line",
           "Another item",
           "Third item"
         ],
         "second line": ""
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_multiline_values"
+      }
     },
-    {
-      "name": "list_multiline_values_getlist",
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "level": 4,
+    "name": "list_multiline_values_buildhierarchy",
+    "source_test": "list_multiline_values",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "First line",
         "Another item",
         "Third item"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_multiline_values"
+      ]
     },
-    {
-      "name": "complex_mixed_list_scenarios_parsevalue",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "validation": "parsevalue",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+    "level": 4,
+    "name": "list_multiline_values_getlist",
+    "source_test": "list_multiline_values",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "config",
           "value": ""
@@ -1820,25 +1886,26 @@
           "key": "features",
           "value": "ui"
         }
-      ],
-      "functions": [
-        "parsevalue"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "complex_mixed_list_scenarios"
+      ]
     },
-    {
-      "name": "complex_mixed_list_scenarios_buildhierarchy",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parsevalue"
+    ],
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "level": 4,
+    "name": "complex_mixed_list_scenarios_parsevalue",
+    "source_test": "complex_mixed_list_scenarios",
+    "validation": "parsevalue",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "config": {
           "cache": "redis",
           "database": {
@@ -1858,47 +1925,49 @@
           "api",
           "ui"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "complex_mixed_list_scenarios"
+      }
     },
-    {
-      "name": "complex_mixed_list_scenarios_getlist",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "level": 4,
+    "name": "complex_mixed_list_scenarios_buildhierarchy",
+    "source_test": "complex_mixed_list_scenarios",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         "auth",
         "api",
         "ui"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "complex_mixed_list_scenarios"
+      ]
     },
-    {
-      "name": "complex_mixed_list_scenarios_reference_buildhierarchy",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "level": 4,
+    "name": "complex_mixed_list_scenarios_getlist",
+    "source_test": "complex_mixed_list_scenarios",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "config": {
           "cache": "redis",
           "database": {
@@ -1918,155 +1987,161 @@
           "auth",
           "ui"
         ]
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "complex_mixed_list_scenarios_reference"
+      }
     },
-    {
-      "name": "list_edge_case_zero_length_parse",
-      "validation": "parse",
-      "expected": [],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_edge_case_zero_length"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "level": 4,
+    "name": "complex_mixed_list_scenarios_reference_buildhierarchy",
+    "source_test": "complex_mixed_list_scenarios_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 0
     },
-    {
-      "name": "list_edge_case_zero_length_buildhierarchy",
-      "validation": "buildhierarchy",
-      "expected": {},
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_edge_case_zero_length"
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "",
+    "level": 4,
+    "name": "list_edge_case_zero_length_parse",
+    "source_test": "list_edge_case_zero_length",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {}
     },
-    {
-      "name": "list_path_traversal_protection_parse",
-      "input": "safe = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "",
+    "level": 4,
+    "name": "list_edge_case_zero_length_buildhierarchy",
+    "source_test": "list_edge_case_zero_length",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "safe",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_path_traversal_protection"
+      ]
     },
-    {
-      "name": "list_path_traversal_protection_buildhierarchy",
-      "input": "safe = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_parse",
+    "source_test": "list_path_traversal_protection",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "safe": "value"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_path_traversal_protection"
+      }
     },
-    {
-      "name": "list_path_traversal_protection_getlist",
-      "input": "safe = value",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_buildhierarchy",
+    "source_test": "list_path_traversal_protection",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_enabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": [
         "value"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_path_traversal_protection"
+      ]
     },
-    {
-      "name": "list_path_traversal_protection_reference_parse",
-      "input": "safe = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_getlist",
+    "source_test": "list_path_traversal_protection",
+    "validation": "getlist",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "safe",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_path_traversal_protection_reference"
+      ]
     },
-    {
-      "name": "list_path_traversal_protection_reference_buildhierarchy",
-      "input": "safe = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_reference_parse",
+    "source_test": "list_path_traversal_protection_reference",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "safe": "value"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "list_path_traversal_protection_reference"
-    }
-  ]
-}
+      }
+    },
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_reference_buildhierarchy",
+    "source_test": "list_path_traversal_protection_reference",
+    "validation": "buildhierarchy",
+    "variants": null
+  }
+]

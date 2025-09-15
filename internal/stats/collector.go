@@ -100,14 +100,14 @@ func countAssertions(validationData interface{}) int {
 
 // SourceTest represents a single test in source format
 type SourceTest struct {
-	Name      string                   `json:"name"`
-	Input     string                   `json:"input"`
-	Tests     []SourceTestValidation   `json:"tests"`
-	Level     int                      `json:"level,omitempty"`
-	Features  []string                 `json:"features,omitempty"`
-	Behaviors []string                 `json:"behaviors,omitempty"`
-	Variants  []string                 `json:"variants,omitempty"`
-	Conflicts map[string][]string      `json:"conflicts,omitempty"`
+	Name      string                 `json:"name"`
+	Input     string                 `json:"input"`
+	Tests     []SourceTestValidation `json:"tests"`
+	Level     int                    `json:"level,omitempty"`
+	Features  []string               `json:"features,omitempty"`
+	Behaviors []string               `json:"behaviors,omitempty"`
+	Variants  []string               `json:"variants,omitempty"`
+	Conflicts map[string][]string    `json:"conflicts,omitempty"`
 }
 
 // SourceTestValidation represents a single validation in source format
@@ -157,7 +157,7 @@ func (c *Collector) analyzeSourceTests(sourceTests []SourceTest) (*FileStats, st
 	// Count tests and assertions
 	totalTests := len(sourceTests)
 	totalAssertions := 0
-	
+
 	for _, test := range sourceTests {
 		// Each validation in the tests array is one assertion
 		totalAssertions += len(test.Tests)

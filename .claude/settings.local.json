@@ -101,9 +101,17 @@
       "mcp__serena__insert_after_symbol",
       "Bash(cat:*)",
       "mcp__serena__get_symbols_overview",
-      "mcp__serena__find_referencing_symbols"
+      "mcp__serena__find_referencing_symbols",
+      "Bash(git reset:*)",
+      "Bash(go-jsonschema:*)",
+      "Bash(/tmp/ccl-test-runner:*)",
+      "Bash(go list:*)",
+      "Bash(go generate:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "/home/tylerbu/code/claude-workspace"
+    ]
   }
 }

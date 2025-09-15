@@ -1,465 +1,486 @@
-{
-  "suite": "Compact Format",
-  "version": "1.0",
-  "description": " (flat format)",
-  "tests": [
-    {
-      "name": "parse_basic_integer_parse",
-      "input": "port = 8080",
-      "validation": "parse",
-      "expected": [
+[
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "port",
           "value": "8080"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_integer"
+      ]
     },
-    {
-      "name": "parse_basic_integer_buildhierarchy",
-      "input": "port = 8080",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "port = 8080",
+    "level": 4,
+    "name": "parse_basic_integer_parse",
+    "source_test": "parse_basic_integer",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "port": "8080"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_integer"
+      }
     },
-    {
-      "name": "parse_basic_integer_getint",
-      "input": "port = 8080",
-      "validation": "getint",
-      "expected": 8080,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_integer"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "port = 8080",
+    "level": 4,
+    "name": "parse_basic_integer_buildhierarchy",
+    "source_test": "parse_basic_integer",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": 8080
     },
-    {
-      "name": "parse_basic_float_parse",
-      "input": "temperature = 98.6",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "port = 8080",
+    "level": 4,
+    "name": "parse_basic_integer_getint",
+    "source_test": "parse_basic_integer",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "temperature",
           "value": "98.6"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_float"
+      ]
     },
-    {
-      "name": "parse_basic_float_buildhierarchy",
-      "input": "temperature = 98.6",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "temperature = 98.6",
+    "level": 4,
+    "name": "parse_basic_float_parse",
+    "source_test": "parse_basic_float",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "temperature": "98.6"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_float"
+      }
     },
-    {
-      "name": "parse_basic_float_getfloat",
-      "input": "temperature = 98.6",
-      "validation": "getfloat",
-      "expected": 98.6,
-      "functions": [
-        "getfloat"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_basic_float"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "temperature = 98.6",
+    "level": 4,
+    "name": "parse_basic_float_buildhierarchy",
+    "source_test": "parse_basic_float",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": 98.6
     },
-    {
-      "name": "parse_boolean_true_parse",
-      "input": "enabled = true",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getfloat"
+    ],
+    "input": "temperature = 98.6",
+    "level": 4,
+    "name": "parse_basic_float_getfloat",
+    "source_test": "parse_basic_float",
+    "validation": "getfloat",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "enabled",
           "value": "true"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_true"
+      ]
     },
-    {
-      "name": "parse_boolean_true_buildhierarchy",
-      "input": "enabled = true",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "enabled = true",
+    "level": 4,
+    "name": "parse_boolean_true_parse",
+    "source_test": "parse_boolean_true",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "enabled": "true"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_true"
+      }
     },
-    {
-      "name": "parse_boolean_true_getbool",
-      "input": "enabled = true",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_true"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "enabled = true",
+    "level": 4,
+    "name": "parse_boolean_true_buildhierarchy",
+    "source_test": "parse_boolean_true",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_boolean_yes_parse",
-      "input": "active = yes",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "enabled = true",
+    "level": 4,
+    "name": "parse_boolean_true_getbool",
+    "source_test": "parse_boolean_true",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "active",
           "value": "yes"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_yes"
+      ]
     },
-    {
-      "name": "parse_boolean_yes_buildhierarchy",
-      "input": "active = yes",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_parse",
+    "source_test": "parse_boolean_yes",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "active": "yes"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_yes"
+      }
     },
-    {
-      "name": "parse_boolean_yes_getbool",
-      "input": "active = yes",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_yes"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_buildhierarchy",
+    "source_test": "parse_boolean_yes",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_boolean_yes_strict_literal_parse",
-      "input": "active = yes",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_getbool",
+    "source_test": "parse_boolean_yes",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "active",
           "value": "yes"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_yes_strict_literal"
+      ]
     },
-    {
-      "name": "parse_boolean_yes_strict_literal_buildhierarchy",
-      "input": "active = yes",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_strict_literal_parse",
+    "source_test": "parse_boolean_yes_strict_literal",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "active": "yes"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_yes_strict_literal"
+      }
     },
-    {
-      "name": "parse_boolean_false_parse",
-      "input": "disabled = false",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_strict_literal_buildhierarchy",
+    "source_test": "parse_boolean_yes_strict_literal",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "disabled",
           "value": "false"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_false"
+      ]
     },
-    {
-      "name": "parse_boolean_false_buildhierarchy",
-      "input": "disabled = false",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "disabled = false",
+    "level": 4,
+    "name": "parse_boolean_false_parse",
+    "source_test": "parse_boolean_false",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "disabled": "false"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_false"
+      }
     },
-    {
-      "name": "parse_boolean_false_getbool",
-      "input": "disabled = false",
-      "validation": "getbool",
-      "expected": false,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_false"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "disabled = false",
+    "level": 4,
+    "name": "parse_boolean_false_buildhierarchy",
+    "source_test": "parse_boolean_false",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict",
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": false
     },
-    {
-      "name": "parse_string_fallback_parse",
-      "input": "name = Alice",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "disabled = false",
+    "level": 4,
+    "name": "parse_boolean_false_getbool",
+    "source_test": "parse_boolean_false",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "name",
           "value": "Alice"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_string_fallback"
+      ]
     },
-    {
-      "name": "parse_string_fallback_buildhierarchy",
-      "input": "name = Alice",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "name = Alice",
+    "level": 4,
+    "name": "parse_string_fallback_parse",
+    "source_test": "parse_string_fallback",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "name": "Alice"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_string_fallback"
+      }
     },
-    {
-      "name": "parse_string_fallback_getstring",
-      "input": "name = Alice",
-      "validation": "getstring",
-      "expected": "Alice",
-      "functions": [
-        "getstring"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_string_fallback"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "name = Alice",
+    "level": 4,
+    "name": "parse_string_fallback_buildhierarchy",
+    "source_test": "parse_string_fallback",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": "Alice"
     },
-    {
-      "name": "parse_negative_integer_parse",
-      "input": "offset = -42",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getstring"
+    ],
+    "input": "name = Alice",
+    "level": 4,
+    "name": "parse_string_fallback_getstring",
+    "source_test": "parse_string_fallback",
+    "validation": "getstring",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "offset",
           "value": "-42"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_negative_integer"
+      ]
     },
-    {
-      "name": "parse_negative_integer_buildhierarchy",
-      "input": "offset = -42",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "offset = -42",
+    "level": 4,
+    "name": "parse_negative_integer_parse",
+    "source_test": "parse_negative_integer",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "offset": "-42"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_negative_integer"
+      }
     },
-    {
-      "name": "parse_negative_integer_getint",
-      "input": "offset = -42",
-      "validation": "getint",
-      "expected": -42,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_negative_integer"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "offset = -42",
+    "level": 4,
+    "name": "parse_negative_integer_buildhierarchy",
+    "source_test": "parse_negative_integer",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": -42
     },
-    {
-      "name": "parse_zero_values_parse",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "offset = -42",
+    "level": 4,
+    "name": "parse_negative_integer_getint",
+    "source_test": "parse_negative_integer",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "count",
           "value": "0"
@@ -472,101 +493,106 @@
           "key": "disabled",
           "value": "no"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values"
+      ]
     },
-    {
-      "name": "parse_zero_values_buildhierarchy",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_parse",
+    "source_test": "parse_zero_values",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "count": "0",
         "disabled": "no",
         "distance": "0.0"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values"
+      }
     },
-    {
-      "name": "parse_zero_values_getint",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "getint",
-      "expected": 0,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_buildhierarchy",
+    "source_test": "parse_zero_values",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 0
     },
-    {
-      "name": "parse_zero_values_getbool",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "getbool",
-      "expected": false,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_getint",
+    "source_test": "parse_zero_values",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": false
     },
-    {
-      "name": "parse_zero_values_getfloat",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "getfloat",
-      "expected": 0,
-      "functions": [
-        "getfloat"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values"
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_getbool",
+    "source_test": "parse_zero_values",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 0
     },
-    {
-      "name": "parse_zero_values_strict_literal_parse",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getfloat"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_getfloat",
+    "source_test": "parse_zero_values",
+    "validation": "getfloat",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "count",
           "value": "0"
@@ -579,83 +605,87 @@
           "key": "disabled",
           "value": "no"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values_strict_literal"
+      ]
     },
-    {
-      "name": "parse_zero_values_strict_literal_buildhierarchy",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_strict_literal_parse",
+    "source_test": "parse_zero_values_strict_literal",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "count": "0",
         "disabled": "no",
         "distance": "0.0"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values_strict_literal"
+      }
     },
-    {
-      "name": "parse_zero_values_strict_literal_getint",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "getint",
-      "expected": 0,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values_strict_literal"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_strict_literal_buildhierarchy",
+    "source_test": "parse_zero_values_strict_literal",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 0
     },
-    {
-      "name": "parse_zero_values_strict_literal_getfloat",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
-      "validation": "getfloat",
-      "expected": 0,
-      "functions": [
-        "getfloat"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_zero_values_strict_literal"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_strict_literal_getint",
+    "source_test": "parse_zero_values_strict_literal",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 0
     },
-    {
-      "name": "parse_boolean_variants_parse",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getfloat"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_strict_literal_getfloat",
+    "source_test": "parse_zero_values_strict_literal",
+    "validation": "getfloat",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 7,
+      "entries": [
         {
           "key": "flag1",
           "value": "yes"
@@ -684,25 +714,26 @@
           "key": "flag7",
           "value": "0"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants"
+      ]
     },
-    {
-      "name": "parse_boolean_variants_buildhierarchy",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_parse",
+    "source_test": "parse_boolean_variants",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "flag1": "yes",
         "flag2": "on",
         "flag3": "1",
@@ -710,61 +741,64 @@
         "flag5": "no",
         "flag6": "off",
         "flag7": "0"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants"
+      }
     },
-    {
-      "name": "parse_boolean_variants_getint",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "getint",
-      "expected": 1,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_buildhierarchy",
+    "source_test": "parse_boolean_variants",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 1
     },
-    {
-      "name": "parse_boolean_variants_getbool",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_getint",
+    "source_test": "parse_boolean_variants",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_boolean_variants_strict_literal_parse",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_getbool",
+    "source_test": "parse_boolean_variants",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 7,
+      "entries": [
         {
           "key": "flag1",
           "value": "yes"
@@ -793,25 +827,26 @@
           "key": "flag7",
           "value": "0"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants_strict_literal"
+      ]
     },
-    {
-      "name": "parse_boolean_variants_strict_literal_buildhierarchy",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_strict_literal_parse",
+    "source_test": "parse_boolean_variants_strict_literal",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "flag1": "yes",
         "flag2": "on",
         "flag3": "1",
@@ -819,43 +854,45 @@
         "flag5": "no",
         "flag6": "off",
         "flag7": "0"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants_strict_literal"
+      }
     },
-    {
-      "name": "parse_boolean_variants_strict_literal_getint",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
-      "validation": "getint",
-      "expected": 1,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_variants_strict_literal"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_strict_literal_buildhierarchy",
+    "source_test": "parse_boolean_variants_strict_literal",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 1
     },
-    {
-      "name": "parse_mixed_types_parse",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_strict_literal_getint",
+    "source_test": "parse_boolean_variants_strict_literal",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 5,
+      "entries": [
         {
           "key": "host",
           "value": "localhost"
@@ -876,121 +913,127 @@
           "key": "debug",
           "value": "off"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+      ]
     },
-    {
-      "name": "parse_mixed_types_buildhierarchy",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_parse",
+    "source_test": "parse_mixed_types",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "debug": "off",
         "host": "localhost",
         "port": "8080",
         "ssl": "true",
         "timeout": "30.5"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+      }
     },
-    {
-      "name": "parse_mixed_types_getstring",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getstring",
-      "expected": "localhost",
-      "functions": [
-        "getstring"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_buildhierarchy",
+    "source_test": "parse_mixed_types",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": "localhost"
     },
-    {
-      "name": "parse_mixed_types_getint",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getint",
-      "expected": 8080,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+    "features": null,
+    "functions": [
+      "getstring"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_getstring",
+    "source_test": "parse_mixed_types",
+    "validation": "getstring",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 8080
     },
-    {
-      "name": "parse_mixed_types_getbool",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_getint",
+    "source_test": "parse_mixed_types",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_mixed_types_getfloat",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getfloat",
-      "expected": 30.5,
-      "functions": [
-        "getfloat"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_lenient"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types"
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_getbool",
+    "source_test": "parse_mixed_types",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_lenient"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 30.5
     },
-    {
-      "name": "parse_mixed_types_strict_literal_parse",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getfloat"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_getfloat",
+    "source_test": "parse_mixed_types",
+    "validation": "getfloat",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 5,
+      "entries": [
         {
           "key": "host",
           "value": "localhost"
@@ -1011,215 +1054,224 @@
           "key": "debug",
           "value": "off"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+      ]
     },
-    {
-      "name": "parse_mixed_types_strict_literal_buildhierarchy",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_parse",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "debug": "off",
         "host": "localhost",
         "port": "8080",
         "ssl": "true",
         "timeout": "30.5"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+      }
     },
-    {
-      "name": "parse_mixed_types_strict_literal_getstring",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getstring",
-      "expected": "localhost",
-      "functions": [
-        "getstring"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_buildhierarchy",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": "localhost"
     },
-    {
-      "name": "parse_mixed_types_strict_literal_getint",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getint",
-      "expected": 8080,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+    "features": null,
+    "functions": [
+      "getstring"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_getstring",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "getstring",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 8080
     },
-    {
-      "name": "parse_mixed_types_strict_literal_getbool",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_getint",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_mixed_types_strict_literal_getfloat",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
-      "validation": "getfloat",
-      "expected": 30.5,
-      "functions": [
-        "getfloat"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_mixed_types_strict_literal"
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_getbool",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": 30.5
     },
-    {
-      "name": "parse_empty_value_parse",
-      "input": "empty_key =",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getfloat"
+    ],
+    "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+    "level": 4,
+    "name": "parse_mixed_types_strict_literal_getfloat",
+    "source_test": "parse_mixed_types_strict_literal",
+    "validation": "getfloat",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "empty_key",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_empty_value"
+      ]
     },
-    {
-      "name": "parse_empty_value_buildhierarchy",
-      "input": "empty_key =",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "empty_key =",
+    "level": 4,
+    "name": "parse_empty_value_parse",
+    "source_test": "parse_empty_value",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "empty_key": ""
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_empty_value"
+      }
     },
-    {
-      "name": "parse_empty_value_getstring",
-      "input": "empty_key =",
-      "validation": "getstring",
-      "expected": "",
-      "functions": [
-        "getstring"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_empty_value"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "empty_key =",
+    "level": 4,
+    "name": "parse_empty_value_buildhierarchy",
+    "source_test": "parse_empty_value",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": ""
     },
-    {
-      "name": "empty_value_reference_behavior_parse",
-      "input": "empty_key =",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getstring"
+    ],
+    "input": "empty_key =",
+    "level": 4,
+    "name": "parse_empty_value_getstring",
+    "source_test": "parse_empty_value",
+    "validation": "getstring",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "empty_key",
           "value": ""
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 3
-      },
-      "source_test": "empty_value_reference_behavior"
+      ]
     },
-    {
-      "name": "empty_value_reference_behavior_buildhierarchy",
-      "input": "empty_key =",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "empty_key =",
+    "level": 3,
+    "name": "empty_value_reference_behavior_parse",
+    "source_test": "empty_value_reference_behavior",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "empty_key": ""
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 3
-      },
-      "source_test": "empty_value_reference_behavior"
+      }
     },
-    {
-      "name": "parse_with_whitespace_parse",
-      "input": "number =   42   \nflag =  true  ",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "empty_key =",
+    "level": 3,
+    "name": "empty_value_reference_behavior_buildhierarchy",
+    "source_test": "empty_value_reference_behavior",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "number",
           "value": "42"
@@ -1228,74 +1280,78 @@
           "key": "flag",
           "value": "true"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_whitespace"
+      ]
     },
-    {
-      "name": "parse_with_whitespace_buildhierarchy",
-      "input": "number =   42   \nflag =  true  ",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "number =   42   \nflag =  true  ",
+    "level": 4,
+    "name": "parse_with_whitespace_parse",
+    "source_test": "parse_with_whitespace",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "flag": "true",
         "number": "42"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_whitespace"
+      }
     },
-    {
-      "name": "parse_with_whitespace_getint",
-      "input": "number =   42   \nflag =  true  ",
-      "validation": "getint",
-      "expected": 42,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_whitespace"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "number =   42   \nflag =  true  ",
+    "level": 4,
+    "name": "parse_with_whitespace_buildhierarchy",
+    "source_test": "parse_with_whitespace",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": 42
     },
-    {
-      "name": "parse_with_whitespace_getbool",
-      "input": "number =   42   \nflag =  true  ",
-      "validation": "getbool",
-      "expected": true,
-      "functions": [
-        "getbool"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_whitespace"
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "number =   42   \nflag =  true  ",
+    "level": 4,
+    "name": "parse_with_whitespace_getint",
+    "source_test": "parse_with_whitespace",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": true
     },
-    {
-      "name": "parse_with_conservative_options_parse",
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getbool"
+    ],
+    "input": "number =   42   \nflag =  true  ",
+    "level": 4,
+    "name": "parse_with_whitespace_getbool",
+    "source_test": "parse_with_whitespace",
+    "validation": "getbool",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "number",
           "value": "42"
@@ -1312,230 +1368,241 @@
           "key": "text",
           "value": "hello"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_conservative_options"
+      ]
     },
-    {
-      "name": "parse_with_conservative_options_buildhierarchy",
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+    "level": 4,
+    "name": "parse_with_conservative_options_parse",
+    "source_test": "parse_with_conservative_options",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "decimal": "3.14",
         "flag": "true",
         "number": "42",
         "text": "hello"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_conservative_options"
+      }
     },
-    {
-      "name": "parse_with_conservative_options_getstring",
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
-      "validation": "getstring",
-      "expected": "3.14",
-      "functions": [
-        "getstring"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_conservative_options"
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+    "level": 4,
+    "name": "parse_with_conservative_options_buildhierarchy",
+    "source_test": "parse_with_conservative_options",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": "3.14"
     },
-    {
-      "name": "parse_with_conservative_options_getint",
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
-      "validation": "getint",
-      "expected": 42,
-      "functions": [
-        "getint"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_with_conservative_options"
+    "features": null,
+    "functions": [
+      "getstring"
+    ],
+    "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+    "level": 4,
+    "name": "parse_with_conservative_options_getstring",
+    "source_test": "parse_with_conservative_options",
+    "validation": "getstring",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": 42
     },
-    {
-      "name": "parse_integer_error_parse",
-      "input": "port = not_a_number",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "getint"
+    ],
+    "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+    "level": 4,
+    "name": "parse_with_conservative_options_getint",
+    "source_test": "parse_with_conservative_options",
+    "validation": "getint",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "port",
           "value": "not_a_number"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_integer_error"
+      ]
     },
-    {
-      "name": "parse_integer_error_buildhierarchy",
-      "input": "port = not_a_number",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "port = not_a_number",
+    "level": 4,
+    "name": "parse_integer_error_parse",
+    "source_test": "parse_integer_error",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "port": "not_a_number"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_integer_error"
+      }
     },
-    {
-      "name": "parse_float_error_parse",
-      "input": "temperature = invalid",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "port = not_a_number",
+    "level": 4,
+    "name": "parse_integer_error_buildhierarchy",
+    "source_test": "parse_integer_error",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "temperature",
           "value": "invalid"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_float_error"
+      ]
     },
-    {
-      "name": "parse_float_error_buildhierarchy",
-      "input": "temperature = invalid",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "temperature = invalid",
+    "level": 4,
+    "name": "parse_float_error_parse",
+    "source_test": "parse_float_error",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "temperature": "invalid"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_float_error"
+      }
     },
-    {
-      "name": "parse_boolean_error_parse",
-      "input": "enabled = maybe",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "temperature = invalid",
+    "level": 4,
+    "name": "parse_float_error_buildhierarchy",
+    "source_test": "parse_float_error",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "enabled",
           "value": "maybe"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_error"
+      ]
     },
-    {
-      "name": "parse_boolean_error_buildhierarchy",
-      "input": "enabled = maybe",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "enabled = maybe",
+    "level": 4,
+    "name": "parse_boolean_error_parse",
+    "source_test": "parse_boolean_error",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1,
+      "value": {
         "enabled": "maybe"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [
-        "boolean_strict"
-      ],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_boolean_error"
+      }
     },
-    {
-      "name": "parse_missing_path_error_parse",
-      "input": "existing = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "enabled = maybe",
+    "level": 4,
+    "name": "parse_boolean_error_buildhierarchy",
+    "source_test": "parse_boolean_error",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "existing",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_missing_path_error"
+      ]
     },
-    {
-      "name": "parse_missing_path_error_buildhierarchy",
-      "input": "existing = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "parse_missing_path_error_parse",
+    "source_test": "parse_missing_path_error",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "existing": "value"
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "parse_missing_path_error"
-    }
-  ]
-}
+      }
+    },
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "parse_missing_path_error_buildhierarchy",
+    "source_test": "parse_missing_path_error",
+    "validation": "buildhierarchy",
+    "variants": null
+  }
+]

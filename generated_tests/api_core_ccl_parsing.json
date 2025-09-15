@@ -1,13 +1,9 @@
-{
-  "suite": "Compact Format",
-  "version": "1.0",
-  "description": " (flat format)",
-  "tests": [
-    {
-      "name": "basic_key_value_pairs_parse",
-      "input": "name = Alice\nage = 42",
-      "validation": "parse",
-      "expected": [
+[
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "name",
           "value": "Alice"
@@ -16,23 +12,24 @@
           "key": "age",
           "value": "42"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "basic_key_value_pairs"
+      ]
     },
-    {
-      "name": "equals_in_values_parse",
-      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "name = Alice\nage = 42",
+    "level": 1,
+    "name": "basic_key_value_pairs_parse",
+    "source_test": "basic_key_value_pairs",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "msg",
           "value": "k=v pairs work fine"
@@ -41,23 +38,24 @@
           "key": "path",
           "value": "/bin/app=prod"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "equals_in_values"
+      ]
     },
-    {
-      "name": "whitespace_trimming_parse",
-      "input": "  key   =    value with spaces   \nother = normal",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+    "level": 1,
+    "name": "equals_in_values_parse",
+    "source_test": "equals_in_values",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "key",
           "value": "value with spaces"
@@ -66,23 +64,24 @@
           "key": "other",
           "value": "normal"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "whitespace_trimming"
+      ]
     },
-    {
-      "name": "multiline_values_parse",
-      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "  key   =    value with spaces   \nother = normal",
+    "level": 1,
+    "name": "whitespace_trimming_parse",
+    "source_test": "whitespace_trimming",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "description",
           "value": "First line\n  Second line\n  Third line"
@@ -91,23 +90,24 @@
           "key": "done",
           "value": "yes"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "multiline_values"
+      ]
     },
-    {
-      "name": "empty_values_parse",
-      "input": "empty =\nother = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "description = First line\n  Second line\n  Third line\ndone = yes",
+    "level": 1,
+    "name": "multiline_values_parse",
+    "source_test": "multiline_values",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "empty",
           "value": ""
@@ -116,44 +116,46 @@
           "key": "other",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "empty_values"
+      ]
     },
-    {
-      "name": "nested_structure_parsing_parse",
-      "input": "database =\n  host = localhost\n  port = 5432",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "empty =\nother = value",
+    "level": 1,
+    "name": "empty_values_parse",
+    "source_test": "empty_values",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "database",
           "value": "\n  host = localhost\n  port = 5432"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "nested_structure_parsing"
+      ]
     },
-    {
-      "name": "unicode_parsing_parse",
-      "input": "emoji = 😀😃😄\n配置 = config",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database =\n  host = localhost\n  port = 5432",
+    "level": 1,
+    "name": "nested_structure_parsing_parse",
+    "source_test": "nested_structure_parsing",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "emoji",
           "value": "😀😃😄"
@@ -162,32 +164,33 @@
           "key": "配置",
           "value": "config"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "unicode_parsing"
+      ]
     },
-    {
-      "name": "empty_input_parse",
-      "validation": "parse",
-      "expected": [],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 1
-      },
-      "source_test": "empty_input"
-    }
-  ]
-}
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "emoji = 😀😃😄\n配置 = config",
+    "level": 1,
+    "name": "unicode_parsing_parse",
+    "source_test": "unicode_parsing",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 0
+    },
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "",
+    "level": 1,
+    "name": "empty_input_parse",
+    "source_test": "empty_input",
+    "validation": "parse",
+    "variants": null
+  }
+]

@@ -1,75 +1,74 @@
-{
-  "suite": "Compact Format",
-  "version": "1.0",
-  "description": " (flat format)",
-  "tests": [
-    {
-      "name": "basic_dotted_key_expansion_parse",
-      "input": "database.host = localhost",
-      "validation": "parse",
-      "expected": [
+[
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "database.host",
           "value": "localhost"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_dotted_key_expansion"
+      ]
     },
-    {
-      "name": "basic_dotted_key_expansion_expanddotted",
-      "input": "database.host = localhost",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database.host = localhost",
+    "level": 4,
+    "name": "basic_dotted_key_expansion_parse",
+    "source_test": "basic_dotted_key_expansion",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "database",
           "value": "\n  host = localhost"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_dotted_key_expansion"
+      ]
     },
-    {
-      "name": "basic_dotted_key_expansion_buildhierarchy",
-      "input": "database.host = localhost",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "database.host = localhost",
+    "level": 4,
+    "name": "basic_dotted_key_expansion_expanddotted",
+    "source_test": "basic_dotted_key_expansion",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "host": "localhost"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "basic_dotted_key_expansion"
+      }
     },
-    {
-      "name": "multiple_dotted_keys_parse",
-      "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database.host = localhost",
+    "level": 4,
+    "name": "basic_dotted_key_expansion_buildhierarchy",
+    "source_test": "basic_dotted_key_expansion",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "database.host",
           "value": "localhost"
@@ -82,23 +81,24 @@
           "key": "app.name",
           "value": "MyApp"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "multiple_dotted_keys"
+      ]
     },
-    {
-      "name": "multiple_dotted_keys_expanddotted",
-      "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+    "level": 4,
+    "name": "multiple_dotted_keys_parse",
+    "source_test": "multiple_dotted_keys",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "database",
           "value": "\n  host = localhost\n  port = 5432"
@@ -107,23 +107,24 @@
           "key": "app",
           "value": "\n  name = MyApp"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "multiple_dotted_keys"
+      ]
     },
-    {
-      "name": "multiple_dotted_keys_buildhierarchy",
-      "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+    "level": 4,
+    "name": "multiple_dotted_keys_expanddotted",
+    "source_test": "multiple_dotted_keys",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "app": {
           "name": "MyApp"
         },
@@ -131,23 +132,24 @@
           "host": "localhost",
           "port": "5432"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "multiple_dotted_keys"
+      }
     },
-    {
-      "name": "deep_dotted_nesting_parse",
-      "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
+    "level": 4,
+    "name": "multiple_dotted_keys_buildhierarchy",
+    "source_test": "multiple_dotted_keys",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "server.database.credentials.user",
           "value": "admin"
@@ -156,44 +158,46 @@
           "key": "server.database.credentials.pass",
           "value": "secret"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deep_dotted_nesting"
+      ]
     },
-    {
-      "name": "deep_dotted_nesting_expanddotted",
-      "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+    "level": 4,
+    "name": "deep_dotted_nesting_parse",
+    "source_test": "deep_dotted_nesting",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "server",
           "value": "\n  database =\n    credentials =\n      user = admin\n      pass = secret"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deep_dotted_nesting"
+      ]
     },
-    {
-      "name": "deep_dotted_nesting_buildhierarchy",
-      "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+    "level": 4,
+    "name": "deep_dotted_nesting_expanddotted",
+    "source_test": "deep_dotted_nesting",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "server": {
           "database": {
             "credentials": {
@@ -202,23 +206,24 @@
             }
           }
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "deep_dotted_nesting"
+      }
     },
-    {
-      "name": "mixed_dotted_and_regular_keys_parse",
-      "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
+    "level": 4,
+    "name": "deep_dotted_nesting_buildhierarchy",
+    "source_test": "deep_dotted_nesting",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 4,
+      "entries": [
         {
           "key": "app",
           "value": "MyApp"
@@ -235,23 +240,24 @@
           "key": "logging.level",
           "value": "info"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_dotted_and_regular_keys"
+      ]
     },
-    {
-      "name": "mixed_dotted_and_regular_keys_expanddotted",
-      "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "level": 4,
+    "name": "mixed_dotted_and_regular_keys_parse",
+    "source_test": "mixed_dotted_and_regular_keys",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "app",
           "value": "MyApp"
@@ -268,23 +274,24 @@
           "key": "logging",
           "value": "\n  level = info"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_dotted_and_regular_keys"
+      ]
     },
-    {
-      "name": "mixed_dotted_and_regular_keys_buildhierarchy",
-      "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "level": 4,
+    "name": "mixed_dotted_and_regular_keys_expanddotted",
+    "source_test": "mixed_dotted_and_regular_keys",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "app": "MyApp",
         "config": {
           "debug": "true"
@@ -295,23 +302,24 @@
         "logging": {
           "level": "info"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "mixed_dotted_and_regular_keys"
+      }
     },
-    {
-      "name": "dotted_key_conflicts_resolution_parse",
-      "input": "database = old_value\ndatabase.host = localhost",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
+    "level": 4,
+    "name": "mixed_dotted_and_regular_keys_buildhierarchy",
+    "source_test": "mixed_dotted_and_regular_keys",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 2,
+      "entries": [
         {
           "key": "database",
           "value": "old_value"
@@ -320,64 +328,67 @@
           "key": "database.host",
           "value": "localhost"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_conflicts_resolution"
+      ]
     },
-    {
-      "name": "dotted_key_conflicts_resolution_expanddotted",
-      "input": "database = old_value\ndatabase.host = localhost",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database = old_value\ndatabase.host = localhost",
+    "level": 4,
+    "name": "dotted_key_conflicts_resolution_parse",
+    "source_test": "dotted_key_conflicts_resolution",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "database",
           "value": "\n  host = localhost"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_conflicts_resolution"
+      ]
     },
-    {
-      "name": "dotted_key_conflicts_resolution_buildhierarchy",
-      "input": "database = old_value\ndatabase.host = localhost",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "database = old_value\ndatabase.host = localhost",
+    "level": 4,
+    "name": "dotted_key_conflicts_resolution_expanddotted",
+    "source_test": "dotted_key_conflicts_resolution",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "host": "localhost"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_conflicts_resolution"
+      }
     },
-    {
-      "name": "dotted_keys_with_lists_parse",
-      "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database = old_value\ndatabase.host = localhost",
+    "level": 4,
+    "name": "dotted_key_conflicts_resolution_buildhierarchy",
+    "source_test": "dotted_key_conflicts_resolution",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "servers.web",
           "value": "web1"
@@ -390,44 +401,46 @@
           "key": "servers.api",
           "value": "api1"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_keys_with_lists"
+      ]
     },
-    {
-      "name": "dotted_keys_with_lists_expanddotted",
-      "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "level": 4,
+    "name": "dotted_keys_with_lists_parse",
+    "source_test": "dotted_keys_with_lists",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "servers",
           "value": "\n  web = web1\n  web = web2\n  api = api1"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_keys_with_lists"
+      ]
     },
-    {
-      "name": "dotted_keys_with_lists_buildhierarchy",
-      "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "level": 4,
+    "name": "dotted_keys_with_lists_expanddotted",
+    "source_test": "dotted_keys_with_lists",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "servers": {
           "api": "api1",
           "web": [
@@ -435,170 +448,178 @@
             "web2"
           ]
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_keys_with_lists"
+      }
     },
-    {
-      "name": "empty_dotted_key_segments_parse",
-      "input": "a..b = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
+    "level": 4,
+    "name": "dotted_keys_with_lists_buildhierarchy",
+    "source_test": "dotted_keys_with_lists",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "a..b",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_dotted_key_segments"
+      ]
     },
-    {
-      "name": "empty_dotted_key_segments_expanddotted",
-      "input": "a..b = value",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "a..b = value",
+    "level": 4,
+    "name": "empty_dotted_key_segments_parse",
+    "source_test": "empty_dotted_key_segments",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "a",
           "value": "\n   =\n    b = value"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_dotted_key_segments"
+      ]
     },
-    {
-      "name": "empty_dotted_key_segments_buildhierarchy",
-      "input": "a..b = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "a..b = value",
+    "level": 4,
+    "name": "empty_dotted_key_segments_expanddotted",
+    "source_test": "empty_dotted_key_segments",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "a": {
           "": {
             "b": "value"
           }
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "empty_dotted_key_segments"
+      }
     },
-    {
-      "name": "single_dot_key_parse",
-      "input": "a. = value",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "a..b = value",
+    "level": 4,
+    "name": "empty_dotted_key_segments_buildhierarchy",
+    "source_test": "empty_dotted_key_segments",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "a.",
           "value": "value"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_dot_key"
+      ]
     },
-    {
-      "name": "single_dot_key_expanddotted",
-      "input": "a. = value",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "a. = value",
+    "level": 4,
+    "name": "single_dot_key_parse",
+    "source_test": "single_dot_key",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "a",
           "value": "\n   = value"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_dot_key"
+      ]
     },
-    {
-      "name": "single_dot_key_buildhierarchy",
-      "input": "a. = value",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "a. = value",
+    "level": 4,
+    "name": "single_dot_key_expanddotted",
+    "source_test": "single_dot_key",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "a": {
           "": "value"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "single_dot_key"
+      }
     },
-    {
-      "name": "hierarchical_with_expand_dotted_validation_parse",
-      "input": "database =\n  enabled = true\n  port = 5432",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "a. = value",
+    "level": 4,
+    "name": "single_dot_key_buildhierarchy",
+    "source_test": "single_dot_key",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "entries": [
         {
           "key": "database",
           "value": "\n  enabled = true\n  port = 5432"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "hierarchical_with_expand_dotted_validation"
+      ]
     },
-    {
-      "name": "hierarchical_with_expand_dotted_validation_expanddotted",
-      "input": "database =\n  enabled = true\n  port = 5432",
-      "validation": "expanddotted",
-      "expected": [
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database =\n  enabled = true\n  port = 5432",
+    "level": 4,
+    "name": "hierarchical_with_expand_dotted_validation_parse",
+    "source_test": "hierarchical_with_expand_dotted_validation",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         {
           "key": "database",
           "value": ""
@@ -611,44 +632,46 @@
           "key": "database.port",
           "value": "5432"
         }
-      ],
-      "functions": [
-        "expanddotted"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "hierarchical_with_expand_dotted_validation"
+      ]
     },
-    {
-      "name": "hierarchical_with_expand_dotted_validation_buildhierarchy",
-      "input": "database =\n  enabled = true\n  port = 5432",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "expanddotted"
+    ],
+    "input": "database =\n  enabled = true\n  port = 5432",
+    "level": 4,
+    "name": "hierarchical_with_expand_dotted_validation_expanddotted",
+    "source_test": "hierarchical_with_expand_dotted_validation",
+    "validation": "expanddotted",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "enabled": "true",
           "port": "5432"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "hierarchical_with_expand_dotted_validation"
+      }
     },
-    {
-      "name": "dotted_key_list_access_parse",
-      "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
-      "validation": "parse",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database =\n  enabled = true\n  port = 5432",
+    "level": 4,
+    "name": "hierarchical_with_expand_dotted_validation_buildhierarchy",
+    "source_test": "hierarchical_with_expand_dotted_validation",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 3,
+      "entries": [
         {
           "key": "database.hosts",
           "value": "primary"
@@ -661,23 +684,24 @@
           "key": "database.port",
           "value": "5432"
         }
-      ],
-      "functions": [
-        "parse"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_list_access"
+      ]
     },
-    {
-      "name": "dotted_key_list_access_buildhierarchy",
-      "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
-      "validation": "buildhierarchy",
-      "expected": {
+    "features": null,
+    "functions": [
+      "parse"
+    ],
+    "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
+    "level": 4,
+    "name": "dotted_key_list_access_parse",
+    "source_test": "dotted_key_list_access",
+    "validation": "parse",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": {
         "database": {
           "hosts": [
             "primary",
@@ -685,35 +709,36 @@
           ],
           "port": "5432"
         }
-      },
-      "functions": [
-        "buildhierarchy"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_list_access"
+      }
     },
-    {
-      "name": "dotted_key_list_access_getlist",
-      "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
-      "validation": "getlist",
-      "expected": [
+    "features": null,
+    "functions": [
+      "buildhierarchy"
+    ],
+    "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
+    "level": 4,
+    "name": "dotted_key_list_access_buildhierarchy",
+    "source_test": "dotted_key_list_access",
+    "validation": "buildhierarchy",
+    "variants": null
+  },
+  {
+    "behaviors": null,
+    "expected": {
+      "count": 1,
+      "value": [
         "5432"
-      ],
-      "functions": [
-        "getlist"
-      ],
-      "features": [],
-      "behaviors": [],
-      "variants": [],
-      "meta": {
-        "level": 4
-      },
-      "source_test": "dotted_key_list_access"
-    }
-  ]
-}
+      ]
+    },
+    "features": null,
+    "functions": [
+      "getlist"
+    ],
+    "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
+    "level": 4,
+    "name": "dotted_key_list_access_getlist",
+    "source_test": "dotted_key_list_access",
+    "validation": "getlist",
+    "variants": null
+  }
+]
