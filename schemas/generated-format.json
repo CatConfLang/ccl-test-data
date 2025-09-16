@@ -28,7 +28,7 @@
         "enum": [
           "parse", "parse_value", "filter", "compose", "expand_dotted",
           "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
-          "pretty_print", "load", "round_trip", "canonical_format", "associativity"
+          "canonical_format", "load", "round_trip", "associativity"
         ]
       },
       "expected": {
@@ -87,7 +87,7 @@
           "enum": [
             "parse", "parse_value", "filter", "compose", "expand_dotted",
             "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
-            "pretty_print", "load", "canonical_format", "round_trip", "associativity"
+            "canonical_format", "load", "round_trip", "associativity"
           ]
         }
       },

@@ -181,7 +181,7 @@ The **generated format** provides optimal implementation ergonomics:
 - `combine` - Entry composition (Level 2)
 - `expand_dotted` - Dotted key expansion (Level 2, optional)
 - `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Typed access (Level 4)
-- `pretty_print` - Formatting (Level 5)
+- `canonical_format` - Standardized formatting (Level 4)
 
 #### Features Array - Optional language features:
 
@@ -531,7 +531,7 @@ just stats
 - **parse**: 132 tests (most essential)
 - **make-objects**: 66 tests
 - **get-string, get-int, get-bool, get-float, get-list**: 38 tests (typed access)
-- **pretty-print**: 24 tests
+- **canonical-format**: 24 tests
 - **compose**: 12 tests
 - **Other functions**: 35 tests (filter, expand-dotted, parse-value)
 

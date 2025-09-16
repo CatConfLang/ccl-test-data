@@ -9,7 +9,7 @@
 //   - Level 2: Entry processing (Filter, Combine, ExpandDotted) - Transform and combine entries
 //   - Level 3: Object construction (BuildHierarchy) - Build nested object hierarchies
 //   - Level 4: Typed access (GetString, GetInt, etc.) - Type-safe value extraction
-//   - Level 5: Formatting (PrettyPrint) - Generate formatted output
+//   - Level 4: Formatting (CanonicalFormat/PrettyPrint) - Generate standardized formatted output
 //
 // Key Features:
 //   - Comment support using '/=' syntax
@@ -285,7 +285,7 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 	return nil, fmt.Errorf("cannot convert value %v (type %T) to []string at path %s", value, value, strings.Join(path, "."))
 }
 
-// PrettyPrint implements Level 5: Pretty printing
+// PrettyPrint implements Level 4: Canonical formatting (standardized output)
 func (c *CCL) PrettyPrint(obj map[string]interface{}) string {
 	var lines []string
 	c.prettyPrintObject(obj, "", &lines)

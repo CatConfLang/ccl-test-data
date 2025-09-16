@@ -1041,7 +1041,7 @@ func (g *Generator) hasImplementedValidations(validations *types.ValidationSet) 
 		validations.GetInt != nil ||
 		validations.GetBool != nil ||
 		validations.GetFloat != nil
-	// Note: Other validation types (PrettyPrint, RoundTrip, Canonical, etc.) are not implemented
+	// Note: Other validation types (CanonicalFormat/PrettyPrint, RoundTrip, etc.) are not implemented
 	// and only generate TODO comments, so they don't count as "implemented validations"
 }
 
