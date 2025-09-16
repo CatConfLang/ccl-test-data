@@ -1,11 +1,11 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 0
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -14,6 +14,6 @@
     "name": "whitespace_only_error_ocaml_reference_parse",
     "source_test": "whitespace_only_error_ocaml_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   }
 ]

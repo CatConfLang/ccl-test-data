@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -19,7 +19,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -28,11 +28,11 @@
     "name": "semigroup_associativity_basic_parse",
     "source_test": "semigroup_associativity_basic",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -46,7 +46,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -55,11 +55,11 @@
     "name": "semigroup_associativity_nested_parse",
     "source_test": "semigroup_associativity_nested",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -77,7 +77,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -86,11 +86,11 @@
     "name": "semigroup_associativity_lists_parse",
     "source_test": "semigroup_associativity_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -104,7 +104,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -113,11 +113,11 @@
     "name": "monoid_left_identity_basic_parse",
     "source_test": "monoid_left_identity_basic",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -131,7 +131,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -140,11 +140,11 @@
     "name": "monoid_right_identity_basic_parse",
     "source_test": "monoid_right_identity_basic",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -154,7 +154,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -163,11 +163,11 @@
     "name": "monoid_left_identity_nested_parse",
     "source_test": "monoid_left_identity_nested",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -177,7 +177,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -186,11 +186,11 @@
     "name": "monoid_right_identity_nested_parse",
     "source_test": "monoid_right_identity_nested",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -208,7 +208,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -217,11 +217,11 @@
     "name": "monoid_left_identity_lists_parse",
     "source_test": "monoid_left_identity_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -239,7 +239,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -248,11 +248,11 @@
     "name": "monoid_right_identity_lists_parse",
     "source_test": "monoid_right_identity_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -266,7 +266,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -275,11 +275,11 @@
     "name": "round_trip_property_basic_parse",
     "source_test": "round_trip_property_basic",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -289,7 +289,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -298,11 +298,11 @@
     "name": "round_trip_property_nested_parse",
     "source_test": "round_trip_property_nested",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -324,7 +324,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -333,6 +333,6 @@
     "name": "round_trip_property_complex_parse",
     "source_test": "round_trip_property_complex",
     "validation": "parse",
-    "variants": null
+    "variants": []
   }
 ]
