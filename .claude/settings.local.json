@@ -106,7 +106,8 @@
       "Bash(go-jsonschema:*)",
       "Bash(/tmp/ccl-test-runner:*)",
       "Bash(go list:*)",
-      "Bash(go generate:*)"
+      "Bash(go generate:*)",
+      "Bash(git diff:*)"
     ],
     "deny": [],
     "ask": [],
