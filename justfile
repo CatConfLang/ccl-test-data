@@ -71,6 +71,7 @@ test *ARGS="":
 
 validate:
     jv schemas/source-format.json source_tests/api_*.json source_tests/property_*.json
+    jv schemas/generated-format.json generated_tests/api_*.json generated_tests/property_*.json
 
 docs-check:
     cd scripts && node update-readme-remark.mjs
