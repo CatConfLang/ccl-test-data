@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -15,7 +15,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -24,11 +24,11 @@
     "name": "basic_key_value_pairs_parse",
     "source_test": "basic_key_value_pairs",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -42,7 +42,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -51,11 +51,11 @@
     "name": "equals_in_values_parse",
     "source_test": "equals_in_values",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -69,7 +69,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -78,11 +78,11 @@
     "name": "whitespace_trimming_parse",
     "source_test": "whitespace_trimming",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -96,7 +96,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -105,11 +105,11 @@
     "name": "multiline_values_parse",
     "source_test": "multiline_values",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -123,7 +123,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -132,11 +132,11 @@
     "name": "empty_values_parse",
     "source_test": "empty_values",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -146,7 +146,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -155,11 +155,11 @@
     "name": "nested_structure_parsing_parse",
     "source_test": "nested_structure_parsing",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -173,7 +173,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -182,15 +182,15 @@
     "name": "unicode_parsing_parse",
     "source_test": "unicode_parsing",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 0
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -199,6 +199,6 @@
     "name": "empty_input_parse",
     "source_test": "empty_input",
     "validation": "parse",
-    "variants": null
+    "variants": []
   }
 ]

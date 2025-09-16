@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -19,7 +19,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -28,14 +28,14 @@
     "name": "basic_list_from_duplicates_parse",
     "source_test": "basic_list_from_duplicates",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "servers": [
           "web1",
           "web2",
@@ -43,38 +43,38 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "servers = web1\nservers = web2\nservers = web3",
     "level": 4,
-    "name": "basic_list_from_duplicates_buildhierarchy",
+    "name": "basic_list_from_duplicates_build_hierarchy",
     "source_test": "basic_list_from_duplicates",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 3,
+      "list": [
         "web1",
         "web2",
         "web3"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "servers = web1\nservers = web2\nservers = web3",
     "level": 4,
-    "name": "basic_list_from_duplicates_getlist",
+    "name": "basic_list_from_duplicates_get_list",
     "source_test": "basic_list_from_duplicates",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -90,7 +90,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -99,7 +99,7 @@
     "name": "single_item_as_list_parse",
     "source_test": "single_item_as_list",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -108,20 +108,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "item": "single"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "item = single",
     "level": 4,
-    "name": "single_item_as_list_buildhierarchy",
+    "name": "single_item_as_list_build_hierarchy",
     "source_test": "single_item_as_list",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -130,20 +130,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": [
+      "list": [
         "single"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "item = single",
     "level": 4,
-    "name": "single_item_as_list_getlist",
+    "name": "single_item_as_list_get_list",
     "source_test": "single_item_as_list",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -159,7 +159,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -168,7 +168,7 @@
     "name": "single_item_as_list_reference_parse",
     "source_test": "single_item_as_list_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -177,20 +177,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "item": "single"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "item = single",
     "level": 4,
-    "name": "single_item_as_list_reference_buildhierarchy",
+    "name": "single_item_as_list_reference_build_hierarchy",
     "source_test": "single_item_as_list_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -214,7 +214,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -223,7 +223,7 @@
     "name": "mixed_duplicate_single_keys_parse",
     "source_test": "mixed_duplicate_single_keys",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -232,7 +232,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "host": "localhost",
         "ports": [
           "80",
@@ -240,16 +240,16 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "ports = 80\nports = 443\nhost = localhost",
     "level": 4,
-    "name": "mixed_duplicate_single_keys_buildhierarchy",
+    "name": "mixed_duplicate_single_keys_build_hierarchy",
     "source_test": "mixed_duplicate_single_keys",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -258,20 +258,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": [
+      "list": [
         "localhost"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "ports = 80\nports = 443\nhost = localhost",
     "level": 4,
-    "name": "mixed_duplicate_single_keys_getlist",
+    "name": "mixed_duplicate_single_keys_get_list",
     "source_test": "mixed_duplicate_single_keys",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -295,7 +295,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -304,7 +304,7 @@
     "name": "mixed_duplicate_single_keys_reference_parse",
     "source_test": "mixed_duplicate_single_keys_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -313,7 +313,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "host": "localhost",
         "ports": [
           "443",
@@ -321,16 +321,16 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "ports = 80\nports = 443\nhost = localhost",
     "level": 4,
-    "name": "mixed_duplicate_single_keys_reference_buildhierarchy",
+    "name": "mixed_duplicate_single_keys_reference_build_hierarchy",
     "source_test": "mixed_duplicate_single_keys_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -346,7 +346,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -355,7 +355,7 @@
     "name": "nested_list_access_parse",
     "source_test": "nested_list_access",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -364,7 +364,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "database": {
           "hosts": [
             "primary",
@@ -374,16 +374,16 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
     "level": 4,
-    "name": "nested_list_access_buildhierarchy",
+    "name": "nested_list_access_build_hierarchy",
     "source_test": "nested_list_access",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -392,20 +392,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": [
+      "list": [
         "5432"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
     "level": 4,
-    "name": "nested_list_access_getlist",
+    "name": "nested_list_access_get_list",
     "source_test": "nested_list_access",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -421,7 +421,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -430,7 +430,7 @@
     "name": "nested_list_access_reference_parse",
     "source_test": "nested_list_access_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -439,7 +439,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "database": {
           "hosts": [
             "primary",
@@ -449,20 +449,20 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
     "level": 4,
-    "name": "nested_list_access_reference_buildhierarchy",
+    "name": "nested_list_access_reference_build_hierarchy",
     "source_test": "nested_list_access_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -472,7 +472,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -481,51 +481,51 @@
     "name": "empty_list_parse",
     "source_test": "empty_list",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "empty_list": ""
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "empty_list =",
     "level": 4,
-    "name": "empty_list_buildhierarchy",
+    "name": "empty_list_build_hierarchy",
     "source_test": "empty_list",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": [
+      "list": [
         ""
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "empty_list =",
     "level": 4,
-    "name": "empty_list_getlist",
+    "name": "empty_list_get_list",
     "source_test": "empty_list",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -535,7 +535,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -544,31 +544,31 @@
     "name": "empty_list_reference_parse",
     "source_test": "empty_list_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "empty_list": ""
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "empty_list =",
     "level": 4,
-    "name": "empty_list_reference_buildhierarchy",
+    "name": "empty_list_reference_build_hierarchy",
     "source_test": "empty_list_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -590,7 +590,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -599,14 +599,14 @@
     "name": "list_with_numbers_parse",
     "source_test": "list_with_numbers",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "numbers": [
           "1",
           "42",
@@ -615,43 +615,43 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
     "level": 4,
-    "name": "list_with_numbers_buildhierarchy",
+    "name": "list_with_numbers_build_hierarchy",
     "source_test": "list_with_numbers",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "list": [
         "1",
         "42",
         "-17",
         "0"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
     "level": 4,
-    "name": "list_with_numbers_getlist",
+    "name": "list_with_numbers_get_list",
     "source_test": "list_with_numbers",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -673,7 +673,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -682,14 +682,14 @@
     "name": "list_with_numbers_reference_parse",
     "source_test": "list_with_numbers_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "numbers": [
           "1",
           "42",
@@ -698,20 +698,20 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
     "level": 4,
-    "name": "list_with_numbers_reference_buildhierarchy",
+    "name": "list_with_numbers_reference_build_hierarchy",
     "source_test": "list_with_numbers_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -733,7 +733,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -742,14 +742,14 @@
     "name": "list_with_booleans_parse",
     "source_test": "list_with_booleans",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "flags": [
           "true",
           "false",
@@ -758,43 +758,43 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "flags = true\nflags = false\nflags = yes\nflags = no",
     "level": 4,
-    "name": "list_with_booleans_buildhierarchy",
+    "name": "list_with_booleans_build_hierarchy",
     "source_test": "list_with_booleans",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "list": [
         "true",
         "false",
         "yes",
         "no"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "flags = true\nflags = false\nflags = yes\nflags = no",
     "level": 4,
-    "name": "list_with_booleans_getlist",
+    "name": "list_with_booleans_get_list",
     "source_test": "list_with_booleans",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -816,7 +816,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -825,14 +825,14 @@
     "name": "list_with_booleans_reference_parse",
     "source_test": "list_with_booleans_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "flags": [
           "true",
           "false",
@@ -841,20 +841,20 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "flags = true\nflags = false\nflags = yes\nflags = no",
     "level": 4,
-    "name": "list_with_booleans_reference_buildhierarchy",
+    "name": "list_with_booleans_reference_build_hierarchy",
     "source_test": "list_with_booleans_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -876,7 +876,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -885,14 +885,14 @@
     "name": "list_with_whitespace_parse",
     "source_test": "list_with_whitespace",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "items": [
           "spaced",
           "normal",
@@ -901,43 +901,43 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
     "level": 4,
-    "name": "list_with_whitespace_buildhierarchy",
+    "name": "list_with_whitespace_build_hierarchy",
     "source_test": "list_with_whitespace",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "list": [
         "spaced",
         "normal",
         "",
         ""
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
     "level": 4,
-    "name": "list_with_whitespace_getlist",
+    "name": "list_with_whitespace_get_list",
     "source_test": "list_with_whitespace",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -959,7 +959,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -968,34 +968,34 @@
     "name": "list_with_whitespace_reference_parse",
     "source_test": "list_with_whitespace_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "items": [
           "spaced",
           "normal"
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
     "level": 4,
-    "name": "list_with_whitespace_reference_buildhierarchy",
+    "name": "list_with_whitespace_reference_build_hierarchy",
     "source_test": "list_with_whitespace_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -1025,7 +1025,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1034,14 +1034,14 @@
     "name": "deeply_nested_list_parse",
     "source_test": "deeply_nested_list",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "environments": {
             "production": {
@@ -1055,42 +1055,42 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
     "level": 4,
-    "name": "deeply_nested_list_buildhierarchy",
+    "name": "deeply_nested_list_build_hierarchy",
     "source_test": "deeply_nested_list",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 3,
+      "list": [
         "web1",
         "web2",
         "api1"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
     "level": 4,
-    "name": "deeply_nested_list_getlist",
+    "name": "deeply_nested_list_get_list",
     "source_test": "deeply_nested_list",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -1100,7 +1100,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1109,14 +1109,14 @@
     "name": "deeply_nested_list_reference_parse",
     "source_test": "deeply_nested_list_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "environments": {
             "production": {
@@ -1130,20 +1130,20 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
     "level": 4,
-    "name": "deeply_nested_list_reference_buildhierarchy",
+    "name": "deeply_nested_list_reference_build_hierarchy",
     "source_test": "deeply_nested_list_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -1165,7 +1165,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1174,14 +1174,14 @@
     "name": "list_with_unicode_parse",
     "source_test": "list_with_unicode",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "names": [
           "张三",
           "José",
@@ -1190,43 +1190,43 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
     "level": 4,
-    "name": "list_with_unicode_buildhierarchy",
+    "name": "list_with_unicode_build_hierarchy",
     "source_test": "list_with_unicode",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "list": [
         "张三",
         "José",
         "François",
         "العربية"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
     "level": 4,
-    "name": "list_with_unicode_getlist",
+    "name": "list_with_unicode_get_list",
     "source_test": "list_with_unicode",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -1248,7 +1248,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1257,14 +1257,14 @@
     "name": "list_with_unicode_reference_parse",
     "source_test": "list_with_unicode_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "names": [
           "张三",
           "José",
@@ -1273,20 +1273,20 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
     "level": 4,
-    "name": "list_with_unicode_reference_buildhierarchy",
+    "name": "list_with_unicode_reference_build_hierarchy",
     "source_test": "list_with_unicode_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -1308,7 +1308,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1317,14 +1317,14 @@
     "name": "list_with_special_characters_parse",
     "source_test": "list_with_special_characters",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "symbols": [
           "@#$%",
           "!^\u0026*()",
@@ -1333,43 +1333,43 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
     "level": 4,
-    "name": "list_with_special_characters_buildhierarchy",
+    "name": "list_with_special_characters_build_hierarchy",
     "source_test": "list_with_special_characters",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "list": [
         "@#$%",
         "!^\u0026*()",
         "[]{}|",
         "\u003c\u003e=+"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
     "level": 4,
-    "name": "list_with_special_characters_getlist",
+    "name": "list_with_special_characters_get_list",
     "source_test": "list_with_special_characters",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -1387,7 +1387,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1396,14 +1396,14 @@
     "name": "list_with_special_characters_reference_parse",
     "source_test": "list_with_special_characters_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "symbols": [
           "@#$%",
           "!^\u0026*()",
@@ -1411,20 +1411,20 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
     "level": 4,
-    "name": "list_with_special_characters_reference_buildhierarchy",
+    "name": "list_with_special_characters_reference_build_hierarchy",
     "source_test": "list_with_special_characters_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 20,
       "entries": [
@@ -1510,7 +1510,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1519,14 +1519,14 @@
     "name": "large_list_parse",
     "source_test": "large_list",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "items": [
           "item01",
           "item02",
@@ -1551,23 +1551,23 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
     "level": 4,
-    "name": "large_list_buildhierarchy",
+    "name": "large_list_build_hierarchy",
     "source_test": "large_list",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 20,
+      "list": [
         "item01",
         "item02",
         "item03",
@@ -1590,20 +1590,20 @@
         "item20"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
     "level": 4,
-    "name": "large_list_getlist",
+    "name": "large_list_get_list",
     "source_test": "large_list",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 5,
       "entries": [
@@ -1629,7 +1629,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1638,14 +1638,14 @@
     "name": "list_with_comments_parse",
     "source_test": "list_with_comments",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "/": [
           "Production servers",
           "End of list"
@@ -1657,42 +1657,42 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
     "level": 4,
-    "name": "list_with_comments_buildhierarchy",
+    "name": "list_with_comments_build_hierarchy",
     "source_test": "list_with_comments",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 3,
+      "list": [
         "web1",
         "web2",
         "web3"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
     "level": 4,
-    "name": "list_with_comments_getlist",
+    "name": "list_with_comments_get_list",
     "source_test": "list_with_comments",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -1702,7 +1702,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1711,31 +1711,31 @@
     "name": "list_error_missing_key_parse",
     "source_test": "list_error_missing_key",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "existing": "value"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "existing = value",
     "level": 4,
-    "name": "list_error_missing_key_buildhierarchy",
+    "name": "list_error_missing_key_build_hierarchy",
     "source_test": "list_error_missing_key",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -1745,7 +1745,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1754,33 +1754,33 @@
     "name": "list_error_nested_missing_key_parse",
     "source_test": "list_error_nested_missing_key",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "server": "web1"
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  server = web1",
     "level": 4,
-    "name": "list_error_nested_missing_key_buildhierarchy",
+    "name": "list_error_nested_missing_key_build_hierarchy",
     "source_test": "list_error_nested_missing_key",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -1790,7 +1790,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -1799,34 +1799,37 @@
     "name": "list_error_non_object_path_parse",
     "source_test": "list_error_non_object_path",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "value": "simple"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "value = simple",
     "level": 4,
-    "name": "list_error_non_object_path_buildhierarchy",
+    "name": "list_error_non_object_path_build_hierarchy",
     "source_test": "list_error_non_object_path",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "args": [
+      "descriptions"
+    ],
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 4,
+      "entries": [
         {
           "key": "descriptions",
           "value": "First line"
@@ -1845,23 +1848,23 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "parsevalue"
+      "parse_value"
     ],
     "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
     "level": 4,
-    "name": "list_multiline_values_parsevalue",
+    "name": "list_multiline_values_parse_value",
     "source_test": "list_multiline_values",
-    "validation": "parsevalue",
-    "variants": null
+    "validation": "parse_value",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "descriptions": [
           "First line",
           "Another item",
@@ -1870,47 +1873,50 @@
         "second line": ""
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
     "level": 4,
-    "name": "list_multiline_values_buildhierarchy",
+    "name": "list_multiline_values_build_hierarchy",
     "source_test": "list_multiline_values",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 3,
+      "list": [
         "First line",
         "Another item",
         "Third item"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
     "level": 4,
-    "name": "list_multiline_values_getlist",
+    "name": "list_multiline_values_get_list",
     "source_test": "list_multiline_values",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "features"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 11,
+      "entries": [
         {
           "key": "config",
           "value": ""
@@ -1957,16 +1963,16 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "parsevalue"
+      "parse_value"
     ],
     "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
     "level": 4,
-    "name": "complex_mixed_list_scenarios_parsevalue",
+    "name": "complex_mixed_list_scenarios_parse_value",
     "source_test": "complex_mixed_list_scenarios",
-    "validation": "parsevalue",
-    "variants": null
+    "validation": "parse_value",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -1975,7 +1981,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "cache": "redis",
           "database": {
@@ -1997,16 +2003,16 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
     "level": 4,
-    "name": "complex_mixed_list_scenarios_buildhierarchy",
+    "name": "complex_mixed_list_scenarios_build_hierarchy",
     "source_test": "complex_mixed_list_scenarios",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2014,23 +2020,23 @@
       "list_coercion_enabled"
     ],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 3,
+      "list": [
         "auth",
         "api",
         "ui"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
     "level": 4,
-    "name": "complex_mixed_list_scenarios_getlist",
+    "name": "complex_mixed_list_scenarios_get_list",
     "source_test": "complex_mixed_list_scenarios",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2039,7 +2045,7 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "cache": "redis",
           "database": {
@@ -2061,24 +2067,24 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
     "level": 4,
-    "name": "complex_mixed_list_scenarios_reference_buildhierarchy",
+    "name": "complex_mixed_list_scenarios_reference_build_hierarchy",
     "source_test": "complex_mixed_list_scenarios_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 0
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -2087,25 +2093,25 @@
     "name": "list_edge_case_zero_length_parse",
     "source_test": "list_edge_case_zero_length",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {}
+      "object": {}
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "",
     "level": 4,
-    "name": "list_edge_case_zero_length_buildhierarchy",
+    "name": "list_edge_case_zero_length_build_hierarchy",
     "source_test": "list_edge_case_zero_length",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2121,7 +2127,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -2130,7 +2136,7 @@
     "name": "list_path_traversal_protection_parse",
     "source_test": "list_path_traversal_protection",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2139,20 +2145,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "safe": "value"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "safe = value",
     "level": 4,
-    "name": "list_path_traversal_protection_buildhierarchy",
+    "name": "list_path_traversal_protection_build_hierarchy",
     "source_test": "list_path_traversal_protection",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2161,20 +2167,20 @@
     ],
     "expected": {
       "count": 1,
-      "value": [
+      "list": [
         "value"
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "getlist"
+      "get_list"
     ],
     "input": "safe = value",
     "level": 4,
-    "name": "list_path_traversal_protection_getlist",
+    "name": "list_path_traversal_protection_get_list",
     "source_test": "list_path_traversal_protection",
-    "validation": "getlist",
-    "variants": null
+    "validation": "get_list",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2190,7 +2196,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -2199,7 +2205,7 @@
     "name": "list_path_traversal_protection_reference_parse",
     "source_test": "list_path_traversal_protection_reference",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
@@ -2208,19 +2214,19 @@
     ],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "safe": "value"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "safe = value",
     "level": 4,
-    "name": "list_path_traversal_protection_reference_buildhierarchy",
+    "name": "list_path_traversal_protection_reference_build_hierarchy",
     "source_test": "list_path_traversal_protection_reference",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   }
 ]

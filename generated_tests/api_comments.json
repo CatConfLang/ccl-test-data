@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -31,7 +31,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -40,11 +40,11 @@
     "name": "comment_extension_parse",
     "source_test": "comment_extension",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -85,11 +85,11 @@
     "name": "comment_extension_filter",
     "source_test": "comment_extension",
     "validation": "filter",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -99,7 +99,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -108,11 +108,11 @@
     "name": "comment_syntax_slash_equals_parse",
     "source_test": "comment_syntax_slash_equals",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -133,11 +133,11 @@
     "name": "comment_syntax_slash_equals_filter",
     "source_test": "comment_syntax_slash_equals",
     "validation": "filter",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -167,7 +167,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -176,11 +176,11 @@
     "name": "section_headers_with_comments_parse",
     "source_test": "section_headers_with_comments",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -221,6 +221,6 @@
     "name": "section_headers_with_comments_filter",
     "source_test": "section_headers_with_comments",
     "validation": "filter",
-    "variants": null
+    "variants": []
   }
 ]

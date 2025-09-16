@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -23,7 +23,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -32,11 +32,11 @@
     "name": "composition_stability_duplicate_keys_parse",
     "source_test": "composition_stability_duplicate_keys",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -54,7 +54,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -63,11 +63,11 @@
     "name": "multiple_values_same_key_parse",
     "source_test": "multiple_values_same_key",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -85,7 +85,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -94,11 +94,11 @@
     "name": "list_with_empty_keys_parse",
     "source_test": "list_with_empty_keys",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -108,7 +108,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -117,11 +117,11 @@
     "name": "section_style_syntax_parse",
     "source_test": "section_style_syntax",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -143,7 +143,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -152,11 +152,11 @@
     "name": "composition_stability_ba_parse",
     "source_test": "composition_stability_ba",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -178,7 +178,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -187,11 +187,11 @@
     "name": "mixed_keys_with_duplicates_parse",
     "source_test": "mixed_keys_with_duplicates",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -209,7 +209,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -218,11 +218,11 @@
     "name": "array_style_list_parse",
     "source_test": "array_style_list",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -240,7 +240,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -249,11 +249,11 @@
     "name": "section_header_double_equals_parse",
     "source_test": "section_header_double_equals",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -271,7 +271,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -280,11 +280,11 @@
     "name": "section_header_triple_equals_parse",
     "source_test": "section_header_triple_equals",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -314,7 +314,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -323,11 +323,11 @@
     "name": "multiple_sections_with_entries_parse",
     "source_test": "multiple_sections_with_entries",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 6,
       "entries": [
@@ -357,7 +357,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -366,11 +366,11 @@
     "name": "section_headers_mixed_with_lists_parse",
     "source_test": "section_headers_mixed_with_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -380,7 +380,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -389,11 +389,11 @@
     "name": "empty_section_header_only_parse",
     "source_test": "empty_section_header_only",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -407,7 +407,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -416,11 +416,11 @@
     "name": "section_header_at_end_parse",
     "source_test": "section_header_at_end",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -442,7 +442,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -451,11 +451,11 @@
     "name": "section_headers_no_trailing_equals_parse",
     "source_test": "section_headers_no_trailing_equals",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -477,7 +477,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -486,11 +486,11 @@
     "name": "section_headers_with_colons_parse",
     "source_test": "section_headers_with_colons",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -512,7 +512,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -521,11 +521,11 @@
     "name": "spaced_equals_not_section_header_parse",
     "source_test": "spaced_equals_not_section_header",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 4,
       "entries": [
@@ -547,7 +547,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -556,14 +556,14 @@
     "name": "consecutive_section_headers_parse",
     "source_test": "consecutive_section_headers",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 2,
+      "entries": [
         {
           "key": "",
           "value": "= Section Header =\n  This continues the header"
@@ -574,23 +574,23 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "parsevalue"
+      "parse_value"
     ],
     "input": "== Section Header =\n  This continues the header\nkey = value",
     "level": 2,
-    "name": "multiline_section_header_value_parsevalue",
+    "name": "multiline_section_header_value_parse_value",
     "source_test": "multiline_section_header_value",
-    "validation": "parsevalue",
-    "variants": null
+    "validation": "parse_value",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
-      "count": 1,
-      "value": [
+      "count": 2,
+      "entries": [
         {
           "key": "",
           "value": "= Section Header =\nThis continues the header"
@@ -601,15 +601,15 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "parsevalue"
+      "parse_value"
     ],
     "input": "== Section Header =\nThis continues the header\nkey = value",
     "level": 2,
-    "name": "unindented_multiline_becomes_continuation_parsevalue",
+    "name": "unindented_multiline_becomes_continuation_parse_value",
     "source_test": "unindented_multiline_becomes_continuation",
-    "validation": "parsevalue",
-    "variants": null
+    "validation": "parse_value",
+    "variants": []
   }
 ]

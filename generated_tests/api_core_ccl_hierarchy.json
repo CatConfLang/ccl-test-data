@@ -1,7 +1,7 @@
 [
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 2,
       "entries": [
@@ -15,7 +15,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -24,32 +24,32 @@
     "name": "basic_object_construction_parse",
     "source_test": "basic_object_construction",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "age": "42",
         "name": "Alice"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "name = Alice\nage = 42",
     "level": 1,
-    "name": "basic_object_construction_buildhierarchy",
+    "name": "basic_object_construction_build_hierarchy",
     "source_test": "basic_object_construction",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -59,7 +59,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -68,14 +68,14 @@
     "name": "deep_nested_objects_parse",
     "source_test": "deep_nested_objects",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "server": {
           "cache": {
             "enabled": "true"
@@ -87,20 +87,20 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
     "level": 1,
-    "name": "deep_nested_objects_buildhierarchy",
+    "name": "deep_nested_objects_build_hierarchy",
     "source_test": "deep_nested_objects",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -118,7 +118,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -127,14 +127,14 @@
     "name": "duplicate_keys_to_lists_parse",
     "source_test": "duplicate_keys_to_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "item": [
           "first",
           "second",
@@ -142,20 +142,20 @@
         ]
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "item = first\nitem = second\nitem = third",
     "level": 1,
-    "name": "duplicate_keys_to_lists_buildhierarchy",
+    "name": "duplicate_keys_to_lists_build_hierarchy",
     "source_test": "duplicate_keys_to_lists",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -165,7 +165,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -174,14 +174,14 @@
     "name": "nested_duplicate_keys_parse",
     "source_test": "nested_duplicate_keys",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "port": "80",
           "server": [
@@ -191,20 +191,20 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "config =\n  server = web1\n  server = web2\n  port = 80",
     "level": 1,
-    "name": "nested_duplicate_keys_buildhierarchy",
+    "name": "nested_duplicate_keys_build_hierarchy",
     "source_test": "nested_duplicate_keys",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 3,
       "entries": [
@@ -222,7 +222,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -231,14 +231,14 @@
     "name": "mixed_flat_and_nested_parse",
     "source_test": "mixed_flat_and_nested",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "config": {
           "debug": "true",
           "timeout": "30"
@@ -247,20 +247,20 @@
         "version": "1.0"
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
     "level": 1,
-    "name": "mixed_flat_and_nested_buildhierarchy",
+    "name": "mixed_flat_and_nested_build_hierarchy",
     "source_test": "mixed_flat_and_nested",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
       "entries": [
@@ -270,7 +270,7 @@
         }
       ]
     },
-    "features": null,
+    "features": [],
     "functions": [
       "parse"
     ],
@@ -279,14 +279,14 @@
     "name": "nested_objects_with_lists_parse",
     "source_test": "nested_objects_with_lists",
     "validation": "parse",
-    "variants": null
+    "variants": []
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "behaviors": null,
+    "behaviors": [],
     "expected": {
       "count": 1,
-      "value": {
+      "object": {
         "environments": {
           "dev": {
             "port": "3000",
@@ -302,15 +302,15 @@
         }
       }
     },
-    "features": null,
+    "features": [],
     "functions": [
-      "buildhierarchy"
+      "build_hierarchy"
     ],
     "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
     "level": 1,
-    "name": "nested_objects_with_lists_buildhierarchy",
+    "name": "nested_objects_with_lists_build_hierarchy",
     "source_test": "nested_objects_with_lists",
-    "validation": "buildhierarchy",
-    "variants": null
+    "validation": "build_hierarchy",
+    "variants": []
   }
 ]
