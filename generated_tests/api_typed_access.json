@@ -1,5 +1,6 @@
 [
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -22,6 +23,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -41,6 +43,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -58,6 +61,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -80,6 +84,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -99,6 +104,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -116,6 +122,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -141,6 +148,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -163,6 +171,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -183,6 +192,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -207,6 +217,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -228,6 +239,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -247,6 +259,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -271,6 +284,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -292,6 +306,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -317,6 +332,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -339,6 +355,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -359,6 +376,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -381,6 +399,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -400,6 +419,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -417,6 +437,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -439,6 +460,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -458,6 +480,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -475,6 +498,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -507,6 +531,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -530,6 +555,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -549,6 +575,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -568,6 +595,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -587,6 +615,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -619,6 +648,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -642,6 +672,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -661,6 +692,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -680,6 +712,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -728,6 +761,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -755,6 +789,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -774,6 +809,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -793,6 +829,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -841,6 +878,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -868,6 +906,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -887,6 +926,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -927,6 +967,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -952,6 +993,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -971,6 +1013,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -990,6 +1033,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1009,6 +1053,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1028,6 +1073,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1068,6 +1114,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1093,6 +1140,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1112,6 +1160,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1131,6 +1180,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1150,6 +1200,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1169,6 +1220,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1191,6 +1243,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1210,6 +1263,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1227,6 +1281,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1249,6 +1304,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1268,6 +1324,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 2,
@@ -1294,6 +1351,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1314,6 +1372,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1331,6 +1390,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1348,6 +1408,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 4,
@@ -1382,6 +1443,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1404,6 +1466,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1421,6 +1484,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1438,6 +1502,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1460,6 +1525,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1479,6 +1545,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1501,6 +1568,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1520,6 +1588,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1544,6 +1613,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict"
     ],
@@ -1565,6 +1635,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -1587,6 +1658,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,

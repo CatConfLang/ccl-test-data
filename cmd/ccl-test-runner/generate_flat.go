@@ -24,9 +24,9 @@ import (
 // multiple validations becomes multiple flat tests, one per validation.
 //
 // This delegation pattern allows:
-//   1. Other projects to use ccl-test-lib directly without CLI dependencies
-//   2. CLI users to access functionality conveniently
-//   3. Logic to remain in the appropriate library layer
+//  1. Other projects to use ccl-test-lib directly without CLI dependencies
+//  2. CLI users to access functionality conveniently
+//  3. Logic to remain in the appropriate library layer
 func generateFlatAction(ctx *cli.Context) error {
 	sourceDir := ctx.String("source")
 	generatedDir := ctx.String("generated")

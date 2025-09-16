@@ -1,5 +1,6 @@
 [
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 0

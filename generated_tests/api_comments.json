@@ -1,5 +1,6 @@
 [
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 6,
@@ -42,6 +43,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 6,
@@ -86,6 +88,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -108,6 +111,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 1,
@@ -132,6 +136,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 6,
@@ -174,6 +179,7 @@
     "variants": null
   },
   {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": null,
     "expected": {
       "count": 6,
