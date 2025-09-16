@@ -840,6 +840,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "title"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,

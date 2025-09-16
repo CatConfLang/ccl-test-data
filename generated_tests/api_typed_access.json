@@ -44,6 +44,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "port"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -105,6 +108,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "temperature"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -172,6 +178,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "enabled"
+    ],
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -240,6 +249,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "active"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -307,6 +319,28 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "active"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_bool"
+    ],
+    "input": "active = yes",
+    "level": 4,
+    "name": "parse_boolean_yes_strict_literal_get_bool",
+    "source_test": "parse_boolean_yes_strict_literal",
+    "validation": "get_bool",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -356,6 +390,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "disabled"
+    ],
     "behaviors": [
       "boolean_strict",
       "boolean_lenient"
@@ -420,6 +457,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "name"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -481,6 +521,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "offset"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -556,6 +599,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "count"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -576,6 +622,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "disabled"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -596,6 +645,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "distance"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -673,6 +725,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "count"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -693,6 +748,31 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "disabled"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_bool"
+    ],
+    "input": "count = 0\ndistance = 0.0\ndisabled = no",
+    "level": 4,
+    "name": "parse_zero_values_strict_literal_get_bool",
+    "source_test": "parse_zero_values_strict_literal",
+    "validation": "get_bool",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "distance"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -790,6 +870,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flag3"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -810,6 +893,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flag1"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -907,6 +993,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flag3"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -923,6 +1012,28 @@
     "name": "parse_boolean_variants_strict_literal_get_int",
     "source_test": "parse_boolean_variants_strict_literal",
     "validation": "get_int",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flag1"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_bool"
+    ],
+    "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+    "level": 4,
+    "name": "parse_boolean_variants_strict_literal_get_bool",
+    "source_test": "parse_boolean_variants_strict_literal",
+    "validation": "get_bool",
     "variants": []
   },
   {
@@ -994,6 +1105,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "host"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1014,6 +1128,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "port"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1034,6 +1151,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "ssl"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1054,6 +1174,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "timeout"
+    ],
     "behaviors": [
       "boolean_lenient"
     ],
@@ -1141,6 +1264,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "host"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -1161,6 +1287,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "port"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -1181,6 +1310,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "ssl"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -1201,6 +1333,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "timeout"
+    ],
     "behaviors": [
       "boolean_strict"
     ],
@@ -1264,6 +1399,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "empty_key"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1373,6 +1511,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "number"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1391,6 +1532,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flag"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1467,6 +1611,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "decimal"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1485,6 +1632,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "number"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1546,6 +1696,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "port"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_int"
+    ],
+    "input": "port = not_a_number",
+    "level": 4,
+    "name": "parse_integer_error_get_int",
+    "source_test": "parse_integer_error",
+    "validation": "get_int",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1585,6 +1755,26 @@
     "name": "parse_float_error_build_hierarchy",
     "source_test": "parse_float_error",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "temperature"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_float"
+    ],
+    "input": "temperature = invalid",
+    "level": 4,
+    "name": "parse_float_error_get_float",
+    "source_test": "parse_float_error",
+    "validation": "get_float",
     "variants": []
   },
   {
@@ -1636,6 +1826,28 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "enabled"
+    ],
+    "behaviors": [
+      "boolean_strict"
+    ],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_bool"
+    ],
+    "input": "enabled = maybe",
+    "level": 4,
+    "name": "parse_boolean_error_get_bool",
+    "source_test": "parse_boolean_error",
+    "validation": "get_bool",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1675,6 +1887,26 @@
     "name": "parse_missing_path_error_build_hierarchy",
     "source_test": "parse_missing_path_error",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "missing"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "get_string"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "parse_missing_path_error_get_string",
+    "source_test": "parse_missing_path_error",
+    "validation": "get_string",
     "variants": []
   }
 ]

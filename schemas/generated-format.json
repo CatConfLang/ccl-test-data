@@ -8,6 +8,20 @@
   "items": {
     "type": "object",
     "required": ["name", "input", "validation", "expected", "behaviors", "variants", "features"],
+    "allOf": [
+      {
+        "if": {
+          "properties": {
+            "validation": {
+              "enum": ["get_string", "get_int", "get_bool", "get_float", "get_list"]
+            }
+          }
+        },
+        "then": {
+          "required": ["args"]
+        }
+      }
+    ],
     "properties": {
       "$schema": {
         "type": "string",
@@ -74,7 +88,7 @@
       },
       "args": {
         "type": "array",
-        "description": "Optional arguments for parameterized functions",
+        "description": "Arguments for typed access functions (get_string, get_int, get_bool, get_float, get_list). Required for these functions, omitted for others.",
         "items": {
           "type": "string"
         }

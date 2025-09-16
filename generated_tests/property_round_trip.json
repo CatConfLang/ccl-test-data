@@ -3,6 +3,23 @@
     "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "key = value\nnested =\n  sub = val",
+    "level": 4,
+    "name": "round_trip_basic_round_trip",
+    "source_test": "round_trip_basic",
+    "validation": "round_trip",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
       "count": 1,
       "entries": [
         {
@@ -20,6 +37,23 @@
     "name": "round_trip_whitespace_normalization_parse",
     "source_test": "round_trip_whitespace_normalization",
     "validation": "parse",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+    "level": 4,
+    "name": "round_trip_whitespace_normalization_round_trip",
+    "source_test": "round_trip_whitespace_normalization",
+    "validation": "round_trip",
     "variants": []
   },
   {
@@ -57,6 +91,23 @@
     "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "= item1\n= item2\nregular = value",
+    "level": 4,
+    "name": "round_trip_empty_keys_lists_round_trip",
+    "source_test": "round_trip_empty_keys_lists",
+    "validation": "round_trip",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
       "count": 1,
       "entries": [
         {
@@ -80,6 +131,23 @@
     "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+    "level": 4,
+    "name": "round_trip_nested_structures_round_trip",
+    "source_test": "round_trip_nested_structures",
+    "validation": "round_trip",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
       "count": 1,
       "entries": [
         {
@@ -97,6 +165,23 @@
     "name": "round_trip_multiline_values_parse",
     "source_test": "round_trip_multiline_values",
     "validation": "parse",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+    "level": 4,
+    "name": "round_trip_multiline_values_round_trip",
+    "source_test": "round_trip_multiline_values",
+    "validation": "round_trip",
     "variants": []
   },
   {
@@ -136,6 +221,23 @@
     "name": "round_trip_mixed_content_parse",
     "source_test": "round_trip_mixed_content",
     "validation": "parse",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+    "level": 4,
+    "name": "round_trip_mixed_content_round_trip",
+    "source_test": "round_trip_mixed_content",
+    "validation": "round_trip",
     "variants": []
   },
   {
@@ -290,6 +392,23 @@
     "name": "round_trip_complex_nesting_parse",
     "source_test": "round_trip_complex_nesting",
     "validation": "parse",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
+    "level": 4,
+    "name": "round_trip_complex_nesting_round_trip",
+    "source_test": "round_trip_complex_nesting",
+    "validation": "round_trip",
     "variants": []
   },
   {
@@ -464,6 +583,23 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+    "level": 4,
+    "name": "round_trip_deeply_nested_round_trip",
+    "source_test": "round_trip_deeply_nested",
+    "validation": "round_trip",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "strict_spacing"
     ],
@@ -540,6 +676,23 @@
     "name": "round_trip_empty_multiline_parse",
     "source_test": "round_trip_empty_multiline",
     "validation": "parse",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "behaviors": [],
+    "expected": {
+      "count": 1
+    },
+    "features": [],
+    "functions": [
+      "round_trip"
+    ],
+    "input": "empty_section =\n\nother = value",
+    "level": 4,
+    "name": "round_trip_empty_multiline_round_trip",
+    "source_test": "round_trip_empty_multiline",
+    "validation": "round_trip",
     "variants": []
   },
   {

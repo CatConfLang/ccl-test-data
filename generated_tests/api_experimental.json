@@ -771,6 +771,10 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "database",
+      "port"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
