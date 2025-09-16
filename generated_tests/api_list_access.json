@@ -56,6 +56,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "servers"
+    ],
     "behaviors": [],
     "expected": {
       "count": 3,
@@ -125,6 +128,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "item"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -194,6 +200,28 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "item"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "item = single",
+    "level": 4,
+    "name": "single_item_as_list_reference_get_list",
+    "source_test": "single_item_as_list_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -253,6 +281,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "host"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -334,6 +365,28 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "host"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "ports = 80\nports = 443\nhost = localhost",
+    "level": 4,
+    "name": "mixed_duplicate_single_keys_reference_get_list",
+    "source_test": "mixed_duplicate_single_keys_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -387,6 +440,10 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "database",
+      "port"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -462,6 +519,29 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "database",
+      "port"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+    "level": 4,
+    "name": "nested_list_access_reference_get_list",
+    "source_test": "nested_list_access_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -505,6 +585,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "empty_list"
+    ],
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -564,6 +647,26 @@
     "name": "empty_list_reference_build_hierarchy",
     "source_test": "empty_list_reference",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "empty_list"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "empty_list =",
+    "level": 4,
+    "name": "empty_list_reference_get_list",
+    "source_test": "empty_list_reference",
+    "validation": "get_list",
     "variants": []
   },
   {
@@ -628,6 +731,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "numbers"
+    ],
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -711,6 +817,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "numbers"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+    "level": 4,
+    "name": "list_with_numbers_reference_get_list",
+    "source_test": "list_with_numbers_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -771,6 +897,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flags"
+    ],
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -854,6 +983,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "flags"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+    "level": 4,
+    "name": "list_with_booleans_reference_get_list",
+    "source_test": "list_with_booleans_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -914,6 +1063,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "items"
+    ],
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -995,6 +1147,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "items"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+    "level": 4,
+    "name": "list_with_whitespace_reference_get_list",
+    "source_test": "list_with_whitespace_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 6,
@@ -1068,6 +1240,12 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "config",
+      "environments",
+      "production",
+      "servers"
+    ],
     "behaviors": [],
     "expected": {
       "count": 3,
@@ -1143,6 +1321,29 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "config",
+      "environments",
+      "production",
+      "servers"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+    "level": 4,
+    "name": "deeply_nested_list_reference_get_list",
+    "source_test": "deeply_nested_list_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -1203,6 +1404,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "names"
+    ],
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -1286,6 +1490,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "names"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+    "level": 4,
+    "name": "list_with_unicode_reference_get_list",
+    "source_test": "list_with_unicode_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -1346,6 +1570,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "symbols"
+    ],
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -1420,6 +1647,26 @@
     "name": "list_with_special_characters_reference_build_hierarchy",
     "source_test": "list_with_special_characters_reference",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "symbols"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
+    "level": 4,
+    "name": "list_with_special_characters_reference_get_list",
+    "source_test": "list_with_special_characters_reference",
+    "validation": "get_list",
     "variants": []
   },
   {
@@ -1564,6 +1811,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "items"
+    ],
     "behaviors": [],
     "expected": {
       "count": 20,
@@ -1670,6 +1920,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "servers"
+    ],
     "behaviors": [],
     "expected": {
       "count": 3,
@@ -1735,6 +1988,26 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "missing"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "existing = value",
+    "level": 4,
+    "name": "list_error_missing_key_get_list",
+    "source_test": "list_error_missing_key",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 1,
@@ -1776,6 +2049,27 @@
     "name": "list_error_nested_missing_key_build_hierarchy",
     "source_test": "list_error_nested_missing_key",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "config",
+      "missing"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "config =\n  server = web1",
+    "level": 4,
+    "name": "list_error_nested_missing_key_get_list",
+    "source_test": "list_error_nested_missing_key",
+    "validation": "get_list",
     "variants": []
   },
   {
@@ -1824,8 +2118,26 @@
   {
     "$schema": "ccl-test-current-flat-format",
     "args": [
-      "descriptions"
+      "value",
+      "nested"
     ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "value = simple",
+    "level": 4,
+    "name": "list_error_non_object_path_get_list",
+    "source_test": "list_error_non_object_path",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 4,
@@ -1886,6 +2198,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "descriptions"
+    ],
     "behaviors": [],
     "expected": {
       "count": 3,
@@ -1908,9 +2223,6 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
-    "args": [
-      "features"
-    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -2016,6 +2328,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "features"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -2080,6 +2395,28 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "features"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+    "level": 4,
+    "name": "complex_mixed_list_scenarios_reference_get_list",
+    "source_test": "complex_mixed_list_scenarios_reference",
+    "validation": "get_list",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
     "behaviors": [],
     "expected": {
       "count": 0
@@ -2111,6 +2448,26 @@
     "name": "list_edge_case_zero_length_build_hierarchy",
     "source_test": "list_edge_case_zero_length",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "nonexistent"
+    ],
+    "behaviors": [],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "",
+    "level": 4,
+    "name": "list_edge_case_zero_length_get_list",
+    "source_test": "list_edge_case_zero_length",
+    "validation": "get_list",
     "variants": []
   },
   {
@@ -2162,6 +2519,9 @@
   },
   {
     "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "safe"
+    ],
     "behaviors": [
       "list_coercion_enabled"
     ],
@@ -2227,6 +2587,28 @@
     "name": "list_path_traversal_protection_reference_build_hierarchy",
     "source_test": "list_path_traversal_protection_reference",
     "validation": "build_hierarchy",
+    "variants": []
+  },
+  {
+    "$schema": "ccl-test-current-flat-format",
+    "args": [
+      "safe"
+    ],
+    "behaviors": [
+      "list_coercion_disabled"
+    ],
+    "expected": {
+      "count": 0
+    },
+    "features": [],
+    "functions": [
+      "get_list"
+    ],
+    "input": "safe = value",
+    "level": 4,
+    "name": "list_path_traversal_protection_reference_get_list",
+    "source_test": "list_path_traversal_protection_reference",
+    "validation": "get_list",
     "variants": []
   }
 ]
