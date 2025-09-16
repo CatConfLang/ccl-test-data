@@ -3,9 +3,17 @@
   "$id": "ccl-test-current-flat-format",
   "title": "CCL Test Current Flat Format",
   "description": "Schema for existing generated flat test files (*-flat.json)",
-  "type": "array",
-  "minItems": 1,
-  "items": {
+  "type": "object",
+  "required": ["$schema", "tests"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference"
+    },
+    "tests": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
     "type": "object",
     "required": ["name", "input", "validation", "expected", "behaviors", "variants", "features"],
     "allOf": [
@@ -23,10 +31,6 @@
       }
     ],
     "properties": {
-      "$schema": {
-        "type": "string",
-        "description": "JSON Schema reference"
-      },
       "name": {
         "type": "string",
         "description": "Unique test name (source_name + validation function)",
@@ -192,5 +196,8 @@
       }
     },
     "additionalProperties": false
-  }
+      }
+    }
+  },
+  "additionalProperties": false
 }
