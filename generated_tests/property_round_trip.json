@@ -1,890 +1,853 @@
-[
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "tests": [
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "key = value\nnested =\n  sub = val",
+      "level": 4,
+      "name": "round_trip_basic_round_trip",
+      "source_test": "round_trip_basic",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "key = value\nnested =\n  sub = val",
-    "level": 4,
-    "name": "round_trip_basic_round_trip",
-    "source_test": "round_trip_basic",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "key",
-          "value": "value  \n  nested  = \n    sub  =  val"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value  \n  nested  = \n    sub  =  val"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+      "level": 4,
+      "name": "round_trip_whitespace_normalization_parse",
+      "source_test": "round_trip_whitespace_normalization",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
-    "level": 4,
-    "name": "round_trip_whitespace_normalization_parse",
-    "source_test": "round_trip_whitespace_normalization",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
+      "level": 4,
+      "name": "round_trip_whitespace_normalization_round_trip",
+      "source_test": "round_trip_whitespace_normalization",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
-    "level": 4,
-    "name": "round_trip_whitespace_normalization_round_trip",
-    "source_test": "round_trip_whitespace_normalization",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 3,
-      "entries": [
-        {
-          "key": "",
-          "value": "item1"
-        },
-        {
-          "key": "",
-          "value": "item2"
-        },
-        {
-          "key": "regular",
-          "value": "value"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 3,
+        "entries": [
+          {
+            "key": "",
+            "value": "item1"
+          },
+          {
+            "key": "",
+            "value": "item2"
+          },
+          {
+            "key": "regular",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "= item1\n= item2\nregular = value",
+      "level": 4,
+      "name": "round_trip_empty_keys_lists_parse",
+      "source_test": "round_trip_empty_keys_lists",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "= item1\n= item2\nregular = value",
-    "level": 4,
-    "name": "round_trip_empty_keys_lists_parse",
-    "source_test": "round_trip_empty_keys_lists",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "= item1\n= item2\nregular = value",
+      "level": 4,
+      "name": "round_trip_empty_keys_lists_round_trip",
+      "source_test": "round_trip_empty_keys_lists",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "= item1\n= item2\nregular = value",
-    "level": 4,
-    "name": "round_trip_empty_keys_lists_round_trip",
-    "source_test": "round_trip_empty_keys_lists",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "config",
-          "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "config",
+            "value": "\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+      "level": 4,
+      "name": "round_trip_nested_structures_parse",
+      "source_test": "round_trip_nested_structures",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-    "level": 4,
-    "name": "round_trip_nested_structures_parse",
-    "source_test": "round_trip_nested_structures",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
+      "level": 4,
+      "name": "round_trip_nested_structures_round_trip",
+      "source_test": "round_trip_nested_structures",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-    "level": 4,
-    "name": "round_trip_nested_structures_round_trip",
-    "source_test": "round_trip_nested_structures",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "script",
-          "value": "\n  #!/bin/bash\n  echo hello\n  exit 0"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "script",
+            "value": "\n  #!/bin/bash\n  echo hello\n  exit 0"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+      "level": 4,
+      "name": "round_trip_multiline_values_parse",
+      "source_test": "round_trip_multiline_values",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
-    "level": 4,
-    "name": "round_trip_multiline_values_parse",
-    "source_test": "round_trip_multiline_values",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
+      "level": 4,
+      "name": "round_trip_multiline_values_round_trip",
+      "source_test": "round_trip_multiline_values",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
-    "level": 4,
-    "name": "round_trip_multiline_values_round_trip",
-    "source_test": "round_trip_multiline_values",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 5,
-      "entries": [
-        {
-          "key": "name",
-          "value": "Alice"
-        },
-        {
-          "key": "",
-          "value": "first item"
-        },
-        {
-          "key": "config",
-          "value": "\n  port = 3000"
-        },
-        {
-          "key": "",
-          "value": "second item"
-        },
-        {
-          "key": "final",
-          "value": "value"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 5,
+        "entries": [
+          {
+            "key": "name",
+            "value": "Alice"
+          },
+          {
+            "key": "",
+            "value": "first item"
+          },
+          {
+            "key": "config",
+            "value": "\n  port = 3000"
+          },
+          {
+            "key": "",
+            "value": "second item"
+          },
+          {
+            "key": "final",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+      "level": 4,
+      "name": "round_trip_mixed_content_parse",
+      "source_test": "round_trip_mixed_content",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
-    "level": 4,
-    "name": "round_trip_mixed_content_parse",
-    "source_test": "round_trip_mixed_content",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
+      "level": 4,
+      "name": "round_trip_mixed_content_round_trip",
+      "source_test": "round_trip_mixed_content",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
-    "level": 4,
-    "name": "round_trip_mixed_content_round_trip",
-    "source_test": "round_trip_mixed_content",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "empty_key",
-          "value": ""
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "empty_key",
+            "value": ""
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "empty_key =",
+      "level": 4,
+      "name": "canonical_format_empty_values_parse",
+      "source_test": "canonical_format_empty_values",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "empty_key =",
-    "level": 4,
-    "name": "canonical_format_empty_values_parse",
-    "source_test": "canonical_format_empty_values",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "empty_key ="
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "empty_key ="
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "empty_key =",
+      "level": 4,
+      "name": "canonical_format_empty_values_canonical_format",
+      "source_test": "canonical_format_empty_values",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "empty_key =",
-    "level": 4,
-    "name": "canonical_format_empty_values_canonical_format",
-    "source_test": "canonical_format_empty_values",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "tabs_preserve"
-    ],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "value_with_tabs",
-          "value": "text\t\twith\ttabs\t"
-        }
-      ]
+    {
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "value_with_tabs",
+            "value": "text\t\twith\ttabs\t"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "level": 4,
+      "name": "canonical_format_tab_preservation_parse",
+      "source_test": "canonical_format_tab_preservation",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "value_with_tabs = text\t\twith\ttabs\t",
-    "level": 4,
-    "name": "canonical_format_tab_preservation_parse",
-    "source_test": "canonical_format_tab_preservation",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "tabs_preserve"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "value_with_tabs = text\t\twith\ttabs"
+    {
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "value_with_tabs = text\t\twith\ttabs"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "level": 4,
+      "name": "canonical_format_tab_preservation_canonical_format",
+      "source_test": "canonical_format_tab_preservation",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "value_with_tabs = text\t\twith\ttabs\t",
-    "level": 4,
-    "name": "canonical_format_tab_preservation_canonical_format",
-    "source_test": "canonical_format_tab_preservation",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "unicode",
-          "value": "你好世界"
-        },
-        {
-          "key": "emo",
-          "value": "🌟✨"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "unicode",
+            "value": "你好世界"
+          },
+          {
+            "key": "emo",
+            "value": "🌟✨"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "level": 4,
+      "name": "canonical_format_unicode_parse",
+      "source_test": "canonical_format_unicode",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "unicode = 你好世界\nemo = 🌟✨",
-    "level": 4,
-    "name": "canonical_format_unicode_parse",
-    "source_test": "canonical_format_unicode",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "unicode = 你好世界\nemo = 🌟✨"
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "unicode = 你好世界\nemo = 🌟✨"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "level": 4,
+      "name": "canonical_format_unicode_canonical_format",
+      "source_test": "canonical_format_unicode",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "unicode = 你好世界\nemo = 🌟✨",
-    "level": 4,
-    "name": "canonical_format_unicode_canonical_format",
-    "source_test": "canonical_format_unicode",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "app",
-          "value": "\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "app",
+            "value": "\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
+      "level": 4,
+      "name": "round_trip_complex_nesting_parse",
+      "source_test": "round_trip_complex_nesting",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
-    "level": 4,
-    "name": "round_trip_complex_nesting_parse",
-    "source_test": "round_trip_complex_nesting",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
+      "level": 4,
+      "name": "round_trip_complex_nesting_round_trip",
+      "source_test": "round_trip_complex_nesting",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
-    "level": 4,
-    "name": "round_trip_complex_nesting_round_trip",
-    "source_test": "round_trip_complex_nesting",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_preserve_literal"
-    ],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "key1",
-          "value": "value1"
-        },
-        {
-          "key": "key2",
-          "value": "value2"
-        }
-      ]
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1"
+          },
+          {
+            "key": "key2",
+            "value": "value2"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "canonical_format_line_endings_proposed_parse",
+      "source_test": "canonical_format_line_endings_proposed",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "canonical_format_line_endings_proposed_parse",
-    "source_test": "canonical_format_line_endings_proposed",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_preserve_literal"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 = value1\nkey2 = value2"
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 = value1\nkey2 = value2"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "canonical_format_line_endings_proposed_canonical_format",
+      "source_test": "canonical_format_line_endings_proposed",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "canonical_format_line_endings_proposed_canonical_format",
-    "source_test": "canonical_format_line_endings_proposed",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_normalize_to_lf"
-    ],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "key1",
-          "value": "value1"
-        },
-        {
-          "key": "key2",
-          "value": "value2"
-        }
-      ]
+    {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1"
+          },
+          {
+            "key": "key2",
+            "value": "value2"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "crlf_normalize_to_lf_proposed_parse",
+      "source_test": "crlf_normalize_to_lf_proposed",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "crlf_normalize_to_lf_proposed_parse",
-    "source_test": "crlf_normalize_to_lf_proposed",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_normalize_to_lf"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 = value1\nkey2 = value2"
+    {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 = value1\nkey2 = value2"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "crlf_normalize_to_lf_proposed_canonical_format",
+      "source_test": "crlf_normalize_to_lf_proposed",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "crlf_normalize_to_lf_proposed_canonical_format",
-    "source_test": "crlf_normalize_to_lf_proposed",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_normalize_to_lf"
-    ],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "key1",
-          "value": "value1"
-        },
-        {
-          "key": "key2",
-          "value": "value2"
-        }
-      ]
+    {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1"
+          },
+          {
+            "key": "key2",
+            "value": "value2"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "crlf_normalize_to_lf_indented_proposed_parse",
+      "source_test": "crlf_normalize_to_lf_indented_proposed",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "crlf_normalize_to_lf_indented_proposed_parse",
-    "source_test": "crlf_normalize_to_lf_indented_proposed",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_normalize_to_lf"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+    {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "crlf_normalize_to_lf_indented_proposed_canonical_format",
+      "source_test": "crlf_normalize_to_lf_indented_proposed",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "crlf_normalize_to_lf_indented_proposed_canonical_format",
-    "source_test": "crlf_normalize_to_lf_indented_proposed",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "level1",
-          "value": "\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "level1",
+            "value": "\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+      "level": 4,
+      "name": "round_trip_deeply_nested_parse",
+      "source_test": "round_trip_deeply_nested",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
-    "level": 4,
-    "name": "round_trip_deeply_nested_parse",
-    "source_test": "round_trip_deeply_nested",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
+      "level": 4,
+      "name": "round_trip_deeply_nested_round_trip",
+      "source_test": "round_trip_deeply_nested",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
-    "level": 4,
-    "name": "round_trip_deeply_nested_round_trip",
-    "source_test": "round_trip_deeply_nested",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "strict_spacing"
-    ],
-    "expected": {
-      "count": 3,
-      "entries": [
-        {
-          "key": "key1",
-          "value": "value1"
-        },
-        {
-          "key": "key2",
-          "value": "value2"
-        },
-        {
-          "key": "key3",
-          "value": "\tvalue3"
-        }
-      ]
+    {
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "expected": {
+        "count": 3,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1"
+          },
+          {
+            "key": "key2",
+            "value": "value2"
+          },
+          {
+            "key": "key3",
+            "value": "\tvalue3"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "level": 4,
+      "name": "canonical_format_consistent_spacing_parse",
+      "source_test": "canonical_format_consistent_spacing",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-    "level": 4,
-    "name": "canonical_format_consistent_spacing_parse",
-    "source_test": "canonical_format_consistent_spacing",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "strict_spacing"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
+    {
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "level": 4,
+      "name": "canonical_format_consistent_spacing_canonical_format",
+      "source_test": "canonical_format_consistent_spacing",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-    "level": 4,
-    "name": "canonical_format_consistent_spacing_canonical_format",
-    "source_test": "canonical_format_consistent_spacing",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "empty_section",
-          "value": ""
-        },
-        {
-          "key": "other",
-          "value": "value"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "empty_section",
+            "value": ""
+          },
+          {
+            "key": "other",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "empty_section =\n\nother = value",
+      "level": 4,
+      "name": "round_trip_empty_multiline_parse",
+      "source_test": "round_trip_empty_multiline",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "empty_section =\n\nother = value",
-    "level": 4,
-    "name": "round_trip_empty_multiline_parse",
-    "source_test": "round_trip_empty_multiline",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1
+      },
+      "features": [],
+      "functions": [
+        "round_trip"
+      ],
+      "input": "empty_section =\n\nother = value",
+      "level": 4,
+      "name": "round_trip_empty_multiline_round_trip",
+      "source_test": "round_trip_empty_multiline",
+      "validation": "round_trip",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "round_trip"
-    ],
-    "input": "empty_section =\n\nother = value",
-    "level": 4,
-    "name": "round_trip_empty_multiline_round_trip",
-    "source_test": "round_trip_empty_multiline",
-    "validation": "round_trip",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 3,
-      "entries": [
-        {
-          "key": "z",
-          "value": "last"
-        },
-        {
-          "key": "a",
-          "value": "first"
-        },
-        {
-          "key": "m",
-          "value": "middle"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 3,
+        "entries": [
+          {
+            "key": "z",
+            "value": "last"
+          },
+          {
+            "key": "a",
+            "value": "first"
+          },
+          {
+            "key": "m",
+            "value": "middle"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "z = last\na = first\nm = middle",
+      "level": 4,
+      "name": "deterministic_output_parse",
+      "source_test": "deterministic_output",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "z = last\na = first\nm = middle",
-    "level": 4,
-    "name": "deterministic_output_parse",
-    "source_test": "deterministic_output",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "z = last\na = first\nm = middle"
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "z = last\na = first\nm = middle"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "z = last\na = first\nm = middle",
+      "level": 4,
+      "name": "deterministic_output_canonical_format",
+      "source_test": "deterministic_output",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "z = last\na = first\nm = middle",
-    "level": 4,
-    "name": "deterministic_output_canonical_format",
-    "source_test": "deterministic_output",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "empty_key =\n"
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "empty_key =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "empty_key =",
+      "level": 4,
+      "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
+      "source_test": "canonical_format_empty_values_ocaml_reference",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "empty_key =",
-    "level": 4,
-    "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
-    "source_test": "canonical_format_empty_values_ocaml_reference",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "tabs_preserve"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "value_with_tabs =\n  text\t\twith\ttabs =\n"
+    {
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "value_with_tabs =\n  text\t\twith\ttabs =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "level": 4,
+      "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
+      "source_test": "canonical_format_tab_preservation_ocaml_reference",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "value_with_tabs = text\t\twith\ttabs\t",
-    "level": 4,
-    "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
-    "source_test": "canonical_format_tab_preservation_ocaml_reference",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "level": 4,
+      "name": "canonical_format_unicode_ocaml_reference_canonical_format",
+      "source_test": "canonical_format_unicode_ocaml_reference",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "unicode = 你好世界\nemo = 🌟✨",
-    "level": 4,
-    "name": "canonical_format_unicode_ocaml_reference_canonical_format",
-    "source_test": "canonical_format_unicode_ocaml_reference",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_preserve_literal"
-    ],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "key1",
-          "value": "value1\r"
-        },
-        {
-          "key": "key2",
-          "value": "value2\r"
-        }
-      ]
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1\r"
+          },
+          {
+            "key": "key2",
+            "value": "value2\r"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "canonical_format_line_endings_reference_behavior_parse",
+      "source_test": "canonical_format_line_endings_reference_behavior",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "canonical_format_line_endings_reference_behavior_parse",
-    "source_test": "canonical_format_line_endings_reference_behavior",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "crlf_preserve_literal"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "level": 4,
+      "name": "canonical_format_line_endings_reference_behavior_canonical_format",
+      "source_test": "canonical_format_line_endings_reference_behavior",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1 = value1\r\nkey2 = value2\r\n",
-    "level": 4,
-    "name": "canonical_format_line_endings_reference_behavior_canonical_format",
-    "source_test": "canonical_format_line_endings_reference_behavior",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [
-      "strict_spacing"
-    ],
-    "expected": {
-      "count": 1,
-      "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
+    {
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "expected": {
+        "count": 1,
+        "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "level": 4,
+      "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
+      "source_test": "canonical_format_consistent_spacing_ocaml_reference",
+      "validation": "canonical_format",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-    "level": 4,
-    "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
-    "source_test": "canonical_format_consistent_spacing_ocaml_reference",
-    "validation": "canonical_format",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "value": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
-    },
-    "features": [],
-    "functions": [
-      "canonical_format"
-    ],
-    "input": "z = last\na = first\nm = middle",
-    "level": 4,
-    "name": "deterministic_output_ocaml_reference_canonical_format",
-    "source_test": "deterministic_output_ocaml_reference",
-    "validation": "canonical_format",
-    "variants": []
-  }
-]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
+      },
+      "features": [],
+      "functions": [
+        "canonical_format"
+      ],
+      "input": "z = last\na = first\nm = middle",
+      "level": 4,
+      "name": "deterministic_output_ocaml_reference_canonical_format",
+      "source_test": "deterministic_output_ocaml_reference",
+      "validation": "canonical_format",
+      "variants": []
+    }
+  ]
+}

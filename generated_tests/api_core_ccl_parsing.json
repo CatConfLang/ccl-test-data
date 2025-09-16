@@ -1,204 +1,199 @@
-[
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "name",
-          "value": "Alice"
-        },
-        {
-          "key": "age",
-          "value": "42"
-        }
-      ]
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "tests": [
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "name",
+            "value": "Alice"
+          },
+          {
+            "key": "age",
+            "value": "42"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "name = Alice\nage = 42",
+      "level": 1,
+      "name": "basic_key_value_pairs_parse",
+      "source_test": "basic_key_value_pairs",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "name = Alice\nage = 42",
-    "level": 1,
-    "name": "basic_key_value_pairs_parse",
-    "source_test": "basic_key_value_pairs",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "msg",
-          "value": "k=v pairs work fine"
-        },
-        {
-          "key": "path",
-          "value": "/bin/app=prod"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "msg",
+            "value": "k=v pairs work fine"
+          },
+          {
+            "key": "path",
+            "value": "/bin/app=prod"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+      "level": 1,
+      "name": "equals_in_values_parse",
+      "source_test": "equals_in_values",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
-    "level": 1,
-    "name": "equals_in_values_parse",
-    "source_test": "equals_in_values",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "key",
-          "value": "value with spaces"
-        },
-        {
-          "key": "other",
-          "value": "normal"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value with spaces"
+          },
+          {
+            "key": "other",
+            "value": "normal"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "  key   =    value with spaces   \nother = normal",
+      "level": 1,
+      "name": "whitespace_trimming_parse",
+      "source_test": "whitespace_trimming",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "  key   =    value with spaces   \nother = normal",
-    "level": 1,
-    "name": "whitespace_trimming_parse",
-    "source_test": "whitespace_trimming",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "description",
-          "value": "First line\n  Second line\n  Third line"
-        },
-        {
-          "key": "done",
-          "value": "yes"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "description",
+            "value": "First line\n  Second line\n  Third line"
+          },
+          {
+            "key": "done",
+            "value": "yes"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
+      "level": 1,
+      "name": "multiline_values_parse",
+      "source_test": "multiline_values",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "description = First line\n  Second line\n  Third line\ndone = yes",
-    "level": 1,
-    "name": "multiline_values_parse",
-    "source_test": "multiline_values",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "empty",
-          "value": ""
-        },
-        {
-          "key": "other",
-          "value": "value"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "empty",
+            "value": ""
+          },
+          {
+            "key": "other",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "empty =\nother = value",
+      "level": 1,
+      "name": "empty_values_parse",
+      "source_test": "empty_values",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "empty =\nother = value",
-    "level": 1,
-    "name": "empty_values_parse",
-    "source_test": "empty_values",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 1,
-      "entries": [
-        {
-          "key": "database",
-          "value": "\n  host = localhost\n  port = 5432"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "database",
+            "value": "\n  host = localhost\n  port = 5432"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "database =\n  host = localhost\n  port = 5432",
+      "level": 1,
+      "name": "nested_structure_parsing_parse",
+      "source_test": "nested_structure_parsing",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "database =\n  host = localhost\n  port = 5432",
-    "level": 1,
-    "name": "nested_structure_parsing_parse",
-    "source_test": "nested_structure_parsing",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 2,
-      "entries": [
-        {
-          "key": "emoji",
-          "value": "😀😃😄"
-        },
-        {
-          "key": "配置",
-          "value": "config"
-        }
-      ]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "emoji",
+            "value": "😀😃😄"
+          },
+          {
+            "key": "配置",
+            "value": "config"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "emoji = 😀😃😄\n配置 = config",
+      "level": 1,
+      "name": "unicode_parsing_parse",
+      "source_test": "unicode_parsing",
+      "validation": "parse",
+      "variants": []
     },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "emoji = 😀😃😄\n配置 = config",
-    "level": 1,
-    "name": "unicode_parsing_parse",
-    "source_test": "unicode_parsing",
-    "validation": "parse",
-    "variants": []
-  },
-  {
-    "$schema": "ccl-test-current-flat-format",
-    "behaviors": [],
-    "expected": {
-      "count": 0
-    },
-    "features": [],
-    "functions": [
-      "parse"
-    ],
-    "input": "",
-    "level": 1,
-    "name": "empty_input_parse",
-    "source_test": "empty_input",
-    "validation": "parse",
-    "variants": []
-  }
-]
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 0
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "",
+      "level": 1,
+      "name": "empty_input_parse",
+      "source_test": "empty_input",
+      "validation": "parse",
+      "variants": []
+    }
+  ]
+}
