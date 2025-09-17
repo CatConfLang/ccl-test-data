@@ -199,7 +199,6 @@ func (c *Collector) analyzeTestSuite(testSuite types.TestSuite) (*FileStats, str
 			"get_list":         test.Validations.GetList,
 			"pretty_print":     test.Validations.PrettyPrint,
 			"round_trip":       test.Validations.RoundTrip,
-			"canonical_format": test.Validations.Canonical,
 			"associativity":    test.Validations.Associativity,
 		}
 

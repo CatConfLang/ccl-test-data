@@ -1024,7 +1024,6 @@ func hasValidations(validations types.ValidationSet) bool {
 		validations.GetList != nil ||
 		validations.PrettyPrint != nil ||
 		validations.RoundTrip != nil ||
-		validations.Canonical != nil ||
 		validations.Associativity != nil
 }
 
@@ -1199,9 +1198,6 @@ func (g *Generator) countAssertions(validations *types.ValidationSet) int {
 	}
 	if validations.RoundTrip != nil {
 		count += g.getValidationCount(validations.RoundTrip)
-	}
-	if validations.Canonical != nil {
-		count += g.getValidationCount(validations.Canonical)
 	}
 	if validations.Associativity != nil {
 		count += g.getValidationCount(validations.Associativity)

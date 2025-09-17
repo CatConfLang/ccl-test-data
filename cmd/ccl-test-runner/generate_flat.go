@@ -38,8 +38,7 @@ func generateFlatAction(ctx *cli.Context) error {
 	// This CLI command simply provides a convenient interface to that functionality
 	flatGen := generator.NewFlatGenerator(sourceDir, generatedDir, generator.GenerateOptions{
 		Verbose:           true,
-		SourceFormat:      generator.FormatCompact, // Use compact format for source tests
-		SkipPropertyTests: false,                   // Include property-based tests in output
+		SkipPropertyTests: false, // Include property-based tests in output
 	})
 
 	// DELEGATION: Execute the flat generation using ccl-test-lib
