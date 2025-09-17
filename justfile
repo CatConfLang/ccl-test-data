@@ -41,8 +41,13 @@ ci:
 
 # === GENERATION ===
 
-# Generate Go test files from flat JSON files (with optional filtering)
+# Generate all: flat JSON files then Go test files
 generate *ARGS="":
+    just generate-flat {{ARGS}}
+    just generate-go {{ARGS}}
+
+# Generate Go test files from flat JSON files (with optional filtering)
+generate-go *ARGS="":
     go run ./cmd/ccl-test-runner generate {{ARGS}}
 
 # Generate flat JSON files from source JSON files (source-to-flat conversion)
