@@ -2,93 +2,123 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Repository Overview
+## Quick Start
 
-Official JSON test suite for CCL (Categorical Configuration Language) implementations with **feature-based tagging** for precise test selection, comprehensive Go-based test runner, and mock implementation.
+This repository contains a comprehehensive JSON test suite for CCL (Categorical Configuration Language) implementations. It provides comprehensive language-agnostic tests with feature-based tagging for precise test selection.
 
-### Architecture
-
-**CCL Implementation Functions:**
-- **Core Parsing**: Raw parsing (text → flat entries) - `Parse()`
-- **Entry Processing**: Indentation, comments, filtering - `Filter()`, `Combine()`, `ExpandDotted()`
-- **Object Construction**: Flat → nested objects - `BuildHierarchy()`
-- **Typed Access**: Type-safe value extraction - `GetString()`, `GetInt()`, etc.
-- **Formatting**: Validation/formatting - `CanonicalFormat()`
-
-**Key Components:**
-- `source_tests/api_*.json` - Feature-specific test suites with structured tagging (12 files, 180 tests, 384 assertions)
-- `cmd/ccl-test-runner/` - CLI for test generation and execution with enhanced statistics
-- `internal/mock/ccl.go` - Working CCL implementation (should pass most basic to advanced tests)
-- `internal/generator/` - Go test file generation from JSON data with template-based output
-- `internal/stats/enhanced.go` - Feature-based statistics and analysis
-- `../ccl-test-lib/` - Shared library for flat test generation and common functionality
-
-## Essential Commands
-
-### Pre-Commit Workflow
+**Essential first commands:**
 ```bash
-just lint                   # Format and lint Go code (REQUIRED before commits)
-just reset                  # Generate basic tests, run them (ensures clean state)
+just deps                   # Install dependencies
+just reset                  # Generate and run basic tests (ensures clean state)
+just stats                  # View test coverage and statistics
 ```
 
-### Development Commands
+**What this gives you:**
+- Verified working repository state
+- Understanding of test scope (180 tests, 384 assertions across 12 files)
+- Ready environment for development
+
+## Common Development Tasks
+
+### Standard Development Workflow
 ```bash
-# Basic development (reset is alias for dev-basic)
-just reset                  # Generate core parsing tests only, ensuring all pass
-just dev-basic             # Same as reset - generates minimal passing test set
+# Pre-commit workflow (REQUIRED before commits)
+just lint                   # Format and lint Go code
+just reset                  # Generate basic tests, verify they pass
+just validate               # Validate JSON test files
 
-# Full development cycle  
-just dev                   # Generate all tests and run them
-just test                  # Comprehensive suite: validate + docs + generate + test
-
-# Test generation and execution
-just generate              # Generate all Go test files from JSON data
-just generate-flat         # Generate flat JSON files from source format
-just test                  # Run all tests with optional filtering
+# Full development cycle
+just dev                    # Generate all tests and run them
+just test                   # Run tests with optional filtering
 ```
 
-### Function Group Testing
+### Testing Specific Features
 ```bash
 # Test by function group
-just test --functions parsing    # Basic parsing (Parse function)
+just test --functions core      # Core parsing functions
+just test --functions typed     # Typed access functions (GetString, GetInt, etc.)
 just test --functions processing # Entry processing (Filter, Combine, etc.)
-just test --functions objects    # Object construction (BuildHierarchy)
-just test --functions typed      # Typed access (GetString, GetInt, etc.)
 
 # Test by feature category
-just test-parsing          # All parsing-related functionality
-just test-objects          # Object construction tests
-just test-comments         # Comment handling tests
+just test-parsing              # All parsing-related functionality
+just test-comments             # Comment handling tests
+just test-objects              # Object construction tests
 ```
 
-### Quality and Validation
+### Adding New Tests
+1. Add to appropriate `source_tests/api_*.json` file by feature category
+2. Include structured tags:
+   - **Function tags**: `function:parse`, `function:build_hierarchy`, `function:get_string`
+   - **Feature tags**: `feature:comments`, `feature:experimental_dotted_keys`
+   - **Behavior tags**: `behavior:boolean_strict`, `behavior:crlf_preserve_literal`
+3. Include proper `count` fields matching array lengths
+4. Run `just generate && just test` to verify
+5. Check `just stats` to see impact on test coverage
+
+### Debug and Analysis
 ```bash
-just validate              # Validate JSON test files against schema
-just stats                 # Show detailed test statistics
-just docs-check            # Verify documentation is current
+just stats                     # Detailed statistics and coverage
+just list                      # Show all available test packages
+just validate                  # JSON schema validation
+just clean                     # Remove generated files
+just generate-flat             # Generate flat format from source tests
 ```
 
-## Mock Implementation Strategy
+## Command Reference
 
-The `internal/mock/ccl.go` contains a working CCL implementation that should pass most tests using only basic functions:
+### Essential Commands
+| Command | Purpose | When to Use |
+|---------|---------|-------------|
+| `just reset` | Generate core parsing tests only | Before commits, quick verification |
+| `just dev` | Generate all tests and run them | Full development cycle |
+| `just lint` | Format and lint Go code | Before every commit (required) |
+| `just validate` | Validate JSON schema compliance | After modifying test files |
 
-**Core Functions Implemented:**
-- `Parse()` - Core parsing with comment support (`/=` syntax)
-- `BuildHierarchy()` - Object construction with dotted key support
-- `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()` - Typed access functions
-- `Filter()`, `Combine()`, `ExpandDotted()` - Entry processing (basic implementations)
-- `CanonicalFormat()` - Formatting (basic implementation)
+### Test Generation
+| Command | Purpose | Details |
+|---------|---------|---------|
+| `just generate` | Generate Go test files from flat JSON | Main test generation |
+| `just generate-flat` | Transform source tests to flat format | Uses ccl-test-lib |
+| `just clean` | Remove generated files | Clean slate |
 
-**Repository State Management:**
-- `just reset` generates only tests that the mock implementation can pass
-- Uses structured tags: `function:parse`, `function:build_hierarchy`, `function:get_string` (skips advanced features)
-- All enabled tests should pass before commits to maintain clean CI state
+### Test Execution
+| Command | Purpose | Filtering Options |
+|---------|---------|------------------|
+| `just test` | Run tests with optional filtering | `--functions`, `--features`, `--behaviors` |
+| `just test --functions core` | Core functions only | `parse`, `build_hierarchy` |
+| `just test --functions typed` | Typed access functions | `get_string`, `get_int`, etc. |
 
-## Feature-Based Tagging System
+### Analysis and Validation
+| Command | Purpose | Output |
+|---------|---------|--------|
+| `just stats` | Show detailed test statistics | Function coverage, feature distribution |
+| `just list` | Show available test packages | All generated test categories |
+| `just docs-check` | Verify documentation is current | README statistics validation |
 
-### Structured Tags
+## Architecture and Test System
 
-All tests now use structured tags for precise test selection:
+### Dual-Format Test Architecture
+The repository uses a dual-format system optimized for both maintainability and implementation:
+
+- **Source Format** (`source_tests/api_*.json`): Human-maintainable test definitions with multiple validations per test
+- **Generated Format** (`generated_tests/api_*.json`): Machine-friendly flat format (one test per validation)
+- **Go Tests** (`go_tests/`): Generated Go test files for execution
+
+**Why two formats?**
+- Source format: Easy to write and maintain, multiple validations per test
+- Generated format: Type-safe implementation with better API ergonomics
+- Transformation happens via `just generate-flat` using the ccl-test-lib
+
+### CCL Function Groups
+Tests are organized around progressive CCL implementation:
+
+- **Core Parsing**: `Parse()` - Convert text to flat key-value entries
+- **Entry Processing**: `Filter()`, `Combine()`, `ExpandDotted()` - Transform and combine entries
+- **Object Construction**: `BuildHierarchy()` - Build nested object hierarchies from flat entries
+- **Typed Access**: `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()` - Type-safe value extraction
+- **Formatting**: `CanonicalFormat()` - Generate standardized formatted output
+
+### Feature-Based Tagging System
 
 **Function Tags** (`function:*`) - Required CCL functions:
 - `function:parse`, `function:parse_value`, `function:filter`, `function:expand_dotted`
@@ -105,12 +135,34 @@ All tests now use structured tags for precise test selection:
 - `behavior:boolean_strict` vs `behavior:boolean_lenient`
 - `behavior:list_coercion_enabled` vs `behavior:list_coercion_disabled`
 
-**Variant Tags** (`variant:*`) - Specification variants:
-- `variant:proposed-behavior` vs `variant:reference-compliant`
+## Implementation Details
 
-### Test Selection Strategy
+### Mock Implementation Strategy
+The `internal/mock/ccl.go` contains a working CCL implementation for testing and development:
 
-**For Mock Implementation:**
+**Core Functions Implemented:**
+- `Parse()` - Core parsing with comment support (`/=` syntax)
+- `BuildHierarchy()` - Object construction with dotted key support
+- `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()` - Typed access functions
+- `Filter()`, `Combine()`, `ExpandDotted()` - Entry processing (basic implementations)
+- `CanonicalFormat()` - Formatting (basic implementation)
+
+**Repository State Management:**
+- `just reset` generates only tests that the mock implementation can pass
+- Uses structured tags: `function:parse`, `function:build_hierarchy`, `function:get_string` (skips advanced features)
+- All enabled tests should pass before commits to maintain clean CI state
+
+### Progressive Implementation Guide
+For building your own CCL implementation:
+
+1. Start with `function:parse` only (core parsing)
+2. Add `function:parse_value` for indentation-aware parsing
+3. Add `function:build_hierarchy` for object construction
+4. Add typed access: `function:get_string`, `function:get_int`, etc.
+5. Add processing: `function:filter`, `function:expand_dotted`
+6. Add formatting: `function:canonical_format`
+
+**Test Selection Examples:**
 ```bash
 # Generate tests for basic functions only
 just generate --run-only function:parse,function:build_hierarchy,function:get_string
@@ -119,42 +171,13 @@ just generate --run-only function:parse,function:build_hierarchy,function:get_st
 just generate --skip-tags feature:comments,feature:unicode,behavior:crlf_preserve_literal
 ```
 
-**For Progressive Implementation:**
-1. Start with `function:parse` only (core parsing)
-2. Add `function:parse_value` for indentation-aware parsing
-3. Add `function:build_hierarchy` for object construction
-4. Add typed access: `function:get_string`, `function:get_int`, etc.
-5. Add processing: `function:filter`, `function:expand_dotted`
-6. Add formatting: `function:canonical_format`
+### Current Test Statistics
+- **180 tests** across **12 source files** with **384 assertions**
+- **Top functions**: `parse` (163 tests), `build_hierarchy` (77 tests), `get_list` (48 tests)
+- **Top features**: `empty_keys` (43 tests), `whitespace` (24 tests), `multiline` (10 tests)
+- **Behavioral choices**: boolean parsing, CRLF handling, list coercion, spacing rules
 
-## Test Data Format
-
-### Counted Assertions
-All tests use required `count` fields for precise validation:
-
-```json
-{
-  "name": "basic_parsing",
-  "input": "key = value",
-  "validations": {
-    "parse": {
-      "count": 1,
-      "expected": [{"key": "key", "value": "value"}]
-    },
-    "get_string": {
-      "count": 1, 
-      "cases": [{"args": ["key"], "expected": "value"}]
-    }
-  },
-  "meta": {
-    "tags": ["function:parse", "function:get-string"],
-    "group": "parsing",
-    "feature": "parsing"
-  }
-}
-```
-
-### Test Organization
+### Test File Organization
 - **Core Parsing**: `api_core_ccl_parsing.json` (basic parsing functionality)
 - **Advanced Processing**: `api_advanced_processing.json` (composition and filtering)
 - **Hierarchy**: `api_core_ccl_hierarchy.json` (nested object creation)
@@ -166,80 +189,64 @@ All tests use required `count` fields for precise validation:
 - **Errors**: `api_errors.json` (error handling validation)
 - **Experimental**: `api_experimental.json` (experimental features)
 
-## Implementation Guidelines
+## Build System and Dependencies
 
-### Before Committing
-1. **Always run `just lint`** - formats and checks Go code
-2. **Ensure `just reset` passes** - verifies repository is in clean state
-3. **Validate changes with `just validate`** - checks JSON schema compliance
-4. **Include generated test files in commits** - changes to `internal/generator/` or test JSON files require committing updated `go_tests/` files
-
-### Adding Tests
-1. Add to appropriate `source_tests/api_*.json` file by feature category
-2. Include structured tags:
-   - Required: `function:*` tags based on validations used
-   - Optional: `feature:*` tags for language features required
-   - Behavior: `behavior:*` tags for implementation choices (some tests may have multiple behavior tags if they work in all modes)
-   - Conflicts: `conflicts` array for mutually exclusive behaviors (only when truly incompatible)
-3. Include proper `count` fields matching array lengths or case counts
-4. Run `just generate` and `just test` to verify
-5. Check `just stats` to see impact on test coverage
-
-### Mock Implementation Development
-The mock implementation should handle progressively more CCL features:
-- Currently passes basic parsing, object construction, and typed access
-- `Parse()` function handles key-value pairs and `/=` comments
-- `BuildHierarchy()` supports dotted keys and duplicate key lists
-- Typed getters convert string values to appropriate types
-- `CanonicalFormat()` provides basic formatted output
-
-### Build System
 - **Build tool**: `just` (justfile) for cross-platform automation
 - **Go version**: 1.25.1
 - **Module**: `github.com/ccl-test-data/test-runner`
 - **Key deps**: CLI framework (urfave/cli), JSON schema validation (jsonschema), styling libraries (charmbracelet), ccl-test-lib
 - **External dependency**: `../ccl-test-lib/` - shared library for flat test generation and types
 
-## Architecture Overview
+## Before Committing
 
-### Dual-Format Test System
-- **Source Format**: `source_tests/api_*.json` - Human-maintainable test definitions with multiple validations per test
-- **Generated Format**: `generated_tests/api_*.json` - Machine-friendly flat format (one test per validation)
-- **Go Tests**: `go_tests/` - Generated Go test files for execution
+1. **Always run `just lint`** - formats and checks Go code
+2. **Ensure `just reset` passes** - verifies repository is in clean state
+3. **Validate changes with `just validate`** - checks JSON schema compliance
+4. **Include generated test files in commits** - changes to `internal/generator/` or test JSON files require committing updated `go_tests/` files
 
-### CLI Commands and Workflow
-- `just generate-flat` - Transform source tests to flat format (uses ccl-test-lib)
-- `just generate` - Create Go test files from flat format
-- `just test` - Run generated Go tests against mock implementation
-- `just dev-basic` / `just reset` - Quick development cycle (core parsing tests only)
+## Test Data Format Example
 
-### Test Statistics (Current)
-- **180 tests** across **12 source files** with **384 assertions**
-- **Function coverage**: `parse` (163 tests), `build_hierarchy` (77 tests), `get_list` (48 tests)
-- **Feature distribution**: `empty_keys` (43 tests), `whitespace` (24 tests), `multiline` (10 tests)
-- **Behavioral choices**: boolean parsing, CRLF handling, list coercion, spacing rules
-
-## Common Development Tasks
-
-### Running Specific Test Subsets
-```bash
-# Test by function group
-just test --functions core      # Core functions only
-just test --functions typed     # Typed access functions
-
-# Feature-specific testing
-just test-comments              # Comment handling tests
-just test-parsing              # All parsing functionality
-
-# Generate for specific capabilities
-just generate --run-only function:parse,function:build_hierarchy
-just generate --skip-tags feature:unicode,behavior:strict_spacing
+```json
+{
+  "name": "basic_parsing",
+  "input": "key = value",
+  "validations": {
+    "parse": {
+      "count": 1,
+      "expected": [{"key": "key", "value": "value"}]
+    },
+    "get_string": {
+      "count": 1,
+      "cases": [{"args": ["key"], "expected": "value"}]
+    }
+  },
+  "meta": {
+    "tags": ["function:parse", "function:get-string"],
+    "group": "parsing",
+    "feature": "parsing"
+  }
+}
 ```
 
-### Debug and Development
+## Troubleshooting
+
+### Tests Failing After Changes
 ```bash
-just list                      # Show all available test packages
-just stats                     # Detailed statistics and coverage
-just validate                  # JSON schema validation
-just clean                     # Remove generated files
+just clean && just reset    # Reset to known good state
+just validate              # Check JSON schema compliance
+just lint                  # Fix formatting issues
+```
+
+### Understanding Test Coverage
+```bash
+just stats                 # See function and feature coverage
+just list                  # See all test packages
+just test --functions core # Test only core functions
+```
+
+### Repository Structure Issues
+```bash
+just deps                  # Reinstall dependencies
+go mod tidy               # Clean Go module dependencies
+just clean && just generate # Regenerate all test files
 ```
