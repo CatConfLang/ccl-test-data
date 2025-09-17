@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://ccl.tylerbutler.com/schemas/ccl-config.json",
+  "title": "CCL Test Runner Configuration",
+  "description": "Configuration schema for CCL (Categorical Configuration Language) test runner",
+  "type": "object",
+  "required": ["functions"],
+  "additionalProperties": false,
+  "properties": {
+    "functions": {
+      "type": "array",
+      "description": "CCL functions your implementation supports",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "parse",
+          "build_hierarchy",
+          "get_string",
+          "get_int",
+          "get_bool",
+          "get_float",
+          "get_list",
+          "filter",
+          "expand_dotted",
+          "canonical_format"
+        ]
+      }
+    },
+    "features": {
+      "type": "array",
+      "description": "Optional CCL features your implementation supports",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "comments",
+          "experimental_dotted_keys",
+          "unicode",
+          "multiline",
+          "whitespace",
+          "empty_keys"
+        ]
+      }
+    },
+    "behaviors": {
+      "type": "array",
+      "description": "Behavioral choices for your implementation (mutually exclusive options)",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "boolean_strict",
+          "boolean_lenient",
+          "tabs_preserve",
+          "tabs_to_spaces",
+          "crlf_preserve_literal",
+          "crlf_normalize_to_lf",
+          "strict_spacing",
+          "loose_spacing",
+          "list_coercion_enabled",
+          "list_coercion_disabled"
+        ]
+      }
+    },
+    "variants": {
+      "type": "array",
+      "description": "Specification variant choice",
+      "uniqueItems": true,
+      "maxItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "proposed_behavior",
+          "reference_compliant"
+        ]
+      }
+    },
+    "skip_tests": {
+      "type": "array",
+      "description": "Specific test names to skip",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

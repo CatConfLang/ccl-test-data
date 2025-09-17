@@ -8,20 +8,20 @@ Official JSON test suite for CCL (Categorical Configuration Language) implementa
 
 ### Architecture
 
-**Multi-Level CCL Implementation:**
-- **Level 1**: Raw parsing (text → flat entries) - `Parse()`
-- **Level 2**: Entry processing (indentation, comments) - `Filter()`, `Compose()`, `ExpandDotted()`  
-- **Level 3**: Object construction (flat → nested objects) - `MakeObjects()`
-- **Level 4**: Typed access (type-safe value extraction) - `GetString()`, `GetInt()`, etc.
-- **Level 5**: Validation/formatting - `PrettyPrint()`
+**CCL Implementation Functions:**
+- **Core Parsing**: Raw parsing (text → flat entries) - `Parse()`
+- **Entry Processing**: Indentation, comments, filtering - `Filter()`, `Combine()`, `ExpandDotted()`
+- **Object Construction**: Flat → nested objects - `BuildHierarchy()`
+- **Typed Access**: Type-safe value extraction - `GetString()`, `GetInt()`, etc.
+- **Formatting**: Validation/formatting - `CanonicalFormat()`
 
 **Key Components:**
-- `tests/api_*.json` - Feature-specific test suites with structured tagging and counted assertions
+- `source_tests/api_*.json` - Feature-specific test suites with structured tagging (12 files, 180 tests, 384 assertions)
 - `cmd/ccl-test-runner/` - CLI for test generation and execution with enhanced statistics
-- `internal/mock/ccl.go` - Working CCL implementation (should pass most Level 1-4 tests)
-- `internal/generator/` - Go test file generation from JSON data
+- `internal/mock/ccl.go` - Working CCL implementation (should pass most basic to advanced tests)
+- `internal/generator/` - Go test file generation from JSON data with template-based output
 - `internal/stats/enhanced.go` - Feature-based statistics and analysis
-- `docs/tag-migration.json` - Tag migration mapping and implementation guidance
+- `../ccl-test-lib/` - Shared library for flat test generation and common functionality
 
 ## Essential Commands
 
@@ -34,7 +34,7 @@ just reset                  # Generate basic tests, run them (ensures clean stat
 ### Development Commands
 ```bash
 # Basic development (reset is alias for dev-basic)
-just reset                  # Generate Level 1 tests only, ensuring all pass
+just reset                  # Generate core parsing tests only, ensuring all pass
 just dev-basic             # Same as reset - generates minimal passing test set
 
 # Full development cycle  
@@ -43,16 +43,17 @@ just test                  # Comprehensive suite: validate + docs + generate + t
 
 # Test generation and execution
 just generate              # Generate all Go test files from JSON data
-just test-generated        # Run generated Go tests only
+just generate-flat         # Generate flat JSON files from source format
+just test                  # Run all tests with optional filtering
 ```
 
-### Level and Feature Testing
+### Function Group Testing
 ```bash
-# Test by CCL implementation level
-just test-level1           # Basic parsing (Parse function)
-just test-level2           # Entry processing (Filter, Compose, etc.)
-just test-level3           # Object construction (MakeObjects)
-just test-level4           # Typed access (GetString, GetInt, etc.)
+# Test by function group
+just test --functions parsing    # Basic parsing (Parse function)
+just test --functions processing # Entry processing (Filter, Combine, etc.)
+just test --functions objects    # Object construction (BuildHierarchy)
+just test --functions typed      # Typed access (GetString, GetInt, etc.)
 
 # Test by feature category
 just test-parsing          # All parsing-related functionality
@@ -72,14 +73,15 @@ just docs-check            # Verify documentation is current
 The `internal/mock/ccl.go` contains a working CCL implementation that should pass most tests using only basic functions:
 
 **Core Functions Implemented:**
-- `Parse()` - Level 1 parsing with comment support (`/=` syntax)
-- `MakeObjects()` - Level 3 object construction with dotted key support
-- `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()` - Level 4 typed access
-- `Filter()`, `Compose()`, `ExpandDotted()` - Level 2 processing (basic implementations)
+- `Parse()` - Core parsing with comment support (`/=` syntax)
+- `BuildHierarchy()` - Object construction with dotted key support
+- `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()` - Typed access functions
+- `Filter()`, `Combine()`, `ExpandDotted()` - Entry processing (basic implementations)
+- `CanonicalFormat()` - Formatting (basic implementation)
 
 **Repository State Management:**
 - `just reset` generates only tests that the mock implementation can pass
-- Uses structured tags: `function:parse`, `function:make-objects`, `function:get-string` (skips advanced features)
+- Uses structured tags: `function:parse`, `function:build_hierarchy`, `function:get_string` (skips advanced features)
 - All enabled tests should pass before commits to maintain clean CI state
 
 ## Feature-Based Tagging System
@@ -89,17 +91,19 @@ The `internal/mock/ccl.go` contains a working CCL implementation that should pas
 All tests now use structured tags for precise test selection:
 
 **Function Tags** (`function:*`) - Required CCL functions:
-- `function:parse`, `function:parse-value`, `function:filter`, `function:compose`, `function:expand-dotted`
-- `function:make-objects`, `function:get-string`, `function:get-int`, `function:get-bool`, `function:get-float`, `function:get-list`
-- `function:pretty-print`
+- `function:parse`, `function:parse_value`, `function:filter`, `function:expand_dotted`
+- `function:build_hierarchy`, `function:get_string`, `function:get_int`, `function:get_bool`, `function:get_float`, `function:get_list`
+- `function:canonical_format`, `function:round_trip`, `function:load`, `function:associativity`
 
 **Feature Tags** (`feature:*`) - Optional language features:
-- `feature:comments`, `feature:dotted-keys`, `feature:empty-keys`, `feature:multiline`, `feature:unicode`, `feature:whitespace`
+- `feature:comments`, `feature:experimental_dotted_keys`, `feature:empty_keys`, `feature:multiline`, `feature:unicode`, `feature:whitespace`
 
 **Behavior Tags** (`behavior:*`) - Implementation choices (mutually exclusive):
-- `behavior:crlf-preserve` vs `behavior:crlf-normalize`
-- `behavior:tabs-preserve` vs `behavior:tabs-to-spaces`
-- `behavior:strict-spacing` vs `behavior:loose-spacing`
+- `behavior:crlf_preserve_literal` vs `behavior:crlf_normalize_to_lf`
+- `behavior:tabs_preserve` vs `behavior:tabs_to_spaces`
+- `behavior:strict_spacing` vs `behavior:loose_spacing`
+- `behavior:boolean_strict` vs `behavior:boolean_lenient`
+- `behavior:list_coercion_enabled` vs `behavior:list_coercion_disabled`
 
 **Variant Tags** (`variant:*`) - Specification variants:
 - `variant:proposed-behavior` vs `variant:reference-compliant`
@@ -109,19 +113,19 @@ All tests now use structured tags for precise test selection:
 **For Mock Implementation:**
 ```bash
 # Generate tests for basic functions only
-just generate --run-only function:parse,function:make-objects,function:get-string
+just generate --run-only function:parse,function:build_hierarchy,function:get_string
 
 # Skip advanced features
-just generate --skip-tags feature:comments,feature:unicode,variant:proposed-behavior
+just generate --skip-tags feature:comments,feature:unicode,behavior:crlf_preserve_literal
 ```
 
 **For Progressive Implementation:**
-1. Start with `function:parse` only (Level 1)
-2. Add `function:parse-value` for indentation-aware parsing (Level 2)
-3. Add `function:make-objects` for object construction (Level 3)
-4. Add typed access: `function:get-string`, `function:get-int`, etc. (Level 4)
-5. Add processing: `function:filter`, `function:compose`, `function:expand-dotted` (Level 2)
-6. Add formatting: `function:pretty-print` (Level 5)
+1. Start with `function:parse` only (core parsing)
+2. Add `function:parse_value` for indentation-aware parsing
+3. Add `function:build_hierarchy` for object construction
+4. Add typed access: `function:get_string`, `function:get_int`, etc.
+5. Add processing: `function:filter`, `function:expand_dotted`
+6. Add formatting: `function:canonical_format`
 
 ## Test Data Format
 
@@ -144,19 +148,23 @@ All tests use required `count` fields for precise validation:
   },
   "meta": {
     "tags": ["function:parse", "function:get-string"],
-    "level": 1,
+    "group": "parsing",
     "feature": "parsing"
   }
 }
 ```
 
 ### Test Organization
-- **Essential**: `api_essential-parsing.json` (basic Level 1 functionality)
-- **Comprehensive**: `api_comprehensive-parsing.json` (edge cases, whitespace)
-- **Processing**: `api_processing.json` (Level 2 composition and filtering)
-- **Objects**: `api_object-construction.json` (Level 3 nested object creation)
-- **Typed**: `api_typed-access.json` (Level 4 type-safe access)
+- **Core Parsing**: `api_core_ccl_parsing.json` (basic parsing functionality)
+- **Advanced Processing**: `api_advanced_processing.json` (composition and filtering)
+- **Hierarchy**: `api_core_ccl_hierarchy.json` (nested object creation)
+- **Integration**: `api_core_ccl_integration.json` (cross-function functionality)
+- **Typed Access**: `api_typed_access.json` (type-safe access)
+- **List Access**: `api_list_access.json` (list-specific operations)
 - **Comments**: `api_comments.json` (comment syntax and filtering)
+- **Edge Cases**: `api_edge_cases.json` (boundary conditions)
+- **Errors**: `api_errors.json` (error handling validation)
+- **Experimental**: `api_experimental.json` (experimental features)
 
 ## Implementation Guidelines
 
@@ -167,25 +175,71 @@ All tests use required `count` fields for precise validation:
 4. **Include generated test files in commits** - changes to `internal/generator/` or test JSON files require committing updated `go_tests/` files
 
 ### Adding Tests
-1. Add to appropriate `tests/api_*.json` file by feature level
+1. Add to appropriate `source_tests/api_*.json` file by feature category
 2. Include structured tags:
    - Required: `function:*` tags based on validations used
    - Optional: `feature:*` tags for language features required
    - Behavior: `behavior:*` tags for implementation choices (some tests may have multiple behavior tags if they work in all modes)
    - Conflicts: `conflicts` array for mutually exclusive behaviors (only when truly incompatible)
 3. Include proper `count` fields matching array lengths or case counts
-4. Run `just generate` and `just test-generated` to verify
+4. Run `just generate` and `just test` to verify
 5. Check `just stats` to see impact on test coverage
 
 ### Mock Implementation Development
 The mock implementation should handle progressively more CCL features:
 - Currently passes basic parsing, object construction, and typed access
-- Level 1 `Parse()` function handles key-value pairs and `/=` comments
-- Level 3 `MakeObjects()` supports dotted keys and duplicate key lists
-- Level 4 typed getters convert string values to appropriate types
+- `Parse()` function handles key-value pairs and `/=` comments
+- `BuildHierarchy()` supports dotted keys and duplicate key lists
+- Typed getters convert string values to appropriate types
+- `CanonicalFormat()` provides basic formatted output
 
 ### Build System
 - **Build tool**: `just` (justfile) for cross-platform automation
-- **Go version**: 1.23.0 
+- **Go version**: 1.25.1
 - **Module**: `github.com/ccl-test-data/test-runner`
-- **Key deps**: CLI framework, JSON schema validation, styling libraries
+- **Key deps**: CLI framework (urfave/cli), JSON schema validation (jsonschema), styling libraries (charmbracelet), ccl-test-lib
+- **External dependency**: `../ccl-test-lib/` - shared library for flat test generation and types
+
+## Architecture Overview
+
+### Dual-Format Test System
+- **Source Format**: `source_tests/api_*.json` - Human-maintainable test definitions with multiple validations per test
+- **Generated Format**: `generated_tests/api_*.json` - Machine-friendly flat format (one test per validation)
+- **Go Tests**: `go_tests/` - Generated Go test files for execution
+
+### CLI Commands and Workflow
+- `just generate-flat` - Transform source tests to flat format (uses ccl-test-lib)
+- `just generate` - Create Go test files from flat format
+- `just test` - Run generated Go tests against mock implementation
+- `just dev-basic` / `just reset` - Quick development cycle (core parsing tests only)
+
+### Test Statistics (Current)
+- **180 tests** across **12 source files** with **384 assertions**
+- **Function coverage**: `parse` (163 tests), `build_hierarchy` (77 tests), `get_list` (48 tests)
+- **Feature distribution**: `empty_keys` (43 tests), `whitespace` (24 tests), `multiline` (10 tests)
+- **Behavioral choices**: boolean parsing, CRLF handling, list coercion, spacing rules
+
+## Common Development Tasks
+
+### Running Specific Test Subsets
+```bash
+# Test by function group
+just test --functions core      # Core functions only
+just test --functions typed     # Typed access functions
+
+# Feature-specific testing
+just test-comments              # Comment handling tests
+just test-parsing              # All parsing functionality
+
+# Generate for specific capabilities
+just generate --run-only function:parse,function:build_hierarchy
+just generate --skip-tags feature:unicode,behavior:strict_spacing
+```
+
+### Debug and Development
+```bash
+just list                      # Show all available test packages
+just stats                     # Detailed statistics and coverage
+just validate                  # JSON schema validation
+just clean                     # Remove generated files
+```

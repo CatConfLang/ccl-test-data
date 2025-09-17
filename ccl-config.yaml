@@ -1,0 +1,30 @@
+# CCL Test Runner Configuration
+# Simple YAML config for configuring CCL implementation capabilities and behaviors
+
+# Required: Functions your CCL implementation supports
+functions:
+  - parse
+  - build_hierarchy
+  - get_string
+  - get_int
+  - get_bool
+
+# Optional: Features your implementation supports
+features:
+  - comments
+  - experimental_dotted_keys
+
+# Optional: Behavioral choices (pick one from each conflicting group)
+behaviors:
+  - boolean_lenient      # vs boolean_strict
+  - crlf_normalize_to_lf # vs crlf_preserve_literal
+  - tabs_to_spaces       # vs tabs_preserve
+
+# Optional: Specification variant choice
+variants:
+  - proposed_behavior    # vs reference_compliant
+
+# Optional: Specific tests to skip by name
+skip_tests:
+  - deep_nested_objects
+  - ocaml_stress_test_original
