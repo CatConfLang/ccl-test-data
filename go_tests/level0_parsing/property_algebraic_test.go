@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/property_algebraic.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // semigroup_associativity_basic_parse - function:parse (level 0)
 func TestSemigroupAssociativityBasicParse(t *testing.T) {

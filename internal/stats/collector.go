@@ -186,20 +186,20 @@ func (c *Collector) analyzeTestSuite(testSuite types.TestSuite) (*FileStats, str
 	for _, test := range testSuite.Tests {
 		// Use reflection to iterate over validation fields
 		validationData := map[string]interface{}{
-			"parse":            test.Validations.Parse,
-			"parse_value":      test.Validations.ParseValue,
-			"filter":           test.Validations.Filter,
-			"combine":          test.Validations.Combine,
-			"expand_dotted":    test.Validations.ExpandDotted,
-			"build_hierarchy":  test.Validations.BuildHierarchy,
-			"get_string":       test.Validations.GetString,
-			"get_int":          test.Validations.GetInt,
-			"get_bool":         test.Validations.GetBool,
-			"get_float":        test.Validations.GetFloat,
-			"get_list":         test.Validations.GetList,
-			"pretty_print":     test.Validations.PrettyPrint,
-			"round_trip":       test.Validations.RoundTrip,
-			"associativity":    test.Validations.Associativity,
+			"parse":           test.Validations.Parse,
+			"parse_value":     test.Validations.ParseValue,
+			"filter":          test.Validations.Filter,
+			"combine":         test.Validations.Combine,
+			"expand_dotted":   test.Validations.ExpandDotted,
+			"build_hierarchy": test.Validations.BuildHierarchy,
+			"get_string":      test.Validations.GetString,
+			"get_int":         test.Validations.GetInt,
+			"get_bool":        test.Validations.GetBool,
+			"get_float":       test.Validations.GetFloat,
+			"get_list":        test.Validations.GetList,
+			"pretty_print":    test.Validations.PrettyPrint,
+			"round_trip":      test.Validations.RoundTrip,
+			"associativity":   test.Validations.Associativity,
 		}
 
 		for _, validation := range validationData {

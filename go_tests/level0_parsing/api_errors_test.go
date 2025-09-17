@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_errors.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // just_key_error_parse - function:parse (level 0)
 func TestJustKeyErrorParse(t *testing.T) {

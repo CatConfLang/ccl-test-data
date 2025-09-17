@@ -50,7 +50,7 @@ func New() *CCL {
 	return &CCL{}
 }
 
-// Parse implements Level 1: Raw entry parsing
+// Parse implements Level 1: Raw entry parsing with multiline support
 func (c *CCL) Parse(input string) ([]Entry, error) {
 	var entries []Entry
 
@@ -59,19 +59,22 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 		return []Entry{}, nil
 	}
 
-	lines := strings.Split(input, "\n")
+	// Normalize line endings first: CRLF -> LF, lone CR -> LF
+	normalizedInput := strings.ReplaceAll(input, "\r\n", "\n")
+	normalizedInput = strings.ReplaceAll(normalizedInput, "\r", "\n")
+	lines := strings.Split(normalizedInput, "\n")
 
-	for _, line := range lines {
-		// Preserve \r characters when trimming - only trim leading/trailing spaces and tabs
-		originalLine := line
-		line = strings.Trim(line, " \t")
-		if line == "" {
+	for i := 0; i < len(lines); i++ {
+		line := lines[i]
+
+		// Skip empty lines
+		if strings.TrimSpace(line) == "" {
 			continue
 		}
 
 		// Handle comments (start with /=)
-		if strings.HasPrefix(line, "/=") {
-			comment := strings.Trim(strings.TrimPrefix(line, "/="), " \t")
+		if strings.HasPrefix(strings.TrimSpace(line), "/=") {
+			comment := strings.Trim(strings.TrimPrefix(strings.TrimSpace(line), "/="), " \t")
 			entries = append(entries, Entry{
 				Key:   "/",
 				Value: comment,
@@ -84,11 +87,44 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
 				key := strings.Trim(parts[0], " \t")
-				value := strings.Trim(parts[1], " \t")
-				// If original line had \r at the end, preserve it in the value
-				if strings.HasSuffix(originalLine, "\r") && !strings.HasSuffix(value, "\r") {
-					value = value + "\r"
+				// For Level 1 parsing, only trim leading whitespace from values to preserve trailing whitespace
+				value := strings.TrimLeft(parts[1], " \t")
+
+				// Check if there are indented lines following this key (multiline content)
+				if i+1 < len(lines) {
+					// Collect all indented lines following this key
+					var multilineValue []string
+					j := i + 1
+
+					for j < len(lines) {
+						nextLine := lines[j]
+
+						// If line starts with whitespace (indented), it belongs to this key
+						if len(nextLine) > 0 && (nextLine[0] == ' ' || nextLine[0] == '\t') {
+							multilineValue = append(multilineValue, nextLine)
+							j++
+						} else if strings.TrimSpace(nextLine) == "" {
+							// Skip empty lines within multiline content
+							j++
+						} else {
+							// Non-indented, non-empty line - end of multiline content
+							break
+						}
+					}
+
+					if len(multilineValue) > 0 {
+						// If the initial value was empty, start with newline, otherwise append
+						if strings.TrimSpace(value) == "" {
+							value = "\n" + strings.Join(multilineValue, "\n")
+						} else {
+							value = value + "\n" + strings.Join(multilineValue, "\n")
+						}
+						i = j - 1 // Skip the lines we've consumed
+					}
 				}
+
+				// Line ending normalization already handled at input level
+
 				entries = append(entries, Entry{
 					Key:   key,
 					Value: value,

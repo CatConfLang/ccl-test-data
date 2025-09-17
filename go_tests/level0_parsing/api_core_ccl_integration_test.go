@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_core_ccl_integration.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // complete_basic_workflow_parse - function:parse (level 0)
 func TestCompleteBasicWorkflowParse(t *testing.T) {

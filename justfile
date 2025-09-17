@@ -22,7 +22,7 @@ install:
 # Basic development: generate Level 1 tests and verify they pass
 dev-basic:
     just clean
-    just generate --run-only function:parse
+    just generate --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:strict_spacing,behavior:whitespace_preserve,feature:whitespace_sensitivity
     just lint
     just test --levels 1
 

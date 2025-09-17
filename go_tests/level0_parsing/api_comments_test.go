@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_comments.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // comment_extension_parse - function:parse (level 0)
 func TestCommentExtensionParse(t *testing.T) {

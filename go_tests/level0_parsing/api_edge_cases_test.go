@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_edge_cases.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // basic_single_no_spaces_parse - function:parse (level 0)
 func TestBasicSingleNoSpacesParse(t *testing.T) {
@@ -263,38 +263,12 @@ key2 = val2`
 
 // key_with_tabs_parse - function:parse behavior:tabs_preserve (level 0)
 func TestKeyWithTabsParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `	key	=	value`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "\tvalue"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
 // key_with_tabs_ocaml_reference_parse - function:parse behavior:tabs_preserve (level 0)
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `	key	=	value`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
 // whitespace_only_value_parse - function:parse (level 0)

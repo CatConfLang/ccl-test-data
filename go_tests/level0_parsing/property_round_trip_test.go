@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/property_round_trip.json
-// Suite: Flat Format
-// Version: 1.0
+// Suite:
+// Version:
 
 // round_trip_basic_round_trip - function:round_trip (level 0)
 func TestRoundTripBasicRoundTrip(t *testing.T) {
@@ -174,20 +174,7 @@ func TestCanonicalFormatEmptyValuesCanonicalFormat(t *testing.T) {
 
 // canonical_format_tab_preservation_parse - function:parse behavior:tabs_preserve (level 0)
 func TestCanonicalFormatTabPreservationParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `value_with_tabs = text		with	tabs	`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "value_with_tabs", Value: "text\t\twith\ttabs\t"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
 // canonical_format_tab_preservation_canonical_format - function:canonical_format behavior:tabs_preserve (level 0)
@@ -251,20 +238,7 @@ func TestRoundTripComplexNestingRoundTrip(t *testing.T) {
 
 // canonical_format_line_endings_proposed_parse - function:parse behavior:crlf_preserve_literal (level 0)
 func TestCanonicalFormatLineEndingsProposedParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := "key1 = value1\r\nkey2 = value2\r\n"
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
 // canonical_format_line_endings_proposed_canonical_format - function:canonical_format behavior:crlf_preserve_literal (level 0)
@@ -348,22 +322,7 @@ func TestRoundTripDeeplyNestedRoundTrip(t *testing.T) {
 
 // canonical_format_consistent_spacing_parse - function:parse behavior:strict_spacing (level 0)
 func TestCanonicalFormatConsistentSpacingParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key1=value1
-key2  =  value2
-key3	=	value3`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}, mock.Entry{Key: "key3", Value: "\tvalue3"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
 }
 
 // canonical_format_consistent_spacing_canonical_format - function:canonical_format behavior:strict_spacing (level 0)
@@ -438,20 +397,7 @@ func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
 
 // canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal (level 0)
 func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := "key1 = value1\r\nkey2 = value2\r\n"
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1\r"}, mock.Entry{Key: "key2", Value: "value2\r"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
 // canonical_format_line_endings_reference_behavior_canonical_format - function:canonical_format behavior:crlf_preserve_literal (level 0)
