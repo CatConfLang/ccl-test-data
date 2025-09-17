@@ -24,7 +24,7 @@ Direct array containing CCL functions required for a test to run:
 | `filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
 | `compose` | Entry composition | 2 | `Compose(left, right)` |
 | `expand-dotted` | Dotted key expansion | 2 | `ExpandDotted(entries)` |
-| `make-objects` | Object construction | 3 | `MakeObjects(entries)` |
+| `build-hierarchy` | Object construction | 3 | `MakeObjects(entries)` |
 | `get-string` | String value access | 4 | `GetString(obj, "key")` |
 | `get-int` | Integer value access | 4 | `GetInt(obj, "count")` |
 | `get-bool` | Boolean value access | 4 | `GetBool(obj, "enabled")` |
@@ -161,7 +161,7 @@ For most CCL use cases:
   "supported_functions": [
     "function:parse",
     "function:parse-value",
-    "function:make-objects", 
+    "function:build-hierarchy", 
     "function:get-string",
     "function:get-int",
     "function:get-bool"
@@ -190,7 +190,7 @@ For advanced configuration manipulation:
     "function:filter",
     "function:compose", 
     "function:expand-dotted",
-    "function:make-objects",
+    "function:build-hierarchy",
     "function:get-string",
     "function:get-int",
     "function:get-bool",
@@ -237,7 +237,7 @@ func TestCCLImplementation(t *testing.T) {
     supportedFunctions := []string{
         "function:parse", 
         "function:parse-value",
-        "function:make-objects", 
+        "function:build-hierarchy", 
         "function:get-string",
     }
     supportedFeatures := []string{"feature:dotted-keys"}
@@ -304,7 +304,7 @@ mod ccl_tests {
         let supported_functions = vec![
             "function:parse",
             "function:parse-value",
-            "function:make-objects",
+            "function:build-hierarchy",
             "function:get-string",
         ];
         
@@ -349,7 +349,7 @@ import pytest
 SUPPORTED_FUNCTIONS = [
     "function:parse",
     "function:parse-value",
-    "function:make-objects", 
+    "function:build-hierarchy", 
     "function:get-string"
 ]
 
@@ -385,7 +385,7 @@ def test_ccl_implementation(test):
     run_test_validations(test)
 
 # Use pytest markers for feature-based filtering
-@pytest.mark.ccl_function("parse", "make-objects")
+@pytest.mark.ccl_function("parse", "build-hierarchy")
 @pytest.mark.ccl_feature("comments")
 def test_comment_parsing():
     # Tests requiring specific functions and features
@@ -403,7 +403,7 @@ describe('CCL Implementation', () => {
   const supportedFunctions = [
     'function:parse',
     'function:parse-value',
-    'function:make-objects',
+    'function:build-hierarchy',
     'function:get-string'
   ];
   
@@ -482,7 +482,7 @@ describe.skipIf(!SUPPORTS_UNICODE)('Unicode handling tests', () => {
 - **Time**: 1-2 days
 
 ### Phase 3: Object Construction  
-- **Target**: Add `function:make-objects`
+- **Target**: Add `function:build-hierarchy`
 - **Tests**: ~80 tests
 - **Goal**: Convert flat entries to nested objects
 - **Features**: Consider adding `feature:dotted-keys`

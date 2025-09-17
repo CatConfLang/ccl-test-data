@@ -25,6 +25,23 @@ Integration           ← Validation & edge cases
 
 Each category has specific APIs, test suites, and implementation requirements.
 
+## Test File Overview
+
+| File | Tests | Assertions | Functions | Features | Purpose |
+|------|-------|------------|-----------|----------|---------|
+| **api_essential-parsing.json** | 45 | 89 | parse, load | - | Foundation parsing |
+| **api_comprehensive-parsing.json** | 23 | 47 | parse, load | unicode, whitespace | Advanced parsing |
+| **api_processing.json** | 67 | 134 | filter, compose, expand-dotted | comments | Entry processing |
+| **api_comments.json** | 15 | 30 | parse, filter | comments | Comment handling |
+| **api_object-construction.json** | 89 | 178 | build-hierarchy, build-hierarchy | dotted-keys | Object building |
+| **api_dotted-keys.json** | 34 | 68 | build-hierarchy, expand-dotted | dotted-keys | Key expansion |
+| **api_typed-access.json** | 151 | 302 | get-string, get-int, get-bool, get-float | - | Type access |
+| **api_errors.json** | 18 | 36 | All functions | error-handling | Error validation |
+| **property_round-trip.json** | 12 | 24 | parse, pretty-print | round-trip | Consistency |
+| **property_algebraic.json** | 8 | 16 | All functions | algebraic | Properties |
+
+**Total**: 462 tests, 924 assertions across 10 files
+
 ## Dual-Format Architecture
 
 ### Source Format (Maintainable)
@@ -52,7 +69,7 @@ Files: `tests/api_*.json` - Grouped validations for easy test authoring
     }
   },
   "meta": {
-    "tags": ["function:parse", "function:make-objects", "function:get-string"],
+    "tags": ["function:parse", "function:build-hierarchy", "function:get-string"],
     "level": 4,
     "feature": "dotted-keys"
   }
@@ -138,14 +155,14 @@ The generated flat format enables efficient, type-safe test selection:
 ### Function-Based Filtering
 ```javascript
 // Basic implementation - core functions only
-const implementedFunctions = ["parse", "make-objects", "get-string"];
+const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
 const supportedTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
 
 // Advanced implementation - includes processing
 const implementedFunctions = [
-  "parse", "make-objects", "get-string", "get-int", "get-bool",
+  "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
   "filter", "compose", "expand-dotted", "pretty-print"
 ];
 ```
@@ -154,7 +171,7 @@ const implementedFunctions = [
 ```javascript
 // Implementation capabilities
 const capabilities = {
-  functions: ["parse", "make-objects", "get-string"],
+  functions: ["parse", "build-hierarchy", "get-string"],
   features: ["comments", "dotted-keys"],
   behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
   variants: ["reference-compliant"]

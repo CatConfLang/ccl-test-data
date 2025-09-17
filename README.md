@@ -1,12 +1,12 @@
 # CCL Test Suite
 
 > \[!NOTE]
-> This is a **comprehensive JSON test suite** for CCL implementations across all programming languages, featuring **feature-based tagging** for precise test selection and progressive implementation support.
+> This is a **comprehensive JSON test suite** for CCL implementations across all programming languages, featuring **feature-based classification** for precise test selection and progressive implementation support.
 
-Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based tagging** for precise test selection. Each test specifies which CCL functions to validate and uses structured tags to enable progressive implementation.
+Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based classification** for precise test selection. Each test specifies which CCL functions to validate and uses structured metadata to enable progressive implementation.
 
 > [!TIP]
-> **New to this project?** Start with the **[Technical Overview](TECHNICAL_OVERVIEW.md)** for a comprehensive introduction to the system architecture, implementation patterns, and development workflow.
+> **New to this project?** Check the **[Developer Guide](docs/DEVELOPER_GUIDE.md)** for development workflow and **[Architecture](docs/ARCHITECTURE.md)** for system design details.
 
 ## What is CCL?
 
@@ -123,11 +123,9 @@ The test suite is organized by feature category:
       ]
     }
   },
-  "meta": {
-    "tags": ["function:parse", "function:build_hierarchy", "function:get_string", "feature:dotted_keys"],
-    "level": 3,
-    "feature": "dotted_keys"
-  }
+  "features": ["dotted_keys"],
+  "behaviors": [],
+  "variants": []
 }
 ```
 
@@ -152,7 +150,7 @@ The test suite is organized by feature category:
 ## Dual-Format Architecture
 
 > \[!TIP]
-> **Implementation Strategy**: Use the generated flat format for your test runner implementation. The separate typed fields provide excellent API ergonomics and type safety compared to parsing structured tags.
+> **Implementation Strategy**: Use the generated flat format for your test runner implementation. The separate typed fields provide excellent API ergonomics and type safety compared to parsing structured metadata.
 
 The test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
@@ -161,7 +159,7 @@ The test suite uses a **dual-format architecture** optimized for both maintainab
 The **source format** maintains readability and ease of authoring:
 
 - Multiple validations per test in a single object
-- Structured tags for comprehensive metadata
+- Structured metadata for comprehensive classification
 - Located in `tests/` directory
 
 ### Generated Format (Implementation-Friendly)
@@ -303,8 +301,8 @@ just validate-flat
 The generator:
 
 - Transforms 1:N (one source test → multiple flat tests)
-- Parses structured tags into separate typed fields
-- Adds auto-generated function tags
+- Parses structured metadata into separate typed fields
+- Provides auto-generated function classifications
 - Provides categorized conflicts structure
 - Maintains full traceability to source tests
 
@@ -373,7 +371,7 @@ All validations include required `count` fields:
 ### Count Field Guidelines
 
 - **For array results** (`parse`, `filter`, `expand_dotted`): `count` = number of items in `expected` array
-- **For object results** (`make_objects`): `count` = typically 1 (single object)
+- **For object results** (`build_hierarchy`): `count` = typically 1 (single object)
 - **For typed access**: `count` = number of test cases in `cases` array
 - **For empty results**: `count` = 0 (e.g., empty input parsing)
 
@@ -452,7 +450,7 @@ just generate --functions core  # Generate only basic core function tests
 just test --functions core      # Run core function tests (all should pass)
 ```
 
-**This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (basic functions: `parse`, `make-objects`) and skips advanced features that would fail in the current mock implementation. This ensures:
+**This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (basic functions: `parse`, `build-hierarchy`) and skips advanced features that would fail in the current mock implementation. This ensures:
 
 - **Clean commits**: All enabled tests pass before committing
 - **Stable CI**: Continuous integration runs pass consistently
@@ -541,7 +539,7 @@ just stats
 **⚙️ Function Coverage:**
 
 - **parse**: 132 tests (most essential)
-- **make-objects**: 66 tests
+- **build-hierarchy**: 66 tests
 - **get-string, get-int, get-bool, get-float, get-list**: 38 tests (typed access)
 - **canonical-format**: 24 tests
 - **compose**: 12 tests

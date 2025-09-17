@@ -15,18 +15,18 @@ This guide provides comprehensive instructions for developers working on the CCL
 
 ## Project Architecture
 
-### Multi-Level CCL Implementation
+### CCL Function Groups
 
-The CCL Test Suite implements a 4-level architecture that allows for progressive implementation:
+The CCL Test Suite implements function groups that allow for progressive implementation:
 
 ```
-Level 1: Core CCL (Parse + MakeObjects)
+Core Functions (Parse + MakeObjects)
     ↓
-Level 2: Typed Access (GetString, GetInt, GetBool, GetFloat, GetList)
+Typed Access Functions (GetString, GetInt, GetBool, GetFloat, GetList)
     ↓
-Level 3: Advanced Processing (Filter, Compose, ExpandDotted)
+Processing Functions (Filter, Compose, ExpandDotted)
     ↓
-Level 4: Experimental Features (PrettyPrint)
+Formatting Functions (PrettyPrint)
 ```
 
 ### Package Structure
@@ -51,9 +51,9 @@ docs/                   # Documentation
 
 ### Structured Tagging System
 
-All tests use structured tags for precise categorization:
+All tests use structured metadata fields for precise categorization:
 
-- **`function:*`** - Required CCL functions (`function:parse`, `function:make-objects`)
+- **`function:*`** - Required CCL functions (`function:parse`, `function:build-hierarchy`)
 - **`feature:*`** - Optional language features (`feature:comments`, `feature:dotted-keys`)
 - **`behavior:*`** - Implementation choices (`behavior:strict-spacing`)
 - **`variant:*`** - Specification variants (`variant:proposed-behavior`)
@@ -109,13 +109,13 @@ just benchmark              # Performance measurement
 
 Tests are organized by feature category in the `tests/` directory:
 
-- **`api_essential-parsing.json`** - Basic Level 1 functionality
+- **`api_essential-parsing.json`** - Basic core functionality
 - **`api_comprehensive-parsing.json`** - Advanced parsing with edge cases
 - **`api_comments.json`** - Comment syntax support
 - **`api_dotted-keys.json`** - Dotted key expansion
-- **`api_object-construction.json`** - Level 1 object building
-- **`api_typed-access.json`** - Level 2 type-safe access
-- **`api_processing.json`** - Level 3 composition and filtering
+- **`api_object-construction.json`** - Core object building
+- **`api_typed-access.json`** - Type-safe access functions
+- **`api_processing.json`** - Composition and filtering functions
 - **`api_errors.json`** - Error handling validation
 
 ### Test Structure
@@ -139,12 +139,9 @@ Each test follows this structure with **required** `count` fields:
       ]
     }
   },
-  "meta": {
-    "tags": ["function:parse", "feature:comments"],
-    "level": 1,
-    "feature": "parsing",
-    "conflicts": ["behavior:strict-spacing"]
-  }
+  "features": ["comments"],
+  "behaviors": [],
+  "variants": []
 }
 ```
 
@@ -186,41 +183,41 @@ Test expected error conditions:
 }
 ```
 
-### Structured Tags
+### Structured Metadata
 
-#### Required Function Tags
+#### Functions Array
 
-Tag tests with the CCL functions they validate:
+Specify the CCL functions each test validates:
 
 ```json
-"tags": [
-  "function:parse",           // Level 1: Parse function
-  "function:make-objects",    // Level 1: Object construction
-  "function:get-string"       // Level 2: String access
+"functions": [
+  "parse",           // Core: Parse function
+  "build-hierarchy", // Core: Object construction
+  "get-string"       // Typed Access: String access
 ]
 ```
 
-#### Optional Feature Tags
+#### Features Array
 
-Tag tests with language features they require:
+Specify optional language features the test requires:
 
 ```json
-"tags": [
-  "feature:comments",         // Comment syntax support
-  "feature:dotted-keys",      // Dotted key expansion
-  "feature:unicode",          // Unicode character support
-  "feature:multiline"         // Multiline value support
+"features": [
+  "comments",         // Comment syntax support
+  "dotted-keys",      // Dotted key expansion
+  "unicode",          // Unicode character support
+  "multiline"         // Multiline value support
 ]
 ```
 
-#### Behavior Tags
+#### Behaviors Array
 
-Tag tests with implementation behavior they expect:
+Specify implementation behavior choices the test expects:
 
 ```json
-"tags": [
-  "behavior:strict-spacing",  // Strict whitespace handling
-  "behavior:crlf-preserve"    // Preserve CRLF line endings
+"behaviors": [
+  "strict-spacing",  // Strict whitespace handling
+  "crlf-preserve"    // Preserve CRLF line endings
 ]
 ```
 
@@ -238,7 +235,7 @@ Specify mutually exclusive behaviors:
 
 1. **Choose appropriate test file** based on feature category
 2. **Write test structure** with proper validation types
-3. **Add structured tags** for functions and features
+3. **Add structured metadata** for functions and features
 4. **Include count fields** matching array lengths or case counts
 5. **Validate JSON schema**: `just validate`
 6. **Generate and test**: `just generate && just test-generated`
@@ -269,11 +266,11 @@ Example new test:
 
 ## Extending the Mock Implementation
 
-### Implementation Levels
+### Implementation Function Groups
 
-The mock implementation in `internal/mock/ccl.go` provides working CCL functionality across multiple levels.
+The mock implementation in `internal/mock/ccl.go` provides working CCL functionality across multiple function groups.
 
-#### Level 1: Raw Parsing
+#### Core Functions: Raw Parsing
 
 ```go
 func (c *CCL) Parse(input string) ([]Entry, error) {
@@ -303,7 +300,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 }
 ```
 
-#### Level 3: Object Construction
+#### Core Functions: Object Construction
 
 ```go
 func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
@@ -317,7 +314,7 @@ func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
 }
 ```
 
-#### Level 2: Typed Access
+#### Typed Access Functions
 
 ```go
 func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error) {
@@ -339,7 +336,7 @@ func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, erro
 
 1. **Define function signature** matching test expectations
 2. **Implement core functionality** with proper error handling
-3. **Add structured tags** to relevant tests
+3. **Add structured metadata** to relevant tests
 4. **Update generator templates** if needed
 5. **Test implementation**: `just reset && just test-generated`
 
@@ -419,8 +416,8 @@ The generator supports sophisticated filtering:
 ```go
 type Options struct {
     SkipDisabled bool      // Skip disabled feature tags
-    SkipTags     []string  // Additional tags to skip
-    RunOnly      []string  // Generate only these tags
+    SkipTags     []string  // Additional metadata to skip
+    RunOnly      []string  // Generate only these metadata elements
 }
 ```
 
@@ -429,11 +426,11 @@ type Options struct {
 Generate tests for specific implementation levels:
 
 ```bash
-# Level 1 only
+# Core functions only
 ./ccl-test-runner generate --run-only function:parse
 
-# Levels 1 and 3
-./ccl-test-runner generate --run-only function:parse,function:make-objects
+# Core and object construction
+./ccl-test-runner generate --run-only function:parse,function:build-hierarchy
 
 # Exclude advanced features
 ./ccl-test-runner generate --skip-tags feature:unicode,feature:multiline
@@ -559,8 +556,8 @@ just generate-mock     # Generate tests for current mock capabilities
 just test-mock         # Run mock-specific tests
 
 # Progressive testing
-just test-level1       # Test Level 1 functionality only
-just test-level3       # Test up to Level 3
+just test-core         # Test core functionality only
+just test-typed        # Test typed access functions
 ```
 
 ### Error Scenarios
@@ -648,7 +645,7 @@ pprof.WriteHeapProfile(f)
 
 1. **Progressive Complexity**: Start simple, add edge cases
 2. **Clear Naming**: Test names should describe what they validate
-3. **Proper Tagging**: Use structured tags consistently
+3. **Proper Metadata**: Use structured metadata consistently
 4. **Count Accuracy**: Ensure count fields match actual test assertions
 
 ### Git Workflow

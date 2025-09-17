@@ -89,7 +89,7 @@ ccl-test-runner generate --output my_tests
 ccl-test-runner generate --run-only function:parse
 
 # Generate basic functionality
-ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string
+ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string
 
 # Skip advanced features
 ccl-test-runner generate --skip-tags feature:unicode,feature:multiline
@@ -101,7 +101,7 @@ ccl-test-runner generate --skip-tags feature:unicode,feature:multiline
 ccl-test-runner generate --run-only feature:comments
 
 # Generate parsing and object tests
-ccl-test-runner generate --run-only function:parse,function:make-objects
+ccl-test-runner generate --run-only function:parse,function:build-hierarchy
 
 # Skip experimental features
 ccl-test-runner generate --skip-tags variant:proposed-behavior
@@ -272,7 +272,7 @@ Produces formatted output:
 🏷️  STRUCTURED TAGS
   Function Tags:
     function:parse              89 tests
-    function:make-objects       45 tests
+    function:build-hierarchy       45 tests
     function:get-string         34 tests
     function:get-int           12 tests
   
@@ -316,7 +316,7 @@ Produces machine-readable JSON output suitable for automation and further proces
   "tags": {
     "function": {
       "function:parse": 89,
-      "function:make-objects": 45,
+      "function:build-hierarchy": 45,
       "function:get-string": 34
     },
     "feature": {
@@ -556,15 +556,15 @@ ccl-test-runner generate --run-only function:parse
 ccl-test-runner test --levels 1
 
 # 2. Add object construction (Level 1 core)
-ccl-test-runner generate --run-only function:parse,function:make-objects
+ccl-test-runner generate --run-only function:parse,function:build-hierarchy
 ccl-test-runner test --levels 1
 
 # 3. Add typed access (Level 2)
-ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string
+ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string
 ccl-test-runner test --levels 1,2
 
 # 4. Add remaining typed access functions
-ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string,function:get-int,function:get-bool
+ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string,function:get-int,function:get-bool
 ccl-test-runner test --levels 1,2
 ```
 

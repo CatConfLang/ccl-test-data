@@ -1,6 +1,6 @@
 # CCL Test Suite Architecture
 
-This document provides a comprehensive technical overview of the CCL Test Suite architecture, including system design, data flow, and component interactions.
+This document provides a comprehensive technical overview of the CCL Test Suite architecture, including system design, data flow, component interactions, and cross-repository dependencies.
 
 ## System Overview
 
@@ -9,9 +9,9 @@ The CCL Test Suite is a multi-component testing framework designed to support pr
 ### Core Design Principles
 
 - **Language Agnostic**: Test data format independent of implementation language
-- **Progressive Implementation**: Support for 4-level CCL implementation strategy
+- **Progressive Implementation**: Support for gradual CCL feature adoption
 - **Dual Format Architecture**: Maintainable source format + implementation-friendly generated format
-- **Feature-Based Testing**: Structured tagging for precise test selection
+- **Feature-Based Testing: Structured metadata for precise test selection
 - **Counted Assertions**: Self-validating tests with explicit assertion counts
 
 ## Architecture Diagram
@@ -40,7 +40,7 @@ The CCL Test Suite is a multi-component testing framework designed to support pr
 │  │  Generated      │    │    Mock CCL      │              │
 │  │  Tests          │───▶│  Implementation  │              │
 │  │                 │    │                  │              │
-│  │ • Flat Format   │    │ • Level 1-4      │              │
+│  │ • Flat Format   │    │ • Reference      │              │
 │  │ • Type-Safe     │    │ • Reference      │              │
 │  │ • 1:N Transform │    │ • Development    │              │
 │  └─────────────────┘    └──────────────────┘              │
@@ -63,7 +63,7 @@ The CCL Test Suite is a multi-component testing framework designed to support pr
 #### Source Test Format
 - **Location**: `source_tests/api_*.json`
 - **Purpose**: Human-maintainable test definitions
-- **Structure**: Multi-validation tests with structured tags
+- **Structure**: Multi-validation tests with structured metadata
 - **Schema**: `schemas/source-format.json`
 
 ```json
@@ -130,28 +130,28 @@ Source JSON → Parse Metadata → Apply Filters → Generate Go Tests
 
 #### Mock CCL Implementation (`internal/mock/ccl.go`)
 - **Purpose**: Reference implementation for test validation
-- **Levels Implemented**: 1-4 (Parse → Typed Access)
+- **Functions Implemented**: Core, Typed Access, Processing, Formatting
 - **Features**: Comments, dotted keys, error handling
 
-**CCL Implementation Hierarchy**:
+**CCL Function Groups**:
 ```
-Level 1: Core CCL
+Core Functions
 ├── Parse(input) → []Entry
 └── BuildHierarchy([]Entry) → map[string]interface{}
 
-Level 2: Typed Access
+Typed Access Functions
 ├── GetString(obj, path) → string
 ├── GetInt(obj, path) → int
 ├── GetBool(obj, path) → bool
 ├── GetFloat(obj, path) → float64
 └── GetList(obj, path) → []interface{}
 
-Level 3: Advanced Processing
+Processing Functions
 ├── Filter([]Entry) → []Entry
 ├── Combine([]Entry) → []Entry
 └── ExpandDotted([]Entry) → []Entry
 
-Level 4: Formatting
+Formatting Functions
 └── CanonicalFormat(map[string]interface{}) → string
 ```
 
@@ -211,13 +211,13 @@ Level 4: Formatting
 
 ## Progressive Implementation Strategy
 
-### Level-Based Implementation
-The architecture supports progressive CCL implementation through structured levels:
+### Function Group Implementation
+The architecture supports progressive CCL implementation through function groups:
 
-1. **Level 1 (Core CCL)**: Basic parsing + object construction
-2. **Level 2 (Typed Access)**: Type-safe value extraction
-3. **Level 3 (Processing)**: Advanced entry manipulation
-4. **Level 4 (Formatting)**: Standardized output generation
+1. **Core Functions**: Basic parsing + object construction
+2. **Typed Access Functions**: Type-safe value extraction
+3. **Processing Functions**: Advanced entry manipulation
+4. **Formatting Functions**: Standardized output generation
 
 ### Feature-Based Testing
 Tests are tagged with required features, enabling:

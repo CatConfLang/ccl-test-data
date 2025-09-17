@@ -18,7 +18,7 @@ This guide helps you implement a CCL parser in your programming language using t
 
 ## Implementation Roadmap
 
-### Level 1: Core CCL (text → hierarchical objects)
+### Core Functions: Essential CCL (text → hierarchical objects)
 **Functions:** parse() + build_hierarchy() - what users expect from any CCL implementation
 **Test Coverage:** api_essential-parsing.json + api_object-construction.json
 
@@ -50,14 +50,14 @@ function parse(text: string) -> Result<List<Entry>, ParseError> {
   return Ok(entries)
 }
 
-function make_objects(entries: List<Entry>) -> CCL {
+function build_hierarchy(entries: List<Entry>) -> CCL {
   result = {}
   
   for entry in entries {
     if entry.value.contains_ccl_syntax() {
       // Recursively parse nested content
       nested_entries = parse(entry.value)
-      nested_object = make_objects(nested_entries)
+      nested_object = build_hierarchy(nested_entries)
       result = merge_into_result(result, entry.key, nested_object)
     } else {
       result = merge_into_result(result, entry.key, entry.value)
@@ -120,7 +120,7 @@ function merge_into_result(result: CCL, key: string, value: any) {
 }
 ```
 
-### Level 2: Typed Access (type-safe value extraction)
+### Typed Access Functions: Type-safe value extraction
 **Functions:** get_string(), get_int(), get_bool(), get_float(), get_list()
 **Test Coverage:** api_typed-access.json (107 assertions)
 
@@ -149,7 +149,7 @@ host = get_string(ccl, "database.host")        // ✓ Also works
 port = get_int(ccl, "database.port")           // ✓ Also works
 ```
 
-### Level 3: Advanced Processing (entry manipulation and composition)
+### Processing Functions: Entry manipulation and composition
 **Functions:** filter(), compose(), expand_dotted()
 **Test Coverage:** api_processing.json + api_comments.json
 
@@ -197,7 +197,7 @@ function expand_dotted(entries: List<Entry>) -> List<Entry> {
 
 **For a complete explanation of dotted keys vs hierarchical data, see [Dotted Keys Explained](https://ccl.tylerbutler.com/dotted-keys-explained).**
 
-### Level 4: Experimental Features (implementation-specific extensions)
+### Formatting Functions: Implementation-specific extensions
 **Functions:** dotted representation features, pretty_print(), round_trip validation
 **Test Coverage:** api_dotted-keys.json + property_*.json
 
@@ -386,15 +386,15 @@ function run_validation_test_suite(test_file: string) {
             }
             break
             
-          case "make_objects":
+          case "build_hierarchy":
             entries = parse(test.input)
-            actual = make_objects(entries)
+            actual = build_hierarchy(entries)
             assert_equal(actual, expected)
             break
             
           case "get_string":
             entries = parse(test.input)
-            ccl = make_objects(entries)
+            ccl = build_hierarchy(entries)
             if expected.error {
               assert_throws(() => get_string(ccl, ...expected.args))
             } else {
@@ -449,7 +449,7 @@ Each test explicitly maps validations to API functions:
     "expand_dotted": [
       {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
     ],
-    "make_objects": {
+    "build_hierarchy": {
       "database": {"host": "localhost", "port": "8080"}
     },
     "get_string": {
@@ -517,7 +517,7 @@ class LazyObject {
   
   function get(key: string) {
     if !constructed {
-      constructed = Some(make_objects(entries))
+      constructed = Some(build_hierarchy(entries))
     }
     return constructed.get(key)
   }
@@ -536,10 +536,10 @@ class LazyObject {
 ## API Design Guidelines
 
 ### Consistent Naming
-- `parse()` for Level 1 entry parsing
-- `make_objects()` for Level 3 object construction  
-- `filter_comments()` for Level 2 comment filtering
-- `get_string()`, `get_int()`, `get_bool()` for Level 4 typed access
+- `parse()` for core entry parsing
+- `build_hierarchy()` for object construction
+- `filter_comments()` for comment filtering
+- `get_string()`, `get_int()`, `get_bool()` for typed access
 
 ### Error Messages
 Provide helpful error messages with:

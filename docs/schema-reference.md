@@ -84,7 +84,7 @@ The generated flat format in `generated_tests/` directory provides optimal imple
 |-------|------|----------|-------------|
 | `name` | string | ✓ | Unique test name (source_test + validation type) |
 | `input` | string | ✓ | CCL input string to parse |
-| `validation` | string | ✓ | Single validation type (parse, make-objects, etc.) |
+| `validation` | string | ✓ | Single validation type (parse, build-hierarchy, etc.) |
 | `expected` | object | ✓ | Expected result with count field |
 | `functions` | array | ✓ | Required CCL functions |
 | `features` | array | ✓ | Required optional language features |
@@ -520,14 +520,14 @@ Filter tests by required CCL functions using `test.functions[]` array:
 
 ```javascript
 // Basic implementation - core functions only
-const implementedFunctions = ["parse", "make-objects", "get-string"];
+const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
 const supportedTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
 
 // Enhanced implementation - includes processing functions
 const implementedFunctions = [
-  "parse", "make-objects", "get-string", "get-int", "get-bool",
+  "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
   "filter", "compose", "expand-dotted"
 ];
 const supportedTests = flatTests.filter(test => 
@@ -593,7 +593,7 @@ function getCompatibleTests(flatTests, capabilities) {
 
 // Usage
 const capabilities = {
-  functions: ["parse", "make-objects", "get-string", "get-int"],
+  functions: ["parse", "build-hierarchy", "get-string", "get-int"],
   features: ["comments"],
   behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
   variants: ["reference-compliant"]

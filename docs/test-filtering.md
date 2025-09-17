@@ -18,7 +18,7 @@ The generated flat format provides type-safe filtering through separate arrays:
 
 **Functions Array** (`test.functions[]`) - Required CCL functions:
 - `parse` - Basic key-value parsing
-- `make-objects` - Object construction from flat entries
+- `build-hierarchy` - Object construction from flat entries
 - `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access
 - `filter`, `compose`, `expand-dotted` - Entry processing
 - `pretty-print` - Canonical formatting
@@ -53,7 +53,7 @@ Direct field access for checking required CCL functions:
   "input": "active = yes",
   "validation": "get_bool",
   "expected": {"value": true, "count": 1},
-  "functions": ["parse", "make-objects", "get-bool"],
+  "functions": ["parse", "build-hierarchy", "get-bool"],
   "features": ["comments"],
   "behaviors": ["boolean-lenient"],
   "variants": ["proposed-behavior"]
@@ -131,7 +131,7 @@ const isCompatible = !hasConflictingBehavior && !hasConflictingVariant;
 
 ```javascript
 // Basic implementation - core functions only
-const implementedFunctions = ["parse", "make-objects", "get-string"];
+const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
 const supportedTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
@@ -140,7 +140,7 @@ const supportedTests = flatTests.filter(test =>
 ```javascript
 // Enhanced implementation - includes processing functions
 const implementedFunctions = [
-  "parse", "make-objects", "get-string", "get-int", "get-bool",
+  "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
   "filter", "compose", "expand-dotted"
 ];
 const supportedTests = flatTests.filter(test => 
@@ -178,7 +178,7 @@ const behaviorCompatibleTests = flatTests.filter(test => {
 // Conservative implementation - core functions, reference behavior
 const conservativeTests = flatTests.filter(test => {
   // Only core functions
-  const supportedFunctions = ["parse", "make-objects", "get-string", "get-int"];
+  const supportedFunctions = ["parse", "build-hierarchy", "get-string", "get-int"];
   const functionsSupported = test.functions.every(fn => 
     supportedFunctions.includes(fn)
   );
@@ -202,7 +202,7 @@ const conservativeTests = flatTests.filter(test => {
 const progressiveTests = flatTests.filter(test => {
   // Enhanced function set
   const supportedFunctions = [
-    "parse", "make-objects", "get-string", "get-int", "get-bool",
+    "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
     "filter", "compose", "expand-dotted", "pretty-print"
   ];
   const functionsSupported = test.functions.every(fn => 
@@ -259,7 +259,7 @@ const progressiveTests = flatTests.filter(test => {
 
 ### Functions Array Values
 - `parse` - Basic key-value parsing (Level 1)
-- `make-objects` - Object construction from flat entries (Level 1)
+- `build-hierarchy` - Object construction from flat entries (Level 1)
 - `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access (Level 2)
 - `filter`, `compose`, `expand-dotted` - Entry processing (Level 3)
 - `pretty-print` - Canonical formatting (Level 4)
@@ -289,7 +289,7 @@ const progressiveTests = flatTests.filter(test => {
 Determine what CCL functions your implementation supports:
 
 ```javascript
-const implementedFunctions = ["parse", "make-objects", "get-string"];
+const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
 const functionTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
@@ -353,7 +353,7 @@ function getCompatibleTests(flatTests, capabilities) {
 
 // Usage
 const capabilities = {
-  functions: ["parse", "make-objects", "get-string", "get-int"],
+  functions: ["parse", "build-hierarchy", "get-string", "get-int"],
   features: ["comments"],
   behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
   variants: ["reference-compliant"]

@@ -6,12 +6,25 @@ This directory contains comprehensive documentation for the CCL (Categorical Con
 
 ### Core Documentation
 
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture, component design, and data flow diagrams
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture, component design, and data flow
 - **[API.md](API.md)** - Complete API reference for all Go packages and functions
-- **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** - Comprehensive guide for extending and contributing to the test suite
-- **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Detailed documentation of the reference CCL implementation patterns
-- **[CLI_REFERENCE.md](CLI_REFERENCE.md)** - Complete command-line interface reference and usage examples
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues, debugging strategies, and solutions
+- **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** - Development workflow and contribution guide
+- **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Reference CCL implementation patterns
+- **[CLI_REFERENCE.md](CLI_REFERENCE.md)** - Command-line interface reference
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and debugging strategies
+
+### Test Suite Documentation
+
+- **[test-architecture.md](test-architecture.md)** - Test suite design and file organization
+- **[test-filtering.md](test-filtering.md)** - Advanced test filtering patterns
+- **[test-selection-guide.md](test-selection-guide.md)** - Guide for selecting relevant tests
+- **[test-runner-implementation-guide.md](test-runner-implementation-guide.md)** - Building test runners
+
+### Implementation Guides
+
+- **[implementing-ccl.md](implementing-ccl.md)** - Complete CCL implementation guide
+- **[schema-reference.md](schema-reference.md)** - Test data schema reference
+- **[generated-schema.md](generated-schema.md)** - Auto-generated schema documentation
 
 ### Project Overview
 

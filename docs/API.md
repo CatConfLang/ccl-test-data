@@ -46,7 +46,7 @@ type ConflictSpec struct {
 ```
 
 Metadata structure for test categorization and progressive implementation support:
-- **Functions**: Required CCL functions (`parse`, `make-objects`, `get-string`, etc.)
+- **Functions**: Required CCL functions (`parse`, `build-hierarchy`, `get-string`, etc.)
 - **Features**: Optional language features (`comments`, `dotted-keys`, `unicode`, etc.)
 - **Behaviors**: Implementation choices (`crlf-preserve-literal`, `boolean-strict`, etc.)
 - **Variants**: Specification variants (`proposed-behavior`, `reference-compliant`)
@@ -278,19 +278,19 @@ Multiple output formats supported:
 
 1. **Start with Level 1**: Core CCL functionality
    ```bash
-   ./ccl-test-runner generate --run-only function:parse,function:make-objects
+   ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy
    ./ccl-test-runner test --levels 1
    ```
 
 2. **Add Type System**: Level 2 typed access
    ```bash
-   ./ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string
+   ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string
    ./ccl-test-runner test --levels 1,2
    ```
 
 3. **Complete Advanced Processing**: Add Level 3 processing features
    ```bash
-   ./ccl-test-runner generate --run-only function:parse,function:make-objects,function:get-string,function:filter
+   ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string,function:filter
    ./ccl-test-runner test --levels 1,2,3
    ```
 

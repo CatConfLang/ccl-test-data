@@ -487,7 +487,7 @@ The mock implementation is designed to pass specific test categories:
 // Supported functions (Level 1, 2)
 var supportedTags = []string{
     "function:parse",
-    "function:make-objects", 
+    "function:build-hierarchy", 
     "function:get-string",
     "function:get-int",
     "function:get-bool",
@@ -512,7 +512,7 @@ The mock works with the generator's filtering system:
 just generate-mock  # Uses --run-only with supported tags
 
 # Generate basic implementation tests  
-just generate --run-only function:parse,function:make-objects,function:get-string
+just generate --run-only function:parse,function:build-hierarchy,function:get-string
 ```
 
 ### Progressive Testing
