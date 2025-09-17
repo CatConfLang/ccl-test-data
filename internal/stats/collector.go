@@ -80,9 +80,9 @@ func countAssertions(validationData interface{}) int {
 		return 0
 	}
 
-	// Handle map structure (counted format or error format)
+	// Handle map structure (with count field or error format)
 	if m, ok := validationData.(map[string]interface{}); ok {
-		// Check for counted format with explicit count field
+		// Check for explicit count field
 		if count, exists := m["count"]; exists {
 			if countFloat, ok := count.(float64); ok {
 				return int(countFloat)

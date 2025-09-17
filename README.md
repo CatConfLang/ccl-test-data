@@ -32,7 +32,7 @@ This repository contains a **comprehensive JSON test suite** for CCL implementat
 ### Key Features
 
 > \[!IMPORTANT]
-> All tests use a **counted format** with required `count` fields for precise validation verification. Each validation declares exactly how many assertions it represents.
+> All tests include required `count` fields for precise validation verification. Each validation declares exactly how many assertions it represents.
 
 ✅ **Dual-format architecture** - Source format for maintainability, generated flat format for implementation\
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
@@ -96,7 +96,7 @@ The test suite is organized by feature category:
 ### Using the Test Suite
 
 > \[!IMPORTANT]
-> **Counted Format Required**: All validations must include a `count` field that matches the number of expected results. This enables precise assertion counting and self-validating test suites.
+> **Count Fields Required**: All validations must include a `count` field that matches the number of expected results. This enables precise assertion counting and self-validating test suites.
 
 #### Source Format Structure (Maintainable)
 
@@ -368,7 +368,7 @@ supportedTests.forEach(test => {
 > \[!IMPORTANT]
 > **Self-Validating Tests**: The `count` field enables test runners to verify they're executing the expected number of assertions, preventing silent test failures and ensuring comprehensive coverage.
 
-All validations use the **counted format** with required `count` fields:
+All validations include required `count` fields:
 
 ### Count Field Guidelines
 
@@ -478,13 +478,13 @@ just test --functions core      # Run core function tests (all should pass)
 ## Contributing
 
 > \[!IMPORTANT]
-> **Test Quality Standards**: All new tests must use the counted format, include proper typed fields metadata, and pass JSON schema validation before being accepted.
+> **Test Quality Standards**: All new tests must include proper count fields and typed fields metadata, and pass JSON schema validation before being accepted.
 
 When adding test cases:
 
 1. **Add to appropriate JSON file** by feature level and category
 1. **Include descriptive name and metadata** with typed fields (functions, features, behaviors, variants)
-1. **Use counted format** with appropriate `count` values matching result arrays
+1. **Include count fields** with appropriate `count` values matching result arrays
 1. **Validate JSON structure** with `just validate` before submitting
 1. **Generate flat format** with `just generate-flat` and ensure tests pass
 1. **Update test counts** in documentation and ensure `just stats` reflects changes

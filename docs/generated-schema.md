@@ -376,7 +376,7 @@
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-**Description:** Counted format: Expected entries with assertion count
+**Description:** Expected entries with assertion count
 
 | Property                                                        | Pattern | Type    | Deprecated | Definition | Title/Description                               |
 | --------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
@@ -554,7 +554,7 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-**Description:** Counted format: Expected entries with assertion count
+**Description:** Expected entries with assertion count
 
 | Property                                                         | Pattern | Type    | Deprecated | Definition | Title/Description                               |
 | ---------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
@@ -797,7 +797,7 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-**Description:** Counted format: Expected entries with assertion count
+**Description:** Expected entries with assertion count
 
 | Property                                                                | Pattern | Type    | Deprecated | Definition | Title/Description                               |
 | ----------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
@@ -930,7 +930,7 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-**Description:** Counted format: Expected object with assertion count
+**Description:** Expected object with assertion count
 
 | Property                                                               | Pattern | Type    | Deprecated | Definition | Title/Description                               |
 | ---------------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |
@@ -1243,7 +1243,7 @@ Must be one of:
 | **Required**              | No               |
 | **Additional properties** | Any type allowed |
 
-**Description:** Counted format: Multiple typed access tests with count
+**Description:** Multiple typed access tests with count
 
 | Property                                                       | Pattern | Type    | Deprecated | Definition | Title/Description                               |
 | -------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | ----------------------------------------------- |

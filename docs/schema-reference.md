@@ -136,7 +136,7 @@ Each test case uses explicit `validations` objects that specify which API functi
 
 ## Validation Format Requirements
 
-**IMPORTANT: All validations now use the counted format** with a required `count` field that specifies the number of assertions the validation represents.
+**IMPORTANT: All validations include** a required `count` field that specifies the number of assertions the validation represents.
 
 ### Count Field
 

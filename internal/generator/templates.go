@@ -304,7 +304,7 @@ func (g *Generator) generateParseValidation(validation interface{}) (string, err
 	assert.Equal(t, expectedParse, parseResult)`, inputVar, formatEntryArray(entries)), nil
 	}
 
-	// Try to parse as counted format with expected field
+	// Try to parse as validation with expected field
 	if countedValidation, ok := g.parseAsCountedValidation(validation); ok {
 		inputVar := "input"
 		if len(countedValidation.Expected) == 0 {
@@ -317,13 +317,13 @@ func (g *Generator) generateParseValidation(validation interface{}) (string, err
 	assert.Equal(t, expectedParse, parseResult)`, inputVar, formatEntryArray(countedValidation.Expected)), nil
 	}
 
-	// Try to parse as counted format or error format
+	// Try to parse as validation with count or error format
 	return g.generateComplexValidation("Parse", validation)
 }
 
 // generateFilterValidation creates assertion for filter validation
 func (g *Generator) generateFilterValidation(validation interface{}) (string, error) {
-	// Try to parse as counted format with expected field (current schema format)
+	// Try to parse as validation with expected field (current schema format)
 	if countedValidation, ok := g.parseAsCountedValidation(validation); ok {
 		inputVar := "input"
 		if len(countedValidation.Expected) == 0 {
@@ -357,7 +357,7 @@ func (g *Generator) generateFilterValidation(validation interface{}) (string, er
 
 // generateBuildHierarchyValidation creates assertion for make_objects validation
 func (g *Generator) generateBuildHierarchyValidation(validation interface{}) (string, error) {
-	// Try to parse as counted format first
+	// Try to parse as validation with count field first
 	if countedValidation, ok := g.parseAsCountedObjectValidation(validation); ok {
 		return fmt.Sprintf(`// BuildHierarchy validation
 	parseResult, err = ccl.Parse(input)
@@ -369,7 +369,7 @@ func (g *Generator) generateBuildHierarchyValidation(validation interface{}) (st
 
 	// Try to parse as direct object (legacy format)
 	if obj, ok := validation.(map[string]interface{}); ok {
-		// Check if it has count field (which would make it counted format we missed)
+		// Check if it has count field (which would make it a validation we missed)
 		if _, hasCount := obj["count"]; hasCount {
 			return g.generateComplexValidation("BuildHierarchy", validation)
 		}
@@ -1208,7 +1208,7 @@ func (g *Generator) countAssertions(validations *types.ValidationSet) int {
 
 // getValidationCount extracts the count from a validation, defaulting to 1
 func (g *Generator) getValidationCount(validation interface{}) int {
-	// Try to parse as counted format
+	// Try to parse as validation with count field
 	jsonData, err := json.Marshal(validation)
 	if err != nil {
 		return 1 // Default to 1 assertion
