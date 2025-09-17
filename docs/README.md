@@ -6,10 +6,12 @@ This directory contains comprehensive documentation for the CCL (Categorical Con
 
 ### Core Documentation
 
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture, component design, and data flow diagrams
 - **[API.md](API.md)** - Complete API reference for all Go packages and functions
 - **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** - Comprehensive guide for extending and contributing to the test suite
 - **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Detailed documentation of the reference CCL implementation patterns
 - **[CLI_REFERENCE.md](CLI_REFERENCE.md)** - Complete command-line interface reference and usage examples
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues, debugging strategies, and solutions
 
 ### Project Overview
 
@@ -19,14 +21,14 @@ The CCL Test Suite is a comprehensive, language-agnostic testing framework for C
 - **Progressive Implementation** - Support for 5-level CCL implementation approach  
 - **Reference Implementation** - Working mock CCL parser for development and testing
 - **Advanced Tooling** - CLI tools for test generation, execution, and analysis
-- **Performance Monitoring** - Benchmarking and regression detection capabilities
 
 ### Quick Navigation
 
 **For New Contributors:**
-1. Start with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for project architecture and development workflow
-2. Review [API.md](API.md) for detailed package documentation
-3. Use [CLI_REFERENCE.md](CLI_REFERENCE.md) for command-line tool usage
+1. Begin with [ARCHITECTURE.md](ARCHITECTURE.md) for system design overview
+2. Follow with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for development workflow and contribution guidelines
+3. Review [API.md](API.md) for detailed package documentation
+4. Use [CLI_REFERENCE.md](CLI_REFERENCE.md) for command-line tool usage
 
 **For CCL Implementers:**
 1. Study [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md) for implementation patterns and strategies
