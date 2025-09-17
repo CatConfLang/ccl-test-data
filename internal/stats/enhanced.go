@@ -276,7 +276,6 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 			"get_list":         test.Validations.GetList,
 			"pretty_print":     test.Validations.PrettyPrint,
 			"round_trip":       test.Validations.RoundTrip,
-			"canonical_format": test.Validations.Canonical,
 			"associativity":    test.Validations.Associativity,
 		}
 
@@ -336,8 +335,8 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 		}
 
 		// Only include conflicts field if it has actual values
-		if len(test.Meta.Conflicts) > 0 {
-			testData["conflicts"] = test.Meta.Conflicts
+		if test.Conflicts != nil && (len(test.Conflicts.Behaviors) > 0 || len(test.Conflicts.Variants) > 0 || len(test.Conflicts.Features) > 0) {
+			testData["conflicts"] = test.Conflicts
 		}
 
 		result["tests"] = append(result["tests"].([]map[string]interface{}), testData)
