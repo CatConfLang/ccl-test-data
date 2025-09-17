@@ -18,5 +18,7 @@
     "unified": "^11.0.5",
     "unist-util-select": "^5.1.0",
     "unist-util-visit": "^5.0.0"
-  }
+  },
+  "devDependencies": {},
+  "_note": "Dependencies used for robust README.md maintenance via update-readme-remark.mjs - provides AST-based markdown processing for safe test count updates"
 }

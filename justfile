@@ -73,6 +73,7 @@ validate:
     jv schemas/source-format.json source_tests/api_*.json source_tests/property_*.json
     jv schemas/generated-format.json generated_tests/api_*.json generated_tests/property_*.json
 
+# Update README.md with current test statistics using remark.js AST processing
 docs-check:
     cd scripts && node update-readme-remark.mjs
     git diff --exit-code README.md
