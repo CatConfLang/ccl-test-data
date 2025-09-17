@@ -1,9 +1,12 @@
 # CCL Test Suite
 
 > \[!NOTE]
-> This is the **official JSON test suite** for CCL implementations across all programming languages, featuring comprehensive **feature-based tagging** for precise test selection and progressive implementation support.
+> This is a **comprehensive JSON test suite** for CCL implementations across all programming languages, featuring **feature-based tagging** for precise test selection and progressive implementation support.
 
 Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based tagging** for precise test selection. Each test specifies which CCL functions to validate and uses structured tags to enable progressive implementation.
+
+> [!TIP]
+> **New to this project?** Start with the **[Technical Overview](TECHNICAL_OVERVIEW.md)** for a comprehensive introduction to the system architecture, implementation patterns, and development workflow.
 
 ## What is CCL?
 
@@ -24,7 +27,7 @@ For comprehensive CCL documentation, see the **[CCL Documentation](https://ccl.t
 
 ## Test Suite
 
-This repository contains the **official JSON test suite** for CCL implementations across all programming languages.
+This repository contains a **comprehensive JSON test suite** for CCL implementations across all programming languages.
 
 ### Key Features
 
@@ -172,16 +175,25 @@ The **generated format** provides optimal implementation ergonomics:
 
 ### Test Metadata Categories
 
-#### Functions Array - Required CCL functions:
+#### Functions Array - CCL functions by category:
 
-- `parse` - Basic key-value parsing (Level 1)
-- `parse_value` - Indentation-aware parsing (Level 2)
-- `build_hierarchy` - Object construction from flat entries (Level 3)
-- `filter` - Entry filtering (Level 2)
-- `combine` - Entry composition (Level 2)
-- `expand_dotted` - Dotted key expansion (Level 2, optional)
-- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Typed access (Level 4)
-- `canonical_format` - Standardized formatting (Level 4)
+**Core CCL Functions:**
+- `parse` - Basic key-value parsing
+- `parse_value` - Indentation-aware parsing
+- `build_hierarchy` - Object construction from flat entries
+
+**Typed Access Functions:**
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Type-safe value extraction
+
+**Processing Functions:**
+- `filter` - Entry filtering
+- `combine` - Entry composition
+
+**Experimental Functions:**
+- `expand_dotted` - Dotted key expansion (experimental)
+
+**Formatting Functions:**
+- `canonical_format` - Standardized formatting (also known as `pretty_print`)
 
 #### Features Array - Optional language features:
 
@@ -395,11 +407,11 @@ just generate-mock  # Generate tests for mock implementation
 just test-mock      # Run tests suitable for mock implementation
 just dev-mock       # Full development cycle for mock
 
-# Level-specific testing
-just test-level1    # Run only Level 1 tests
-just test-level2    # Run only Level 2 tests
-just test-level3    # Run only Level 3 tests
-just test-level4    # Run only Level 4 tests
+# Function group testing
+just test --functions core            # Run core function tests
+just test --functions typed           # Run typed access tests
+just test --functions processing      # Run processing function tests
+just test --functions formatting      # Run formatting function tests
 
 # Feature-specific testing
 just test-comments  # Run comment-related tests
@@ -418,7 +430,7 @@ just clean          # Clean generated files
 > \[!NOTE]
 > **Learning Resource**: The mock implementation serves as both a working example and a foundation for development. It demonstrates proper test integration patterns and API structure.
 
-The repository includes a basic Level 1 mock CCL implementation for testing and development:
+The repository includes a basic mock CCL implementation for testing and development:
 
 - **Location**: `internal/mock/ccl.go`
 - **Features**: Basic key-value parsing, comment handling, empty input support
@@ -436,8 +448,8 @@ The repository should be maintained in a clean, passing state. Use these command
 just reset  # alias for dev-basic
 
 # Or run the steps manually:
-just generate-level1  # Generate only basic Level 1 tests
-just test-level1      # Run Level 1 tests (all should pass)
+just generate --functions core  # Generate only basic core function tests
+just test --functions core      # Run core function tests (all should pass)
 ```
 
 **This is the required state for commits and CI.** The `dev-basic` command generates only the most essential tests (basic functions: `parse`, `make-objects`) and skips advanced features that would fail in the current mock implementation. This ensures:
@@ -519,12 +531,12 @@ just stats
 - **3 behavioral choices** (CRLF, tabs, spacing handling)
 - **2 specification variants** (proposed vs reference behavior)
 
-**📚 Level Distribution:**
+**📚 Function Group Distribution:**
 
-- **Level 1**: 54 tests (basic parsing)
-- **Level 2**: 30 tests (processing)
-- **Level 3**: 27 tests (object construction)
-- **Level 4**: 56 tests (typed access)
+- **Core Functions**: 54 tests (parsing and object construction)
+- **Typed Access Functions**: 56 tests (type-safe value extraction)
+- **Processing Functions**: 30 tests (entry manipulation)
+- **Experimental Functions**: 27 tests (experimental features)
 
 **⚙️ Function Coverage:**
 
