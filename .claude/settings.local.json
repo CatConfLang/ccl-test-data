@@ -107,7 +107,10 @@
       "Bash(/tmp/ccl-test-runner:*)",
       "Bash(go list:*)",
       "Bash(go generate:*)",
-      "Bash(git diff:*)"
+      "Bash(git diff:*)",
+      "Read(//Volumes/Code/claude-workspace-ccl/ccl-test-lib/**)",
+      "Bash(gofmt:*)",
+      "Bash(mkdir:*)"
     ],
     "deny": [],
     "ask": [],
