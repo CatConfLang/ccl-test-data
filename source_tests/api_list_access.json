@@ -43,8 +43,7 @@
             "servers"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "single_item_as_list",
@@ -77,8 +76,7 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "single_item_as_list_reference",
@@ -109,8 +107,7 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "mixed_duplicate_single_keys",
@@ -165,8 +162,7 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "mixed_duplicate_single_keys_reference",
@@ -216,8 +212,7 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "nested_list_access",
@@ -268,8 +263,7 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "nested_list_access_reference",
@@ -315,8 +309,7 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "empty_list",
@@ -346,8 +339,7 @@
             "empty_list"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "empty_list_reference",
@@ -375,8 +367,7 @@
             }
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_numbers",
@@ -426,8 +417,7 @@
             "numbers"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_numbers_reference",
@@ -472,8 +462,7 @@
             "numbers"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_booleans",
@@ -523,8 +512,7 @@
             "flags"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_booleans_reference",
@@ -569,8 +557,7 @@
             ]
           }
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_whitespace",
@@ -623,8 +610,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_whitespace_reference",
@@ -670,8 +656,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "deeply_nested_list",
@@ -736,8 +721,7 @@
             "servers"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "deeply_nested_list_reference",
@@ -778,8 +762,7 @@
             "servers"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_unicode",
@@ -832,8 +815,7 @@
       ],
       "features": [
         "unicode"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_unicode_reference",
@@ -881,8 +863,7 @@
       ],
       "features": [
         "unicode"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_special_characters",
@@ -932,8 +913,7 @@
             "symbols"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_special_characters_reference",
@@ -973,8 +953,7 @@
             ]
           }
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "large_list",
@@ -1120,8 +1099,7 @@
             "items"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_with_comments",
@@ -1180,8 +1158,7 @@
       ],
       "features": [
         "comments"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_error_missing_key",
@@ -1209,8 +1186,7 @@
             }
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_error_nested_missing_key",
@@ -1241,8 +1217,7 @@
             "missing"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_error_non_object_path",
@@ -1271,8 +1246,7 @@
             "nested"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_multiline_values",
@@ -1324,8 +1298,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "complex_mixed_list_scenarios",
@@ -1451,8 +1424,7 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "complex_mixed_list_scenarios_reference",
@@ -1517,8 +1489,7 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_edge_case_zero_length",
@@ -1539,8 +1510,7 @@
           "function": "build_hierarchy",
           "expect": {}
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_path_traversal_protection",
@@ -1584,8 +1554,7 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "list_path_traversal_protection_reference",
@@ -1627,8 +1596,7 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
-      ],
-      "level": 4
+      ]
     }
   ]
 }

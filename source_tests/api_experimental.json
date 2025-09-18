@@ -34,8 +34,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "multiple_dotted_keys",
@@ -86,8 +85,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "deep_dotted_nesting",
@@ -131,8 +129,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "mixed_dotted_and_regular_keys",
@@ -198,8 +195,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "dotted_key_conflicts_resolution",
@@ -238,8 +234,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "dotted_keys_with_lists",
@@ -286,8 +281,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "empty_dotted_key_segments",
@@ -325,8 +319,7 @@
       "features": [
         "experimental_dotted_keys",
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "single_dot_key",
@@ -362,8 +355,7 @@
       "features": [
         "experimental_dotted_keys",
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "hierarchical_with_expand_dotted_validation",
@@ -407,8 +399,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "dotted_key_list_access",
@@ -467,8 +458,7 @@
       ],
       "features": [
         "experimental_dotted_keys"
-      ],
-      "level": 4
+      ]
     }
   ]
 }

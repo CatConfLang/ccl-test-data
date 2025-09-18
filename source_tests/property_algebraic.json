@@ -26,8 +26,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "semigroup_associativity_nested",
@@ -50,8 +49,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "semigroup_associativity_lists",
@@ -81,8 +79,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_left_identity_basic",
@@ -105,8 +102,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_right_identity_basic",
@@ -129,8 +125,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_left_identity_nested",
@@ -149,8 +144,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_right_identity_nested",
@@ -169,8 +163,7 @@
           "function": "associativity",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_left_identity_lists",
@@ -200,8 +193,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "monoid_right_identity_lists",
@@ -231,8 +223,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_property_basic",
@@ -255,8 +246,7 @@
           "function": "round_trip",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_property_nested",
@@ -275,8 +265,7 @@
           "function": "round_trip",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_property_complex",
@@ -310,8 +299,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     }
   ]
 }

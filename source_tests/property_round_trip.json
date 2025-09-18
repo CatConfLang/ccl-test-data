@@ -9,8 +9,7 @@
           "function": "round_trip",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_whitespace_normalization",
@@ -32,8 +31,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_empty_keys_lists",
@@ -63,8 +61,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_nested_structures",
@@ -83,8 +80,7 @@
           "function": "round_trip",
           "expect": null
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_multiline_values",
@@ -106,8 +102,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_mixed_content",
@@ -145,8 +140,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_empty_values",
@@ -165,8 +159,7 @@
           "function": "canonical_format",
           "expect": "empty_key ="
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_tab_preservation",
@@ -188,8 +181,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_unicode",
@@ -215,8 +207,7 @@
       ],
       "features": [
         "unicode"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_complex_nesting",
@@ -238,8 +229,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_line_endings_proposed",
@@ -265,8 +255,7 @@
       ],
       "behaviors": [
         "crlf_preserve_literal"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "crlf_normalize_to_lf_proposed",
@@ -292,8 +281,7 @@
       ],
       "behaviors": [
         "crlf_normalize_to_lf"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "crlf_normalize_to_lf_indented_proposed",
@@ -319,8 +307,7 @@
       ],
       "behaviors": [
         "crlf_normalize_to_lf"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_deeply_nested",
@@ -342,8 +329,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_consistent_spacing",
@@ -373,8 +359,7 @@
       ],
       "behaviors": [
         "strict_spacing"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "round_trip_empty_multiline",
@@ -401,8 +386,7 @@
       "features": [
         "empty_keys",
         "multiline"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "deterministic_output",
@@ -429,8 +413,7 @@
           "function": "canonical_format",
           "expect": "z = last\na = first\nm = middle"
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_empty_values_ocaml_reference",
@@ -440,8 +423,7 @@
           "function": "canonical_format",
           "expect": "empty_key =\n"
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_tab_preservation_ocaml_reference",
@@ -454,8 +436,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_unicode_ocaml_reference",
@@ -468,8 +449,7 @@
       ],
       "features": [
         "unicode"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_line_endings_reference_behavior",
@@ -495,8 +475,7 @@
       ],
       "behaviors": [
         "crlf_preserve_literal"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "canonical_format_consistent_spacing_ocaml_reference",
@@ -509,8 +488,7 @@
       ],
       "behaviors": [
         "strict_spacing"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "deterministic_output_ocaml_reference",
@@ -520,8 +498,7 @@
           "function": "canonical_format",
           "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
         }
-      ],
-      "level": 4
+      ]
     }
   ]
 }

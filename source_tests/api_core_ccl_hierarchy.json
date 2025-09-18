@@ -32,8 +32,7 @@
             "name": "Alice"
           }
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "deep_nested_objects",
@@ -76,8 +75,7 @@
             }
           }
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "duplicate_keys_to_lists",
@@ -120,8 +118,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_duplicate_keys",
@@ -148,8 +145,7 @@
             }
           }
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "mixed_flat_and_nested",
@@ -183,8 +179,7 @@
             "version": "1.0"
           }
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_objects_with_lists",
@@ -217,8 +212,7 @@
             }
           }
         }
-      ],
-      "level": 1
+      ]
     }
   ]
 }

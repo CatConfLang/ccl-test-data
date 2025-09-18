@@ -18,8 +18,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "equals_in_values",
@@ -38,8 +37,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "whitespace_trimming",
@@ -61,8 +59,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "multiline_values",
@@ -84,8 +81,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_values",
@@ -107,8 +103,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_structure_parsing",
@@ -123,8 +118,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "unicode_parsing",
@@ -146,8 +140,7 @@
       ],
       "features": [
         "unicode"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_input",
@@ -157,8 +150,7 @@
           "function": "parse",
           "expect": []
         }
-      ],
-      "level": 1
+      ]
     }
   ]
 }

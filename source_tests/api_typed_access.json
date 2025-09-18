@@ -27,8 +27,7 @@
             "port"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_basic_float",
@@ -56,8 +55,7 @@
             "temperature"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_true",
@@ -89,8 +87,7 @@
       "behaviors": [
         "boolean_strict",
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_yes",
@@ -121,8 +118,7 @@
       ],
       "behaviors": [
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_yes_strict_literal",
@@ -153,8 +149,7 @@
       ],
       "behaviors": [
         "boolean_strict"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_false",
@@ -186,8 +181,7 @@
       "behaviors": [
         "boolean_strict",
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_string_fallback",
@@ -215,8 +209,7 @@
             "name"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_negative_integer",
@@ -244,8 +237,7 @@
             "offset"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_zero_values",
@@ -303,8 +295,7 @@
       ],
       "behaviors": [
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_zero_values_strict_literal",
@@ -362,8 +353,7 @@
       ],
       "behaviors": [
         "boolean_strict"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_variants",
@@ -431,8 +421,7 @@
       ],
       "behaviors": [
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_variants_strict_literal",
@@ -500,8 +489,7 @@
       ],
       "behaviors": [
         "boolean_strict"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_mixed_types",
@@ -573,8 +561,7 @@
       ],
       "behaviors": [
         "boolean_lenient"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_mixed_types_strict_literal",
@@ -646,8 +633,7 @@
       ],
       "behaviors": [
         "boolean_strict"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_empty_value",
@@ -675,8 +661,7 @@
             }
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "empty_value_reference_behavior",
@@ -697,8 +682,7 @@
             }
           ]
         }
-      ],
-      "level": 3
+      ]
     },
     {
       "name": "parse_with_whitespace",
@@ -741,8 +725,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_with_conservative_options",
@@ -792,8 +775,7 @@
             "decimal"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_integer_error",
@@ -821,8 +803,7 @@
             "port"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_float_error",
@@ -850,8 +831,7 @@
             "temperature"
           ]
         }
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_boolean_error",
@@ -882,8 +862,7 @@
       ],
       "behaviors": [
         "boolean_strict"
-      ],
-      "level": 4
+      ]
     },
     {
       "name": "parse_missing_path_error",
@@ -911,8 +890,7 @@
             "missing"
           ]
         }
-      ],
-      "level": 4
+      ]
     }
   ]
 }

@@ -26,8 +26,7 @@
             }
           ]
         }
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "multiple_values_same_key",
@@ -50,8 +49,7 @@
             }
           ]
         }
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "list_with_empty_keys",
@@ -77,8 +75,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_style_syntax",
@@ -96,8 +93,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "composition_stability_ba",
@@ -124,8 +120,7 @@
             }
           ]
         }
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "mixed_keys_with_duplicates",
@@ -155,8 +150,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "array_style_list",
@@ -182,8 +176,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_header_double_equals",
@@ -209,8 +202,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_header_triple_equals",
@@ -236,8 +228,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "multiple_sections_with_entries",
@@ -275,8 +266,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_headers_mixed_with_lists",
@@ -314,8 +304,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "empty_section_header_only",
@@ -330,8 +319,7 @@
             }
           ]
         }
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_header_at_end",
@@ -353,8 +341,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_headers_no_trailing_equals",
@@ -384,8 +371,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "section_headers_with_colons",
@@ -415,8 +401,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "spaced_equals_not_section_header",
@@ -446,8 +431,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "consecutive_section_headers",
@@ -477,8 +461,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "multiline_section_header_value",
@@ -501,8 +484,7 @@
       "features": [
         "empty_keys",
         "multiline"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "unindented_multiline_becomes_continuation",
@@ -524,8 +506,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     }
   ]
 }

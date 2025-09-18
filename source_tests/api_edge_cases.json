@@ -14,8 +14,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "basic_with_spaces",
@@ -33,8 +32,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "indented_key",
@@ -52,8 +50,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "value_trailing_spaces",
@@ -71,8 +68,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "key_value_surrounded_spaces",
@@ -90,8 +86,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "surrounded_by_newlines",
@@ -106,8 +101,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "key_empty_value",
@@ -125,8 +119,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_value_with_newline",
@@ -144,8 +137,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_value_with_spaces",
@@ -164,8 +156,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_key_indented",
@@ -183,8 +174,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "empty_key_with_newline",
@@ -202,8 +192,7 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_key_value_with_spaces",
@@ -222,8 +211,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "equals_in_value_no_spaces",
@@ -238,8 +226,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "equals_in_value_with_spaces",
@@ -257,8 +244,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "multiple_key_value_pairs",
@@ -277,8 +263,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "key_with_tabs",
@@ -299,8 +284,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "key_with_tabs_ocaml_reference",
@@ -321,8 +305,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "whitespace_only_value",
@@ -341,8 +324,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "spaces_vs_tabs_continuation",
@@ -363,8 +345,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "spaces_vs_tabs_continuation_ocaml_reference",
@@ -385,8 +366,7 @@
       ],
       "behaviors": [
         "tabs_preserve"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "multiple_empty_equality",
@@ -405,8 +385,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "key_with_newline_before_equals",
@@ -425,8 +404,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "complex_multi_newline_whitespace",
@@ -445,8 +423,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_value_with_trailing_spaces_newline",
@@ -465,8 +442,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "empty_key_value_with_surrounding_newlines",
@@ -485,8 +461,7 @@
       "features": [
         "empty_keys",
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "quotes_treated_as_literal_unquoted",
@@ -501,8 +476,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "quotes_treated_as_literal_quoted",
@@ -517,8 +491,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_single_line",
@@ -533,8 +506,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_multi_line",
@@ -552,8 +524,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "nested_with_blank_line",
@@ -571,8 +542,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "deep_nested_structure",
@@ -587,8 +557,7 @@
             }
           ]
         }
-      ],
-      "level": 2
+      ]
     },
     {
       "name": "realistic_stress_test",
@@ -615,8 +584,7 @@
             }
           ]
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "ocaml_stress_test_original",
@@ -684,8 +652,7 @@
       "features": [
         "comments",
         "empty_keys"
-      ],
-      "level": 4
+      ]
     }
   ]
 }

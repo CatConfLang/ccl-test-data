@@ -9,8 +9,7 @@
           "function": "parse",
           "expect": null
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "whitespace_only_error",
@@ -23,8 +22,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "whitespace_only_error_ocaml_reference",
@@ -37,8 +35,7 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "just_string_error",
@@ -48,8 +45,7 @@
           "function": "parse",
           "expect": null
         }
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "multiline_plain_error",
@@ -62,8 +58,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 1
+      ]
     },
     {
       "name": "multiline_plain_nested_error",
@@ -76,8 +71,7 @@
       ],
       "features": [
         "multiline"
-      ],
-      "level": 1
+      ]
     }
   ]
 }
