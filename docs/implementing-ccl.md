@@ -12,7 +12,7 @@ This guide helps you implement a CCL parser in your programming language using t
 ### Test Format Features
 
 ✅ **Direct mapping** - Each validation maps to a specific API function  
-✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels
+✅ **Multi-stage testing** - Tests declare expected outputs for different parsing stages
 ✅ **Simple iteration** - Test runners iterate over `validations` keys  
 ✅ **Self-documenting** - Validation names explain what's being tested
 
@@ -347,7 +347,7 @@ class CCLObject implements CCLValue { Map<String, CCLValue> fields; }
 
 ### Running the Test Suite
 
-Each level has a dedicated test file with specific format:
+Each stage has a dedicated test file with specific format:
 
 ```json
 {
@@ -359,7 +359,6 @@ Each level has a dedicated test file with specific format:
         {"key": "key", "value": "value"}
       ],
       "meta": {
-        "level": 1,
         "tags": ["basic"]
       }
     }
@@ -439,7 +438,7 @@ Each test explicitly maps validations to API functions:
 
 ```json
 {
-  "name": "multi_level_validation",
+  "name": "multi_stage_validation",
   "input": "database.host = localhost\ndatabase.port = 8080",
   "validations": {
     "parse": [
@@ -461,7 +460,7 @@ Each test explicitly maps validations to API functions:
       "expected": 8080
     }
   },
-  "meta": {"level": 4, "feature": "typed-parsing"}
+  "meta": {"feature": "typed-parsing"}
 }
 ```
 

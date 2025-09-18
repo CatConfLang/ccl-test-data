@@ -20,7 +20,6 @@ Each test file contains an array of independent tests. Each test validates exact
     "behaviors": [],
     "variants": [],
     "features": [],
-    "level": 1
   }
 ]
 ```
@@ -154,7 +153,7 @@ ccl-test-runner generate \
 
 ## Implementation Examples by Level
 
-### Level 1: Parse Only
+### Stage 1: Parse Only
 ```pseudocode
 capabilities = {
   functions: ["parse"],
@@ -166,7 +165,7 @@ capabilities = {
 // Skips tests requiring behaviors like tabs_preserve, strict_spacing
 ```
 
-### Level 2: Parse + Processing  
+### Stage 2: Parse + Processing  
 ```pseudocode
 capabilities = {
   functions: ["parse", "filter", "compose", "expand_dotted"],
@@ -175,7 +174,7 @@ capabilities = {
 }
 ```
 
-### Level 3: Parse + Objects
+### Stage 3: Parse + Objects
 ```pseudocode
 capabilities = {
   functions: ["parse", "make_objects"],
@@ -184,7 +183,7 @@ capabilities = {
 }
 ```
 
-### Level 4: Parse + Objects + Typed Access
+### Stage 4: Parse + Objects + Typed Access
 ```pseudocode
 capabilities = {
   functions: ["parse", "make_objects", "get_string", "get_int", "get_bool", "get_float", "get_list"],
@@ -268,15 +267,15 @@ class CCLTestRunner {
 Use CLI flags to generate only compatible tests:
 
 ```bash
-# Level 1: Parse only
+# Stage 1: Parse only
 ccl-test-runner generate --run-only function:parse
 
-# Level 3: Parse + Objects, skip problematic behaviors  
+# Stage 3: Parse + Objects, skip problematic behaviors  
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects \
   --skip-tags behavior:strict_spacing,behavior:tabs_preserve,behavior:crlf_preserve_literal
 
-# Level 4: Full typed access
+# Stage 4: Full typed access
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects,function:get_string,function:get_int,function:get_bool \
   --skip-tags behavior:strict_spacing,behavior:tabs_preserve
@@ -290,8 +289,8 @@ Run the generated compatible tests:
 # Run all generated tests
 ccl-test-runner test
 
-# Run specific levels
-ccl-test-runner test --levels 1,3
+# Run specific stages
+ccl-test-runner test --functions parse,build_hierarchy
 
 # Run with verbose output
 ccl-test-runner test --format verbose
@@ -392,25 +391,25 @@ function generate_summary_report(results) {
 
 ## Progressive Implementation Workflow
 
-### 1. Start with Level 1
+### 1. Start with Stage 1
 ```bash
 # Generate and run basic parsing tests
 ccl-test-runner generate --run-only function:parse
-ccl-test-runner test --levels 1
+ccl-test-runner test --functions parse
 ```
 
 ### 2. Add Object Construction  
 ```bash
-# Add Level 3 functionality
+# Add Stage 3 functionality
 ccl-test-runner generate --run-only function:parse,function:make_objects
-ccl-test-runner test --levels 1,3
+ccl-test-runner test --functions parse,build_hierarchy
 ```
 
 ### 3. Add Typed Access
 ```bash
-# Add Level 4 functionality
+# Add Stage 4 functionality
 ccl-test-runner generate --run-only function:parse,function:make_objects,function:get_string,function:get_int
-ccl-test-runner test --levels 1,3,4
+ccl-test-runner test --functions parse,build_hierarchy,get_string
 ```
 
 ### 4. Handle Behaviors

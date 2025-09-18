@@ -22,7 +22,7 @@ type EnhancedTestFile struct {
 // LLMMetadata contains AI-friendly metadata for test files
 type LLMMetadata struct {
 	LLMDescription      string           `json:"llm_description"`
-	ComplexityLevel     string           `json:"complexity_level"`
+	Complexity          string           `json:"complexity"`
 	PrerequisiteTests   []string         `json:"prerequisite_tests"`
 	RelatedFunctions    []string         `json:"related_functions"`
 	ImplementationNotes string           `json:"implementation_notes"`
@@ -48,15 +48,14 @@ type TestCase struct {
 	Meta        TestMeta               `json:"meta"`
 }
 
-// TestMeta contains test-level metadata
+// TestMeta contains test metadata
 type TestMeta struct {
 	Tags        []string     `json:"tags"`
-	Level       int          `json:"level"`
 	Feature     string       `json:"feature"`
 	LLMGuidance *LLMGuidance `json:"llm_guidance,omitempty"`
 }
 
-// LLMGuidance provides test-level AI guidance
+// LLMGuidance provides test AI guidance
 type LLMGuidance struct {
 	TestPurpose          string                `json:"test_purpose"`
 	ImplementationFocus  string                `json:"implementation_focus"`
@@ -138,14 +137,14 @@ func validateFile(filename string) int {
 		fmt.Printf("✅ LLM description: %s\n", truncateString(metadata.LLMDescription, 60))
 	}
 
-	if metadata.ComplexityLevel == "" {
-		fmt.Printf("❌ Missing complexity_level\n")
+	if metadata.Complexity == "" {
+		fmt.Printf("❌ Missing complexity\n")
 		errors++
-	} else if !isValidComplexityLevel(metadata.ComplexityLevel) {
-		fmt.Printf("❌ Invalid complexity_level: %s\n", metadata.ComplexityLevel)
+	} else if !isValidComplexity(metadata.Complexity) {
+		fmt.Printf("❌ Invalid complexity: %s\n", metadata.Complexity)
 		errors++
 	} else {
-		fmt.Printf("✅ Complexity level: %s\n", metadata.ComplexityLevel)
+		fmt.Printf("✅ Complexity: %s\n", metadata.Complexity)
 	}
 
 	if len(metadata.RelatedFunctions) == 0 {
@@ -195,7 +194,7 @@ func validateFile(filename string) int {
 		validateCrossReferences(refs, &errors)
 	}
 
-	// Validate test-level metadata (sample)
+	// Validate test metadata (sample)
 	testsWithGuidance := 0
 	for _, test := range testFile.Tests {
 		if test.Meta.LLMGuidance != nil {
@@ -217,13 +216,13 @@ func validateFile(filename string) int {
 	return errors
 }
 
-func isValidComplexityLevel(level string) bool {
-	validLevels := []string{
-		"Level 1", "Level 1+", "Level 2", "Level 2 Feature",
-		"Level 3", "Level 3 Feature", "Level 4", "Level 5",
+func isValidComplexity(complexity string) bool {
+	validComplexities := []string{
+		"Basic", "Intermediate", "Advanced", "Expert",
+		"Core", "Extended", "Feature", "Integration",
 	}
-	for _, valid := range validLevels {
-		if level == valid {
+	for _, valid := range validComplexities {
+		if complexity == valid {
 			return true
 		}
 	}

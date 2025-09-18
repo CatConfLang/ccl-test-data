@@ -291,7 +291,7 @@ ccl-test-runner test --format verbose
 ```bash
 # Test single function
 ccl-test-runner generate --run-only function:parse
-ccl-test-runner test --levels 1
+ccl-test-runner test --functions parse
 
 # Debug specific feature
 ccl-test-runner generate --run-only feature:comments --verbose
@@ -421,7 +421,7 @@ find source_tests/ -name "*.json" -exec jv schemas/source-format.json {} \;
 1. **Always run `just lint`** before committing
 2. **Use `just reset`** to ensure clean state
 3. **Validate JSON** with `just validate` after changes
-4. **Test incrementally** with level-based testing
+4. **Test incrementally** with function-based testing
 
 ### Quality Gates
 ```bash

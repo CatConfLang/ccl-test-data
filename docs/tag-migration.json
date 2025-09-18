@@ -44,7 +44,7 @@
   "tag_categories": {
     "description": "Organized categories of the new tag system",
     "function": {
-      "description": "CCL function requirements (Level 1-5)",
+      "description": "CCL function requirements",
       "tags": [
         "parse", "filter", "compose", "expand-dotted", 
         "make-objects", "get-string", "get-int", "get-bool", 
@@ -91,7 +91,7 @@
       "skip_tags": ["function:filter", "function:compose", "function:make-objects", "function:get-string", "function:get-int", "function:get-bool", "function:get-float", "function:get-list", "function:pretty-print"]
     },
     "basic_implementation": {
-      "description": "Parse + Objects + Typed Access implementation (current mock level)",
+      "description": "Parse + Objects + Typed Access implementation (current mock stage)",
       "supported_tags": ["function:parse", "function:make-objects", "function:get-string", "function:get-int", "function:get-bool", "function:get-float", "function:get-list"],
       "supported_features": ["feature:dotted-keys", "feature:empty-keys"],
       "behavioral_choices": {

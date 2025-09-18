@@ -31,7 +31,7 @@ This directory contains comprehensive documentation for the CCL (Categorical Con
 The CCL Test Suite is a comprehensive, language-agnostic testing framework for CCL implementations. It provides:
 
 - **Structured Test Data** - JSON-based test definitions with feature-based tagging
-- **Progressive Implementation** - Support for 5-level CCL implementation approach  
+- **Progressive Implementation** - Support for staged CCL implementation approach  
 - **Reference Implementation** - Working mock CCL parser for development and testing
 - **Advanced Tooling** - CLI tools for test generation, execution, and analysis
 
@@ -75,7 +75,7 @@ When contributing to the project, please ensure documentation is updated:
 ### External References
 
 For conceptual explanations of Core CCL, see [Core Concepts](https://ccl.tylerbutler.com/core-concepts)
-For API compatibility across implementations, see [Higher-Level APIs](https://ccl.tylerbutler.com/higher-level-apis)
+For API compatibility across implementations, see [API Guide](https://ccl.tylerbutler.com/api-guide)
 
 ### Getting Help
 

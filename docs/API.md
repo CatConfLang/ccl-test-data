@@ -276,22 +276,22 @@ Multiple output formats supported:
 
 ### Progressive Implementation
 
-1. **Start with Level 1**: Core CCL functionality
+1. **Start with Core**: Core CCL functionality
    ```bash
    ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy
-   ./ccl-test-runner test --levels 1
+   ./ccl-test-runner test --functions parse
    ```
 
-2. **Add Type System**: Level 2 typed access
+2. **Add Objects**: Object construction
    ```bash
    ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string
-   ./ccl-test-runner test --levels 1,2
+   ./ccl-test-runner test --functions parse,build_hierarchy
    ```
 
-3. **Complete Advanced Processing**: Add Level 3 processing features
+3. **Add Typed Access**: Type-safe value extraction
    ```bash
    ./ccl-test-runner generate --run-only function:parse,function:build-hierarchy,function:get-string,function:filter
-   ./ccl-test-runner test --levels 1,2,3
+   ./ccl-test-runner test --functions parse,build_hierarchy,get_string
    ```
 
 ### Feature-Specific Development

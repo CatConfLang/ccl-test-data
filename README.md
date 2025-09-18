@@ -36,7 +36,7 @@ This repository contains a **comprehensive JSON test suite** for CCL implementat
 
 ✅ **Dual-format architecture** - Source format for maintainability, generated flat format for implementation\
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
-✅ **Multi-level testing** - Tests declare expected outputs for different parsing levels\
+✅ **Multi-stage testing** - Tests declare expected outputs for different parsing stages\
 ✅ **Conflict resolution** - Automatic handling of mutually exclusive behaviors\
 ✅ **Progressive implementation** - Clear path from minimal parsing to full features\
 ✅ **Simple test runners** - Direct iteration over `validations` object keys\
@@ -102,7 +102,7 @@ The test suite is organized by feature category:
 
 ```json
 {
-  "name": "basic_multi_level_test",
+  "name": "basic_multi_stage_test",
   "input": "database.host = localhost",
   "validations": {
     "parse": {
@@ -133,7 +133,7 @@ The test suite is organized by feature category:
 
 ```json
 {
-  "name": "basic_multi_level_test_parse",
+  "name": "basic_multi_stage_test_parse",
   "input": "database.host = localhost",
   "validation": "parse",
   "expected": {
@@ -142,8 +142,7 @@ The test suite is organized by feature category:
   },
   "functions": ["parse"],
   "features": ["dotted_keys"],
-  "level": 3,
-  "source_test": "basic_multi_level_test"
+  "source_test": "basic_multi_stage_test"
 }
 ```
 
@@ -255,10 +254,10 @@ const advancedTests = flatTests.filter(test => {
 #### Progressive Implementation Strategy
 
 ```javascript
-// Level-based progressive implementation
-const level1Tests = flatTests.filter(test => test.level <= 1);
-const level2Tests = flatTests.filter(test => test.level <= 2);
-const level3Tests = flatTests.filter(test => test.level <= 3);
+// Function-based progressive implementation
+const coreTests = flatTests.filter(test => test.tags.includes('function:parse'));
+const objectTests = flatTests.filter(test => test.tags.includes('function:build_hierarchy'));
+const typedTests = flatTests.filter(test => test.tags.includes('function:get_string'));
 ```
 
 ### Conflict Resolution
@@ -480,7 +479,7 @@ just test --functions core      # Run core function tests (all should pass)
 
 When adding test cases:
 
-1. **Add to appropriate JSON file** by feature level and category
+1. **Add to appropriate JSON file** by feature category
 1. **Include descriptive name and metadata** with typed fields (functions, features, behaviors, variants)
 1. **Include count fields** with appropriate `count` values matching result arrays
 1. **Validate JSON structure** with `just validate` before submitting

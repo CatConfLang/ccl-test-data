@@ -2,7 +2,7 @@
 
 The CCL test suite uses a **dual-format architecture** optimized for both maintainability and implementation, with type-safe filtering through separate typed fields.
 
-The architecture provides clear implementation milestones while enabling developers to choose their level of CCL support based on actual needs rather than artificial constraints.
+The architecture provides clear implementation milestones while enabling developers to choose their scope of CCL support based on actual needs rather than artificial constraints.
 
 ## Architecture Overview
 
@@ -70,8 +70,7 @@ Files: `tests/api_*.json` - Grouped validations for easy test authoring
   },
   "meta": {
     "tags": ["function:parse", "function:build-hierarchy", "function:get-string"],
-    "level": 4,
-    "feature": "dotted-keys"
+        "feature": "dotted-keys"
   }
 }
 ```
@@ -93,8 +92,7 @@ Files: `generated_tests/` - One test per validation with typed fields
   "features": ["dotted-keys"],
   "behaviors": [],
   "variants": [],
-  "level": 4,
-  "source_test": "basic_object_construction"
+    "source_test": "basic_object_construction"
 }
 ```
 
@@ -113,8 +111,7 @@ Files: `tests/property_*.json` - Custom test runner logic required
   },
   "meta": {
     "tags": ["function:parse", "function:pretty-print"],
-    "level": 5,
-    "feature": "pretty-printing"
+        "feature": "pretty-printing"
   }
 }
 ```
@@ -130,18 +127,17 @@ Files: `tests/property_*.json` - Custom test runner logic required
   "features": [],
   "behaviors": [],
   "variants": [],
-  "level": 5,
-  "source_test": "round_trip_basic"
+    "source_test": "round_trip_basic"
 }
 ```
 
 ### API Validation Types (Direct Mapping)
-- **`parse`** - Level 1: Entry parsing validation
-- **`filter`** - Level 2: Comment filtering validation  
-- **`compose`** - Level 2: Entry composition validation
-- **`expand_dotted`** - Level 2: Dotted key expansion validation
-- **`make_objects`** - Level 3: Object construction validation
-- **`get_string`**, **`get_int`**, **`get_bool`**, **`get_float`** - Level 4: Typed access validation
+- **`parse`** - Entry parsing validation
+- **`filter`** - Comment filtering validation
+- **`compose`** - Entry composition validation
+- **`expand_dotted`** - Dotted key expansion validation
+- **`make_objects`** - Object construction validation
+- **`get_string`**, **`get_int`**, **`get_bool`**, **`get_float`** - Typed access validation
 
 ### Property Validation Types (Custom Logic)
 - **`round_trip`** - Parse-format-parse identity validation
@@ -319,7 +315,7 @@ function make_objects(entries) {
 
 #### Functionality
 - Expand `database.host = localhost` to nested structures
-- Support deep nesting (3+ levels)
+- Support deep nesting (3+ depths)
 - Handle mixed dotted and nested syntax
 - Resolve conflicts between access patterns
 
