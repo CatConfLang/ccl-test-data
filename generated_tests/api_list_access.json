@@ -25,7 +25,6 @@
         "parse"
       ],
       "input": "servers = web1\nservers = web2\nservers = web3",
-      "level": 4,
       "name": "basic_list_from_duplicates_parse",
       "source_test": "basic_list_from_duplicates",
       "validation": "parse",
@@ -48,7 +47,6 @@
         "build_hierarchy"
       ],
       "input": "servers = web1\nservers = web2\nservers = web3",
-      "level": 4,
       "name": "basic_list_from_duplicates_build_hierarchy",
       "source_test": "basic_list_from_duplicates",
       "validation": "build_hierarchy",
@@ -72,7 +70,6 @@
         "get_list"
       ],
       "input": "servers = web1\nservers = web2\nservers = web3",
-      "level": 4,
       "name": "basic_list_from_duplicates_get_list",
       "source_test": "basic_list_from_duplicates",
       "validation": "get_list",
@@ -96,7 +93,6 @@
         "parse"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_parse",
       "source_test": "single_item_as_list",
       "validation": "parse",
@@ -117,7 +113,6 @@
         "build_hierarchy"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_build_hierarchy",
       "source_test": "single_item_as_list",
       "validation": "build_hierarchy",
@@ -141,7 +136,6 @@
         "get_list"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_get_list",
       "source_test": "single_item_as_list",
       "validation": "get_list",
@@ -165,7 +159,6 @@
         "parse"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_reference_parse",
       "source_test": "single_item_as_list_reference",
       "validation": "parse",
@@ -186,7 +179,6 @@
         "build_hierarchy"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_reference_build_hierarchy",
       "source_test": "single_item_as_list_reference",
       "validation": "build_hierarchy",
@@ -207,7 +199,6 @@
         "get_list"
       ],
       "input": "item = single",
-      "level": 4,
       "name": "single_item_as_list_reference_get_list",
       "source_test": "single_item_as_list_reference",
       "validation": "get_list",
@@ -239,7 +230,6 @@
         "parse"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_parse",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "parse",
@@ -264,7 +254,6 @@
         "build_hierarchy"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "build_hierarchy",
@@ -288,7 +277,6 @@
         "get_list"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_get_list",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "get_list",
@@ -320,7 +308,6 @@
         "parse"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_reference_parse",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "parse",
@@ -345,7 +332,6 @@
         "build_hierarchy"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_reference_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "build_hierarchy",
@@ -366,7 +352,6 @@
         "get_list"
       ],
       "input": "ports = 80\nports = 443\nhost = localhost",
-      "level": 4,
       "name": "mixed_duplicate_single_keys_reference_get_list",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "get_list",
@@ -390,7 +375,6 @@
         "parse"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_parse",
       "source_test": "nested_list_access",
       "validation": "parse",
@@ -417,7 +401,6 @@
         "build_hierarchy"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_build_hierarchy",
       "source_test": "nested_list_access",
       "validation": "build_hierarchy",
@@ -442,7 +425,6 @@
         "get_list"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_get_list",
       "source_test": "nested_list_access",
       "validation": "get_list",
@@ -466,7 +448,6 @@
         "parse"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_reference_parse",
       "source_test": "nested_list_access_reference",
       "validation": "parse",
@@ -493,7 +474,6 @@
         "build_hierarchy"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_reference_build_hierarchy",
       "source_test": "nested_list_access_reference",
       "validation": "build_hierarchy",
@@ -515,7 +495,6 @@
         "get_list"
       ],
       "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
-      "level": 4,
       "name": "nested_list_access_reference_get_list",
       "source_test": "nested_list_access_reference",
       "validation": "get_list",
@@ -537,7 +516,6 @@
         "parse"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_parse",
       "source_test": "empty_list",
       "validation": "parse",
@@ -556,7 +534,6 @@
         "build_hierarchy"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_build_hierarchy",
       "source_test": "empty_list",
       "validation": "build_hierarchy",
@@ -578,7 +555,6 @@
         "get_list"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_get_list",
       "source_test": "empty_list",
       "validation": "get_list",
@@ -600,7 +576,6 @@
         "parse"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_reference_parse",
       "source_test": "empty_list_reference",
       "validation": "parse",
@@ -619,7 +594,6 @@
         "build_hierarchy"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_reference_build_hierarchy",
       "source_test": "empty_list_reference",
       "validation": "build_hierarchy",
@@ -638,7 +612,6 @@
         "get_list"
       ],
       "input": "empty_list =",
-      "level": 4,
       "name": "empty_list_reference_get_list",
       "source_test": "empty_list_reference",
       "validation": "get_list",
@@ -672,7 +645,6 @@
         "parse"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_parse",
       "source_test": "list_with_numbers",
       "validation": "parse",
@@ -696,7 +668,6 @@
         "build_hierarchy"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_build_hierarchy",
       "source_test": "list_with_numbers",
       "validation": "build_hierarchy",
@@ -721,7 +692,6 @@
         "get_list"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_get_list",
       "source_test": "list_with_numbers",
       "validation": "get_list",
@@ -755,7 +725,6 @@
         "parse"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_reference_parse",
       "source_test": "list_with_numbers_reference",
       "validation": "parse",
@@ -779,7 +748,6 @@
         "build_hierarchy"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_reference_build_hierarchy",
       "source_test": "list_with_numbers_reference",
       "validation": "build_hierarchy",
@@ -798,7 +766,6 @@
         "get_list"
       ],
       "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
-      "level": 4,
       "name": "list_with_numbers_reference_get_list",
       "source_test": "list_with_numbers_reference",
       "validation": "get_list",
@@ -832,7 +799,6 @@
         "parse"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_parse",
       "source_test": "list_with_booleans",
       "validation": "parse",
@@ -856,7 +822,6 @@
         "build_hierarchy"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_build_hierarchy",
       "source_test": "list_with_booleans",
       "validation": "build_hierarchy",
@@ -881,7 +846,6 @@
         "get_list"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_get_list",
       "source_test": "list_with_booleans",
       "validation": "get_list",
@@ -915,7 +879,6 @@
         "parse"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_reference_parse",
       "source_test": "list_with_booleans_reference",
       "validation": "parse",
@@ -939,7 +902,6 @@
         "build_hierarchy"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_reference_build_hierarchy",
       "source_test": "list_with_booleans_reference",
       "validation": "build_hierarchy",
@@ -958,7 +920,6 @@
         "get_list"
       ],
       "input": "flags = true\nflags = false\nflags = yes\nflags = no",
-      "level": 4,
       "name": "list_with_booleans_reference_get_list",
       "source_test": "list_with_booleans_reference",
       "validation": "get_list",
@@ -992,7 +953,6 @@
         "parse"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_parse",
       "source_test": "list_with_whitespace",
       "validation": "parse",
@@ -1016,7 +976,6 @@
         "build_hierarchy"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_build_hierarchy",
       "source_test": "list_with_whitespace",
       "validation": "build_hierarchy",
@@ -1041,7 +1000,6 @@
         "get_list"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_get_list",
       "source_test": "list_with_whitespace",
       "validation": "get_list",
@@ -1075,7 +1033,6 @@
         "parse"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_reference_parse",
       "source_test": "list_with_whitespace_reference",
       "validation": "parse",
@@ -1097,7 +1054,6 @@
         "build_hierarchy"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_reference_build_hierarchy",
       "source_test": "list_with_whitespace_reference",
       "validation": "build_hierarchy",
@@ -1116,7 +1072,6 @@
         "get_list"
       ],
       "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
-      "level": 4,
       "name": "list_with_whitespace_reference_get_list",
       "source_test": "list_with_whitespace_reference",
       "validation": "get_list",
@@ -1158,7 +1113,6 @@
         "parse"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_parse",
       "source_test": "deeply_nested_list",
       "validation": "parse",
@@ -1187,7 +1141,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_build_hierarchy",
       "source_test": "deeply_nested_list",
       "validation": "build_hierarchy",
@@ -1214,7 +1167,6 @@
         "get_list"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_get_list",
       "source_test": "deeply_nested_list",
       "validation": "get_list",
@@ -1236,7 +1188,6 @@
         "parse"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_reference_parse",
       "source_test": "deeply_nested_list_reference",
       "validation": "parse",
@@ -1265,7 +1216,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_reference_build_hierarchy",
       "source_test": "deeply_nested_list_reference",
       "validation": "build_hierarchy",
@@ -1287,7 +1237,6 @@
         "get_list"
       ],
       "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
-      "level": 4,
       "name": "deeply_nested_list_reference_get_list",
       "source_test": "deeply_nested_list_reference",
       "validation": "get_list",
@@ -1321,7 +1270,6 @@
         "parse"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_parse",
       "source_test": "list_with_unicode",
       "validation": "parse",
@@ -1345,7 +1293,6 @@
         "build_hierarchy"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_build_hierarchy",
       "source_test": "list_with_unicode",
       "validation": "build_hierarchy",
@@ -1370,7 +1317,6 @@
         "get_list"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_get_list",
       "source_test": "list_with_unicode",
       "validation": "get_list",
@@ -1404,7 +1350,6 @@
         "parse"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_reference_parse",
       "source_test": "list_with_unicode_reference",
       "validation": "parse",
@@ -1428,7 +1373,6 @@
         "build_hierarchy"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_reference_build_hierarchy",
       "source_test": "list_with_unicode_reference",
       "validation": "build_hierarchy",
@@ -1447,7 +1391,6 @@
         "get_list"
       ],
       "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
-      "level": 4,
       "name": "list_with_unicode_reference_get_list",
       "source_test": "list_with_unicode_reference",
       "validation": "get_list",
@@ -1481,7 +1424,6 @@
         "parse"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "level": 4,
       "name": "list_with_special_characters_parse",
       "source_test": "list_with_special_characters",
       "validation": "parse",
@@ -1505,7 +1447,6 @@
         "build_hierarchy"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "level": 4,
       "name": "list_with_special_characters_build_hierarchy",
       "source_test": "list_with_special_characters",
       "validation": "build_hierarchy",
@@ -1530,7 +1471,6 @@
         "get_list"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
-      "level": 4,
       "name": "list_with_special_characters_get_list",
       "source_test": "list_with_special_characters",
       "validation": "get_list",
@@ -1560,7 +1500,6 @@
         "parse"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
-      "level": 4,
       "name": "list_with_special_characters_reference_parse",
       "source_test": "list_with_special_characters_reference",
       "validation": "parse",
@@ -1583,7 +1522,6 @@
         "build_hierarchy"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
-      "level": 4,
       "name": "list_with_special_characters_reference_build_hierarchy",
       "source_test": "list_with_special_characters_reference",
       "validation": "build_hierarchy",
@@ -1602,7 +1540,6 @@
         "get_list"
       ],
       "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|",
-      "level": 4,
       "name": "list_with_special_characters_reference_get_list",
       "source_test": "list_with_special_characters_reference",
       "validation": "get_list",
@@ -1700,7 +1637,6 @@
         "parse"
       ],
       "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "level": 4,
       "name": "large_list_parse",
       "source_test": "large_list",
       "validation": "parse",
@@ -1740,7 +1676,6 @@
         "build_hierarchy"
       ],
       "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "level": 4,
       "name": "large_list_build_hierarchy",
       "source_test": "large_list",
       "validation": "build_hierarchy",
@@ -1781,7 +1716,6 @@
         "get_list"
       ],
       "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
-      "level": 4,
       "name": "large_list_get_list",
       "source_test": "large_list",
       "validation": "get_list",
@@ -1819,7 +1753,6 @@
         "parse"
       ],
       "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "level": 4,
       "name": "list_with_comments_parse",
       "source_test": "list_with_comments",
       "validation": "parse",
@@ -1846,7 +1779,6 @@
         "build_hierarchy"
       ],
       "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "level": 4,
       "name": "list_with_comments_build_hierarchy",
       "source_test": "list_with_comments",
       "validation": "build_hierarchy",
@@ -1870,7 +1802,6 @@
         "get_list"
       ],
       "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
-      "level": 4,
       "name": "list_with_comments_get_list",
       "source_test": "list_with_comments",
       "validation": "get_list",
@@ -1892,7 +1823,6 @@
         "parse"
       ],
       "input": "existing = value",
-      "level": 4,
       "name": "list_error_missing_key_parse",
       "source_test": "list_error_missing_key",
       "validation": "parse",
@@ -1911,7 +1841,6 @@
         "build_hierarchy"
       ],
       "input": "existing = value",
-      "level": 4,
       "name": "list_error_missing_key_build_hierarchy",
       "source_test": "list_error_missing_key",
       "validation": "build_hierarchy",
@@ -1930,7 +1859,6 @@
         "get_list"
       ],
       "input": "existing = value",
-      "level": 4,
       "name": "list_error_missing_key_get_list",
       "source_test": "list_error_missing_key",
       "validation": "get_list",
@@ -1952,7 +1880,6 @@
         "parse"
       ],
       "input": "config =\n  server = web1",
-      "level": 4,
       "name": "list_error_nested_missing_key_parse",
       "source_test": "list_error_nested_missing_key",
       "validation": "parse",
@@ -1973,7 +1900,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  server = web1",
-      "level": 4,
       "name": "list_error_nested_missing_key_build_hierarchy",
       "source_test": "list_error_nested_missing_key",
       "validation": "build_hierarchy",
@@ -1993,7 +1919,6 @@
         "get_list"
       ],
       "input": "config =\n  server = web1",
-      "level": 4,
       "name": "list_error_nested_missing_key_get_list",
       "source_test": "list_error_nested_missing_key",
       "validation": "get_list",
@@ -2015,7 +1940,6 @@
         "parse"
       ],
       "input": "value = simple",
-      "level": 4,
       "name": "list_error_non_object_path_parse",
       "source_test": "list_error_non_object_path",
       "validation": "parse",
@@ -2034,7 +1958,6 @@
         "build_hierarchy"
       ],
       "input": "value = simple",
-      "level": 4,
       "name": "list_error_non_object_path_build_hierarchy",
       "source_test": "list_error_non_object_path",
       "validation": "build_hierarchy",
@@ -2054,7 +1977,6 @@
         "get_list"
       ],
       "input": "value = simple",
-      "level": 4,
       "name": "list_error_non_object_path_get_list",
       "source_test": "list_error_non_object_path",
       "validation": "get_list",
@@ -2088,7 +2010,6 @@
         "parse_value"
       ],
       "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "level": 4,
       "name": "list_multiline_values_parse_value",
       "source_test": "list_multiline_values",
       "validation": "parse_value",
@@ -2112,7 +2033,6 @@
         "build_hierarchy"
       ],
       "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "level": 4,
       "name": "list_multiline_values_build_hierarchy",
       "source_test": "list_multiline_values",
       "validation": "build_hierarchy",
@@ -2136,7 +2056,6 @@
         "get_list"
       ],
       "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
-      "level": 4,
       "name": "list_multiline_values_get_list",
       "source_test": "list_multiline_values",
       "validation": "get_list",
@@ -2200,7 +2119,6 @@
         "parse_value"
       ],
       "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "level": 4,
       "name": "complex_mixed_list_scenarios_parse_value",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "parse_value",
@@ -2239,7 +2157,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "level": 4,
       "name": "complex_mixed_list_scenarios_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "build_hierarchy",
@@ -2265,7 +2182,6 @@
         "get_list"
       ],
       "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "level": 4,
       "name": "complex_mixed_list_scenarios_get_list",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "get_list",
@@ -2304,7 +2220,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "level": 4,
       "name": "complex_mixed_list_scenarios_reference_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios_reference",
       "validation": "build_hierarchy",
@@ -2325,7 +2240,6 @@
         "get_list"
       ],
       "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
-      "level": 4,
       "name": "complex_mixed_list_scenarios_reference_get_list",
       "source_test": "complex_mixed_list_scenarios_reference",
       "validation": "get_list",
@@ -2341,7 +2255,6 @@
         "parse"
       ],
       "input": "",
-      "level": 4,
       "name": "list_edge_case_zero_length_parse",
       "source_test": "list_edge_case_zero_length",
       "validation": "parse",
@@ -2358,7 +2271,6 @@
         "build_hierarchy"
       ],
       "input": "",
-      "level": 4,
       "name": "list_edge_case_zero_length_build_hierarchy",
       "source_test": "list_edge_case_zero_length",
       "validation": "build_hierarchy",
@@ -2377,7 +2289,6 @@
         "get_list"
       ],
       "input": "",
-      "level": 4,
       "name": "list_edge_case_zero_length_get_list",
       "source_test": "list_edge_case_zero_length",
       "validation": "get_list",
@@ -2401,7 +2312,6 @@
         "parse"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_parse",
       "source_test": "list_path_traversal_protection",
       "validation": "parse",
@@ -2422,7 +2332,6 @@
         "build_hierarchy"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_build_hierarchy",
       "source_test": "list_path_traversal_protection",
       "validation": "build_hierarchy",
@@ -2446,7 +2355,6 @@
         "get_list"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_get_list",
       "source_test": "list_path_traversal_protection",
       "validation": "get_list",
@@ -2470,7 +2378,6 @@
         "parse"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_reference_parse",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "parse",
@@ -2491,7 +2398,6 @@
         "build_hierarchy"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_reference_build_hierarchy",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "build_hierarchy",
@@ -2512,7 +2418,6 @@
         "get_list"
       ],
       "input": "safe = value",
-      "level": 4,
       "name": "list_path_traversal_protection_reference_get_list",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "get_list",

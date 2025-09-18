@@ -325,7 +325,6 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 
 		testData := map[string]interface{}{
 			"name":       test.Name,
-			"level":      test.Meta.Level,
 			"feature":    test.Meta.Feature,
 			"assertions": assertions,
 			"functions":  functionsCopy,

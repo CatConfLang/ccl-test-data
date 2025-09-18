@@ -21,7 +21,6 @@
         "parse"
       ],
       "input": "name = Alice\nage = 42",
-      "level": 1,
       "name": "basic_key_value_pairs_parse",
       "source_test": "basic_key_value_pairs",
       "validation": "parse",
@@ -47,7 +46,6 @@
         "parse"
       ],
       "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
-      "level": 1,
       "name": "equals_in_values_parse",
       "source_test": "equals_in_values",
       "validation": "parse",
@@ -73,7 +71,6 @@
         "parse"
       ],
       "input": "  key   =    value with spaces   \nother = normal",
-      "level": 1,
       "name": "whitespace_trimming_parse",
       "source_test": "whitespace_trimming",
       "validation": "parse",
@@ -99,7 +96,6 @@
         "parse"
       ],
       "input": "description = First line\n  Second line\n  Third line\ndone = yes",
-      "level": 1,
       "name": "multiline_values_parse",
       "source_test": "multiline_values",
       "validation": "parse",
@@ -125,7 +121,6 @@
         "parse"
       ],
       "input": "empty =\nother = value",
-      "level": 1,
       "name": "empty_values_parse",
       "source_test": "empty_values",
       "validation": "parse",
@@ -147,7 +142,6 @@
         "parse"
       ],
       "input": "database =\n  host = localhost\n  port = 5432",
-      "level": 1,
       "name": "nested_structure_parsing_parse",
       "source_test": "nested_structure_parsing",
       "validation": "parse",
@@ -173,7 +167,6 @@
         "parse"
       ],
       "input": "emoji = 😀😃😄\n配置 = config",
-      "level": 1,
       "name": "unicode_parsing_parse",
       "source_test": "unicode_parsing",
       "validation": "parse",
@@ -189,7 +182,6 @@
         "parse"
       ],
       "input": "",
-      "level": 1,
       "name": "empty_input_parse",
       "source_test": "empty_input",
       "validation": "parse",

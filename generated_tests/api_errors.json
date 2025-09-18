@@ -11,7 +11,6 @@
         "parse"
       ],
       "input": "key",
-      "level": 1,
       "name": "just_key_error_parse",
       "source_test": "just_key_error",
       "validation": "parse",
@@ -27,7 +26,6 @@
         "parse"
       ],
       "input": "   ",
-      "level": 1,
       "name": "whitespace_only_error_parse",
       "source_test": "whitespace_only_error",
       "validation": "parse",
@@ -43,7 +41,6 @@
         "parse"
       ],
       "input": "   ",
-      "level": 1,
       "name": "whitespace_only_error_ocaml_reference_parse",
       "source_test": "whitespace_only_error_ocaml_reference",
       "validation": "parse",
@@ -59,7 +56,6 @@
         "parse"
       ],
       "input": "val",
-      "level": 1,
       "name": "just_string_error_parse",
       "source_test": "just_string_error",
       "validation": "parse",
@@ -75,7 +71,6 @@
         "parse"
       ],
       "input": "val\n  next",
-      "level": 1,
       "name": "multiline_plain_error_parse",
       "source_test": "multiline_plain_error",
       "validation": "parse",
@@ -91,7 +86,6 @@
         "parse"
       ],
       "input": "\nval\n  next",
-      "level": 1,
       "name": "multiline_plain_nested_error_parse",
       "source_test": "multiline_plain_nested_error",
       "validation": "parse",

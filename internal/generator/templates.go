@@ -31,7 +31,7 @@ import (
 {{end}}
 `
 
-const testCaseTemplate = `// {{.Name}} - {{.TagsString}} (level {{.Level}})
+const testCaseTemplate = `// {{.Name}} - {{.TagsString}}
 func Test{{.TestFuncName}}(t *testing.T) {
 	{{if .ShouldSkip}}t.Skip("{{.SkipReason}}"){{else}}
 	
@@ -72,7 +72,6 @@ type TestCaseData struct {
 	Name              string
 	TestFuncName      string
 	TagsString        string
-	Level             int
 	ShouldSkip        bool
 	SkipReason        string
 	Input             string
@@ -159,7 +158,6 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 		Name:         test.Name,
 		TestFuncName: toPascalCase(test.Name),
 		TagsString:   strings.Join(g.getTestTags(test), " "),
-		Level:        test.Meta.Level,
 		Input:        test.Input,
 		InputString:  escapeGoString(test.Input),
 		HasInput:     true, // Flat format always has input field (including empty strings)
@@ -602,17 +600,43 @@ func (g *Generator) generateFlatFormatValidation(test types.TestCase) (string, e
 	case "get_string", "get_int", "get_bool", "get_float", "get_list":
 		return g.generateFlatTypedAccessValidation(test, test.Validation)
 	default:
-		// For unimplemented validations, generate a safe comment
-		return fmt.Sprintf("// TODO: Implement %s validation", test.Validation), nil
+		// For unimplemented validations, generate a safe comment with variable usage
+		return fmt.Sprintf(`// TODO: Implement %s validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning`, test.Validation), nil
 	}
 }
 
 // generateFlatParseValidation generates parse validation for flat format
 func (g *Generator) generateFlatParseValidation(test types.TestCase) (string, error) {
-	// Parse expected result from flat format
+	// Handle case where Expected is directly an array of entries (loader returns this format)
+	if entriesArray, ok := test.Expected.([]interface{}); ok {
+		// Convert to Go-formatted entry array
+		var goEntries []string
+		for _, entry := range entriesArray {
+			entryMap, ok := entry.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			key, _ := entryMap["key"].(string)
+			value, _ := entryMap["value"].(string)
+			goEntries = append(goEntries, fmt.Sprintf(`mock.Entry{Key: %q, Value: %q}`, key, value))
+		}
+
+		entryArrayStr := "[]mock.Entry{" + strings.Join(goEntries, ", ") + "}"
+
+		return fmt.Sprintf(`// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := %s
+	assert.Equal(t, expected, parseResult)`, entryArrayStr), nil
+	}
+
+	// Handle case where Expected is a map with count/entries/error fields (JSON schema format)
 	expectedMap, ok := test.Expected.(map[string]interface{})
 	if !ok {
-		return "", fmt.Errorf("expected map for parse validation, got %T", test.Expected)
+		return "", fmt.Errorf("expected map or array for parse validation, got %T", test.Expected)
 	}
 
 	// Check for error expectation first
@@ -700,9 +724,25 @@ func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (s
 
 // generateFlatTypedAccessValidation generates typed access validation for flat format
 func (g *Generator) generateFlatTypedAccessValidation(test types.TestCase, validation string) (string, error) {
+	// Handle case where Expected is directly the value (loader returns this format for typed access)
+	if test.Expected != nil {
+		// Check if it's a simple value (string, int, bool, float, or array for lists)
+		switch v := test.Expected.(type) {
+		case string, int, float64, bool, []interface{}:
+			// Use args if provided, otherwise use a default key
+			args := test.Args
+			if len(args) == 0 {
+				args = []string{"title"} // Common default for typed access tests
+			}
+
+			return g.generateTypedAccessForDirectValue(validation, args, v)
+		}
+	}
+
+	// Handle case where Expected is a map with value/error/count fields (JSON schema format)
 	expectedMap, ok := test.Expected.(map[string]interface{})
 	if !ok {
-		return "", fmt.Errorf("expected must be a map for typed access validation")
+		return "", fmt.Errorf("expected must be a map or simple value for typed access validation, got %T", test.Expected)
 	}
 
 	// Check for error expectation first
@@ -834,6 +874,41 @@ func (g *Generator) generateFlatTypedAccessValidation(test types.TestCase, valid
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 %s`, validation, fmt.Sprintf(template, formatArgs(args))), nil
+	}
+
+	return fmt.Sprintf(`// %s validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+%s`, validation, fmt.Sprintf(template, formatArgs(args), expectedValue)), nil
+}
+
+// generateTypedAccessForDirectValue generates validation for when the expected value is returned directly
+func (g *Generator) generateTypedAccessForDirectValue(validation string, args []string, expectedValue interface{}) (string, error) {
+	var template string
+	switch validation {
+	case "get_string":
+		template = `	result, err := ccl.GetString(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+	case "get_int":
+		template = `	result, err := ccl.GetInt(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+	case "get_bool":
+		template = `	result, err := ccl.GetBool(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+	case "get_float":
+		template = `	result, err := ccl.GetFloat(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+	case "get_list":
+		template = `	result, err := ccl.GetList(hierarchy, %s)
+	require.NoError(t, err)
+	assert.Equal(t, %#v, result)`
+	default:
+		return "", fmt.Errorf("unknown typed access validation: %s", validation)
 	}
 
 	return fmt.Sprintf(`// %s validation
@@ -1107,17 +1182,14 @@ func formatGoSlice(s []interface{}) string {
 
 func formatArgs(args []string) string {
 	if len(args) == 0 {
-		return ""
+		return "[]string{}"
 	}
-	if len(args) == 1 {
-		return fmt.Sprintf("%#v", args[0])
-	}
-	// Format multiple args as separate parameters
+	// Always format as a slice since CCL functions expect []string
 	var parts []string
 	for _, arg := range args {
-		parts = append(parts, fmt.Sprintf("%#v", arg))
+		parts = append(parts, fmt.Sprintf("%q", arg))
 	}
-	return strings.Join(parts, ", ")
+	return fmt.Sprintf("[]string{%s}", strings.Join(parts, ", "))
 }
 
 // Helper functions to determine which variables are needed

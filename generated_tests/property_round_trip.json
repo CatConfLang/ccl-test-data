@@ -11,7 +11,6 @@
         "round_trip"
       ],
       "input": "key = value\nnested =\n  sub = val",
-      "level": 4,
       "name": "round_trip_basic_round_trip",
       "source_test": "round_trip_basic",
       "validation": "round_trip",
@@ -33,7 +32,6 @@
         "parse"
       ],
       "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
-      "level": 4,
       "name": "round_trip_whitespace_normalization_parse",
       "source_test": "round_trip_whitespace_normalization",
       "validation": "parse",
@@ -49,7 +47,6 @@
         "round_trip"
       ],
       "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
-      "level": 4,
       "name": "round_trip_whitespace_normalization_round_trip",
       "source_test": "round_trip_whitespace_normalization",
       "validation": "round_trip",
@@ -79,7 +76,6 @@
         "parse"
       ],
       "input": "= item1\n= item2\nregular = value",
-      "level": 4,
       "name": "round_trip_empty_keys_lists_parse",
       "source_test": "round_trip_empty_keys_lists",
       "validation": "parse",
@@ -95,7 +91,6 @@
         "round_trip"
       ],
       "input": "= item1\n= item2\nregular = value",
-      "level": 4,
       "name": "round_trip_empty_keys_lists_round_trip",
       "source_test": "round_trip_empty_keys_lists",
       "validation": "round_trip",
@@ -117,7 +112,6 @@
         "parse"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-      "level": 4,
       "name": "round_trip_nested_structures_parse",
       "source_test": "round_trip_nested_structures",
       "validation": "parse",
@@ -133,7 +127,6 @@
         "round_trip"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-      "level": 4,
       "name": "round_trip_nested_structures_round_trip",
       "source_test": "round_trip_nested_structures",
       "validation": "round_trip",
@@ -155,7 +148,6 @@
         "parse"
       ],
       "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
-      "level": 4,
       "name": "round_trip_multiline_values_parse",
       "source_test": "round_trip_multiline_values",
       "validation": "parse",
@@ -171,7 +163,6 @@
         "round_trip"
       ],
       "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
-      "level": 4,
       "name": "round_trip_multiline_values_round_trip",
       "source_test": "round_trip_multiline_values",
       "validation": "round_trip",
@@ -209,7 +200,6 @@
         "parse"
       ],
       "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
-      "level": 4,
       "name": "round_trip_mixed_content_parse",
       "source_test": "round_trip_mixed_content",
       "validation": "parse",
@@ -225,7 +215,6 @@
         "round_trip"
       ],
       "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
-      "level": 4,
       "name": "round_trip_mixed_content_round_trip",
       "source_test": "round_trip_mixed_content",
       "validation": "round_trip",
@@ -247,7 +236,6 @@
         "parse"
       ],
       "input": "empty_key =",
-      "level": 4,
       "name": "canonical_format_empty_values_parse",
       "source_test": "canonical_format_empty_values",
       "validation": "parse",
@@ -264,7 +252,6 @@
         "canonical_format"
       ],
       "input": "empty_key =",
-      "level": 4,
       "name": "canonical_format_empty_values_canonical_format",
       "source_test": "canonical_format_empty_values",
       "validation": "canonical_format",
@@ -288,7 +275,6 @@
         "parse"
       ],
       "input": "value_with_tabs = text\t\twith\ttabs\t",
-      "level": 4,
       "name": "canonical_format_tab_preservation_parse",
       "source_test": "canonical_format_tab_preservation",
       "validation": "parse",
@@ -307,7 +293,6 @@
         "canonical_format"
       ],
       "input": "value_with_tabs = text\t\twith\ttabs\t",
-      "level": 4,
       "name": "canonical_format_tab_preservation_canonical_format",
       "source_test": "canonical_format_tab_preservation",
       "validation": "canonical_format",
@@ -333,7 +318,6 @@
         "parse"
       ],
       "input": "unicode = 你好世界\nemo = 🌟✨",
-      "level": 4,
       "name": "canonical_format_unicode_parse",
       "source_test": "canonical_format_unicode",
       "validation": "parse",
@@ -350,7 +334,6 @@
         "canonical_format"
       ],
       "input": "unicode = 你好世界\nemo = 🌟✨",
-      "level": 4,
       "name": "canonical_format_unicode_canonical_format",
       "source_test": "canonical_format_unicode",
       "validation": "canonical_format",
@@ -372,7 +355,6 @@
         "parse"
       ],
       "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
-      "level": 4,
       "name": "round_trip_complex_nesting_parse",
       "source_test": "round_trip_complex_nesting",
       "validation": "parse",
@@ -388,7 +370,6 @@
         "round_trip"
       ],
       "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
-      "level": 4,
       "name": "round_trip_complex_nesting_round_trip",
       "source_test": "round_trip_complex_nesting",
       "validation": "round_trip",
@@ -416,7 +397,6 @@
         "parse"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "canonical_format_line_endings_proposed_parse",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "parse",
@@ -435,7 +415,6 @@
         "canonical_format"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "canonical_format_line_endings_proposed_canonical_format",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "canonical_format",
@@ -463,7 +442,6 @@
         "parse"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "crlf_normalize_to_lf_proposed_parse",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "parse",
@@ -482,7 +460,6 @@
         "canonical_format"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "crlf_normalize_to_lf_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "canonical_format",
@@ -510,7 +487,6 @@
         "parse"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "crlf_normalize_to_lf_indented_proposed_parse",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "parse",
@@ -529,7 +505,6 @@
         "canonical_format"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "crlf_normalize_to_lf_indented_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "canonical_format",
@@ -551,7 +526,6 @@
         "parse"
       ],
       "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
-      "level": 4,
       "name": "round_trip_deeply_nested_parse",
       "source_test": "round_trip_deeply_nested",
       "validation": "parse",
@@ -567,7 +541,6 @@
         "round_trip"
       ],
       "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
-      "level": 4,
       "name": "round_trip_deeply_nested_round_trip",
       "source_test": "round_trip_deeply_nested",
       "validation": "round_trip",
@@ -599,7 +572,6 @@
         "parse"
       ],
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-      "level": 4,
       "name": "canonical_format_consistent_spacing_parse",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "parse",
@@ -618,7 +590,6 @@
         "canonical_format"
       ],
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-      "level": 4,
       "name": "canonical_format_consistent_spacing_canonical_format",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "canonical_format",
@@ -644,7 +615,6 @@
         "parse"
       ],
       "input": "empty_section =\n\nother = value",
-      "level": 4,
       "name": "round_trip_empty_multiline_parse",
       "source_test": "round_trip_empty_multiline",
       "validation": "parse",
@@ -660,7 +630,6 @@
         "round_trip"
       ],
       "input": "empty_section =\n\nother = value",
-      "level": 4,
       "name": "round_trip_empty_multiline_round_trip",
       "source_test": "round_trip_empty_multiline",
       "validation": "round_trip",
@@ -690,7 +659,6 @@
         "parse"
       ],
       "input": "z = last\na = first\nm = middle",
-      "level": 4,
       "name": "deterministic_output_parse",
       "source_test": "deterministic_output",
       "validation": "parse",
@@ -707,7 +675,6 @@
         "canonical_format"
       ],
       "input": "z = last\na = first\nm = middle",
-      "level": 4,
       "name": "deterministic_output_canonical_format",
       "source_test": "deterministic_output",
       "validation": "canonical_format",
@@ -724,7 +691,6 @@
         "canonical_format"
       ],
       "input": "empty_key =",
-      "level": 4,
       "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
       "source_test": "canonical_format_empty_values_ocaml_reference",
       "validation": "canonical_format",
@@ -743,7 +709,6 @@
         "canonical_format"
       ],
       "input": "value_with_tabs = text\t\twith\ttabs\t",
-      "level": 4,
       "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
       "source_test": "canonical_format_tab_preservation_ocaml_reference",
       "validation": "canonical_format",
@@ -760,7 +725,6 @@
         "canonical_format"
       ],
       "input": "unicode = 你好世界\nemo = 🌟✨",
-      "level": 4,
       "name": "canonical_format_unicode_ocaml_reference_canonical_format",
       "source_test": "canonical_format_unicode_ocaml_reference",
       "validation": "canonical_format",
@@ -788,7 +752,6 @@
         "parse"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "canonical_format_line_endings_reference_behavior_parse",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "parse",
@@ -807,7 +770,6 @@
         "canonical_format"
       ],
       "input": "key1 = value1\r\nkey2 = value2\r\n",
-      "level": 4,
       "name": "canonical_format_line_endings_reference_behavior_canonical_format",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "canonical_format",
@@ -826,7 +788,6 @@
         "canonical_format"
       ],
       "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
-      "level": 4,
       "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
       "source_test": "canonical_format_consistent_spacing_ocaml_reference",
       "validation": "canonical_format",
@@ -843,7 +804,6 @@
         "canonical_format"
       ],
       "input": "z = last\na = first\nm = middle",
-      "level": 4,
       "name": "deterministic_output_ocaml_reference_canonical_format",
       "source_test": "deterministic_output_ocaml_reference",
       "validation": "canonical_format",

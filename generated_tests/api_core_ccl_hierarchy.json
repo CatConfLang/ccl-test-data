@@ -21,7 +21,6 @@
         "parse"
       ],
       "input": "name = Alice\nage = 42",
-      "level": 1,
       "name": "basic_object_construction_parse",
       "source_test": "basic_object_construction",
       "validation": "parse",
@@ -41,7 +40,6 @@
         "build_hierarchy"
       ],
       "input": "name = Alice\nage = 42",
-      "level": 1,
       "name": "basic_object_construction_build_hierarchy",
       "source_test": "basic_object_construction",
       "validation": "build_hierarchy",
@@ -63,7 +61,6 @@
         "parse"
       ],
       "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
-      "level": 1,
       "name": "deep_nested_objects_parse",
       "source_test": "deep_nested_objects",
       "validation": "parse",
@@ -90,7 +87,6 @@
         "build_hierarchy"
       ],
       "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
-      "level": 1,
       "name": "deep_nested_objects_build_hierarchy",
       "source_test": "deep_nested_objects",
       "validation": "build_hierarchy",
@@ -120,7 +116,6 @@
         "parse"
       ],
       "input": "item = first\nitem = second\nitem = third",
-      "level": 1,
       "name": "duplicate_keys_to_lists_parse",
       "source_test": "duplicate_keys_to_lists",
       "validation": "parse",
@@ -143,7 +138,6 @@
         "build_hierarchy"
       ],
       "input": "item = first\nitem = second\nitem = third",
-      "level": 1,
       "name": "duplicate_keys_to_lists_build_hierarchy",
       "source_test": "duplicate_keys_to_lists",
       "validation": "build_hierarchy",
@@ -165,7 +159,6 @@
         "parse"
       ],
       "input": "config =\n  server = web1\n  server = web2\n  port = 80",
-      "level": 1,
       "name": "nested_duplicate_keys_parse",
       "source_test": "nested_duplicate_keys",
       "validation": "parse",
@@ -190,7 +183,6 @@
         "build_hierarchy"
       ],
       "input": "config =\n  server = web1\n  server = web2\n  port = 80",
-      "level": 1,
       "name": "nested_duplicate_keys_build_hierarchy",
       "source_test": "nested_duplicate_keys",
       "validation": "build_hierarchy",
@@ -220,7 +212,6 @@
         "parse"
       ],
       "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
-      "level": 1,
       "name": "mixed_flat_and_nested_parse",
       "source_test": "mixed_flat_and_nested",
       "validation": "parse",
@@ -244,7 +235,6 @@
         "build_hierarchy"
       ],
       "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
-      "level": 1,
       "name": "mixed_flat_and_nested_build_hierarchy",
       "source_test": "mixed_flat_and_nested",
       "validation": "build_hierarchy",
@@ -266,7 +256,6 @@
         "parse"
       ],
       "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
-      "level": 1,
       "name": "nested_objects_with_lists_parse",
       "source_test": "nested_objects_with_lists",
       "validation": "parse",
@@ -297,7 +286,6 @@
         "build_hierarchy"
       ],
       "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
-      "level": 1,
       "name": "nested_objects_with_lists_build_hierarchy",
       "source_test": "nested_objects_with_lists",
       "validation": "build_hierarchy",

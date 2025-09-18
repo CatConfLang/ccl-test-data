@@ -1,0 +1,366 @@
+package parsing_test
+
+import (
+	"testing"
+	
+	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+)
+
+// Generated from generated_tests/api_core_ccl_hierarchy.json
+// Suite: Flat Format
+// Version: 1.0
+
+
+
+// basic_object_construction_parse - function:parse
+func TestBasicObjectConstructionParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `name = Alice
+age = 42`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "name", Value: "Alice"}, mock.Entry{Key: "age", Value: "42"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// basic_object_construction_build_hierarchy - function:build_hierarchy
+func TestBasicObjectConstructionBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `name = Alice
+age = 42`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// deep_nested_objects_parse - function:parse
+func TestDeepNestedObjectsParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `server =
+  database =
+    host = localhost
+    port = 5432
+  cache =
+    enabled = true`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "server", Value: "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// deep_nested_objects_build_hierarchy - function:build_hierarchy
+func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `server =
+  database =
+    host = localhost
+    port = 5432
+  cache =
+    enabled = true`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// duplicate_keys_to_lists_parse - function:parse
+func TestDuplicateKeysToListsParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `item = first
+item = second
+item = third`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "item", Value: "first"}, mock.Entry{Key: "item", Value: "second"}, mock.Entry{Key: "item", Value: "third"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// duplicate_keys_to_lists_build_hierarchy - function:build_hierarchy
+func TestDuplicateKeysToListsBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `item = first
+item = second
+item = third`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// nested_duplicate_keys_parse - function:parse
+func TestNestedDuplicateKeysParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `config =
+  server = web1
+  server = web2
+  port = 80`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  server = web1\n  server = web2\n  port = 80"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_duplicate_keys_build_hierarchy - function:build_hierarchy
+func TestNestedDuplicateKeysBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `config =
+  server = web1
+  server = web2
+  port = 80`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// mixed_flat_and_nested_parse - function:parse
+func TestMixedFlatAndNestedParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `name = Alice
+config =
+  debug = true
+  timeout = 30
+version = 1.0`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "name", Value: "Alice"}, mock.Entry{Key: "config", Value: "\n  debug = true\n  timeout = 30"}, mock.Entry{Key: "version", Value: "1.0"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// mixed_flat_and_nested_build_hierarchy - function:build_hierarchy
+func TestMixedFlatAndNestedBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `name = Alice
+config =
+  debug = true
+  timeout = 30
+version = 1.0`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// nested_objects_with_lists_parse - function:parse
+func TestNestedObjectsWithListsParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `environments =
+  prod =
+    server = web1
+    server = web2
+    port = 80
+  dev =
+    server = localhost
+    port = 3000`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "environments", Value: "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_objects_with_lists_build_hierarchy - function:build_hierarchy
+func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `environments =
+  prod =
+    server = web1
+    server = web2
+    port = 80
+  dev =
+    server = localhost
+    port = 3000`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+

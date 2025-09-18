@@ -257,41 +257,21 @@ func (g *Generator) getOutputPath(testSuite types.TestSuite, sourceFile string) 
 	// Extract base filename without extension
 	baseName := strings.TrimSuffix(filepath.Base(sourceFile), ".json")
 
-	// Determine level and feature from the first test or suite name
-	level := g.inferLevel(testSuite)
+	// Determine feature from the first test or suite name
 	feature := g.inferFeature(testSuite)
 
-	// Create directory structure: level-X-feature/
-	dirName := fmt.Sprintf("level%d_%s", level, strings.ReplaceAll(feature, "-", "_"))
+	// Create directory structure: feature/
+	dirName := strings.ReplaceAll(feature, "-", "_")
 
 	return filepath.Join(g.outputDir, dirName, baseName+"_test.go")
 }
 
 // getPackageName generates the package name for the test file
 func (g *Generator) getPackageName(testSuite types.TestSuite) string {
-	level := g.inferLevel(testSuite)
 	feature := g.inferFeature(testSuite)
-	return fmt.Sprintf("level%d_%s", level, strings.ReplaceAll(feature, "-", "_"))
+	return strings.ReplaceAll(feature, "-", "_")
 }
 
-// inferLevel attempts to determine the CCL level from the test suite
-func (g *Generator) inferLevel(testSuite types.TestSuite) int {
-	// Look at the first test's metadata
-	if len(testSuite.Tests) > 0 {
-		return testSuite.Tests[0].Meta.Level
-	}
-
-	// Fall back to parsing suite name
-	suiteName := strings.ToLower(testSuite.Suite)
-	if strings.Contains(suiteName, "typed") {
-		return 4
-	} else if strings.Contains(suiteName, "object") {
-		return 3
-	} else if strings.Contains(suiteName, "processing") || strings.Contains(suiteName, "dotted") {
-		return 2
-	}
-	return 1
-}
 
 // inferFeature attempts to determine the feature from the test suite
 func (g *Generator) inferFeature(testSuite types.TestSuite) string {

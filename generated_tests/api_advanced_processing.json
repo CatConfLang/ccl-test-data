@@ -29,7 +29,6 @@
         "parse"
       ],
       "input": "a = 1\nb = 2\nb = 20\nc = 3",
-      "level": 2,
       "name": "composition_stability_duplicate_keys_parse",
       "source_test": "composition_stability_duplicate_keys",
       "validation": "parse",
@@ -59,7 +58,6 @@
         "parse"
       ],
       "input": "ports = 8000\nports = 8001\nports = 8002",
-      "level": 2,
       "name": "multiple_values_same_key_parse",
       "source_test": "multiple_values_same_key",
       "validation": "parse",
@@ -89,7 +87,6 @@
         "parse"
       ],
       "input": "= 3\n= 1\n= 2",
-      "level": 2,
       "name": "list_with_empty_keys_parse",
       "source_test": "list_with_empty_keys",
       "validation": "parse",
@@ -111,7 +108,6 @@
         "parse"
       ],
       "input": "== Section 2 ==",
-      "level": 2,
       "name": "section_style_syntax_parse",
       "source_test": "section_style_syntax",
       "validation": "parse",
@@ -145,7 +141,6 @@
         "parse"
       ],
       "input": "b = 20\nc = 3\na = 1\nb = 2",
-      "level": 2,
       "name": "composition_stability_ba_parse",
       "source_test": "composition_stability_ba",
       "validation": "parse",
@@ -179,7 +174,6 @@
         "parse"
       ],
       "input": "name = app\nports = 8000\nname = service\nports = 8001",
-      "level": 2,
       "name": "mixed_keys_with_duplicates_parse",
       "source_test": "mixed_keys_with_duplicates",
       "validation": "parse",
@@ -209,7 +203,6 @@
         "parse"
       ],
       "input": "1 =\n2 =\n3 =",
-      "level": 2,
       "name": "array_style_list_parse",
       "source_test": "array_style_list",
       "validation": "parse",
@@ -239,7 +232,6 @@
         "parse"
       ],
       "input": "== Database Config ==\nhost = localhost\nport = 5432",
-      "level": 2,
       "name": "section_header_double_equals_parse",
       "source_test": "section_header_double_equals",
       "validation": "parse",
@@ -269,7 +261,6 @@
         "parse"
       ],
       "input": "=== Server Settings ===\nhost = 0.0.0.0\nssl = true",
-      "level": 2,
       "name": "section_header_triple_equals_parse",
       "source_test": "section_header_triple_equals",
       "validation": "parse",
@@ -311,7 +302,6 @@
         "parse"
       ],
       "input": "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info",
-      "level": 2,
       "name": "multiple_sections_with_entries_parse",
       "source_test": "multiple_sections_with_entries",
       "validation": "parse",
@@ -353,7 +343,6 @@
         "parse"
       ],
       "input": "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data",
-      "level": 2,
       "name": "section_headers_mixed_with_lists_parse",
       "source_test": "section_headers_mixed_with_lists",
       "validation": "parse",
@@ -375,7 +364,6 @@
         "parse"
       ],
       "input": "== Empty Section ==",
-      "level": 2,
       "name": "empty_section_header_only_parse",
       "source_test": "empty_section_header_only",
       "validation": "parse",
@@ -401,7 +389,6 @@
         "parse"
       ],
       "input": "key = value\n== Final Section ==",
-      "level": 2,
       "name": "section_header_at_end_parse",
       "source_test": "section_header_at_end",
       "validation": "parse",
@@ -435,7 +422,6 @@
         "parse"
       ],
       "input": "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080",
-      "level": 2,
       "name": "section_headers_no_trailing_equals_parse",
       "source_test": "section_headers_no_trailing_equals",
       "validation": "parse",
@@ -469,7 +455,6 @@
         "parse"
       ],
       "input": "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379",
-      "level": 2,
       "name": "section_headers_with_colons_parse",
       "source_test": "section_headers_with_colons",
       "validation": "parse",
@@ -503,7 +488,6 @@
         "parse"
       ],
       "input": "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value",
-      "level": 2,
       "name": "spaced_equals_not_section_header_parse",
       "source_test": "spaced_equals_not_section_header",
       "validation": "parse",
@@ -537,7 +521,6 @@
         "parse"
       ],
       "input": "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value",
-      "level": 2,
       "name": "consecutive_section_headers_parse",
       "source_test": "consecutive_section_headers",
       "validation": "parse",
@@ -563,7 +546,6 @@
         "parse_value"
       ],
       "input": "== Section Header =\n  This continues the header\nkey = value",
-      "level": 2,
       "name": "multiline_section_header_value_parse_value",
       "source_test": "multiline_section_header_value",
       "validation": "parse_value",
@@ -589,7 +571,6 @@
         "parse_value"
       ],
       "input": "== Section Header =\nThis continues the header\nkey = value",
-      "level": 2,
       "name": "unindented_multiline_becomes_continuation_parse_value",
       "source_test": "unindented_multiline_becomes_continuation",
       "validation": "parse_value",

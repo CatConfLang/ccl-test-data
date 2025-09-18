@@ -25,7 +25,6 @@
         "parse"
       ],
       "input": "a = 1\nb = 2\nc = 3",
-      "level": 4,
       "name": "semigroup_associativity_basic_parse",
       "source_test": "semigroup_associativity_basic",
       "validation": "parse",
@@ -41,7 +40,6 @@
         "associativity"
       ],
       "input": "a = 1\nb = 2\nc = 3",
-      "level": 4,
       "name": "semigroup_associativity_basic_associativity",
       "source_test": "semigroup_associativity_basic",
       "validation": "associativity",
@@ -67,7 +65,6 @@
         "parse"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
-      "level": 4,
       "name": "semigroup_associativity_nested_parse",
       "source_test": "semigroup_associativity_nested",
       "validation": "parse",
@@ -83,7 +80,6 @@
         "associativity"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
-      "level": 4,
       "name": "semigroup_associativity_nested_associativity",
       "source_test": "semigroup_associativity_nested",
       "validation": "associativity",
@@ -113,7 +109,6 @@
         "parse"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "semigroup_associativity_lists_parse",
       "source_test": "semigroup_associativity_lists",
       "validation": "parse",
@@ -129,7 +124,6 @@
         "associativity"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "semigroup_associativity_lists_associativity",
       "source_test": "semigroup_associativity_lists",
       "validation": "associativity",
@@ -155,7 +149,6 @@
         "parse"
       ],
       "input": "key = value\nnested =\n  sub = val",
-      "level": 4,
       "name": "monoid_left_identity_basic_parse",
       "source_test": "monoid_left_identity_basic",
       "validation": "parse",
@@ -171,7 +164,6 @@
         "associativity"
       ],
       "input": "key = value\nnested =\n  sub = val",
-      "level": 4,
       "name": "monoid_left_identity_basic_associativity",
       "source_test": "monoid_left_identity_basic",
       "validation": "associativity",
@@ -197,7 +189,6 @@
         "parse"
       ],
       "input": "key = value\nnested =\n  sub = val",
-      "level": 4,
       "name": "monoid_right_identity_basic_parse",
       "source_test": "monoid_right_identity_basic",
       "validation": "parse",
@@ -213,7 +204,6 @@
         "associativity"
       ],
       "input": "key = value\nnested =\n  sub = val",
-      "level": 4,
       "name": "monoid_right_identity_basic_associativity",
       "source_test": "monoid_right_identity_basic",
       "validation": "associativity",
@@ -235,7 +225,6 @@
         "parse"
       ],
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "level": 4,
       "name": "monoid_left_identity_nested_parse",
       "source_test": "monoid_left_identity_nested",
       "validation": "parse",
@@ -251,7 +240,6 @@
         "associativity"
       ],
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "level": 4,
       "name": "monoid_left_identity_nested_associativity",
       "source_test": "monoid_left_identity_nested",
       "validation": "associativity",
@@ -273,7 +261,6 @@
         "parse"
       ],
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "level": 4,
       "name": "monoid_right_identity_nested_parse",
       "source_test": "monoid_right_identity_nested",
       "validation": "parse",
@@ -289,7 +276,6 @@
         "associativity"
       ],
       "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "level": 4,
       "name": "monoid_right_identity_nested_associativity",
       "source_test": "monoid_right_identity_nested",
       "validation": "associativity",
@@ -319,7 +305,6 @@
         "parse"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "monoid_left_identity_lists_parse",
       "source_test": "monoid_left_identity_lists",
       "validation": "parse",
@@ -335,7 +320,6 @@
         "associativity"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "monoid_left_identity_lists_associativity",
       "source_test": "monoid_left_identity_lists",
       "validation": "associativity",
@@ -365,7 +349,6 @@
         "parse"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "monoid_right_identity_lists_parse",
       "source_test": "monoid_right_identity_lists",
       "validation": "parse",
@@ -381,7 +364,6 @@
         "associativity"
       ],
       "input": "= item1\n= item2\n= item3",
-      "level": 4,
       "name": "monoid_right_identity_lists_associativity",
       "source_test": "monoid_right_identity_lists",
       "validation": "associativity",
@@ -407,7 +389,6 @@
         "parse"
       ],
       "input": "key = value\nanother = test",
-      "level": 4,
       "name": "round_trip_property_basic_parse",
       "source_test": "round_trip_property_basic",
       "validation": "parse",
@@ -423,7 +404,6 @@
         "round_trip"
       ],
       "input": "key = value\nanother = test",
-      "level": 4,
       "name": "round_trip_property_basic_round_trip",
       "source_test": "round_trip_property_basic",
       "validation": "round_trip",
@@ -445,7 +425,6 @@
         "parse"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-      "level": 4,
       "name": "round_trip_property_nested_parse",
       "source_test": "round_trip_property_nested",
       "validation": "parse",
@@ -461,7 +440,6 @@
         "round_trip"
       ],
       "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
-      "level": 4,
       "name": "round_trip_property_nested_round_trip",
       "source_test": "round_trip_property_nested",
       "validation": "round_trip",
@@ -495,7 +473,6 @@
         "parse"
       ],
       "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
-      "level": 4,
       "name": "round_trip_property_complex_parse",
       "source_test": "round_trip_property_complex",
       "validation": "parse",
@@ -511,7 +488,6 @@
         "round_trip"
       ],
       "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
-      "level": 4,
       "name": "round_trip_property_complex_round_trip",
       "source_test": "round_trip_property_complex",
       "validation": "round_trip",
