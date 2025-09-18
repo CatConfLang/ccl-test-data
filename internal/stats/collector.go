@@ -103,7 +103,6 @@ type SourceTest struct {
 	Name      string                 `json:"name"`
 	Input     string                 `json:"input"`
 	Tests     []SourceTestValidation `json:"tests"`
-	Level     int                    `json:"level,omitempty"`
 	Features  []string               `json:"features,omitempty"`
 	Behaviors []string               `json:"behaviors,omitempty"`
 	Variants  []string               `json:"variants,omitempty"`

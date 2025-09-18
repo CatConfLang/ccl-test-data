@@ -108,9 +108,6 @@ type EnhancedStatistics struct {
 	ConflictGroups    []ConflictGroup     `json:"conflictGroups"`
 	MutuallyExclusive int                 `json:"mutuallyExclusiveTests"`
 
-	// Level breakdown
-	LevelBreakdown map[string]int `json:"levelBreakdown"`
-
 	// Legacy compatibility
 	Categories map[string]*CategoryStats `json:"categories"`
 }
@@ -230,7 +227,6 @@ func (c *EnhancedCollector) analyzeSourceTests(sourceTests []SourceTest, filePat
 
 		testData := map[string]interface{}{
 			"name":       test.Name,
-			"level":      test.Level,
 			"feature":    feature,
 			"assertions": assertions,
 			"functions":  functionsCopy,
@@ -352,14 +348,13 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 	}
 
 	stats := &EnhancedStatistics{
-		Structure:      "feature-based-enhanced",
-		Functions:      make(map[string]*FunctionStats),
-		Features:       make(map[string]*FeatureStats),
-		Behaviors:      make(map[string]*BehaviorStats),
-		Variants:       make(map[string]*VariantStats),
-		ConflictPairs:  make(map[string][]string),
-		LevelBreakdown: make(map[string]int),
-		Categories:     make(map[string]*CategoryStats),
+		Structure:     "feature-based-enhanced",
+		Functions:     make(map[string]*FunctionStats),
+		Features:      make(map[string]*FeatureStats),
+		Behaviors:     make(map[string]*BehaviorStats),
+		Variants:      make(map[string]*VariantStats),
+		ConflictPairs: make(map[string][]string),
+		Categories:    make(map[string]*CategoryStats),
 	}
 
 	// Initialize legacy categories for compatibility
@@ -392,7 +387,6 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 
 		for _, testData := range tests {
 			assertions := testData["assertions"].(int)
-			level := testData["level"].(int)
 			feature := testData["feature"].(string)
 			functions := testData["functions"].([]string)
 			features := testData["features"].([]string)
@@ -402,10 +396,6 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 			fileStats.Assertions += assertions
 			stats.TotalTests++
 			stats.TotalAssertions += assertions
-
-			// Level breakdown
-			levelKey := fmt.Sprintf("level-%d", level)
-			stats.LevelBreakdown[levelKey]++
 
 			// Function stats
 			for _, fn := range functions {
@@ -563,16 +553,6 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 	fmt.Printf("  Total Assertions: %d\n", stats.TotalAssertions)
 	fmt.Printf("  Total Files: %d\n", stats.TotalFiles)
 	fmt.Printf("  Mutually Exclusive Tests: %d\n\n", stats.MutuallyExclusive)
-
-	// Level breakdown
-	fmt.Printf("📚 Level Breakdown:\n")
-	levels := []string{"level-1", "level-2", "level-3", "level-4", "level-5"}
-	for _, level := range levels {
-		if count, exists := stats.LevelBreakdown[level]; exists && count > 0 {
-			fmt.Printf("  %s: %d tests\n", strings.Title(strings.Replace(level, "-", " ", -1)), count)
-		}
-	}
-	fmt.Println()
 
 	// Function requirements
 	fmt.Printf("⚙️  Function Requirements:\n")

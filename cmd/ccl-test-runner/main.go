@@ -87,11 +87,6 @@ compatibility with standard go test flags.`,
 						Value:   "pretty",
 						Usage:   "Output format (pretty, table, verbose)",
 					},
-					&cli.IntSliceFlag{
-						Name:    "levels",
-						Aliases: []string{"l"},
-						Usage:   "Filter by CCL levels (1,2,3,4)",
-					},
 					&cli.StringSliceFlag{
 						Name:  "tags",
 						Usage: "Filter by tags (not yet implemented)",
@@ -267,7 +262,6 @@ func generateAction(ctx *cli.Context) error {
 
 func testAction(ctx *cli.Context) error {
 	format := ctx.String("format")
-	levels := ctx.IntSlice("levels")
 	tags := ctx.StringSlice("tags")
 	features := ctx.StringSlice("features")
 	listOnly := ctx.Bool("list")
@@ -277,7 +271,7 @@ func testAction(ctx *cli.Context) error {
 		format = "verbose"
 	}
 
-	packages := buildPackagePatterns(levels, tags, features)
+	packages := buildPackagePatterns(tags, features)
 
 	if listOnly {
 		styles.Info("📋 Available test packages:")
@@ -297,7 +291,7 @@ func testAction(ctx *cli.Context) error {
 	}
 
 	styles.Status("🧪", "Running tests...")
-	return runTestsWithGotestsum(format, levels, tags, features, ctx.Args().Slice())
+	return runTestsWithGotestsum(format, tags, features, ctx.Args().Slice())
 }
 
 func statsAction(ctx *cli.Context) error {
@@ -398,11 +392,11 @@ func benchmarkAction(ctx *cli.Context) error {
 	return nil
 }
 
-func runTestsWithGotestsum(format string, levels []int, tags []string, features []string, extraArgs []string) error {
+func runTestsWithGotestsum(format string, tags []string, features []string, extraArgs []string) error {
 	// Check if gotestsum is available
 	if _, err := exec.LookPath("gotestsum"); err != nil {
 		styles.Warning("⚠️  gotestsum not found, falling back to go test")
-		return runWithGoTest(levels, tags, features, extraArgs)
+		return runWithGoTest(tags, features, extraArgs)
 	}
 
 	// Build gotestsum command
@@ -422,7 +416,7 @@ func runTestsWithGotestsum(format string, levels []int, tags []string, features 
 	}
 
 	// Add package patterns based on filters
-	packages := buildPackagePatterns(levels, tags, features)
+	packages := buildPackagePatterns(tags, features)
 
 	if len(packages) == 0 {
 		cmd.Args = append(cmd.Args, "--", "./go_tests/...")
@@ -443,11 +437,11 @@ func runTestsWithGotestsum(format string, levels []int, tags []string, features 
 	return cmd.Run()
 }
 
-func runWithGoTest(levels []int, tags []string, features []string, extraArgs []string) error {
+func runWithGoTest(tags []string, features []string, extraArgs []string) error {
 	cmd := exec.Command("go", "test")
 
 	// Add package patterns
-	packages := buildPackagePatterns(levels, tags, features)
+	packages := buildPackagePatterns(tags, features)
 
 	if len(packages) == 0 {
 		cmd.Args = append(cmd.Args, "./go_tests/...")
@@ -467,21 +461,8 @@ func runWithGoTest(levels []int, tags []string, features []string, extraArgs []s
 	return cmd.Run()
 }
 
-func buildPackagePatterns(levels []int, tags []string, features []string) []string {
+func buildPackagePatterns(tags []string, features []string) []string {
 	var packages []string
-
-	// If levels are specified, filter by level
-	if len(levels) > 0 {
-		for _, level := range levels {
-			pattern := fmt.Sprintf("go_tests/level%d*", level)
-			if matches, err := filepath.Glob(pattern); err == nil {
-				for _, match := range matches {
-					// Ensure the package pattern is correct for go test
-					packages = append(packages, "./"+match)
-				}
-			}
-		}
-	}
 
 	// If features are specified, filter by feature names
 	if len(features) > 0 {

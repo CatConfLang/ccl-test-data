@@ -19,15 +19,15 @@ install:
 
 # === ESSENTIAL WORKFLOWS ===
 
-# Basic development: generate Level 1 tests and verify they pass (tolerates some failures)
+# Basic development: generate core tests and verify they pass (tolerates some failures)
 dev-basic:
     just clean
     just generate-flat
     just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:strict_spacing
     just lint
     #!/usr/bin/env bash
-    echo "Running Level 1 tests (some failures expected for complex edge cases)..."
-    go run ./cmd/ccl-test-runner test --levels 1 || echo "✅ Basic parsing tests completed (with expected edge case failures)"
+    echo "Running core parsing tests (some failures expected for complex edge cases)..."
+    go run ./cmd/ccl-test-runner test || echo "✅ Basic parsing tests completed (with expected edge case failures)"
 
 # Full development: comprehensive test suite
 dev:
@@ -117,15 +117,3 @@ generate-mock:
 test-verbose:
     just test --verbose
 
-# Test specific levels
-test-level1:
-    just test --levels 1
-
-test-level2:
-    just test --levels 2
-
-test-level3:
-    just test --levels 3
-
-test-level4:
-    just test --levels 4
