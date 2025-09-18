@@ -141,18 +141,18 @@ func (c *EnhancedCollector) analyzeEnhancedTestFile(filePath string) (map[string
 		return nil, fmt.Errorf("reading file %s: %w", filePath, err)
 	}
 
-	// Try to parse as source format (array of tests) first
-	var sourceTests []SourceTest
-	if err := json.Unmarshal(data, &sourceTests); err != nil {
-		// Fallback to flat format (TestSuite)
-		var testSuite types.TestSuite
-		if err := json.Unmarshal(data, &testSuite); err != nil {
-			return nil, fmt.Errorf("parsing JSON in %s: %w", filePath, err)
-		}
-		return c.analyzeTestSuite(testSuite, filePath)
+	// Parse as new source format (object with $schema and tests)
+	var sourceTestFile SourceTestFile
+	if err := json.Unmarshal(data, &sourceTestFile); err == nil && len(sourceTestFile.Tests) > 0 {
+		return c.analyzeSourceTests(sourceTestFile.Tests, filePath)
 	}
 
-	return c.analyzeSourceTests(sourceTests, filePath)
+	// Fallback to flat format (TestSuite)
+	var testSuite types.TestSuite
+	if err := json.Unmarshal(data, &testSuite); err != nil {
+		return nil, fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+	}
+	return c.analyzeTestSuite(testSuite, filePath)
 }
 
 // analyzeSourceTests analyzes source format tests for enhanced stats

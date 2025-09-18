@@ -1,211 +1,145 @@
-[
-  {
-    "name": "basic_object_construction",
-    "input": "name = Alice\nage = 42",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "name",
-            "value": "Alice"
-          },
-          {
-            "key": "age",
-            "value": "42"
-          }
-        ]
-      },
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "age": "42",
-          "name": "Alice"
-        }
-      },
-      {
-        "function": "load",
-        "expect": {
-          "age": "42",
-          "name": "Alice"
-        }
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "deep_nested_objects",
-    "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "server",
-            "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
-          }
-        ]
-      },
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "server": {
-            "cache": {
-              "enabled": "true"
+{
+  "$schema": "file:///Volumes/Code/claude-workspace-ccl/ccl-test-data/schemas/source-format.json",
+  "tests": [
+    {
+      "name": "basic_object_construction",
+      "input": "name = Alice\nage = 42",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "name",
+              "value": "Alice"
             },
-            "database": {
-              "host": "localhost",
-              "port": "5432"
+            {
+              "key": "age",
+              "value": "42"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "age": "42",
+            "name": "Alice"
+          }
+        },
+        {
+          "function": "load",
+          "expect": {
+            "age": "42",
+            "name": "Alice"
+          }
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "deep_nested_objects",
+      "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "server",
+              "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "server": {
+              "cache": {
+                "enabled": "true"
+              },
+              "database": {
+                "host": "localhost",
+                "port": "5432"
+              }
+            }
+          }
+        },
+        {
+          "function": "load",
+          "expect": {
+            "server": {
+              "cache": {
+                "enabled": "true"
+              },
+              "database": {
+                "host": "localhost",
+                "port": "5432"
+              }
             }
           }
         }
-      },
-      {
-        "function": "load",
-        "expect": {
-          "server": {
-            "cache": {
-              "enabled": "true"
-            },
-            "database": {
-              "host": "localhost",
-              "port": "5432"
-            }
-          }
-        }
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "duplicate_keys_to_lists",
-    "input": "item = first\nitem = second\nitem = third",
-    "tests": [
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "item": [
-            "first",
-            "second",
-            "third"
-          ]
-        }
-      },
-      {
-        "function": "load",
-        "expect": {
-          "item": [
-            "first",
-            "second",
-            "third"
-          ]
-        }
-      },
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "item",
-            "value": "first"
-          },
-          {
-            "key": "item",
-            "value": "second"
-          },
-          {
-            "key": "item",
-            "value": "third"
-          }
-        ]
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "nested_duplicate_keys",
-    "input": "config =\n  server = web1\n  server = web2\n  port = 80",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "config",
-            "value": "\n  server = web1\n  server = web2\n  port = 80"
-          }
-        ]
-      },
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "config": {
-            "port": "80",
-            "server": [
-              "web1",
-              "web2"
+      ],
+      "level": 1
+    },
+    {
+      "name": "duplicate_keys_to_lists",
+      "input": "item = first\nitem = second\nitem = third",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "item": [
+              "first",
+              "second",
+              "third"
             ]
           }
-        }
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "mixed_flat_and_nested",
-    "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "name",
-            "value": "Alice"
-          },
-          {
-            "key": "config",
-            "value": "\n  debug = true\n  timeout = 30"
-          },
-          {
-            "key": "version",
-            "value": "1.0"
+        },
+        {
+          "function": "load",
+          "expect": {
+            "item": [
+              "first",
+              "second",
+              "third"
+            ]
           }
-        ]
-      },
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "config": {
-            "debug": "true",
-            "timeout": "30"
-          },
-          "name": "Alice",
-          "version": "1.0"
-        }
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "nested_objects_with_lists",
-    "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "environments",
-            "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
-          }
-        ]
-      },
-      {
-        "function": "build_hierarchy",
-        "expect": {
-          "environments": {
-            "dev": {
-              "port": "3000",
-              "server": "localhost"
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "item",
+              "value": "first"
             },
-            "prod": {
+            {
+              "key": "item",
+              "value": "second"
+            },
+            {
+              "key": "item",
+              "value": "third"
+            }
+          ]
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "nested_duplicate_keys",
+      "input": "config =\n  server = web1\n  server = web2\n  port = 80",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  server = web1\n  server = web2\n  port = 80"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
               "port": "80",
               "server": [
                 "web1",
@@ -214,8 +148,77 @@
             }
           }
         }
-      }
-    ],
-    "level": 1
-  }
-]
+      ],
+      "level": 1
+    },
+    {
+      "name": "mixed_flat_and_nested",
+      "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true\n  timeout = 30"
+            },
+            {
+              "key": "version",
+              "value": "1.0"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "debug": "true",
+              "timeout": "30"
+            },
+            "name": "Alice",
+            "version": "1.0"
+          }
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "nested_objects_with_lists",
+      "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "environments",
+              "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "environments": {
+              "dev": {
+                "port": "3000",
+                "server": "localhost"
+              },
+              "prod": {
+                "port": "80",
+                "server": [
+                  "web1",
+                  "web2"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "level": 1
+    }
+  ]
+}

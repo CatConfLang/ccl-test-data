@@ -1,161 +1,164 @@
-[
-  {
-    "name": "basic_key_value_pairs",
-    "input": "name = Alice\nage = 42",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "name",
-            "value": "Alice"
-          },
-          {
-            "key": "age",
-            "value": "42"
-          }
-        ]
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "equals_in_values",
-    "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "msg",
-            "value": "k=v pairs work fine"
-          },
-          {
-            "key": "path",
-            "value": "/bin/app=prod"
-          }
-        ]
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "whitespace_trimming",
-    "input": "  key   =    value with spaces   \nother = normal",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "key",
-            "value": "value with spaces"
-          },
-          {
-            "key": "other",
-            "value": "normal"
-          }
-        ]
-      }
-    ],
-    "features": [
-      "whitespace"
-    ],
-    "level": 1
-  },
-  {
-    "name": "multiline_values",
-    "input": "description = First line\n  Second line\n  Third line\ndone = yes",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "description",
-            "value": "First line\n  Second line\n  Third line"
-          },
-          {
-            "key": "done",
-            "value": "yes"
-          }
-        ]
-      }
-    ],
-    "features": [
-      "multiline"
-    ],
-    "level": 1
-  },
-  {
-    "name": "empty_values",
-    "input": "empty =\nother = value",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "empty",
-            "value": ""
-          },
-          {
-            "key": "other",
-            "value": "value"
-          }
-        ]
-      }
-    ],
-    "features": [
-      "empty_keys"
-    ],
-    "level": 1
-  },
-  {
-    "name": "nested_structure_parsing",
-    "input": "database =\n  host = localhost\n  port = 5432",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "database",
-            "value": "\n  host = localhost\n  port = 5432"
-          }
-        ]
-      }
-    ],
-    "level": 1
-  },
-  {
-    "name": "unicode_parsing",
-    "input": "emoji = \ud83d\ude00\ud83d\ude03\ud83d\ude04\n\u914d\u7f6e = config",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": [
-          {
-            "key": "emoji",
-            "value": "\ud83d\ude00\ud83d\ude03\ud83d\ude04"
-          },
-          {
-            "key": "\u914d\u7f6e",
-            "value": "config"
-          }
-        ]
-      }
-    ],
-    "features": [
-      "unicode"
-    ],
-    "level": 1
-  },
-  {
-    "name": "empty_input",
-    "input": "",
-    "tests": [
-      {
-        "function": "parse",
-        "expect": []
-      }
-    ],
-    "level": 1
-  }
-]
+{
+  "$schema": "file:///Volumes/Code/claude-workspace-ccl/ccl-test-data/schemas/source-format.json",
+  "tests": [
+    {
+      "name": "basic_key_value_pairs",
+      "input": "name = Alice\nage = 42",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
+          ]
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "equals_in_values",
+      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "msg",
+              "value": "k=v pairs work fine"
+            },
+            {
+              "key": "path",
+              "value": "/bin/app=prod"
+            }
+          ]
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "whitespace_trimming",
+      "input": "  key   =    value with spaces   \nother = normal",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value with spaces"
+            },
+            {
+              "key": "other",
+              "value": "normal"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "level": 1
+    },
+    {
+      "name": "multiline_values",
+      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "description",
+              "value": "First line\n  Second line\n  Third line"
+            },
+            {
+              "key": "done",
+              "value": "yes"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "multiline"
+      ],
+      "level": 1
+    },
+    {
+      "name": "empty_values",
+      "input": "empty =\nother = value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "empty",
+              "value": ""
+            },
+            {
+              "key": "other",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ],
+      "level": 1
+    },
+    {
+      "name": "nested_structure_parsing",
+      "input": "database =\n  host = localhost\n  port = 5432",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            }
+          ]
+        }
+      ],
+      "level": 1
+    },
+    {
+      "name": "unicode_parsing",
+      "input": "emoji = 😀😃😄\n配置 = config",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "emoji",
+              "value": "😀😃😄"
+            },
+            {
+              "key": "配置",
+              "value": "config"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "unicode"
+      ],
+      "level": 1
+    },
+    {
+      "name": "empty_input",
+      "input": "",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": []
+        }
+      ],
+      "level": 1
+    }
+  ]
+}

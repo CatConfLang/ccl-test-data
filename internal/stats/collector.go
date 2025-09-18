@@ -110,6 +110,12 @@ type SourceTest struct {
 	Conflicts map[string][]string    `json:"conflicts,omitempty"`
 }
 
+// SourceTestFile represents a source test file with $schema field
+type SourceTestFile struct {
+	Schema string       `json:"$schema,omitempty"`
+	Tests  []SourceTest `json:"tests"`
+}
+
 // SourceTestValidation represents a single validation in source format
 type SourceTestValidation struct {
 	Function string      `json:"function"`
@@ -125,18 +131,18 @@ func (c *Collector) analyzeTestFile(filePath string) (*FileStats, string, error)
 		return nil, "", fmt.Errorf("reading file %s: %w", filePath, err)
 	}
 
-	// Try to parse as source format (array of tests)
-	var sourceTests []SourceTest
-	if err := json.Unmarshal(data, &sourceTests); err != nil {
-		// Fallback to flat format (TestSuite)
-		var testSuite types.TestSuite
-		if err := json.Unmarshal(data, &testSuite); err != nil {
-			return nil, "", fmt.Errorf("parsing JSON in %s: %w", filePath, err)
-		}
-		return c.analyzeTestSuite(testSuite)
+	// Parse as new source format (object with $schema and tests)
+	var sourceTestFile SourceTestFile
+	if err := json.Unmarshal(data, &sourceTestFile); err == nil && len(sourceTestFile.Tests) > 0 {
+		return c.analyzeSourceTests(sourceTestFile.Tests)
 	}
 
-	return c.analyzeSourceTests(sourceTests)
+	// Fallback to flat format (TestSuite)
+	var testSuite types.TestSuite
+	if err := json.Unmarshal(data, &testSuite); err != nil {
+		return nil, "", fmt.Errorf("parsing JSON in %s: %w", filePath, err)
+	}
+	return c.analyzeTestSuite(testSuite)
 }
 
 // analyzeSourceTests analyzes source format tests
