@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_core_ccl_hierarchy.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // basic_object_construction_parse - function:parse (level 0)
 func TestBasicObjectConstructionParse(t *testing.T) {

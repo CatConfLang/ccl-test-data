@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_typed_access.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // parse_basic_integer_parse - function:parse (level 0)
 func TestParseBasicIntegerParse(t *testing.T) {

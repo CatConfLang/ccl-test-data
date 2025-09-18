@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/property_round_trip.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // round_trip_basic_round_trip - function:round_trip (level 0)
 func TestRoundTripBasicRoundTrip(t *testing.T) {

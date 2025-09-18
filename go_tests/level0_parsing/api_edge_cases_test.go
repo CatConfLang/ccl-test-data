@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_edge_cases.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // basic_single_no_spaces_parse - function:parse (level 0)
 func TestBasicSingleNoSpacesParse(t *testing.T) {

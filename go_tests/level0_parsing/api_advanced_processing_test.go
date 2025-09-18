@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_advanced_processing.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // composition_stability_duplicate_keys_parse - function:parse (level 0)
 func TestCompositionStabilityDuplicateKeysParse(t *testing.T) {

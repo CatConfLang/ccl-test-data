@@ -7,8 +7,8 @@ import (
 	"slices"
 	"strings"
 
-	"gopkg.in/yaml.v3"
 	"github.com/tylerbu/ccl-test-lib/config"
+	"gopkg.in/yaml.v3"
 )
 
 // SimpleConfig represents the simplified YAML configuration format.

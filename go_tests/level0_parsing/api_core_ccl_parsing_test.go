@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_core_ccl_parsing.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // basic_key_value_pairs_parse - function:parse (level 0)
 func TestBasicKeyValuePairsParse(t *testing.T) {

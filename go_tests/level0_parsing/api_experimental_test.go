@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_experimental.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // basic_dotted_key_expansion_parse - function:parse (level 0)
 func TestBasicDottedKeyExpansionParse(t *testing.T) {

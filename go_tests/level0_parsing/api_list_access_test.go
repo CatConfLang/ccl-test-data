@@ -9,8 +9,8 @@ import (
 )
 
 // Generated from generated_tests/api_list_access.json
-// Suite:
-// Version:
+// Suite: Flat Format
+// Version: 1.0
 
 // basic_list_from_duplicates_parse - function:parse (level 0)
 func TestBasicListFromDuplicatesParse(t *testing.T) {
