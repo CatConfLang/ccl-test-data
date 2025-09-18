@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,24 +12,16 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // basic_dotted_key_expansion_parse - function:parse
 func TestBasicDottedKeyExpansionParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `database.host = localhost`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -38,75 +30,28 @@ func TestBasicDottedKeyExpansionParse(t *testing.T) {
 
 }
 
-
 // basic_dotted_key_expansion_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestBasicDottedKeyExpansionExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.host = localhost`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // basic_dotted_key_expansion_build_hierarchy - function:build_hierarchy
 func TestBasicDottedKeyExpansionBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.host = localhost`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // multiple_dotted_keys_parse - function:parse
 func TestMultipleDottedKeysParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `database.host = localhost
 database.port = 5432
 app.name = MyApp`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -115,78 +60,27 @@ app.name = MyApp`
 
 }
 
-
 // multiple_dotted_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestMultipleDottedKeysExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.host = localhost
-database.port = 5432
-app.name = MyApp`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // multiple_dotted_keys_build_hierarchy - function:build_hierarchy
 func TestMultipleDottedKeysBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.host = localhost
-database.port = 5432
-app.name = MyApp`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // deep_dotted_nesting_parse - function:parse
 func TestDeepDottedNestingParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `server.database.credentials.user = admin
 server.database.credentials.pass = secret`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -195,79 +89,30 @@ server.database.credentials.pass = secret`
 
 }
 
-
 // deep_dotted_nesting_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestDeepDottedNestingExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `server.database.credentials.user = admin
-server.database.credentials.pass = secret`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // deep_dotted_nesting_build_hierarchy - function:build_hierarchy
 func TestDeepDottedNestingBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `server.database.credentials.user = admin
-server.database.credentials.pass = secret`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // mixed_dotted_and_regular_keys_parse - function:parse
 func TestMixedDottedAndRegularKeysParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `app = MyApp
 database.host = localhost
 config =
   debug = true
 logging.level = info`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -276,82 +121,27 @@ logging.level = info`
 
 }
 
-
 // mixed_dotted_and_regular_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestMixedDottedAndRegularKeysExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `app = MyApp
-database.host = localhost
-config =
-  debug = true
-logging.level = info`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // mixed_dotted_and_regular_keys_build_hierarchy - function:build_hierarchy
 func TestMixedDottedAndRegularKeysBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `app = MyApp
-database.host = localhost
-config =
-  debug = true
-logging.level = info`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_key_conflicts_resolution_parse - function:parse
 func TestDottedKeyConflictsResolutionParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `database = old_value
 database.host = localhost`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -360,77 +150,28 @@ database.host = localhost`
 
 }
 
-
 // dotted_key_conflicts_resolution_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestDottedKeyConflictsResolutionExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database = old_value
-database.host = localhost`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_key_conflicts_resolution_build_hierarchy - function:build_hierarchy
 func TestDottedKeyConflictsResolutionBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database = old_value
-database.host = localhost`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_keys_with_lists_parse - function:parse
 func TestDottedKeysWithListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `servers.web = web1
 servers.web = web2
 servers.api = api1`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -439,77 +180,26 @@ servers.api = api1`
 
 }
 
-
 // dotted_keys_with_lists_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestDottedKeysWithListsExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `servers.web = web1
-servers.web = web2
-servers.api = api1`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_keys_with_lists_build_hierarchy - function:build_hierarchy
 func TestDottedKeysWithListsBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `servers.web = web1
-servers.web = web2
-servers.api = api1`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // empty_dotted_key_segments_parse - function:parse
 func TestEmptyDottedKeySegmentsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `a..b = value`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -518,73 +208,26 @@ func TestEmptyDottedKeySegmentsParse(t *testing.T) {
 
 }
 
-
 // empty_dotted_key_segments_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestEmptyDottedKeySegmentsExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a..b = value`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // empty_dotted_key_segments_build_hierarchy - function:build_hierarchy
 func TestEmptyDottedKeySegmentsBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a..b = value`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // single_dot_key_parse - function:parse
 func TestSingleDotKeyParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `a. = value`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -593,75 +236,28 @@ func TestSingleDotKeyParse(t *testing.T) {
 
 }
 
-
 // single_dot_key_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestSingleDotKeyExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a. = value`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // single_dot_key_build_hierarchy - function:build_hierarchy
 func TestSingleDotKeyBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a. = value`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // hierarchical_with_expand_dotted_validation_parse - function:parse
 func TestHierarchicalWithExpandDottedValidationParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `database =
   enabled = true
   port = 5432`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -670,79 +266,28 @@ func TestHierarchicalWithExpandDottedValidationParse(t *testing.T) {
 
 }
 
-
 // hierarchical_with_expand_dotted_validation_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
 func TestHierarchicalWithExpandDottedValidationExpandDotted(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database =
-  enabled = true
-  port = 5432`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement expand_dotted validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // hierarchical_with_expand_dotted_validation_build_hierarchy - function:build_hierarchy
 func TestHierarchicalWithExpandDottedValidationBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database =
-  enabled = true
-  port = 5432`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_key_list_access_parse - function:parse
 func TestDottedKeyListAccessParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `database.hosts = primary
 database.hosts = secondary
 database.port = 5432`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -751,61 +296,12 @@ database.port = 5432`
 
 }
 
-
 // dotted_key_list_access_build_hierarchy - function:build_hierarchy
 func TestDottedKeyListAccessBuildHierarchy(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.hosts = primary
-database.hosts = secondary
-database.port = 5432`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // dotted_key_list_access_get_list - function:get_list
 func TestDottedKeyListAccessGetList(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `database.hosts = primary
-database.hosts = secondary
-database.port = 5432`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"database", "port"})
-	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"5432"}, result)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-

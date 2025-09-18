@@ -272,7 +272,6 @@ func (g *Generator) getPackageName(testSuite types.TestSuite) string {
 	return strings.ReplaceAll(feature, "-", "_")
 }
 
-
 // inferFeature attempts to determine the feature from the test suite
 func (g *Generator) inferFeature(testSuite types.TestSuite) string {
 	// Look at the first test's metadata

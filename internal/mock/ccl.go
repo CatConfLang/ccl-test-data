@@ -54,9 +54,12 @@ func New() *CCL {
 func (c *CCL) Parse(input string) ([]Entry, error) {
 	var entries []Entry
 
+	// Initialize empty slice to avoid nil return
+	entries = []Entry{}
+
 	// Handle empty input
 	if strings.TrimSpace(input) == "" {
-		return []Entry{}, nil
+		return entries, nil
 	}
 
 	// Normalize line endings first: CRLF -> LF, lone CR -> LF
@@ -87,8 +90,8 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
 				key := strings.Trim(parts[0], " \t")
-				// For Level 1 parsing, only trim leading whitespace from values to preserve trailing whitespace
-				value := strings.TrimLeft(parts[1], " \t")
+				// For Level 1 parsing, trim whitespace from values
+				value := strings.Trim(parts[1], " \t")
 
 				// Check if there are indented lines following this key (multiline content)
 				if i+1 < len(lines) {

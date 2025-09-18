@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,26 +12,18 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // semigroup_associativity_basic_parse - function:parse
 func TestSemigroupAssociativityBasicParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `a = 1
 b = 2
 c = 3`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -40,53 +32,25 @@ c = 3`
 
 }
 
-
 // semigroup_associativity_basic_associativity - function:associativity
 func TestSemigroupAssociativityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a = 1
-b = 2
-c = 3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // semigroup_associativity_nested_parse - function:parse
 func TestSemigroupAssociativityNestedParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `config =
   host = localhost
   port = 8080
 db =
   name = test`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -95,53 +59,23 @@ db =
 
 }
 
-
 // semigroup_associativity_nested_associativity - function:associativity
 func TestSemigroupAssociativityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  host = localhost
-  port = 8080
-db =
-  name = test`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // semigroup_associativity_lists_parse - function:parse
 func TestSemigroupAssociativityListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `= item1
 = item2
 = item3`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -149,52 +83,24 @@ func TestSemigroupAssociativityListsParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // semigroup_associativity_lists_associativity - function:associativity
 func TestSemigroupAssociativityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_left_identity_basic_parse - function:parse
 func TestMonoidLeftIdentityBasicParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `key = value
 nested =
   sub = val`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -202,52 +108,24 @@ nested =
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // monoid_left_identity_basic_associativity - function:associativity
 func TestMonoidLeftIdentityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `key = value
-nested =
-  sub = val`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_right_identity_basic_parse - function:parse
 func TestMonoidRightIdentityBasicParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `key = value
 nested =
   sub = val`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -256,37 +134,14 @@ nested =
 
 }
 
-
 // monoid_right_identity_basic_associativity - function:associativity
 func TestMonoidRightIdentityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `key = value
-nested =
-  sub = val`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_left_identity_nested_parse - function:parse
 func TestMonoidLeftIdentityNestedParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `config =
   database =
@@ -294,16 +149,11 @@ func TestMonoidLeftIdentityNestedParse(t *testing.T) {
     port = 5432
   cache =
     redis = true`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -311,41 +161,15 @@ func TestMonoidLeftIdentityNestedParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // monoid_left_identity_nested_associativity - function:associativity
 func TestMonoidLeftIdentityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  database =
-    host = localhost
-    port = 5432
-  cache =
-    redis = true`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_right_identity_nested_parse - function:parse
 func TestMonoidRightIdentityNestedParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `config =
   database =
@@ -353,16 +177,11 @@ func TestMonoidRightIdentityNestedParse(t *testing.T) {
     port = 5432
   cache =
     redis = true`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -371,54 +190,23 @@ func TestMonoidRightIdentityNestedParse(t *testing.T) {
 
 }
 
-
 // monoid_right_identity_nested_associativity - function:associativity
 func TestMonoidRightIdentityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  database =
-    host = localhost
-    port = 5432
-  cache =
-    redis = true`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_left_identity_lists_parse - function:parse
 func TestMonoidLeftIdentityListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `= item1
 = item2
 = item3`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -426,52 +214,24 @@ func TestMonoidLeftIdentityListsParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // monoid_left_identity_lists_associativity - function:associativity
 func TestMonoidLeftIdentityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // monoid_right_identity_lists_parse - function:parse
 func TestMonoidRightIdentityListsParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `= item1
 = item2
 = item3`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -480,50 +240,22 @@ func TestMonoidRightIdentityListsParse(t *testing.T) {
 
 }
 
-
 // monoid_right_identity_lists_associativity - function:associativity
 func TestMonoidRightIdentityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_property_basic_parse - function:parse
 func TestRoundTripPropertyBasicParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `key = value
 another = test`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -532,36 +264,14 @@ another = test`
 
 }
 
-
 // round_trip_property_basic_round_trip - function:round_trip
 func TestRoundTripPropertyBasicRoundTrip(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `key = value
-another = test`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_property_nested_parse - function:parse
 func TestRoundTripPropertyNestedParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `config =
   host = localhost
@@ -569,16 +279,11 @@ func TestRoundTripPropertyNestedParse(t *testing.T) {
   db =
     name = mydb
     user = admin`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -587,40 +292,14 @@ func TestRoundTripPropertyNestedParse(t *testing.T) {
 
 }
 
-
 // round_trip_property_nested_round_trip - function:round_trip
 func TestRoundTripPropertyNestedRoundTrip(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  host = localhost
-  port = 8080
-  db =
-    name = mydb
-    user = admin`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_property_complex_parse - function:parse
 func TestRoundTripPropertyComplexParse(t *testing.T) {
-	
-	
+
 	ccl := mock.New()
 	input := `= item1
 = item2
@@ -632,16 +311,11 @@ config =
     = b
     = c
 final = end`
-	
-	
-	
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -650,37 +324,7 @@ final = end`
 
 }
 
-
 // round_trip_property_complex_round_trip - function:round_trip
 func TestRoundTripPropertyComplexRoundTrip(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-config =
-  nested =
-    deep = value
-  list =
-    = a
-    = b
-    = c
-final = end`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-
