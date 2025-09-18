@@ -1,15 +1,15 @@
 // Package mock provides a working CCL (Categorical Configuration Language) implementation.
 //
 // This package contains a functional CCL parser and processor that implements the core
-// CCL specification across multiple levels. It serves as both a reference implementation
-// for testing and a development tool for progressive CCL implementation.
+// CCL specification. It serves as both a reference implementation for testing and a
+// development tool for progressive CCL implementation.
 //
-// CCL Implementation Levels:
-//   - Level 1: Raw parsing (Parse) - Convert text to flat key-value entries
-//   - Level 2: Entry processing (Filter, Combine, ExpandDotted) - Transform and combine entries
-//   - Level 3: Object construction (BuildHierarchy) - Build nested object hierarchies
-//   - Level 4: Typed access (GetString, GetInt, etc.) - Type-safe value extraction
-//   - Level 4: Formatting (CanonicalFormat/PrettyPrint) - Generate standardized formatted output
+// CCL Implementation Functions:
+//   - Core parsing (Parse) - Convert text to flat key-value entries
+//   - Entry processing (Filter, Combine, ExpandDotted) - Transform and combine entries
+//   - Object construction (BuildHierarchy) - Build nested object hierarchies
+//   - Typed access (GetString, GetInt, etc.) - Type-safe value extraction
+//   - Formatting (CanonicalFormat/PrettyPrint) - Generate standardized formatted output
 //
 // Key Features:
 //   - Comment support using '/=' syntax
@@ -50,7 +50,7 @@ func New() *CCL {
 	return &CCL{}
 }
 
-// Parse implements Level 1: Raw entry parsing with multiline support
+// Parse implements core entry parsing with multiline support
 func (c *CCL) Parse(input string) ([]Entry, error) {
 	var entries []Entry
 
@@ -90,7 +90,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 			parts := strings.SplitN(line, "=", 2)
 			if len(parts) == 2 {
 				key := strings.Trim(parts[0], " \t")
-				// For Level 1 parsing, trim whitespace from values
+				// For basic parsing, trim whitespace from values
 				value := strings.Trim(parts[1], " \t")
 
 				// Check if there are indented lines following this key (multiline content)
@@ -134,26 +134,26 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 				})
 			}
 		}
-		// Skip lines without = (don't error - Level 1 is just basic parsing)
+		// Skip lines without = (don't error - this is just basic parsing)
 	}
 
 	return entries, nil
 }
 
-// ParseValue implements Level 2: Entry processing with indentation awareness
+// ParseValue implements entry processing with indentation awareness
 func (c *CCL) ParseValue(input string) ([]Entry, error) {
 	// For mock purposes, same as Parse
 	return c.Parse(input)
 }
 
-// Filter implements Level 2: Entry filtering (for comment tests, this preserves all entries)
+// Filter implements entry filtering (for comment tests, this preserves all entries)
 func (c *CCL) Filter(entries []Entry) []Entry {
 	// For the mock implementation, filter just returns all entries
 	// In a real implementation, this might filter based on certain criteria
 	return entries
 }
 
-// Combine implements Level 2: Entry composition
+// Combine implements entry composition
 func (c *CCL) Combine(left, right []Entry) []Entry {
 	// Simple concatenation for mock
 	result := make([]Entry, len(left)+len(right))
@@ -162,7 +162,7 @@ func (c *CCL) Combine(left, right []Entry) []Entry {
 	return result
 }
 
-// ExpandDotted implements Level 2: Dotted key expansion
+// ExpandDotted implements dotted key expansion
 func (c *CCL) ExpandDotted(entries []Entry) []Entry {
 	var expanded []Entry
 	for _, entry := range entries {
@@ -176,7 +176,7 @@ func (c *CCL) ExpandDotted(entries []Entry) []Entry {
 	return expanded
 }
 
-// BuildHierarchy implements Level 3: Object construction
+// BuildHierarchy implements object construction
 func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{} {
 	result := make(map[string]interface{})
 
@@ -234,7 +234,7 @@ func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{} {
 	return result
 }
 
-// GetString implements Level 4: String access
+// GetString implements string access
 func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error) {
 	value, err := c.getValue(obj, path)
 	if err != nil {
@@ -248,7 +248,7 @@ func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, erro
 	return fmt.Sprintf("%v", value), nil
 }
 
-// GetInt implements Level 4: Integer access
+// GetInt implements integer access
 func (c *CCL) GetInt(obj map[string]interface{}, path []string) (int, error) {
 	value, err := c.getValue(obj, path)
 	if err != nil {
@@ -266,7 +266,7 @@ func (c *CCL) GetInt(obj map[string]interface{}, path []string) (int, error) {
 	return 0, fmt.Errorf("cannot convert value %v (type %T) to int at path %s", value, value, strings.Join(path, "."))
 }
 
-// GetBool implements Level 4: Boolean access
+// GetBool implements boolean access
 func (c *CCL) GetBool(obj map[string]interface{}, path []string) (bool, error) {
 	value, err := c.getValue(obj, path)
 	if err != nil {
@@ -284,7 +284,7 @@ func (c *CCL) GetBool(obj map[string]interface{}, path []string) (bool, error) {
 	return false, fmt.Errorf("cannot convert value %v (type %T) to bool at path %s", value, value, strings.Join(path, "."))
 }
 
-// GetFloat implements Level 4: Float access
+// GetFloat implements float access
 func (c *CCL) GetFloat(obj map[string]interface{}, path []string) (float64, error) {
 	value, err := c.getValue(obj, path)
 	if err != nil {
@@ -302,7 +302,7 @@ func (c *CCL) GetFloat(obj map[string]interface{}, path []string) (float64, erro
 	return 0, fmt.Errorf("cannot convert value %v (type %T) to float64 at path %s", value, value, strings.Join(path, "."))
 }
 
-// GetList implements Level 4: List access
+// GetList implements list access
 func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, error) {
 	value, err := c.getValue(obj, path)
 	if err != nil {
@@ -324,7 +324,7 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 	return nil, fmt.Errorf("cannot convert value %v (type %T) to []string at path %s", value, value, strings.Join(path, "."))
 }
 
-// PrettyPrint implements Level 4: Canonical formatting (standardized output)
+// PrettyPrint implements canonical formatting (standardized output)
 func (c *CCL) PrettyPrint(obj map[string]interface{}) string {
 	var lines []string
 	c.prettyPrintObject(obj, "", &lines)

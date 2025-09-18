@@ -997,7 +997,7 @@ func (g *Generator) shouldSkipTest(tags []string) bool {
 			if tag == "whitespace" || tag == "tabs" || tag == "newlines" {
 				return true
 			}
-			// Skip algebraic and property tests (level 4+ features)
+			// Skip algebraic and property tests (advanced features)
 			if tag == "algebraic" || tag == "round-trip" || tag == "semigroup" || tag == "monoid" {
 				return true
 			}
@@ -1065,7 +1065,7 @@ func (g *Generator) getSkipReason(tags []string) string {
 		case "whitespace", "tabs", "newlines":
 			return "Whitespace handling not fully implemented in mock CCL"
 		case "algebraic", "round-trip", "semigroup", "monoid":
-			return "Level 4+ algebraic properties not implemented in mock CCL"
+			return "Advanced algebraic properties not implemented in mock CCL"
 		}
 	}
 	return "Skipped test"

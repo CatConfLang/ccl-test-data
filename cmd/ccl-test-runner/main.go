@@ -29,7 +29,7 @@ func main() {
 		Description: `A test runner for CCL (Categorical Configuration Language) implementations.
 		
 This tool consumes flat JSON test files and generates corresponding Go test files
-with proper organization by level and feature. Provides enhanced output formatting
+with proper organization by function and feature. Provides enhanced output formatting
 for both human and machine consumption.`,
 		Version: fmt.Sprintf("%s (commit: %s, built: %s)", version, commit, date),
 		Commands: []*cli.Command{
@@ -40,7 +40,7 @@ for both human and machine consumption.`,
 				Description: `Generate Go test files from flat JSON test suite data.
 				
 This command reads flat JSON test files and generates corresponding Go test files
-with proper organization by level and feature. Uses configuration-based filtering
+with proper organization by function and feature. Uses configuration-based filtering
 to exclude tests incompatible with implementation choices.`,
 				Action: generateAction,
 				Flags: []cli.Flag{

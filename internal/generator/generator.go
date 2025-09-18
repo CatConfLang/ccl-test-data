@@ -2,8 +2,8 @@
 //
 // This package transforms JSON test suites into executable Go test files, supporting
 // feature-based tagging, object pooling for performance, and comprehensive assertion
-// tracking. The generator organizes tests by CCL implementation levels (1-5) and
-// features (parsing, comments, objects, etc.).
+// tracking. The generator organizes tests by CCL functions and features
+// (parsing, comments, objects, etc.).
 //
 // Key Features:
 //   - Feature-based test selection via structured tagging
