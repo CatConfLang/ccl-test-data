@@ -148,23 +148,14 @@ The test suite is organized by feature category:
 
 ## Dual-Format Architecture
 
-> \[!TIP]
-> **Implementation Strategy**: Use the generated flat format for your test runner implementation. The separate typed fields provide excellent API ergonomics and type safety compared to parsing structured metadata.
-
 The test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
 ### Source Format (Maintainable)
-
-The **source format** maintains readability and ease of authoring:
-
 - Multiple validations per test in a single object
 - Structured metadata for comprehensive classification
 - Located in `tests/` directory
 
 ### Generated Format (Implementation-Friendly)
-
-The **generated format** provides optimal implementation ergonomics:
-
 - One test per validation function (1:N transformation)
 - Separate typed fields instead of string parsing
 - Type-safe enums with validation
@@ -172,100 +163,43 @@ The **generated format** provides optimal implementation ergonomics:
 
 ### Test Metadata Categories
 
-#### Functions Array - CCL functions by category:
+**Functions** - CCL functions by category:
+- Core: `parse`, `build_hierarchy`
+- Typed Access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
+- Processing: `filter`, `combine`, `expand_dotted`
+- Formatting: `canonical_format`
 
-**Core CCL Functions:**
-- `parse` - Basic key-value parsing
-- `parse_value` - Indentation-aware parsing
-- `build_hierarchy` - Object construction from flat entries
+**Features** - Optional language features:
+- `comments`, `experimental_dotted_keys`, `empty_keys`, `multiline`, `unicode`, `whitespace`
 
-**Typed Access Functions:**
-- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Type-safe value extraction
-
-**Processing Functions:**
-- `filter` - Entry filtering
-- `combine` - Entry composition
-
-**Experimental Functions:**
-- `expand_dotted` - Dotted key expansion (experimental)
-
-**Formatting Functions:**
-- `canonical_format` - Standardized formatting (also known as `pretty_print`)
-
-#### Features Array - Optional language features:
-
-- `comments` - `/=` comment syntax
-- `experimental_dotted_keys` - `foo.bar.baz` key syntax
-- `empty_keys` - `= value` anonymous list items
-- `multiline` - Multi-line value support
-- `unicode` - Unicode content handling
-- `whitespace` - Complex whitespace preservation
-
-#### Behaviors Array - Implementation choices (mutually exclusive):
-
-- `crlf_preserve_literal` vs `crlf_normalize_to_lf` - Line ending handling
-- `tabs_preserve` vs `tabs_to_spaces` - Tab handling
-- `strict_spacing` vs `loose_spacing` - Whitespace sensitivity
-- `boolean_strict` vs `boolean_lenient` - Boolean parsing
-- `list_coercion_enabled` vs `list_coercion_disabled` - List access behavior
-
-#### Variants Array - Specification variants:
-
-- `proposed_behavior` - Proposed specification behavior
-- `reference_compliant` - OCaml reference implementation behavior
+**Behaviors** - Implementation choices (mutually exclusive):
+- `crlf_preserve_literal` vs `crlf_normalize_to_lf`
+- `boolean_strict` vs `boolean_lenient`
+- `list_coercion_enabled` vs `list_coercion_disabled`
 
 ### Test Filtering Examples
 
-> \[!NOTE]
-> **Type-Safe Filtering**: Use direct field access instead of string parsing for better performance and type safety. The generated format provides enum validation and excellent API ergonomics.
-
-#### Minimal Implementation (Parse only)
-
 ```javascript
-// Filter for basic parsing tests only
-const parseTests = flatTests.filter(test => 
-  test.functions.includes('parse') && 
-  test.functions.length === 1
+// Minimal Implementation (Parse only)
+const parseTests = flatTests.filter(test =>
+  test.functions.includes('parse') && test.functions.length === 1
 );
-```
 
-#### Basic Implementation (Parse + Objects + Typed Access)
-
-```javascript
-// Filter for core functionality with dotted keys
-const coreTests = flatTests.filter(test => 
-  test.functions.some(f => ['parse', 'build_hierarchy', 'get_string'].includes(f)) &&
-  !test.features.some(f => ['comments', 'unicode'].includes(f))
+// Basic Implementation (Core functions)
+const coreTests = flatTests.filter(test =>
+  test.functions.some(f => ['parse', 'build_hierarchy'].includes(f)) &&
+  !test.features.includes('unicode')
 );
-```
 
-#### Advanced Implementation (All functions, behavior choices)
-
-```javascript
-// Filter based on implementation behavior choices
-const advancedTests = flatTests.filter(test => {
-  const hasConflictingBehavior = test.conflicts.behaviors?.some(b => 
-    ['crlf_preserve_literal', 'boolean_lenient'].includes(b)
-  );
-  return !hasConflictingBehavior;
-});
-```
-
-#### Progressive Implementation Strategy
-
-```javascript
-// Function-based progressive implementation
-const coreTests = flatTests.filter(test => test.tags.includes('function:parse'));
-const objectTests = flatTests.filter(test => test.tags.includes('function:build_hierarchy'));
-const typedTests = flatTests.filter(test => test.tags.includes('function:get_string'));
+// Advanced Implementation (Filter by behavior choices)
+const compatibleTests = flatTests.filter(test =>
+  !test.conflicts?.behaviors?.includes('crlf_preserve_literal')
+);
 ```
 
 ### Conflict Resolution
 
-> \[!WARNING]
-> **Mutually Exclusive Behaviors**: Tests with conflicting behaviors should be filtered based on your implementation choices. The conflicts object provides categorized exclusion lists for precise filtering.
-
-Tests specify conflicting behaviors in categorized structure:
+Tests specify conflicting behaviors. If your implementation chooses `crlf_normalize_to_lf`, filter out tests with that value in `conflicts.behaviors`:
 
 ```json
 {
@@ -277,33 +211,16 @@ Tests specify conflicting behaviors in categorized structure:
 }
 ```
 
-If your implementation chooses `crlf_normalize_to_lf`, filter out tests with that value in `conflicts.behaviors`.
-
 ### Generating Flat Format Tests
-
-> \[!IMPORTANT]
-> **Required Step**: You must generate the flat format tests from the source format before running your test suite. The flat format provides the type-safe, implementation-friendly structure your test runner needs.
 
 Generate flat format tests from the maintainable source format:
 
 ```bash
-# Generate flat format tests for implementation
-just generate-flat
-
-# Validate generated tests against schema
-just validate-flat
-
-# Run your test suite against generated tests
-# (your implementation reads from generated_tests/ directory)
+just generate-flat     # Generate flat format tests
+just validate-flat     # Validate generated tests
 ```
 
-The generator:
-
-- Transforms 1:N (one source test → multiple flat tests)
-- Parses structured metadata into separate typed fields
-- Provides auto-generated function classifications
-- Provides categorized conflicts structure
-- Maintains full traceability to source tests
+The generator transforms 1:N (one source test → multiple flat tests) and provides separate typed fields for filtering.
 
 ### Test Runner Implementation Example
 

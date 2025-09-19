@@ -1,57 +1,32 @@
 # CCL Test Suite Documentation
 
-This directory contains comprehensive documentation for the CCL (Categorical Configuration Language) Test Suite.
+This directory contains documentation for the CCL (Categorical Configuration Language) Test Suite.
 
 ## Documentation Index
 
 ### Core Documentation
-
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture, component design, and data flow
-- **[API.md](API.md)** - Complete API reference for all Go packages and functions
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and component design
+- **[API.md](API.md)** - Complete API reference for Go packages
 - **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** - Development workflow and contribution guide
-- **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Reference CCL implementation patterns
 - **[CLI_REFERENCE.md](CLI_REFERENCE.md)** - Command-line interface reference
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and debugging strategies
-
-### Test Suite Documentation
-
-- **[test-architecture.md](test-architecture.md)** - Test suite design and file organization
-- **[test-filtering.md](test-filtering.md)** - Advanced test filtering patterns
-- **[test-selection-guide.md](test-selection-guide.md)** - Guide for selecting relevant tests
-- **[test-runner-implementation-guide.md](test-runner-implementation-guide.md)** - Building test runners
+- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and debugging
 
 ### Implementation Guides
-
 - **[implementing-ccl.md](implementing-ccl.md)** - Complete CCL implementation guide
+- **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Reference CCL implementation patterns
+
+### Test Suite Guides
+- **[test-architecture.md](test-architecture.md)** - Test suite design and organization
+- **[test-filtering.md](test-filtering.md)** - Advanced test filtering patterns
 - **[schema-reference.md](schema-reference.md)** - Test data schema reference
-- **[generated-schema.md](generated-schema.md)** - Auto-generated schema documentation
-
-### Project Overview
-
-The CCL Test Suite is a comprehensive, language-agnostic testing framework for CCL implementations. It provides:
-
-- **Structured Test Data** - JSON-based test definitions with feature-based tagging
-- **Progressive Implementation** - Support for staged CCL implementation approach  
-- **Reference Implementation** - Working mock CCL parser for development and testing
-- **Advanced Tooling** - CLI tools for test generation, execution, and analysis
 
 ### Quick Navigation
 
-**For New Contributors:**
-1. Begin with [ARCHITECTURE.md](ARCHITECTURE.md) for system design overview
-2. Follow with [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for development workflow and contribution guidelines
-3. Review [API.md](API.md) for detailed package documentation
-4. Use [CLI_REFERENCE.md](CLI_REFERENCE.md) for command-line tool usage
+**New Contributors**: Start with [ARCHITECTURE.md](ARCHITECTURE.md), then [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)
 
-**For CCL Implementers:**
-1. Study [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md) for implementation patterns and strategies
-2. Reference [API.md](API.md) for expected function signatures and behavior
-3. Use [CLI_REFERENCE.md](CLI_REFERENCE.md) for progressive testing approaches
+**CCL Implementers**: Begin with [implementing-ccl.md](implementing-ccl.md) and [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)
 
-**For Tool Users:**
-1. Reference [CLI_REFERENCE.md](CLI_REFERENCE.md) for complete command documentation
-2. Check [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) for workflow examples
-3. Use [API.md](API.md) for understanding output formats and data structures
+**Tool Users**: Reference [CLI_REFERENCE.md](CLI_REFERENCE.md) for commands and [API.md](API.md) for data structures
 
 ### Documentation Standards
 

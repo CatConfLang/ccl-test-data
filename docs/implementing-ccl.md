@@ -1,599 +1,136 @@
 # Implementing CCL - A Guide for Language Authors
 
-This guide helps you implement a CCL parser in your programming language using the test suite where each test specifies exactly which API functions to validate.
+Implementation guide for CCL parsers using the comprehensive test suite.
 
 ## Quick Start
 
-1. **Study the specification** - Read the [CCL FAQ](ccl_faq.md) and [Getting Started Guide](getting-started.md)
-2. **Choose your implementation path** - Start with core functionality, add features as needed
-3. **Use the test suite** - Each test specifies which API functions to validate
-4. **Follow the reference** - OCaml reference implementation at https://github.com/chshersh/ccl
+1. **Core first**: Essential parsing + Object construction (26 tests)
+2. **Add features**: Typed access, processing, formatting as needed
+3. **Test-driven**: Each validation maps to specific API functions
+4. **Reference**: OCaml implementation at https://github.com/chshersh/ccl
 
-### Test Format Features
+## Core Functions (Required)
 
-✅ **Direct mapping** - Each validation maps to a specific API function  
-✅ **Multi-stage testing** - Tests declare expected outputs for different parsing stages
-✅ **Simple iteration** - Test runners iterate over `validations` keys  
-✅ **Self-documenting** - Validation names explain what's being tested
+### Essential Parsing (18 tests)
+**API**: `parse(text) → Entry[]`
+- Split on first `=`, handle multiline values via indentation
+- Preserve whitespace in values, trim keys
+- Support Unix/Windows/Mac line endings
 
-## Implementation Roadmap
+### Object Construction (8 tests)
+**API**: `build_hierarchy(entries) → CCL`
+- Fixed-point algorithm: recursively parse nested values
+- Merge duplicate keys, handle empty keys as lists
+- Creates hierarchical objects from flat entries
 
-### Core Functions: Essential CCL (text → hierarchical objects)
-**Functions:** parse() + build_hierarchy() - what users expect from any CCL implementation
-**Test Coverage:** api_essential-parsing.json + api_object-construction.json
+### Typed Access (17 tests)
+**Functions**: `get_string()`, `get_int()`, `get_bool()`, `get_float()`, `get_list()`
+**Dual access**: Support both `get_string(ccl, "database", "host")` and `get_string(ccl, "database.host")`
 
-Start here for rapid prototyping - covers what users actually expect from CCL. **Core CCL** combines parsing with hierarchical object construction via the fixpoint algorithm.
+### Processing Functions (21 tests)
+**Functions**: `filter()`, `compose()`, `expand_dotted()`
+- **Filter**: Remove comment keys (starting with `/`)
+- **Compose**: Concatenate entry lists, merge at object level
+- **Expand dotted**: Convert `database.host` to nested structures
 
-#### Core CCL Algorithm
+### Implementation Pattern
+
+**Reusable Navigation**:
 ```pseudocode
-function parse(text: string) -> Result<List<Entry>, ParseError> {
-  entries = []
-  lines = split_lines_with_positions(text)
-  
-  for line in lines {
-    if line.contains("=") {
-      (key, value) = split_on_first_equals(line)
-      key = trim_key(key)
-      value = extract_initial_value(value)
-      
-      // Handle multiline continuation
-      while next_line_is_continuation(lines, current_index) {
-        continuation = get_continuation_content(lines, current_index + 1)
-        value += "\n" + continuation
-        current_index += 1
-      }
-      
-      entries.append(Entry(key, value))
-    }
-  }
-  
-  return Ok(entries)
+// Unified path parsing for both access patterns
+function parse_path(...args) -> string[] {
+  return args.length == 1 && args[0].contains(".") ?
+    args[0].split(".") : args
 }
 
-function build_hierarchy(entries: List<Entry>) -> CCL {
-  result = {}
-  
-  for entry in entries {
-    if entry.value.contains_ccl_syntax() {
-      // Recursively parse nested content
-      nested_entries = parse(entry.value)
-      nested_object = build_hierarchy(nested_entries)
-      result = merge_into_result(result, entry.key, nested_object)
-    } else {
-      result = merge_into_result(result, entry.key, entry.value)
-    }
-  }
-  
-  return result
-}
-```
-
-#### Key Implementation Details
-
-**Line Splitting:**
-- Preserve line ending information (for error reporting)
-- Handle Unix (`\n`), Windows (`\r\n`), and legacy Mac (`\r`) line endings
-- Normalize to consistent internal representation
-
-**Key Extraction:**
-- Split on first `=` character only
-- Trim whitespace from keys
-- Empty keys are valid (used for lists)
-
-**Value Extraction:**
-- Preserve leading/trailing whitespace in values
-- Handle values containing `=` characters
-- Empty values are valid
-
-**Continuation Lines:**
-- Lines with indentation greater than parent continue the value
-- Preserve relative indentation in multiline values
-- Handle mixed tabs and spaces (warn in strict mode)
-
-**Fixed-Point Algorithm:**
-```pseudocode
-function contains_ccl_syntax(value: string) -> boolean {
-  // Check if value looks like CCL (contains "=")
-  lines = split_lines(value)
-  for line in lines {
-    if trim(line).contains("=") {
-      return true
-    }
-  }
-  return false
-}
-
-function merge_into_result(result: CCL, key: string, value: any) {
-  if key == "" {
-    // Empty keys create lists
-    if result[""] exists {
-      result[""].append(value)
-    } else {
-      result[""] = [value]
-    }
-  } else if result[key] exists {
-    // Merge duplicate keys
-    result[key] = deep_merge(result[key], value)
-  } else {
-    result[key] = value
-  }
-}
-```
-
-### Typed Access Functions: Type-safe value extraction
-**Functions:** get_string(), get_int(), get_bool(), get_float(), get_list()
-**Test Coverage:** api_typed-access.json (107 assertions)
-
-Required for production applications that need type safety and validation.
-
-#### Type-Safe Accessors
-
-**Dual Access Pattern Support:**
-CCL should support both hierarchical and dotted access patterns as first-class alternatives:
-
-```ccl
-# Both syntaxes create the same hierarchical structure
-database.host = localhost    # Dotted syntax  
-database =                   # Nested syntax
-  port = 5432
-```
-
-**API Design - Both Access Patterns:**
-```pseudocode
-// Hierarchical access
-host = get_string(ccl, "database", "host")     // ✓ Works
-port = get_int(ccl, "database", "port")        // ✓ Works
-
-// Dotted access  
-host = get_string(ccl, "database.host")        // ✓ Also works
-port = get_int(ccl, "database.port")           // ✓ Also works
-```
-
-### Processing Functions: Entry manipulation and composition
-**Functions:** filter(), compose(), expand_dotted()
-**Test Coverage:** api_processing.json + api_comments.json
-
-Required for advanced configuration management, composition, and preprocessing workflows. The `expand_dotted()` function provides dotted representation of hierarchical data.
-
-#### Comment Filtering
-```pseudocode
-function filter_comments(entries: List<Entry>) -> List<Entry> {
-  return entries.filter(entry -> !entry.key.starts_with("/"))
-}
-
-// Alternative: filter by custom comment prefixes
-function filter_by_prefixes(entries: List<Entry>, prefixes: List<string>) {
-  return entries.filter(entry -> !any(prefixes, prefix -> entry.key.starts_with(prefix)))
-}
-```
-
-#### Entry Composition
-```pseudocode
-function compose(left: List<Entry>, right: List<Entry>) -> List<Entry> {
-  // Simple concatenation - merging happens at object level
-  return left + right
-}
-```
-
-#### Dotted Representation Support
-```pseudocode
-function expand_dotted(entries: List<Entry>) -> List<Entry> {
-  result = []
-  for entry in entries {
-    if entry.key.contains(".") {
-      // Convert dotted key "database.host" to nested structure 
-      // This enables dotted representation of hierarchical data
-      expanded = convert_dotted_to_nested(entry.key, entry.value)
-      result.append(expanded)
-    } else {
-      result.append(entry)
-    }
-  }
-  return result
-}
-```
-
-**Note**: This function name `expand_dotted` is used in test APIs, but conceptually it provides "dotted representation of hierarchical data" - allowing both dotted and hierarchical access patterns to work on the same data structure.
-
-**For a complete explanation of dotted keys vs hierarchical data, see [Dotted Keys Explained](https://ccl.tylerbutler.com/dotted-keys-explained).**
-
-### Formatting Functions: Implementation-specific extensions
-**Functions:** dotted representation features, pretty_print(), round_trip validation
-**Test Coverage:** api_dotted-keys.json + property_*.json
-
-Implementation-specific features that may vary between CCL implementations. Include based on your implementation's goals and user needs.
-
-#### Reusable Implementation Pattern
-
-**Core Navigation Logic:**
-```pseudocode
-// Reusable path parsing - handles both access patterns
-function parse_path(...path_args) -> List<string> {
-  if path_args.length == 1 and path_args[0].contains(".") {
-    // Dotted access: "database.host" -> ["database", "host"]
-    return path_args[0].split(".")
-  } else {
-    // Hierarchical access: ("database", "host") -> ["database", "host"]
-    return path_args
-  }
-}
-
-// Reusable navigation - works for both patterns
-function navigate_path(ccl_obj, path_segments) -> Result<Value, Error> {
-  current = ccl_obj
-  for segment in path_segments {
-    if current is not object or segment not in current {
-      return Error("Path not found: " + join(path_segments, "."))
-    }
-    current = current[segment]
-  }
-  return Ok(current)
-}
-
-// Base getter that all typed getters reuse
-function get_raw_value(ccl: CCL, ...path) -> Result<Value, Error> {
+// Shared navigation logic
+function get_raw_value(ccl, ...path) {
   segments = parse_path(...path)
   return navigate_path(ccl, segments)
 }
-```
 
-**Typed Getters Using Shared Logic:**
-```pseudocode
-function get_string(ccl: CCL, ...path) -> Result<string, Error> {
+// All getters reuse navigation
+function get_int(ccl, ...path) {
   value = get_raw_value(ccl, ...path)
-  match value {
-    Ok(string) -> Ok(string)
-    Error(e) -> Error(e)
-  }
-}
-
-function get_int(ccl: CCL, ...path) -> Result<int, Error> {
-  value = get_raw_value(ccl, ...path)
-  match value {
-    Ok(str) -> parse_int(str) or Error("Invalid integer: " + str)
-    Error(e) -> Error(e)
-  }
-}
-
-function get_bool(ccl: CCL, ...path) -> Result<bool, Error> {
-  value = get_raw_value(ccl, ...path)
-  match value {
-    Ok(str) -> match str.to_lowercase() {
-      "true" | "yes" | "on" | "1" -> Ok(true)
-      "false" | "no" | "off" | "0" -> Ok(false)
-      _ -> Error("Invalid boolean: " + str)
-    }
-    Error(e) -> Error(e)
-  }
+  return parse_int(value)
 }
 ```
 
-**Language-Specific Variations:**
+## Language-Specific Patterns
 
-*Rust:*
-```rust
-fn get_typed<T: FromStr>(obj: &CCL, path: &[&str]) -> Result<T, CCLError> {
-    let value = get_raw_value(obj, path)?;
-    value.parse().map_err(|_| CCLError::TypeError)
-}
-```
+**Error Handling**:
+- **Rust**: `Result<T, Error>`
+- **Go**: `(T, error)`
+- **Python**: `Union[T, Error]`
+- **JavaScript**: Throw exceptions
 
-*TypeScript:*
-```typescript
-function getTyped<T>(obj: CCL, parser: (s: string) => T, ...path: string[]): T {
-    const value = getRawValue(obj, ...path);
-    return parser(value);
-}
-```
+**Data Structures**:
+- **Immutable**: `Entry(key, value)`, `CCL` with string/list/object variants
+- **OOP**: `Entry` class, `CCLValue` interface with implementations
 
-**Benefits of This Approach:**
-- Single navigation algorithm handles both access patterns
-- Consistent error handling across all getters
-- Easy to extend with additional typed getters
-- Testable components (navigation vs type conversion)
-- Maximum code reuse between getter functions
-```
+## Testing Strategy
 
-## Language-Specific Considerations
-
-### Error Handling Patterns
-
-**Rust:**
-```rust
-type ParseResult<T> = Result<T, ParseError>;
-type AccessResult<T> = Result<T, AccessError>;
-```
-
-**Go:**
-```go
-func Parse(text string) ([]Entry, error)
-func GetString(ccl CCL, path string) (string, error)
-```
-
-**Python:**
-```python
-def parse(text: str) -> Union[List[Entry], ParseError]
-def get_string(ccl: CCL, path: str) -> Union[str, AccessError]
-```
-
-**JavaScript:**
-```javascript
-function parse(text) { /* returns entries or throws ParseError */ }
-function getString(ccl, path) { /* returns string or throws AccessError */ }
-```
-
-### Data Structure Design
-
-**Immutable Languages (Haskell, OCaml):**
-```haskell
-data Entry = Entry String String
-data CCL = CCLString String | CCLList [String] | CCLObject (Map String CCL)
-```
-
-**Object-Oriented Languages (Java, C#):**
-```java
-class Entry {
-  public final String key;
-  public final String value;
-}
-
-interface CCLValue {}
-class CCLString implements CCLValue { String value; }
-class CCLList implements CCLValue { List<String> items; }
-class CCLObject implements CCLValue { Map<String, CCLValue> fields; }
-```
-
-## Testing Your Implementation
-
-### Running the Test Suite
-
-Each stage has a dedicated test file with specific format:
-
-```json
-{
-  "tests": [
-    {
-      "name": "basic_key_value",
-      "input": "key = value",
-      "expected": [
-        {"key": "key", "value": "value"}
-      ],
-      "meta": {
-        "tags": ["basic"]
-      }
-    }
-  ]
-}
-```
-
-### Test Runner Implementation
+### Test Runner Pattern
 ```pseudocode
-function run_validation_test_suite(test_file: string) {
-  test_data = load_json(test_file)
-  
-  for test in test_data.tests {
-    try {
-      // Iterate over all validations in the test
-      for (validation_type, expected) in test.validations {
-        switch validation_type {
-          case "parse":
-            if expected.error {
-              assert_throws(() => parse(test.input), expected.error_message)
-            } else {
-              actual = parse(test.input)
-              assert_equal(actual, expected)
-            }
-            break
-            
-          case "build_hierarchy":
-            entries = parse(test.input)
-            actual = build_hierarchy(entries)
-            assert_equal(actual, expected)
-            break
-            
-          case "get_string":
-            entries = parse(test.input)
-            ccl = build_hierarchy(entries)
-            if expected.error {
-              assert_throws(() => get_string(ccl, ...expected.args))
-            } else {
-              actual = get_string(ccl, ...expected.args)
-              assert_equal(actual, expected.expected)
-            }
-            break
-            
-          case "filter":
-            entries = parse(test.input)
-            actual = filter(entries)
-            assert_equal(actual, expected)
-            break
-            
-          case "compose":
-            actual = compose(expected.left, expected.right)
-            assert_equal(actual, expected.expected)
-            break
-            
-          case "round_trip":
-            entries = parse(test.input)
-            formatted = pretty_print(entries)
-            reparsed = parse(formatted)
-            assert_equal(entries, reparsed)
-            break
-            
-          // ... handle other validation types
-        }
-      }
-      
-      print("✅ " + test.name)
-    } catch (error) {
-      print("❌ " + test.name + ": " + error)
+for test in test_data {
+  for (validation_type, expected) in test.validations {
+    switch validation_type {
+      case "parse": actual = parse(test.input); assert_equal(actual, expected)
+      case "get_string": actual = get_string(ccl, ...args); assert_equal(actual, expected)
+      // ... other validations
     }
   }
 }
 ```
 
-### Test Format Example
+### Progressive Implementation
+1. **Essential** (18 tests): Basic parsing
+2. **Core** (26 tests): + Object construction
+3. **Standard** (56 tests): + Comprehensive parsing
+4. **Full** (135 tests): + All features
 
-Each test explicitly maps validations to API functions:
+## Performance Tips
 
-```json
-{
-  "name": "multi_stage_validation",
-  "input": "database.host = localhost\ndatabase.port = 8080",
-  "validations": {
-    "parse": [
-      {"key": "database.host", "value": "localhost"},
-      {"key": "database.port", "value": "8080"}
-    ],
-    "expand_dotted": [
-      {"key": "database", "value": "\n  host = localhost\n  port = 8080"}
-    ],
-    "build_hierarchy": {
-      "database": {"host": "localhost", "port": "8080"}
-    },
-    "get_string": {
-      "args": ["database.host"],
-      "expected": "localhost"
-    },
-    "get_int": {
-      "args": ["database", "port"],
-      "expected": 8080
-    }
-  },
-  "meta": {"feature": "typed-parsing"}
-}
-```
+- **Line-by-line processing** for parsing
+- **Minimize allocations** during key/value extraction
+- **Lazy object construction** for large configs
+- **Fast path** for flat configurations (no indentation)
+- **String sharing** between entries
 
-### Progressive Testing Strategy
+## Common Pitfalls
 
-1. **Start with essential tests:**
-   ```bash
-   # Run essential parsing tests first
-   validate_tests("tests/essential-parsing.json")     # 18 tests
-   ```
+1. **Continuation handling**: Exact indentation comparison required
+2. **Equals splitting**: Only split on first `=`
+3. **Unicode**: Proper UTF-8 handling
+4. **Path navigation**: Handle missing keys gracefully
+5. **Type conversion**: Boolean parsing edge cases
+6. **Memory management**: String lifetime in non-GC languages
 
-2. **Add comprehensive coverage:**
-   ```bash
-   # Run core functionality tests
-   validate_tests("tests/core/essential-parsing.json")        # 18 tests
-   validate_tests("tests/object-construction.json")      # 8 tests
-   validate_tests("tests/comprehensive-parsing.json")    # 30 tests
-   
-   # Add optional features as needed
-   validate_tests("tests/dotted-keys.json")          # 18 tests
-   validate_tests("tests/typed-access.json")         # 17 tests
-   ```
+## API Guidelines
 
-3. **Validate error handling:**
-   ```bash
-   validate_tests("tests/errors.json")            # 5 tests
-   ```
-
-## Performance Considerations
-
-### Parsing Performance
-- **Line-by-line processing** is typically fastest for CCL
-- **Minimize string allocations** during key/value extraction
-- **Lazy evaluation** for nested object construction
-- **Streaming parsers** for very large configuration files
-
-### Memory Usage
-- **Share string data** between entries when possible
-- **Use rope/gap buffer structures** for large multiline values
-- **Implement copy-on-write** for object merging operations
-
-### Optimization Strategies
-```pseudocode
-// Fast path for flat configurations (no nesting)
-if !text.contains_indented_lines() {
-  return parse_flat_only(text)  // Skip object construction
-}
-
-// Lazy object construction
-class LazyObject {
-  entries: List<Entry>
-  constructed: Option<CCL>
-  
-  function get(key: string) {
-    if !constructed {
-      constructed = Some(build_hierarchy(entries))
-    }
-    return constructed.get(key)
-  }
-}
-```
-
-## Common Implementation Pitfalls
-
-1. **Incorrect continuation handling** - Ensure indentation comparison is exact
-2. **Wrong equals splitting** - Only split on first `=`, preserve others in value
-3. **Unicode issues** - Handle UTF-8 properly, including multi-byte characters
-4. **Path navigation errors** - Handle nested access edge cases
-5. **Type conversion edge cases** - Boolean parsing, integer overflow
-6. **Memory leaks** - In languages without GC, manage string lifetimes carefully
-
-## API Design Guidelines
-
-### Consistent Naming
-- `parse()` for core entry parsing
-- `build_hierarchy()` for object construction
-- `filter_comments()` for comment filtering
-- `get_string()`, `get_int()`, `get_bool()` for typed access
+### Function Naming
+- `parse()`, `build_hierarchy()`, `filter_comments()`
+- `get_string()`, `get_int()`, `get_bool()`
 
 ### Error Messages
-Provide helpful error messages with:
-- **Line/column numbers** for parse errors
-- **Key paths** for access errors  
-- **Expected vs actual** for type errors
-- **Suggestions** for common mistakes
+- **Parse errors**: Line/column numbers
+- **Access errors**: Key paths
+- **Type errors**: Expected vs actual
+- **Test validation**: Flexible regex patterns preferred over exact strings
 
-#### Error Message Testing
-The test suite supports two approaches for validating error messages:
+### Documentation
+- API examples, migration guides
+- Performance characteristics, thread safety
 
-**Flexible Pattern Matching (Recommended):**
-```json
-{
-  "error": true,
-  "error_pattern": "(?i)path\\s+'[^']+'\\s+not\\s+found"
-}
-```
+## Release Checklist
 
-**Exact String Matching:**
-```json
-{
-  "error": true,
-  "error_message": "Path 'missing' not found."
-}
-```
+- [ ] All test suites pass (135+ tests)
+- [ ] Error messages are helpful
+- [ ] Performance acceptable
+- [ ] Documentation complete
+- [ ] Thread safety documented
 
-**Pattern Best Practices:**
-- Use `(?i)` for case-insensitive matching
-- Use `\\s+` for flexible whitespace handling
-- Use `\\.?` for optional punctuation
-- Focus on semantic content over exact formatting
-
-This approach reduces implementation friction while maintaining test coverage, allowing different languages to use their natural error message conventions.
-
-### Documentation Requirements
-- **API documentation** with examples
-- **Migration guide** from popular formats
-- **Performance characteristics** and limitations
-- **Thread safety** guarantees (if applicable)
-
-## Validation and Release
-
-### Pre-Release Checklist
-- [ ] All test suites pass (106+ tests total)
-- [ ] Error messages are helpful and consistent
-- [ ] Performance is acceptable for target use cases
-- [ ] Documentation is complete
-- [ ] Thread safety is documented/implemented
-- [ ] Memory usage is reasonable
-
-### Publishing Guidelines
-- **Semantic versioning** with level support clearly indicated
-- **Clear API stability** promises
-- **Examples and tutorials** for common use cases
-- **Contribution guidelines** for community involvement
-
-The CCL specification and test suite provide everything needed to build a robust, compliant implementation in any programming language. Focus on correctness first, then optimize for your language's specific performance characteristics.
+### Publishing
+- Semantic versioning with feature support indicated
+- API stability promises
+- Examples and contribution guidelines
