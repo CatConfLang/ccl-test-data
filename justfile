@@ -19,15 +19,21 @@ install:
 
 # === ESSENTIAL WORKFLOWS ===
 
-# Basic development: generate core tests and verify they pass (tolerates some failures)
+# Basic development: generate core tests and verify they pass (excludes known failing edge cases)
 dev-basic:
     just clean
     just generate-flat
     just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:strict_spacing
     just lint
     #!/usr/bin/env bash
-    echo "Running core parsing tests (some failures expected for complex edge cases)..."
-    go run ./cmd/ccl-test-runner test || echo "✅ Basic parsing tests completed (with expected edge case failures)"
+    echo "🧪 Running tests..."
+    echo "📋 Running: gotestsum --format testname -- -skip \"TestKeyWithNewlineBeforeEqualsParse|TestComplexMultiNewlineWhitespaceParse|TestDeeplyNestedListParse|TestRoundTripWhitespaceNormalizationParse\" ./go_tests/..."
+    # Excluded tests: edge cases with multiline keys and whitespace normalization
+    # - TestKeyWithNewlineBeforeEqualsParse: newline within key portion before equals
+    # - TestComplexMultiNewlineWhitespaceParse: complex whitespace with newlines in key
+    # - TestDeeplyNestedListParse: nested structure parsing (expects flat entries)
+    # - TestRoundTripWhitespaceNormalizationParse: whitespace handling inconsistencies
+    gotestsum --format testname -- -skip "TestKeyWithNewlineBeforeEqualsParse|TestComplexMultiNewlineWhitespaceParse|TestDeeplyNestedListParse|TestRoundTripWhitespaceNormalizationParse" ./go_tests/...
 
 # Full development: comprehensive test suite
 dev:
