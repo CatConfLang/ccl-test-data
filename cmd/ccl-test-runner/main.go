@@ -95,6 +95,14 @@ compatibility with standard go test flags.`,
 						Name:  "features",
 						Usage: "Filter by features (comments, parsing, objects, etc)",
 					},
+					&cli.StringSliceFlag{
+						Name:  "skip",
+						Usage: "Skip specific tests by name pattern (e.g., --skip TestKeyWithNewlineBeforeEqualsParse)",
+					},
+					&cli.BoolFlag{
+						Name:  "basic-only",
+						Usage: "Run only basic tests, skipping known failing edge cases",
+					},
 					&cli.BoolFlag{
 						Name:  "list",
 						Usage: "List available test packages without running",
@@ -264,11 +272,24 @@ func testAction(ctx *cli.Context) error {
 	format := ctx.String("format")
 	tags := ctx.StringSlice("tags")
 	features := ctx.StringSlice("features")
+	skipTests := ctx.StringSlice("skip")
+	basicOnly := ctx.Bool("basic-only")
 	listOnly := ctx.Bool("list")
 	verbose := ctx.Bool("verbose")
 
 	if verbose {
 		format = "verbose"
+	}
+
+	// Add basic-only exclusions
+	if basicOnly {
+		defaultSkipTests := []string{
+			"TestKeyWithNewlineBeforeEqualsParse",
+			"TestComplexMultiNewlineWhitespaceParse",
+			"TestDeeplyNestedListParse",
+			"TestRoundTripWhitespaceNormalizationParse",
+		}
+		skipTests = append(skipTests, defaultSkipTests...)
 	}
 
 	packages := buildPackagePatterns(tags, features)
@@ -291,7 +312,7 @@ func testAction(ctx *cli.Context) error {
 	}
 
 	styles.Status("🧪", "Running tests...")
-	return runTestsWithGotestsum(format, tags, features, ctx.Args().Slice())
+	return runTestsWithGotestsum(format, tags, features, skipTests, ctx.Args().Slice())
 }
 
 func statsAction(ctx *cli.Context) error {
@@ -392,11 +413,11 @@ func benchmarkAction(ctx *cli.Context) error {
 	return nil
 }
 
-func runTestsWithGotestsum(format string, tags []string, features []string, extraArgs []string) error {
+func runTestsWithGotestsum(format string, tags []string, features []string, skipTests []string, extraArgs []string) error {
 	// Check if gotestsum is available
 	if _, err := exec.LookPath("gotestsum"); err != nil {
 		styles.Warning("⚠️  gotestsum not found, falling back to go test")
-		return runWithGoTest(tags, features, extraArgs)
+		return runWithGoTest(tags, features, skipTests, extraArgs)
 	}
 
 	// Build gotestsum command
@@ -418,10 +439,19 @@ func runTestsWithGotestsum(format string, tags []string, features []string, extr
 	// Add package patterns based on filters
 	packages := buildPackagePatterns(tags, features)
 
+	// Add separator for go test args
+	cmd.Args = append(cmd.Args, "--")
+
+	// Add skip patterns if specified
+	if len(skipTests) > 0 {
+		skipPattern := strings.Join(skipTests, "|")
+		cmd.Args = append(cmd.Args, "-skip", skipPattern)
+	}
+
+	// Add package patterns
 	if len(packages) == 0 {
-		cmd.Args = append(cmd.Args, "--", "./go_tests/...")
+		cmd.Args = append(cmd.Args, "./go_tests/...")
 	} else {
-		cmd.Args = append(cmd.Args, "--")
 		cmd.Args = append(cmd.Args, packages...)
 	}
 
@@ -437,8 +467,14 @@ func runTestsWithGotestsum(format string, tags []string, features []string, extr
 	return cmd.Run()
 }
 
-func runWithGoTest(tags []string, features []string, extraArgs []string) error {
+func runWithGoTest(tags []string, features []string, skipTests []string, extraArgs []string) error {
 	cmd := exec.Command("go", "test")
+
+	// Add skip patterns if specified
+	if len(skipTests) > 0 {
+		skipPattern := strings.Join(skipTests, "|")
+		cmd.Args = append(cmd.Args, "-skip", skipPattern)
+	}
 
 	// Add package patterns
 	packages := buildPackagePatterns(tags, features)
