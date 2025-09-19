@@ -213,7 +213,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
@@ -237,7 +239,9 @@
           "description": "Welcome to our app\n  This is a multi-line description\n  With several lines"
         }
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "build_hierarchy"
       ],

@@ -32,7 +32,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "comments"
+      ],
       "functions": [
         "parse"
       ],
@@ -74,6 +76,7 @@
         ]
       },
       "features": [
+        "comments",
         "comments"
       ],
       "functions": [
@@ -96,7 +99,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "comments"
+      ],
       "functions": [
         "parse"
       ],
@@ -118,6 +123,7 @@
         ]
       },
       "features": [
+        "comments",
         "comments"
       ],
       "functions": [
@@ -160,7 +166,10 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "comments",
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -202,6 +211,8 @@
         ]
       },
       "features": [
+        "comments",
+        "empty_keys",
         "comments"
       ],
       "functions": [

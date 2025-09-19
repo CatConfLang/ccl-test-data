@@ -53,7 +53,7 @@ ports = 8002`
 
 }
 
-// list_with_empty_keys_parse - function:parse
+// list_with_empty_keys_parse - function:parse feature:empty_keys
 func TestListWithEmptyKeysParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -73,7 +73,7 @@ func TestListWithEmptyKeysParse(t *testing.T) {
 
 }
 
-// section_style_syntax_parse - function:parse
+// section_style_syntax_parse - function:parse feature:empty_keys
 func TestSectionStyleSyntaxParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -112,7 +112,7 @@ b = 2`
 
 }
 
-// mixed_keys_with_duplicates_parse - function:parse
+// mixed_keys_with_duplicates_parse - function:parse feature:empty_keys
 func TestMixedKeysWithDuplicatesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -133,7 +133,7 @@ ports = 8001`
 
 }
 
-// array_style_list_parse - function:parse
+// array_style_list_parse - function:parse feature:empty_keys
 func TestArrayStyleListParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -153,7 +153,7 @@ func TestArrayStyleListParse(t *testing.T) {
 
 }
 
-// section_header_double_equals_parse - function:parse
+// section_header_double_equals_parse - function:parse feature:empty_keys
 func TestSectionHeaderDoubleEqualsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -173,7 +173,7 @@ port = 5432`
 
 }
 
-// section_header_triple_equals_parse - function:parse
+// section_header_triple_equals_parse - function:parse feature:empty_keys
 func TestSectionHeaderTripleEqualsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -193,7 +193,7 @@ ssl = true`
 
 }
 
-// multiple_sections_with_entries_parse - function:parse
+// multiple_sections_with_entries_parse - function:parse feature:empty_keys
 func TestMultipleSectionsWithEntriesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -218,7 +218,7 @@ level = info`
 
 }
 
-// section_headers_mixed_with_lists_parse - function:parse
+// section_headers_mixed_with_lists_parse - function:parse feature:empty_keys
 func TestSectionHeadersMixedWithListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -259,7 +259,7 @@ func TestEmptySectionHeaderOnlyParse(t *testing.T) {
 
 }
 
-// section_header_at_end_parse - function:parse
+// section_header_at_end_parse - function:parse feature:empty_keys
 func TestSectionHeaderAtEndParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -278,7 +278,7 @@ func TestSectionHeaderAtEndParse(t *testing.T) {
 
 }
 
-// section_headers_no_trailing_equals_parse - function:parse
+// section_headers_no_trailing_equals_parse - function:parse feature:empty_keys
 func TestSectionHeadersNoTrailingEqualsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -299,7 +299,7 @@ port = 8080`
 
 }
 
-// section_headers_with_colons_parse - function:parse
+// section_headers_with_colons_parse - function:parse feature:empty_keys
 func TestSectionHeadersWithColonsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -320,7 +320,7 @@ port = 6379`
 
 }
 
-// spaced_equals_not_section_header_parse - function:parse
+// spaced_equals_not_section_header_parse - function:parse feature:empty_keys
 func TestSpacedEqualsNotSectionHeaderParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -341,7 +341,7 @@ key = value`
 
 }
 
-// consecutive_section_headers_parse - function:parse
+// consecutive_section_headers_parse - function:parse feature:empty_keys
 func TestConsecutiveSectionHeadersParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -362,12 +362,12 @@ key = value`
 
 }
 
-// multiline_section_header_value_parse_value - function:parse_value
+// multiline_section_header_value_parse_value - function:parse_value feature:empty_keys feature:multiline
 func TestMultilineSectionHeaderValueParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// unindented_multiline_becomes_continuation_parse_value - function:parse_value
+// unindented_multiline_becomes_continuation_parse_value - function:parse_value feature:empty_keys
 func TestUnindentedMultilineBecomesContinuationParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

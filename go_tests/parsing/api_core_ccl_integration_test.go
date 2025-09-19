@@ -120,7 +120,7 @@ func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complete_multiline_workflow_parse - function:parse
+// complete_multiline_workflow_parse - function:parse feature:multiline
 func TestCompleteMultilineWorkflowParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -144,7 +144,7 @@ config =
 
 }
 
-// complete_multiline_workflow_build_hierarchy - function:build_hierarchy
+// complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

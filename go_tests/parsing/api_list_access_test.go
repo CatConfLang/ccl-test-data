@@ -400,7 +400,7 @@ func TestListWithBooleansReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_parse - function:parse
+// list_with_whitespace_parse - function:parse feature:whitespace
 func TestListWithWhitespaceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -421,17 +421,17 @@ items =   `
 
 }
 
-// list_with_whitespace_build_hierarchy - function:build_hierarchy
+// list_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace
 func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_get_list - function:get_list
+// list_with_whitespace_get_list - function:get_list feature:whitespace
 func TestListWithWhitespaceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_reference_parse - function:parse
+// list_with_whitespace_reference_parse - function:parse feature:whitespace
 func TestListWithWhitespaceReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -452,12 +452,12 @@ items =   `
 
 }
 
-// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy
+// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_reference_get_list - function:get_list
+// list_with_whitespace_reference_get_list - function:get_list feature:whitespace
 func TestListWithWhitespaceReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -528,7 +528,7 @@ func TestDeeplyNestedListReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_parse - function:parse
+// list_with_unicode_parse - function:parse feature:unicode
 func TestListWithUnicodeParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -549,17 +549,17 @@ names = العربية`
 
 }
 
-// list_with_unicode_build_hierarchy - function:build_hierarchy
+// list_with_unicode_build_hierarchy - function:build_hierarchy feature:unicode
 func TestListWithUnicodeBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_get_list - function:get_list
+// list_with_unicode_get_list - function:get_list feature:unicode
 func TestListWithUnicodeGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_reference_parse - function:parse
+// list_with_unicode_reference_parse - function:parse feature:unicode
 func TestListWithUnicodeReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -580,12 +580,12 @@ names = العربية`
 
 }
 
-// list_with_unicode_reference_build_hierarchy - function:build_hierarchy
+// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_reference_get_list - function:get_list
+// list_with_unicode_reference_get_list - function:get_list feature:unicode
 func TestListWithUnicodeReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -698,7 +698,7 @@ func TestLargeListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_comments_parse - function:parse
+// list_with_comments_parse - function:parse feature:comments
 func TestListWithCommentsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -720,12 +720,12 @@ servers = web3
 
 }
 
-// list_with_comments_build_hierarchy - function:build_hierarchy
+// list_with_comments_build_hierarchy - function:build_hierarchy feature:comments
 func TestListWithCommentsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_comments_get_list - function:get_list
+// list_with_comments_get_list - function:get_list feature:comments
 func TestListWithCommentsGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -815,17 +815,17 @@ func TestListErrorNonObjectPathGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_multiline_values_parse_value - function:parse_value
+// list_multiline_values_parse_value - function:parse_value feature:multiline
 func TestListMultilineValuesParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_multiline_values_build_hierarchy - function:build_hierarchy
+// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_multiline_values_get_list - function:get_list
+// list_multiline_values_get_list - function:get_list feature:multiline
 func TestListMultilineValuesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

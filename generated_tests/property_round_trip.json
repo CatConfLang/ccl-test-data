@@ -27,7 +27,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -42,7 +44,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -71,7 +75,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -86,7 +92,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -143,7 +151,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
@@ -158,7 +168,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -195,7 +207,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -210,7 +224,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -313,7 +329,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "parse"
       ],
@@ -329,7 +347,9 @@
         "count": 1,
         "value": "unicode = 你好世界\nemo = 🌟✨"
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "canonical_format"
       ],
@@ -350,7 +370,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -365,7 +387,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -521,7 +545,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -536,7 +562,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -610,7 +638,10 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys",
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
@@ -625,7 +656,10 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys",
+        "multiline"
+      ],
       "functions": [
         "round_trip"
       ],
@@ -720,7 +754,9 @@
         "count": 1,
         "value": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "canonical_format"
       ],

@@ -948,7 +948,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -971,7 +973,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -995,7 +999,9 @@
           ""
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "get_list"
       ],
@@ -1028,7 +1034,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -1049,7 +1057,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1067,7 +1077,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "get_list"
       ],
@@ -1265,7 +1277,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "parse"
       ],
@@ -1288,7 +1302,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1312,7 +1328,9 @@
           "العربية"
         ]
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "get_list"
       ],
@@ -1345,7 +1363,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "parse"
       ],
@@ -1368,7 +1388,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1386,7 +1408,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "get_list"
       ],
@@ -1748,7 +1772,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "comments"
+      ],
       "functions": [
         "parse"
       ],
@@ -1774,7 +1800,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "comments"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1797,7 +1825,9 @@
           "web3"
         ]
       },
-      "features": [],
+      "features": [
+        "comments"
+      ],
       "functions": [
         "get_list"
       ],
@@ -2005,7 +2035,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse_value"
       ],
@@ -2028,7 +2060,9 @@
           "second line": ""
         }
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -2051,7 +2085,9 @@
           "Third item"
         ]
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "get_list"
       ],

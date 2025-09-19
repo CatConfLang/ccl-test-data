@@ -50,7 +50,7 @@ path = /bin/app=prod`
 
 }
 
-// whitespace_trimming_parse - function:parse
+// whitespace_trimming_parse - function:parse feature:whitespace
 func TestWhitespaceTrimmingParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -69,7 +69,7 @@ other = normal`
 
 }
 
-// multiline_values_parse - function:parse
+// multiline_values_parse - function:parse feature:multiline
 func TestMultilineValuesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -90,7 +90,7 @@ done = yes`
 
 }
 
-// empty_values_parse - function:parse
+// empty_values_parse - function:parse feature:empty_keys
 func TestEmptyValuesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -129,7 +129,7 @@ func TestNestedStructureParsingParse(t *testing.T) {
 
 }
 
-// unicode_parsing_parse - function:parse
+// unicode_parsing_parse - function:parse feature:unicode
 func TestUnicodeParsingParse(t *testing.T) {
 
 	ccl := mock.New()

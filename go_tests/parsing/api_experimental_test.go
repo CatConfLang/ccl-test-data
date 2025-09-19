@@ -12,7 +12,7 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-// basic_dotted_key_expansion_parse - function:parse
+// basic_dotted_key_expansion_parse - function:parse feature:experimental_dotted_keys
 func TestBasicDottedKeyExpansionParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -30,17 +30,17 @@ func TestBasicDottedKeyExpansionParse(t *testing.T) {
 
 }
 
-// basic_dotted_key_expansion_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// basic_dotted_key_expansion_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestBasicDottedKeyExpansionExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// basic_dotted_key_expansion_build_hierarchy - function:build_hierarchy
+// basic_dotted_key_expansion_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestBasicDottedKeyExpansionBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// multiple_dotted_keys_parse - function:parse
+// multiple_dotted_keys_parse - function:parse feature:experimental_dotted_keys
 func TestMultipleDottedKeysParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -60,17 +60,17 @@ app.name = MyApp`
 
 }
 
-// multiple_dotted_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// multiple_dotted_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestMultipleDottedKeysExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// multiple_dotted_keys_build_hierarchy - function:build_hierarchy
+// multiple_dotted_keys_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestMultipleDottedKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// deep_dotted_nesting_parse - function:parse
+// deep_dotted_nesting_parse - function:parse feature:experimental_dotted_keys
 func TestDeepDottedNestingParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -89,17 +89,17 @@ server.database.credentials.pass = secret`
 
 }
 
-// deep_dotted_nesting_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// deep_dotted_nesting_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestDeepDottedNestingExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// deep_dotted_nesting_build_hierarchy - function:build_hierarchy
+// deep_dotted_nesting_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestDeepDottedNestingBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// mixed_dotted_and_regular_keys_parse - function:parse
+// mixed_dotted_and_regular_keys_parse - function:parse feature:experimental_dotted_keys
 func TestMixedDottedAndRegularKeysParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -121,17 +121,17 @@ logging.level = info`
 
 }
 
-// mixed_dotted_and_regular_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// mixed_dotted_and_regular_keys_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestMixedDottedAndRegularKeysExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// mixed_dotted_and_regular_keys_build_hierarchy - function:build_hierarchy
+// mixed_dotted_and_regular_keys_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestMixedDottedAndRegularKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_key_conflicts_resolution_parse - function:parse
+// dotted_key_conflicts_resolution_parse - function:parse feature:experimental_dotted_keys
 func TestDottedKeyConflictsResolutionParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -150,17 +150,17 @@ database.host = localhost`
 
 }
 
-// dotted_key_conflicts_resolution_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// dotted_key_conflicts_resolution_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestDottedKeyConflictsResolutionExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_key_conflicts_resolution_build_hierarchy - function:build_hierarchy
+// dotted_key_conflicts_resolution_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestDottedKeyConflictsResolutionBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_keys_with_lists_parse - function:parse
+// dotted_keys_with_lists_parse - function:parse feature:experimental_dotted_keys
 func TestDottedKeysWithListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -180,17 +180,17 @@ servers.api = api1`
 
 }
 
-// dotted_keys_with_lists_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// dotted_keys_with_lists_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestDottedKeysWithListsExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_keys_with_lists_build_hierarchy - function:build_hierarchy
+// dotted_keys_with_lists_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestDottedKeysWithListsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// empty_dotted_key_segments_parse - function:parse
+// empty_dotted_key_segments_parse - function:parse feature:experimental_dotted_keys feature:empty_keys
 func TestEmptyDottedKeySegmentsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -208,17 +208,17 @@ func TestEmptyDottedKeySegmentsParse(t *testing.T) {
 
 }
 
-// empty_dotted_key_segments_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// empty_dotted_key_segments_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:empty_keys feature:experimental_dotted_keys
 func TestEmptyDottedKeySegmentsExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// empty_dotted_key_segments_build_hierarchy - function:build_hierarchy
+// empty_dotted_key_segments_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys feature:empty_keys
 func TestEmptyDottedKeySegmentsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// single_dot_key_parse - function:parse
+// single_dot_key_parse - function:parse feature:experimental_dotted_keys feature:empty_keys
 func TestSingleDotKeyParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -236,17 +236,17 @@ func TestSingleDotKeyParse(t *testing.T) {
 
 }
 
-// single_dot_key_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// single_dot_key_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:empty_keys feature:experimental_dotted_keys
 func TestSingleDotKeyExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// single_dot_key_build_hierarchy - function:build_hierarchy
+// single_dot_key_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys feature:empty_keys
 func TestSingleDotKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// hierarchical_with_expand_dotted_validation_parse - function:parse
+// hierarchical_with_expand_dotted_validation_parse - function:parse feature:experimental_dotted_keys
 func TestHierarchicalWithExpandDottedValidationParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -266,17 +266,17 @@ func TestHierarchicalWithExpandDottedValidationParse(t *testing.T) {
 
 }
 
-// hierarchical_with_expand_dotted_validation_expand_dotted - function:expand_dotted feature:experimental_dotted_keys
+// hierarchical_with_expand_dotted_validation_expand_dotted - function:expand_dotted feature:experimental_dotted_keys feature:experimental_dotted_keys
 func TestHierarchicalWithExpandDottedValidationExpandDotted(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// hierarchical_with_expand_dotted_validation_build_hierarchy - function:build_hierarchy
+// hierarchical_with_expand_dotted_validation_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestHierarchicalWithExpandDottedValidationBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_key_list_access_parse - function:parse
+// dotted_key_list_access_parse - function:parse feature:experimental_dotted_keys
 func TestDottedKeyListAccessParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -296,12 +296,12 @@ database.port = 5432`
 
 }
 
-// dotted_key_list_access_build_hierarchy - function:build_hierarchy
+// dotted_key_list_access_build_hierarchy - function:build_hierarchy feature:experimental_dotted_keys
 func TestDottedKeyListAccessBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// dotted_key_list_access_get_list - function:get_list
+// dotted_key_list_access_get_list - function:get_list feature:experimental_dotted_keys
 func TestDottedKeyListAccessGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

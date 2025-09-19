@@ -17,7 +17,7 @@ func TestRoundTripBasicRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_whitespace_normalization_parse - function:parse
+// round_trip_whitespace_normalization_parse - function:parse feature:whitespace
 func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -37,12 +37,12 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 }
 
-// round_trip_whitespace_normalization_round_trip - function:round_trip
+// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_empty_keys_lists_parse - function:parse
+// round_trip_empty_keys_lists_parse - function:parse feature:empty_keys
 func TestRoundTripEmptyKeysListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -62,7 +62,7 @@ regular = value`
 
 }
 
-// round_trip_empty_keys_lists_round_trip - function:round_trip
+// round_trip_empty_keys_lists_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripEmptyKeysListsRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -95,7 +95,7 @@ func TestRoundTripNestedStructuresRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_multiline_values_parse - function:parse
+// round_trip_multiline_values_parse - function:parse feature:multiline
 func TestRoundTripMultilineValuesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -116,12 +116,12 @@ func TestRoundTripMultilineValuesParse(t *testing.T) {
 
 }
 
-// round_trip_multiline_values_round_trip - function:round_trip
+// round_trip_multiline_values_round_trip - function:round_trip feature:multiline
 func TestRoundTripMultilineValuesRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_mixed_content_parse - function:parse
+// round_trip_mixed_content_parse - function:parse feature:empty_keys
 func TestRoundTripMixedContentParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -144,7 +144,7 @@ final = value`
 
 }
 
-// round_trip_mixed_content_round_trip - function:round_trip
+// round_trip_mixed_content_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripMixedContentRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -182,7 +182,7 @@ func TestCanonicalFormatTabPreservationCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_unicode_parse - function:parse
+// canonical_format_unicode_parse - function:parse feature:unicode
 func TestCanonicalFormatUnicodeParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -201,12 +201,12 @@ emo = 🌟✨`
 
 }
 
-// canonical_format_unicode_canonical_format - function:canonical_format
+// canonical_format_unicode_canonical_format - function:canonical_format feature:unicode
 func TestCanonicalFormatUnicodeCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_complex_nesting_parse - function:parse
+// round_trip_complex_nesting_parse - function:parse feature:empty_keys
 func TestRoundTripComplexNestingParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -231,7 +231,7 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
 
 }
 
-// round_trip_complex_nesting_round_trip - function:round_trip
+// round_trip_complex_nesting_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripComplexNestingRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -292,7 +292,7 @@ func TestCrlfNormalizeToLfIndentedProposedCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_deeply_nested_parse - function:parse
+// round_trip_deeply_nested_parse - function:parse feature:empty_keys
 func TestRoundTripDeeplyNestedParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -315,7 +315,7 @@ func TestRoundTripDeeplyNestedParse(t *testing.T) {
 
 }
 
-// round_trip_deeply_nested_round_trip - function:round_trip
+// round_trip_deeply_nested_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripDeeplyNestedRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -330,7 +330,7 @@ func TestCanonicalFormatConsistentSpacingCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_empty_multiline_parse - function:parse
+// round_trip_empty_multiline_parse - function:parse feature:empty_keys feature:multiline
 func TestRoundTripEmptyMultilineParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -350,7 +350,7 @@ other = value`
 
 }
 
-// round_trip_empty_multiline_round_trip - function:round_trip
+// round_trip_empty_multiline_round_trip - function:round_trip feature:empty_keys feature:multiline
 func TestRoundTripEmptyMultilineRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -390,7 +390,7 @@ func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_unicode_ocaml_reference_canonical_format - function:canonical_format
+// canonical_format_unicode_ocaml_reference_canonical_format - function:canonical_format feature:unicode
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

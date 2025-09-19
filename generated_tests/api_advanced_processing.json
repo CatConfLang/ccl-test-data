@@ -82,7 +82,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -103,7 +105,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -169,7 +173,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -198,7 +204,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -227,7 +235,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -256,7 +266,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -297,7 +309,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -338,7 +352,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -384,7 +400,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -417,7 +435,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -450,7 +470,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -483,7 +505,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -516,7 +540,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -541,7 +567,10 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys",
+        "multiline"
+      ],
       "functions": [
         "parse_value"
       ],
@@ -566,7 +595,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse_value"
       ],

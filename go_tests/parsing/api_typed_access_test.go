@@ -236,7 +236,7 @@ func TestParseNegativeIntegerGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_parse - function:parse behavior:boolean_lenient
+// parse_zero_values_parse - function:parse feature:empty_keys behavior:boolean_lenient
 func TestParseZeroValuesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -256,27 +256,27 @@ disabled = no`
 
 }
 
-// parse_zero_values_build_hierarchy - function:build_hierarchy behavior:boolean_lenient
+// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:boolean_lenient
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_get_int - function:get_int behavior:boolean_lenient
+// parse_zero_values_get_int - function:get_int feature:empty_keys behavior:boolean_lenient
 func TestParseZeroValuesGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_get_bool - function:get_bool behavior:boolean_lenient
+// parse_zero_values_get_bool - function:get_bool feature:empty_keys behavior:boolean_lenient
 func TestParseZeroValuesGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_get_float - function:get_float behavior:boolean_lenient
+// parse_zero_values_get_float - function:get_float feature:empty_keys behavior:boolean_lenient
 func TestParseZeroValuesGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_parse - function:parse behavior:boolean_strict
+// parse_zero_values_strict_literal_parse - function:parse feature:empty_keys behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -296,22 +296,22 @@ disabled = no`
 
 }
 
-// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy behavior:boolean_strict
+// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_get_int - function:get_int behavior:boolean_strict
+// parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_get_bool - function:get_bool behavior:boolean_strict
+// parse_zero_values_strict_literal_get_bool - function:get_bool feature:empty_keys behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_get_float - function:get_float behavior:boolean_strict
+// parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -539,7 +539,7 @@ func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_with_whitespace_parse - function:parse
+// parse_with_whitespace_parse - function:parse feature:whitespace
 func TestParseWithWhitespaceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -558,17 +558,17 @@ flag =  true  `
 
 }
 
-// parse_with_whitespace_build_hierarchy - function:build_hierarchy
+// parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace
 func TestParseWithWhitespaceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_with_whitespace_get_int - function:get_int
+// parse_with_whitespace_get_int - function:get_int feature:whitespace
 func TestParseWithWhitespaceGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_with_whitespace_get_bool - function:get_bool
+// parse_with_whitespace_get_bool - function:get_bool feature:whitespace
 func TestParseWithWhitespaceGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

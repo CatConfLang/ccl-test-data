@@ -30,7 +30,7 @@ func TestBasicSingleNoSpacesParse(t *testing.T) {
 
 }
 
-// basic_with_spaces_parse - function:parse
+// basic_with_spaces_parse - function:parse feature:whitespace
 func TestBasicWithSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -48,12 +48,12 @@ func TestBasicWithSpacesParse(t *testing.T) {
 
 }
 
-// indented_key_parse_value - function:parse_value
+// indented_key_parse_value - function:parse_value feature:whitespace
 func TestIndentedKeyParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// value_trailing_spaces_parse - function:parse
+// value_trailing_spaces_parse - function:parse feature:whitespace
 func TestValueTrailingSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -71,7 +71,7 @@ func TestValueTrailingSpacesParse(t *testing.T) {
 
 }
 
-// key_value_surrounded_spaces_parse - function:parse
+// key_value_surrounded_spaces_parse - function:parse feature:whitespace
 func TestKeyValueSurroundedSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -109,7 +109,7 @@ key = val
 
 }
 
-// key_empty_value_parse - function:parse
+// key_empty_value_parse - function:parse feature:empty_keys
 func TestKeyEmptyValueParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -127,7 +127,7 @@ func TestKeyEmptyValueParse(t *testing.T) {
 
 }
 
-// empty_value_with_newline_parse - function:parse
+// empty_value_with_newline_parse - function:parse feature:empty_keys
 func TestEmptyValueWithNewlineParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -146,7 +146,7 @@ func TestEmptyValueWithNewlineParse(t *testing.T) {
 
 }
 
-// empty_value_with_spaces_parse - function:parse
+// empty_value_with_spaces_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyValueWithSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -164,12 +164,12 @@ func TestEmptyValueWithSpacesParse(t *testing.T) {
 
 }
 
-// empty_key_indented_parse_value - function:parse_value
+// empty_key_indented_parse_value - function:parse_value feature:empty_keys
 func TestEmptyKeyIndentedParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// empty_key_with_newline_parse - function:parse
+// empty_key_with_newline_parse - function:parse feature:empty_keys
 func TestEmptyKeyWithNewlineParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -188,7 +188,7 @@ func TestEmptyKeyWithNewlineParse(t *testing.T) {
 
 }
 
-// empty_key_value_with_spaces_parse - function:parse
+// empty_key_value_with_spaces_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyKeyValueWithSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -224,7 +224,7 @@ func TestEqualsInValueNoSpacesParse(t *testing.T) {
 
 }
 
-// equals_in_value_with_spaces_parse - function:parse
+// equals_in_value_with_spaces_parse - function:parse feature:whitespace
 func TestEqualsInValueWithSpacesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -261,17 +261,17 @@ key2 = val2`
 
 }
 
-// key_with_tabs_parse - function:parse behavior:tabs_preserve
+// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_preserve
 func TestKeyWithTabsParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
-// key_with_tabs_ocaml_reference_parse - function:parse behavior:tabs_preserve
+// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_preserve
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
-// whitespace_only_value_parse - function:parse
+// whitespace_only_value_parse - function:parse feature:empty_keys feature:whitespace
 func TestWhitespaceOnlyValueParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -289,17 +289,17 @@ func TestWhitespaceOnlyValueParse(t *testing.T) {
 
 }
 
-// spaces_vs_tabs_continuation_parse_value - function:parse_value behavior:tabs_preserve
+// spaces_vs_tabs_continuation_parse_value - function:parse_value feature:whitespace behavior:tabs_preserve
 func TestSpacesVsTabsContinuationParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// spaces_vs_tabs_continuation_ocaml_reference_parse_value - function:parse_value behavior:tabs_preserve
+// spaces_vs_tabs_continuation_ocaml_reference_parse_value - function:parse_value feature:whitespace behavior:tabs_preserve
 func TestSpacesVsTabsContinuationOcamlReferenceParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// multiple_empty_equality_parse - function:parse
+// multiple_empty_equality_parse - function:parse feature:empty_keys feature:whitespace
 func TestMultipleEmptyEqualityParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -317,7 +317,7 @@ func TestMultipleEmptyEqualityParse(t *testing.T) {
 
 }
 
-// key_with_newline_before_equals_parse - function:parse
+// key_with_newline_before_equals_parse - function:parse feature:empty_keys feature:whitespace
 func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -337,7 +337,7 @@ func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 
 }
 
-// complex_multi_newline_whitespace_parse - function:parse
+// complex_multi_newline_whitespace_parse - function:parse feature:empty_keys feature:whitespace
 func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -358,7 +358,7 @@ func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
 
 }
 
-// empty_value_with_trailing_spaces_newline_parse - function:parse
+// empty_value_with_trailing_spaces_newline_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyValueWithTrailingSpacesNewlineParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -377,7 +377,7 @@ func TestEmptyValueWithTrailingSpacesNewlineParse(t *testing.T) {
 
 }
 
-// empty_key_value_with_surrounding_newlines_parse - function:parse
+// empty_key_value_with_surrounding_newlines_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyKeyValueWithSurroundingNewlinesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -452,7 +452,7 @@ func TestNestedSingleLineParse(t *testing.T) {
 
 }
 
-// nested_multi_line_parse - function:parse
+// nested_multi_line_parse - function:parse feature:multiline
 func TestNestedMultiLineParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -472,7 +472,7 @@ func TestNestedMultiLineParse(t *testing.T) {
 
 }
 
-// nested_with_blank_line_parse_value - function:parse_value
+// nested_with_blank_line_parse_value - function:parse_value feature:multiline
 func TestNestedWithBlankLineParseValue(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -503,7 +503,7 @@ date = 2024-05-25`
 
 }
 
-// ocaml_stress_test_original_parse - function:parse
+// ocaml_stress_test_original_parse - function:parse feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -539,12 +539,12 @@ user =
 
 }
 
-// ocaml_stress_test_original_build_hierarchy - function:build_hierarchy
+// ocaml_stress_test_original_build_hierarchy - function:build_hierarchy feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// ocaml_stress_test_original_get_string - function:get_string
+// ocaml_stress_test_original_get_string - function:get_string feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -104,7 +104,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -119,7 +121,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "associativity"
       ],
@@ -300,7 +304,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -315,7 +321,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "associativity"
       ],
@@ -344,7 +352,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -359,7 +369,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "associativity"
       ],
@@ -468,7 +480,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -483,7 +497,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "round_trip"
       ],

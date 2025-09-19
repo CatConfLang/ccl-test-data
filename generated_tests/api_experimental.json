@@ -12,7 +12,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -34,6 +36,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -55,7 +58,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -84,7 +89,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -110,6 +117,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -135,7 +143,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -160,7 +170,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -182,6 +194,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -208,7 +221,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -241,7 +256,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -275,6 +292,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -303,7 +321,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -328,7 +348,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -350,6 +372,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -371,7 +394,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -400,7 +425,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -422,6 +449,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -447,7 +475,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -468,7 +498,10 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys",
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -490,6 +523,8 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
+        "empty_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -513,7 +548,10 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys",
+        "empty_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -534,7 +572,10 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys",
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -556,6 +597,8 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
+        "empty_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -577,7 +620,10 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys",
+        "empty_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -598,7 +644,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -628,6 +676,7 @@
         ]
       },
       "features": [
+        "experimental_dotted_keys",
         "experimental_dotted_keys"
       ],
       "functions": [
@@ -650,7 +699,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -679,7 +730,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -703,7 +756,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -725,7 +780,9 @@
           "5432"
         ]
       },
-      "features": [],
+      "features": [
+        "experimental_dotted_keys"
+      ],
       "functions": [
         "get_list"
       ],

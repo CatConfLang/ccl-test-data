@@ -515,7 +515,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -537,7 +539,9 @@
           "distance": "0.0"
         }
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -558,7 +562,9 @@
         "count": 1,
         "value": 0
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_int"
       ],
@@ -579,7 +585,9 @@
         "count": 1,
         "value": false
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -600,7 +608,9 @@
         "count": 1,
         "value": 0
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_float"
       ],
@@ -631,7 +641,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -653,7 +665,9 @@
           "distance": "0.0"
         }
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -674,7 +688,9 @@
         "count": 1,
         "value": 0
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_int"
       ],
@@ -694,7 +710,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -715,7 +733,9 @@
         "count": 1,
         "value": 0
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "get_float"
       ],
@@ -1360,7 +1380,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -1379,7 +1401,9 @@
           "number": "42"
         }
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1398,7 +1422,9 @@
         "count": 1,
         "value": 42
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "get_int"
       ],
@@ -1417,7 +1443,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "get_bool"
       ],

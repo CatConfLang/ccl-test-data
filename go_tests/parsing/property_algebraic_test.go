@@ -64,7 +64,7 @@ func TestSemigroupAssociativityNestedAssociativity(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// semigroup_associativity_lists_parse - function:parse
+// semigroup_associativity_lists_parse - function:parse feature:empty_keys
 func TestSemigroupAssociativityListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -84,7 +84,7 @@ func TestSemigroupAssociativityListsParse(t *testing.T) {
 
 }
 
-// semigroup_associativity_lists_associativity - function:associativity
+// semigroup_associativity_lists_associativity - function:associativity feature:empty_keys
 func TestSemigroupAssociativityListsAssociativity(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -195,7 +195,7 @@ func TestMonoidRightIdentityNestedAssociativity(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// monoid_left_identity_lists_parse - function:parse
+// monoid_left_identity_lists_parse - function:parse feature:empty_keys
 func TestMonoidLeftIdentityListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -215,12 +215,12 @@ func TestMonoidLeftIdentityListsParse(t *testing.T) {
 
 }
 
-// monoid_left_identity_lists_associativity - function:associativity
+// monoid_left_identity_lists_associativity - function:associativity feature:empty_keys
 func TestMonoidLeftIdentityListsAssociativity(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// monoid_right_identity_lists_parse - function:parse
+// monoid_right_identity_lists_parse - function:parse feature:empty_keys
 func TestMonoidRightIdentityListsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -240,7 +240,7 @@ func TestMonoidRightIdentityListsParse(t *testing.T) {
 
 }
 
-// monoid_right_identity_lists_associativity - function:associativity
+// monoid_right_identity_lists_associativity - function:associativity feature:empty_keys
 func TestMonoidRightIdentityListsAssociativity(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -297,7 +297,7 @@ func TestRoundTripPropertyNestedRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_property_complex_parse - function:parse
+// round_trip_property_complex_parse - function:parse feature:empty_keys
 func TestRoundTripPropertyComplexParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -324,7 +324,7 @@ final = end`
 
 }
 
-// round_trip_property_complex_round_trip - function:round_trip
+// round_trip_property_complex_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripPropertyComplexRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

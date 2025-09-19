@@ -12,7 +12,7 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-// comment_extension_parse - function:parse
+// comment_extension_parse - function:parse feature:comments
 func TestCommentExtensionParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -35,12 +35,12 @@ connections = 16`
 
 }
 
-// comment_extension_filter - function:filter feature:comments
+// comment_extension_filter - function:filter feature:comments feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// comment_syntax_slash_equals_parse - function:parse
+// comment_syntax_slash_equals_parse - function:parse feature:comments
 func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -58,12 +58,12 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 }
 
-// comment_syntax_slash_equals_filter - function:filter feature:comments
+// comment_syntax_slash_equals_filter - function:filter feature:comments feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// section_headers_with_comments_parse - function:parse
+// section_headers_with_comments_parse - function:parse feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -86,7 +86,7 @@ port = 6379`
 
 }
 
-// section_headers_with_comments_filter - function:filter feature:comments
+// section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys feature:comments
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

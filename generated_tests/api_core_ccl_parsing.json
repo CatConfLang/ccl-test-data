@@ -66,7 +66,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -91,7 +93,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
@@ -116,7 +120,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "empty_keys"
+      ],
       "functions": [
         "parse"
       ],
@@ -162,7 +168,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "unicode"
+      ],
       "functions": [
         "parse"
       ],

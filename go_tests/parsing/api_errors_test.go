@@ -30,7 +30,7 @@ func TestJustKeyErrorParse(t *testing.T) {
 
 }
 
-// whitespace_only_error_parse - function:parse
+// whitespace_only_error_parse - function:parse feature:whitespace
 func TestWhitespaceOnlyErrorParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -48,7 +48,7 @@ func TestWhitespaceOnlyErrorParse(t *testing.T) {
 
 }
 
-// whitespace_only_error_ocaml_reference_parse - function:parse
+// whitespace_only_error_ocaml_reference_parse - function:parse feature:whitespace
 func TestWhitespaceOnlyErrorOcamlReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -84,7 +84,7 @@ func TestJustStringErrorParse(t *testing.T) {
 
 }
 
-// multiline_plain_error_parse - function:parse
+// multiline_plain_error_parse - function:parse feature:multiline
 func TestMultilinePlainErrorParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -103,7 +103,7 @@ func TestMultilinePlainErrorParse(t *testing.T) {
 
 }
 
-// multiline_plain_nested_error_parse - function:parse
+// multiline_plain_nested_error_parse - function:parse feature:multiline
 func TestMultilinePlainNestedErrorParse(t *testing.T) {
 
 	ccl := mock.New()

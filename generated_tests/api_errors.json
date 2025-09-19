@@ -21,7 +21,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -36,7 +38,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "whitespace"
+      ],
       "functions": [
         "parse"
       ],
@@ -66,7 +70,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
@@ -81,7 +87,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "multiline"
+      ],
       "functions": [
         "parse"
       ],
