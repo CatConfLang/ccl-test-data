@@ -9,13 +9,34 @@ alias t := test
 alias gen := generate
 alias flat := generate-flat
 alias reset := dev-basic
+alias view := view-tests
+alias vs := view-tests-static
 
 # === BUILD ===
+
+# Build all binaries
 build:
     go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
+    go build -o bin/test-reader ./cmd/test-reader
 
+# Build individual binaries (used by other tasks)
+build-test-runner:
+    go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
+
+build-test-reader:
+    go build -o bin/test-reader ./cmd/test-reader
+
+# Install all tools to $GOPATH/bin
 install:
     go install ./cmd/ccl-test-runner
+    go install ./cmd/test-reader
+
+# Install individual tools
+install-test-runner:
+    go install ./cmd/ccl-test-runner
+
+install-test-reader:
+    go install ./cmd/test-reader
 
 # === ESSENTIAL WORKFLOWS ===
 
@@ -116,8 +137,29 @@ stats:
 list:
     go run ./cmd/ccl-test-runner test --list
 
+# Interactive test viewer (TUI-based) - builds test-reader if needed
+view-tests PATH="source_tests":
+    just build-test-reader
+    ./bin/test-reader {{PATH}}
+
+# Static test viewer (CLI output) - builds test-reader if needed
+view-tests-static PATH="source_tests":
+    just build-test-reader
+    ./bin/test-reader {{PATH}} --static
+
+# View specific test file interactively
+view-test FILE:
+    just build-test-reader
+    ./bin/test-reader {{FILE}}
+
+# View specific test file with static output
+view-test-static FILE:
+    just build-test-reader
+    ./bin/test-reader {{FILE}} --static
+
 clean:
     go run ./cmd/clean go_tests bin
+    rm -f bin/ccl-test-runner bin/test-reader
 
 lint:
     go mod tidy
@@ -129,7 +171,7 @@ deps:
     go mod download
     go install github.com/santhosh-tekuri/jsonschema/cmd/jv
 
-# === LEGACY COMMANDS (for compatibility) ===
+# === CONVENIENCE COMMANDS ===
 
 # Generate only basic tests for mock implementation
 generate-mock:
@@ -139,11 +181,7 @@ generate-mock:
 test-verbose:
     just test --verbose
 
-# Run all tests including failing ones
+# Run all tests including failing ones (overrides default basic-only mode)
 test-all:
-    just test --all
-
-# Alias for test-all
-test-comprehensive:
     just test --all
 

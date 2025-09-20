@@ -1,3 +1,10 @@
+// CCL Test Reader - Interactive viewer for CCL test files
+//
+// PREFERRED: Use with generated format files (generated_tests/) for full functionality
+// DEPRECATED: Source format files (source_tests/) have limited display support
+//
+// The test-reader displays CCL test cases with their input, expected output,
+// and metadata. It supports both static CLI output and interactive TUI modes.
 package main
 
 import (
@@ -223,14 +230,16 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 					fileInfo.Description = suite.Description
 					fileInfo.TestCount = len(suite.Tests)
 
-					// Count parse tests
+					// Count parse tests (parse and parse_value)
 					parseCount := 0
 					for _, test := range suite.Tests {
-						// Check if test has parse validation (either source format with Validations.Parse or flat format with Validation=="parse")
+						// Check if test has parse or parse_value validation
 						hasParse := false
-						if test.Validations != nil && test.Validations.Parse != nil {
-							hasParse = true
-						} else if test.Validation == "parse" {
+						if test.Validations != nil {
+							if test.Validations.Parse != nil || test.Validations.ParseValue != nil {
+								hasParse = true
+							}
+						} else if test.Validation == "parse" || test.Validation == "parse_value" {
 							hasParse = true
 						}
 						if hasParse {
@@ -279,7 +288,7 @@ func runFileSelectionCLI(dir string) {
 		if file.Description != "" {
 			fmt.Printf("    %s\n", infoStyle.Render(file.Description))
 		}
-		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)))
+		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)))
 		fmt.Println()
 	}
 
@@ -338,11 +347,25 @@ func main() {
 }
 
 func processTestFile(filename string) error {
+	// TODO: Remove support for source format files completely.
+	// The test-reader should only work with generated flat format files.
+	// Source format files should be converted to generated format first.
+
+	// Detect if this is a source format file and emit warning
+	isSourceFormat := strings.Contains(filename, "source_tests")
+	if isSourceFormat {
+		warningStyle := lipgloss.NewStyle().Foreground(warningColor).Bold(true)
+		fmt.Println(warningStyle.Render("⚠️  WARNING: Source format files have limited display support."))
+		fmt.Println(warningStyle.Render("   Use generated format files for full entry details."))
+		fmt.Println(warningStyle.Render("   Run 'just generate' to convert source tests to generated format."))
+		fmt.Println()
+	}
+
 	// Use ccl-test-lib loader to handle both source and flat formats
 	impl := config.ImplementationConfig{
 		Name:               "test-reader",
 		Version:            "1.0.0",
-		SupportedFunctions: []config.CCLFunction{config.FunctionParse}, // We only care about parse tests for display
+		SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
 	}
 	testLoader := loader.NewTestLoader(".", impl)
 	suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
@@ -371,10 +394,10 @@ func processTestFile(filename string) error {
 
 	// Summary with styled box
 	if parseOnlyCount == 0 {
-		summary := "📋 No parse-only tests found in this file"
+		summary := "📋 No parse tests (parse/parse_value) found in this file"
 		fmt.Println(summaryStyle.Render(summary))
 	} else {
-		summary := fmt.Sprintf("📊 Found %d parse-only test(s)", parseOnlyCount)
+		summary := fmt.Sprintf("📊 Found %d parse test(s) (parse/parse_value)", parseOnlyCount)
 		fmt.Println(summaryStyle.Render(summary))
 	}
 	fmt.Println()
@@ -461,11 +484,18 @@ func displayParseValidationFromTestCase(test TestCase) {
 		}
 
 		for _, entry := range entriesToShow {
-			// Boxed entry content with key/equals on first line, value on second
-			keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
-			valueLine := formatValue(entry.Value)
-			entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-			fmt.Println(entryBoxStyle.Render(entryContent))
+			// Display key=value on same line unless value contains newlines
+			if strings.Contains(entry.Value, "\n") {
+				// Multiline value: key on first line, value on subsequent lines
+				keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
+				valueLine := formatValue(entry.Value)
+				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
+				fmt.Println(entryBoxStyle.Render(entryContent))
+			} else {
+				// Single line: key = value
+				entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
+				fmt.Println(entryBoxStyle.Render(entryContent))
+			}
 		}
 
 		// Show truncation indicator if there are more entries
@@ -662,7 +692,7 @@ func (m fileSelectionModel) View() string {
 
 		// Stats line for selected file
 		if i == m.selectedFile {
-			stats := fmt.Sprintf("   Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)
+			stats := fmt.Sprintf("   Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)
 			statsStyle := lipgloss.NewStyle().Foreground(subtleColor)
 			fileList.WriteString(statsStyle.Render(stats) + "\n")
 		}
@@ -739,11 +769,14 @@ func initialTUIModel() tuiModel {
 
 func loadTestFileCmd(filename string) tea.Cmd {
 	return func() tea.Msg {
+		// TODO: Remove support for source format files completely.
+		// The test-reader should only work with generated flat format files.
+
 		// Use ccl-test-lib loader to handle both source and flat formats
 		impl := config.ImplementationConfig{
 			Name:               "test-reader",
 			Version:            "1.0.0",
-			SupportedFunctions: []config.CCLFunction{config.FunctionParse}, // We only care about parse tests for display
+			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
 		}
 		testLoader := loader.NewTestLoader(".", impl)
 		suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
@@ -996,11 +1029,19 @@ func (m tuiModel) renderParseValidationFromTestCase(test TestCase, compact bool)
 		// Show entries in current scroll window
 		for i := startIdx; i < endIdx; i++ {
 			entry := entries[i]
-			// Boxed entry content with key/equals on first line, value on second
-			keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
-			valueLine := formatValue(entry.Value)
-			entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-			content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
+
+			// Display key=value on same line unless value contains newlines
+			if strings.Contains(entry.Value, "\n") {
+				// Multiline value: key on first line, value on subsequent lines
+				keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
+				valueLine := formatValue(entry.Value)
+				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
+				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
+			} else {
+				// Single line: key = value
+				entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
+				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
+			}
 		}
 
 		// Show scroll indicator if there are more entries below
