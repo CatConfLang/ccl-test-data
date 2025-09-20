@@ -39,7 +39,7 @@ require (
 	github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e // indirect
 	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
 	golang.org/x/sys v0.36.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
+	golang.org/x/text v0.17.0 // indirect
 )
 
 replace github.com/tylerbu/ccl-test-lib => ../ccl-test-lib
