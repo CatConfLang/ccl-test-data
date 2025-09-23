@@ -85,7 +85,7 @@ generate-go *ARGS="":
 # - CLI wrapper: cmd/ccl-test-runner/generate_flat.go
 # - Separation: Library contains logic, CLI provides convenience interface
 generate-flat *ARGS="":
-    go run ./cmd/ccl-test-runner generate-flat {{ARGS}}
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core {{ARGS}}
 
 # === TESTING ===
 
@@ -121,8 +121,8 @@ test *ARGS="":
 # === VALIDATION ===
 
 validate:
-    jv schemas/source-format.json source_tests/api_*.json source_tests/property_*.json
-    jv schemas/generated-format.json generated_tests/api_*.json generated_tests/property_*.json
+    jv schemas/source-format.json source_tests/**/*.json
+    jv schemas/generated-format.json generated_tests/**/*.json
 
 # Update README.md with current test statistics using remark.js AST processing
 docs-check:

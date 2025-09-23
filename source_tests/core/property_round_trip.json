@@ -159,6 +159,9 @@
           "function": "canonical_format",
           "expect": "empty_key ="
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -181,6 +184,9 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -207,6 +213,9 @@
       ],
       "features": [
         "unicode"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -255,6 +264,9 @@
       ],
       "behaviors": [
         "crlf_preserve_literal"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -281,6 +293,9 @@
       ],
       "behaviors": [
         "crlf_normalize_to_lf"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -307,6 +322,9 @@
       ],
       "behaviors": [
         "crlf_normalize_to_lf"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -359,6 +377,9 @@
       ],
       "behaviors": [
         "strict_spacing"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -413,6 +434,9 @@
           "function": "canonical_format",
           "expect": "z = last\na = first\nm = middle"
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -423,6 +447,9 @@
           "function": "canonical_format",
           "expect": "empty_key =\n"
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -436,6 +463,9 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -449,6 +479,9 @@
       ],
       "features": [
         "unicode"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -475,6 +508,9 @@
       ],
       "behaviors": [
         "crlf_preserve_literal"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -488,6 +524,9 @@
       ],
       "behaviors": [
         "strict_spacing"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -498,6 +537,9 @@
           "function": "canonical_format",
           "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     }
   ]

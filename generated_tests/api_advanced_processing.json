@@ -578,7 +578,9 @@
       "name": "multiline_section_header_value_parse_value",
       "source_test": "multiline_section_header_value",
       "validation": "parse_value",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -605,7 +607,9 @@
       "name": "unindented_multiline_becomes_continuation_parse_value",
       "source_test": "unindented_multiline_becomes_continuation",
       "validation": "parse_value",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     }
   ]
 }

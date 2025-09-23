@@ -484,6 +484,9 @@
       "features": [
         "empty_keys",
         "multiline"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -506,6 +509,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     }
   ]

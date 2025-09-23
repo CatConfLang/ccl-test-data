@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/ccl-test-data/test-runner/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,19 +12,27 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // composition_stability_duplicate_keys_parse - function:parse
 func TestCompositionStabilityDuplicateKeysParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `a = 1
 b = 2
 b = 20
 c = 3`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -33,18 +41,25 @@ c = 3`
 
 }
 
+
 // multiple_values_same_key_parse - function:parse
 func TestMultipleValuesSameKeyParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `ports = 8000
 ports = 8001
 ports = 8002`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -53,18 +68,25 @@ ports = 8002`
 
 }
 
+
 // list_with_empty_keys_parse - function:parse feature:empty_keys
 func TestListWithEmptyKeysParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `= 3
 = 1
 = 2`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -73,16 +95,23 @@ func TestListWithEmptyKeysParse(t *testing.T) {
 
 }
 
+
 // section_style_syntax_parse - function:parse feature:empty_keys
 func TestSectionStyleSyntaxParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Section 2 ==`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -91,19 +120,26 @@ func TestSectionStyleSyntaxParse(t *testing.T) {
 
 }
 
+
 // composition_stability_ba_parse - function:parse
 func TestCompositionStabilityBaParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `b = 20
 c = 3
 a = 1
 b = 2`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -112,19 +148,26 @@ b = 2`
 
 }
 
+
 // mixed_keys_with_duplicates_parse - function:parse feature:empty_keys
 func TestMixedKeysWithDuplicatesParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `name = app
 ports = 8000
 name = service
 ports = 8001`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -133,18 +176,25 @@ ports = 8001`
 
 }
 
+
 // array_style_list_parse - function:parse feature:empty_keys
 func TestArrayStyleListParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `1 =
 2 =
 3 =`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -153,18 +203,25 @@ func TestArrayStyleListParse(t *testing.T) {
 
 }
 
+
 // section_header_double_equals_parse - function:parse feature:empty_keys
 func TestSectionHeaderDoubleEqualsParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Database Config ==
 host = localhost
 port = 5432`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -173,18 +230,25 @@ port = 5432`
 
 }
 
+
 // section_header_triple_equals_parse - function:parse feature:empty_keys
 func TestSectionHeaderTripleEqualsParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `=== Server Settings ===
 host = 0.0.0.0
 ssl = true`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -193,9 +257,11 @@ ssl = true`
 
 }
 
+
 // multiple_sections_with_entries_parse - function:parse feature:empty_keys
 func TestMultipleSectionsWithEntriesParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Database ==
 host = localhost
@@ -205,11 +271,16 @@ redis = enabled
 
 == Logging ==
 level = info`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -218,9 +289,11 @@ level = info`
 
 }
 
+
 // section_headers_mixed_with_lists_parse - function:parse feature:empty_keys
 func TestSectionHeadersMixedWithListsParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Configuration ==
 = item1
@@ -228,11 +301,16 @@ func TestSectionHeadersMixedWithListsParse(t *testing.T) {
 key = value
 === Next Section ===
 other = data`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -241,16 +319,23 @@ other = data`
 
 }
 
+
 // empty_section_header_only_parse - function:parse
 func TestEmptySectionHeaderOnlyParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Empty Section ==`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -259,17 +344,24 @@ func TestEmptySectionHeaderOnlyParse(t *testing.T) {
 
 }
 
+
 // section_header_at_end_parse - function:parse feature:empty_keys
 func TestSectionHeaderAtEndParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `key = value
 == Final Section ==`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -278,19 +370,26 @@ func TestSectionHeaderAtEndParse(t *testing.T) {
 
 }
 
+
 // section_headers_no_trailing_equals_parse - function:parse feature:empty_keys
 func TestSectionHeadersNoTrailingEqualsParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Database Config
 host = localhost
 === Server Settings
 port = 8080`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -299,19 +398,26 @@ port = 8080`
 
 }
 
+
 // section_headers_with_colons_parse - function:parse feature:empty_keys
 func TestSectionHeadersWithColonsParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== Database: Production ==
 host = db.prod.com
 === Cache: Redis Config ===
 port = 6379`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -320,19 +426,26 @@ port = 6379`
 
 }
 
+
 // spaced_equals_not_section_header_parse - function:parse feature:empty_keys
 func TestSpacedEqualsNotSectionHeaderParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `= = spaced equals
 =  = wide spaces
 == Real Header ==
 key = value`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -341,19 +454,26 @@ key = value`
 
 }
 
+
 // consecutive_section_headers_parse - function:parse feature:empty_keys
 func TestConsecutiveSectionHeadersParse(t *testing.T) {
-
+	
+	
 	ccl := mock.New()
 	input := `== First Section ==
 === Nested Section ===
 ==== Deep Section ====
 key = value`
-
+	
+	
+	
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -362,12 +482,56 @@ key = value`
 
 }
 
-// multiline_section_header_value_parse_value - function:parse_value feature:empty_keys feature:multiline
+
+// multiline_section_header_value_parse_value - function:parse_value feature:empty_keys feature:multiline variant:proposed_behavior
 func TestMultilineSectionHeaderValueParseValue(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+	
+	ccl := mock.New()
+	input := `== Section Header =
+  This continues the header
+key = value`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_value validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
-// unindented_multiline_becomes_continuation_parse_value - function:parse_value feature:empty_keys
+
+// unindented_multiline_becomes_continuation_parse_value - function:parse_value feature:empty_keys variant:proposed_behavior
 func TestUnindentedMultilineBecomesContinuationParseValue(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+	
+	ccl := mock.New()
+	input := `== Section Header =
+This continues the header
+key = value`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_value validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
+
+

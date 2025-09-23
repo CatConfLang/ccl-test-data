@@ -1287,7 +1287,9 @@
       "name": "parse_empty_value_parse",
       "source_test": "parse_empty_value",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1305,7 +1307,9 @@
       "name": "parse_empty_value_build_hierarchy",
       "source_test": "parse_empty_value",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -1324,7 +1328,9 @@
       "name": "parse_empty_value_get_string",
       "source_test": "parse_empty_value",
       "validation": "get_string",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1345,7 +1351,9 @@
       "name": "empty_value_reference_behavior_parse",
       "source_test": "empty_value_reference_behavior",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1363,7 +1371,9 @@
       "name": "empty_value_reference_behavior_build_hierarchy",
       "source_test": "empty_value_reference_behavior",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],

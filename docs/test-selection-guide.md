@@ -23,7 +23,6 @@ Direct array containing CCL functions required for a test to run:
 | `parse-value` | Indentation-aware parsing | 2 | `ParseValue("key = val\n  sub")` |
 | `filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
 | `compose` | Entry composition | 2 | `Compose(left, right)` |
-| `expand-dotted` | Dotted key expansion | 2 | `ExpandDotted(entries)` |
 | `build-hierarchy` | Object construction | 3 | `MakeObjects(entries)` |
 | `get-string` | String value access | 4 | `GetString(obj, "key")` |
 | `get-int` | Integer value access | 4 | `GetInt(obj, "count")` |
@@ -47,7 +46,6 @@ Direct array containing optional language features that may not be supported by 
 | Feature | Description | Example |
 |---------|-------------|---------|
 | `comments` | `/=` comment syntax | `/= This is a comment` |
-| `dotted-keys` | Hierarchical key syntax | `database.host = localhost` |
 | `empty-keys` | Anonymous list items | `= item1\n= item2` |
 | `multiline` | Multi-line values | `description = Line 1\nLine 2` |
 | `unicode` | Unicode content | `name = José` |

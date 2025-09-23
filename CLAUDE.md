@@ -63,12 +63,12 @@ just test-comments             # Comment handling tests
 ### CCL Function Groups
 - **Core**: `Parse()`, `BuildHierarchy()` - Convert text to hierarchical objects
 - **Typed Access**: `GetString()`, `GetInt()`, `GetBool()`, `GetFloat()`, `GetList()`
-- **Processing**: `Filter()`, `Combine()`, `ExpandDotted()`
+- **Processing**: `Filter()`, `Combine()`
 - **Formatting**: `CanonicalFormat()`
 
 ### Tagging System
 - **`function:*`** - Required CCL functions (`parse`, `build_hierarchy`, `get_string`)
-- **`feature:*`** - Optional features (`comments`, `dotted_keys`, `unicode`)
+- **`feature:*`** - Optional features (`comments`, `unicode`)
 - **`behavior:*`** - Implementation choices (`crlf_preserve`, `boolean_strict`)
 
 ## Progressive Implementation
@@ -80,7 +80,7 @@ The `internal/mock/ccl.go` provides a working CCL implementation with core funct
 1. Start with `function:parse` (core parsing)
 2. Add `function:build_hierarchy` (object construction)
 3. Add typed access: `function:get_string`, `function:get_int`, etc.
-4. Add processing: `function:filter`, `function:expand_dotted`
+4. Add processing: `function:filter`
 
 ### Test Selection
 ```bash

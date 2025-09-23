@@ -96,7 +96,9 @@
       "name": "single_item_as_list_parse",
       "source_test": "single_item_as_list",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -116,7 +118,9 @@
       "name": "single_item_as_list_build_hierarchy",
       "source_test": "single_item_as_list",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -139,7 +143,9 @@
       "name": "single_item_as_list_get_list",
       "source_test": "single_item_as_list",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -162,7 +168,9 @@
       "name": "single_item_as_list_reference_parse",
       "source_test": "single_item_as_list_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -182,7 +190,9 @@
       "name": "single_item_as_list_reference_build_hierarchy",
       "source_test": "single_item_as_list_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -202,7 +212,9 @@
       "name": "single_item_as_list_reference_get_list",
       "source_test": "single_item_as_list_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -233,7 +245,9 @@
       "name": "mixed_duplicate_single_keys_parse",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -257,7 +271,9 @@
       "name": "mixed_duplicate_single_keys_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -280,7 +296,9 @@
       "name": "mixed_duplicate_single_keys_get_list",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -311,7 +329,9 @@
       "name": "mixed_duplicate_single_keys_reference_parse",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -335,7 +355,9 @@
       "name": "mixed_duplicate_single_keys_reference_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -355,7 +377,9 @@
       "name": "mixed_duplicate_single_keys_reference_get_list",
       "source_test": "mixed_duplicate_single_keys_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -378,7 +402,9 @@
       "name": "nested_list_access_parse",
       "source_test": "nested_list_access",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -404,7 +430,9 @@
       "name": "nested_list_access_build_hierarchy",
       "source_test": "nested_list_access",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -428,7 +456,9 @@
       "name": "nested_list_access_get_list",
       "source_test": "nested_list_access",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -451,7 +481,9 @@
       "name": "nested_list_access_reference_parse",
       "source_test": "nested_list_access_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -477,7 +509,9 @@
       "name": "nested_list_access_reference_build_hierarchy",
       "source_test": "nested_list_access_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -498,7 +532,9 @@
       "name": "nested_list_access_reference_get_list",
       "source_test": "nested_list_access_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -519,7 +555,9 @@
       "name": "empty_list_parse",
       "source_test": "empty_list",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -537,7 +575,9 @@
       "name": "empty_list_build_hierarchy",
       "source_test": "empty_list",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -558,7 +598,9 @@
       "name": "empty_list_get_list",
       "source_test": "empty_list",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -579,7 +621,9 @@
       "name": "empty_list_reference_parse",
       "source_test": "empty_list_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -597,7 +641,9 @@
       "name": "empty_list_reference_build_hierarchy",
       "source_test": "empty_list_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -615,7 +661,9 @@
       "name": "empty_list_reference_get_list",
       "source_test": "empty_list_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -648,7 +696,9 @@
       "name": "list_with_numbers_parse",
       "source_test": "list_with_numbers",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -671,7 +721,9 @@
       "name": "list_with_numbers_build_hierarchy",
       "source_test": "list_with_numbers",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -695,7 +747,9 @@
       "name": "list_with_numbers_get_list",
       "source_test": "list_with_numbers",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -728,7 +782,9 @@
       "name": "list_with_numbers_reference_parse",
       "source_test": "list_with_numbers_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -751,7 +807,9 @@
       "name": "list_with_numbers_reference_build_hierarchy",
       "source_test": "list_with_numbers_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -769,7 +827,9 @@
       "name": "list_with_numbers_reference_get_list",
       "source_test": "list_with_numbers_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -802,7 +862,9 @@
       "name": "list_with_booleans_parse",
       "source_test": "list_with_booleans",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -825,7 +887,9 @@
       "name": "list_with_booleans_build_hierarchy",
       "source_test": "list_with_booleans",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -849,7 +913,9 @@
       "name": "list_with_booleans_get_list",
       "source_test": "list_with_booleans",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -882,7 +948,9 @@
       "name": "list_with_booleans_reference_parse",
       "source_test": "list_with_booleans_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -905,7 +973,9 @@
       "name": "list_with_booleans_reference_build_hierarchy",
       "source_test": "list_with_booleans_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -923,7 +993,9 @@
       "name": "list_with_booleans_reference_get_list",
       "source_test": "list_with_booleans_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -958,7 +1030,9 @@
       "name": "list_with_whitespace_parse",
       "source_test": "list_with_whitespace",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -983,7 +1057,9 @@
       "name": "list_with_whitespace_build_hierarchy",
       "source_test": "list_with_whitespace",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -1009,7 +1085,9 @@
       "name": "list_with_whitespace_get_list",
       "source_test": "list_with_whitespace",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1044,7 +1122,9 @@
       "name": "list_with_whitespace_reference_parse",
       "source_test": "list_with_whitespace_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1067,7 +1147,9 @@
       "name": "list_with_whitespace_reference_build_hierarchy",
       "source_test": "list_with_whitespace_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -1087,7 +1169,9 @@
       "name": "list_with_whitespace_reference_get_list",
       "source_test": "list_with_whitespace_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1128,7 +1212,9 @@
       "name": "deeply_nested_list_parse",
       "source_test": "deeply_nested_list",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1156,7 +1242,9 @@
       "name": "deeply_nested_list_build_hierarchy",
       "source_test": "deeply_nested_list",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -1182,7 +1270,9 @@
       "name": "deeply_nested_list_get_list",
       "source_test": "deeply_nested_list",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1203,7 +1293,9 @@
       "name": "deeply_nested_list_reference_parse",
       "source_test": "deeply_nested_list_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1231,7 +1323,9 @@
       "name": "deeply_nested_list_reference_build_hierarchy",
       "source_test": "deeply_nested_list_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -1252,7 +1346,9 @@
       "name": "deeply_nested_list_reference_get_list",
       "source_test": "deeply_nested_list_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1287,7 +1383,9 @@
       "name": "list_with_unicode_parse",
       "source_test": "list_with_unicode",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1312,7 +1410,9 @@
       "name": "list_with_unicode_build_hierarchy",
       "source_test": "list_with_unicode",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -1338,7 +1438,9 @@
       "name": "list_with_unicode_get_list",
       "source_test": "list_with_unicode",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1373,7 +1475,9 @@
       "name": "list_with_unicode_reference_parse",
       "source_test": "list_with_unicode_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1398,7 +1502,9 @@
       "name": "list_with_unicode_reference_build_hierarchy",
       "source_test": "list_with_unicode_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -1418,7 +1524,9 @@
       "name": "list_with_unicode_reference_get_list",
       "source_test": "list_with_unicode_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1451,7 +1559,9 @@
       "name": "list_with_special_characters_parse",
       "source_test": "list_with_special_characters",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1474,7 +1584,9 @@
       "name": "list_with_special_characters_build_hierarchy",
       "source_test": "list_with_special_characters",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -1498,7 +1610,9 @@
       "name": "list_with_special_characters_get_list",
       "source_test": "list_with_special_characters",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -1527,7 +1641,9 @@
       "name": "list_with_special_characters_reference_parse",
       "source_test": "list_with_special_characters_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -1549,7 +1665,9 @@
       "name": "list_with_special_characters_reference_build_hierarchy",
       "source_test": "list_with_special_characters_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -1567,7 +1685,9 @@
       "name": "list_with_special_characters_reference_get_list",
       "source_test": "list_with_special_characters_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -2045,7 +2165,9 @@
       "name": "list_multiline_values_parse_value",
       "source_test": "list_multiline_values",
       "validation": "parse_value",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -2070,7 +2192,9 @@
       "name": "list_multiline_values_build_hierarchy",
       "source_test": "list_multiline_values",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -2095,7 +2219,9 @@
       "name": "list_multiline_values_get_list",
       "source_test": "list_multiline_values",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -2158,7 +2284,9 @@
       "name": "complex_mixed_list_scenarios_parse_value",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "parse_value",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -2196,7 +2324,9 @@
       "name": "complex_mixed_list_scenarios_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -2221,7 +2351,9 @@
       "name": "complex_mixed_list_scenarios_get_list",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -2259,7 +2391,9 @@
       "name": "complex_mixed_list_scenarios_reference_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -2279,7 +2413,9 @@
       "name": "complex_mixed_list_scenarios_reference_get_list",
       "source_test": "complex_mixed_list_scenarios_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -2351,7 +2487,9 @@
       "name": "list_path_traversal_protection_parse",
       "source_test": "list_path_traversal_protection",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -2371,7 +2509,9 @@
       "name": "list_path_traversal_protection_build_hierarchy",
       "source_test": "list_path_traversal_protection",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "args": [
@@ -2394,7 +2534,9 @@
       "name": "list_path_traversal_protection_get_list",
       "source_test": "list_path_traversal_protection",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -2417,7 +2559,9 @@
       "name": "list_path_traversal_protection_reference_parse",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -2437,7 +2581,9 @@
       "name": "list_path_traversal_protection_reference_build_hierarchy",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "build_hierarchy",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "args": [
@@ -2457,7 +2603,9 @@
       "name": "list_path_traversal_protection_reference_get_list",
       "source_test": "list_path_traversal_protection_reference",
       "validation": "get_list",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     }
   ]
 }

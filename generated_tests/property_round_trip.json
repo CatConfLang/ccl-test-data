@@ -255,7 +255,9 @@
       "name": "canonical_format_empty_values_parse",
       "source_test": "canonical_format_empty_values",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -271,7 +273,9 @@
       "name": "canonical_format_empty_values_canonical_format",
       "source_test": "canonical_format_empty_values",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -294,7 +298,9 @@
       "name": "canonical_format_tab_preservation_parse",
       "source_test": "canonical_format_tab_preservation",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -312,7 +318,9 @@
       "name": "canonical_format_tab_preservation_canonical_format",
       "source_test": "canonical_format_tab_preservation",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -339,7 +347,9 @@
       "name": "canonical_format_unicode_parse",
       "source_test": "canonical_format_unicode",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -357,7 +367,9 @@
       "name": "canonical_format_unicode_canonical_format",
       "source_test": "canonical_format_unicode",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -424,7 +436,9 @@
       "name": "canonical_format_line_endings_proposed_parse",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -442,7 +456,9 @@
       "name": "canonical_format_line_endings_proposed_canonical_format",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -469,7 +485,9 @@
       "name": "crlf_normalize_to_lf_proposed_parse",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -487,7 +505,9 @@
       "name": "crlf_normalize_to_lf_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -514,7 +534,9 @@
       "name": "crlf_normalize_to_lf_indented_proposed_parse",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -532,7 +554,9 @@
       "name": "crlf_normalize_to_lf_indented_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -603,7 +627,9 @@
       "name": "canonical_format_consistent_spacing_parse",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [
@@ -621,7 +647,9 @@
       "name": "canonical_format_consistent_spacing_canonical_format",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -696,7 +724,9 @@
       "name": "deterministic_output_parse",
       "source_test": "deterministic_output",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -712,7 +742,9 @@
       "name": "deterministic_output_canonical_format",
       "source_test": "deterministic_output",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "proposed_behavior"
+      ]
     },
     {
       "behaviors": [],
@@ -728,7 +760,9 @@
       "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
       "source_test": "canonical_format_empty_values_ocaml_reference",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -746,7 +780,9 @@
       "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
       "source_test": "canonical_format_tab_preservation_ocaml_reference",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -764,7 +800,9 @@
       "name": "canonical_format_unicode_ocaml_reference_canonical_format",
       "source_test": "canonical_format_unicode_ocaml_reference",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -791,7 +829,9 @@
       "name": "canonical_format_line_endings_reference_behavior_parse",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -809,7 +849,9 @@
       "name": "canonical_format_line_endings_reference_behavior_canonical_format",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -827,7 +869,9 @@
       "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
       "source_test": "canonical_format_consistent_spacing_ocaml_reference",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -843,7 +887,9 @@
       "name": "deterministic_output_ocaml_reference_canonical_format",
       "source_test": "deterministic_output_ocaml_reference",
       "validation": "canonical_format",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     }
   ]
 }

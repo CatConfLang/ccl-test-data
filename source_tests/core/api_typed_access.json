@@ -661,6 +661,9 @@
             }
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -682,6 +685,9 @@
             }
           ]
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {

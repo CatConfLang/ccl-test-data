@@ -76,6 +76,9 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -107,6 +110,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -162,6 +168,9 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -212,6 +221,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -263,6 +275,9 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -309,6 +324,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -339,6 +357,9 @@
             "empty_list"
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -367,6 +388,9 @@
             }
           ]
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -417,6 +441,9 @@
             "numbers"
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -462,6 +489,9 @@
             "numbers"
           ]
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -512,6 +542,9 @@
             "flags"
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -557,6 +590,9 @@
             ]
           }
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -610,6 +646,9 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -656,6 +695,9 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -721,6 +763,9 @@
             "servers"
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -762,6 +807,9 @@
             "servers"
           ]
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -815,6 +863,9 @@
       ],
       "features": [
         "unicode"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -863,6 +914,9 @@
       ],
       "features": [
         "unicode"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -913,6 +967,9 @@
             "symbols"
           ]
         }
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -953,6 +1010,9 @@
             ]
           }
         }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -1298,6 +1358,9 @@
       ],
       "features": [
         "multiline"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -1424,6 +1487,9 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -1489,6 +1555,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {
@@ -1554,6 +1623,9 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "variants": [
+        "proposed_behavior"
       ]
     },
     {
@@ -1596,6 +1668,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     }
   ]

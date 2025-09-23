@@ -8,7 +8,7 @@ Development guide for extending and contributing to the CCL Test Suite.
 Progressive implementation approach:
 - **Core**: Parse + BuildHierarchy
 - **Typed Access**: GetString, GetInt, GetBool, GetFloat, GetList
-- **Processing**: Filter, Compose, ExpandDotted
+- **Processing**: Filter, Compose
 - **Formatting**: PrettyPrint
 
 ### Package Structure
