@@ -636,61 +636,6 @@
       ]
     },
     {
-      "name": "parse_empty_value",
-      "input": "empty_key =",
-      "tests": [
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "empty_key": ""
-          }
-        },
-        {
-          "function": "get_string",
-          "expect": "",
-          "args": [
-            "empty_key"
-          ]
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "empty_key",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "variants": [
-        "proposed_behavior"
-      ]
-    },
-    {
-      "name": "empty_value_reference_behavior",
-      "input": "empty_key =",
-      "tests": [
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "empty_key": ""
-          }
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "empty_key",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "variants": [
-        "reference_compliant"
-      ]
-    },
-    {
       "name": "parse_with_whitespace",
       "input": "number =   42   \nflag =  true  ",
       "tests": [

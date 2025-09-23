@@ -1,0 +1,695 @@
+{
+  "$schema": "file:///Volumes/Code/claude-workspace-ccl/ccl-test-data/schemas/source-format.json",
+  "tests": [
+    {
+      "name": "single_item_as_list_reference",
+      "input": "item = single",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "item",
+              "value": "single"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "item": "single"
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "item"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "mixed_duplicate_single_keys_reference",
+      "input": "ports = 80\nports = 443\nhost = localhost",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "ports",
+              "value": "80"
+            },
+            {
+              "key": "ports",
+              "value": "443"
+            },
+            {
+              "key": "host",
+              "value": "localhost"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "host": "localhost",
+            "ports": [
+              "443",
+              "80"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "ports"
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "host"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "nested_list_access_reference",
+      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "database",
+              "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "database": {
+              "hosts": [
+                "primary",
+                "secondary"
+              ],
+              "port": "5432"
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "database",
+            "hosts"
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "database",
+            "port"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "empty_list_reference",
+      "input": "empty_list =",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "empty_list": ""
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "empty_list"
+          ]
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "empty_list",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_with_numbers_reference",
+      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "numbers",
+              "value": "1"
+            },
+            {
+              "key": "numbers",
+              "value": "42"
+            },
+            {
+              "key": "numbers",
+              "value": "-17"
+            },
+            {
+              "key": "numbers",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "numbers": [
+              "1",
+              "42",
+              "-17",
+              "0"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "numbers"
+          ]
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_with_booleans_reference",
+      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+      "tests": [
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "flags"
+          ]
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "flags",
+              "value": "true"
+            },
+            {
+              "key": "flags",
+              "value": "false"
+            },
+            {
+              "key": "flags",
+              "value": "yes"
+            },
+            {
+              "key": "flags",
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "flags": [
+              "true",
+              "false",
+              "yes",
+              "no"
+            ]
+          }
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_with_whitespace_reference",
+      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "spaced"
+            },
+            {
+              "key": "items",
+              "value": "normal"
+            },
+            {
+              "key": "items",
+              "value": ""
+            },
+            {
+              "key": "items",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": [
+              "spaced",
+              "normal"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "items"
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "deeply_nested_list_reference",
+      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": [
+                    "web1",
+                    "web2",
+                    "api1"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "environments",
+            "production",
+            "servers"
+          ]
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_with_unicode_reference",
+      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "names",
+              "value": "张三"
+            },
+            {
+              "key": "names",
+              "value": "José"
+            },
+            {
+              "key": "names",
+              "value": "François"
+            },
+            {
+              "key": "names",
+              "value": "العربية"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "names": [
+              "张三",
+              "José",
+              "François",
+              "العربية"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "names"
+          ]
+        }
+      ],
+      "features": [
+        "unicode"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_with_special_characters_reference",
+      "input": "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|",
+      "tests": [
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "symbols"
+          ]
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "symbols",
+              "value": "@#$%"
+            },
+            {
+              "key": "symbols",
+              "value": "!^&*()"
+            },
+            {
+              "key": "symbols",
+              "value": "[]{}|"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "symbols": [
+              "@#$%",
+              "!^&*()",
+              "[]{}|"
+            ]
+          }
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "complex_mixed_list_scenarios_reference",
+      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "cache": "redis",
+              "database": {
+                "hosts": [
+                  "backup",
+                  "primary"
+                ],
+                "port": "5432"
+              },
+              "servers": [
+                "web2",
+                "web1"
+              ]
+            },
+            "features": [
+              "api",
+              "auth",
+              "ui"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "servers"
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "database",
+            "hosts"
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "cache"
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "features"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "list_path_traversal_protection_reference",
+      "input": "safe = value",
+      "tests": [
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            ""
+          ]
+        },
+        {
+          "function": "get_list",
+          "expect": null
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "safe"
+          ]
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "safe",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "safe": "value"
+          }
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "empty_value_reference_behavior",
+      "input": "empty_key =",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "empty_key": ""
+          }
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "empty_key",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "canonical_format_empty_values_ocaml_reference",
+      "input": "empty_key =",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "empty_key =\n"
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "canonical_format_tab_preservation_ocaml_reference",
+      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "value_with_tabs =\n  text\t\twith\ttabs =\n"
+        }
+      ],
+      "behaviors": [
+        "tabs_preserve"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "canonical_format_unicode_ocaml_reference",
+      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+        }
+      ],
+      "features": [
+        "unicode"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "canonical_format_line_endings_reference_behavior",
+      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1\r"
+            },
+            {
+              "key": "key2",
+              "value": "value2\r"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "canonical_format_consistent_spacing_ocaml_reference",
+      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "name": "deterministic_output_ocaml_reference",
+      "input": "z = last\na = first\nm = middle",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
+        }
+      ],
+      "variants": [
+        "reference_compliant"
+      ]
+    }
+  ]
+}

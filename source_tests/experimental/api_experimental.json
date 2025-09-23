@@ -15,15 +15,6 @@
           ]
         },
         {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "database",
-              "value": "\n  host = localhost"
-            }
-          ]
-        },
-        {
           "function": "build_hierarchy",
           "expect": {
             "database": {
@@ -58,19 +49,6 @@
           ]
         },
         {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "database",
-              "value": "\n  host = localhost\n  port = 5432"
-            },
-            {
-              "key": "app",
-              "value": "\n  name = MyApp"
-            }
-          ]
-        },
-        {
           "function": "build_hierarchy",
           "expect": {
             "app": {
@@ -101,15 +79,6 @@
             {
               "key": "server.database.credentials.pass",
               "value": "secret"
-            }
-          ]
-        },
-        {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "server",
-              "value": "\n  database =\n    credentials =\n      user = admin\n      pass = secret"
             }
           ]
         },
@@ -157,27 +126,6 @@
           ]
         },
         {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "app",
-              "value": "MyApp"
-            },
-            {
-              "key": "database",
-              "value": "\n  host = localhost"
-            },
-            {
-              "key": "config",
-              "value": "\n  debug = true"
-            },
-            {
-              "key": "logging",
-              "value": "\n  level = info"
-            }
-          ]
-        },
-        {
           "function": "build_hierarchy",
           "expect": {
             "app": "MyApp",
@@ -215,15 +163,6 @@
           ]
         },
         {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "database",
-              "value": "\n  host = localhost"
-            }
-          ]
-        },
-        {
           "function": "build_hierarchy",
           "expect": {
             "database": {
@@ -254,15 +193,6 @@
             {
               "key": "servers.api",
               "value": "api1"
-            }
-          ]
-        },
-        {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "servers",
-              "value": "\n  web = web1\n  web = web2\n  api = api1"
             }
           ]
         },
@@ -305,15 +235,6 @@
               "value": "value"
             }
           ]
-        },
-        {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "a",
-              "value": "\n   =\n    b = value"
-            }
-          ]
         }
       ],
       "features": [
@@ -331,15 +252,6 @@
             {
               "key": "a.",
               "value": "value"
-            }
-          ]
-        },
-        {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "a",
-              "value": "\n   = value"
             }
           ]
         },
@@ -367,23 +279,6 @@
             {
               "key": "database",
               "value": "\n  enabled = true\n  port = 5432"
-            }
-          ]
-        },
-        {
-          "function": "expand_dotted",
-          "expect": [
-            {
-              "key": "database",
-              "value": ""
-            },
-            {
-              "key": "database.enabled",
-              "value": "true"
-            },
-            {
-              "key": "database.port",
-              "value": "5432"
             }
           ]
         },

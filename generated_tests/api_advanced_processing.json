@@ -551,65 +551,6 @@
       "source_test": "consecutive_section_headers",
       "validation": "parse",
       "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "",
-            "value": "= Section Header =\n  This continues the header"
-          },
-          {
-            "key": "key",
-            "value": "value"
-          }
-        ]
-      },
-      "features": [
-        "empty_keys",
-        "multiline"
-      ],
-      "functions": [
-        "parse_value"
-      ],
-      "input": "== Section Header =\n  This continues the header\nkey = value",
-      "name": "multiline_section_header_value_parse_value",
-      "source_test": "multiline_section_header_value",
-      "validation": "parse_value",
-      "variants": [
-        "proposed_behavior"
-      ]
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "",
-            "value": "= Section Header =\nThis continues the header"
-          },
-          {
-            "key": "key",
-            "value": "value"
-          }
-        ]
-      },
-      "features": [
-        "empty_keys"
-      ],
-      "functions": [
-        "parse_value"
-      ],
-      "input": "== Section Header =\nThis continues the header\nkey = value",
-      "name": "unindented_multiline_becomes_continuation_parse_value",
-      "source_test": "unindented_multiline_becomes_continuation",
-      "validation": "parse_value",
-      "variants": [
-        "proposed_behavior"
-      ]
     }
   ]
 }
