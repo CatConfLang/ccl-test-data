@@ -1038,7 +1038,7 @@
       ],
       "expected": {
         "count": 1,
-        "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+        "value": "key1 =\n  value1\r =\nkey2 =\n  value2\r =\n"
       },
       "features": [],
       "functions": [

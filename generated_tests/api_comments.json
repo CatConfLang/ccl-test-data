@@ -76,7 +76,6 @@
         ]
       },
       "features": [
-        "comments",
         "comments"
       ],
       "functions": [
@@ -123,7 +122,6 @@
         ]
       },
       "features": [
-        "comments",
         "comments"
       ],
       "functions": [
@@ -212,8 +210,7 @@
       },
       "features": [
         "comments",
-        "empty_keys",
-        "comments"
+        "empty_keys"
       ],
       "functions": [
         "filter"

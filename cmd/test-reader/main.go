@@ -1163,7 +1163,6 @@ func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) str
 	return content.String()
 }
 
-
 func runTUI(filename string) {
 	model := initialTUIModel()
 	model.filename = filename

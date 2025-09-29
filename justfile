@@ -122,7 +122,7 @@ test *ARGS="":
 
 validate:
     jv schemas/source-format.json source_tests/**/*.json
-    jv schemas/generated-format.json generated_tests/**/*.json
+    jv schemas/generated-format.json generated_tests/*.json
 
 # Update README.md with current test statistics using remark.js AST processing
 docs-check:

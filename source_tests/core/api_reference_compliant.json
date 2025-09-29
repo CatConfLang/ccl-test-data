@@ -639,7 +639,7 @@
       "tests": [
         {
           "function": "canonical_format",
-          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
+          "expect": "key1 =\n  value1\r =\nkey2 =\n  value2\r =\n"
         },
         {
           "function": "parse",

@@ -41,32 +41,6 @@ c = 3`
 }
 
 
-// semigroup_associativity_basic_associativity - function:associativity
-func TestSemigroupAssociativityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `a = 1
-b = 2
-c = 3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
-}
-
-
 // semigroup_associativity_nested_parse - function:parse
 func TestSemigroupAssociativityNestedParse(t *testing.T) {
 	
@@ -92,34 +66,6 @@ db =
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  host = localhost\n  port = 8080"}, mock.Entry{Key: "db", Value: "\n  name = test"}}
 	assert.Equal(t, expected, parseResult)
-
-}
-
-
-// semigroup_associativity_nested_associativity - function:associativity
-func TestSemigroupAssociativityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  host = localhost
-  port = 8080
-db =
-  name = test`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
 
 }
 
@@ -151,32 +97,6 @@ func TestSemigroupAssociativityListsParse(t *testing.T) {
 }
 
 
-// semigroup_associativity_lists_associativity - function:associativity feature:empty_keys
-func TestSemigroupAssociativityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
-}
-
-
 // monoid_left_identity_basic_parse - function:parse
 func TestMonoidLeftIdentityBasicParse(t *testing.T) {
 	
@@ -204,32 +124,6 @@ nested =
 }
 
 
-// monoid_left_identity_basic_associativity - function:associativity
-func TestMonoidLeftIdentityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `key = value
-nested =
-  sub = val`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
-}
-
-
 // monoid_right_identity_basic_parse - function:parse
 func TestMonoidRightIdentityBasicParse(t *testing.T) {
 	
@@ -253,32 +147,6 @@ nested =
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}, mock.Entry{Key: "nested", Value: "\n  sub = val"}}
 	assert.Equal(t, expected, parseResult)
-
-}
-
-
-// monoid_right_identity_basic_associativity - function:associativity
-func TestMonoidRightIdentityBasicAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `key = value
-nested =
-  sub = val`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
 
 }
 
@@ -313,35 +181,6 @@ func TestMonoidLeftIdentityNestedParse(t *testing.T) {
 }
 
 
-// monoid_left_identity_nested_associativity - function:associativity
-func TestMonoidLeftIdentityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  database =
-    host = localhost
-    port = 5432
-  cache =
-    redis = true`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
-}
-
-
 // monoid_right_identity_nested_parse - function:parse
 func TestMonoidRightIdentityNestedParse(t *testing.T) {
 	
@@ -368,35 +207,6 @@ func TestMonoidRightIdentityNestedParse(t *testing.T) {
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"}}
 	assert.Equal(t, expected, parseResult)
-
-}
-
-
-// monoid_right_identity_nested_associativity - function:associativity
-func TestMonoidRightIdentityNestedAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `config =
-  database =
-    host = localhost
-    port = 5432
-  cache =
-    redis = true`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
 
 }
 
@@ -428,32 +238,6 @@ func TestMonoidLeftIdentityListsParse(t *testing.T) {
 }
 
 
-// monoid_left_identity_lists_associativity - function:associativity feature:empty_keys
-func TestMonoidLeftIdentityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
-}
-
-
 // monoid_right_identity_lists_parse - function:parse feature:empty_keys
 func TestMonoidRightIdentityListsParse(t *testing.T) {
 	
@@ -477,32 +261,6 @@ func TestMonoidRightIdentityListsParse(t *testing.T) {
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "", Value: "item1"}, mock.Entry{Key: "", Value: "item2"}, mock.Entry{Key: "", Value: "item3"}}
 	assert.Equal(t, expected, parseResult)
-
-}
-
-
-// monoid_right_identity_lists_associativity - function:associativity feature:empty_keys
-func TestMonoidRightIdentityListsAssociativity(t *testing.T) {
-	
-	
-	ccl := mock.New()
-	input := `= item1
-= item2
-= item3`
-	
-	
-	
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement associativity validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
 
 }
 

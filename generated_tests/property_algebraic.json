@@ -33,21 +33,6 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "a = 1\nb = 2\nc = 3",
-      "name": "semigroup_associativity_basic_associativity",
-      "source_test": "semigroup_associativity_basic",
-      "validation": "associativity",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
         "count": 2,
         "entries": [
           {
@@ -68,21 +53,6 @@
       "name": "semigroup_associativity_nested_parse",
       "source_test": "semigroup_associativity_nested",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
-      "name": "semigroup_associativity_nested_associativity",
-      "source_test": "semigroup_associativity_nested",
-      "validation": "associativity",
       "variants": []
     },
     {
@@ -119,23 +89,6 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
-      },
-      "features": [
-        "empty_keys"
-      ],
-      "functions": [
-        "associativity"
-      ],
-      "input": "= item1\n= item2\n= item3",
-      "name": "semigroup_associativity_lists_associativity",
-      "source_test": "semigroup_associativity_lists",
-      "validation": "associativity",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
         "count": 2,
         "entries": [
           {
@@ -156,21 +109,6 @@
       "name": "monoid_left_identity_basic_parse",
       "source_test": "monoid_left_identity_basic",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "key = value\nnested =\n  sub = val",
-      "name": "monoid_left_identity_basic_associativity",
-      "source_test": "monoid_left_identity_basic",
-      "validation": "associativity",
       "variants": []
     },
     {
@@ -201,21 +139,6 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "key = value\nnested =\n  sub = val",
-      "name": "monoid_right_identity_basic_associativity",
-      "source_test": "monoid_right_identity_basic",
-      "validation": "associativity",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
         "count": 1,
         "entries": [
           {
@@ -237,21 +160,6 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "name": "monoid_left_identity_nested_associativity",
-      "source_test": "monoid_left_identity_nested",
-      "validation": "associativity",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
         "count": 1,
         "entries": [
           {
@@ -268,21 +176,6 @@
       "name": "monoid_right_identity_nested_parse",
       "source_test": "monoid_right_identity_nested",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1
-      },
-      "features": [],
-      "functions": [
-        "associativity"
-      ],
-      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
-      "name": "monoid_right_identity_nested_associativity",
-      "source_test": "monoid_right_identity_nested",
-      "validation": "associativity",
       "variants": []
     },
     {
@@ -319,23 +212,6 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
-      },
-      "features": [
-        "empty_keys"
-      ],
-      "functions": [
-        "associativity"
-      ],
-      "input": "= item1\n= item2\n= item3",
-      "name": "monoid_left_identity_lists_associativity",
-      "source_test": "monoid_left_identity_lists",
-      "validation": "associativity",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
         "count": 3,
         "entries": [
           {
@@ -362,23 +238,6 @@
       "name": "monoid_right_identity_lists_parse",
       "source_test": "monoid_right_identity_lists",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1
-      },
-      "features": [
-        "empty_keys"
-      ],
-      "functions": [
-        "associativity"
-      ],
-      "input": "= item1\n= item2\n= item3",
-      "name": "monoid_right_identity_lists_associativity",
-      "source_test": "monoid_right_identity_lists",
-      "validation": "associativity",
       "variants": []
     },
     {

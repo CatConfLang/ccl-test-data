@@ -44,7 +44,7 @@ connections = 16`
 }
 
 
-// comment_extension_filter - function:filter feature:comments feature:comments
+// comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
 	
 	
@@ -98,7 +98,7 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 }
 
 
-// comment_syntax_slash_equals_filter - function:filter feature:comments feature:comments
+// comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
 	
 	
@@ -152,7 +152,7 @@ port = 6379`
 }
 
 
-// section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys feature:comments
+// section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
 	
 	
