@@ -14,7 +14,7 @@ import (
 
 
 
-// parse_basic_integer_parse - function:parse
+// parse_basic_integer_parse - function:parse feature:optional_typed_accessors
 func TestParseBasicIntegerParse(t *testing.T) {
 	
 	
@@ -39,7 +39,7 @@ func TestParseBasicIntegerParse(t *testing.T) {
 }
 
 
-// parse_basic_integer_build_hierarchy - function:build_hierarchy
+// parse_basic_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
 	
 	
@@ -65,7 +65,7 @@ func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_basic_integer_get_int - function:get_int
+// parse_basic_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBasicIntegerGetInt(t *testing.T) {
 	
 	
@@ -92,7 +92,7 @@ func TestParseBasicIntegerGetInt(t *testing.T) {
 }
 
 
-// parse_basic_float_parse - function:parse
+// parse_basic_float_parse - function:parse feature:optional_typed_accessors
 func TestParseBasicFloatParse(t *testing.T) {
 	
 	
@@ -117,7 +117,7 @@ func TestParseBasicFloatParse(t *testing.T) {
 }
 
 
-// parse_basic_float_build_hierarchy - function:build_hierarchy
+// parse_basic_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicFloatBuildHierarchy(t *testing.T) {
 	
 	
@@ -143,7 +143,7 @@ func TestParseBasicFloatBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_basic_float_get_float - function:get_float
+// parse_basic_float_get_float - function:get_float feature:optional_typed_accessors
 func TestParseBasicFloatGetFloat(t *testing.T) {
 	
 	
@@ -170,7 +170,7 @@ func TestParseBasicFloatGetFloat(t *testing.T) {
 }
 
 
-// parse_boolean_true_parse - function:parse behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_true_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanTrueParse(t *testing.T) {
 	
 	
@@ -195,7 +195,7 @@ func TestParseBooleanTrueParse(t *testing.T) {
 }
 
 
-// parse_boolean_true_build_hierarchy - function:build_hierarchy behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
 	
 	
@@ -221,7 +221,7 @@ func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_boolean_true_get_bool - function:get_bool behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_true_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanTrueGetBool(t *testing.T) {
 	
 	
@@ -248,7 +248,7 @@ func TestParseBooleanTrueGetBool(t *testing.T) {
 }
 
 
-// parse_boolean_yes_parse - function:parse behavior:boolean_lenient
+// parse_boolean_yes_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanYesParse(t *testing.T) {
 	
 	
@@ -273,7 +273,7 @@ func TestParseBooleanYesParse(t *testing.T) {
 }
 
 
-// parse_boolean_yes_build_hierarchy - function:build_hierarchy behavior:boolean_lenient
+// parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanYesBuildHierarchy(t *testing.T) {
 	
 	
@@ -299,7 +299,7 @@ func TestParseBooleanYesBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_boolean_yes_get_bool - function:get_bool behavior:boolean_lenient
+// parse_boolean_yes_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanYesGetBool(t *testing.T) {
 	
 	
@@ -326,7 +326,7 @@ func TestParseBooleanYesGetBool(t *testing.T) {
 }
 
 
-// parse_boolean_yes_strict_literal_parse - function:parse behavior:boolean_strict
+// parse_boolean_yes_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 	
 	
@@ -351,7 +351,7 @@ func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 }
 
 
-// parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy behavior:boolean_strict
+// parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
 	
 	
@@ -377,7 +377,7 @@ func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_boolean_yes_strict_literal_get_bool - function:get_bool behavior:boolean_strict
+// parse_boolean_yes_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
 	
 	
@@ -407,7 +407,7 @@ func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
 }
 
 
-// parse_boolean_false_parse - function:parse behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_false_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanFalseParse(t *testing.T) {
 	
 	
@@ -432,7 +432,7 @@ func TestParseBooleanFalseParse(t *testing.T) {
 }
 
 
-// parse_boolean_false_build_hierarchy - function:build_hierarchy behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
 	
 	
@@ -458,7 +458,7 @@ func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_boolean_false_get_bool - function:get_bool behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_false_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanFalseGetBool(t *testing.T) {
 	
 	
@@ -563,7 +563,7 @@ func TestParseStringFallbackGetString(t *testing.T) {
 }
 
 
-// parse_negative_integer_parse - function:parse
+// parse_negative_integer_parse - function:parse feature:optional_typed_accessors
 func TestParseNegativeIntegerParse(t *testing.T) {
 	
 	
@@ -588,7 +588,7 @@ func TestParseNegativeIntegerParse(t *testing.T) {
 }
 
 
-// parse_negative_integer_build_hierarchy - function:build_hierarchy
+// parse_negative_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
 	
 	
@@ -614,7 +614,7 @@ func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_negative_integer_get_int - function:get_int
+// parse_negative_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseNegativeIntegerGetInt(t *testing.T) {
 	
 	
@@ -641,7 +641,7 @@ func TestParseNegativeIntegerGetInt(t *testing.T) {
 }
 
 
-// parse_zero_values_parse - function:parse feature:empty_keys behavior:boolean_lenient
+// parse_zero_values_parse - function:parse feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesParse(t *testing.T) {
 	
 	
@@ -668,7 +668,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:boolean_lenient
+// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
 	
 	
@@ -696,7 +696,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_get_int - function:get_int feature:empty_keys behavior:boolean_lenient
+// parse_zero_values_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesGetInt(t *testing.T) {
 	
 	
@@ -725,7 +725,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_get_bool - function:get_bool feature:empty_keys behavior:boolean_lenient
+// parse_zero_values_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesGetBool(t *testing.T) {
 	
 	
@@ -754,7 +754,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_get_float - function:get_float feature:empty_keys behavior:boolean_lenient
+// parse_zero_values_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesGetFloat(t *testing.T) {
 	
 	
@@ -783,7 +783,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_parse - function:parse feature:empty_keys behavior:boolean_strict
+// parse_zero_values_strict_literal_parse - function:parse feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralParse(t *testing.T) {
 	
 	
@@ -810,7 +810,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:boolean_strict
+// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
 	
 	
@@ -838,7 +838,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys behavior:boolean_strict
+// parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetInt(t *testing.T) {
 	
 	
@@ -867,7 +867,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_get_bool - function:get_bool feature:empty_keys behavior:boolean_strict
+// parse_zero_values_strict_literal_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetBool(t *testing.T) {
 	
 	
@@ -899,7 +899,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys behavior:boolean_strict
+// parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetFloat(t *testing.T) {
 	
 	
@@ -928,7 +928,7 @@ disabled = no`
 }
 
 
-// parse_boolean_variants_parse - function:parse behavior:boolean_lenient
+// parse_boolean_variants_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsParse(t *testing.T) {
 	
 	
@@ -959,7 +959,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_build_hierarchy - function:build_hierarchy behavior:boolean_lenient
+// parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsBuildHierarchy(t *testing.T) {
 	
 	
@@ -991,7 +991,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_get_int - function:get_int behavior:boolean_lenient
+// parse_boolean_variants_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsGetInt(t *testing.T) {
 	
 	
@@ -1024,7 +1024,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_get_bool - function:get_bool behavior:boolean_lenient
+// parse_boolean_variants_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsGetBool(t *testing.T) {
 	
 	
@@ -1057,7 +1057,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_strict_literal_parse - function:parse behavior:boolean_strict
+// parse_boolean_variants_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralParse(t *testing.T) {
 	
 	
@@ -1088,7 +1088,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy behavior:boolean_strict
+// parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralBuildHierarchy(t *testing.T) {
 	
 	
@@ -1120,7 +1120,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_strict_literal_get_int - function:get_int behavior:boolean_strict
+// parse_boolean_variants_strict_literal_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralGetInt(t *testing.T) {
 	
 	
@@ -1153,7 +1153,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_strict_literal_get_bool - function:get_bool behavior:boolean_strict
+// parse_boolean_variants_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralGetBool(t *testing.T) {
 	
 	
@@ -1189,7 +1189,7 @@ flag7 = 0`
 }
 
 
-// parse_mixed_types_parse - function:parse behavior:boolean_lenient
+// parse_mixed_types_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesParse(t *testing.T) {
 	
 	
@@ -1218,7 +1218,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_build_hierarchy - function:build_hierarchy behavior:boolean_lenient
+// parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesBuildHierarchy(t *testing.T) {
 	
 	
@@ -1248,7 +1248,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_get_string - function:get_string behavior:boolean_lenient
+// parse_mixed_types_get_string - function:get_string feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetString(t *testing.T) {
 	
 	
@@ -1279,7 +1279,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_get_int - function:get_int behavior:boolean_lenient
+// parse_mixed_types_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetInt(t *testing.T) {
 	
 	
@@ -1310,7 +1310,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_get_bool - function:get_bool behavior:boolean_lenient
+// parse_mixed_types_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetBool(t *testing.T) {
 	
 	
@@ -1341,7 +1341,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_get_float - function:get_float behavior:boolean_lenient
+// parse_mixed_types_get_float - function:get_float feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetFloat(t *testing.T) {
 	
 	
@@ -1372,7 +1372,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_parse - function:parse behavior:boolean_strict
+// parse_mixed_types_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralParse(t *testing.T) {
 	
 	
@@ -1401,7 +1401,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy behavior:boolean_strict
+// parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralBuildHierarchy(t *testing.T) {
 	
 	
@@ -1431,7 +1431,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_get_string - function:get_string behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_string - function:get_string feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetString(t *testing.T) {
 	
 	
@@ -1462,7 +1462,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_get_int - function:get_int behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetInt(t *testing.T) {
 	
 	
@@ -1493,7 +1493,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_get_bool - function:get_bool behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetBool(t *testing.T) {
 	
 	
@@ -1524,7 +1524,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_get_float - function:get_float behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_float - function:get_float feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetFloat(t *testing.T) {
 	
 	
@@ -1555,7 +1555,7 @@ debug = off`
 }
 
 
-// parse_with_whitespace_parse - function:parse feature:whitespace
+// parse_with_whitespace_parse - function:parse feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceParse(t *testing.T) {
 	
 	
@@ -1581,7 +1581,7 @@ flag =  true  `
 }
 
 
-// parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace
+// parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceBuildHierarchy(t *testing.T) {
 	
 	
@@ -1608,7 +1608,7 @@ flag =  true  `
 }
 
 
-// parse_with_whitespace_get_int - function:get_int feature:whitespace
+// parse_with_whitespace_get_int - function:get_int feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetInt(t *testing.T) {
 	
 	
@@ -1636,7 +1636,7 @@ flag =  true  `
 }
 
 
-// parse_with_whitespace_get_bool - function:get_bool feature:whitespace
+// parse_with_whitespace_get_bool - function:get_bool feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetBool(t *testing.T) {
 	
 	
@@ -1664,7 +1664,7 @@ flag =  true  `
 }
 
 
-// parse_with_conservative_options_parse - function:parse
+// parse_with_conservative_options_parse - function:parse feature:optional_typed_accessors
 func TestParseWithConservativeOptionsParse(t *testing.T) {
 	
 	
@@ -1692,7 +1692,7 @@ text = hello`
 }
 
 
-// parse_with_conservative_options_build_hierarchy - function:build_hierarchy
+// parse_with_conservative_options_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseWithConservativeOptionsBuildHierarchy(t *testing.T) {
 	
 	
@@ -1721,7 +1721,7 @@ text = hello`
 }
 
 
-// parse_with_conservative_options_get_string - function:get_string
+// parse_with_conservative_options_get_string - function:get_string feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetString(t *testing.T) {
 	
 	
@@ -1751,7 +1751,7 @@ text = hello`
 }
 
 
-// parse_with_conservative_options_get_int - function:get_int
+// parse_with_conservative_options_get_int - function:get_int feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetInt(t *testing.T) {
 	
 	
@@ -1781,7 +1781,7 @@ text = hello`
 }
 
 
-// parse_integer_error_parse - function:parse
+// parse_integer_error_parse - function:parse feature:optional_typed_accessors
 func TestParseIntegerErrorParse(t *testing.T) {
 	
 	
@@ -1806,7 +1806,7 @@ func TestParseIntegerErrorParse(t *testing.T) {
 }
 
 
-// parse_integer_error_build_hierarchy - function:build_hierarchy
+// parse_integer_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
 	
 	
@@ -1832,7 +1832,7 @@ func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_integer_error_get_int - function:get_int
+// parse_integer_error_get_int - function:get_int feature:optional_typed_accessors
 func TestParseIntegerErrorGetInt(t *testing.T) {
 	
 	
@@ -1862,7 +1862,7 @@ func TestParseIntegerErrorGetInt(t *testing.T) {
 }
 
 
-// parse_float_error_parse - function:parse
+// parse_float_error_parse - function:parse feature:optional_typed_accessors
 func TestParseFloatErrorParse(t *testing.T) {
 	
 	
@@ -1887,7 +1887,7 @@ func TestParseFloatErrorParse(t *testing.T) {
 }
 
 
-// parse_float_error_build_hierarchy - function:build_hierarchy
+// parse_float_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseFloatErrorBuildHierarchy(t *testing.T) {
 	
 	
@@ -1913,7 +1913,7 @@ func TestParseFloatErrorBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_float_error_get_float - function:get_float
+// parse_float_error_get_float - function:get_float feature:optional_typed_accessors
 func TestParseFloatErrorGetFloat(t *testing.T) {
 	
 	
@@ -1943,7 +1943,7 @@ func TestParseFloatErrorGetFloat(t *testing.T) {
 }
 
 
-// parse_boolean_error_parse - function:parse behavior:boolean_strict
+// parse_boolean_error_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanErrorParse(t *testing.T) {
 	
 	
@@ -1968,7 +1968,7 @@ func TestParseBooleanErrorParse(t *testing.T) {
 }
 
 
-// parse_boolean_error_build_hierarchy - function:build_hierarchy behavior:boolean_strict
+// parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
 	
 	
@@ -1994,7 +1994,7 @@ func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
 }
 
 
-// parse_boolean_error_get_bool - function:get_bool behavior:boolean_strict
+// parse_boolean_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanErrorGetBool(t *testing.T) {
 	
 	

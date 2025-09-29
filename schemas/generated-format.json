@@ -138,9 +138,19 @@
         "description": "Required language features",
         "items": {
           "type": "string",
-          "enum": [
-            "comments", "empty_keys",
-            "multiline", "unicode", "whitespace", "typed_accessors"
+          "oneOf": [
+            {
+              "enum": [
+                "comments", "empty_keys",
+                "multiline", "unicode", "whitespace"
+              ]
+            },
+            {
+              "pattern": "^experimental_"
+            },
+            {
+              "pattern": "^optional_"
+            }
           ]
         },
         "uniqueItems": true

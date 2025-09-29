@@ -29,7 +29,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -60,7 +60,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -91,7 +91,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
@@ -126,7 +126,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_lenient"
@@ -160,7 +160,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -194,7 +194,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
@@ -257,7 +257,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -313,7 +313,7 @@
       ],
       "features": [
         "empty_keys",
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_lenient"
@@ -372,7 +372,7 @@
       ],
       "features": [
         "empty_keys",
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -443,7 +443,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_lenient"
@@ -514,7 +514,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -589,7 +589,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_lenient"
@@ -664,7 +664,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -711,7 +711,7 @@
       ],
       "features": [
         "whitespace",
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -764,7 +764,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -795,7 +795,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -826,7 +826,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ]
     },
     {
@@ -857,7 +857,7 @@
         }
       ],
       "features": [
-        "typed_accessors"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"

@@ -34,14 +34,22 @@
       "uniqueItems": true,
       "items": {
         "type": "string",
-        "enum": [
-          "comments",
-          "experimental_dotted_keys",
-          "unicode",
-          "multiline",
-          "whitespace",
-          "empty_keys",
-          "typed_accessors"
+        "oneOf": [
+          {
+            "enum": [
+              "comments",
+              "unicode",
+              "multiline",
+              "whitespace",
+              "empty_keys"
+            ]
+          },
+          {
+            "pattern": "^experimental_"
+          },
+          {
+            "pattern": "^optional_"
+          }
         ]
       }
     },

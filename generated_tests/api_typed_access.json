@@ -12,7 +12,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -30,7 +32,9 @@
           "port": "8080"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -49,7 +53,9 @@
         "count": 1,
         "value": 8080
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -70,7 +76,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -88,7 +96,9 @@
           "temperature": "98.6"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -107,7 +117,9 @@
         "count": 1,
         "value": 98.6
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_float"
       ],
@@ -131,7 +143,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -152,7 +166,9 @@
           "enabled": "true"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -174,7 +190,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -197,7 +215,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -217,7 +237,9 @@
           "active": "yes"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -238,7 +260,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -261,7 +285,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -281,7 +307,9 @@
           "active": "yes"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -301,7 +329,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -325,7 +355,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -346,7 +378,9 @@
           "disabled": "false"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -368,7 +402,9 @@
         "count": 1,
         "value": false
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -447,7 +483,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -465,7 +503,9 @@
           "offset": "-42"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -484,7 +524,9 @@
         "count": 1,
         "value": -42
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -516,7 +558,8 @@
         ]
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -540,7 +583,8 @@
         }
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -563,7 +607,8 @@
         "value": 0
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -586,7 +631,8 @@
         "value": false
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -609,7 +655,8 @@
         "value": 0
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_float"
@@ -642,7 +689,8 @@
         ]
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -666,7 +714,8 @@
         }
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -689,7 +738,8 @@
         "value": 0
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -711,7 +761,8 @@
         "count": 1
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -734,7 +785,8 @@
         "value": 0
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_float"
@@ -782,7 +834,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -808,7 +862,9 @@
           "flag7": "0"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -829,7 +885,9 @@
         "count": 1,
         "value": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -850,7 +908,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -897,7 +957,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -923,7 +985,9 @@
           "flag7": "0"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -944,7 +1008,9 @@
         "count": 1,
         "value": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -964,7 +1030,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -1003,7 +1071,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1027,7 +1097,9 @@
           "timeout": "30.5"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1048,7 +1120,9 @@
         "count": 1,
         "value": "localhost"
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_string"
       ],
@@ -1069,7 +1143,9 @@
         "count": 1,
         "value": 8080
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -1090,7 +1166,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -1111,7 +1189,9 @@
         "count": 1,
         "value": 30.5
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_float"
       ],
@@ -1150,7 +1230,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1174,7 +1256,9 @@
           "timeout": "30.5"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1195,7 +1279,9 @@
         "count": 1,
         "value": "localhost"
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_string"
       ],
@@ -1216,7 +1302,9 @@
         "count": 1,
         "value": 8080
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -1237,7 +1325,9 @@
         "count": 1,
         "value": true
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],
@@ -1258,7 +1348,9 @@
         "count": 1,
         "value": 30.5
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_float"
       ],
@@ -1284,7 +1376,8 @@
         ]
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -1305,7 +1398,8 @@
         }
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -1326,7 +1420,8 @@
         "value": 42
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -1347,7 +1442,8 @@
         "value": true
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -1381,7 +1477,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1402,7 +1500,9 @@
           "text": "hello"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1421,7 +1521,9 @@
         "count": 1,
         "value": "3.14"
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_string"
       ],
@@ -1440,7 +1542,9 @@
         "count": 1,
         "value": 42
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -1461,7 +1565,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1479,7 +1585,9 @@
           "port": "not_a_number"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1497,7 +1605,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_int"
       ],
@@ -1518,7 +1628,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1536,7 +1648,9 @@
           "temperature": "invalid"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1554,7 +1668,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_float"
       ],
@@ -1577,7 +1693,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "parse"
       ],
@@ -1597,7 +1715,9 @@
           "enabled": "maybe"
         }
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1617,7 +1737,9 @@
       "expected": {
         "count": 1
       },
-      "features": [],
+      "features": [
+        "optional_typed_accessors"
+      ],
       "functions": [
         "get_bool"
       ],

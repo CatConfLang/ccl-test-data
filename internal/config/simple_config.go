@@ -43,6 +43,7 @@ var ValidFeatures = []string{
 	"multiline",
 	"whitespace",
 	"empty_keys",
+	"optional_typed_accessors",
 }
 
 // ValidBehaviors defines all supported behavioral choices
@@ -198,6 +199,9 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 			supportedFeatures = append(supportedFeatures, config.FeatureWhitespace)
 		case "empty_keys":
 			supportedFeatures = append(supportedFeatures, config.FeatureEmptyKeys)
+		case "optional_typed_accessors":
+			// Handle optional typed accessors feature - this might need a new enum value
+			// For now, we'll need to check if this enum exists in ccl-test-lib
 		}
 	}
 

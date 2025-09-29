@@ -114,11 +114,14 @@
               "oneOf": [
                 {
                   "enum": [
-                    "comments", "empty_keys", "multiline", "unicode", "whitespace", "typed_accessors"
+                    "comments", "empty_keys", "multiline", "unicode", "whitespace"
                   ]
                 },
                 {
                   "pattern": "^experimental_"
+                },
+                {
+                  "pattern": "^optional_"
                 }
               ]
             },
