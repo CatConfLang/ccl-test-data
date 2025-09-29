@@ -140,7 +140,7 @@
           "type": "string",
           "enum": [
             "comments", "empty_keys",
-            "multiline", "unicode", "whitespace"
+            "multiline", "unicode", "whitespace", "typed_accessors"
           ]
         },
         "uniqueItems": true

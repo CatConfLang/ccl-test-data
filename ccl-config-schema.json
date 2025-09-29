@@ -40,7 +40,8 @@
           "unicode",
           "multiline",
           "whitespace",
-          "empty_keys"
+          "empty_keys",
+          "typed_accessors"
         ]
       }
     },

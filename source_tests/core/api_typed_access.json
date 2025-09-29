@@ -27,6 +27,9 @@
             "port"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -55,6 +58,9 @@
             "temperature"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -83,6 +89,9 @@
             "enabled"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
@@ -116,6 +125,9 @@
           ]
         }
       ],
+      "features": [
+        "typed_accessors"
+      ],
       "behaviors": [
         "boolean_lenient"
       ]
@@ -147,6 +159,9 @@
           ]
         }
       ],
+      "features": [
+        "typed_accessors"
+      ],
       "behaviors": [
         "boolean_strict"
       ]
@@ -177,6 +192,9 @@
             "disabled"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
@@ -237,6 +255,9 @@
             "offset"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -291,7 +312,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_lenient"
@@ -349,7 +371,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -419,6 +442,9 @@
           ]
         }
       ],
+      "features": [
+        "typed_accessors"
+      ],
       "behaviors": [
         "boolean_lenient"
       ]
@@ -486,6 +512,9 @@
             "flag1"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
@@ -559,6 +588,9 @@
           ]
         }
       ],
+      "features": [
+        "typed_accessors"
+      ],
       "behaviors": [
         "boolean_lenient"
       ]
@@ -631,6 +663,9 @@
           ]
         }
       ],
+      "features": [
+        "typed_accessors"
+      ],
       "behaviors": [
         "boolean_strict"
       ]
@@ -675,7 +710,8 @@
         }
       ],
       "features": [
-        "whitespace"
+        "whitespace",
+        "typed_accessors"
       ]
     },
     {
@@ -726,6 +762,9 @@
             "decimal"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -754,6 +793,9 @@
             "port"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -782,6 +824,9 @@
             "temperature"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ]
     },
     {
@@ -810,6 +855,9 @@
             "enabled"
           ]
         }
+      ],
+      "features": [
+        "typed_accessors"
       ],
       "behaviors": [
         "boolean_strict"
