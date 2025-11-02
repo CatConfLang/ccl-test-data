@@ -258,11 +258,11 @@ const progressiveTests = flatTests.filter(test => {
 ## Field Value Conventions
 
 ### Functions Array Values
-- `parse` - Basic key-value parsing (Level 1)
-- `build-hierarchy` - Object construction from flat entries (Level 1)
-- `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access (Level 2)
-- `filter`, `compose`, `expand-dotted` - Entry processing (Level 3)
-- `pretty-print` - Canonical formatting (Level 4)
+- `parse` - Basic key-value parsing
+- `build-hierarchy` - Object construction from flat entries
+- `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access
+- `filter`, `compose`, `expand-dotted` - Entry processing
+- `pretty-print` - Canonical formatting
 
 ### Features Array Values
 - `comments` - `/=` comment syntax support

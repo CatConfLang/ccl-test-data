@@ -69,7 +69,6 @@ The generated flat format in `generated_tests/` directory provides optimal imple
   "features": ["dotted-keys"],
   "behaviors": ["crlf-normalize-to-lf"],
   "variants": ["reference-compliant"],
-  "level": 3,
   "source_test": "basic_parsing_workflow",
   "conflicts": {
     "behaviors": ["crlf-preserve-literal"],
@@ -90,7 +89,6 @@ The generated flat format in `generated_tests/` directory provides optimal imple
 | `features` | array | ✓ | Required optional language features |
 | `behaviors` | array | ✓ | Implementation behavior choices |
 | `variants` | array | ✓ | Specification variant choices |
-| `level` | number | ✓ | CCL implementation level (1-5) |
 | `source_test` | string | ✓ | Original source test name |
 | `conflicts` | object |  | Mutually exclusive behaviors/variants |
 
@@ -106,15 +104,15 @@ Each test case uses explicit `validations` objects that specify which API functi
   "input2": "string",  // For composition tests  
   "input3": "string",  // For associativity tests
   "validations": {
-    "parse": [...],              // Level 1: Entry parsing
-    "filter": [...],             // Level 2: Comment filtering
-    "compose": {...},            // Level 2: Entry composition
-    "expand_dotted": [...],      // Level 2: Dotted key expansion
-    "make_objects": {...},       // Level 3: Object construction
-    "get_string": {...},         // Level 4: String access
-    "get_int": {...},            // Level 4: Integer access
-    "get_bool": {...},           // Level 4: Boolean access
-    "get_float": {...},          // Level 4: Float access
+    "parse": [...],              // Entry parsing
+    "filter": [...],             // Comment filtering
+    "compose": {...},            // Entry composition
+    "expand_dotted": [...],      // Dotted key expansion
+    "make_objects": {...},       // Object construction
+    "get_string": {...},         // String access
+    "get_int": {...},            // Integer access
+    "get_bool": {...},           // Boolean access
+    "get_float": {...},          // Float access
     "pretty_print": "string",    // Output formatting
     "round_trip": {...},         // Parse-format-parse identity
     "canonical_format": {...},   // Canonical formatting
@@ -157,7 +155,7 @@ The `count` field tracks assertion complexity for test generation and indicates 
 
 ## Validation Types Reference
 
-### Level 1: Entry Parsing
+### Entry Parsing
 
 #### `parse` Validation
 Tests the core `parse(text)` API function.
@@ -190,7 +188,7 @@ Tests the core `parse(text)` API function.
 }
 ```
 
-### Level 2: Entry Processing  
+### Entry Processing
 
 #### `filter` Validation
 Tests the `filter(entries)` API function for comment removal.
@@ -230,7 +228,7 @@ Tests dotted key expansion (e.g., `database.host` → nested structure).
 }
 ```
 
-### Level 3: Object Construction
+### Object Construction
 
 #### `make_objects` Validation
 Tests the `make_objects(entries)` API function for hierarchical structure creation.
@@ -247,7 +245,7 @@ Tests the `make_objects(entries)` API function for hierarchical structure creati
 }
 ```
 
-### Level 4: Typed Access
+### Typed Access
 
 #### Typed Access Validations
 Test type-safe accessor functions with dual access patterns.
@@ -384,12 +382,11 @@ The `Entry` object represents a parsed key-value pair:
 
 ## Test Metadata Structure
 
-Every test case must include a `meta` object with categorization and level information:
+Every test case must include a `meta` object with categorization information:
 
 ```json
 {
   "tags": ["string"],
-  "level": 1|2|3|4,
   "feature": "string",
   "difficulty": "basic|intermediate|advanced"
 }
@@ -414,7 +411,7 @@ Every test case must include a `meta` object with categorization and level infor
 
 ## Usage Examples
 
-### Basic Level 1 Test
+### Basic Parsing Test
 
 ```json
 {
@@ -430,13 +427,12 @@ Every test case must include a `meta` object with categorization and level infor
   },
   "meta": {
     "tags": ["basic"],
-    "level": 1,
     "feature": "parsing"
   }
 }
 ```
 
-### Multi-Level Test
+### Multi-Function Test
 
 ```json
 {
@@ -483,7 +479,6 @@ Every test case must include a `meta` object with categorization and level infor
   },
   "meta": {
     "tags": ["dotted-keys", "typed_parsing"],
-    "level": 4,
     "feature": "typed-parsing"
   }
 }
@@ -504,7 +499,6 @@ Every test case must include a `meta` object with categorization and level infor
   },
   "meta": {
     "tags": ["error", "incomplete"],
-    "level": 1,
     "feature": "error-handling"
   }
 }

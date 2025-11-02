@@ -151,7 +151,7 @@ ccl-test-runner generate \
   --skip-tags behavior:boolean_strict  # Use lenient parsing
 ```
 
-## Implementation Examples by Level
+## Implementation Examples by Stage
 
 ### Stage 1: Parse Only
 ```pseudocode
@@ -357,8 +357,7 @@ type TestResult = {
     validation: string,
     functions: string[],
     features: string[],
-    behaviors: string[],
-    level: int
+    behaviors: string[]
   }
 }
 ```
@@ -380,7 +379,6 @@ function generate_summary_report(results) {
     success_rate: passed / (passed + failed) * 100,
     coverage_rate: (passed + failed) / total * 100,
     
-    by_level: group_by_level(results),
     by_function: group_by_function(results),
     
     failed_tests: results.filter(r => r.status == "FAILED"),

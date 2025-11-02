@@ -4,18 +4,18 @@ This document provides comprehensive documentation of the CCL mock implementatio
 
 ## Overview
 
-The mock implementation in `internal/mock/ccl.go` serves as both a reference implementation and a progressive development tool for CCL (Categorical Configuration Language). It demonstrates how to build a complete CCL parser across multiple implementation levels while maintaining compatibility with the structured test suite.
+The mock implementation in `internal/mock/ccl.go` serves as both a reference implementation and a progressive development tool for CCL (Categorical Configuration Language). It demonstrates how to build a complete CCL parser progressively while maintaining compatibility with the structured test suite.
 
 ## Implementation Philosophy
 
 ### Progressive Implementation Strategy
 
-The mock follows a **level-by-level implementation approach** that allows developers to:
+The mock follows a **progressive implementation approach** that allows developers to:
 
-1. **Start Simple**: Implement basic parsing (Level 1) first
+1. **Start Simple**: Implement basic parsing first
 2. **Add Complexity Gradually**: Build additional features incrementally
-3. **Validate Continuously**: Use the test suite to verify each level
-4. **Maintain Compatibility**: Ensure backward compatibility across levels
+3. **Validate Continuously**: Use the test suite to verify each stage
+4. **Maintain Compatibility**: Ensure backward compatibility across implementation stages
 
 ### Design Principles
 
@@ -25,11 +25,11 @@ The mock follows a **level-by-level implementation approach** that allows develo
 - **Test-Driven**: Designed to pass the structured test suite
 - **Educational**: Code serves as learning reference for CCL implementers
 
-## Implementation Levels
+## Core Implementation Functions
 
-### Level 1: Raw Parsing (`Parse`)
+### Raw Parsing (`Parse`)
 
-The foundation level converts CCL text input into flat key-value pairs.
+The foundation function converts CCL text input into flat key-value pairs.
 
 #### Core Implementation
 
@@ -81,7 +81,7 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
                 })
             }
         }
-        // Note: Lines without '=' are skipped in Level 1 (not errors)
+        // Note: Lines without '=' are skipped (not errors)
     }
     
     return entries, nil
@@ -101,13 +101,13 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 - Allow comments to be filtered or processed separately
 
 **Error Strategy**:
-- Level 1 is permissive - skip invalid lines rather than error
+- Basic parsing is permissive - skip invalid lines rather than error
 - Focus on extracting valid key-value pairs
 - Detailed error messages for debugging when needed
 
-### Level 1: Object Construction (`MakeObjects`)
+### Object Construction (`BuildHierarchy`)
 
-The most complex level transforms flat entries into nested object hierarchies.
+This function transforms flat entries into nested object hierarchies.
 
 #### Core Object Construction
 
@@ -199,7 +199,7 @@ func handleRegularKey(result map[string]interface{}, key, value string) {
 
 **List Conversion**: Duplicate keys automatically become arrays.
 
-### Level 2: Typed Access
+### Typed Access Functions
 
 Type-safe value extraction with automatic conversion.
 
@@ -321,7 +321,7 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 }
 ```
 
-### Level 3: Advanced Processing
+### Advanced Processing Functions
 
 Entry processing functions transform and combine parsed entries.
 
@@ -349,7 +349,7 @@ func (c *CCL) Compose(left, right []Entry) []Entry {
 }
 ```
 
-**Merge Strategy**: Concatenation allows duplicate keys to be handled at Level 1.
+**Merge Strategy**: Concatenation allows duplicate keys to be handled during parsing.
 
 #### ExpandDotted Implementation
 
@@ -362,7 +362,7 @@ func (c *CCL) ExpandDotted(entries []Entry) []Entry {
 
 **Deferred Processing**: Dotted key expansion is handled during object construction for simplicity.
 
-### Level 4: Pretty Printing (`PrettyPrint`)
+### Pretty Printing (`PrettyPrint`)
 
 Generate formatted CCL output from object structures.
 
@@ -484,10 +484,10 @@ if value, exists := current[key]; exists {
 The mock implementation is designed to pass specific test categories:
 
 ```go
-// Supported functions (Level 1, 2)
+// Supported functions
 var supportedTags = []string{
     "function:parse",
-    "function:build-hierarchy", 
+    "function:build-hierarchy",
     "function:get-string",
     "function:get-int",
     "function:get-bool",
@@ -520,11 +520,8 @@ just generate --run-only function:parse,function:build-hierarchy,function:get-st
 The mock supports incremental testing:
 
 ```bash
-# Test Level 1 only
-just test-level1
-
-# Test Levels 1 and 2
-just test --levels 1,2
+# Test specific functions
+just test --functions parse,build-hierarchy
 
 # Test specific features
 just test --features parsing,objects
@@ -552,7 +549,7 @@ if err := validateInput(param); err != nil {
 
 3. **Update Test Tags**:
 ```json
-"tags": ["function:new-function", "level:X"]
+"features": ["new-feature"]
 ```
 
 4. **Add Generator Support**:

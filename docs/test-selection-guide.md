@@ -17,19 +17,19 @@ The CCL test suite uses **structured tags** to enable precise test selection bas
 
 Direct array containing CCL functions required for a test to run:
 
-| Function | Description | Level | Example Usage |
-|----------|-------------|--------|---------------|
-| `parse` | Basic key-value parsing | 1 | `Parse("key = value")` |
-| `parse-value` | Indentation-aware parsing | 2 | `ParseValue("key = val\n  sub")` |
-| `filter` | Entry filtering | 2 | `Filter(entries, predicate)` |
-| `compose` | Entry composition | 2 | `Compose(left, right)` |
-| `build-hierarchy` | Object construction | 3 | `MakeObjects(entries)` |
-| `get-string` | String value access | 4 | `GetString(obj, "key")` |
-| `get-int` | Integer value access | 4 | `GetInt(obj, "count")` |
-| `get-bool` | Boolean value access | 4 | `GetBool(obj, "enabled")` |
-| `get-float` | Float value access | 4 | `GetFloat(obj, "rate")` |
-| `get-list` | List value access | 4 | `GetList(obj, "items")` |
-| `pretty-print` | Formatting output | 5 | `PrettyPrint(obj)` |
+| Function | Description | Example Usage |
+|----------|-------------|---------------|
+| `parse` | Basic key-value parsing | `Parse("key = value")` |
+| `parse-value` | Indentation-aware parsing | `ParseValue("key = val\n  sub")` |
+| `filter` | Entry filtering | `Filter(entries, predicate)` |
+| `compose` | Entry composition | `Compose(left, right)` |
+| `build-hierarchy` | Object construction | `BuildHierarchy(entries)` |
+| `get-string` | String value access | `GetString(obj, "key")` |
+| `get-int` | Integer value access | `GetInt(obj, "count")` |
+| `get-bool` | Boolean value access | `GetBool(obj, "enabled")` |
+| `get-float` | Float value access | `GetFloat(obj, "rate")` |
+| `get-list` | List value access | `GetList(obj, "items")` |
+| `pretty-print` | Formatting output | `PrettyPrint(obj)` |
 
 **Type-safe filtering:**
 ```javascript
@@ -61,7 +61,7 @@ const featuresSupported = test.features.every(feature =>
 
 ### Behaviors Array (`test.behaviors[]`)
 
-Direct array containing **implementation-level choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
+Direct array containing **implementation choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
 
 | Behavior Group | Options | Description |
 |----------------|---------|-------------|
@@ -73,7 +73,7 @@ Direct array containing **implementation-level choices** - technical decisions a
 
 ### Variants Array (`test.variants[]`) - Temporary Disambiguation
 
-Direct array containing **specification-level interpretations** for areas where the CCL specification is currently ambiguous or evolving. These exist to handle cases where the spec doesn't clearly define behavior, allowing both the OCaml reference implementation approach and proposed enhanced approaches to coexist during spec evolution.
+Direct array containing **specification variant interpretations** for areas where the CCL specification is currently ambiguous or evolving. These exist to handle cases where the spec doesn't clearly define behavior, allowing both the OCaml reference implementation approach and proposed enhanced approaches to coexist during spec evolution.
 
 | Variant | Description | Status |
 |---------|-------------|--------|
@@ -176,7 +176,7 @@ For most CCL use cases:
 **Tests to run:** ~120 tests covering parsing, object construction, and basic typed access
 **Use case:** Configuration libraries, application settings
 
-### 3. Processing Implementation (Add Level 2 Functions)
+### 3. Processing Implementation (Add Advanced Functions)
 
 For advanced configuration manipulation:
 
