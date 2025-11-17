@@ -62,7 +62,6 @@ Run generated tests with enhanced output formatting.
 | Flag | Short | Default | Description |
 |------|-------|---------|-------------|
 | `--format` | `-f` | `pretty` | Output format (pretty, table, verbose, json) |
-| `--levels` | `-l` | | Filter by CCL levels (1,2,3,4) |
 | `--features` | | | Filter by features (comments, parsing, objects) |
 | `--list` | | | List available test packages without running |
 | `--verbose` | `-v` | | Verbose output (same as --format verbose) |
@@ -80,7 +79,6 @@ ccl-test-runner test
 ccl-test-runner test --format table
 
 # Filtering
-ccl-test-runner test --levels 1,2
 ccl-test-runner test --features comments,parsing
 
 # Pass-through Go test flags
@@ -108,10 +106,6 @@ Collect and display comprehensive test suite statistics.
 
 📊 SUMMARY
   Total Tests: 157, Total Assertions: 423, Test Files: 11
-
-🏗️ IMPLEMENTATION LEVELS
-  Level 1 (Core CCL): 81 tests (234 assertions)
-  Level 2 (Typed Access): 41 tests (98 assertions)
 
 🏷️ FUNCTION TAGS
   function:parse: 89 tests
@@ -156,7 +150,7 @@ ccl-test-runner benchmark --compare benchmarks/historical.json --threshold 15.0
 
 ### test-reader
 Interactive test browser for exploring the test suite.
-- Browse tests by category and level
+- Browse tests by category
 - Examine individual test structure and validations
 - Search by name, tags, or content
 - Export filtered test sets
@@ -218,11 +212,11 @@ Task runner for common operations:
 ```bash
 # Start with basic parsing
 ccl-test-runner generate --run-only function:parse
-ccl-test-runner test --levels 1
+ccl-test-runner test
 
 # Add object construction
 ccl-test-runner generate --run-only function:parse,function:build-hierarchy
-ccl-test-runner test --levels 1
+ccl-test-runner test
 ```
 
 ### Continuous Integration

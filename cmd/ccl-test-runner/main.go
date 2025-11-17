@@ -520,4 +520,3 @@ func buildPackagePatterns(tags []string, features []string) []string {
 
 	return packages
 }
-

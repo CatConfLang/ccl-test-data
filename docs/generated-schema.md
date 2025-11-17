@@ -137,7 +137,6 @@
     - [4.1.7. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta`](#tests_items_meta)
       - [4.1.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags`](#tests_items_meta_tags)
         - [4.1.7.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags > tags items](#tests_items_meta_tags_items)
-      - [4.1.7.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > level`](#tests_items_meta_level)
       - [4.1.7.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > feature`](#tests_items_meta_feature)
       - [4.1.7.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > difficulty`](#tests_items_meta_difficulty)
 
@@ -223,7 +222,7 @@
 | - [input2](#tests_items_input2 )           | No      | string | No         | -                              | Second CCL input for composition tests                                      |
 | - [input3](#tests_items_input3 )           | No      | string | No         | -                              | Third CCL input for associativity tests                                     |
 | + [validations](#tests_items_validations ) | No      | object | No         | -                              | Object containing test validations - organized by implementation complexity |
-| + [meta](#tests_items_meta )               | No      | object | No         | In #/definitions/test_metadata | Test metadata including level and categorization                            |
+| + [meta](#tests_items_meta )               | No      | object | No         | In #/definitions/test_metadata | Test metadata including categorization                            |
 
 #### <a name="tests_items_name"></a>4.1.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > name`
 
@@ -282,17 +281,17 @@
 
 | Property                                                         | Pattern | Type   | Deprecated | Definition                                                 | Title/Description                                                    |
 | ---------------------------------------------------------------- | ------- | ------ | ---------- | ---------------------------------------------------------- | -------------------------------------------------------------------- |
-| - [parse](#tests_items_validations_parse )                       | No      | object | No         | In #/definitions/parse_validation                          | API: Level 1 entry parsing validation                                |
-| - [parse_value](#tests_items_validations_parse_value )           | No      | object | No         | Same as [parse](#tests_items_validations_parse )           | API: Level 2 entry processing validation (indentation-aware parsing) |
-| - [filter](#tests_items_validations_filter )                     | No      | object | No         | In #/definitions/filter_validation                         | API: Level 2 entry filtering validation                              |
-| - [compose](#tests_items_validations_compose )                   | No      | object | No         | In #/definitions/compose_validation                        | API: Level 2 entry composition validation                            |
-| - [expand_dotted](#tests_items_validations_expand_dotted )       | No      | object | No         | In #/definitions/expand_dotted_validation                  | API: Level 2 dotted key expansion validation                         |
-| - [make_objects](#tests_items_validations_make_objects )         | No      | object | No         | In #/definitions/make_objects_validation                   | API: Level 3 object construction validation                          |
-| - [get_string](#tests_items_validations_get_string )             | No      | object | No         | In #/definitions/typed_access_validation                   | API: Level 4 string access validation                                |
-| - [get_int](#tests_items_validations_get_int )                   | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 integer access validation                               |
-| - [get_bool](#tests_items_validations_get_bool )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 boolean access validation                               |
-| - [get_float](#tests_items_validations_get_float )               | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 float access validation                                 |
-| - [get_list](#tests_items_validations_get_list )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Level 4 list access validation                                  |
+| - [parse](#tests_items_validations_parse )                       | No      | object | No         | In #/definitions/parse_validation                          | API: Entry parsing validation                                |
+| - [parse_value](#tests_items_validations_parse_value )           | No      | object | No         | Same as [parse](#tests_items_validations_parse )           | API: Entry processing validation (indentation-aware parsing) |
+| - [filter](#tests_items_validations_filter )                     | No      | object | No         | In #/definitions/filter_validation                         | API: Entry filtering validation                              |
+| - [compose](#tests_items_validations_compose )                   | No      | object | No         | In #/definitions/compose_validation                        | API: Entry composition validation                            |
+| - [expand_dotted](#tests_items_validations_expand_dotted )       | No      | object | No         | In #/definitions/expand_dotted_validation                  | API: Dotted key expansion validation                         |
+| - [make_objects](#tests_items_validations_make_objects )         | No      | object | No         | In #/definitions/make_objects_validation                   | API: Object construction validation                          |
+| - [get_string](#tests_items_validations_get_string )             | No      | object | No         | In #/definitions/typed_access_validation                   | API: String access validation                                |
+| - [get_int](#tests_items_validations_get_int )                   | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Integer access validation                               |
+| - [get_bool](#tests_items_validations_get_bool )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Boolean access validation                               |
+| - [get_float](#tests_items_validations_get_float )               | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: Float access validation                                 |
+| - [get_list](#tests_items_validations_get_list )                 | No      | object | No         | Same as [get_string](#tests_items_validations_get_string ) | API: List access validation                                  |
 | - [pretty_print](#tests_items_validations_pretty_print )         | No      | object | No         | In #/definitions/pretty_print_validation                   | API: Output formatting validation                                    |
 | - [round_trip](#tests_items_validations_round_trip )             | No      | object | No         | In #/definitions/round_trip_validation                     | PROPERTY: Parse-format-parse identity validation                     |
 | - [canonical_format](#tests_items_validations_canonical_format ) | No      | object | No         | In #/definitions/canonical_format_validation               | PROPERTY: Canonical formatting validation                            |
@@ -307,7 +306,7 @@
 | **Additional properties** | Any type allowed               |
 | **Defined in**            | #/definitions/parse_validation |
 
-**Description:** API: Level 1 entry parsing validation
+**Description:** API: Entry parsing validation
 
 | One of(Option)                                              |
 | ----------------------------------------------------------- |
@@ -497,7 +496,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                        |
 | **Same definition as**    | [parse](#tests_items_validations_parse) |
 
-**Description:** API: Level 2 entry processing validation (indentation-aware parsing)
+**Description:** API: Entry processing validation (indentation-aware parsing)
 
 ##### <a name="tests_items_validations_filter"></a>4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`
 
@@ -508,7 +507,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                |
 | **Defined in**            | #/definitions/filter_validation |
 
-**Description:** API: Level 2 entry filtering validation
+**Description:** API: Entry filtering validation
 
 | One of(Option)                                               |
 | ------------------------------------------------------------ |
@@ -622,7 +621,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                 |
 | **Defined in**            | #/definitions/compose_validation |
 
-**Description:** API: Level 2 entry composition validation
+**Description:** API: Entry composition validation
 
 | One of(Option)                                                |
 | ------------------------------------------------------------- |
@@ -751,7 +750,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                       |
 | **Defined in**            | #/definitions/expand_dotted_validation |
 
-**Description:** API: Level 2 dotted key expansion validation
+**Description:** API: Dotted key expansion validation
 
 | One of(Option)                                                      |
 | ------------------------------------------------------------------- |
@@ -865,7 +864,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                      |
 | **Defined in**            | #/definitions/make_objects_validation |
 
-**Description:** API: Level 3 object construction validation
+**Description:** API: Object construction validation
 
 | One of(Option)                                                     |
 | ------------------------------------------------------------------ |
@@ -982,7 +981,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                      |
 | **Defined in**            | #/definitions/typed_access_validation |
 
-**Description:** API: Level 4 string access validation
+**Description:** API: String access validation
 
 | One of(Option)                                         |
 | ------------------------------------------------------ |
@@ -1539,7 +1538,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** API: Level 4 integer access validation
+**Description:** API: Integer access validation
 
 ##### <a name="tests_items_validations_get_bool"></a>4.1.6.9. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_bool`
 
@@ -1550,7 +1549,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** API: Level 4 boolean access validation
+**Description:** API: Boolean access validation
 
 ##### <a name="tests_items_validations_get_float"></a>4.1.6.10. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_float`
 
@@ -1561,7 +1560,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** API: Level 4 float access validation
+**Description:** API: Float access validation
 
 ##### <a name="tests_items_validations_get_list"></a>4.1.6.11. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > get_list`
 
@@ -1572,7 +1571,7 @@ Must be one of:
 | **Additional properties** | Any type allowed                                  |
 | **Same definition as**    | [get_string](#tests_items_validations_get_string) |
 
-**Description:** API: Level 4 list access validation
+**Description:** API: List access validation
 
 ##### <a name="tests_items_validations_pretty_print"></a>4.1.6.12. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > pretty_print`
 
@@ -1747,14 +1746,13 @@ Must be one of:
 | **Additional properties** | Any type allowed            |
 | **Defined in**            | #/definitions/test_metadata |
 
-**Description:** Test metadata including level and categorization
+**Description:** Test metadata including categorization
 
 | Property                                      | Pattern | Type              | Deprecated | Definition | Title/Description                                                                                                                                                                                                                                                                                                                                            |
 | --------------------------------------------- | ------- | ----------------- | ---------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | + [tags](#tests_items_meta_tags )             | No      | array of string   | No         | -          | Tags for categorizing and filtering tests. Tag conventions: 'needs-{feature}' (requires optional feature), 'uses-{behavior}' (describes baseline behavior), 'proposed-behavior' (CCL proposed spec interpretation), 'reference-compliant-behavior' (OCaml reference interpretation), plus content tags like 'basic', 'multiline', 'whitespace', 'tabs', etc. |
-| + [level](#tests_items_meta_level )           | No      | enum (of integer) | No         | -          | CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed)                                                                                                                                                                                                                                                                                   |
-| - [feature](#tests_items_meta_feature )       | No      | enum (of string)  | No         | -          | Feature category for test organization and filtering                                                                                                                                                                                                                                                                                                         |
-| - [difficulty](#tests_items_meta_difficulty ) | No      | enum (of string)  | No         | -          | Test difficulty level                                                                                                                                                                                                                                                                                                                                        |
+| + [feature](#tests_items_meta_feature )       | No      | string            | No         | -          | Feature category                                                                                                                                                                                                                                                                                                                                             |
+| - [difficulty](#tests_items_meta_difficulty ) | No      | enum (of string)  | No         | -          | Test difficulty                                                                                                                                                                                                                                                                                                                                        |
 
 ##### <a name="tests_items_meta_tags"></a>4.1.7.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > tags`
 
@@ -1784,14 +1782,13 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
-##### <a name="tests_items_meta_level"></a>4.1.7.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > level`
 
 |              |                     |
 | ------------ | ------------------- |
 | **Type**     | `enum (of integer)` |
 | **Required** | Yes                 |
 
-**Description:** CCL architecture level (1=Entry Parsing, 2=Processing, 3=Objects, 4=Typed)
+**Description:** 
 
 Must be one of:
 * 1
@@ -1799,7 +1796,7 @@ Must be one of:
 * 3
 * 4
 
-##### <a name="tests_items_meta_feature"></a>4.1.7.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > feature`
+##### <a name="tests_items_meta_feature"></a>4.1.7.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > feature`
 
 |              |                    |
 | ------------ | ------------------ |
@@ -1821,14 +1818,14 @@ Must be one of:
 * "flexible-boolean-parsing"
 * "crlf-normalization"
 
-##### <a name="tests_items_meta_difficulty"></a>4.1.7.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > difficulty`
+##### <a name="tests_items_meta_difficulty"></a>4.1.7.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > meta > difficulty`
 
 |              |                    |
 | ------------ | ------------------ |
 | **Type**     | `enum (of string)` |
 | **Required** | No                 |
 
-**Description:** Test difficulty level
+**Description:** Test difficulty
 
 Must be one of:
 * "basic"

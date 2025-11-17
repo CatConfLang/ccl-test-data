@@ -78,7 +78,6 @@ The CCL Test Suite is a multi-component testing framework designed to support pr
   },
   "meta": {
     "tags": ["function:parse", "feature:comments"],
-    "level": 1,
     "feature": "parsing"
   }
 }
@@ -100,8 +99,7 @@ The CCL Test Suite is a multi-component testing framework designed to support pr
     "result": "data"
   },
   "functions": ["parse"],
-  "features": ["comments"],
-  "level": 1
+  "features": ["comments"]
 }
 ```
 
@@ -157,7 +155,7 @@ Formatting Functions
 
 #### Test Runner (`cmd/ccl-test-runner/`)
 - **CLI Interface**: Command-line tool for test operations
-- **Filtering**: Function, feature, level-based test selection
+- **Filtering**: Function and feature-based test selection
 - **Output Formats**: Pretty, table, verbose, JSON
 - **Integration**: Works with Go testing framework
 
@@ -165,7 +163,7 @@ Formatting Functions
 
 #### Statistics System (`internal/stats/`)
 - **Collection**: Test coverage and distribution analysis
-- **Metrics**: Function coverage, feature usage, level distribution
+- **Metrics**: Function coverage, feature usage distribution
 - **Output**: Human-readable and machine-readable formats
 
 ## Data Flow
@@ -191,7 +189,7 @@ Formatting Functions
    ↓
 2. Load Generated Go Tests
    ↓
-3. Apply Runtime Filters (level, feature)
+3. Apply Runtime Filters (feature, function)
    ↓
 4. Execute via Go Testing Framework
    ↓
@@ -204,7 +202,7 @@ Formatting Functions
    ↓
 2. Extract Metadata & Count Assertions
    ↓
-3. Aggregate by Function/Feature/Level
+3. Aggregate by Function/Feature
    ↓
 4. Generate Reports (Pretty/JSON)
 ```
