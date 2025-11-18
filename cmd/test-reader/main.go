@@ -230,16 +230,16 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 					fileInfo.Description = suite.Description
 					fileInfo.TestCount = len(suite.Tests)
 
-					// Count parse tests (parse and parse_value)
+					// Count parse tests
 					parseCount := 0
 					for _, test := range suite.Tests {
-						// Check if test has parse or parse_value validation
+						// Check if test has parse validation
 						hasParse := false
 						if test.Validations != nil {
-							if test.Validations.Parse != nil || test.Validations.ParseValue != nil {
+							if test.Validations.Parse != nil {
 								hasParse = true
 							}
-						} else if test.Validation == "parse" || test.Validation == "parse_value" {
+						} else if test.Validation == "parse" {
 							hasParse = true
 						}
 						if hasParse {
@@ -288,7 +288,7 @@ func runFileSelectionCLI(dir string) {
 		if file.Description != "" {
 			fmt.Printf("    %s\n", infoStyle.Render(file.Description))
 		}
-		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)))
+		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)))
 		fmt.Println()
 	}
 
@@ -365,7 +365,7 @@ func processTestFile(filename string) error {
 	impl := config.ImplementationConfig{
 		Name:               "test-reader",
 		Version:            "1.0.0",
-		SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
+		SupportedFunctions: []config.CCLFunction{config.FunctionParse}, // Support parse tests for display
 	}
 	testLoader := loader.NewTestLoader(".", impl)
 	suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
@@ -394,10 +394,10 @@ func processTestFile(filename string) error {
 
 	// Summary with styled box
 	if parseOnlyCount == 0 {
-		summary := "📋 No parse tests (parse/parse_value) found in this file"
+		summary := "📋 No parse tests found in this file"
 		fmt.Println(summaryStyle.Render(summary))
 	} else {
-		summary := fmt.Sprintf("📊 Found %d parse test(s) (parse/parse_value)", parseOnlyCount)
+		summary := fmt.Sprintf("📊 Found %d parse test(s)", parseOnlyCount)
 		fmt.Println(summaryStyle.Render(summary))
 	}
 	fmt.Println()
@@ -692,7 +692,7 @@ func (m fileSelectionModel) View() string {
 
 		// Stats line for selected file
 		if i == m.selectedFile {
-			stats := fmt.Sprintf("   Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)
+			stats := fmt.Sprintf("   Total: %d tests, Parse: %d tests", file.TestCount, file.ParseTests)
 			statsStyle := lipgloss.NewStyle().Foreground(subtleColor)
 			fileList.WriteString(statsStyle.Render(stats) + "\n")
 		}
@@ -776,7 +776,7 @@ func loadTestFileCmd(filename string) tea.Cmd {
 		impl := config.ImplementationConfig{
 			Name:               "test-reader",
 			Version:            "1.0.0",
-			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
+			SupportedFunctions: []config.CCLFunction{config.FunctionParse}, // Support parse tests for display
 		}
 		testLoader := loader.NewTestLoader(".", impl)
 		suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{

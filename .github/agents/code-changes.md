@@ -68,7 +68,6 @@ git commit -m "Descriptive commit message"
 
 **Key Functions**:
 - `Parse(input string) ([]Entry, error)` - Parse CCL text to flat entries
-- `ParseValue(value string) (any, error)` - Parse a single value
 - `BuildHierarchy(entries []Entry) (map[string]any, error)` - Build nested objects
 - `GetString(data map[string]any, key string) (string, error)` - Get string value
 - `GetInt(data map[string]any, key string) (int, error)` - Get integer value

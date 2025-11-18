@@ -192,7 +192,6 @@ func (c *Collector) analyzeTestSuite(testSuite types.TestSuite) (*FileStats, str
 		// Use reflection to iterate over validation fields
 		validationData := map[string]interface{}{
 			"parse":           test.Validations.Parse,
-			"parse_value":     test.Validations.ParseValue,
 			"filter":          test.Validations.Filter,
 			"combine":         test.Validations.Combine,
 			"expand_dotted":   test.Validations.ExpandDotted,

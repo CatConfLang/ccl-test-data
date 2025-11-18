@@ -140,12 +140,6 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 	return entries, nil
 }
 
-// ParseValue implements entry processing with indentation awareness
-func (c *CCL) ParseValue(input string) ([]Entry, error) {
-	// For mock purposes, same as Parse
-	return c.Parse(input)
-}
-
 // Filter implements entry filtering (for comment tests, this preserves all entries)
 func (c *CCL) Filter(entries []Entry) []Entry {
 	// For the mock implementation, filter just returns all entries
