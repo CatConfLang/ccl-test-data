@@ -39,7 +39,7 @@
       "input": "  key = val",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "key",
@@ -163,7 +163,7 @@
       "input": "  = val",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "",
@@ -331,7 +331,7 @@
       "input": "text = First\n    four spaces\n\ttab preserved",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "text",
@@ -352,7 +352,7 @@
       "input": "text = First\n    four spaces\n\ttab preserved",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "text",
@@ -531,7 +531,7 @@
       "input": "key =\n  line1\n\n  line2",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "key",
@@ -549,7 +549,7 @@
       "input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "key",

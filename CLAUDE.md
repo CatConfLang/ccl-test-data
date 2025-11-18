@@ -90,16 +90,16 @@ source_tests/
 - **Go Tests** (`go_tests/`): Generated Go test files for execution
 
 ### CCL Function Groups (per schema)
-- **Core Parsing**: `parse`, `parse_dedented`, `build_hierarchy`
+- **Core Parsing**: `parse`, `parse_indented`, `build_hierarchy`
 - **Typed Access**: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 - **Processing**: `filter`, `compose`, `merge`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`
 
-**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseDedented, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
+**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
 
 **Function Details:**
 - **`parse`**: Basic lexical parsing - returns flat entries where values are raw strings
-- **`parse_dedented`**: Indentation-normalized parsing - calculates common leading whitespace and strips it from all lines (like Python's `textwrap.dedent`)
+- **`parse_indented`**: Indentation-normalized parsing - calculates common leading whitespace and strips it from all lines (like Python's `textwrap.dedent`)
 - **`build_hierarchy`**: Recursively parses entry values to create nested object structure
 
 ### Test Classification System
@@ -122,8 +122,8 @@ The `internal/mock/ccl.go` provides a working CCL implementation with core funct
 
 ### Implementation Steps
 1. Start with `parse` (basic lexical parsing to flat entries)
-2. Add `parse_dedented` (indentation normalization - used by build_hierarchy for parsing nested values)
-3. Add `build_hierarchy` (object construction - recursively calls parse_dedented on values)
+2. Add `parse_indented` (indentation normalization - used by build_hierarchy for parsing nested values)
+3. Add `build_hierarchy` (object construction - recursively calls parse_indented on values)
 4. Add typed access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 5. Add processing: `filter`, `compose`, `merge`
 6. Add formatting/IO: `canonical_format`, `load`, `round_trip`

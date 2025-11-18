@@ -68,8 +68,8 @@ git commit -m "Descriptive commit message"
 
 **Key Functions**:
 - `Parse(input string) ([]Entry, error)` - Parse CCL text to flat entries (basic lexical parsing)
-- `ParseDedented(input string) ([]Entry, error)` - Parse with indentation normalization (strips common leading whitespace)
-- `BuildHierarchy(entries []Entry) (map[string]any, error)` - Build nested objects (calls ParseDedented on values)
+- `ParseIndented(input string) ([]Entry, error)` - Parse with indentation normalization (strips common leading whitespace)
+- `BuildHierarchy(entries []Entry) (map[string]any, error)` - Build nested objects (calls ParseIndented on values)
 - `GetString(data map[string]any, key string) (string, error)` - Get string value
 - `GetInt(data map[string]any, key string) (int, error)` - Get integer value
 - `GetBool(data map[string]any, key string) (bool, error)` - Get boolean value

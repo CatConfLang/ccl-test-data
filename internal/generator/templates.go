@@ -1087,7 +1087,7 @@ func (g *Generator) getSkipReasonByName(testName string, tags []string) string {
 // hasValidations checks if the ValidationSet has any non-nil validations
 func hasValidations(validations types.ValidationSet) bool {
 	return validations.Parse != nil ||
-		validations.ParseDedented != nil ||
+		validations.ParseIndented != nil ||
 		validations.Filter != nil ||
 		validations.Combine != nil ||
 		validations.ExpandDotted != nil ||
@@ -1235,8 +1235,8 @@ func (g *Generator) countAssertions(validations *types.ValidationSet) int {
 	if validations.Parse != nil {
 		count += g.getValidationCount(validations.Parse)
 	}
-	if validations.ParseDedented != nil {
-		count += g.getValidationCount(validations.ParseDedented)
+	if validations.ParseIndented != nil {
+		count += g.getValidationCount(validations.ParseIndented)
 	}
 	if validations.Filter != nil {
 		count += g.getValidationCount(validations.Filter)
