@@ -104,7 +104,7 @@ ccl-test-data/
 
 Tests are organized by function groups:
 
-- **Core Parsing**: `parse`, `parse_dedented`, `build_hierarchy`
+- **Core Parsing**: `parse`, `parse_indented`, `build_hierarchy`
 - **Typed Access**: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 - **Processing**: `filter`, `compose`, `merge`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`

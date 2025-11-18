@@ -6,7 +6,7 @@
       "input": "== Section Header =\n  This continues the header\nkey = value",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "",
@@ -32,7 +32,7 @@
       "input": "== Section Header =\nThis continues the header\nkey = value",
       "tests": [
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "",
@@ -599,7 +599,7 @@
           ]
         },
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "descriptions",
@@ -676,7 +676,7 @@
           ]
         },
         {
-          "function": "parse_dedented",
+          "function": "parse_indented",
           "expect": [
             {
               "key": "config",

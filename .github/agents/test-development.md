@@ -323,7 +323,7 @@ Tests indentation-normalized parsing (dedenting):
 
 ```json
 {
-  "function": "parse_dedented",
+  "function": "parse_indented",
   "expect": [
     {"key": "database", "value": ""},
     {"key": "host", "value": "localhost"}
