@@ -288,7 +288,7 @@ func runFileSelectionCLI(dir string) {
 		if file.Description != "" {
 			fmt.Printf("    %s\n", infoStyle.Render(file.Description))
 		}
-		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)))
+		fmt.Printf("    %s\n", infoStyle.Render(fmt.Sprintf("Total: %d tests, Parse/ParseIndented: %d tests", file.TestCount, file.ParseTests)))
 		fmt.Println()
 	}
 

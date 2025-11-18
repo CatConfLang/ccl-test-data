@@ -95,7 +95,7 @@ source_tests/
 - **Processing**: `filter`, `compose`, `merge`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`
 
-**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseDedented, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
+**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
 
 **Function Details:**
 - **`parse`**: Basic lexical parsing - returns flat entries where values are raw strings
