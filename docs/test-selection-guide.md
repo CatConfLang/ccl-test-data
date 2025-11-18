@@ -20,6 +20,7 @@ Direct array containing CCL functions required for a test to run:
 | Function | Description | Example Usage |
 |----------|-------------|---------------|
 | `parse` | Basic key-value parsing | `Parse("key = value")` |
+| `parse-value` | Indentation-aware parsing | `ParseValue("key = val\n  sub")` |
 | `filter` | Entry filtering | `Filter(entries, predicate)` |
 | `compose` | Entry composition | `Compose(left, right)` |
 | `build-hierarchy` | Object construction | `BuildHierarchy(entries)` |

@@ -60,12 +60,12 @@
         "whitespace"
       ],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "  key = val",
-      "name": "indented_key_parse",
+      "name": "indented_key_parse_value",
       "source_test": "indented_key",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {
@@ -220,12 +220,12 @@
         "empty_keys"
       ],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "  = val",
-      "name": "empty_key_indented_parse",
+      "name": "empty_key_indented_parse_value",
       "source_test": "empty_key_indented",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {
@@ -435,12 +435,12 @@
         "whitespace"
       ],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "text = First\n    four spaces\n\ttab preserved",
-      "name": "spaces_vs_tabs_continuation_parse",
+      "name": "spaces_vs_tabs_continuation_parse_value",
       "source_test": "spaces_vs_tabs_continuation",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {
@@ -460,12 +460,12 @@
         "whitespace"
       ],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "text = First\n    four spaces\n\ttab preserved",
-      "name": "spaces_vs_tabs_continuation_ocaml_reference_parse",
+      "name": "spaces_vs_tabs_continuation_ocaml_reference_parse_value",
       "source_test": "spaces_vs_tabs_continuation_ocaml_reference",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {
@@ -689,12 +689,12 @@
         "multiline"
       ],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "key =\n  line1\n\n  line2",
-      "name": "nested_with_blank_line_parse",
+      "name": "nested_with_blank_line_parse_value",
       "source_test": "nested_with_blank_line",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {
@@ -710,12 +710,12 @@
       },
       "features": [],
       "functions": [
-        "parse"
+        "parse_value"
       ],
       "input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
-      "name": "deep_nested_structure_parse",
+      "name": "deep_nested_structure_parse_value",
       "source_test": "deep_nested_structure",
-      "validation": "parse",
+      "validation": "parse_value",
       "variants": []
     },
     {

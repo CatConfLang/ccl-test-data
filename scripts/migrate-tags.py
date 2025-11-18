@@ -63,6 +63,8 @@ def infer_function_tags_from_validations(validations):
     for validation_name in validations.keys():
         if validation_name == "parse":
             function_tags.add("function:parse")
+        elif validation_name == "parse_value":
+            function_tags.add("function:parse")
         elif validation_name == "filter":
             function_tags.add("function:filter")
         elif validation_name == "compose":

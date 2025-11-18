@@ -90,12 +90,12 @@ source_tests/
 - **Go Tests** (`go_tests/`): Generated Go test files for execution
 
 ### CCL Function Groups (per schema)
-- **Core Parsing**: `parse`, `build_hierarchy`
+- **Core Parsing**: `parse`, `parse_value`, `build_hierarchy`
 - **Typed Access**: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 - **Processing**: `filter`, `compose`, `merge`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`
 
-**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
+**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseValue, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
 
 ### Test Classification System
 - **`features`** - Optional language features:
@@ -116,7 +116,7 @@ source_tests/
 The `internal/mock/ccl.go` provides a working CCL implementation with core functions.
 
 ### Implementation Steps
-1. Start with `parse` (core parsing)
+1. Start with `parse`, `parse_value` (core parsing)
 2. Add `build_hierarchy` (object construction from flat entries)
 3. Add typed access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 4. Add processing: `filter`, `compose`, `merge`

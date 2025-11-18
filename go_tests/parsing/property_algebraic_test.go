@@ -221,20 +221,7 @@ another = test`
 
 // round_trip_property_basic_round_trip - function:round_trip
 func TestRoundTripPropertyBasicRoundTrip(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key = value
-another = test`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// TODO: Implement round_trip validation
-	_ = ccl   // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // round_trip_property_nested_parse - function:parse
@@ -262,24 +249,7 @@ func TestRoundTripPropertyNestedParse(t *testing.T) {
 
 // round_trip_property_nested_round_trip - function:round_trip
 func TestRoundTripPropertyNestedRoundTrip(t *testing.T) {
-
-	ccl := mock.New()
-	input := `config =
-  host = localhost
-  port = 8080
-  db =
-    name = mydb
-    user = admin`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// TODO: Implement round_trip validation
-	_ = ccl   // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // round_trip_property_complex_parse - function:parse feature:empty_keys
@@ -311,26 +281,5 @@ final = end`
 
 // round_trip_property_complex_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripPropertyComplexRoundTrip(t *testing.T) {
-
-	ccl := mock.New()
-	input := `= item1
-= item2
-config =
-  nested =
-    deep = value
-  list =
-    = a
-    = b
-    = c
-final = end`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// TODO: Implement round_trip validation
-	_ = ccl   // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }

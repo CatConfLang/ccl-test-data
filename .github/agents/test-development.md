@@ -317,6 +317,18 @@ Tests the core parsing function:
 }
 ```
 
+### ParseValue Function
+
+Tests single value parsing:
+
+```json
+{
+  "function": "parse_value",
+  "args": ["\"quoted string\""],
+  "expect": "quoted string"
+}
+```
+
 ### BuildHierarchy Function
 
 Tests object construction:

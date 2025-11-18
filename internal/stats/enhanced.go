@@ -260,6 +260,7 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 		assertions := 0
 		validationData := map[string]interface{}{
 			"parse":           test.Validations.Parse,
+			"parse_value":     test.Validations.ParseValue,
 			"filter":          test.Validations.Filter,
 			"combine":         test.Validations.Combine,
 			"expand_dotted":   test.Validations.ExpandDotted,
