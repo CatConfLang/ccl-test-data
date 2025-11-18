@@ -317,17 +317,21 @@ Tests the core parsing function:
 }
 ```
 
-### ParseValue Function
+### ParseDedented Function
 
-Tests single value parsing:
+Tests indentation-normalized parsing (dedenting):
 
 ```json
 {
-  "function": "parse_value",
-  "args": ["\"quoted string\""],
-  "expect": "quoted string"
+  "function": "parse_dedented",
+  "expect": [
+    {"key": "database", "value": ""},
+    {"key": "host", "value": "localhost"}
+  ]
 }
 ```
+
+This function calculates the common leading whitespace prefix and strips it from all lines, treating the dedented keys as top-level.
 
 ### BuildHierarchy Function
 

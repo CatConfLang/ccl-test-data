@@ -230,16 +230,16 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 					fileInfo.Description = suite.Description
 					fileInfo.TestCount = len(suite.Tests)
 
-					// Count parse tests (parse and parse_value)
+					// Count parse tests (parse and parse_dedented)
 					parseCount := 0
 					for _, test := range suite.Tests {
-						// Check if test has parse or parse_value validation
+						// Check if test has parse or parse_dedented validation
 						hasParse := false
 						if test.Validations != nil {
 							if test.Validations.Parse != nil || test.Validations.ParseValue != nil {
 								hasParse = true
 							}
-						} else if test.Validation == "parse" || test.Validation == "parse_value" {
+						} else if test.Validation == "parse" || test.Validation == "parse_dedented" {
 							hasParse = true
 						}
 						if hasParse {
@@ -365,7 +365,7 @@ func processTestFile(filename string) error {
 	impl := config.ImplementationConfig{
 		Name:               "test-reader",
 		Version:            "1.0.0",
-		SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
+		SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_dedented tests for display
 	}
 	testLoader := loader.NewTestLoader(".", impl)
 	suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
@@ -394,10 +394,10 @@ func processTestFile(filename string) error {
 
 	// Summary with styled box
 	if parseOnlyCount == 0 {
-		summary := "📋 No parse tests (parse/parse_value) found in this file"
+		summary := "📋 No parse tests (parse/parse_dedented) found in this file"
 		fmt.Println(summaryStyle.Render(summary))
 	} else {
-		summary := fmt.Sprintf("📊 Found %d parse test(s) (parse/parse_value)", parseOnlyCount)
+		summary := fmt.Sprintf("📊 Found %d parse test(s) (parse/parse_dedented)", parseOnlyCount)
 		fmt.Println(summaryStyle.Render(summary))
 	}
 	fmt.Println()
@@ -776,7 +776,7 @@ func loadTestFileCmd(filename string) tea.Cmd {
 		impl := config.ImplementationConfig{
 			Name:               "test-reader",
 			Version:            "1.0.0",
-			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_value tests for display
+			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseValue}, // Support parse and parse_dedented tests for display
 		}
 		testLoader := loader.NewTestLoader(".", impl)
 		suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
