@@ -32,7 +32,7 @@
           - [4.1.6.1.3.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_type`](#tests_items_validations_parse_oneOf_i2_error_type)
           - [4.1.6.1.3.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_pattern`](#tests_items_validations_parse_oneOf_i2_error_pattern)
           - [4.1.6.1.3.4. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse > oneOf > item 2 > error_message`](#tests_items_validations_parse_oneOf_i2_error_message)
-      - [4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_value`](#tests_items_validations_parse_value)
+      - [4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_dedented`](#tests_items_validations_parse_dedented)
       - [4.1.6.3. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter`](#tests_items_validations_filter)
         - [4.1.6.3.1. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0`](#tests_items_validations_filter_oneOf_i0)
           - [4.1.6.3.1.1. CCL Validation-Based Test Suite Schema > tests > tests items > validations > filter > oneOf > item 0 > entry](#tests_items_validations_filter_oneOf_i0_items)
@@ -282,7 +282,7 @@
 | Property                                                         | Pattern | Type   | Deprecated | Definition                                                 | Title/Description                                                    |
 | ---------------------------------------------------------------- | ------- | ------ | ---------- | ---------------------------------------------------------- | -------------------------------------------------------------------- |
 | - [parse](#tests_items_validations_parse )                       | No      | object | No         | In #/definitions/parse_validation                          | API: Entry parsing validation                                |
-| - [parse_value](#tests_items_validations_parse_value )           | No      | object | No         | Same as [parse](#tests_items_validations_parse )           | API: Entry processing validation (indentation-aware parsing) |
+| - [parse_dedented](#tests_items_validations_parse_dedented )           | No      | object | No         | Same as [parse](#tests_items_validations_parse )           | API: Entry processing validation (indentation-aware parsing) |
 | - [filter](#tests_items_validations_filter )                     | No      | object | No         | In #/definitions/filter_validation                         | API: Entry filtering validation                              |
 | - [compose](#tests_items_validations_compose )                   | No      | object | No         | In #/definitions/compose_validation                        | API: Entry composition validation                            |
 | - [expand_dotted](#tests_items_validations_expand_dotted )       | No      | object | No         | In #/definitions/expand_dotted_validation                  | API: Dotted key expansion validation                         |
@@ -487,7 +487,7 @@ Must be one of:
 
 **Description:** Expected exact error message
 
-##### <a name="tests_items_validations_parse_value"></a>4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_value`
+##### <a name="tests_items_validations_parse_dedented"></a>4.1.6.2. Property `CCL Validation-Based Test Suite Schema > tests > tests items > validations > parse_dedented`
 
 |                           |                                         |
 | ------------------------- | --------------------------------------- |

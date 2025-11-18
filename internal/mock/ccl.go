@@ -140,9 +140,11 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 	return entries, nil
 }
 
-// ParseValue implements entry processing with indentation awareness
-func (c *CCL) ParseValue(input string) ([]Entry, error) {
+// ParseDedented implements entry processing with indentation normalization
+// It calculates the common leading whitespace prefix and strips it from all lines
+func (c *CCL) ParseDedented(input string) ([]Entry, error) {
 	// For mock purposes, same as Parse
+	// A full implementation would dedent the input first
 	return c.Parse(input)
 }
 
