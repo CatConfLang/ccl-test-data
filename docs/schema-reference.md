@@ -392,21 +392,6 @@ Every test case must include a `meta` object with categorization information:
 }
 ```
 
-### Feature Categories
-
-| Feature | Description | Files |
-|---------|-------------|--------|
-| `parsing` | Core parsing functionality | `essential-parsing.json`, `comprehensive-parsing.json` |
-| `processing` | Entry composition and merging | `processing.json` |
-| `comments` | Comment syntax and filtering | `comments.json` |
-| `object-construction` | Flat entries to nested objects | `object-construction.json` |
-| `experimental_dotted_keys` | Dotted key expansion | `dotted-keys.json` |
-| `typed-parsing` | Type-aware value extraction | `typed-access.json` |
-| `flexible-boolean-parsing` | Enhanced boolean parsing (yes/no/on/off) | `typed-access.json` |
-| `crlf-normalization` | Line ending normalization | `essential-parsing.json` |
-| `pretty_print` | Formatting and round-trip tests | `pretty-print.json` |
-| `error-handling` | Error detection and reporting | `errors.json` |
-
 > **📖 Test Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for detailed guidance on filtering tests by feature support and compliance requirements.
 
 ## Usage Examples
