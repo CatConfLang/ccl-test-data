@@ -48,7 +48,7 @@ ccl-test-runner generate --output my_tests
 
 # Progressive implementation
 ccl-test-runner generate --run-only function:parse
-ccl-test-runner generate --run-only function:parse,function:build-hierarchy
+ccl-test-runner generate --run-only function:parse,function:build_hierarchy
 
 # Skip advanced features
 ccl-test-runner generate --skip-tags feature:unicode,feature:multiline
@@ -109,8 +109,8 @@ Collect and display comprehensive test suite statistics.
 
 🏷️ FUNCTION TAGS
   function:parse: 89 tests
-  function:build-hierarchy: 45 tests
-  function:get-string: 34 tests
+  function:build_hierarchy: 45 tests
+  function:get_string: 34 tests
 ```
 
 ### Command: benchmark
@@ -215,7 +215,7 @@ ccl-test-runner generate --run-only function:parse
 ccl-test-runner test
 
 # Add object construction
-ccl-test-runner generate --run-only function:parse,function:build-hierarchy
+ccl-test-runner generate --run-only function:parse,function:build_hierarchy
 ccl-test-runner test
 ```
 

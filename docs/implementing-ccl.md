@@ -4,22 +4,23 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 
 ## Quick Start
 
-1. **Core first**: Essential parsing + Object construction (26 tests)
+1. **Core first**: Start with `parse` and `build_hierarchy` functions
 2. **Add features**: Typed access, processing, formatting as needed
-3. **Test-driven**: Each validation maps to specific API functions
+3. **Test-driven**: Filter tests by implemented functions using `functions` field
 4. **Reference**: OCaml implementation at https://github.com/chshersh/ccl
 
 ## Core Functions (Required)
 
-### Essential Parsing (18 tests)
-**API**: `parse(text) → Entry[]`
+### Parsing (163 tests)
+**API**: `parse(text) → Entry[]` (public)
 - Split on first `=`, handle multiline values via indentation
 - Preserve whitespace in values, trim keys
 - Support Unix/Windows/Mac line endings
 
-### Object Construction (8 tests)
-**API**: `build_hierarchy(entries) → CCL`
-- Fixed-point algorithm: recursively parse nested values
+### Object Construction (77 tests)
+**API**: `build_hierarchy(entries) → CCL` (public)
+- Implement internal `parse_indented` helper (private) to strip common leading whitespace from multiline values
+- Fixed-point algorithm: recursively parse nested values using `parse_indented`
 - Merge duplicate keys, handle empty keys as lists
 - Creates hierarchical objects from flat entries
 
@@ -84,10 +85,31 @@ for test in test_data {
 ```
 
 ### Progressive Implementation
-1. **Essential** (18 tests): Basic parsing
-2. **Core** (26 tests): + Object construction
-3. **Standard** (56 tests): + Comprehensive parsing
-4. **Full** (135 tests): + All features
+
+**Core (Required):**
+- `parse` - 163 tests - Convert text to key-value entries
+- `build_hierarchy` - 77 tests - Build nested objects from flat entries
+
+**Typed Access:**
+- `get_string` - 7 tests (28 assertions)
+- `get_int` - 11 tests (47 assertions)
+- `get_bool` - 12 tests (49 assertions)
+- `get_float` - 6 tests (28 assertions)
+- `get_list` - 48 tests (186 assertions)
+
+**Processing & Formatting:**
+- `filter` - 3 tests (6 assertions)
+- `compose` - 9 tests (18 assertions)
+- `canonical_format` - 14 tests (23 assertions)
+- `round_trip` - 12 tests (23 assertions)
+
+**Features:**
+- `comments` - 5 tests
+- `empty_keys` - 43 tests
+- `multiline` - 10 tests
+- `unicode` - 5 tests
+- `whitespace` - 24 tests
+- `experimental_dotted_keys` - 10 tests (experimental)
 
 ## Performance Tips
 

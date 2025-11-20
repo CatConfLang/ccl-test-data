@@ -105,14 +105,14 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 - Focus on extracting valid key-value pairs
 - Detailed error messages for debugging when needed
 
-### Object Construction (`BuildHierarchy`)
+### Object Construction (`build_hierarchy`)
 
 This function transforms flat entries into nested object hierarchies.
 
 #### Core Object Construction
 
 ```go
-func (c *CCL) MakeObjects(entries []Entry) map[string]interface{} {
+func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{} {
     result := make(map[string]interface{})
     
     for _, entry := range entries {
@@ -487,19 +487,19 @@ The mock implementation is designed to pass specific test categories:
 // Supported functions
 var supportedTags = []string{
     "function:parse",
-    "function:build-hierarchy",
-    "function:get-string",
-    "function:get-int",
-    "function:get-bool",
-    "function:get-float",
-    "function:get-list",
+    "function:build_hierarchy",
+    "function:get_string",
+    "function:get_int",
+    "function:get_bool",
+    "function:get_float",
+    "function:get_list",
 }
 
 // Skipped advanced features
 var skippedFeatures = []string{
     "feature:unicode",     // Complex character handling
     "feature:multiline",   // Advanced parsing modes
-    "variant:proposed-behavior", // Experimental features
+    "variant:proposed_behavior", // Experimental features
 }
 ```
 
@@ -511,8 +511,8 @@ The mock works with the generator's filtering system:
 # Generate tests that mock can pass
 just generate-mock  # Uses --run-only with supported tags
 
-# Generate basic implementation tests  
-just generate --run-only function:parse,function:build-hierarchy,function:get-string
+# Generate basic implementation tests
+just generate --run-only function:parse,function:build_hierarchy,function:get_string
 ```
 
 ### Progressive Testing
@@ -521,7 +521,7 @@ The mock supports incremental testing:
 
 ```bash
 # Test specific functions
-just test --functions parse,build-hierarchy
+just test --functions parse,build_hierarchy
 
 # Test specific features
 just test --features parsing,objects

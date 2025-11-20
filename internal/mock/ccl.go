@@ -6,7 +6,7 @@
 //
 // CCL Implementation Functions:
 //   - Core parsing (Parse) - Convert text to flat key-value entries
-//   - Entry processing (Filter, Combine, ExpandDotted) - Transform and combine entries
+//   - Entry processing (Filter, Compose, ExpandDotted) - Transform and combine entries
 //   - Object construction (BuildHierarchy) - Build nested object hierarchies
 //   - Typed access (GetString, GetInt, etc.) - Type-safe value extraction
 //   - Formatting (CanonicalFormat/PrettyPrint) - Generate standardized formatted output
@@ -155,8 +155,8 @@ func (c *CCL) Filter(entries []Entry) []Entry {
 	return entries
 }
 
-// Combine implements entry composition
-func (c *CCL) Combine(left, right []Entry) []Entry {
+// Compose implements entry composition
+func (c *CCL) Compose(left, right []Entry) []Entry {
 	// Simple concatenation for mock
 	result := make([]Entry, len(left)+len(right))
 	copy(result, left)

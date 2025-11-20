@@ -57,18 +57,18 @@ func New() *CCL
 ### Core Functions
 ```go
 func (c *CCL) Parse(input string) ([]Entry, error)
-func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{}
+func (c *CCL) build_hierarchy(entries []Entry) map[string]interface{}
 ```
 - Basic key-value parsing with comment support (`/=` syntax)
 - Hierarchical object construction via fixpoint algorithm
 
 ### Typed Access Functions
 ```go
-func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error)
-func (c *CCL) GetInt(obj map[string]interface{}, path []string) (int, error)
-func (c *CCL) GetBool(obj map[string]interface{}, path []string) (bool, error)
-func (c *CCL) GetFloat(obj map[string]interface{}, path []string) (float64, error)
-func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]interface{}, error)
+func (c *CCL) get_string(obj map[string]interface{}, path []string) (string, error)
+func (c *CCL) get_int(obj map[string]interface{}, path []string) (int, error)
+func (c *CCL) get_bool(obj map[string]interface{}, path []string) (bool, error)
+func (c *CCL) get_float(obj map[string]interface{}, path []string) (float64, error)
+func (c *CCL) get_list(obj map[string]interface{}, path []string) ([]interface{}, error)
 ```
 Type-safe value extraction with automatic conversion. Path navigation uses string arrays: `["database", "host"]`.
 
@@ -167,11 +167,11 @@ Commands support filtering by:
 ### Progressive Implementation
 ```bash
 # Start with core functions
-./ccl-test-runner generate --run-only function:parse,function:build-hierarchy
+./ccl-test-runner generate --run-only function:parse,function:build_hierarchy
 ./ccl-test-runner test --functions parse
 
 # Add typed access
-./ccl-test-runner generate --run-only function:get-string
+./ccl-test-runner generate --run-only function:get_string
 ./ccl-test-runner test --functions parse,build_hierarchy,get_string
 ```
 

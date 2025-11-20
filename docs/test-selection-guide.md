@@ -20,16 +20,16 @@ Direct array containing CCL functions required for a test to run:
 | Function | Description | Example Usage |
 |----------|-------------|---------------|
 | `parse` | Basic key-value parsing | `Parse("key = value")` |
-| `parse-indented` | Parse with indentation normalization | `ParseIndented("  key = val\n  sub")` |
+| `parse_indented` | Parse with indentation normalization | `ParseIndented("  key = val\n  sub")` |
 | `filter` | Entry filtering | `Filter(entries, predicate)` |
 | `compose` | Entry composition | `Compose(left, right)` |
-| `build-hierarchy` | Object construction | `BuildHierarchy(entries)` |
-| `get-string` | String value access | `GetString(obj, "key")` |
-| `get-int` | Integer value access | `GetInt(obj, "count")` |
-| `get-bool` | Boolean value access | `GetBool(obj, "enabled")` |
-| `get-float` | Float value access | `GetFloat(obj, "rate")` |
-| `get-list` | List value access | `GetList(obj, "items")` |
-| `pretty-print` | Formatting output | `PrettyPrint(obj)` |
+| `build_hierarchy` | Object construction | `BuildHierarchy(entries)` |
+| `get_string` | String value access | `GetString(obj, "key")` |
+| `get_int` | Integer value access | `GetInt(obj, "count")` |
+| `get_bool` | Boolean value access | `GetBool(obj, "enabled")` |
+| `get_float` | Float value access | `GetFloat(obj, "rate")` |
+| `get_list` | List value access | `GetList(obj, "items")` |
+| `pretty_print` | Formatting output | `PrettyPrint(obj)` |
 
 **Type-safe filtering:**
 ```javascript
@@ -46,7 +46,7 @@ Direct array containing optional language features that may not be supported by 
 | Feature | Description | Example |
 |---------|-------------|---------|
 | `comments` | `/=` comment syntax | `/= This is a comment` |
-| `empty-keys` | Anonymous list items | `= item1\n= item2` |
+| `empty_keys` | Anonymous list items | `= item1\n= item2` |
 | `multiline` | Multi-line values | `description = Line 1\nLine 2` |
 | `unicode` | Unicode content | `name = José` |
 | `whitespace` | Complex whitespace handling | Preserving tabs, spaces |
@@ -65,11 +65,11 @@ Direct array containing **implementation choices** - technical decisions about h
 
 | Behavior Group | Options | Description |
 |----------------|---------|-------------|
-| Line Endings | `crlf-preserve-literal` vs `crlf-normalize-to-lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
-| Boolean Parsing | `boolean-lenient` vs `boolean-strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
-| Tab Handling | `tabs-preserve` vs `tabs-to-spaces` | Tab character processing |
-| Whitespace | `strict-spacing` vs `loose-spacing` | Whitespace sensitivity |
-| List Access | `list-coercion-enabled` vs `list-coercion-disabled` | List access behavior |
+| Line Endings | `crlf_preserve_literal` vs `crlf_normalize_to_lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
+| Boolean Parsing | `boolean_lenient` vs `boolean_strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
+| Tab Handling | `tabs_preserve` vs `tabs_to_spaces` | Tab character processing |
+| Whitespace | `strict_spacing` vs `loose_spacing` | Whitespace sensitivity |
+| List Access | `list_coercion_enabled` vs `list_coercion_disabled` | List access behavior |
 
 ### Variants Array (`test.variants[]`) - Temporary Disambiguation
 
@@ -77,8 +77,8 @@ Direct array containing **specification variant interpretations** for areas wher
 
 | Variant | Description | Status |
 |---------|-------------|--------|
-| `proposed-behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
-| `reference-compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
+| `proposed_behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
+| `reference_compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
 
 **Type-safe filtering:**
 ```javascript
@@ -111,38 +111,38 @@ const isCompatible = !hasConflictingBehavior && !hasConflictingVariant;
 **Implementation Choice (behavior):**
 ```json
 // Technical decision: How to handle line endings
-"tags": ["behavior:crlf-normalize-to-lf"]
-"conflicts": ["behavior:crlf-preserve-literal"]
+"tags": ["behavior:crlf_normalize_to_lf"]
+"conflicts": ["behavior:crlf_preserve_literal"]
 ```
 
 **Specification Ambiguity (variant):**
 ```json
 // Spec unclear: Should multiline values work without explicit continuation?
-"tags": ["variant:proposed-behavior"]  // Allow implicit continuation
-"conflicts": ["variant:reference-compliant"]  // Require explicit syntax
+"tags": ["variant:proposed_behavior"]  // Allow implicit continuation
+"conflicts": ["variant:reference_compliant"]  // Require explicit syntax
 ```
 
 ### Future Evolution
 
 When CCL spec owners resolve ambiguities, tests will be migrated:
-- If "reference is canonical" → Remove `variant:proposed-behavior` tests
-- If "proposed is canonical" → Remove `variant:reference-compliant` tests  
+- If "reference is canonical" → Remove `variant:proposed_behavior` tests
+- If "proposed is canonical" → Remove `variant:reference_compliant` tests
 - Remaining variant behaviors become specific `behavior:*` tags
 
 ## Implementation Strategies
 
-### 1. Minimal Implementation (Parse Only)
+### 1. Core Functions Only
 
-For rapid prototyping or minimal CCL support:
+Basic CCL parsing and object construction:
 
 ```json
 {
   "supported_functions": ["function:parse"],
   "skip_all_features": true,
   "behavior_choices": {
-    "line_endings": "behavior:crlf-normalize-to-lf",
-    "boolean_parsing": "behavior:boolean-lenient",
-    "whitespace": "behavior:loose-spacing"
+    "line_endings": "behavior:crlf_normalize_to_lf",
+    "boolean_parsing": "behavior:boolean_lenient",
+    "whitespace": "behavior:loose_spacing"
   }
 }
 ```
@@ -158,17 +158,17 @@ For most CCL use cases:
 {
   "supported_functions": [
     "function:parse",
-    "function:parse-value",
-    "function:build-hierarchy", 
-    "function:get-string",
-    "function:get-int",
-    "function:get-bool"
+    "function:parse_value",
+    "function:build_hierarchy",
+    "function:get_string",
+    "function:get_int",
+    "function:get_bool"
   ],
-  "supported_features": ["feature:dotted-keys"],
+  "supported_features": ["feature:experimental_dotted_keys"],
   "behavior_choices": {
-    "line_endings": "behavior:crlf-normalize",
-    "tabs": "behavior:tabs-to-spaces",
-    "whitespace": "behavior:loose-spacing"
+    "line_endings": "behavior:crlf_normalize_to_lf",
+    "tabs": "behavior:tabs_to_spaces",
+    "whitespace": "behavior:loose_spacing"
   }
 }
 ```
@@ -184,18 +184,18 @@ For advanced configuration manipulation:
 {
   "supported_functions": [
     "function:parse",
-    "function:parse-value",
+    "function:parse_value",
     "function:filter",
-    "function:compose", 
-    "function:expand-dotted",
-    "function:build-hierarchy",
-    "function:get-string",
-    "function:get-int",
-    "function:get-bool",
-    "function:get-float"
+    "function:compose",
+    "function:expand_dotted",
+    "function:build_hierarchy",
+    "function:get_string",
+    "function:get_int",
+    "function:get_bool",
+    "function:get_float"
   ],
   "supported_features": [
-    "feature:dotted-keys",
+    "feature:experimental_dotted_keys",
     "feature:comments"
   ]
 }
@@ -204,25 +204,25 @@ For advanced configuration manipulation:
 **Tests to run:** ~150 tests including entry processing and composition
 **Use case:** Configuration builders, template systems
 
-### 4. Full Implementation (All Functions + Features)
+### 4. Complete Implementation
 
-For complete CCL implementations:
+All functions and features:
 
 ```json
 {
   "supported_functions": ["function:*"],
   "supported_features": [
     "feature:comments",
-    "feature:dotted-keys", 
-    "feature:empty-keys",
+    "feature:experimental_dotted_keys",
+    "feature:empty_keys",
     "feature:multiline",
     "feature:unicode"
   ],
-  "variant_choice": "variant:proposed-behavior"
+  "variant_choice": "variant:proposed_behavior"
 }
 ```
 
-**Tests to run:** All 167 tests with chosen behavioral variants
+**Tests to run:** All 180 tests with chosen behavioral variants
 **Use case:** Complete CCL libraries, specification-compliant implementations
 
 ## Language-Specific Integration
@@ -233,14 +233,14 @@ For complete CCL implementations:
 func TestCCLImplementation(t *testing.T) {
     // Define implementation capabilities
     supportedFunctions := []string{
-        "function:parse", 
-        "function:parse-value",
-        "function:build-hierarchy", 
-        "function:get-string",
+        "function:parse",
+        "function:parse_value",
+        "function:build_hierarchy",
+        "function:get_string",
     }
-    supportedFeatures := []string{"feature:dotted-keys"}
+    supportedFeatures := []string{"feature:experimental_dotted_keys"}
     behaviorChoices := map[string]string{
-        "line_endings": "behavior:crlf-normalize",
+        "line_endings": "behavior:crlf_normalize_to_lf",
     }
     
     // Load and filter tests
@@ -297,19 +297,19 @@ func shouldSkipTest(test Test, supportedFunctions, supportedFeatures []string, b
 mod ccl_tests {
     use super::*;
 
-    #[test] 
+    #[test]
     fn test_ccl_implementation() {
         let supported_functions = vec![
             "function:parse",
-            "function:parse-value",
-            "function:build-hierarchy",
-            "function:get-string",
+            "function:parse_value",
+            "function:build_hierarchy",
+            "function:get_string",
         ];
-        
-        let supported_features = vec!["feature:dotted-keys"];
-        
+
+        let supported_features = vec!["feature:experimental_dotted_keys"];
+
         let behavior_choices = HashMap::from([
-            ("line_endings", "behavior:crlf-normalize"),
+            ("line_endings", "behavior:crlf_normalize_to_lf"),
         ]);
         
         for test_file in load_test_files() {
@@ -346,15 +346,15 @@ import pytest
 # Define implementation capabilities
 SUPPORTED_FUNCTIONS = [
     "function:parse",
-    "function:parse-value",
-    "function:build-hierarchy", 
-    "function:get-string"
+    "function:parse_value",
+    "function:build_hierarchy",
+    "function:get_string"
 ]
 
-SUPPORTED_FEATURES = ["feature:dotted-keys"]
+SUPPORTED_FEATURES = ["feature:experimental_dotted_keys"]
 
 BEHAVIOR_CHOICES = {
-    "line_endings": "behavior:crlf-normalize"
+    "line_endings": "behavior:crlf_normalize_to_lf"
 }
 
 def should_skip_test(test):
@@ -383,7 +383,7 @@ def test_ccl_implementation(test):
     run_test_validations(test)
 
 # Use pytest markers for feature-based filtering
-@pytest.mark.ccl_function("parse", "build-hierarchy")
+@pytest.mark.ccl_function("parse", "build_hierarchy")
 @pytest.mark.ccl_feature("comments")
 def test_comment_parsing():
     # Tests requiring specific functions and features
@@ -400,15 +400,15 @@ def test_comment_parsing():
 describe('CCL Implementation', () => {
   const supportedFunctions = [
     'function:parse',
-    'function:parse-value',
-    'function:build-hierarchy',
-    'function:get-string'
+    'function:parse_value',
+    'function:build_hierarchy',
+    'function:get_string'
   ];
-  
-  const supportedFeatures = ['feature:dotted-keys'];
-  
+
+  const supportedFeatures = ['feature:experimental_dotted_keys'];
+
   const behaviorChoices = {
-    line_endings: 'behavior:crlf-normalize'
+    line_endings: 'behavior:crlf_normalize_to_lf'
   };
   
   function shouldSkipTest(test) {
@@ -474,36 +474,35 @@ describe.skipIf(!SUPPORTS_UNICODE)('Unicode handling tests', () => {
 - **Time**: 1-2 days
 
 ### Phase 2: Enhanced Parsing
-- **Target**: Add `function:parse-value`
+- **Target**: Add `function:parse_value`
 - **Tests**: ~65 tests
 - **Goal**: Handle indentation-aware parsing
 - **Time**: 1-2 days
 
-### Phase 3: Object Construction  
-- **Target**: Add `function:build-hierarchy`
+### Phase 3: Object Construction
+- **Target**: Add `function:build_hierarchy`
 - **Tests**: ~80 tests
 - **Goal**: Convert flat entries to nested objects
-- **Features**: Consider adding `feature:dotted-keys`
+- **Features**: Consider adding `feature:experimental_dotted_keys`
 - **Time**: 2-3 days
 
 ### Phase 4: Typed Access
-- **Target**: Add `function:get-string`, `function:get-int`, `function:get-bool`
-- **Tests**: ~120 tests  
+- **Target**: Add `function:get_string`, `function:get_int`, `function:get_bool`
+- **Tests**: ~120 tests
 - **Goal**: Type-safe value extraction
 - **Time**: 1-2 days
 
 ### Phase 5: Processing Functions
-- **Target**: Add `function:filter`, `function:compose`, `function:expand-dotted`
+- **Target**: Add `function:filter`, `function:compose`, `function:expand_dotted`
 - **Tests**: ~150 tests
 - **Goal**: Advanced entry manipulation
 - **Features**: Consider adding `feature:comments`
 - **Time**: 3-4 days
 
-### Phase 6: Full Implementation
-- **Target**: Add `function:pretty-print`, remaining features
-- **Tests**: All tests
-- **Goal**: Complete CCL specification compliance
-- **Time**: 2-3 days
+### Phase 6: Complete Implementation
+- **Target**: Add remaining functions and features
+- **Tests**: All 180 tests
+- **Goal**: Complete CCL specification support
 
 ## Troubleshooting
 
@@ -515,7 +514,7 @@ describe.skipIf(!SUPPORTS_UNICODE)('Unicode handling tests', () => {
 ### Conflicting Test Results
 - Review `conflicts` arrays in failing tests
 - Ensure behavioral choices are consistent across your implementation
-- Check for variant tag conflicts (`variant:proposed-behavior` vs `variant:reference-compliant`)
+- Check for variant tag conflicts (`variant:proposed_behavior` vs `variant:reference_compliant`)
 
 ### Missing Features
 - Use feature tags to identify what's needed: `feature:comments`, `feature:unicode`, etc.
