@@ -2,11 +2,12 @@
 
 Dual-format test architecture with progressive implementation paths and type-safe filtering.
 
-## Implementation Paths
+## Function-Based Implementation
 
-**Core**: Essential → Comprehensive → Object Construction (56 tests)
-**Features**: Comments → Dotted Keys → Processing → Typed Access (59 tests)
-**Integration**: Error Handling → Pretty Printing (20 tests)
+**Core (Required):** `parse`, `build_hierarchy`
+**Typed Access:** `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
+**Processing:** `filter`, `compose`, `canonical_format`, `round_trip`
+**Features:** `comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`, `experimental_dotted_keys`
 
 ## Test File Overview
 
@@ -14,16 +15,16 @@ Dual-format test architecture with progressive implementation paths and type-saf
 |------|-------|------------|-----------|----------|---------|
 | **api_essential-parsing.json** | 45 | 89 | parse, load | - | Foundation parsing |
 | **api_comprehensive-parsing.json** | 23 | 47 | parse, load | unicode, whitespace | Advanced parsing |
-| **api_processing.json** | 67 | 134 | filter, compose, expand-dotted | comments | Entry processing |
+| **api_processing.json** | 67 | 134 | filter, compose, expand_dotted | comments | Entry processing |
 | **api_comments.json** | 15 | 30 | parse, filter | comments | Comment handling |
-| **api_object-construction.json** | 89 | 178 | build-hierarchy, build-hierarchy | dotted-keys | Object building |
-| **api_dotted-keys.json** | 34 | 68 | build-hierarchy, expand-dotted | dotted-keys | Key expansion |
-| **api_typed-access.json** | 151 | 302 | get-string, get-int, get-bool, get-float | - | Type access |
-| **api_errors.json** | 18 | 36 | All functions | error-handling | Error validation |
-| **property_round-trip.json** | 12 | 24 | parse, pretty-print | round-trip | Consistency |
+| **api_object-construction.json** | 89 | 178 | build_hierarchy, build_hierarchy | experimental_dotted_keys | Object building |
+| **api_dotted-keys.json** | 34 | 68 | build_hierarchy, expand_dotted | experimental_dotted_keys | Key expansion |
+| **api_typed-access.json** | 151 | 302 | get_string, get_int, get_bool, get_float | - | Type access |
+| **api_errors.json** | 18 | 36 | All functions | error_handling | Error validation |
+| **property_round-trip.json** | 12 | 24 | parse, pretty_print | round_trip | Consistency |
 | **property_algebraic.json** | 8 | 16 | All functions | algebraic | Properties |
 
-**Total**: 462 tests, 924 assertions across 10 files
+**Total**: 180 tests, 375 assertions across 14 files
 
 ## Dual-Format Architecture
 
@@ -35,7 +36,7 @@ Multiple validations per test, easy authoring:
     "parse": {"count": 1, "expected": [...]},
     "make_objects": {"count": 1, "expected": {...}}
   },
-  "meta": {"tags": ["function:parse", "function:build-hierarchy"]}
+  "meta": {"tags": ["function:parse", "function:build_hierarchy"]}
 }
 ```
 
@@ -45,12 +46,12 @@ One validation per test, direct filtering:
 {
   "validation": "parse",
   "functions": ["parse"],
-  "features": ["dotted-keys"]
+  "features": ["experimental_dotted_keys"]
 }
 ```
 
 ### Validation Types
-**API Functions**: `parse`, `filter`, `compose`, `expand_dotted`, `make_objects`, `get_*`
+**API Functions**: `parse`, `filter`, `compose`, `expand_dotted`, `build_hierarchy`, `get_*`
 **Properties**: `round_trip`, `associativity`, `canonical_format` (requires custom logic)
 
 ## Test Filtering
@@ -84,7 +85,7 @@ const supportedTests = flatTests.filter(test =>
 - Realistic configuration patterns
 
 ### Object Construction (8 tests)
-**API**: `make_objects(entries) → CCL`
+**API**: `build_hierarchy(entries) → CCL`
 - Recursive parsing via fixed-point algorithm
 - Duplicate key merging, nested structures
 
@@ -115,10 +116,24 @@ const supportedTests = flatTests.filter(test =>
 
 ## Implementation Strategy
 
-### Progressive Paths
-1. **Minimal** (26 tests): Essential parsing + Object construction
-2. **Standard** (56 tests): Core + Dotted keys + Error handling
-3. **Full** (135 tests): All features + Properties
+### Implementation Guide
+
+**Core (Required):**
+- `parse` - 163 tests
+- `build_hierarchy` - 77 tests
+
+**Typed Access:**
+- `get_string` - 7 tests (28 assertions)
+- `get_int` - 11 tests (47 assertions)
+- `get_bool` - 12 tests (49 assertions)
+- `get_float` - 6 tests (28 assertions)
+- `get_list` - 48 tests (186 assertions)
+
+**Processing & Formatting:**
+- `filter` - 3 tests (6 assertions)
+- `compose` - 9 tests (18 assertions)
+- `canonical_format` - 14 tests (23 assertions)
+- `round_trip` - 12 tests (23 assertions)
 
 ### API Patterns
 - **Error handling**: `Result<T, Error>` pattern
@@ -150,23 +165,23 @@ function run_flat_test(test) {
 - **Flexible**: Choose features based on actual needs
 - **Progressive**: Start simple, add incrementally
 - **Language agnostic**: Works across programming languages
-- **Comprehensive**: 135 tests cover all CCL functionality
+- **Comprehensive**: 180 tests cover all CCL functionality
 - **Clear testing**: Direct validation-to-API mapping
 
 ## Implementation Examples
 
-**Minimal** (26 tests):
+**Core functions:**
 ```
-entries = parse(text); objects = make_objects(entries)
+entries = parse(text); objects = build_hierarchy(entries)
 ```
 
-**Standard** (56 tests):
+**Typed access:**
 ```
 host = get_string(objects, "database.host")  // Dotted access
 port = get_int(objects, "database", "port")   // Hierarchical access
 ```
 
-**Production** (135 tests):
+**Processing pipeline:**
 ```
-entries = parse(file) → filter() → make_objects() → typed_access()
+entries = parse(file) → filter() → build_hierarchy() → typed_access()
 ```

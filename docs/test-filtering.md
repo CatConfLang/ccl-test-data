@@ -18,28 +18,28 @@ The generated flat format provides type-safe filtering through separate arrays:
 
 **Functions Array** (`test.functions[]`) - Required CCL functions:
 - `parse` - Basic key-value parsing
-- `build-hierarchy` - Object construction from flat entries
-- `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access
-- `filter`, `compose`, `expand-dotted` - Entry processing
-- `pretty-print` - Canonical formatting
+- `build_hierarchy` - Object construction from flat entries
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Typed access
+- `filter`, `compose`, `expand_dotted` - Entry processing
+- `pretty_print` - Canonical formatting
 
 **Features Array** (`test.features[]`) - Optional language features:
 - `comments` - `/=` comment syntax
-- `dotted-keys` - `foo.bar.baz` key syntax
-- `empty-keys` - `= value` anonymous list items
+- `experimental_dotted_keys` - `foo.bar.baz` key syntax
+- `empty_keys` - `= value` anonymous list items
 - `multiline` - Multi-line value support
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 
 **Behaviors Array** (`test.behaviors[]`) - Implementation choices (mutually exclusive):
-- `crlf-preserve-literal` vs `crlf-normalize-to-lf`
-- `tabs-preserve` vs `tabs-to-spaces`
-- `strict-spacing` vs `loose-spacing`
-- `boolean-strict` vs `boolean-lenient`
+- `crlf_preserve_literal` vs `crlf_normalize_to_lf`
+- `tabs_preserve` vs `tabs_to_spaces`
+- `strict_spacing` vs `loose_spacing`
+- `boolean_strict` vs `boolean_lenient`
 
 **Variants Array** (`test.variants[]`) - Specification variants:
-- `proposed-behavior` - Proposed specification behavior
-- `reference-compliant` - OCaml reference implementation behavior
+- `proposed_behavior` - Proposed specification behavior
+- `reference_compliant` - OCaml reference implementation behavior
 
 ### Type-Safe Filtering Patterns
 
@@ -53,10 +53,10 @@ Direct field access for checking required CCL functions:
   "input": "active = yes",
   "validation": "get_bool",
   "expected": {"value": true, "count": 1},
-  "functions": ["parse", "build-hierarchy", "get-bool"],
+  "functions": ["parse", "build_hierarchy", "get_bool"],
   "features": ["comments"],
-  "behaviors": ["boolean-lenient"],
-  "variants": ["proposed-behavior"]
+  "behaviors": ["boolean_lenient"],
+  "variants": ["proposed_behavior"]
 }
 ```
 
@@ -104,11 +104,11 @@ Mutually exclusive behaviors and specification variants:
   "validation": "parse",
   "functions": ["parse"],
   "features": ["whitespace"],
-  "behaviors": ["tabs-preserve"],
-  "variants": ["proposed-behavior"],
+  "behaviors": ["tabs_preserve"],
+  "variants": ["proposed_behavior"],
   "conflicts": {
-    "behaviors": ["tabs-to-spaces"],
-    "variants": ["reference-compliant"]
+    "behaviors": ["tabs_to_spaces"],
+    "variants": ["reference_compliant"]
   }
 }
 ```
@@ -131,8 +131,8 @@ const isCompatible = !hasConflictingBehavior && !hasConflictingVariant;
 
 ```javascript
 // Basic implementation - core functions only
-const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
-const supportedTests = flatTests.filter(test => 
+const implementedFunctions = ["parse", "build_hierarchy", "get_string"];
+const supportedTests = flatTests.filter(test =>
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
 ```
@@ -140,8 +140,8 @@ const supportedTests = flatTests.filter(test =>
 ```javascript
 // Enhanced implementation - includes processing functions
 const implementedFunctions = [
-  "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
-  "filter", "compose", "expand-dotted"
+  "parse", "build_hierarchy", "get_string", "get_int", "get_bool",
+  "filter", "compose", "expand_dotted"
 ];
 const supportedTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
@@ -152,14 +152,14 @@ const supportedTests = flatTests.filter(test =>
 
 ```javascript
 // Implementation with optional features
-const implementedFeatures = ["comments", "dotted-keys"];
+const implementedFeatures = ["comments", "experimental_dotted_keys"];
 const featureCompatibleTests = flatTests.filter(test =>
   test.features.every(feature => implementedFeatures.includes(feature))
 );
 
 // Implementation behavior choices
-const implementationBehaviors = ["crlf-normalize-to-lf", "boolean-strict"];
-const implementationVariants = ["reference-compliant"];
+const implementationBehaviors = ["crlf_normalize_to_lf", "boolean_strict"];
+const implementationVariants = ["reference_compliant"];
 
 const behaviorCompatibleTests = flatTests.filter(test => {
   const hasConflictingBehavior = test.conflicts?.behaviors?.some(b => 
@@ -178,17 +178,17 @@ const behaviorCompatibleTests = flatTests.filter(test => {
 // Conservative implementation - core functions, reference behavior
 const conservativeTests = flatTests.filter(test => {
   // Only core functions
-  const supportedFunctions = ["parse", "build-hierarchy", "get-string", "get-int"];
-  const functionsSupported = test.functions.every(fn => 
+  const supportedFunctions = ["parse", "build_hierarchy", "get_string", "get_int"];
+  const functionsSupported = test.functions.every(fn =>
     supportedFunctions.includes(fn)
   );
-  
+
   // No optional features
   const noOptionalFeatures = test.features.length === 0;
-  
+
   // Reference-compliant behavior
-  const implementationBehaviors = ["crlf-normalize-to-lf", "boolean-strict"];
-  const implementationVariants = ["reference-compliant"];
+  const implementationBehaviors = ["crlf_normalize_to_lf", "boolean_strict"];
+  const implementationVariants = ["reference_compliant"];
   const hasConflicts = test.conflicts?.behaviors?.some(b => 
     implementationBehaviors.includes(b)
   ) || test.conflicts?.variants?.some(v => 
@@ -202,22 +202,22 @@ const conservativeTests = flatTests.filter(test => {
 const progressiveTests = flatTests.filter(test => {
   // Enhanced function set
   const supportedFunctions = [
-    "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
-    "filter", "compose", "expand-dotted", "pretty-print"
+    "parse", "build_hierarchy", "get_string", "get_int", "get_bool",
+    "filter", "compose", "expand_dotted", "pretty_print"
   ];
-  const functionsSupported = test.functions.every(fn => 
+  const functionsSupported = test.functions.every(fn =>
     supportedFunctions.includes(fn)
   );
-  
+
   // Optional features supported
-  const supportedFeatures = ["comments", "dotted-keys", "unicode"];
-  const featuresSupported = test.features.every(feature => 
+  const supportedFeatures = ["comments", "experimental_dotted_keys", "unicode"];
+  const featuresSupported = test.features.every(feature =>
     supportedFeatures.includes(feature)
   );
-  
+
   // Proposed behavior choices
-  const implementationBehaviors = ["crlf-preserve-literal", "boolean-lenient"];
-  const implementationVariants = ["proposed-behavior"];
+  const implementationBehaviors = ["crlf_preserve_literal", "boolean_lenient"];
+  const implementationVariants = ["proposed_behavior"];
   const hasConflicts = test.conflicts?.behaviors?.some(b => 
     implementationBehaviors.includes(b)
   ) || test.conflicts?.variants?.some(v => 
@@ -259,29 +259,29 @@ const progressiveTests = flatTests.filter(test => {
 
 ### Functions Array Values
 - `parse` - Basic key-value parsing
-- `build-hierarchy` - Object construction from flat entries
-- `get-string`, `get-int`, `get-bool`, `get-float`, `get-list` - Typed access
-- `filter`, `compose`, `expand-dotted` - Entry processing
-- `pretty-print` - Canonical formatting
+- `build_hierarchy` - Object construction from flat entries
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Typed access
+- `filter`, `compose`, `expand_dotted` - Entry processing
+- `pretty_print` - Canonical formatting
 
 ### Features Array Values
 - `comments` - `/=` comment syntax support
-- `dotted-keys` - `foo.bar.baz` key syntax support
-- `empty-keys` - `= value` anonymous list items
+- `experimental_dotted_keys` - `foo.bar.baz` key syntax support
+- `empty_keys` - `= value` anonymous list items
 - `multiline` - Multi-line value support
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 
 ### Behaviors Array Values (Mutually Exclusive)
-- Line endings: `crlf-preserve-literal` vs `crlf-normalize-to-lf`
-- Tab handling: `tabs-preserve` vs `tabs-to-spaces`
-- Spacing: `strict-spacing` vs `loose-spacing`
-- Boolean parsing: `boolean-strict` vs `boolean-lenient`
-- List access: `list-coercion-enabled` vs `list-coercion-disabled`
+- Line endings: `crlf_preserve_literal` vs `crlf_normalize_to_lf`
+- Tab handling: `tabs_preserve` vs `tabs_to_spaces`
+- Spacing: `strict_spacing` vs `loose_spacing`
+- Boolean parsing: `boolean_strict` vs `boolean_lenient`
+- List access: `list_coercion_enabled` vs `list_coercion_disabled`
 
 ### Variants Array Values
-- `proposed-behavior` - Proposed CCL specification behavior
-- `reference-compliant` - OCaml reference implementation behavior
+- `proposed_behavior` - Proposed CCL specification behavior
+- `reference_compliant` - OCaml reference implementation behavior
 
 ## Implementation Guidance
 
@@ -289,8 +289,8 @@ const progressiveTests = flatTests.filter(test => {
 Determine what CCL functions your implementation supports:
 
 ```javascript
-const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
-const functionTests = flatTests.filter(test => 
+const implementedFunctions = ["parse", "build_hierarchy", "get_string"];
+const functionTests = flatTests.filter(test =>
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
 ```
@@ -299,7 +299,7 @@ const functionTests = flatTests.filter(test =>
 Include optional language features your implementation supports:
 
 ```javascript
-const implementedFeatures = ["comments", "dotted-keys"];
+const implementedFeatures = ["comments", "experimental_dotted_keys"];
 const featureCompatibleTests = functionTests.filter(test =>
   test.features.every(feature => implementedFeatures.includes(feature))
 );
@@ -309,8 +309,8 @@ const featureCompatibleTests = functionTests.filter(test =>
 Choose your implementation's behavior for spec ambiguities:
 
 ```javascript
-const implementationBehaviors = ["crlf-normalize-to-lf", "boolean-strict"];
-const implementationVariants = ["reference-compliant"];
+const implementationBehaviors = ["crlf_normalize_to_lf", "boolean_strict"];
+const implementationVariants = ["reference_compliant"];
 
 const compatibleTests = featureCompatibleTests.filter(test => {
   const hasConflictingBehavior = test.conflicts?.behaviors?.some(b => 
@@ -353,10 +353,10 @@ function getCompatibleTests(flatTests, capabilities) {
 
 // Usage
 const capabilities = {
-  functions: ["parse", "build-hierarchy", "get-string", "get-int"],
+  functions: ["parse", "build_hierarchy", "get_string", "get_int"],
   features: ["comments"],
-  behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
-  variants: ["reference-compliant"]
+  behaviors: ["crlf_normalize_to_lf", "boolean_strict"],
+  variants: ["reference_compliant"]
 };
 
 const runnableTests = getCompatibleTests(flatTests, capabilities);

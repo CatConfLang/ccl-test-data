@@ -66,13 +66,13 @@ The generated flat format in `generated_tests/` directory provides optimal imple
     "entries": [{"key": "database.host", "value": "localhost"}]
   },
   "functions": ["parse"],
-  "features": ["dotted-keys"],
-  "behaviors": ["crlf-normalize-to-lf"],
-  "variants": ["reference-compliant"],
+  "features": ["experimental_dotted_keys"],
+  "behaviors": ["crlf_normalize_to_lf"],
+  "variants": ["reference_compliant"],
   "source_test": "basic_parsing_workflow",
   "conflicts": {
-    "behaviors": ["crlf-preserve-literal"],
-    "variants": ["proposed-behavior"]
+    "behaviors": ["crlf_preserve_literal"],
+    "variants": ["proposed_behavior"]
   }
 }
 ```
@@ -83,7 +83,7 @@ The generated flat format in `generated_tests/` directory provides optimal imple
 |-------|------|----------|-------------|
 | `name` | string | ✓ | Unique test name (source_test + validation type) |
 | `input` | string | ✓ | CCL input string to parse |
-| `validation` | string | ✓ | Single validation type (parse, build-hierarchy, etc.) |
+| `validation` | string | ✓ | Single validation type (parse, build_hierarchy, etc.) |
 | `expected` | object | ✓ | Expected result with count field |
 | `functions` | array | ✓ | Required CCL functions |
 | `features` | array | ✓ | Required optional language features |
@@ -392,21 +392,6 @@ Every test case must include a `meta` object with categorization information:
 }
 ```
 
-### Feature Categories
-
-| Feature | Description | Files |
-|---------|-------------|--------|
-| `parsing` | Core parsing functionality | `essential-parsing.json`, `comprehensive-parsing.json` |
-| `processing` | Entry composition and merging | `processing.json` |
-| `comments` | Comment syntax and filtering | `comments.json` |
-| `object-construction` | Flat entries to nested objects | `object-construction.json` |
-| `dotted-keys` | Dotted key expansion | `dotted-keys.json` |
-| `typed-parsing` | Type-aware value extraction | `typed-access.json` |
-| `flexible-boolean-parsing` | Enhanced boolean parsing (yes/no/on/off) | `typed-access.json` |
-| `crlf-normalization` | Line ending normalization | `essential-parsing.json` |
-| `pretty-printing` | Formatting and round-trip tests | `pretty-print.json` |
-| `error-handling` | Error detection and reporting | `errors.json` |
-
 > **📖 Test Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for detailed guidance on filtering tests by feature support and compliance requirements.
 
 ## Usage Examples
@@ -478,8 +463,8 @@ Every test case must include a `meta` object with categorization information:
     }
   },
   "meta": {
-    "tags": ["dotted-keys", "typed_parsing"],
-    "feature": "typed-parsing"
+    "tags": ["experimental_dotted_keys", "typed_access"],
+    "feature": "typed_access"
   }
 }
 ```
@@ -514,15 +499,15 @@ Filter tests by required CCL functions using `test.functions[]` array:
 
 ```javascript
 // Basic implementation - core functions only
-const implementedFunctions = ["parse", "build-hierarchy", "get-string"];
-const supportedTests = flatTests.filter(test => 
+const implementedFunctions = ["parse", "build_hierarchy", "get_string"];
+const supportedTests = flatTests.filter(test =>
   test.functions.every(fn => implementedFunctions.includes(fn))
 );
 
 // Enhanced implementation - includes processing functions
 const implementedFunctions = [
-  "parse", "build-hierarchy", "get-string", "get-int", "get-bool",
-  "filter", "compose", "expand-dotted"
+  "parse", "build_hierarchy", "get_string", "get_int", "get_bool",
+  "filter", "compose", "expand_dotted"
 ];
 const supportedTests = flatTests.filter(test => 
   test.functions.every(fn => implementedFunctions.includes(fn))
@@ -535,9 +520,9 @@ Filter by optional features and implementation choices:
 
 ```javascript
 // Implementation with optional features
-const implementedFeatures = ["comments", "dotted-keys"];
-const implementationBehaviors = ["crlf-normalize-to-lf", "boolean-strict"];
-const implementationVariants = ["reference-compliant"];
+const implementedFeatures = ["comments", "experimental_dotted_keys"];
+const implementationBehaviors = ["crlf_normalize_to_lf", "boolean_strict"];
+const implementationVariants = ["reference_compliant"];
 
 const compatibleTests = flatTests.filter(test => {
   // Check feature support
@@ -587,10 +572,10 @@ function getCompatibleTests(flatTests, capabilities) {
 
 // Usage
 const capabilities = {
-  functions: ["parse", "build-hierarchy", "get-string", "get-int"],
+  functions: ["parse", "build_hierarchy", "get_string", "get_int"],
   features: ["comments"],
-  behaviors: ["crlf-normalize-to-lf", "boolean-strict"],
-  variants: ["reference-compliant"]
+  behaviors: ["crlf_normalize_to_lf", "boolean_strict"],
+  variants: ["reference_compliant"]
 };
 
 const runnableTests = getCompatibleTests(flatTests, capabilities);
