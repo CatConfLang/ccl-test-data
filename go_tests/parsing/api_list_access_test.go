@@ -14,7 +14,7 @@ import (
 
 
 
-// basic_list_from_duplicates_parse - function:parse
+// basic_list_from_duplicates_parse - function:parse behavior:list_coercion_enabled
 func TestBasicListFromDuplicatesParse(t *testing.T) {
 	
 	
@@ -41,7 +41,7 @@ servers = web3`
 }
 
 
-// basic_list_from_duplicates_build_hierarchy - function:build_hierarchy
+// basic_list_from_duplicates_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled
 func TestBasicListFromDuplicatesBuildHierarchy(t *testing.T) {
 	
 	
@@ -69,7 +69,7 @@ servers = web3`
 }
 
 
-// basic_list_from_duplicates_get_list - function:get_list
+// basic_list_from_duplicates_get_list - function:get_list behavior:list_coercion_enabled
 func TestBasicListFromDuplicatesGetList(t *testing.T) {
 	
 	
@@ -98,7 +98,7 @@ servers = web3`
 }
 
 
-// large_list_parse - function:parse
+// large_list_parse - function:parse behavior:list_coercion_enabled
 func TestLargeListParse(t *testing.T) {
 	
 	
@@ -142,7 +142,7 @@ items = item20`
 }
 
 
-// large_list_build_hierarchy - function:build_hierarchy
+// large_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled
 func TestLargeListBuildHierarchy(t *testing.T) {
 	
 	
@@ -187,7 +187,7 @@ items = item20`
 }
 
 
-// large_list_get_list - function:get_list
+// large_list_get_list - function:get_list behavior:list_coercion_enabled
 func TestLargeListGetList(t *testing.T) {
 	
 	
@@ -233,7 +233,7 @@ items = item20`
 }
 
 
-// list_with_comments_parse - function:parse feature:comments
+// list_with_comments_parse - function:parse feature:comments behavior:list_coercion_enabled
 func TestListWithCommentsParse(t *testing.T) {
 	
 	
@@ -262,7 +262,7 @@ servers = web3
 }
 
 
-// list_with_comments_build_hierarchy - function:build_hierarchy feature:comments
+// list_with_comments_build_hierarchy - function:build_hierarchy feature:comments behavior:list_coercion_enabled
 func TestListWithCommentsBuildHierarchy(t *testing.T) {
 	
 	
@@ -292,7 +292,7 @@ servers = web3
 }
 
 
-// list_with_comments_get_list - function:get_list feature:comments
+// list_with_comments_get_list - function:get_list feature:comments behavior:list_coercion_enabled
 func TestListWithCommentsGetList(t *testing.T) {
 	
 	

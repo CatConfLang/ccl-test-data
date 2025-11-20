@@ -43,6 +43,9 @@
             "servers"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ]
     },
     {
@@ -189,6 +192,9 @@
             "items"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ]
     },
     {
@@ -245,6 +251,9 @@
             "servers"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ],
       "features": [
         "comments"
