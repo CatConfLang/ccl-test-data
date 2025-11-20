@@ -358,6 +358,259 @@
           "expect": {}
         }
       ]
+    },
+    {
+      "name": "bare_list_basic",
+      "input": "servers =\n  = web1\n  = web2\n  = web3",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "servers",
+              "value": "\n  = web1\n  = web2\n  = web3"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "servers": {
+              "": [
+                "web1",
+                "web2",
+                "web3"
+              ]
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "web1",
+            "web2",
+            "web3"
+          ],
+          "args": [
+            "servers"
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ]
+    },
+    {
+      "name": "bare_list_nested",
+      "input": "network =\n  ports =\n    = 80\n    = 443\n    = 8080",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "network",
+              "value": "\n  ports =\n    = 80\n    = 443\n    = 8080"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "network": {
+              "ports": {
+                "": [
+                  "80",
+                  "443",
+                  "8080"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "80",
+            "443",
+            "8080"
+          ],
+          "args": [
+            "network",
+            "ports"
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ]
+    },
+    {
+      "name": "bare_list_with_comments",
+      "input": "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "allowed_hosts",
+              "value": "\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "allowed_hosts": {
+              "": [
+                "localhost",
+                "127.0.0.1",
+                "example.com"
+              ],
+              "/": "Production hosts"
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "localhost",
+            "127.0.0.1",
+            "example.com"
+          ],
+          "args": [
+            "allowed_hosts"
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys",
+        "comments"
+      ]
+    },
+    {
+      "name": "bare_list_deeply_nested",
+      "input": "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": {
+                    "": [
+                      "web1",
+                      "web2",
+                      "api1"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "web1",
+            "web2",
+            "api1"
+          ],
+          "args": [
+            "config",
+            "environments",
+            "production",
+            "servers"
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ]
+    },
+    {
+      "name": "bare_list_mixed_with_other_keys",
+      "input": "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "database": {
+              "host": "localhost",
+              "port": "5432",
+              "replicas": {
+                "": [
+                  "replica1",
+                  "replica2"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "replica1",
+            "replica2"
+          ],
+          "args": [
+            "database",
+            "replicas"
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ]
+    },
+    {
+      "name": "bare_list_error_not_a_list",
+      "input": "config =\n  setting = value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  setting = value"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "setting": "value"
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "setting"
+          ]
+        }
+      ]
     }
   ]
 }
