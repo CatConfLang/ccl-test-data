@@ -137,7 +137,8 @@
                 "crlf_preserve_literal", "crlf_normalize_to_lf",
                 "tabs_preserve", "tabs_to_spaces",
                 "strict_spacing", "loose_spacing",
-                "list_coercion_enabled", "list_coercion_disabled"
+                "list_coercion_enabled", "list_coercion_disabled",
+                "array_order_insertion", "array_order_lexicographic"
               ]
             },
             "uniqueItems": true

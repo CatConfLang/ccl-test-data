@@ -82,11 +82,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "nested_list_access_reference",
@@ -213,11 +216,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_with_booleans_reference",
@@ -264,11 +270,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_with_whitespace_reference",
@@ -316,11 +325,14 @@
         "whitespace"
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "deeply_nested_list_reference",
@@ -363,11 +375,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_with_unicode_reference",
@@ -417,11 +432,14 @@
         "unicode"
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_with_special_characters_reference",
@@ -463,11 +481,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "complex_mixed_list_scenarios_reference",
@@ -531,11 +552,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_path_traversal_protection_reference",

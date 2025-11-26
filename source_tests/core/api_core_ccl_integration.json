@@ -125,12 +125,17 @@
           }
         }
       ],
-      "variants": [
-        "proposed_behavior"
-      ]
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      }
     },
     {
-      "name": "complete_lists_workflow_reference",
+      "name": "complete_lists_workflow_lexicographic",
       "input": "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443",
       "tests": [
         {
@@ -165,9 +170,14 @@
           }
         }
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "complete_multiline_workflow",

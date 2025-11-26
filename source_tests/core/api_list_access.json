@@ -253,17 +253,20 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "comments"
       ],
-      "variants": [
-        "proposed_behavior"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      }
     },
     {
-      "name": "list_with_comments_reference",
+      "name": "list_with_comments_lexicographic",
       "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
       "tests": [
         {
@@ -318,14 +321,17 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_lexicographic"
       ],
       "features": [
         "comments"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "list_error_missing_key",
@@ -520,12 +526,17 @@
       "features": [
         "empty_keys"
       ],
-      "variants": [
-        "proposed_behavior"
-      ]
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      }
     },
     {
-      "name": "bare_list_nested_reference",
+      "name": "bare_list_nested_lexicographic",
       "input": "network =\n  ports =\n    = 80\n    = 443\n    = 8080",
       "tests": [
         {
@@ -567,9 +578,14 @@
       "features": [
         "empty_keys"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "bare_list_with_comments",
@@ -613,12 +629,17 @@
         "empty_keys",
         "comments"
       ],
-      "variants": [
-        "proposed_behavior"
-      ]
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      }
     },
     {
-      "name": "bare_list_with_comments_reference",
+      "name": "bare_list_with_comments_lexicographic",
       "input": "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com",
       "tests": [
         {
@@ -659,9 +680,14 @@
         "empty_keys",
         "comments"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "bare_list_deeply_nested",
@@ -712,12 +738,17 @@
       "features": [
         "empty_keys"
       ],
-      "variants": [
-        "proposed_behavior"
-      ]
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      }
     },
     {
-      "name": "bare_list_deeply_nested_reference",
+      "name": "bare_list_deeply_nested_lexicographic",
       "input": "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1",
       "tests": [
         {
@@ -765,9 +796,14 @@
       "features": [
         "empty_keys"
       ],
-      "variants": [
-        "reference_compliant"
-      ]
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      }
     },
     {
       "name": "bare_list_mixed_with_other_keys",

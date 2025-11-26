@@ -70,6 +70,7 @@ Direct array containing **implementation choices** - technical decisions about h
 | Tab Handling | `tabs_preserve` vs `tabs_to_spaces` | Tab character processing |
 | Whitespace | `strict_spacing` vs `loose_spacing` | Whitespace sensitivity |
 | List Access | `list_coercion_enabled` vs `list_coercion_disabled` | List access behavior |
+| Array Ordering | `array_order_insertion` vs `array_order_lexicographic` | Array element ordering: preserve insertion order vs sort lexicographically |
 
 ### Variants Array (`test.variants[]`) - Temporary Disambiguation
 
