@@ -36,6 +36,8 @@ The generated flat format provides type-safe filtering through separate arrays:
 - `tabs_preserve` vs `tabs_to_spaces`
 - `strict_spacing` vs `loose_spacing`
 - `boolean_strict` vs `boolean_lenient`
+- `list_coercion_enabled` vs `list_coercion_disabled`
+- `array_order_insertion` vs `array_order_lexicographic`
 
 **Variants Array** (`test.variants[]`) - Specification variants:
 - `proposed_behavior` - Proposed specification behavior
@@ -278,6 +280,7 @@ const progressiveTests = flatTests.filter(test => {
 - Spacing: `strict_spacing` vs `loose_spacing`
 - Boolean parsing: `boolean_strict` vs `boolean_lenient`
 - List access: `list_coercion_enabled` vs `list_coercion_disabled`
+- Array ordering: `array_order_insertion` vs `array_order_lexicographic`
 
 ### Variants Array Values
 - `proposed_behavior` - Proposed CCL specification behavior

@@ -61,7 +61,9 @@ const featuresSupported = test.features.every(feature =>
 
 ### Behaviors Array (`test.behaviors[]`)
 
-Direct array containing **implementation choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation:
+Direct array containing **implementation choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation.
+
+> **📖 Detailed Documentation:** See the [Behavior Reference](https://ccl.tylerbutler.com/behavior-reference/) for comprehensive explanations with code examples for each behavior.
 
 | Behavior Group | Options | Description |
 |----------------|---------|-------------|
