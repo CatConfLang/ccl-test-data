@@ -737,7 +737,7 @@ func TestBareListBasicGetList(t *testing.T) {
 }
 
 
-// bare_list_nested_parse - function:parse feature:empty_keys
+// bare_list_nested_parse - function:parse feature:empty_keys variant:proposed_behavior
 func TestBareListNestedParse(t *testing.T) {
 	
 	
@@ -766,7 +766,7 @@ func TestBareListNestedParse(t *testing.T) {
 }
 
 
-// bare_list_nested_build_hierarchy - function:build_hierarchy feature:empty_keys
+// bare_list_nested_build_hierarchy - function:build_hierarchy feature:empty_keys variant:proposed_behavior
 func TestBareListNestedBuildHierarchy(t *testing.T) {
 	
 	
@@ -796,7 +796,7 @@ func TestBareListNestedBuildHierarchy(t *testing.T) {
 }
 
 
-// bare_list_nested_get_list - function:get_list feature:empty_keys
+// bare_list_nested_get_list - function:get_list feature:empty_keys variant:proposed_behavior
 func TestBareListNestedGetList(t *testing.T) {
 	
 	
@@ -827,7 +827,97 @@ func TestBareListNestedGetList(t *testing.T) {
 }
 
 
-// bare_list_with_comments_parse - function:parse feature:empty_keys feature:comments
+// bare_list_nested_reference_parse - function:parse feature:empty_keys variant:reference_compliant
+func TestBareListNestedReferenceParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `network =
+  ports =
+    = 80
+    = 443
+    = 8080`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "network", Value: "\n  ports =\n    = 80\n    = 443\n    = 8080"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// bare_list_nested_reference_build_hierarchy - function:build_hierarchy feature:empty_keys variant:reference_compliant
+func TestBareListNestedReferenceBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `network =
+  ports =
+    = 80
+    = 443
+    = 8080`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// bare_list_nested_reference_get_list - function:get_list feature:empty_keys variant:reference_compliant
+func TestBareListNestedReferenceGetList(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `network =
+  ports =
+    = 80
+    = 443
+    = 8080`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"network", "ports"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"443", "80", "8080"}, result)
+
+}
+
+
+// bare_list_with_comments_parse - function:parse feature:empty_keys feature:comments variant:proposed_behavior
 func TestBareListWithCommentsParse(t *testing.T) {
 	
 	
@@ -856,7 +946,7 @@ func TestBareListWithCommentsParse(t *testing.T) {
 }
 
 
-// bare_list_with_comments_build_hierarchy - function:build_hierarchy feature:empty_keys feature:comments
+// bare_list_with_comments_build_hierarchy - function:build_hierarchy feature:empty_keys feature:comments variant:proposed_behavior
 func TestBareListWithCommentsBuildHierarchy(t *testing.T) {
 	
 	
@@ -886,7 +976,7 @@ func TestBareListWithCommentsBuildHierarchy(t *testing.T) {
 }
 
 
-// bare_list_with_comments_get_list - function:get_list feature:empty_keys feature:comments
+// bare_list_with_comments_get_list - function:get_list feature:empty_keys feature:comments variant:proposed_behavior
 func TestBareListWithCommentsGetList(t *testing.T) {
 	
 	
@@ -917,7 +1007,97 @@ func TestBareListWithCommentsGetList(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_parse - function:parse feature:empty_keys
+// bare_list_with_comments_reference_parse - function:parse feature:empty_keys feature:comments variant:reference_compliant
+func TestBareListWithCommentsReferenceParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `allowed_hosts =
+  /= Production hosts
+  = localhost
+  = 127.0.0.1
+  = example.com`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "allowed_hosts", Value: "\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// bare_list_with_comments_reference_build_hierarchy - function:build_hierarchy feature:empty_keys feature:comments variant:reference_compliant
+func TestBareListWithCommentsReferenceBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `allowed_hosts =
+  /= Production hosts
+  = localhost
+  = 127.0.0.1
+  = example.com`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// bare_list_with_comments_reference_get_list - function:get_list feature:empty_keys feature:comments variant:reference_compliant
+func TestBareListWithCommentsReferenceGetList(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `allowed_hosts =
+  /= Production hosts
+  = localhost
+  = 127.0.0.1
+  = example.com`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"allowed_hosts"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"127.0.0.1", "example.com", "localhost"}, result)
+
+}
+
+
+// bare_list_deeply_nested_parse - function:parse feature:empty_keys variant:proposed_behavior
 func TestBareListDeeplyNestedParse(t *testing.T) {
 	
 	
@@ -948,7 +1128,7 @@ func TestBareListDeeplyNestedParse(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_build_hierarchy - function:build_hierarchy feature:empty_keys
+// bare_list_deeply_nested_build_hierarchy - function:build_hierarchy feature:empty_keys variant:proposed_behavior
 func TestBareListDeeplyNestedBuildHierarchy(t *testing.T) {
 	
 	
@@ -980,7 +1160,7 @@ func TestBareListDeeplyNestedBuildHierarchy(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_get_list - function:get_list feature:empty_keys
+// bare_list_deeply_nested_get_list - function:get_list feature:empty_keys variant:proposed_behavior
 func TestBareListDeeplyNestedGetList(t *testing.T) {
 	
 	
@@ -1009,6 +1189,102 @@ func TestBareListDeeplyNestedGetList(t *testing.T) {
 	result, err := ccl.GetList(hierarchy, []string{"config", "environments", "production", "servers"})
 	require.NoError(t, err)
 	assert.Equal(t, []interface {}{"web1", "web2", "api1"}, result)
+
+}
+
+
+// bare_list_deeply_nested_reference_parse - function:parse feature:empty_keys variant:reference_compliant
+func TestBareListDeeplyNestedReferenceParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `config =
+  environments =
+    production =
+      servers =
+        = web1
+        = web2
+        = api1`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// bare_list_deeply_nested_reference_build_hierarchy - function:build_hierarchy feature:empty_keys variant:reference_compliant
+func TestBareListDeeplyNestedReferenceBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `config =
+  environments =
+    production =
+      servers =
+        = web1
+        = web2
+        = api1`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// bare_list_deeply_nested_reference_get_list - function:get_list feature:empty_keys variant:reference_compliant
+func TestBareListDeeplyNestedReferenceGetList(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `config =
+  environments =
+    production =
+      servers =
+        = web1
+        = web2
+        = api1`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"config", "environments", "production", "servers"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"api1", "web1", "web2"}, result)
 
 }
 

@@ -197,10 +197,10 @@
           "function": "build_hierarchy",
           "expect": {
             "numbers": [
-              "1",
-              "42",
               "-17",
-              "0"
+              "0",
+              "1",
+              "42"
             ]
           }
         },
@@ -211,6 +211,9 @@
             "numbers"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -252,13 +255,16 @@
           "function": "build_hierarchy",
           "expect": {
             "flags": [
-              "true",
               "false",
-              "yes",
-              "no"
+              "no",
+              "true",
+              "yes"
             ]
           }
         }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -293,8 +299,8 @@
           "function": "build_hierarchy",
           "expect": {
             "items": [
-              "spaced",
-              "normal"
+              "normal",
+              "spaced"
             ]
           }
         },
@@ -308,6 +314,9 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -333,9 +342,9 @@
               "environments": {
                 "production": {
                   "servers": [
+                    "api1",
                     "web1",
-                    "web2",
-                    "api1"
+                    "web2"
                   ]
                 }
               }
@@ -352,6 +361,9 @@
             "servers"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -386,10 +398,10 @@
           "function": "build_hierarchy",
           "expect": {
             "names": [
-              "张三",
-              "José",
               "François",
-              "العربية"
+              "José",
+              "العربية",
+              "张三"
             ]
           }
         },
@@ -403,6 +415,9 @@
       ],
       "features": [
         "unicode"
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -440,12 +455,15 @@
           "function": "build_hierarchy",
           "expect": {
             "symbols": [
-              "@#$%",
               "!^&*()",
+              "@#$%",
               "[]{}|"
             ]
           }
         }
+      ],
+      "behaviors": [
+        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
@@ -468,8 +486,8 @@
                 "port": "5432"
               },
               "servers": [
-                "web2",
-                "web1"
+                "web1",
+                "web2"
               ]
             },
             "features": [

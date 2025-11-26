@@ -124,6 +124,49 @@
             }
           }
         }
+      ],
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "name": "complete_lists_workflow_reference",
+      "input": "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "servers",
+              "value": "\n  server = web1\n  server = web2\n  server = web3"
+            },
+            {
+              "key": "ports",
+              "value": "\n  port = 80\n  port = 443"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "ports": {
+              "port": [
+                "443",
+                "80"
+              ]
+            },
+            "servers": {
+              "server": [
+                "web1",
+                "web2",
+                "web3"
+              ]
+            }
+          }
+        }
+      ],
+      "variants": [
+        "reference_compliant"
       ]
     },
     {

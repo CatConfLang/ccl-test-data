@@ -378,8 +378,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -418,8 +423,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -428,10 +438,10 @@
         "count": 1,
         "object": {
           "numbers": [
-            "1",
-            "42",
             "-17",
-            "0"
+            "0",
+            "1",
+            "42"
           ]
         }
       },
@@ -451,8 +461,13 @@
       "args": [
         "numbers"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -473,8 +488,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -513,8 +533,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -523,10 +548,10 @@
         "count": 1,
         "object": {
           "flags": [
-            "true",
             "false",
-            "yes",
-            "no"
+            "no",
+            "true",
+            "yes"
           ]
         }
       },
@@ -546,8 +571,13 @@
       "args": [
         "flags"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -568,8 +598,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -610,8 +645,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -620,8 +660,8 @@
         "count": 1,
         "object": {
           "items": [
-            "spaced",
-            "normal"
+            "normal",
+            "spaced"
           ]
         }
       },
@@ -643,8 +683,13 @@
       "args": [
         "items"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -667,8 +712,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -695,8 +745,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -708,9 +763,9 @@
             "environments": {
               "production": {
                 "servers": [
+                  "api1",
                   "web1",
-                  "web2",
-                  "api1"
+                  "web2"
                 ]
               }
             }
@@ -736,8 +791,13 @@
         "production",
         "servers"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -758,8 +818,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -800,8 +865,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -810,10 +880,10 @@
         "count": 1,
         "object": {
           "names": [
-            "张三",
-            "José",
             "François",
-            "العربية"
+            "José",
+            "العربية",
+            "张三"
           ]
         }
       },
@@ -835,8 +905,13 @@
       "args": [
         "names"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -859,8 +934,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -895,8 +975,13 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -905,8 +990,8 @@
         "count": 1,
         "object": {
           "symbols": [
-            "@#$%",
             "!^\u0026*()",
+            "@#$%",
             "[]{}|"
           ]
         }
@@ -927,8 +1012,13 @@
       "args": [
         "symbols"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ],
         "variants": [
           "proposed_behavior"
         ]
@@ -973,8 +1063,8 @@
               "port": "5432"
             },
             "servers": [
-              "web2",
-              "web1"
+              "web1",
+              "web2"
             ]
           },
           "features": [

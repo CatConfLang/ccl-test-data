@@ -187,7 +187,7 @@ config =
 }
 
 
-// complete_lists_workflow_parse - function:parse
+// complete_lists_workflow_parse - function:parse variant:proposed_behavior
 func TestCompleteListsWorkflowParse(t *testing.T) {
 	
 	
@@ -218,8 +218,71 @@ ports =
 }
 
 
-// complete_lists_workflow_build_hierarchy - function:build_hierarchy
+// complete_lists_workflow_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `servers =
+  server = web1
+  server = web2
+  server = web3
+ports =
+  port = 80
+  port = 443`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// complete_lists_workflow_reference_parse - function:parse variant:reference_compliant
+func TestCompleteListsWorkflowReferenceParse(t *testing.T) {
+	
+	
+	ccl := mock.New()
+	input := `servers =
+  server = web1
+  server = web2
+  server = web3
+ports =
+  port = 80
+  port = 443`
+	
+	
+	
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "servers", Value: "\n  server = web1\n  server = web2\n  server = web3"}, mock.Entry{Key: "ports", Value: "\n  port = 80\n  port = 443"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// complete_lists_workflow_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+func TestCompleteListsWorkflowReferenceBuildHierarchy(t *testing.T) {
 	
 	
 	ccl := mock.New()
