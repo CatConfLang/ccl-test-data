@@ -22,7 +22,7 @@ func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// single_item_as_list_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// single_item_as_list_parse - function:parse variant:proposed_behavior
 func TestSingleItemAsListParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -40,7 +40,7 @@ func TestSingleItemAsListParse(t *testing.T) {
 
 }
 
-// single_item_as_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// single_item_as_list_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestSingleItemAsListBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -50,7 +50,7 @@ func TestSingleItemAsListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// mixed_duplicate_single_keys_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// mixed_duplicate_single_keys_parse - function:parse variant:proposed_behavior
 func TestMixedDuplicateSingleKeysParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -70,7 +70,7 @@ host = localhost`
 
 }
 
-// mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestMixedDuplicateSingleKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -80,7 +80,7 @@ func TestMixedDuplicateSingleKeysGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// nested_list_access_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// nested_list_access_parse - function:parse variant:proposed_behavior
 func TestNestedListAccessParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -101,7 +101,7 @@ func TestNestedListAccessParse(t *testing.T) {
 
 }
 
-// nested_list_access_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// nested_list_access_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestNestedListAccessBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -342,12 +342,12 @@ func TestListMultilineValuesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complex_mixed_list_scenarios_parse_indented - function:parse_indented behavior:list_coercion_enabled variant:proposed_behavior
+// complex_mixed_list_scenarios_parse_indented - function:parse_indented variant:proposed_behavior
 func TestComplexMixedListScenariosParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -357,7 +357,7 @@ func TestComplexMixedListScenariosGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_path_traversal_protection_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// list_path_traversal_protection_parse - function:parse variant:proposed_behavior
 func TestListPathTraversalProtectionParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -375,7 +375,7 @@ func TestListPathTraversalProtectionParse(t *testing.T) {
 
 }
 
-// list_path_traversal_protection_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// list_path_traversal_protection_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -531,7 +531,7 @@ func TestCanonicalFormatConsistentSpacingParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
 }
 
-// canonical_format_consistent_spacing_canonical_format - function:canonical_format behavior:strict_spacing variant:proposed_behavior
+// canonical_format_consistent_spacing_canonical_format - function:canonical_format variant:proposed_behavior
 func TestCanonicalFormatConsistentSpacingCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -12,7 +12,7 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-// single_item_as_list_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// single_item_as_list_reference_parse - function:parse variant:reference_compliant
 func TestSingleItemAsListReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -30,7 +30,7 @@ func TestSingleItemAsListReferenceParse(t *testing.T) {
 
 }
 
-// single_item_as_list_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// single_item_as_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -40,7 +40,7 @@ func TestSingleItemAsListReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// mixed_duplicate_single_keys_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// mixed_duplicate_single_keys_reference_parse - function:parse
 func TestMixedDuplicateSingleKeysReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -60,7 +60,7 @@ host = localhost`
 
 }
 
-// mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -70,7 +70,7 @@ func TestMixedDuplicateSingleKeysReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// nested_list_access_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// nested_list_access_reference_parse - function:parse variant:reference_compliant
 func TestNestedListAccessReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -91,7 +91,7 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 
 }
 
-// nested_list_access_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -129,7 +129,7 @@ func TestEmptyListReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_numbers_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_numbers_reference_parse - function:parse
 func TestListWithNumbersReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -150,7 +150,7 @@ numbers = 0`
 
 }
 
-// list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -160,7 +160,7 @@ func TestListWithNumbersReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_booleans_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_booleans_reference_parse - function:parse
 func TestListWithBooleansReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -181,7 +181,7 @@ flags = no`
 
 }
 
-// list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -191,7 +191,7 @@ func TestListWithBooleansReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_reference_parse - function:parse feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_whitespace_reference_parse - function:parse feature:whitespace
 func TestListWithWhitespaceReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -212,7 +212,7 @@ items =   `
 
 }
 
-// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -222,7 +222,7 @@ func TestListWithWhitespaceReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// deeply_nested_list_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// deeply_nested_list_reference_parse - function:parse
 func TestDeeplyNestedListReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -245,7 +245,7 @@ func TestDeeplyNestedListReferenceParse(t *testing.T) {
 
 }
 
-// deeply_nested_list_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// deeply_nested_list_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestDeeplyNestedListReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -255,7 +255,7 @@ func TestDeeplyNestedListReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_reference_parse - function:parse feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_unicode_reference_parse - function:parse feature:unicode
 func TestListWithUnicodeReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -276,7 +276,7 @@ names = العربية`
 
 }
 
-// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -286,7 +286,7 @@ func TestListWithUnicodeReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_special_characters_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_special_characters_reference_parse - function:parse
 func TestListWithSpecialCharactersReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -306,7 +306,7 @@ symbols = []{}|`
 
 }
 
-// list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -316,7 +316,7 @@ func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -326,7 +326,7 @@ func TestComplexMixedListScenariosReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_path_traversal_protection_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// list_path_traversal_protection_reference_parse - function:parse variant:reference_compliant
 func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -344,7 +344,7 @@ func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 
 }
 
-// list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -402,7 +402,7 @@ func TestCanonicalFormatLineEndingsReferenceBehaviorCanonicalFormat(t *testing.T
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:canonical_format behavior:strict_spacing variant:reference_compliant
+// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:canonical_format variant:reference_compliant
 func TestCanonicalFormatConsistentSpacingOcamlReferenceCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

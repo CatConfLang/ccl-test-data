@@ -68,7 +68,7 @@ func TestParseBasicFloatGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_true_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_true_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanTrueParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -86,7 +86,7 @@ func TestParseBooleanTrueParse(t *testing.T) {
 
 }
 
-// parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -96,7 +96,7 @@ func TestParseBooleanTrueGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_yes_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
+// parse_boolean_yes_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanYesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -114,7 +114,7 @@ func TestParseBooleanYesParse(t *testing.T) {
 
 }
 
-// parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
+// parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -124,7 +124,7 @@ func TestParseBooleanYesGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_yes_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_yes_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -142,7 +142,7 @@ func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 
 }
 
-// parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -152,7 +152,7 @@ func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_false_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_false_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanFalseParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -170,7 +170,7 @@ func TestParseBooleanFalseParse(t *testing.T) {
 
 }
 
-// parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
+// parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -236,7 +236,7 @@ func TestParseNegativeIntegerGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_parse - function:parse feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
+// parse_zero_values_parse - function:parse feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -256,12 +256,12 @@ disabled = no`
 
 }
 
-// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
+// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
+// parse_zero_values_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -271,12 +271,12 @@ func TestParseZeroValuesGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
+// parse_zero_values_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_parse - function:parse feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
+// parse_zero_values_strict_literal_parse - function:parse feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -296,12 +296,12 @@ disabled = no`
 
 }
 
-// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
+// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
+// parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -311,12 +311,12 @@ func TestParseZeroValuesStrictLiteralGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
+// parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_variants_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
+// parse_boolean_variants_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanVariantsParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -340,12 +340,12 @@ flag7 = 0`
 
 }
 
-// parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
+// parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_variants_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_lenient
+// parse_boolean_variants_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -355,7 +355,7 @@ func TestParseBooleanVariantsGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_variants_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_variants_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -379,12 +379,12 @@ flag7 = 0`
 
 }
 
-// parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_variants_strict_literal_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_variants_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -394,7 +394,7 @@ func TestParseBooleanVariantsStrictLiteralGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_parse - function:parse feature:optional_typed_accessors behavior:boolean_lenient
+// parse_mixed_types_parse - function:parse feature:optional_typed_accessors
 func TestParseMixedTypesParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -416,17 +416,17 @@ debug = off`
 
 }
 
-// parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_lenient
+// parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_get_string - function:get_string feature:optional_typed_accessors behavior:boolean_lenient
+// parse_mixed_types_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_lenient
+// parse_mixed_types_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -436,12 +436,12 @@ func TestParseMixedTypesGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_get_float - function:get_float feature:optional_typed_accessors behavior:boolean_lenient
+// parse_mixed_types_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_strict_literal_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
+// parse_mixed_types_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -463,17 +463,17 @@ debug = off`
 
 }
 
-// parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
+// parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_strict_literal_get_string - function:get_string feature:optional_typed_accessors behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_strict_literal_get_int - function:get_int feature:optional_typed_accessors behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetInt(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -483,7 +483,7 @@ func TestParseMixedTypesStrictLiteralGetBool(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_mixed_types_strict_literal_get_float - function:get_float feature:optional_typed_accessors behavior:boolean_strict
+// parse_mixed_types_strict_literal_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -614,7 +614,7 @@ func TestParseFloatErrorGetFloat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// parse_boolean_error_parse - function:parse feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_error_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanErrorParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -632,7 +632,7 @@ func TestParseBooleanErrorParse(t *testing.T) {
 
 }
 
-// parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors behavior:boolean_strict
+// parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

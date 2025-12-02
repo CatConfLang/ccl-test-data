@@ -91,7 +91,7 @@ func TestCompleteMixedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complete_lists_workflow_parse - function:parse behavior:array_order_insertion
+// complete_lists_workflow_parse - function:parse
 func TestCompleteListsWorkflowParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -120,7 +120,7 @@ func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// complete_lists_workflow_lexicographic_parse - function:parse behavior:array_order_lexicographic
+// complete_lists_workflow_lexicographic_parse - function:parse
 func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
 
 	ccl := mock.New()

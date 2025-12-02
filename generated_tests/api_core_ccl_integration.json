@@ -144,9 +144,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "array_order_insertion"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
@@ -203,9 +201,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
