@@ -2,7 +2,7 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
-## [vdata-v0.0.1] - 2025-12-02
+## [v0.0.1] - 2025-12-02
 
 ### Bug Fixes
 
@@ -183,5 +183,6 @@ All notable changes to the CCL test data will be documented in this file.
 - Clean up temporary files and redundant documentation
 - Update CLAUDE.md
 - Code cleanup
+- **release**: Data-vdata-v0.0.1
 
 
