@@ -1,0 +1,11 @@
+amends "package://github.com/jdx/hk/releases/download/v1.19.0/hk@1.19.0#/Config.pkl"
+
+hooks {
+    ["commit-msg"] {
+        steps {
+            ["commitlint"] {
+                check = "npx commitlint --edit {{commit_msg_file}}"
+            }
+        }
+    }
+}

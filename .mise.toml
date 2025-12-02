@@ -1,7 +1,8 @@
 [tools]
 git-cliff = "latest"
 go = "1.25.4"
-# Node.js for running ESM scripts
+hk = "latest"
+# Node.js for running ESM scripts and commitlint
 node = "latest"
 
 [env]
