@@ -1,4 +1,5 @@
 [tools]
+git-cliff = "latest"
 go = "1.25.4"
 # Node.js for running ESM scripts
 node = "latest"

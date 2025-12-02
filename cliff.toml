@@ -31,7 +31,7 @@ commit_parsers = [
     { message = "^perf", group = "Performance" },
     { message = "^refactor", group = "Refactor" },
     { message = "^test", group = "Testing" },
-    { message = "^chore", group = "Miscellaneous" },
+#    { message = "^chore", group = "Miscellaneous" },
 ]
 filter_commits = false
 tag_pattern = "data-v[0-9].*"
