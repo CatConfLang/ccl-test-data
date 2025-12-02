@@ -63,6 +63,7 @@ source_tests/
 │   ├── api_proposed_behavior.json
 │   ├── api_reference_compliant.json
 │   ├── api_typed_access.json
+│   ├── api_whitespace_behaviors.json
 │   ├── property_round_trip.json
 │   └── property_algebraic.json
 └── experimental/
@@ -112,6 +113,7 @@ source_tests/
   - Tab handling: `tabs_preserve`, `tabs_to_spaces`
   - Spacing: `strict_spacing`, `loose_spacing`
   - List coercion: `list_coercion_enabled`, `list_coercion_disabled`
+  - Array ordering: `array_order_insertion`, `array_order_lexicographic`
 - **`variants`** - Specification variants: `proposed_behavior`, `reference_compliant`
 - **`conflicts`** - Mutually exclusive options by category (optional object with `functions`, `behaviors`, `variants`, `features` arrays)
 
