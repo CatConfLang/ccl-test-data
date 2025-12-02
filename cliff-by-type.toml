@@ -9,11 +9,11 @@ body = """
 {% else %}\
     ## [Unreleased]
 {% endif %}\
-{% for scope, commits in commits | group_by(attribute="scope") %}
-    ### {% if scope %}{{ scope | upper_first }}{% else %}General{% endif %}
-    {% for group, grouped_commits in commits | group_by(attribute="group") %}
-        #### {{ group | striptags | trim | upper_first }}
-        {% for commit in grouped_commits %}\
+{% for group, commits in commits | group_by(attribute="group") %}
+    ### {{ group | striptags | trim | upper_first }}
+    {% for scope, scoped_commits in commits | group_by(attribute="scope") %}
+        #### {% if scope %}{{ scope | upper_first }}{% else %}General{% endif %}
+        {% for commit in scoped_commits %}\
             - {{ commit.message | upper_first }}
         {% endfor %}
     {% endfor %}
