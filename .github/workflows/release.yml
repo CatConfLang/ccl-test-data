@@ -1,0 +1,78 @@
+name: Release Test Data
+
+on:
+  push:
+    tags:
+      - 'data-v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Required for git-cliff to see full history
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Install jv validator
+        run: go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
+
+      - name: Validate JSON schemas
+        run: |
+          jv schemas/generated-format.json generated_tests/*.json
+
+      - name: Extract version from tag
+        id: version
+        run: |
+          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG_NAME#data-}"
+          echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Generate release notes
+        id: changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --latest --strip header
+        env:
+          OUTPUT: RELEASE_NOTES.md
+
+      - name: Rewrite schema URLs in JSON files
+        env:
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          SCHEMA_URL="https://raw.githubusercontent.com/${{ github.repository }}/${TAG}/schemas/generated-format.json"
+          echo "Setting \$schema to: $SCHEMA_URL"
+
+          mkdir -p release_assets
+
+          for file in generated_tests/*.json; do
+            filename=$(basename "$file")
+            jq --arg schema "$SCHEMA_URL" '.["$schema"] = $schema' "$file" > "release_assets/$filename"
+          done
+
+      - name: Create ZIP archive
+        run: |
+          cd release_assets
+          zip -r ../ccl-test-data-${{ steps.version.outputs.tag }}.zip *.json
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: "CCL Test Data ${{ steps.version.outputs.version }}"
+          body_path: RELEASE_NOTES.md
+          files: |
+            release_assets/*.json
+            ccl-test-data-${{ steps.version.outputs.tag }}.zip
+          fail_on_unmatched_files: true

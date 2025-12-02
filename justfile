@@ -171,6 +171,24 @@ deps:
     go mod download
     go install github.com/santhosh-tekuri/jsonschema/cmd/jv
 
+# === RELEASE ===
+
+# Show suggested next version based on conventional commits
+release-check:
+    git cliff --bumped-version
+
+# Preview changelog for next release
+release-preview:
+    git cliff --unreleased
+
+# Create release: updates CHANGELOG.md, commits, and tags
+release version:
+    git cliff --tag data-v{{version}} -o CHANGELOG.md
+    git add CHANGELOG.md
+    git commit -m "chore(release): data-v{{version}}"
+    git tag data-v{{version}}
+    @echo "Release data-v{{version}} created. Push with: git push origin main --tags"
+
 # === CONVENIENCE COMMANDS ===
 
 # Generate only basic tests for mock implementation

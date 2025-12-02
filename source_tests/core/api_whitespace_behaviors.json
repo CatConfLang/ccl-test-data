@@ -1,5 +1,5 @@
 {
-  "$schema": "file:///Volumes/Code/claude-workspace-ccl/ccl-test-data/schemas/source-format.json",
+  "$schema": "../../schemas/source-format.json",
   "tests": [
     {
       "name": "spacing_strict_standard_format",
@@ -241,7 +241,9 @@
         },
         {
           "function": "get_string",
-          "args": ["key"],
+          "args": [
+            "key"
+          ],
           "expect": "\tvalue\twith\ttabs"
         }
       ],
@@ -267,7 +269,9 @@
         },
         {
           "function": "get_string",
-          "args": ["key"],
+          "args": [
+            "key"
+          ],
           "expect": "\tindented"
         }
       ],
@@ -299,7 +303,9 @@
         },
         {
           "function": "get_string",
-          "args": ["key"],
+          "args": [
+            "key"
+          ],
           "expect": "  value  with  tabs"
         }
       ],
@@ -325,7 +331,9 @@
         },
         {
           "function": "get_string",
-          "args": ["key"],
+          "args": [
+            "key"
+          ],
           "expect": "  indented"
         }
       ],

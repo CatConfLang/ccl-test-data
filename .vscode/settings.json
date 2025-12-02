@@ -1,0 +1,12 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["generated_tests/*.json"],
+      "url": "./schemas/generated-format.json"
+    },
+    {
+      "fileMatch": ["source_tests/**/*.json"],
+      "url": "./schemas/source-format.json"
+    }
+  ]
+}

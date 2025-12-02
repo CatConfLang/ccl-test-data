@@ -1,5 +1,5 @@
 {
-  "$schema": "file:///Volumes/Code/claude-workspace-ccl/ccl-test-data/schemas/source-format.json",
+  "$schema": "../../schemas/source-format.json",
   "tests": [
     {
       "name": "parse_basic_integer",

@@ -1,5 +1,5 @@
 [tools]
-go = "1.25.3"
+go = "1.25.4"
 # Node.js for running ESM scripts
 node = "latest"
 

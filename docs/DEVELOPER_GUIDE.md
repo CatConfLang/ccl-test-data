@@ -223,6 +223,77 @@ The benchmark package tracks performance metrics for test generation and statist
 - Always commit updated `go_tests/` files
 - Clean commit history via rebase
 
+## Making a Release
+
+This project uses [git-cliff](https://git-cliff.org/) for changelog generation
+and follows [Conventional Commits](https://www.conventionalcommits.org/).
+
+### Prerequisites
+
+Install git-cliff:
+```bash
+# macOS
+brew install git-cliff
+
+# cargo
+cargo install git-cliff
+
+# or use mise/asdf
+```
+
+### Release Workflow
+
+1. **Check suggested version** (based on commits since last tag):
+   ```bash
+   just release-check
+   ```
+   This analyzes commits and suggests: patch (fix), minor (feat), or major (BREAKING CHANGE).
+
+2. **Preview the changelog**:
+   ```bash
+   just release-preview
+   ```
+
+3. **Create the release** (with your chosen version):
+   ```bash
+   just release 1.2.0
+   ```
+   This will:
+   - Update CHANGELOG.md with all changes since last release
+   - Commit the changelog
+   - Create tag `data-v1.2.0`
+
+4. **Push to trigger CI**:
+   ```bash
+   git push origin main --tags
+   ```
+
+   CI will automatically:
+   - Validate JSON schemas
+   - Rewrite `$schema` URLs to versioned GitHub raw URLs
+   - Create GitHub release with individual JSON files and ZIP archive
+   - Use changelog content for release notes
+
+### Commit Message Format
+
+Follow conventional commits for automatic changelog generation:
+
+| Prefix | Description | Version Bump |
+|--------|-------------|--------------|
+| `feat:` | New feature | Minor |
+| `fix:` | Bug fix | Patch |
+| `docs:` | Documentation | Patch |
+| `perf:` | Performance | Patch |
+| `refactor:` | Code refactoring | Patch |
+| `test:` | Tests | Patch |
+| `chore:` | Maintenance | Patch |
+| `feat!:` or `BREAKING CHANGE:` | Breaking change | Major |
+
+**Examples:**
+- `feat: add new test cases for unicode` → Features section
+- `fix: correct expected values in parsing tests` → Bug Fixes section
+- `feat(schema): add new behavior field` → Features with scope
+
 ## Troubleshooting
 
 ### Common Issues
