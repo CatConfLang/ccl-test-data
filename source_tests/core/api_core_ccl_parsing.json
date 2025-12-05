@@ -8,15 +8,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "name",
-              "value": "Alice"
-            },
-            {
-              "key": "age",
-              "value": "42"
-            }
+            {"key": "name", "value": "Alice"},
+            {"key": "age", "value": "42"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "name = Alice\nage = 42"
         }
       ]
     },
@@ -27,15 +25,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "msg",
-              "value": "k=v pairs work fine"
-            },
-            {
-              "key": "path",
-              "value": "/bin/app=prod"
-            }
+            {"key": "msg", "value": "k=v pairs work fine"},
+            {"key": "path", "value": "/bin/app=prod"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "msg = k=v pairs work fine\npath = /bin/app=prod"
         }
       ]
     },
@@ -46,14 +42,8 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "key",
-              "value": "value with spaces"
-            },
-            {
-              "key": "other",
-              "value": "normal"
-            }
+            {"key": "key", "value": "value with spaces"},
+            {"key": "other", "value": "normal"}
           ]
         }
       ],
@@ -68,15 +58,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "description",
-              "value": "First line\n  Second line\n  Third line"
-            },
-            {
-              "key": "done",
-              "value": "yes"
-            }
+            {"key": "description", "value": "First line\n  Second line\n  Third line"},
+            {"key": "done", "value": "yes"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "description = First line\n  Second line\n  Third line\ndone = yes"
         }
       ],
       "features": [
@@ -90,15 +78,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "empty",
-              "value": ""
-            },
-            {
-              "key": "other",
-              "value": "value"
-            }
+            {"key": "empty", "value": ""},
+            {"key": "other", "value": "value"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "empty = \nother = value"
         }
       ],
       "features": [
@@ -112,11 +98,12 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "database",
-              "value": "\n  host = localhost\n  port = 5432"
-            }
+            {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "database = \n  host = localhost\n  port = 5432"
         }
       ]
     },
@@ -127,15 +114,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "emoji",
-              "value": "😀😃😄"
-            },
-            {
-              "key": "配置",
-              "value": "config"
-            }
+            {"key": "emoji", "value": "😀😃😄"},
+            {"key": "配置", "value": "config"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "emoji = 😀😃😄\n配置 = config"
         }
       ],
       "features": [
@@ -149,6 +134,10 @@
         {
           "function": "parse",
           "expect": []
+        },
+        {
+          "function": "print",
+          "expect": ""
         }
       ]
     }

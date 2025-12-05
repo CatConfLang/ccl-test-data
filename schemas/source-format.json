@@ -17,7 +17,11 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["name", "input", "tests"],
+        "required": ["name", "tests"],
+        "oneOf": [
+          { "required": ["input"] },
+          { "required": ["inputs"] }
+        ],
         "properties": {
           "name": {
             "type": "string",
@@ -26,7 +30,13 @@
           },
           "input": {
             "type": "string",
-            "description": "CCL input text to be tested"
+            "description": "CCL input text to be tested (single input)"
+          },
+          "inputs": {
+            "type": "array",
+            "description": "Multiple inputs for algebraic property tests",
+            "items": { "type": "string" },
+            "minItems": 2
           },
           "tests": {
             "type": "array",
@@ -42,7 +52,8 @@
                   "enum": [
                     "parse", "parse_indented", "filter", "compose",
                     "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
-                    "canonical_format", "load", "round_trip"
+                    "print", "canonical_format", "load", "round_trip",
+                    "compose_associative", "identity_left", "identity_right"
                   ]
                 },
                 "expect": {

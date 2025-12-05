@@ -8,15 +8,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "name",
-              "value": "Alice"
-            },
-            {
-              "key": "age",
-              "value": "42"
-            }
+            {"key": "name", "value": "Alice"},
+            {"key": "age", "value": "42"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "name = Alice\nage = 42"
         },
         {
           "function": "build_hierarchy",
@@ -46,6 +44,10 @@
               "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "server = \n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
         },
         {
           "function": "build_hierarchy",
@@ -82,6 +84,18 @@
       "input": "item = first\nitem = second\nitem = third",
       "tests": [
         {
+          "function": "parse",
+          "expect": [
+            {"key": "item", "value": "first"},
+            {"key": "item", "value": "second"},
+            {"key": "item", "value": "third"}
+          ]
+        },
+        {
+          "function": "print",
+          "expect": "item = first\nitem = second\nitem = third"
+        },
+        {
           "function": "build_hierarchy",
           "expect": {
             "item": [
@@ -100,23 +114,6 @@
               "third"
             ]
           }
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "item",
-              "value": "first"
-            },
-            {
-              "key": "item",
-              "value": "second"
-            },
-            {
-              "key": "item",
-              "value": "third"
-            }
-          ]
         }
       ]
     },
@@ -132,6 +129,10 @@
               "value": "\n  server = web1\n  server = web2\n  port = 80"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "config = \n  server = web1\n  server = web2\n  port = 80"
         },
         {
           "function": "build_hierarchy",
@@ -154,19 +155,14 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "name",
-              "value": "Alice"
-            },
-            {
-              "key": "config",
-              "value": "\n  debug = true\n  timeout = 30"
-            },
-            {
-              "key": "version",
-              "value": "1.0"
-            }
+            {"key": "name", "value": "Alice"},
+            {"key": "config", "value": "\n  debug = true\n  timeout = 30"},
+            {"key": "version", "value": "1.0"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "name = Alice\nconfig = \n  debug = true\n  timeout = 30\nversion = 1.0"
         },
         {
           "function": "build_hierarchy",
@@ -193,6 +189,10 @@
               "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "environments = \n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
         },
         {
           "function": "build_hierarchy",

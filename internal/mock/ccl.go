@@ -327,10 +327,140 @@ func (c *CCL) GetList(obj map[string]interface{}, path []string) ([]string, erro
 }
 
 // PrettyPrint implements canonical formatting (standardized output)
+// This is the model-level format where key=value becomes key=\n  value=\n
 func (c *CCL) PrettyPrint(obj map[string]interface{}) string {
 	var lines []string
 	c.prettyPrintObject(obj, "", &lines)
 	return strings.Join(lines, "\n")
+}
+
+// Print implements structure-preserving formatting (input-preserving for standard inputs)
+// For inputs in standard format (single space around =, 2-space indent, LF line endings),
+// Print(Parse(x)) == x
+func (c *CCL) Print(entries []Entry) string {
+	if len(entries) == 0 {
+		return ""
+	}
+
+	var sb strings.Builder
+	for i, entry := range entries {
+		if i > 0 {
+			sb.WriteString("\n")
+		}
+
+		// Handle comment entries
+		if entry.Key == "/" {
+			sb.WriteString("/= ")
+			sb.WriteString(entry.Value)
+			continue
+		}
+
+		// Write key
+		sb.WriteString(entry.Key)
+		sb.WriteString(" = ")
+
+		// Write value - if multiline, the value already contains the newlines and indentation
+		sb.WriteString(entry.Value)
+	}
+
+	return sb.String()
+}
+
+// ComposeAssociative verifies (a·b)·c == a·(b·c) for three inputs
+func (c *CCL) ComposeAssociative(inputs []string) (bool, error) {
+	if len(inputs) < 3 {
+		return false, fmt.Errorf("compose_associative requires at least 3 inputs")
+	}
+
+	a, err := c.Parse(inputs[0])
+	if err != nil {
+		return false, err
+	}
+	b, err := c.Parse(inputs[1])
+	if err != nil {
+		return false, err
+	}
+	cEntries, err := c.Parse(inputs[2])
+	if err != nil {
+		return false, err
+	}
+
+	// (a·b)·c
+	ab := c.Compose(a, b)
+	left := c.Compose(ab, cEntries)
+
+	// a·(b·c)
+	bc := c.Compose(b, cEntries)
+	right := c.Compose(a, bc)
+
+	return entriesEqual(left, right), nil
+}
+
+// IdentityLeft verifies compose(empty, x) == x
+func (c *CCL) IdentityLeft(inputs []string) (bool, error) {
+	if len(inputs) < 2 {
+		return false, fmt.Errorf("identity_left requires at least 2 inputs")
+	}
+
+	empty, err := c.Parse(inputs[0])
+	if err != nil {
+		return false, err
+	}
+	x, err := c.Parse(inputs[1])
+	if err != nil {
+		return false, err
+	}
+
+	result := c.Compose(empty, x)
+	return entriesEqual(result, x), nil
+}
+
+// IdentityRight verifies compose(x, empty) == x
+func (c *CCL) IdentityRight(inputs []string) (bool, error) {
+	if len(inputs) < 2 {
+		return false, fmt.Errorf("identity_right requires at least 2 inputs")
+	}
+
+	x, err := c.Parse(inputs[0])
+	if err != nil {
+		return false, err
+	}
+	empty, err := c.Parse(inputs[1])
+	if err != nil {
+		return false, err
+	}
+
+	result := c.Compose(x, empty)
+	return entriesEqual(result, x), nil
+}
+
+// RoundTrip verifies parse(print(parse(x))) == parse(x)
+func (c *CCL) RoundTrip(input string) (bool, error) {
+	parsed, err := c.Parse(input)
+	if err != nil {
+		return false, err
+	}
+
+	printed := c.Print(parsed)
+	reparsed, err := c.Parse(printed)
+	if err != nil {
+		return false, err
+	}
+
+	return entriesEqual(parsed, reparsed), nil
+}
+
+// entriesEqual compares two entry slices for equality
+func entriesEqual(a, b []Entry) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i].Key != b[i].Key || a[i].Value != b[i].Value {
+			return false
+		}
+	}
+	return true
 }
 
 // Helper methods

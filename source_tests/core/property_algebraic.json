@@ -3,78 +3,35 @@
   "tests": [
     {
       "name": "semigroup_associativity_basic",
-      "input": "a = 1\nb = 2\nc = 3",
+      "inputs": ["a = 1", "b = 2", "c = 3"],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "a",
-              "value": "1"
-            },
-            {
-              "key": "b",
-              "value": "2"
-            },
-            {
-              "key": "c",
-              "value": "3"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "compose_associative",
+          "expect": true
         }
       ]
     },
     {
       "name": "semigroup_associativity_nested",
-      "input": "config =\n  host = localhost\n  port = 8080\ndb =\n  name = test",
+      "inputs": [
+        "config =\n  host = localhost",
+        "config =\n  port = 8080",
+        "db =\n  name = test"
+      ],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": "\n  host = localhost\n  port = 8080"
-            },
-            {
-              "key": "db",
-              "value": "\n  name = test"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "compose_associative",
+          "expect": true
         }
       ]
     },
     {
       "name": "semigroup_associativity_lists",
-      "input": "= item1\n= item2\n= item3",
+      "inputs": ["= item1", "= item2", "= item3"],
       "tests": [
         {
-          "function": "compose",
-          "expect": null
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "",
-              "value": "item1"
-            },
-            {
-              "key": "",
-              "value": "item2"
-            },
-            {
-              "key": "",
-              "value": "item3"
-            }
-          ]
+          "function": "compose_associative",
+          "expect": true
         }
       ],
       "features": [
@@ -83,112 +40,57 @@
     },
     {
       "name": "monoid_left_identity_basic",
-      "input": "key = value\nnested =\n  sub = val",
+      "inputs": ["", "key = value\nnested =\n  sub = val"],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "nested",
-              "value": "\n  sub = val"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_left",
+          "expect": true
         }
       ]
     },
     {
       "name": "monoid_right_identity_basic",
-      "input": "key = value\nnested =\n  sub = val",
+      "inputs": ["key = value\nnested =\n  sub = val", ""],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "nested",
-              "value": "\n  sub = val"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_right",
+          "expect": true
         }
       ]
     },
     {
       "name": "monoid_left_identity_nested",
-      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+      "inputs": [
+        "",
+        "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"
+      ],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_left",
+          "expect": true
         }
       ]
     },
     {
       "name": "monoid_right_identity_nested",
-      "input": "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+      "inputs": [
+        "config =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true",
+        ""
+      ],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    redis = true"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_right",
+          "expect": true
         }
       ]
     },
     {
       "name": "monoid_left_identity_lists",
-      "input": "= item1\n= item2\n= item3",
+      "inputs": ["", "= item1\n= item2\n= item3"],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "",
-              "value": "item1"
-            },
-            {
-              "key": "",
-              "value": "item2"
-            },
-            {
-              "key": "",
-              "value": "item3"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_left",
+          "expect": true
         }
       ],
       "features": [
@@ -197,28 +99,11 @@
     },
     {
       "name": "monoid_right_identity_lists",
-      "input": "= item1\n= item2\n= item3",
+      "inputs": ["= item1\n= item2\n= item3", ""],
       "tests": [
         {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "",
-              "value": "item1"
-            },
-            {
-              "key": "",
-              "value": "item2"
-            },
-            {
-              "key": "",
-              "value": "item3"
-            }
-          ]
-        },
-        {
-          "function": "compose",
-          "expect": null
+          "function": "identity_right",
+          "expect": true
         }
       ],
       "features": [
@@ -232,19 +117,17 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "another",
-              "value": "test"
-            }
+            {"key": "key", "value": "value"},
+            {"key": "another", "value": "test"}
           ]
         },
         {
+          "function": "print",
+          "expect": "key = value\nanother = test"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ]
     },
@@ -262,8 +145,12 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "config = \n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ]
     },
@@ -274,27 +161,22 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "",
-              "value": "item1"
-            },
-            {
-              "key": "",
-              "value": "item2"
-            },
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
             {
               "key": "config",
               "value": "\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c"
             },
-            {
-              "key": "final",
-              "value": "end"
-            }
+            {"key": "final", "value": "end"}
           ]
         },
         {
+          "function": "print",
+          "expect": " = item1\n = item2\nconfig = \n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [

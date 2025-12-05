@@ -8,15 +8,13 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "name",
-              "value": "Alice"
-            },
-            {
-              "key": "age",
-              "value": "42"
-            }
+            {"key": "name", "value": "Alice"},
+            {"key": "age", "value": "42"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "name = Alice\nage = 42"
         },
         {
           "function": "build_hierarchy",
@@ -41,6 +39,10 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "database = \n  host = localhost\n  port = 5432\n  enabled = true"
+        },
+        {
           "function": "build_hierarchy",
           "expect": {
             "database": {
@@ -59,19 +61,17 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "app",
-              "value": "MyApp"
-            },
-            {
-              "key": "version",
-              "value": "1.0.0"
-            },
+            {"key": "app", "value": "MyApp"},
+            {"key": "version", "value": "1.0.0"},
             {
               "key": "config",
               "value": "\n  debug = true\n  features =\n    feature1 = enabled\n    feature2 = disabled"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "app = MyApp\nversion = 1.0.0\nconfig = \n  debug = true\n  features =\n    feature1 = enabled\n    feature2 = disabled"
         },
         {
           "function": "build_hierarchy",
@@ -105,6 +105,10 @@
               "value": "\n  port = 80\n  port = 443"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "servers = \n  server = web1\n  server = web2\n  server = web3\nports = \n  port = 80\n  port = 443"
         },
         {
           "function": "build_hierarchy",
@@ -152,6 +156,10 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "servers = \n  server = web1\n  server = web2\n  server = web3\nports = \n  port = 80\n  port = 443"
+        },
+        {
           "function": "build_hierarchy",
           "expect": {
             "ports": {
@@ -197,6 +205,10 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig = \n  settings =\n    value1 = one\n    value2 = two"
+        },
+        {
           "function": "build_hierarchy",
           "expect": {
             "config": {
@@ -220,14 +232,8 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "service",
-              "value": "MyMicroservice"
-            },
-            {
-              "key": "version",
-              "value": "2.1.0"
-            },
+            {"key": "service", "value": "MyMicroservice"},
+            {"key": "version", "value": "2.1.0"},
             {
               "key": "database",
               "value": "\n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2"
@@ -241,6 +247,10 @@
               "value": "\n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental"
             }
           ]
+        },
+        {
+          "function": "print",
+          "expect": "service = MyMicroservice\nversion = 2.1.0\ndatabase = \n  host = db.example.com\n  port = 5432\n  credentials =\n    user = service_user\n    password = secret123\n  pools =\n    read = 5\n    write = 2\nlogging = \n  level = info\n  outputs =\n    output = console\n    output = file\n    output = syslog\nfeatures = \n  feature_a = enabled\n  feature_b = disabled\n  feature_c = experimental"
         },
         {
           "function": "build_hierarchy",

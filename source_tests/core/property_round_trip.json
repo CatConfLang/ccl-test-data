@@ -6,8 +6,19 @@
       "input": "key = value\nnested =\n  sub = val",
       "tests": [
         {
+          "function": "parse",
+          "expect": [
+            {"key": "key", "value": "value"},
+            {"key": "nested", "value": "\n  sub = val"}
+          ]
+        },
+        {
+          "function": "print",
+          "expect": "key = value\nnested = \n  sub = val"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ]
     },
@@ -17,7 +28,7 @@
       "tests": [
         {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         },
         {
           "function": "parse",
@@ -40,23 +51,18 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "",
-              "value": "item1"
-            },
-            {
-              "key": "",
-              "value": "item2"
-            },
-            {
-              "key": "regular",
-              "value": "value"
-            }
+            {"key": "", "value": "item1"},
+            {"key": "", "value": "item2"},
+            {"key": "regular", "value": "value"}
           ]
         },
         {
+          "function": "print",
+          "expect": " = item1\n = item2\nregular = value"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [
@@ -77,8 +83,12 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "config = \n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ]
     },
@@ -96,8 +106,12 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "script = \n  #!/bin/bash\n  echo hello\n  exit 0"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [
@@ -111,31 +125,20 @@
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "name",
-              "value": "Alice"
-            },
-            {
-              "key": "",
-              "value": "first item"
-            },
-            {
-              "key": "config",
-              "value": "\n  port = 3000"
-            },
-            {
-              "key": "",
-              "value": "second item"
-            },
-            {
-              "key": "final",
-              "value": "value"
-            }
+            {"key": "name", "value": "Alice"},
+            {"key": "", "value": "first item"},
+            {"key": "config", "value": "\n  port = 3000"},
+            {"key": "", "value": "second item"},
+            {"key": "final", "value": "value"}
           ]
         },
         {
+          "function": "print",
+          "expect": "name = Alice\n = first item\nconfig = \n  port = 3000\n = second item\nfinal = value"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [
@@ -156,8 +159,12 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "app = \n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [
@@ -178,8 +185,12 @@
           ]
         },
         {
+          "function": "print",
+          "expect": "level1 = \n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
+        },
+        {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         }
       ],
       "features": [
@@ -192,20 +203,18 @@
       "tests": [
         {
           "function": "round_trip",
-          "expect": null
+          "expect": true
         },
         {
           "function": "parse",
           "expect": [
-            {
-              "key": "empty_section",
-              "value": ""
-            },
-            {
-              "key": "other",
-              "value": "value"
-            }
+            {"key": "empty_section", "value": ""},
+            {"key": "other", "value": "value"}
           ]
+        },
+        {
+          "function": "print",
+          "expect": "empty_section = \nother = value"
         }
       ],
       "features": [

@@ -4,7 +4,33 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 2,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "nested",
+            "value": "\n  sub = val"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "input": "key = value\nnested =\n  sub = val",
+      "name": "round_trip_basic_parse",
+      "source_test": "round_trip_basic",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": true
       },
       "features": [],
       "functions": [
@@ -42,7 +68,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "whitespace"
@@ -90,7 +117,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "empty_keys"
@@ -128,7 +156,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [],
       "functions": [
@@ -166,7 +195,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "multiline"
@@ -222,7 +252,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "empty_keys"
@@ -262,7 +293,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "empty_keys"
@@ -302,7 +334,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "empty_keys"
@@ -347,7 +380,8 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 1
+        "count": 1,
+        "value": true
       },
       "features": [
         "empty_keys",
