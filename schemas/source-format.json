@@ -8,8 +8,7 @@
   "properties": {
     "$schema": {
       "type": "string",
-      "description": "JSON Schema reference",
-      "format": "uri"
+      "description": "JSON Schema reference (relative path to schema file)"
     },
     "tests": {
       "type": "array",

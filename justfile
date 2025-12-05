@@ -169,7 +169,7 @@ lint:
 deps:
     cd scripts && npm install
     go mod download
-    go install github.com/santhosh-tekuri/jsonschema/cmd/jv
+    go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
 
 # === RELEASE ===
 
