@@ -12,6 +12,51 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+// semigroup_associativity_basic_compose_associative - function:compose_associative
+func TestSemigroupAssociativityBasicComposeAssociative(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// semigroup_associativity_nested_compose_associative - function:compose_associative
+func TestSemigroupAssociativityNestedComposeAssociative(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// semigroup_associativity_lists_compose_associative - function:compose_associative feature:empty_keys
+func TestSemigroupAssociativityListsComposeAssociative(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_left_identity_basic_identity_left - function:identity_left
+func TestMonoidLeftIdentityBasicIdentityLeft(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_right_identity_basic_identity_right - function:identity_right
+func TestMonoidRightIdentityBasicIdentityRight(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_left_identity_nested_identity_left - function:identity_left
+func TestMonoidLeftIdentityNestedIdentityLeft(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_right_identity_nested_identity_right - function:identity_right
+func TestMonoidRightIdentityNestedIdentityRight(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_left_identity_lists_identity_left - function:identity_left feature:empty_keys
+func TestMonoidLeftIdentityListsIdentityLeft(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// monoid_right_identity_lists_identity_right - function:identity_right feature:empty_keys
+func TestMonoidRightIdentityListsIdentityRight(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // round_trip_property_basic_parse - function:parse
 func TestRoundTripPropertyBasicParse(t *testing.T) {
 

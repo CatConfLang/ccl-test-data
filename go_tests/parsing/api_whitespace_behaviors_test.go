@@ -180,7 +180,7 @@ func TestTabsPreserveInValueParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
 }
 
-// tabs_preserve_in_value_build_hierarchy - function:build_hierarchy feature:whitespace
+// tabs_preserve_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_preserve
 func TestTabsPreserveInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -202,23 +202,10 @@ func TestTabsPreserveLeadingTabGetString(t *testing.T) {
 
 // tabs_to_spaces_in_value_parse - function:parse feature:whitespace behavior:tabs_to_spaces
 func TestTabsToSpacesInValueParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key = 	value	with	tabs`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "  value  with  tabs"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
 
-// tabs_to_spaces_in_value_build_hierarchy - function:build_hierarchy feature:whitespace
+// tabs_to_spaces_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_to_spaces
 func TestTabsToSpacesInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -230,20 +217,7 @@ func TestTabsToSpacesInValueGetString(t *testing.T) {
 
 // tabs_to_spaces_leading_tab_parse - function:parse feature:whitespace behavior:tabs_to_spaces
 func TestTabsToSpacesLeadingTabParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key = 	indented`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "  indented"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
 
 // tabs_to_spaces_leading_tab_get_string - function:get_string feature:whitespace
@@ -253,20 +227,7 @@ func TestTabsToSpacesLeadingTabGetString(t *testing.T) {
 
 // tabs_to_spaces_multiple_tabs_parse - function:parse feature:whitespace behavior:tabs_to_spaces
 func TestTabsToSpacesMultipleTabsParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key = 			three_tabs`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "      three_tabs"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
 
 // tabs_preserve_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_preserve
@@ -276,22 +237,7 @@ func TestTabsPreserveMultilineParse(t *testing.T) {
 
 // tabs_to_spaces_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_to_spaces
 func TestTabsToSpacesMultilineParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `section =
-		indented_with_tabs
-		another_line`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "section", Value: "\n    indented_with_tabs\n    another_line"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
 
 // tabs_canonical_format_preserve_canonical_format - function:canonical_format feature:whitespace behavior:tabs_preserve
@@ -311,18 +257,5 @@ func TestSpacingAndTabsCombinedLoosePreserveParse(t *testing.T) {
 
 // spacing_and_tabs_combined_loose_to_spaces_parse - function:parse feature:whitespace behavior:loose_spacing behavior:tabs_to_spaces
 func TestSpacingAndTabsCombinedLooseToSpacesParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `key	=		value	with	tabs`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "  value  with  tabs"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }

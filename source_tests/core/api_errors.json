@@ -3,17 +3,18 @@
   "tests": [
     {
       "name": "just_key_error",
-      "input": "key",
       "tests": [
         {
           "function": "parse",
           "expect": null
         }
+      ],
+      "inputs": [
+        "key"
       ]
     },
     {
       "name": "whitespace_only_error",
-      "input": "   ",
       "tests": [
         {
           "function": "parse",
@@ -22,11 +23,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "   "
       ]
     },
     {
       "name": "whitespace_only_error_ocaml_reference",
-      "input": "   ",
       "tests": [
         {
           "function": "parse",
@@ -35,21 +38,25 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "   "
       ]
     },
     {
       "name": "just_string_error",
-      "input": "val",
       "tests": [
         {
           "function": "parse",
           "expect": null
         }
+      ],
+      "inputs": [
+        "val"
       ]
     },
     {
       "name": "multiline_plain_error",
-      "input": "val\n  next",
       "tests": [
         {
           "function": "parse",
@@ -58,11 +65,13 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "val\n  next"
       ]
     },
     {
       "name": "multiline_plain_nested_error",
-      "input": "\nval\n  next",
       "tests": [
         {
           "function": "parse",
@@ -71,6 +80,9 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "\nval\n  next"
       ]
     }
   ]

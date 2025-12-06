@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "basic_dotted_key_expansion",
-      "input": "database.host = localhost",
       "tests": [
         {
           "function": "parse",
@@ -25,11 +24,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "database.host = localhost"
       ]
     },
     {
       "name": "multiple_dotted_keys",
-      "input": "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp",
       "tests": [
         {
           "function": "parse",
@@ -63,11 +64,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp"
       ]
     },
     {
       "name": "deep_dotted_nesting",
-      "input": "server.database.credentials.user = admin\nserver.database.credentials.pass = secret",
       "tests": [
         {
           "function": "parse",
@@ -98,11 +101,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "server.database.credentials.user = admin\nserver.database.credentials.pass = secret"
       ]
     },
     {
       "name": "mixed_dotted_and_regular_keys",
-      "input": "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info",
       "tests": [
         {
           "function": "parse",
@@ -143,11 +148,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info"
       ]
     },
     {
       "name": "dotted_key_conflicts_resolution",
-      "input": "database = old_value\ndatabase.host = localhost",
       "tests": [
         {
           "function": "parse",
@@ -173,11 +180,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "database = old_value\ndatabase.host = localhost"
       ]
     },
     {
       "name": "dotted_keys_with_lists",
-      "input": "servers.web = web1\nservers.web = web2\nservers.api = api1",
       "tests": [
         {
           "function": "parse",
@@ -211,11 +220,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "servers.web = web1\nservers.web = web2\nservers.api = api1"
       ]
     },
     {
       "name": "empty_dotted_key_segments",
-      "input": "a..b = value",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -240,11 +251,13 @@
       "features": [
         "experimental_dotted_keys",
         "empty_keys"
+      ],
+      "inputs": [
+        "a..b = value"
       ]
     },
     {
       "name": "single_dot_key",
-      "input": "a. = value",
       "tests": [
         {
           "function": "parse",
@@ -267,11 +280,13 @@
       "features": [
         "experimental_dotted_keys",
         "empty_keys"
+      ],
+      "inputs": [
+        "a. = value"
       ]
     },
     {
       "name": "hierarchical_with_expand_dotted_validation",
-      "input": "database =\n  enabled = true\n  port = 5432",
       "tests": [
         {
           "function": "parse",
@@ -294,11 +309,13 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "database =\n  enabled = true\n  port = 5432"
       ]
     },
     {
       "name": "dotted_key_list_access",
-      "input": "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432",
       "tests": [
         {
           "function": "parse",
@@ -353,6 +370,9 @@
       ],
       "features": [
         "experimental_dotted_keys"
+      ],
+      "inputs": [
+        "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432"
       ]
     }
   ]

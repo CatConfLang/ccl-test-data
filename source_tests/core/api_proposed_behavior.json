@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "multiline_section_header_value",
-      "input": "== Section Header =\n  This continues the header\nkey = value",
       "tests": [
         {
           "function": "parse_indented",
@@ -25,11 +24,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "== Section Header =\n  This continues the header\nkey = value"
       ]
     },
     {
       "name": "unindented_multiline_becomes_continuation",
-      "input": "== Section Header =\nThis continues the header\nkey = value",
       "tests": [
         {
           "function": "parse_indented",
@@ -50,11 +51,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "== Section Header =\nThis continues the header\nkey = value"
       ]
     },
     {
       "name": "single_item_as_list",
-      "input": "item = single",
       "tests": [
         {
           "function": "parse",
@@ -86,11 +89,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "item = single"
       ]
     },
     {
       "name": "mixed_duplicate_single_keys",
-      "input": "ports = 80\nports = 443\nhost = localhost",
       "tests": [
         {
           "function": "parse",
@@ -144,11 +149,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
       ]
     },
     {
       "name": "nested_list_access",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
       "tests": [
         {
           "function": "parse",
@@ -198,11 +205,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
       ]
     },
     {
       "name": "empty_list",
-      "input": "empty_list =",
       "tests": [
         {
           "function": "parse",
@@ -231,11 +240,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "empty_list ="
       ]
     },
     {
       "name": "list_with_numbers",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
       "tests": [
         {
           "function": "parse",
@@ -284,11 +295,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
       ]
     },
     {
       "name": "list_with_booleans",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
       "tests": [
         {
           "function": "parse",
@@ -337,11 +350,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
       ]
     },
     {
       "name": "list_with_whitespace",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
       "tests": [
         {
           "function": "parse",
@@ -393,11 +408,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
       ]
     },
     {
       "name": "deeply_nested_list",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
       "tests": [
         {
           "function": "parse",
@@ -461,11 +478,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
       ]
     },
     {
       "name": "list_with_unicode",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
       "tests": [
         {
           "function": "parse",
@@ -517,11 +536,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
       ]
     },
     {
       "name": "list_with_special_characters",
-      "input": "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+",
       "tests": [
         {
           "function": "parse",
@@ -570,11 +591,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
       ]
     },
     {
       "name": "list_multiline_values",
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -625,11 +648,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
       ]
     },
     {
       "name": "complex_mixed_list_scenarios",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
       "tests": [
         {
           "function": "get_list",
@@ -754,11 +779,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
       ]
     },
     {
       "name": "list_path_traversal_protection",
-      "input": "safe = value",
       "tests": [
         {
           "function": "parse",
@@ -801,11 +828,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "safe = value"
       ]
     },
     {
       "name": "parse_empty_value",
-      "input": "empty_key =",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -832,11 +861,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "empty_key ="
       ]
     },
     {
       "name": "canonical_format_empty_values",
-      "input": "empty_key =",
       "tests": [
         {
           "function": "parse",
@@ -854,11 +885,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "empty_key ="
       ]
     },
     {
       "name": "canonical_format_tab_preservation",
-      "input": "value_with_tabs = text\t\twith\ttabs\t",
       "tests": [
         {
           "function": "parse",
@@ -879,11 +912,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "value_with_tabs = text\t\twith\ttabs\t"
       ]
     },
     {
       "name": "canonical_format_unicode",
-      "input": "unicode = 你好世界\nemo = 🌟✨",
       "tests": [
         {
           "function": "parse",
@@ -908,11 +943,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "unicode = 你好世界\nemo = 🌟✨"
       ]
     },
     {
       "name": "canonical_format_line_endings_proposed",
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
       "tests": [
         {
           "function": "parse",
@@ -937,11 +974,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
       ]
     },
     {
       "name": "crlf_normalize_to_lf_proposed",
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
       "tests": [
         {
           "function": "parse",
@@ -966,11 +1005,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
       ]
     },
     {
       "name": "crlf_normalize_to_lf_indented_proposed",
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
       "tests": [
         {
           "function": "canonical_format",
@@ -995,11 +1036,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
       ]
     },
     {
       "name": "canonical_format_consistent_spacing",
-      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
       "tests": [
         {
           "function": "canonical_format",
@@ -1028,11 +1071,13 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
       ]
     },
     {
       "name": "deterministic_output",
-      "input": "z = last\na = first\nm = middle",
       "tests": [
         {
           "function": "parse",
@@ -1058,6 +1103,9 @@
       ],
       "variants": [
         "proposed_behavior"
+      ],
+      "inputs": [
+        "z = last\na = first\nm = middle"
       ]
     }
   ]

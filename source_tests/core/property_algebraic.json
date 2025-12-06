@@ -3,7 +3,11 @@
   "tests": [
     {
       "name": "semigroup_associativity_basic",
-      "inputs": ["a = 1", "b = 2", "c = 3"],
+      "inputs": [
+        "a = 1",
+        "b = 2",
+        "c = 3"
+      ],
       "tests": [
         {
           "function": "compose_associative",
@@ -27,7 +31,11 @@
     },
     {
       "name": "semigroup_associativity_lists",
-      "inputs": ["= item1", "= item2", "= item3"],
+      "inputs": [
+        "= item1",
+        "= item2",
+        "= item3"
+      ],
       "tests": [
         {
           "function": "compose_associative",
@@ -40,7 +48,10 @@
     },
     {
       "name": "monoid_left_identity_basic",
-      "inputs": ["", "key = value\nnested =\n  sub = val"],
+      "inputs": [
+        "",
+        "key = value\nnested =\n  sub = val"
+      ],
       "tests": [
         {
           "function": "identity_left",
@@ -50,7 +61,10 @@
     },
     {
       "name": "monoid_right_identity_basic",
-      "inputs": ["key = value\nnested =\n  sub = val", ""],
+      "inputs": [
+        "key = value\nnested =\n  sub = val",
+        ""
+      ],
       "tests": [
         {
           "function": "identity_right",
@@ -86,7 +100,10 @@
     },
     {
       "name": "monoid_left_identity_lists",
-      "inputs": ["", "= item1\n= item2\n= item3"],
+      "inputs": [
+        "",
+        "= item1\n= item2\n= item3"
+      ],
       "tests": [
         {
           "function": "identity_left",
@@ -99,7 +116,10 @@
     },
     {
       "name": "monoid_right_identity_lists",
-      "inputs": ["= item1\n= item2\n= item3", ""],
+      "inputs": [
+        "= item1\n= item2\n= item3",
+        ""
+      ],
       "tests": [
         {
           "function": "identity_right",
@@ -112,13 +132,18 @@
     },
     {
       "name": "round_trip_property_basic",
-      "input": "key = value\nanother = test",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "key", "value": "value"},
-            {"key": "another", "value": "test"}
+            {
+              "key": "key",
+              "value": "value"
+            },
+            {
+              "key": "another",
+              "value": "test"
+            }
           ]
         },
         {
@@ -129,11 +154,13 @@
           "function": "round_trip",
           "expect": true
         }
+      ],
+      "inputs": [
+        "key = value\nanother = test"
       ]
     },
     {
       "name": "round_trip_property_nested",
-      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "tests": [
         {
           "function": "parse",
@@ -152,22 +179,33 @@
           "function": "round_trip",
           "expect": true
         }
+      ],
+      "inputs": [
+        "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
       ]
     },
     {
       "name": "round_trip_property_complex",
-      "input": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "", "value": "item1"},
-            {"key": "", "value": "item2"},
+            {
+              "key": "",
+              "value": "item1"
+            },
+            {
+              "key": "",
+              "value": "item2"
+            },
             {
               "key": "config",
               "value": "\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c"
             },
-            {"key": "final", "value": "end"}
+            {
+              "key": "final",
+              "value": "end"
+            }
           ]
         },
         {
@@ -181,6 +219,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
       ]
     }
   ]

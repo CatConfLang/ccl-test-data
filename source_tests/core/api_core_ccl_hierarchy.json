@@ -3,13 +3,18 @@
   "tests": [
     {
       "name": "basic_object_construction",
-      "input": "name = Alice\nage = 42",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "name", "value": "Alice"},
-            {"key": "age", "value": "42"}
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
           ]
         },
         {
@@ -30,11 +35,13 @@
             "name": "Alice"
           }
         }
+      ],
+      "inputs": [
+        "name = Alice\nage = 42"
       ]
     },
     {
       "name": "deep_nested_objects",
-      "input": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
       "tests": [
         {
           "function": "parse",
@@ -77,18 +84,29 @@
             }
           }
         }
+      ],
+      "inputs": [
+        "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
       ]
     },
     {
       "name": "duplicate_keys_to_lists",
-      "input": "item = first\nitem = second\nitem = third",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "item", "value": "first"},
-            {"key": "item", "value": "second"},
-            {"key": "item", "value": "third"}
+            {
+              "key": "item",
+              "value": "first"
+            },
+            {
+              "key": "item",
+              "value": "second"
+            },
+            {
+              "key": "item",
+              "value": "third"
+            }
           ]
         },
         {
@@ -115,11 +133,13 @@
             ]
           }
         }
+      ],
+      "inputs": [
+        "item = first\nitem = second\nitem = third"
       ]
     },
     {
       "name": "nested_duplicate_keys",
-      "input": "config =\n  server = web1\n  server = web2\n  port = 80",
       "tests": [
         {
           "function": "parse",
@@ -146,18 +166,29 @@
             }
           }
         }
+      ],
+      "inputs": [
+        "config =\n  server = web1\n  server = web2\n  port = 80"
       ]
     },
     {
       "name": "mixed_flat_and_nested",
-      "input": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "name", "value": "Alice"},
-            {"key": "config", "value": "\n  debug = true\n  timeout = 30"},
-            {"key": "version", "value": "1.0"}
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "config",
+              "value": "\n  debug = true\n  timeout = 30"
+            },
+            {
+              "key": "version",
+              "value": "1.0"
+            }
           ]
         },
         {
@@ -175,11 +206,13 @@
             "version": "1.0"
           }
         }
+      ],
+      "inputs": [
+        "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
       ]
     },
     {
       "name": "nested_objects_with_lists",
-      "input": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
       "tests": [
         {
           "function": "parse",
@@ -212,6 +245,9 @@
             }
           }
         }
+      ],
+      "inputs": [
+        "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
       ]
     }
   ]

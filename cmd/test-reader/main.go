@@ -419,9 +419,13 @@ func displayTest(test TestCase, index int) {
 	// Note: ccl-test-lib TestCase doesn't have Description field
 	// Description would be in suite metadata if needed
 
-	// Display input compactly
+	// Display input compactly (use first input for single-input tests)
 	fmt.Println(inputHeaderStyle.Render("📄 CCL INPUT:"))
-	fmt.Println(inputContentStyle.Render(formatInputContent(test.Input)))
+	inputText := ""
+	if len(test.Inputs) > 0 {
+		inputText = test.Inputs[0]
+	}
+	fmt.Println(inputContentStyle.Render(formatInputContent(inputText)))
 
 	// Display parse validation - use the Expected field from ccl-test-lib
 	displayParseValidationFromTestCase(test)
@@ -943,9 +947,13 @@ func (m tuiModel) renderTest(test TestCase, index int, compact bool) string {
 	// Note: ccl-test-lib TestCase doesn't have Description field
 	// Description would be in suite metadata if needed
 
-	// Input CCL compact
+	// Input CCL compact (use first input for single-input tests)
+	inputText := ""
+	if len(test.Inputs) > 0 {
+		inputText = test.Inputs[0]
+	}
 	content.WriteString(inputHeaderStyle.Render("📄 CCL INPUT:") + "\n")
-	content.WriteString(inputContentStyle.Render(formatInputContent(test.Input)) + "\n")
+	content.WriteString(inputContentStyle.Render(formatInputContent(inputText)) + "\n")
 
 	// Parse validation using ccl-test-lib TestCase
 	content.WriteString(m.renderParseValidationFromTestCase(test, compact) + "\n")

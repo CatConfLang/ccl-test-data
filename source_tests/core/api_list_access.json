@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "basic_list_from_duplicates",
-      "input": "servers = web1\nservers = web2\nservers = web3",
       "tests": [
         {
           "function": "parse",
@@ -46,11 +45,13 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "inputs": [
+        "servers = web1\nservers = web2\nservers = web3"
       ]
     },
     {
       "name": "large_list",
-      "input": "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20",
       "tests": [
         {
           "function": "parse",
@@ -195,11 +196,13 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
+      ],
+      "inputs": [
+        "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20"
       ]
     },
     {
       "name": "list_with_comments",
-      "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
       "tests": [
         {
           "function": "parse",
@@ -263,11 +266,13 @@
         "behaviors": [
           "array_order_lexicographic"
         ]
-      }
+      },
+      "inputs": [
+        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
+      ]
     },
     {
       "name": "list_with_comments_lexicographic",
-      "input": "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list",
       "tests": [
         {
           "function": "parse",
@@ -331,11 +336,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
+      ]
     },
     {
       "name": "list_error_missing_key",
-      "input": "existing = value",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -359,11 +366,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "existing = value"
       ]
     },
     {
       "name": "list_error_nested_missing_key",
-      "input": "config =\n  server = web1",
       "tests": [
         {
           "function": "parse",
@@ -390,11 +399,13 @@
             "missing"
           ]
         }
+      ],
+      "inputs": [
+        "config =\n  server = web1"
       ]
     },
     {
       "name": "list_error_non_object_path",
-      "input": "value = simple",
       "tests": [
         {
           "function": "parse",
@@ -419,11 +430,13 @@
             "nested"
           ]
         }
+      ],
+      "inputs": [
+        "value = simple"
       ]
     },
     {
       "name": "list_edge_case_zero_length",
-      "input": "",
       "tests": [
         {
           "function": "get_list",
@@ -440,11 +453,13 @@
           "function": "build_hierarchy",
           "expect": {}
         }
+      ],
+      "inputs": [
+        ""
       ]
     },
     {
       "name": "bare_list_basic",
-      "input": "servers =\n  = web1\n  = web2\n  = web3",
       "tests": [
         {
           "function": "parse",
@@ -481,11 +496,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "servers =\n  = web1\n  = web2\n  = web3"
       ]
     },
     {
       "name": "bare_list_nested",
-      "input": "network =\n  ports =\n    = 80\n    = 443\n    = 8080",
       "tests": [
         {
           "function": "parse",
@@ -533,11 +550,13 @@
         "behaviors": [
           "array_order_lexicographic"
         ]
-      }
+      },
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ]
     },
     {
       "name": "bare_list_nested_lexicographic",
-      "input": "network =\n  ports =\n    = 80\n    = 443\n    = 8080",
       "tests": [
         {
           "function": "parse",
@@ -585,11 +604,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ]
     },
     {
       "name": "bare_list_with_comments",
-      "input": "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com",
       "tests": [
         {
           "function": "parse",
@@ -636,11 +657,13 @@
         "behaviors": [
           "array_order_lexicographic"
         ]
-      }
+      },
+      "inputs": [
+        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+      ]
     },
     {
       "name": "bare_list_with_comments_lexicographic",
-      "input": "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com",
       "tests": [
         {
           "function": "parse",
@@ -687,11 +710,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+      ]
     },
     {
       "name": "bare_list_deeply_nested",
-      "input": "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1",
       "tests": [
         {
           "function": "parse",
@@ -745,11 +770,13 @@
         "behaviors": [
           "array_order_lexicographic"
         ]
-      }
+      },
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+      ]
     },
     {
       "name": "bare_list_deeply_nested_lexicographic",
-      "input": "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1",
       "tests": [
         {
           "function": "parse",
@@ -803,11 +830,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+      ]
     },
     {
       "name": "bare_list_mixed_with_other_keys",
-      "input": "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2",
       "tests": [
         {
           "function": "parse",
@@ -847,11 +876,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
       ]
     },
     {
       "name": "bare_list_error_not_a_list",
-      "input": "config =\n  setting = value",
       "tests": [
         {
           "function": "parse",
@@ -881,6 +912,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled"
+      ],
+      "inputs": [
+        "config =\n  setting = value"
       ]
     }
   ]

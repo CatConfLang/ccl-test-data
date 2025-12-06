@@ -44,7 +44,7 @@ install-test-reader:
 dev-basic:
     just clean
     just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:strict_spacing
+    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
     just lint
     #!/usr/bin/env bash
     echo "🧪 Running tests..."

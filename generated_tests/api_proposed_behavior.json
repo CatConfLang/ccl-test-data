@@ -23,7 +23,9 @@
       "functions": [
         "parse_indented"
       ],
-      "input": "== Section Header =\n  This continues the header\nkey = value",
+      "inputs": [
+        "== Section Header =\n  This continues the header\nkey = value"
+      ],
       "name": "multiline_section_header_value_parse_indented",
       "source_test": "multiline_section_header_value",
       "validation": "parse_indented",
@@ -52,7 +54,9 @@
       "functions": [
         "parse_indented"
       ],
-      "input": "== Section Header =\nThis continues the header\nkey = value",
+      "inputs": [
+        "== Section Header =\nThis continues the header\nkey = value"
+      ],
       "name": "unindented_multiline_becomes_continuation_parse_indented",
       "source_test": "unindented_multiline_becomes_continuation",
       "validation": "parse_indented",
@@ -75,7 +79,9 @@
       "functions": [
         "parse"
       ],
-      "input": "item = single",
+      "inputs": [
+        "item = single"
+      ],
       "name": "single_item_as_list_parse",
       "source_test": "single_item_as_list",
       "validation": "parse",
@@ -95,7 +101,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "item = single",
+      "inputs": [
+        "item = single"
+      ],
       "name": "single_item_as_list_build_hierarchy",
       "source_test": "single_item_as_list",
       "validation": "build_hierarchy",
@@ -120,7 +128,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "item = single",
+      "inputs": [
+        "item = single"
+      ],
       "name": "single_item_as_list_get_list",
       "source_test": "single_item_as_list",
       "validation": "get_list",
@@ -151,7 +161,9 @@
       "functions": [
         "parse"
       ],
-      "input": "ports = 80\nports = 443\nhost = localhost",
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ],
       "name": "mixed_duplicate_single_keys_parse",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "parse",
@@ -175,7 +187,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "ports = 80\nports = 443\nhost = localhost",
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ],
       "name": "mixed_duplicate_single_keys_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "build_hierarchy",
@@ -200,7 +214,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "ports = 80\nports = 443\nhost = localhost",
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ],
       "name": "mixed_duplicate_single_keys_get_list",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "get_list",
@@ -223,7 +239,9 @@
       "functions": [
         "parse"
       ],
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
       "name": "nested_list_access_parse",
       "source_test": "nested_list_access",
       "validation": "parse",
@@ -249,7 +267,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
       "name": "nested_list_access_build_hierarchy",
       "source_test": "nested_list_access",
       "validation": "build_hierarchy",
@@ -275,7 +295,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
       "name": "nested_list_access_get_list",
       "source_test": "nested_list_access",
       "validation": "get_list",
@@ -298,7 +320,9 @@
       "functions": [
         "parse"
       ],
-      "input": "empty_list =",
+      "inputs": [
+        "empty_list ="
+      ],
       "name": "empty_list_parse",
       "source_test": "empty_list",
       "validation": "parse",
@@ -318,7 +342,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "empty_list =",
+      "inputs": [
+        "empty_list ="
+      ],
       "name": "empty_list_build_hierarchy",
       "source_test": "empty_list",
       "validation": "build_hierarchy",
@@ -341,7 +367,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "empty_list =",
+      "inputs": [
+        "empty_list ="
+      ],
       "name": "empty_list_get_list",
       "source_test": "empty_list",
       "validation": "get_list",
@@ -376,7 +404,9 @@
       "functions": [
         "parse"
       ],
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
       "name": "list_with_numbers_parse",
       "source_test": "list_with_numbers",
       "validation": "parse",
@@ -401,7 +431,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
       "name": "list_with_numbers_build_hierarchy",
       "source_test": "list_with_numbers",
       "validation": "build_hierarchy",
@@ -427,7 +459,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
       "name": "list_with_numbers_get_list",
       "source_test": "list_with_numbers",
       "validation": "get_list",
@@ -462,7 +496,9 @@
       "functions": [
         "parse"
       ],
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
       "name": "list_with_booleans_parse",
       "source_test": "list_with_booleans",
       "validation": "parse",
@@ -487,7 +523,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
       "name": "list_with_booleans_build_hierarchy",
       "source_test": "list_with_booleans",
       "validation": "build_hierarchy",
@@ -513,7 +551,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
       "name": "list_with_booleans_get_list",
       "source_test": "list_with_booleans",
       "validation": "get_list",
@@ -550,7 +590,9 @@
       "functions": [
         "parse"
       ],
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
       "name": "list_with_whitespace_parse",
       "source_test": "list_with_whitespace",
       "validation": "parse",
@@ -577,7 +619,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
       "name": "list_with_whitespace_build_hierarchy",
       "source_test": "list_with_whitespace",
       "validation": "build_hierarchy",
@@ -605,7 +649,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
       "name": "list_with_whitespace_get_list",
       "source_test": "list_with_whitespace",
       "validation": "get_list",
@@ -648,7 +694,9 @@
       "functions": [
         "parse"
       ],
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ],
       "name": "deeply_nested_list_parse",
       "source_test": "deeply_nested_list",
       "validation": "parse",
@@ -678,7 +726,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ],
       "name": "deeply_nested_list_build_hierarchy",
       "source_test": "deeply_nested_list",
       "validation": "build_hierarchy",
@@ -706,7 +756,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ],
       "name": "deeply_nested_list_get_list",
       "source_test": "deeply_nested_list",
       "validation": "get_list",
@@ -743,7 +795,9 @@
       "functions": [
         "parse"
       ],
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ],
       "name": "list_with_unicode_parse",
       "source_test": "list_with_unicode",
       "validation": "parse",
@@ -770,7 +824,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ],
       "name": "list_with_unicode_build_hierarchy",
       "source_test": "list_with_unicode",
       "validation": "build_hierarchy",
@@ -798,7 +854,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ],
       "name": "list_with_unicode_get_list",
       "source_test": "list_with_unicode",
       "validation": "get_list",
@@ -833,7 +891,9 @@
       "functions": [
         "parse"
       ],
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+"
+      ],
       "name": "list_with_special_characters_parse",
       "source_test": "list_with_special_characters",
       "validation": "parse",
@@ -858,7 +918,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+"
+      ],
       "name": "list_with_special_characters_build_hierarchy",
       "source_test": "list_with_special_characters",
       "validation": "build_hierarchy",
@@ -884,7 +946,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+",
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+"
+      ],
       "name": "list_with_special_characters_get_list",
       "source_test": "list_with_special_characters",
       "validation": "get_list",
@@ -921,7 +985,9 @@
       "functions": [
         "parse_indented"
       ],
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+      "inputs": [
+        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
+      ],
       "name": "list_multiline_values_parse_indented",
       "source_test": "list_multiline_values",
       "validation": "parse_indented",
@@ -948,7 +1014,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+      "inputs": [
+        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
+      ],
       "name": "list_multiline_values_build_hierarchy",
       "source_test": "list_multiline_values",
       "validation": "build_hierarchy",
@@ -975,7 +1043,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item",
+      "inputs": [
+        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
+      ],
       "name": "list_multiline_values_get_list",
       "source_test": "list_multiline_values",
       "validation": "get_list",
@@ -1038,7 +1108,9 @@
       "functions": [
         "parse_indented"
       ],
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
       "name": "complex_mixed_list_scenarios_parse_indented",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "parse_indented",
@@ -1076,7 +1148,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
       "name": "complex_mixed_list_scenarios_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "build_hierarchy",
@@ -1103,7 +1177,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
       "name": "complex_mixed_list_scenarios_get_list",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "get_list",
@@ -1126,7 +1202,9 @@
       "functions": [
         "parse"
       ],
-      "input": "safe = value",
+      "inputs": [
+        "safe = value"
+      ],
       "name": "list_path_traversal_protection_parse",
       "source_test": "list_path_traversal_protection",
       "validation": "parse",
@@ -1146,7 +1224,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "safe = value",
+      "inputs": [
+        "safe = value"
+      ],
       "name": "list_path_traversal_protection_build_hierarchy",
       "source_test": "list_path_traversal_protection",
       "validation": "build_hierarchy",
@@ -1171,7 +1251,9 @@
       "functions": [
         "get_list"
       ],
-      "input": "safe = value",
+      "inputs": [
+        "safe = value"
+      ],
       "name": "list_path_traversal_protection_get_list",
       "source_test": "list_path_traversal_protection",
       "validation": "get_list",
@@ -1194,7 +1276,9 @@
       "functions": [
         "parse"
       ],
-      "input": "empty_key =",
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "parse_empty_value_parse",
       "source_test": "parse_empty_value",
       "validation": "parse",
@@ -1214,7 +1298,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "empty_key =",
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "parse_empty_value_build_hierarchy",
       "source_test": "parse_empty_value",
       "validation": "build_hierarchy",
@@ -1235,7 +1321,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "empty_key =",
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "parse_empty_value_get_string",
       "source_test": "parse_empty_value",
       "validation": "get_string",
@@ -1258,7 +1346,9 @@
       "functions": [
         "parse"
       ],
-      "input": "empty_key =",
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "canonical_format_empty_values_parse",
       "source_test": "canonical_format_empty_values",
       "validation": "parse",
@@ -1276,7 +1366,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "empty_key =",
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "canonical_format_empty_values_canonical_format",
       "source_test": "canonical_format_empty_values",
       "validation": "canonical_format",
@@ -1301,7 +1393,9 @@
       "functions": [
         "parse"
       ],
-      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "inputs": [
+        "value_with_tabs = text\t\twith\ttabs\t"
+      ],
       "name": "canonical_format_tab_preservation_parse",
       "source_test": "canonical_format_tab_preservation",
       "validation": "parse",
@@ -1321,7 +1415,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "value_with_tabs = text\t\twith\ttabs\t",
+      "inputs": [
+        "value_with_tabs = text\t\twith\ttabs\t"
+      ],
       "name": "canonical_format_tab_preservation_canonical_format",
       "source_test": "canonical_format_tab_preservation",
       "validation": "canonical_format",
@@ -1350,7 +1446,9 @@
       "functions": [
         "parse"
       ],
-      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "inputs": [
+        "unicode = 你好世界\nemo = 🌟✨"
+      ],
       "name": "canonical_format_unicode_parse",
       "source_test": "canonical_format_unicode",
       "validation": "parse",
@@ -1370,7 +1468,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "unicode = 你好世界\nemo = 🌟✨",
+      "inputs": [
+        "unicode = 你好世界\nemo = 🌟✨"
+      ],
       "name": "canonical_format_unicode_canonical_format",
       "source_test": "canonical_format_unicode",
       "validation": "canonical_format",
@@ -1399,7 +1499,9 @@
       "functions": [
         "parse"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "canonical_format_line_endings_proposed_parse",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "parse",
@@ -1419,7 +1521,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "canonical_format_line_endings_proposed_canonical_format",
       "source_test": "canonical_format_line_endings_proposed",
       "validation": "canonical_format",
@@ -1448,7 +1552,9 @@
       "functions": [
         "parse"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "crlf_normalize_to_lf_proposed_parse",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "parse",
@@ -1468,7 +1574,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "crlf_normalize_to_lf_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_proposed",
       "validation": "canonical_format",
@@ -1497,7 +1605,9 @@
       "functions": [
         "parse"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "crlf_normalize_to_lf_indented_proposed_parse",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "parse",
@@ -1517,7 +1627,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "crlf_normalize_to_lf_indented_proposed_canonical_format",
       "source_test": "crlf_normalize_to_lf_indented_proposed",
       "validation": "canonical_format",
@@ -1550,7 +1662,9 @@
       "functions": [
         "parse"
       ],
-      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ],
       "name": "canonical_format_consistent_spacing_parse",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "parse",
@@ -1568,7 +1682,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ],
       "name": "canonical_format_consistent_spacing_canonical_format",
       "source_test": "canonical_format_consistent_spacing",
       "validation": "canonical_format",
@@ -1599,7 +1715,9 @@
       "functions": [
         "parse"
       ],
-      "input": "z = last\na = first\nm = middle",
+      "inputs": [
+        "z = last\na = first\nm = middle"
+      ],
       "name": "deterministic_output_parse",
       "source_test": "deterministic_output",
       "validation": "parse",
@@ -1617,7 +1735,9 @@
       "functions": [
         "canonical_format"
       ],
-      "input": "z = last\na = first\nm = middle",
+      "inputs": [
+        "z = last\na = first\nm = middle"
+      ],
       "name": "deterministic_output_canonical_format",
       "source_test": "deterministic_output",
       "validation": "canonical_format",

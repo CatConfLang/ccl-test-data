@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "parse_basic_integer",
-      "input": "port = 8080",
       "tests": [
         {
           "function": "parse",
@@ -30,11 +29,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "port = 8080"
       ]
     },
     {
       "name": "parse_basic_float",
-      "input": "temperature = 98.6",
       "tests": [
         {
           "function": "parse",
@@ -61,11 +62,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "temperature = 98.6"
       ]
     },
     {
       "name": "parse_boolean_true",
-      "input": "enabled = true",
       "tests": [
         {
           "function": "parse",
@@ -96,11 +99,13 @@
       "behaviors": [
         "boolean_strict",
         "boolean_lenient"
+      ],
+      "inputs": [
+        "enabled = true"
       ]
     },
     {
       "name": "parse_boolean_yes",
-      "input": "active = yes",
       "tests": [
         {
           "function": "parse",
@@ -130,11 +135,13 @@
       ],
       "behaviors": [
         "boolean_lenient"
+      ],
+      "inputs": [
+        "active = yes"
       ]
     },
     {
       "name": "parse_boolean_yes_strict_literal",
-      "input": "active = yes",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -164,11 +171,13 @@
       ],
       "behaviors": [
         "boolean_strict"
+      ],
+      "inputs": [
+        "active = yes"
       ]
     },
     {
       "name": "parse_boolean_false",
-      "input": "disabled = false",
       "tests": [
         {
           "function": "parse",
@@ -199,11 +208,13 @@
       "behaviors": [
         "boolean_strict",
         "boolean_lenient"
+      ],
+      "inputs": [
+        "disabled = false"
       ]
     },
     {
       "name": "parse_string_fallback",
-      "input": "name = Alice",
       "tests": [
         {
           "function": "parse",
@@ -227,11 +238,13 @@
             "name"
           ]
         }
+      ],
+      "inputs": [
+        "name = Alice"
       ]
     },
     {
       "name": "parse_negative_integer",
-      "input": "offset = -42",
       "tests": [
         {
           "function": "parse",
@@ -258,11 +271,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "offset = -42"
       ]
     },
     {
       "name": "parse_zero_values",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -317,11 +332,13 @@
       ],
       "behaviors": [
         "boolean_lenient"
+      ],
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
       ]
     },
     {
       "name": "parse_zero_values_strict_literal",
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
       "tests": [
         {
           "function": "parse",
@@ -376,11 +393,13 @@
       ],
       "behaviors": [
         "boolean_strict"
+      ],
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
       ]
     },
     {
       "name": "parse_boolean_variants",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
       "tests": [
         {
           "function": "parse",
@@ -447,11 +466,13 @@
       ],
       "behaviors": [
         "boolean_lenient"
+      ],
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
       ]
     },
     {
       "name": "parse_boolean_variants_strict_literal",
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
       "tests": [
         {
           "function": "get_int",
@@ -518,11 +539,13 @@
       ],
       "behaviors": [
         "boolean_strict"
+      ],
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
       ]
     },
     {
       "name": "parse_mixed_types",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
       "tests": [
         {
           "function": "parse",
@@ -593,11 +616,13 @@
       ],
       "behaviors": [
         "boolean_lenient"
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
       ]
     },
     {
       "name": "parse_mixed_types_strict_literal",
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -668,11 +693,13 @@
       ],
       "behaviors": [
         "boolean_strict"
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
       ]
     },
     {
       "name": "parse_with_whitespace",
-      "input": "number =   42   \nflag =  true  ",
       "tests": [
         {
           "function": "parse",
@@ -712,11 +739,13 @@
       "features": [
         "whitespace",
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "number =   42   \nflag =  true  "
       ]
     },
     {
       "name": "parse_with_conservative_options",
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
       "tests": [
         {
           "function": "parse",
@@ -765,11 +794,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
       ]
     },
     {
       "name": "parse_integer_error",
-      "input": "port = not_a_number",
       "tests": [
         {
           "function": "parse",
@@ -796,11 +827,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "port = not_a_number"
       ]
     },
     {
       "name": "parse_float_error",
-      "input": "temperature = invalid",
       "tests": [
         {
           "function": "parse",
@@ -827,11 +860,13 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "inputs": [
+        "temperature = invalid"
       ]
     },
     {
       "name": "parse_boolean_error",
-      "input": "enabled = maybe",
       "tests": [
         {
           "function": "parse",
@@ -861,11 +896,13 @@
       ],
       "behaviors": [
         "boolean_strict"
+      ],
+      "inputs": [
+        "enabled = maybe"
       ]
     },
     {
       "name": "parse_missing_path_error",
-      "input": "existing = value",
       "tests": [
         {
           "function": "parse",
@@ -889,6 +926,9 @@
             "missing"
           ]
         }
+      ],
+      "inputs": [
+        "existing = value"
       ]
     }
   ]

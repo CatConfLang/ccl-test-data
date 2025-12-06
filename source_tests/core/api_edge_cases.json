@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "basic_single_no_spaces",
-      "input": "key=val",
       "tests": [
         {
           "function": "parse",
@@ -14,11 +13,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "key=val"
       ]
     },
     {
       "name": "basic_with_spaces",
-      "input": "key = val",
       "tests": [
         {
           "function": "parse",
@@ -32,11 +33,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "key = val"
       ]
     },
     {
       "name": "indented_key",
-      "input": "  key = val",
       "tests": [
         {
           "function": "parse_indented",
@@ -50,11 +53,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "  key = val"
       ]
     },
     {
       "name": "value_trailing_spaces",
-      "input": "key = val  ",
       "tests": [
         {
           "function": "parse",
@@ -68,11 +73,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "key = val  "
       ]
     },
     {
       "name": "key_value_surrounded_spaces",
-      "input": "  key  =  val  ",
       "tests": [
         {
           "function": "parse",
@@ -86,11 +93,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "  key  =  val  "
       ]
     },
     {
       "name": "surrounded_by_newlines",
-      "input": "\nkey = val\n",
       "tests": [
         {
           "function": "parse",
@@ -101,11 +110,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "\nkey = val\n"
       ]
     },
     {
       "name": "key_empty_value",
-      "input": "key =",
       "tests": [
         {
           "function": "parse",
@@ -119,11 +130,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "key ="
       ]
     },
     {
       "name": "empty_value_with_newline",
-      "input": "key =\n",
       "tests": [
         {
           "function": "parse",
@@ -137,11 +150,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "key =\n"
       ]
     },
     {
       "name": "empty_value_with_spaces",
-      "input": "key =  ",
       "tests": [
         {
           "function": "parse",
@@ -156,11 +171,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "key =  "
       ]
     },
     {
       "name": "empty_key_indented",
-      "input": "  = val",
       "tests": [
         {
           "function": "parse_indented",
@@ -174,11 +191,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "  = val"
       ]
     },
     {
       "name": "empty_key_with_newline",
-      "input": "\n  = val",
       "tests": [
         {
           "function": "parse",
@@ -192,11 +211,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "\n  = val"
       ]
     },
     {
       "name": "empty_key_value_with_spaces",
-      "input": "  =  ",
       "tests": [
         {
           "function": "parse",
@@ -211,11 +232,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "  =  "
       ]
     },
     {
       "name": "equals_in_value_no_spaces",
-      "input": "a=b=c",
       "tests": [
         {
           "function": "parse",
@@ -226,11 +249,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "a=b=c"
       ]
     },
     {
       "name": "equals_in_value_with_spaces",
-      "input": "a = b = c",
       "tests": [
         {
           "function": "parse",
@@ -244,11 +269,13 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "a = b = c"
       ]
     },
     {
       "name": "multiple_key_value_pairs",
-      "input": "key1 = val1\nkey2 = val2",
       "tests": [
         {
           "function": "parse",
@@ -263,11 +290,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "key1 = val1\nkey2 = val2"
       ]
     },
     {
       "name": "key_with_tabs",
-      "input": "\tkey\t=\tvalue",
       "tests": [
         {
           "function": "parse",
@@ -284,11 +313,13 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "inputs": [
+        "\tkey\t=\tvalue"
       ]
     },
     {
       "name": "key_with_tabs_ocaml_reference",
-      "input": "\tkey\t=\tvalue",
       "tests": [
         {
           "function": "parse",
@@ -305,11 +336,13 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "inputs": [
+        "\tkey\t=\tvalue"
       ]
     },
     {
       "name": "whitespace_only_value",
-      "input": "onlyspaces =     ",
       "tests": [
         {
           "function": "parse",
@@ -324,11 +357,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "onlyspaces =     "
       ]
     },
     {
       "name": "spaces_vs_tabs_continuation",
-      "input": "text = First\n    four spaces\n\ttab preserved",
       "tests": [
         {
           "function": "parse_indented",
@@ -345,11 +380,13 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "inputs": [
+        "text = First\n    four spaces\n\ttab preserved"
       ]
     },
     {
       "name": "spaces_vs_tabs_continuation_ocaml_reference",
-      "input": "text = First\n    four spaces\n\ttab preserved",
       "tests": [
         {
           "function": "parse_indented",
@@ -366,11 +403,13 @@
       ],
       "behaviors": [
         "tabs_preserve"
+      ],
+      "inputs": [
+        "text = First\n    four spaces\n\ttab preserved"
       ]
     },
     {
       "name": "multiple_empty_equality",
-      "input": " =  = ",
       "tests": [
         {
           "function": "parse",
@@ -385,11 +424,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        " =  = "
       ]
     },
     {
       "name": "key_with_newline_before_equals",
-      "input": "key \n= val\n",
       "tests": [
         {
           "function": "parse",
@@ -404,11 +445,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "key \n= val\n"
       ]
     },
     {
       "name": "complex_multi_newline_whitespace",
-      "input": "  \n key  \n=  val  \n",
       "tests": [
         {
           "function": "parse",
@@ -423,11 +466,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "  \n key  \n=  val  \n"
       ]
     },
     {
       "name": "empty_value_with_trailing_spaces_newline",
-      "input": "key =  \n",
       "tests": [
         {
           "function": "parse",
@@ -442,11 +487,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "key =  \n"
       ]
     },
     {
       "name": "empty_key_value_with_surrounding_newlines",
-      "input": "\n  =  \n",
       "tests": [
         {
           "function": "parse",
@@ -461,11 +508,13 @@
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "inputs": [
+        "\n  =  \n"
       ]
     },
     {
       "name": "quotes_treated_as_literal_unquoted",
-      "input": "host = localhost",
       "tests": [
         {
           "function": "parse",
@@ -476,11 +525,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "host = localhost"
       ]
     },
     {
       "name": "quotes_treated_as_literal_quoted",
-      "input": "host = \"localhost\"",
       "tests": [
         {
           "function": "parse",
@@ -491,11 +542,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "host = \"localhost\""
       ]
     },
     {
       "name": "nested_single_line",
-      "input": "key =\n  val",
       "tests": [
         {
           "function": "parse",
@@ -506,11 +559,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "key =\n  val"
       ]
     },
     {
       "name": "nested_multi_line",
-      "input": "key =\n  line1\n  line2",
       "tests": [
         {
           "function": "parse",
@@ -524,11 +579,13 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "key =\n  line1\n  line2"
       ]
     },
     {
       "name": "nested_with_blank_line",
-      "input": "key =\n  line1\n\n  line2",
       "tests": [
         {
           "function": "parse_indented",
@@ -542,11 +599,13 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "key =\n  line1\n\n  line2"
       ]
     },
     {
       "name": "deep_nested_structure",
-      "input": "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y",
       "tests": [
         {
           "function": "parse_indented",
@@ -557,11 +616,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
       ]
     },
     {
       "name": "realistic_stress_test",
-      "input": "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25",
       "tests": [
         {
           "function": "parse",
@@ -584,11 +645,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25"
       ]
     },
     {
       "name": "ocaml_stress_test_original",
-      "input": "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -652,6 +715,9 @@
       "features": [
         "comments",
         "empty_keys"
+      ],
+      "inputs": [
+        "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31"
       ]
     }
   ]

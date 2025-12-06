@@ -3,63 +3,92 @@
   "tests": [
     {
       "name": "basic_key_value_pairs",
-      "input": "name = Alice\nage = 42",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "name", "value": "Alice"},
-            {"key": "age", "value": "42"}
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "age",
+              "value": "42"
+            }
           ]
         },
         {
           "function": "print",
           "expect": "name = Alice\nage = 42"
         }
+      ],
+      "inputs": [
+        "name = Alice\nage = 42"
       ]
     },
     {
       "name": "equals_in_values",
-      "input": "msg = k=v pairs work fine\npath = /bin/app=prod",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "msg", "value": "k=v pairs work fine"},
-            {"key": "path", "value": "/bin/app=prod"}
+            {
+              "key": "msg",
+              "value": "k=v pairs work fine"
+            },
+            {
+              "key": "path",
+              "value": "/bin/app=prod"
+            }
           ]
         },
         {
           "function": "print",
           "expect": "msg = k=v pairs work fine\npath = /bin/app=prod"
         }
+      ],
+      "inputs": [
+        "msg = k=v pairs work fine\npath = /bin/app=prod"
       ]
     },
     {
       "name": "whitespace_trimming",
-      "input": "  key   =    value with spaces   \nother = normal",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "key", "value": "value with spaces"},
-            {"key": "other", "value": "normal"}
+            {
+              "key": "key",
+              "value": "value with spaces"
+            },
+            {
+              "key": "other",
+              "value": "normal"
+            }
           ]
         }
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "  key   =    value with spaces   \nother = normal"
       ]
     },
     {
       "name": "multiline_values",
-      "input": "description = First line\n  Second line\n  Third line\ndone = yes",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "description", "value": "First line\n  Second line\n  Third line"},
-            {"key": "done", "value": "yes"}
+            {
+              "key": "description",
+              "value": "First line\n  Second line\n  Third line"
+            },
+            {
+              "key": "done",
+              "value": "yes"
+            }
           ]
         },
         {
@@ -69,17 +98,25 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "description = First line\n  Second line\n  Third line\ndone = yes"
       ]
     },
     {
       "name": "empty_values",
-      "input": "empty =\nother = value",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "empty", "value": ""},
-            {"key": "other", "value": "value"}
+            {
+              "key": "empty",
+              "value": ""
+            },
+            {
+              "key": "other",
+              "value": "value"
+            }
           ]
         },
         {
@@ -89,33 +126,46 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "empty =\nother = value"
       ]
     },
     {
       "name": "nested_structure_parsing",
-      "input": "database =\n  host = localhost\n  port = 5432",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "database", "value": "\n  host = localhost\n  port = 5432"}
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  port = 5432"
+            }
           ]
         },
         {
           "function": "print",
           "expect": "database = \n  host = localhost\n  port = 5432"
         }
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432"
       ]
     },
     {
       "name": "unicode_parsing",
-      "input": "emoji = 😀😃😄\n配置 = config",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "emoji", "value": "😀😃😄"},
-            {"key": "配置", "value": "config"}
+            {
+              "key": "emoji",
+              "value": "😀😃😄"
+            },
+            {
+              "key": "配置",
+              "value": "config"
+            }
           ]
         },
         {
@@ -125,11 +175,13 @@
       ],
       "features": [
         "unicode"
+      ],
+      "inputs": [
+        "emoji = 😀😃😄\n配置 = config"
       ]
     },
     {
       "name": "empty_input",
-      "input": "",
       "tests": [
         {
           "function": "parse",
@@ -139,6 +191,9 @@
           "function": "print",
           "expect": ""
         }
+      ],
+      "inputs": [
+        ""
       ]
     }
   ]

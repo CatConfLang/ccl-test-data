@@ -18,7 +18,9 @@
       "functions": [
         "parse"
       ],
-      "input": "port = 8080",
+      "inputs": [
+        "port = 8080"
+      ],
       "name": "parse_basic_integer_parse",
       "source_test": "parse_basic_integer",
       "validation": "parse",
@@ -38,7 +40,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "port = 8080",
+      "inputs": [
+        "port = 8080"
+      ],
       "name": "parse_basic_integer_build_hierarchy",
       "source_test": "parse_basic_integer",
       "validation": "build_hierarchy",
@@ -59,7 +63,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "port = 8080",
+      "inputs": [
+        "port = 8080"
+      ],
       "name": "parse_basic_integer_get_int",
       "source_test": "parse_basic_integer",
       "validation": "get_int",
@@ -82,7 +88,9 @@
       "functions": [
         "parse"
       ],
-      "input": "temperature = 98.6",
+      "inputs": [
+        "temperature = 98.6"
+      ],
       "name": "parse_basic_float_parse",
       "source_test": "parse_basic_float",
       "validation": "parse",
@@ -102,7 +110,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "temperature = 98.6",
+      "inputs": [
+        "temperature = 98.6"
+      ],
       "name": "parse_basic_float_build_hierarchy",
       "source_test": "parse_basic_float",
       "validation": "build_hierarchy",
@@ -123,7 +133,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "temperature = 98.6",
+      "inputs": [
+        "temperature = 98.6"
+      ],
       "name": "parse_basic_float_get_float",
       "source_test": "parse_basic_float",
       "validation": "get_float",
@@ -146,7 +158,9 @@
       "functions": [
         "parse"
       ],
-      "input": "enabled = true",
+      "inputs": [
+        "enabled = true"
+      ],
       "name": "parse_boolean_true_parse",
       "source_test": "parse_boolean_true",
       "validation": "parse",
@@ -166,7 +180,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "enabled = true",
+      "inputs": [
+        "enabled = true"
+      ],
       "name": "parse_boolean_true_build_hierarchy",
       "source_test": "parse_boolean_true",
       "validation": "build_hierarchy",
@@ -190,7 +206,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "enabled = true",
+      "inputs": [
+        "enabled = true"
+      ],
       "name": "parse_boolean_true_get_bool",
       "source_test": "parse_boolean_true",
       "validation": "get_bool",
@@ -213,7 +231,9 @@
       "functions": [
         "parse"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_parse",
       "source_test": "parse_boolean_yes",
       "validation": "parse",
@@ -233,7 +253,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_build_hierarchy",
       "source_test": "parse_boolean_yes",
       "validation": "build_hierarchy",
@@ -256,7 +278,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_get_bool",
       "source_test": "parse_boolean_yes",
       "validation": "get_bool",
@@ -279,7 +303,9 @@
       "functions": [
         "parse"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_strict_literal_parse",
       "source_test": "parse_boolean_yes_strict_literal",
       "validation": "parse",
@@ -299,7 +325,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_strict_literal_build_hierarchy",
       "source_test": "parse_boolean_yes_strict_literal",
       "validation": "build_hierarchy",
@@ -321,7 +349,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "active = yes",
+      "inputs": [
+        "active = yes"
+      ],
       "name": "parse_boolean_yes_strict_literal_get_bool",
       "source_test": "parse_boolean_yes_strict_literal",
       "validation": "get_bool",
@@ -344,7 +374,9 @@
       "functions": [
         "parse"
       ],
-      "input": "disabled = false",
+      "inputs": [
+        "disabled = false"
+      ],
       "name": "parse_boolean_false_parse",
       "source_test": "parse_boolean_false",
       "validation": "parse",
@@ -364,7 +396,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "disabled = false",
+      "inputs": [
+        "disabled = false"
+      ],
       "name": "parse_boolean_false_build_hierarchy",
       "source_test": "parse_boolean_false",
       "validation": "build_hierarchy",
@@ -388,7 +422,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "disabled = false",
+      "inputs": [
+        "disabled = false"
+      ],
       "name": "parse_boolean_false_get_bool",
       "source_test": "parse_boolean_false",
       "validation": "get_bool",
@@ -409,7 +445,9 @@
       "functions": [
         "parse"
       ],
-      "input": "name = Alice",
+      "inputs": [
+        "name = Alice"
+      ],
       "name": "parse_string_fallback_parse",
       "source_test": "parse_string_fallback",
       "validation": "parse",
@@ -427,7 +465,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "name = Alice",
+      "inputs": [
+        "name = Alice"
+      ],
       "name": "parse_string_fallback_build_hierarchy",
       "source_test": "parse_string_fallback",
       "validation": "build_hierarchy",
@@ -446,7 +486,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "name = Alice",
+      "inputs": [
+        "name = Alice"
+      ],
       "name": "parse_string_fallback_get_string",
       "source_test": "parse_string_fallback",
       "validation": "get_string",
@@ -469,7 +511,9 @@
       "functions": [
         "parse"
       ],
-      "input": "offset = -42",
+      "inputs": [
+        "offset = -42"
+      ],
       "name": "parse_negative_integer_parse",
       "source_test": "parse_negative_integer",
       "validation": "parse",
@@ -489,7 +533,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "offset = -42",
+      "inputs": [
+        "offset = -42"
+      ],
       "name": "parse_negative_integer_build_hierarchy",
       "source_test": "parse_negative_integer",
       "validation": "build_hierarchy",
@@ -510,7 +556,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "offset = -42",
+      "inputs": [
+        "offset = -42"
+      ],
       "name": "parse_negative_integer_get_int",
       "source_test": "parse_negative_integer",
       "validation": "get_int",
@@ -542,7 +590,9 @@
       "functions": [
         "parse"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_parse",
       "source_test": "parse_zero_values",
       "validation": "parse",
@@ -565,7 +615,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_build_hierarchy",
       "source_test": "parse_zero_values",
       "validation": "build_hierarchy",
@@ -587,7 +639,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_get_int",
       "source_test": "parse_zero_values",
       "validation": "get_int",
@@ -611,7 +665,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_get_bool",
       "source_test": "parse_zero_values",
       "validation": "get_bool",
@@ -633,7 +689,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_get_float",
       "source_test": "parse_zero_values",
       "validation": "get_float",
@@ -665,7 +723,9 @@
       "functions": [
         "parse"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_strict_literal_parse",
       "source_test": "parse_zero_values_strict_literal",
       "validation": "parse",
@@ -688,7 +748,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_strict_literal_build_hierarchy",
       "source_test": "parse_zero_values_strict_literal",
       "validation": "build_hierarchy",
@@ -710,7 +772,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_strict_literal_get_int",
       "source_test": "parse_zero_values_strict_literal",
       "validation": "get_int",
@@ -733,7 +797,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_strict_literal_get_bool",
       "source_test": "parse_zero_values_strict_literal",
       "validation": "get_bool",
@@ -755,7 +821,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "count = 0\ndistance = 0.0\ndisabled = no",
+      "inputs": [
+        "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
       "name": "parse_zero_values_strict_literal_get_float",
       "source_test": "parse_zero_values_strict_literal",
       "validation": "get_float",
@@ -802,7 +870,9 @@
       "functions": [
         "parse"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_parse",
       "source_test": "parse_boolean_variants",
       "validation": "parse",
@@ -828,7 +898,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_build_hierarchy",
       "source_test": "parse_boolean_variants",
       "validation": "build_hierarchy",
@@ -849,7 +921,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_get_int",
       "source_test": "parse_boolean_variants",
       "validation": "get_int",
@@ -872,7 +946,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_get_bool",
       "source_test": "parse_boolean_variants",
       "validation": "get_bool",
@@ -919,7 +995,9 @@
       "functions": [
         "parse"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_strict_literal_parse",
       "source_test": "parse_boolean_variants_strict_literal",
       "validation": "parse",
@@ -945,7 +1023,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_strict_literal_build_hierarchy",
       "source_test": "parse_boolean_variants_strict_literal",
       "validation": "build_hierarchy",
@@ -966,7 +1046,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_strict_literal_get_int",
       "source_test": "parse_boolean_variants_strict_literal",
       "validation": "get_int",
@@ -988,7 +1070,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0",
+      "inputs": [
+        "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
       "name": "parse_boolean_variants_strict_literal_get_bool",
       "source_test": "parse_boolean_variants_strict_literal",
       "validation": "get_bool",
@@ -1027,7 +1111,9 @@
       "functions": [
         "parse"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_parse",
       "source_test": "parse_mixed_types",
       "validation": "parse",
@@ -1051,7 +1137,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_build_hierarchy",
       "source_test": "parse_mixed_types",
       "validation": "build_hierarchy",
@@ -1072,7 +1160,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_get_string",
       "source_test": "parse_mixed_types",
       "validation": "get_string",
@@ -1093,7 +1183,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_get_int",
       "source_test": "parse_mixed_types",
       "validation": "get_int",
@@ -1116,7 +1208,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_get_bool",
       "source_test": "parse_mixed_types",
       "validation": "get_bool",
@@ -1137,7 +1231,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_get_float",
       "source_test": "parse_mixed_types",
       "validation": "get_float",
@@ -1176,7 +1272,9 @@
       "functions": [
         "parse"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_parse",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "parse",
@@ -1200,7 +1298,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_build_hierarchy",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "build_hierarchy",
@@ -1221,7 +1321,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_get_string",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "get_string",
@@ -1242,7 +1344,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_get_int",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "get_int",
@@ -1265,7 +1369,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_get_bool",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "get_bool",
@@ -1286,7 +1392,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off",
+      "inputs": [
+        "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
       "name": "parse_mixed_types_strict_literal_get_float",
       "source_test": "parse_mixed_types_strict_literal",
       "validation": "get_float",
@@ -1314,7 +1422,9 @@
       "functions": [
         "parse"
       ],
-      "input": "number =   42   \nflag =  true  ",
+      "inputs": [
+        "number =   42   \nflag =  true  "
+      ],
       "name": "parse_with_whitespace_parse",
       "source_test": "parse_with_whitespace",
       "validation": "parse",
@@ -1336,7 +1446,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "number =   42   \nflag =  true  ",
+      "inputs": [
+        "number =   42   \nflag =  true  "
+      ],
       "name": "parse_with_whitespace_build_hierarchy",
       "source_test": "parse_with_whitespace",
       "validation": "build_hierarchy",
@@ -1358,7 +1470,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "number =   42   \nflag =  true  ",
+      "inputs": [
+        "number =   42   \nflag =  true  "
+      ],
       "name": "parse_with_whitespace_get_int",
       "source_test": "parse_with_whitespace",
       "validation": "get_int",
@@ -1380,7 +1494,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "number =   42   \nflag =  true  ",
+      "inputs": [
+        "number =   42   \nflag =  true  "
+      ],
       "name": "parse_with_whitespace_get_bool",
       "source_test": "parse_with_whitespace",
       "validation": "get_bool",
@@ -1415,7 +1531,9 @@
       "functions": [
         "parse"
       ],
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+      "inputs": [
+        "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
+      ],
       "name": "parse_with_conservative_options_parse",
       "source_test": "parse_with_conservative_options",
       "validation": "parse",
@@ -1438,7 +1556,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+      "inputs": [
+        "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
+      ],
       "name": "parse_with_conservative_options_build_hierarchy",
       "source_test": "parse_with_conservative_options",
       "validation": "build_hierarchy",
@@ -1459,7 +1579,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+      "inputs": [
+        "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
+      ],
       "name": "parse_with_conservative_options_get_string",
       "source_test": "parse_with_conservative_options",
       "validation": "get_string",
@@ -1480,7 +1602,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "number = 42\ndecimal = 3.14\nflag = true\ntext = hello",
+      "inputs": [
+        "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
+      ],
       "name": "parse_with_conservative_options_get_int",
       "source_test": "parse_with_conservative_options",
       "validation": "get_int",
@@ -1503,7 +1627,9 @@
       "functions": [
         "parse"
       ],
-      "input": "port = not_a_number",
+      "inputs": [
+        "port = not_a_number"
+      ],
       "name": "parse_integer_error_parse",
       "source_test": "parse_integer_error",
       "validation": "parse",
@@ -1523,7 +1649,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "port = not_a_number",
+      "inputs": [
+        "port = not_a_number"
+      ],
       "name": "parse_integer_error_build_hierarchy",
       "source_test": "parse_integer_error",
       "validation": "build_hierarchy",
@@ -1543,7 +1671,9 @@
       "functions": [
         "get_int"
       ],
-      "input": "port = not_a_number",
+      "inputs": [
+        "port = not_a_number"
+      ],
       "name": "parse_integer_error_get_int",
       "source_test": "parse_integer_error",
       "validation": "get_int",
@@ -1566,7 +1696,9 @@
       "functions": [
         "parse"
       ],
-      "input": "temperature = invalid",
+      "inputs": [
+        "temperature = invalid"
+      ],
       "name": "parse_float_error_parse",
       "source_test": "parse_float_error",
       "validation": "parse",
@@ -1586,7 +1718,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "temperature = invalid",
+      "inputs": [
+        "temperature = invalid"
+      ],
       "name": "parse_float_error_build_hierarchy",
       "source_test": "parse_float_error",
       "validation": "build_hierarchy",
@@ -1606,7 +1740,9 @@
       "functions": [
         "get_float"
       ],
-      "input": "temperature = invalid",
+      "inputs": [
+        "temperature = invalid"
+      ],
       "name": "parse_float_error_get_float",
       "source_test": "parse_float_error",
       "validation": "get_float",
@@ -1629,7 +1765,9 @@
       "functions": [
         "parse"
       ],
-      "input": "enabled = maybe",
+      "inputs": [
+        "enabled = maybe"
+      ],
       "name": "parse_boolean_error_parse",
       "source_test": "parse_boolean_error",
       "validation": "parse",
@@ -1649,7 +1787,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "enabled = maybe",
+      "inputs": [
+        "enabled = maybe"
+      ],
       "name": "parse_boolean_error_build_hierarchy",
       "source_test": "parse_boolean_error",
       "validation": "build_hierarchy",
@@ -1671,7 +1811,9 @@
       "functions": [
         "get_bool"
       ],
-      "input": "enabled = maybe",
+      "inputs": [
+        "enabled = maybe"
+      ],
       "name": "parse_boolean_error_get_bool",
       "source_test": "parse_boolean_error",
       "validation": "get_bool",
@@ -1692,7 +1834,9 @@
       "functions": [
         "parse"
       ],
-      "input": "existing = value",
+      "inputs": [
+        "existing = value"
+      ],
       "name": "parse_missing_path_error_parse",
       "source_test": "parse_missing_path_error",
       "validation": "parse",
@@ -1710,7 +1854,9 @@
       "functions": [
         "build_hierarchy"
       ],
-      "input": "existing = value",
+      "inputs": [
+        "existing = value"
+      ],
       "name": "parse_missing_path_error_build_hierarchy",
       "source_test": "parse_missing_path_error",
       "validation": "build_hierarchy",
@@ -1728,7 +1874,9 @@
       "functions": [
         "get_string"
       ],
-      "input": "existing = value",
+      "inputs": [
+        "existing = value"
+      ],
       "name": "parse_missing_path_error_get_string",
       "source_test": "parse_missing_path_error",
       "validation": "get_string",

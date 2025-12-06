@@ -259,20 +259,22 @@ func (c *EnhancedCollector) analyzeTestSuite(testSuite types.TestSuite, filePath
 		// Count assertions for this test
 		assertions := 0
 		validationData := map[string]interface{}{
-			"parse":           test.Validations.Parse,
-			"parse_indented":  test.Validations.ParseIndented,
-			"filter":          test.Validations.Filter,
-			"combine":         test.Validations.Combine,
-			"expand_dotted":   test.Validations.ExpandDotted,
-			"build_hierarchy": test.Validations.BuildHierarchy,
-			"get_string":      test.Validations.GetString,
-			"get_int":         test.Validations.GetInt,
-			"get_bool":        test.Validations.GetBool,
-			"get_float":       test.Validations.GetFloat,
-			"get_list":        test.Validations.GetList,
-			"pretty_print":    test.Validations.PrettyPrint,
-			"round_trip":      test.Validations.RoundTrip,
-			"associativity":   test.Validations.Associativity,
+			"parse":               test.Validations.Parse,
+			"parse_indented":      test.Validations.ParseIndented,
+			"filter":              test.Validations.Filter,
+			"combine":             test.Validations.Combine,
+			"expand_dotted":       test.Validations.ExpandDotted,
+			"build_hierarchy":     test.Validations.BuildHierarchy,
+			"get_string":          test.Validations.GetString,
+			"get_int":             test.Validations.GetInt,
+			"get_bool":            test.Validations.GetBool,
+			"get_float":           test.Validations.GetFloat,
+			"get_list":            test.Validations.GetList,
+			"pretty_print":        test.Validations.PrettyPrint,
+			"round_trip":          test.Validations.RoundTrip,
+			"compose_associative": test.Validations.ComposeAssociative,
+			"identity_left":       test.Validations.IdentityLeft,
+			"identity_right":      test.Validations.IdentityRight,
 		}
 
 		for _, validation := range validationData {

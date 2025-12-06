@@ -3,13 +3,18 @@
   "tests": [
     {
       "name": "round_trip_basic",
-      "input": "key = value\nnested =\n  sub = val",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "key", "value": "value"},
-            {"key": "nested", "value": "\n  sub = val"}
+            {
+              "key": "key",
+              "value": "value"
+            },
+            {
+              "key": "nested",
+              "value": "\n  sub = val"
+            }
           ]
         },
         {
@@ -20,11 +25,13 @@
           "function": "round_trip",
           "expect": true
         }
+      ],
+      "inputs": [
+        "key = value\nnested =\n  sub = val"
       ]
     },
     {
       "name": "round_trip_whitespace_normalization",
-      "input": "  key  =  value  \n  nested  = \n    sub  =  val  ",
       "tests": [
         {
           "function": "round_trip",
@@ -42,18 +49,29 @@
       ],
       "features": [
         "whitespace"
+      ],
+      "inputs": [
+        "  key  =  value  \n  nested  = \n    sub  =  val  "
       ]
     },
     {
       "name": "round_trip_empty_keys_lists",
-      "input": "= item1\n= item2\nregular = value",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "", "value": "item1"},
-            {"key": "", "value": "item2"},
-            {"key": "regular", "value": "value"}
+            {
+              "key": "",
+              "value": "item1"
+            },
+            {
+              "key": "",
+              "value": "item2"
+            },
+            {
+              "key": "regular",
+              "value": "value"
+            }
           ]
         },
         {
@@ -67,11 +85,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "= item1\n= item2\nregular = value"
       ]
     },
     {
       "name": "round_trip_nested_structures",
-      "input": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin",
       "tests": [
         {
           "function": "parse",
@@ -90,11 +110,13 @@
           "function": "round_trip",
           "expect": true
         }
+      ],
+      "inputs": [
+        "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
       ]
     },
     {
       "name": "round_trip_multiline_values",
-      "input": "script =\n  #!/bin/bash\n  echo hello\n  exit 0",
       "tests": [
         {
           "function": "parse",
@@ -116,20 +138,37 @@
       ],
       "features": [
         "multiline"
+      ],
+      "inputs": [
+        "script =\n  #!/bin/bash\n  echo hello\n  exit 0"
       ]
     },
     {
       "name": "round_trip_mixed_content",
-      "input": "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value",
       "tests": [
         {
           "function": "parse",
           "expect": [
-            {"key": "name", "value": "Alice"},
-            {"key": "", "value": "first item"},
-            {"key": "config", "value": "\n  port = 3000"},
-            {"key": "", "value": "second item"},
-            {"key": "final", "value": "value"}
+            {
+              "key": "name",
+              "value": "Alice"
+            },
+            {
+              "key": "",
+              "value": "first item"
+            },
+            {
+              "key": "config",
+              "value": "\n  port = 3000"
+            },
+            {
+              "key": "",
+              "value": "second item"
+            },
+            {
+              "key": "final",
+              "value": "value"
+            }
           ]
         },
         {
@@ -143,11 +182,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "name = Alice\n= first item\nconfig =\n  port = 3000\n= second item\nfinal = value"
       ]
     },
     {
       "name": "round_trip_complex_nesting",
-      "input": "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2",
       "tests": [
         {
           "function": "parse",
@@ -169,11 +210,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "app =\n  = item1\n  config =\n    = nested_item\n    db =\n      host = localhost\n      = db_item\n  = item2"
       ]
     },
     {
       "name": "round_trip_deeply_nested",
-      "input": "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item",
       "tests": [
         {
           "function": "parse",
@@ -195,11 +238,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "level1 =\n  level2 =\n    level3 =\n      level4 =\n        deep = value\n        = deep_item"
       ]
     },
     {
       "name": "round_trip_empty_multiline",
-      "input": "empty_section =\n\nother = value",
       "tests": [
         {
           "function": "round_trip",
@@ -208,8 +253,14 @@
         {
           "function": "parse",
           "expect": [
-            {"key": "empty_section", "value": ""},
-            {"key": "other", "value": "value"}
+            {
+              "key": "empty_section",
+              "value": ""
+            },
+            {
+              "key": "other",
+              "value": "value"
+            }
           ]
         },
         {
@@ -220,6 +271,9 @@
       "features": [
         "empty_keys",
         "multiline"
+      ],
+      "inputs": [
+        "empty_section =\n\nother = value"
       ]
     }
   ]

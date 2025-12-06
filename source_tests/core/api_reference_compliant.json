@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "single_item_as_list_reference",
-      "input": "item = single",
       "tests": [
         {
           "function": "parse",
@@ -33,11 +32,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "item = single"
       ]
     },
     {
       "name": "mixed_duplicate_single_keys_reference",
-      "input": "ports = 80\nports = 443\nhost = localhost",
       "tests": [
         {
           "function": "parse",
@@ -89,11 +90,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ]
     },
     {
       "name": "nested_list_access_reference",
-      "input": "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432",
       "tests": [
         {
           "function": "parse",
@@ -138,11 +141,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
       ]
     },
     {
       "name": "empty_list_reference",
-      "input": "empty_list =",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -169,11 +174,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "empty_list ="
       ]
     },
     {
       "name": "list_with_numbers_reference",
-      "input": "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0",
       "tests": [
         {
           "function": "parse",
@@ -223,11 +230,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ]
     },
     {
       "name": "list_with_booleans_reference",
-      "input": "flags = true\nflags = false\nflags = yes\nflags = no",
       "tests": [
         {
           "function": "get_list",
@@ -277,11 +286,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ]
     },
     {
       "name": "list_with_whitespace_reference",
-      "input": "items =   spaced   \nitems = normal\nitems =\nitems =   ",
       "tests": [
         {
           "function": "parse",
@@ -332,11 +343,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ]
     },
     {
       "name": "deeply_nested_list_reference",
-      "input": "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1",
       "tests": [
         {
           "function": "parse",
@@ -382,11 +395,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ]
     },
     {
       "name": "list_with_unicode_reference",
-      "input": "names = 张三\nnames = José\nnames = François\nnames = العربية",
       "tests": [
         {
           "function": "parse",
@@ -439,11 +454,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ]
     },
     {
       "name": "list_with_special_characters_reference",
-      "input": "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|",
       "tests": [
         {
           "function": "get_list",
@@ -488,11 +505,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|"
+      ]
     },
     {
       "name": "complex_mixed_list_scenarios_reference",
-      "input": "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -559,11 +578,13 @@
         "behaviors": [
           "array_order_insertion"
         ]
-      }
+      },
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ]
     },
     {
       "name": "list_path_traversal_protection_reference",
-      "input": "safe = value",
       "tests": [
         {
           "function": "get_list",
@@ -604,11 +625,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "safe = value"
       ]
     },
     {
       "name": "empty_value_reference_behavior",
-      "input": "empty_key =",
       "tests": [
         {
           "function": "build_hierarchy",
@@ -628,11 +651,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "empty_key ="
       ]
     },
     {
       "name": "canonical_format_empty_values_ocaml_reference",
-      "input": "empty_key =",
       "tests": [
         {
           "function": "canonical_format",
@@ -641,11 +666,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "empty_key ="
       ]
     },
     {
       "name": "canonical_format_tab_preservation_ocaml_reference",
-      "input": "value_with_tabs = text\t\twith\ttabs\t",
       "tests": [
         {
           "function": "canonical_format",
@@ -657,11 +684,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "value_with_tabs = text\t\twith\ttabs\t"
       ]
     },
     {
       "name": "canonical_format_unicode_ocaml_reference",
-      "input": "unicode = 你好世界\nemo = 🌟✨",
       "tests": [
         {
           "function": "canonical_format",
@@ -673,11 +702,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "unicode = 你好世界\nemo = 🌟✨"
       ]
     },
     {
       "name": "canonical_format_line_endings_reference_behavior",
-      "input": "key1 = value1\r\nkey2 = value2\r\n",
       "tests": [
         {
           "function": "canonical_format",
@@ -702,11 +733,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
       ]
     },
     {
       "name": "canonical_format_consistent_spacing_ocaml_reference",
-      "input": "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3",
       "tests": [
         {
           "function": "canonical_format",
@@ -718,11 +751,13 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
       ]
     },
     {
       "name": "deterministic_output_ocaml_reference",
-      "input": "z = last\na = first\nm = middle",
       "tests": [
         {
           "function": "canonical_format",
@@ -731,6 +766,9 @@
       ],
       "variants": [
         "reference_compliant"
+      ],
+      "inputs": [
+        "z = last\na = first\nm = middle"
       ]
     }
   ]

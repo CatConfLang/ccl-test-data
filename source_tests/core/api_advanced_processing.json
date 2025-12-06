@@ -3,7 +3,6 @@
   "tests": [
     {
       "name": "composition_stability_duplicate_keys",
-      "input": "a = 1\nb = 2\nb = 20\nc = 3",
       "tests": [
         {
           "function": "parse",
@@ -26,11 +25,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "a = 1\nb = 2\nb = 20\nc = 3"
       ]
     },
     {
       "name": "multiple_values_same_key",
-      "input": "ports = 8000\nports = 8001\nports = 8002",
       "tests": [
         {
           "function": "parse",
@@ -49,11 +50,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "ports = 8000\nports = 8001\nports = 8002"
       ]
     },
     {
       "name": "list_with_empty_keys",
-      "input": "= 3\n= 1\n= 2",
       "tests": [
         {
           "function": "parse",
@@ -75,11 +78,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "= 3\n= 1\n= 2"
       ]
     },
     {
       "name": "section_style_syntax",
-      "input": "== Section 2 ==",
       "tests": [
         {
           "function": "parse",
@@ -93,11 +98,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Section 2 =="
       ]
     },
     {
       "name": "composition_stability_ba",
-      "input": "b = 20\nc = 3\na = 1\nb = 2",
       "tests": [
         {
           "function": "parse",
@@ -120,11 +127,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "b = 20\nc = 3\na = 1\nb = 2"
       ]
     },
     {
       "name": "mixed_keys_with_duplicates",
-      "input": "name = app\nports = 8000\nname = service\nports = 8001",
       "tests": [
         {
           "function": "parse",
@@ -150,11 +159,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "name = app\nports = 8000\nname = service\nports = 8001"
       ]
     },
     {
       "name": "array_style_list",
-      "input": "1 =\n2 =\n3 =",
       "tests": [
         {
           "function": "parse",
@@ -176,11 +187,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "1 =\n2 =\n3 ="
       ]
     },
     {
       "name": "section_header_double_equals",
-      "input": "== Database Config ==\nhost = localhost\nport = 5432",
       "tests": [
         {
           "function": "parse",
@@ -202,11 +215,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Database Config ==\nhost = localhost\nport = 5432"
       ]
     },
     {
       "name": "section_header_triple_equals",
-      "input": "=== Server Settings ===\nhost = 0.0.0.0\nssl = true",
       "tests": [
         {
           "function": "parse",
@@ -228,11 +243,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "=== Server Settings ===\nhost = 0.0.0.0\nssl = true"
       ]
     },
     {
       "name": "multiple_sections_with_entries",
-      "input": "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info",
       "tests": [
         {
           "function": "parse",
@@ -266,11 +283,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info"
       ]
     },
     {
       "name": "section_headers_mixed_with_lists",
-      "input": "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data",
       "tests": [
         {
           "function": "parse",
@@ -304,11 +323,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data"
       ]
     },
     {
       "name": "empty_section_header_only",
-      "input": "== Empty Section ==",
       "tests": [
         {
           "function": "parse",
@@ -319,11 +340,13 @@
             }
           ]
         }
+      ],
+      "inputs": [
+        "== Empty Section =="
       ]
     },
     {
       "name": "section_header_at_end",
-      "input": "key = value\n== Final Section ==",
       "tests": [
         {
           "function": "parse",
@@ -341,11 +364,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "key = value\n== Final Section =="
       ]
     },
     {
       "name": "section_headers_no_trailing_equals",
-      "input": "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080",
       "tests": [
         {
           "function": "parse",
@@ -371,11 +396,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080"
       ]
     },
     {
       "name": "section_headers_with_colons",
-      "input": "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379",
       "tests": [
         {
           "function": "parse",
@@ -401,11 +428,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379"
       ]
     },
     {
       "name": "spaced_equals_not_section_header",
-      "input": "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value",
       "tests": [
         {
           "function": "parse",
@@ -431,11 +460,13 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value"
       ]
     },
     {
       "name": "consecutive_section_headers",
-      "input": "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value",
       "tests": [
         {
           "function": "parse",
@@ -461,6 +492,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "inputs": [
+        "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value"
       ]
     }
   ]

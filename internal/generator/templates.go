@@ -34,13 +34,11 @@ import (
 const testCaseTemplate = `// {{.Name}} - {{.TagsString}}
 func Test{{.TestFuncName}}(t *testing.T) {
 	{{if .ShouldSkip}}t.Skip("{{.SkipReason}}"){{else}}
-	
+
 	ccl := mock.New()
-	{{if .HasInput}}input := {{.InputString}}{{end}}
-	{{if .Input1}}input1 := {{.Input1String}}{{end}}
-	{{if .Input2}}input2 := {{.Input2String}}{{end}}
-	{{if .Input3}}input3 := {{.Input3String}}{{end}}
-	
+	{{if .IsSingleInput}}input := {{index .InputStrings 0}}{{end}}
+	{{if .IsMultiInput}}{{range $i, $s := .InputStrings}}input{{$i}} := {{$s}}
+	{{end}}{{end}}
 	{{if .HasValidations}}// Declare variables for reuse across validations
 	{{if .NeedsParseResult}}var parseResult []mock.Entry{{end}}
 	{{if .NeedsObjectResult}}var objectResult map[string]interface{}{{end}}
@@ -50,8 +48,9 @@ func Test{{.TestFuncName}}(t *testing.T) {
 {{range .Validations}}	{{.}}
 {{end}}{{if not .HasValidations}}	// TODO: Implement test validations
 	_ = ccl // Prevent unused variable warning
-{{if .HasInput}}	_ = input // Prevent unused variable warning
-{{end}}{{end}}{{end}}
+{{if .IsSingleInput}}	_ = input // Prevent unused variable warning
+{{end}}{{if .IsMultiInput}}{{range $i, $s := .Inputs}}	_ = input{{$i}} // Prevent unused variable warning
+{{end}}{{end}}{{end}}{{end}}
 }
 `
 
@@ -74,15 +73,11 @@ type TestCaseData struct {
 	TagsString        string
 	ShouldSkip        bool
 	SkipReason        string
-	Input             string
-	InputString       string
-	HasInput          bool // True if input field exists (including empty strings)
-	Input1            string
-	Input1String      string
-	Input2            string
-	Input2String      string
-	Input3            string
-	Input3String      string
+	Inputs            []string // CCL input text(s) - single-input tests use 1-element array
+	InputStrings      []string // Escaped Go strings for each input
+	HasInputs         bool     // True if inputs array exists and has elements
+	IsSingleInput     bool     // True if exactly one input (common case)
+	IsMultiInput      bool     // True if more than one input (algebraic tests)
 	Validations       []string
 	HasValidations    bool
 	NeedsParseResult  bool
@@ -154,19 +149,21 @@ func (g *Generator) generateTestContentFromTemplate(testSuite types.TestSuite, s
 
 // generateTestCase creates a single test case
 func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
+	// Build escaped input strings
+	inputStrings := make([]string, len(test.Inputs))
+	for i, input := range test.Inputs {
+		inputStrings[i] = escapeGoString(input)
+	}
+
 	data := TestCaseData{
-		Name:         test.Name,
-		TestFuncName: toPascalCase(test.Name),
-		TagsString:   strings.Join(g.getTestTags(test), " "),
-		Input:        test.Input,
-		InputString:  escapeGoString(test.Input),
-		HasInput:     true, // Flat format always has input field (including empty strings)
-		Input1:       test.Input1,
-		Input1String: escapeGoString(test.Input1),
-		Input2:       test.Input2,
-		Input2String: escapeGoString(test.Input2),
-		Input3:       test.Input3,
-		Input3String: escapeGoString(test.Input3),
+		Name:          test.Name,
+		TestFuncName:  toPascalCase(test.Name),
+		TagsString:    strings.Join(g.getTestTags(test), " "),
+		Inputs:        test.Inputs,
+		InputStrings:  inputStrings,
+		HasInputs:     len(test.Inputs) > 0,
+		IsSingleInput: len(test.Inputs) == 1,
+		IsMultiInput:  len(test.Inputs) > 1,
 	}
 
 	// Check if test should be skipped using generator options
@@ -601,10 +598,21 @@ func (g *Generator) generateFlatFormatValidation(test types.TestCase) (string, e
 		return g.generateFlatTypedAccessValidation(test, test.Validation)
 	default:
 		// For unimplemented validations, generate a safe comment with variable usage
+		// Handle both single-input and multi-input tests
+		var inputVarLines string
+		if len(test.Inputs) == 1 {
+			inputVarLines = "\t_ = input // Prevent unused variable warning"
+		} else if len(test.Inputs) > 1 {
+			var lines []string
+			for i := range test.Inputs {
+				lines = append(lines, fmt.Sprintf("\t_ = input%d // Prevent unused variable warning", i))
+			}
+			inputVarLines = strings.Join(lines, "\n")
+		}
 		return fmt.Sprintf(`// TODO: Implement %s validation
 	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning`, test.Validation), nil
+%s
+	_ = err // Prevent unused variable warning`, test.Validation, inputVarLines), nil
 	}
 }
 
@@ -1099,7 +1107,9 @@ func hasValidations(validations types.ValidationSet) bool {
 		validations.GetList != nil ||
 		validations.PrettyPrint != nil ||
 		validations.RoundTrip != nil ||
-		validations.Associativity != nil
+		validations.ComposeAssociative != nil ||
+		validations.IdentityLeft != nil ||
+		validations.IdentityRight != nil
 }
 
 // hasImplementedValidations checks if the ValidationSet has any validations that generate actual assertions (not just TODOs)
@@ -1271,8 +1281,14 @@ func (g *Generator) countAssertions(validations *types.ValidationSet) int {
 	if validations.RoundTrip != nil {
 		count += g.getValidationCount(validations.RoundTrip)
 	}
-	if validations.Associativity != nil {
-		count += g.getValidationCount(validations.Associativity)
+	if validations.ComposeAssociative != nil {
+		count += g.getValidationCount(validations.ComposeAssociative)
+	}
+	if validations.IdentityLeft != nil {
+		count += g.getValidationCount(validations.IdentityLeft)
+	}
+	if validations.IdentityRight != nil {
+		count += g.getValidationCount(validations.IdentityRight)
 	}
 
 	return count
