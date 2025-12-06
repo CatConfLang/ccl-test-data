@@ -5,7 +5,7 @@
 
 Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based classification** for precise test selection. Each test specifies which CCL functions to validate and uses structured metadata to enable progressive implementation.
 
-> [!TIP]
+> \[!TIP]
 > **New to this project?** Check the **[Developer Guide](docs/DEVELOPER_GUIDE.md)** for development workflow and **[Architecture](docs/ARCHITECTURE.md)** for system design details.
 
 ## What is CCL?
@@ -151,11 +151,13 @@ The test suite is organized by feature category:
 The test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
 
 ### Source Format (Maintainable)
+
 - Multiple validations per test in a single object
 - Structured metadata for comprehensive classification
 - Located in `tests/` directory
 
 ### Generated Format (Implementation-Friendly)
+
 - One test per validation function (1:N transformation)
 - Separate typed fields instead of string parsing
 - Type-safe enums with validation
@@ -164,15 +166,18 @@ The test suite uses a **dual-format architecture** optimized for both maintainab
 ### Test Metadata Categories
 
 **Functions** - CCL functions by category:
+
 - Core: `parse`, `build_hierarchy`
 - Typed Access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 - Processing: `filter`, `combine`, `expand_dotted`
 - Formatting: `canonical_format`
 
 **Features** - Optional language features:
+
 - `comments`, `experimental_dotted_keys`, `empty_keys`, `multiline`, `unicode`, `whitespace`
 
 **Behaviors** - Implementation choices (mutually exclusive):
+
 - `crlf_preserve_literal` vs `crlf_normalize_to_lf`
 - `boolean_strict` vs `boolean_lenient`
 - `list_coercion_enabled` vs `list_coercion_disabled`

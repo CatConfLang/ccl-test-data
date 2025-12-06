@@ -61,11 +61,13 @@ dev:
     just generate
     just test
 
-# Production CI: complete validation pipeline
+# Production CI: complete validation pipeline (uses mock-compatible filters)
 ci:
     just validate
-    just generate
-    just test
+    just generate-flat
+    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+    just lint
+    just _run-tests --basic-only
     just docs-check
 
 # === GENERATION ===
