@@ -333,6 +333,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "variants": [
         "proposed_behavior"
       ],
@@ -387,6 +390,9 @@
             "numbers"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ],
       "variants": [
         "proposed_behavior"
@@ -443,6 +449,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "variants": [
         "proposed_behavior"
       ],
@@ -497,6 +506,9 @@
             "items"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ],
       "features": [
         "whitespace"
@@ -571,6 +583,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "variants": [
         "proposed_behavior"
       ],
@@ -625,6 +640,9 @@
             "names"
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ],
       "features": [
         "unicode"
@@ -684,6 +702,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "variants": [
         "proposed_behavior"
       ],
@@ -737,6 +758,9 @@
             }
           ]
         }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
       ],
       "features": [
         "multiline"

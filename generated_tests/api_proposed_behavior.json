@@ -615,8 +615,13 @@
       "args": [
         "empty_list"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -719,8 +724,13 @@
       "args": [
         "numbers"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -826,8 +836,13 @@
       "args": [
         "flags"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -937,8 +952,13 @@
       "args": [
         "items"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -1062,8 +1082,13 @@
         "production",
         "servers"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -1172,8 +1197,13 @@
       "args": [
         "names"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -1281,8 +1311,13 @@
       "args": [
         "symbols"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
@@ -1392,8 +1427,13 @@
       "args": [
         "descriptions"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
       "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
         "variants": [
           "reference_compliant"
         ]
