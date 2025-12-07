@@ -22,6 +22,31 @@ func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline variant:proposed_behavior
+func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline variant:proposed_behavior
+func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// indented_line_is_continuation_get_list - function:get_list feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
+func TestIndentedLineIsContinuationGetList(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline feature:empty_keys variant:proposed_behavior
+func TestMixedIndentationLevelsParseIndented(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline feature:empty_keys variant:proposed_behavior
+func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // single_item_as_list_parse - function:parse variant:proposed_behavior
 func TestSingleItemAsListParse(t *testing.T) {
 

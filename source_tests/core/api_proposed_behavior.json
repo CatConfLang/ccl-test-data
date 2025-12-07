@@ -57,6 +57,101 @@
       ]
     },
     {
+      "name": "indented_line_is_continuation",
+      "tests": [
+        {
+          "function": "parse_indented",
+          "expect": [
+            {
+              "key": "descriptions",
+              "value": "First line\n  second line"
+            },
+            {
+              "key": "descriptions",
+              "value": "Another item"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "descriptions": [
+              "First line\n  second line",
+              "Another item"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "First line\n  second line",
+            "Another item"
+          ],
+          "args": [
+            "descriptions"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "features": [
+        "multiline"
+      ],
+      "variants": [
+        "proposed_behavior"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ]
+    },
+    {
+      "name": "mixed_indentation_levels",
+      "tests": [
+        {
+          "function": "parse_indented",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1\n  indented continuation"
+            },
+            {
+              "key": "key2",
+              "value": "value2"
+            },
+            {
+              "key": "not indented key",
+              "value": ""
+            },
+            {
+              "key": "indented for not indented",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "key1": "value1\n  indented continuation",
+            "key2": "value2",
+            "not indented key": {
+              "indented for not indented": ""
+            }
+          }
+        }
+      ],
+      "features": [
+        "multiline",
+        "empty_keys"
+      ],
+      "variants": [
+        "proposed_behavior"
+      ],
+      "inputs": [
+        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
+      ]
+    },
+    {
       "name": "single_item_as_list",
       "tests": [
         {

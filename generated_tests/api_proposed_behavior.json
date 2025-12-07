@@ -82,6 +82,191 @@
         ]
       },
       "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "descriptions",
+            "value": "First line\n  second line"
+          },
+          {
+            "key": "descriptions",
+            "value": "Another item"
+          }
+        ]
+      },
+      "features": [
+        "multiline"
+      ],
+      "functions": [
+        "parse_indented"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ],
+      "name": "indented_line_is_continuation_parse_indented",
+      "source_test": "indented_line_is_continuation",
+      "validation": "parse_indented",
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "behaviors": [],
+      "conflicts": {
+        "variants": [
+          "reference_compliant"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "descriptions": [
+            "First line\n  second line",
+            "Another item"
+          ]
+        }
+      },
+      "features": [
+        "multiline"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ],
+      "name": "indented_line_is_continuation_build_hierarchy",
+      "source_test": "indented_line_is_continuation",
+      "validation": "build_hierarchy",
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "args": [
+        "descriptions"
+      ],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ],
+        "variants": [
+          "reference_compliant"
+        ]
+      },
+      "expected": {
+        "count": 2,
+        "list": [
+          "First line\n  second line",
+          "Another item"
+        ]
+      },
+      "features": [
+        "multiline"
+      ],
+      "functions": [
+        "get_list"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ],
+      "name": "indented_line_is_continuation_get_list",
+      "source_test": "indented_line_is_continuation",
+      "validation": "get_list",
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "behaviors": [],
+      "conflicts": {
+        "variants": [
+          "reference_compliant"
+        ]
+      },
+      "expected": {
+        "count": 4,
+        "entries": [
+          {
+            "key": "key1",
+            "value": "value1\n  indented continuation"
+          },
+          {
+            "key": "key2",
+            "value": "value2"
+          },
+          {
+            "key": "not indented key",
+            "value": ""
+          },
+          {
+            "key": "indented for not indented",
+            "value": ""
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented"
+      ],
+      "inputs": [
+        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
+      ],
+      "name": "mixed_indentation_levels_parse_indented",
+      "source_test": "mixed_indentation_levels",
+      "validation": "parse_indented",
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "behaviors": [],
+      "conflicts": {
+        "variants": [
+          "reference_compliant"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "key1": "value1\n  indented continuation",
+          "key2": "value2",
+          "not indented key": {
+            "indented for not indented": ""
+          }
+        }
+      },
+      "features": [
+        "multiline",
+        "empty_keys"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
+      ],
+      "name": "mixed_indentation_levels_build_hierarchy",
+      "source_test": "mixed_indentation_levels",
+      "validation": "build_hierarchy",
+      "variants": [
+        "proposed_behavior"
+      ]
+    },
+    {
+      "behaviors": [],
+      "conflicts": {
+        "variants": [
+          "reference_compliant"
+        ]
+      },
+      "expected": {
         "count": 1,
         "entries": [
           {
