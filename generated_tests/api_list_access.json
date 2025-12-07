@@ -63,6 +63,11 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "list": [
@@ -230,6 +235,11 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 20,
         "list": [
@@ -348,6 +358,11 @@
         "list_coercion_enabled",
         "array_order_insertion"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "list": [
@@ -451,6 +466,11 @@
         "list_coercion_enabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "list": [
@@ -1473,6 +1493,11 @@
       "behaviors": [
         "list_coercion_disabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },

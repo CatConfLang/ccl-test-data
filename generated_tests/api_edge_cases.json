@@ -378,6 +378,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -405,6 +410,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -458,6 +468,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -485,6 +500,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
