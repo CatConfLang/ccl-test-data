@@ -1,10 +1,10 @@
 // CCL Test Reader - Interactive viewer for CCL test files
 //
-// PREFERRED: Use with generated format files (generated_tests/) for full functionality
-// DEPRECATED: Source format files (source_tests/) have limited display support
+// Designed for generated format files (generated_tests/) with split-view layout.
+// Source format files (source_tests/) have limited display support.
 //
 // The test-reader displays CCL test cases with their input, expected output,
-// and metadata. It supports both static CLI output and interactive TUI modes.
+// and metadata. Features a split-view TUI with filterable test list and detail pane.
 package main
 
 import (
@@ -25,7 +25,9 @@ import (
 
 // Configuration constants
 const (
-	maxEntriesDisplay = 6 // Maximum entries to show before scrolling/truncation
+	maxEntriesDisplay = 6  // Maximum entries to show before scrolling/truncation
+	listPaneWidth     = 40 // Width of the test list pane in split view
+	minDetailWidth    = 60 // Minimum width for detail pane
 )
 
 // Color palette and styles
@@ -161,6 +163,55 @@ var (
 			BorderForeground(primaryColor).
 			Padding(1, 2).
 			Margin(1, 0)
+
+	// Split view styles
+	listPaneStyle = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(subtleColor).
+			Padding(0, 1)
+
+	detailPaneStyle = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(primaryColor).
+			Padding(0, 1)
+
+	filterInputStyle = lipgloss.NewStyle().
+				Border(lipgloss.RoundedBorder()).
+				BorderForeground(warningColor).
+				Padding(0, 1)
+
+	filterLabelStyle = lipgloss.NewStyle().
+				Foreground(warningColor).
+				Bold(true)
+
+	activeFilterStyle = lipgloss.NewStyle().
+				Foreground(primaryColor).
+				Background(lipgloss.Color("#1A1A1A")).
+				Bold(true).
+				Padding(0, 1)
+
+	inactiveFilterStyle = lipgloss.NewStyle().
+				Foreground(subtleColor).
+				Padding(0, 1)
+
+	// Validation type badge styles
+	parseValidationStyle = lipgloss.NewStyle().
+				Foreground(lipgloss.Color("#000000")).
+				Background(successColor).
+				Bold(true).
+				Padding(0, 1)
+
+	parseIndentedValidationStyle = lipgloss.NewStyle().
+					Foreground(lipgloss.Color("#000000")).
+					Background(primaryColor).
+					Bold(true).
+					Padding(0, 1)
+
+	otherValidationStyle = lipgloss.NewStyle().
+				Foreground(lipgloss.Color("#000000")).
+				Background(warningColor).
+				Bold(true).
+				Padding(0, 1)
 )
 
 // Use types from ccl-test-lib - these are aliases for convenience
@@ -743,18 +794,43 @@ func runFileSelectionTUI(dir string) {
 	}
 }
 
-// TUI Implementation
+// FilterMode represents the active filter type
+type FilterMode int
+
+const (
+	FilterNone FilterMode = iota
+	FilterName
+	FilterFunction
+	FilterBehavior
+	FilterFeature
+)
+
+// TUI Implementation - Split View with Filter
 type tuiModel struct {
-	tests       []TestCase
-	suite       TestSuite
-	filename    string
-	directory   string // For back navigation
+	// Test data
+	tests         []TestCase
+	filteredTests []TestCase // Tests matching current filter
+	suite         TestSuite
+	filename      string
+	directory     string // For back navigation
+
+	// Selection state
 	currentTest int
-	showAll     bool
-	width       int
-	height      int
-	wantsBack   bool // Track if user wants to go back
-	entryScroll int  // Current entry scroll offset
+	listScroll  int // Scroll offset for test list
+	entryScroll int // Scroll offset for entries in detail view
+
+	// Filter state
+	filterMode   FilterMode
+	filterText   string
+	filterActive bool // True when typing in filter
+
+	// Layout
+	width     int
+	height    int
+	focusPane int // 0=list, 1=detail
+
+	// Navigation
+	wantsBack bool
 }
 
 type testLoadedMsg struct {
@@ -764,28 +840,91 @@ type testLoadedMsg struct {
 
 func initialTUIModel() tuiModel {
 	return tuiModel{
-		currentTest: 0,
-		showAll:     false,
-		width:       80,
-		height:      24,
+		currentTest:   0,
+		width:         120,
+		height:        40,
+		focusPane:     0,
+		filterMode:    FilterNone,
+		filteredTests: nil,
+	}
+}
+
+// applyFilter updates filteredTests based on current filter settings
+func (m *tuiModel) applyFilter() {
+	if m.filterText == "" || m.filterMode == FilterNone {
+		m.filteredTests = m.tests
+		return
+	}
+
+	filterLower := strings.ToLower(m.filterText)
+	var filtered []TestCase
+
+	for _, test := range m.tests {
+		match := false
+		switch m.filterMode {
+		case FilterName:
+			match = strings.Contains(strings.ToLower(test.Name), filterLower)
+		case FilterFunction:
+			if test.Validation != "" {
+				match = strings.Contains(strings.ToLower(test.Validation), filterLower)
+			}
+			for _, fn := range test.Functions {
+				if strings.Contains(strings.ToLower(fn), filterLower) {
+					match = true
+					break
+				}
+			}
+		case FilterBehavior:
+			for _, b := range test.Behaviors {
+				if strings.Contains(strings.ToLower(b), filterLower) {
+					match = true
+					break
+				}
+			}
+		case FilterFeature:
+			for _, f := range test.Features {
+				if strings.Contains(strings.ToLower(f), filterLower) {
+					match = true
+					break
+				}
+			}
+		}
+		if match {
+			filtered = append(filtered, test)
+		}
+	}
+
+	m.filteredTests = filtered
+	// Reset selection if current is out of bounds
+	if m.currentTest >= len(m.filteredTests) {
+		m.currentTest = 0
+	}
+}
+
+// getValidationBadge returns a styled badge for the validation type
+func getValidationBadge(validation string) string {
+	switch validation {
+	case "parse":
+		return parseValidationStyle.Render("parse")
+	case "parse_indented":
+		return parseIndentedValidationStyle.Render("parse_indented")
+	default:
+		return otherValidationStyle.Render(validation)
 	}
 }
 
 func loadTestFileCmd(filename string) tea.Cmd {
 	return func() tea.Msg {
-		// TODO: Remove support for source format files completely.
-		// The test-reader should only work with generated flat format files.
-
-		// Use ccl-test-lib loader to handle both source and flat formats
+		// Use ccl-test-lib loader for generated flat format files
 		impl := config.ImplementationConfig{
 			Name:               "test-reader",
 			Version:            "1.0.0",
-			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseIndented}, // Support parse and parse_indented tests for display
+			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseIndented},
 		}
 		testLoader := loader.NewTestLoader(".", impl)
 		suite, err := testLoader.LoadTestFile(filename, loader.LoadOptions{
 			Format:     loader.FormatFlat,
-			FilterMode: loader.FilterAll, // Load all tests for viewer
+			FilterMode: loader.FilterAll,
 		})
 		if err != nil {
 			return nil
@@ -810,8 +949,8 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case testLoadedMsg:
 		m.suite = msg.suite
 		m.filename = msg.filename
-		// ccl-test-lib loader already filters to appropriate tests
 		m.tests = msg.suite.Tests
+		m.filteredTests = m.tests // Initialize filtered to all tests
 		return m, nil
 
 	case tea.WindowSizeMsg:
@@ -820,61 +959,132 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case tea.KeyMsg:
+		// Handle filter input mode
+		if m.filterActive {
+			switch msg.String() {
+			case "enter":
+				m.filterActive = false
+				m.applyFilter()
+			case "esc":
+				m.filterActive = false
+				m.filterText = ""
+				m.filterMode = FilterNone
+				m.applyFilter()
+			case "backspace":
+				if len(m.filterText) > 0 {
+					m.filterText = m.filterText[:len(m.filterText)-1]
+					m.applyFilter()
+				}
+			default:
+				// Accept printable characters
+				if len(msg.String()) == 1 {
+					m.filterText += msg.String()
+					m.applyFilter()
+				}
+			}
+			return m, nil
+		}
+
+		// Normal navigation mode
 		switch msg.String() {
 		case "ctrl+c", "q":
 			return m, tea.Quit
 		case "esc":
-			if m.directory != "" {
-				// Set flag and quit to go back to directory selection
+			if m.filterMode != FilterNone {
+				// Clear filter first
+				m.filterText = ""
+				m.filterMode = FilterNone
+				m.applyFilter()
+			} else if m.directory != "" {
 				m.wantsBack = true
 				return m, tea.Quit
 			}
 		case "j", "down":
-			if m.currentTest < len(m.tests)-1 {
+			if m.currentTest < len(m.filteredTests)-1 {
 				m.currentTest++
-				m.entryScroll = 0 // Reset scroll when changing tests
+				m.entryScroll = 0
+				// Adjust list scroll to keep selection visible
+				visibleItems := m.height - 12 // Account for header/footer
+				if m.currentTest >= m.listScroll+visibleItems {
+					m.listScroll = m.currentTest - visibleItems + 1
+				}
 			}
 		case "k", "up":
 			if m.currentTest > 0 {
 				m.currentTest--
-				m.entryScroll = 0 // Reset scroll when changing tests
+				m.entryScroll = 0
+				if m.currentTest < m.listScroll {
+					m.listScroll = m.currentTest
+				}
 			}
 		case "g":
 			m.currentTest = 0
+			m.listScroll = 0
 			m.entryScroll = 0
 		case "G":
-			m.currentTest = len(m.tests) - 1
-			m.entryScroll = 0
-		case "a":
-			m.showAll = !m.showAll
-		case "left", "h":
-			if m.entryScroll > 0 {
+			if len(m.filteredTests) > 0 {
+				m.currentTest = len(m.filteredTests) - 1
+				m.entryScroll = 0
+				visibleItems := m.height - 12
+				if m.currentTest >= visibleItems {
+					m.listScroll = m.currentTest - visibleItems + 1
+				}
+			}
+		case "tab":
+			// Toggle focus between panes
+			m.focusPane = (m.focusPane + 1) % 2
+		case "h", "left":
+			if m.focusPane == 1 && m.entryScroll > 0 {
 				m.entryScroll--
 			}
-		case "right", "l":
-			// Scroll entries forward if there are more to show
-			if m.currentTest < len(m.tests) {
-				currentTest := m.tests[m.currentTest]
-				// Extract entry count from Expected interface{}
-				entryCount := 0
-				if currentTest.Expected != nil {
-					switch expected := currentTest.Expected.(type) {
-					case []interface{}:
-						entryCount = len(expected)
-					case map[string]interface{}:
-						if entriesArray, ok := expected["entries"].([]interface{}); ok {
-							entryCount = len(entriesArray)
-						}
-					}
-				}
-				maxScroll := entryCount - maxEntriesDisplay
-				if maxScroll > 0 && m.entryScroll < maxScroll {
-					m.entryScroll++
-				}
+		case "l", "right":
+			if m.focusPane == 1 {
+				m.scrollEntriesDown()
 			}
+		// Filter shortcuts
+		case "/":
+			m.filterMode = FilterName
+			m.filterActive = true
+			m.filterText = ""
+		case "f":
+			m.filterMode = FilterFunction
+			m.filterActive = true
+			m.filterText = ""
+		case "b":
+			m.filterMode = FilterBehavior
+			m.filterActive = true
+			m.filterText = ""
+		case "F":
+			m.filterMode = FilterFeature
+			m.filterActive = true
+			m.filterText = ""
+		case "c":
+			// Clear filter
+			m.filterText = ""
+			m.filterMode = FilterNone
+			m.applyFilter()
 		}
 	}
 	return m, nil
+}
+
+func (m *tuiModel) scrollEntriesDown() {
+	if m.currentTest >= len(m.filteredTests) {
+		return
+	}
+	currentTest := m.filteredTests[m.currentTest]
+	entryCount := 0
+	if currentTest.Expected != nil {
+		if expectedMap, ok := currentTest.Expected.(map[string]interface{}); ok {
+			if entriesArray, ok := expectedMap["entries"].([]interface{}); ok {
+				entryCount = len(entriesArray)
+			}
+		}
+	}
+	maxScroll := entryCount - maxEntriesDisplay
+	if maxScroll > 0 && m.entryScroll < maxScroll {
+		m.entryScroll++
+	}
 }
 
 func (m tuiModel) View() string {
@@ -884,119 +1094,240 @@ func (m tuiModel) View() string {
 
 	var content strings.Builder
 
-	// Header
-	header := fmt.Sprintf("%s", m.suite.Suite)
-	info := fmt.Sprintf("File: %s | %s", filepath.Base(m.filename), m.suite.Description)
+	// Compact header
+	header := fmt.Sprintf("📋 %s", m.suite.Suite)
+	headerStyle := lipgloss.NewStyle().Foreground(primaryColor).Bold(true)
+	content.WriteString(headerStyle.Render(header) + "\n")
 
-	content.WriteString(suiteHeaderStyle.Render(header) + "\n")
-	content.WriteString(suiteInfoStyle.Render(info) + "\n\n")
+	// Filter bar
+	content.WriteString(m.renderFilterBar() + "\n")
 
-	if m.showAll {
-		// Show all tests
-		for i, test := range m.tests {
-			if i == m.currentTest {
-				content.WriteString(m.renderTest(test, i+1, true) + "\n")
-			} else {
-				content.WriteString(m.renderTestSummary(test, i+1) + "\n")
-			}
-		}
-	} else {
-		// Show current test only
-		if m.currentTest < len(m.tests) {
-			content.WriteString(m.renderTest(m.tests[m.currentTest], m.currentTest+1, false) + "\n")
-		}
+	// Calculate pane dimensions
+	availableWidth := m.width - 4 // Account for borders
+	listWidth := listPaneWidth
+	if listWidth > availableWidth/2 {
+		listWidth = availableWidth / 2
 	}
+	detailWidth := availableWidth - listWidth - 3 // 3 for gap between panes
 
-	// Navigation info
-	navInfo := fmt.Sprintf("Test %d of %d", m.currentTest+1, len(m.tests))
-	help := "j/k: navigate • g/G: first/last • a: toggle all • h/l: scroll entries • q: quit"
-	if m.directory != "" {
-		help += " • esc: back to file selection"
-	}
+	availableHeight := m.height - 6 // Account for header, filter, and help
 
-	content.WriteString("\n")
-	content.WriteString(summaryStyle.Render(navInfo) + "\n")
-	content.WriteString(suiteInfoStyle.Render(help))
+	// Render split view panes
+	listPane := m.renderListPane(listWidth, availableHeight)
+	detailPane := m.renderDetailPane(detailWidth, availableHeight)
+
+	// Join panes horizontally
+	splitView := lipgloss.JoinHorizontal(lipgloss.Top, listPane, " ", detailPane)
+	content.WriteString(splitView + "\n")
+
+	// Help bar
+	content.WriteString(m.renderHelpBar())
 
 	return content.String()
 }
 
-func (m tuiModel) renderTestSummary(test TestCase, index int) string {
-	prefix := "  "
-	if index == m.currentTest+1 {
-		prefix = "► "
+func (m tuiModel) renderFilterBar() string {
+	var filterInfo string
+
+	if m.filterActive {
+		// Show active filter input
+		modeLabel := ""
+		switch m.filterMode {
+		case FilterName:
+			modeLabel = "Name"
+		case FilterFunction:
+			modeLabel = "Function"
+		case FilterBehavior:
+			modeLabel = "Behavior"
+		case FilterFeature:
+			modeLabel = "Feature"
+		}
+		filterInfo = filterLabelStyle.Render(fmt.Sprintf("🔍 Filter by %s: ", modeLabel)) +
+			activeFilterStyle.Render(m.filterText+"_")
+	} else if m.filterMode != FilterNone && m.filterText != "" {
+		// Show active filter summary
+		modeLabel := ""
+		switch m.filterMode {
+		case FilterName:
+			modeLabel = "name"
+		case FilterFunction:
+			modeLabel = "function"
+		case FilterBehavior:
+			modeLabel = "behavior"
+		case FilterFeature:
+			modeLabel = "feature"
+		}
+		filterInfo = filterLabelStyle.Render(fmt.Sprintf("🔍 Filtering by %s: ", modeLabel)) +
+			activeFilterStyle.Render(m.filterText) +
+			inactiveFilterStyle.Render(fmt.Sprintf(" (%d/%d tests)", len(m.filteredTests), len(m.tests)))
+	} else {
+		// Show filter hints
+		filterInfo = inactiveFilterStyle.Render("/ name • f function • b behavior • F feature • c clear")
 	}
 
-	status := "✅" // ccl-test-lib tests are typically valid parse tests
-	// TODO: Add error detection logic based on ccl-test-lib TestCase structure
-
-	summary := fmt.Sprintf("%s%s %s", prefix, status, test.Name)
-	if index == m.currentTest+1 {
-		return testHeaderStyle.Render(summary)
-	}
-	return summary
+	return filterInfo
 }
 
-func (m tuiModel) renderTest(test TestCase, index int, compact bool) string {
+func (m tuiModel) renderListPane(width, height int) string {
 	var content strings.Builder
 
-	// Test header
-	header := fmt.Sprintf("Test #%d: %s", index, test.Name)
-	content.WriteString(testHeaderStyle.Render(header) + "\n")
+	// Calculate visible items
+	visibleItems := height - 2 // Account for border
+	if visibleItems < 1 {
+		visibleItems = 1
+	}
 
-	// Note: ccl-test-lib TestCase doesn't have Description field
-	// Description would be in suite metadata if needed
+	// Determine which tests to show
+	startIdx := m.listScroll
+	endIdx := startIdx + visibleItems
+	if endIdx > len(m.filteredTests) {
+		endIdx = len(m.filteredTests)
+	}
 
-	// Input CCL compact (use first input for single-input tests)
+	// Show scroll indicator at top if needed
+	if startIdx > 0 {
+		scrollUp := lipgloss.NewStyle().Foreground(subtleColor).Render("↑ more above")
+		content.WriteString(scrollUp + "\n")
+		visibleItems--
+		endIdx = startIdx + visibleItems
+		if endIdx > len(m.filteredTests) {
+			endIdx = len(m.filteredTests)
+		}
+	}
+
+	// Render test list items
+	for i := startIdx; i < endIdx; i++ {
+		test := m.filteredTests[i]
+		isSelected := i == m.currentTest
+
+		// Build compact test summary
+		prefix := "  "
+		if isSelected {
+			prefix = "► "
+		}
+
+		// Validation badge (short form)
+		badge := ""
+		switch test.Validation {
+		case "parse":
+			badge = "P"
+		case "parse_indented":
+			badge = "I"
+		default:
+			if len(test.Validation) > 0 {
+				badge = strings.ToUpper(test.Validation[:1])
+			}
+		}
+
+		// Truncate name to fit
+		maxNameLen := width - 6 // Account for prefix and badge
+		name := test.Name
+		if len(name) > maxNameLen {
+			name = name[:maxNameLen-2] + ".."
+		}
+
+		line := fmt.Sprintf("%s[%s] %s", prefix, badge, name)
+
+		if isSelected {
+			style := selectedFileStyle.Width(width - 2)
+			content.WriteString(style.Render(line) + "\n")
+		} else {
+			content.WriteString(line + "\n")
+		}
+	}
+
+	// Show scroll indicator at bottom if needed
+	if endIdx < len(m.filteredTests) {
+		remaining := len(m.filteredTests) - endIdx
+		scrollDown := lipgloss.NewStyle().Foreground(subtleColor).Render(fmt.Sprintf("↓ %d more below", remaining))
+		content.WriteString(scrollDown)
+	}
+
+	// Apply list pane style
+	paneStyle := listPaneStyle.Width(width).Height(height)
+	if m.focusPane == 0 {
+		paneStyle = paneStyle.BorderForeground(primaryColor)
+	}
+
+	return paneStyle.Render(content.String())
+}
+
+func (m tuiModel) renderDetailPane(width, height int) string {
+	if len(m.filteredTests) == 0 {
+		emptyMsg := "No tests match the current filter"
+		paneStyle := detailPaneStyle.Width(width).Height(height)
+		return paneStyle.Render(emptyMsg)
+	}
+
+	if m.currentTest >= len(m.filteredTests) {
+		return detailPaneStyle.Width(width).Height(height).Render("No test selected")
+	}
+
+	test := m.filteredTests[m.currentTest]
+	var content strings.Builder
+
+	// Test header with validation badge
+	testHeader := fmt.Sprintf("%s  %s", test.Name, getValidationBadge(test.Validation))
+	content.WriteString(testHeaderStyle.Render(testHeader) + "\n\n")
+
+	// Source test reference if available
+	if test.SourceTest != "" && test.SourceTest != test.Name {
+		sourceRef := lipgloss.NewStyle().Foreground(subtleColor).Render(fmt.Sprintf("from: %s", test.SourceTest))
+		content.WriteString(sourceRef + "\n\n")
+	}
+
+	// Input section
+	content.WriteString(inputHeaderStyle.Render("📄 INPUT:") + "\n")
 	inputText := ""
 	if len(test.Inputs) > 0 {
 		inputText = test.Inputs[0]
 	}
-	content.WriteString(inputHeaderStyle.Render("📄 CCL INPUT:") + "\n")
-	content.WriteString(inputContentStyle.Render(formatInputContent(inputText)) + "\n")
+	// Constrain input width
+	inputStyle := inputContentStyle.Width(width - 6)
+	content.WriteString(inputStyle.Render(formatInputContent(inputText)) + "\n\n")
 
-	// Parse validation using ccl-test-lib TestCase
-	content.WriteString(m.renderParseValidationFromTestCase(test, compact) + "\n")
+	// Expected output section
+	content.WriteString(m.renderExpectedOutput(test, width-4) + "\n")
 
-	// Selective metadata (only if not compact)
-	if !compact {
-		content.WriteString(m.renderSelectiveMetadata(test) + "\n")
+	// Metadata section
+	content.WriteString(m.renderMetadata(test))
+
+	// Apply detail pane style
+	paneStyle := detailPaneStyle.Width(width).Height(height)
+	if m.focusPane == 1 {
+		paneStyle = paneStyle.BorderForeground(primaryColor)
 	}
 
-	return content.String()
+	return paneStyle.Render(content.String())
 }
 
-func (m tuiModel) renderParseValidationFromTestCase(test TestCase, compact bool) string {
+func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
 	var content strings.Builder
 
-	// Handle successful parse case using ccl-test-lib TestCase
-	content.WriteString(successHeaderStyle.Render("✅ EXPECTED: Parse Success") + "\n")
+	// Determine success/error status
+	isError := test.ExpectError
+	if isError {
+		content.WriteString(errorHeaderStyle.Render("❌ EXPECTED: Error") + "\n")
+	} else {
+		header := "✅ EXPECTED"
+		if test.Validation == "parse" || test.Validation == "parse_indented" {
+			header = "✅ EXPECTED: Entries"
+		}
+		content.WriteString(successHeaderStyle.Render(header) + "\n")
+	}
 
-	// Handle Expected field which can be array of entries or map with entries
+	// Extract entries from Expected
 	var entries []Entry
 	var count int
 
-	// Try to extract entries from Expected interface{}
 	if test.Expected != nil {
-		switch expected := test.Expected.(type) {
-		case []interface{}:
-			// Direct array of entries
-			for _, item := range expected {
-				if entryMap, ok := item.(map[string]interface{}); ok {
-					key, _ := entryMap["key"].(string)
-					value, _ := entryMap["value"].(string)
-					entries = append(entries, Entry{Key: key, Value: value})
-				}
-			}
-			count = len(entries)
-		case map[string]interface{}:
-			// Map with count and entries fields
-			if c, ok := expected["count"]; ok {
+		if expectedMap, ok := test.Expected.(map[string]interface{}); ok {
+			if c, ok := expectedMap["count"]; ok {
 				if countFloat, ok := c.(float64); ok {
 					count = int(countFloat)
 				}
 			}
-			if entriesArray, ok := expected["entries"].([]interface{}); ok {
+			if entriesArray, ok := expectedMap["entries"].([]interface{}); ok {
 				for _, item := range entriesArray {
 					if entryMap, ok := item.(map[string]interface{}); ok {
 						key, _ := entryMap["key"].(string)
@@ -1008,11 +1339,10 @@ func (m tuiModel) renderParseValidationFromTestCase(test TestCase, compact bool)
 		}
 	}
 
-	content.WriteString(fmt.Sprintf("   Count: %d assertion(s)\n", count))
+	content.WriteString(fmt.Sprintf("Count: %d\n", count))
 
-	if !compact && len(entries) > 0 {
+	if len(entries) > 0 {
 		totalEntries := len(entries)
-		content.WriteString(fmt.Sprintf("   Entries (%d total):\n", totalEntries))
 
 		// Handle scrolling
 		startIdx := m.entryScroll
@@ -1028,67 +1358,72 @@ func (m tuiModel) renderParseValidationFromTestCase(test TestCase, compact bool)
 			endIdx = totalEntries
 		}
 
-		// Show scroll indicators if needed
+		// Scroll indicator up
 		if startIdx > 0 {
 			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render("   ↑ More entries above (h/← to scroll up)\n"))
+			content.WriteString(scrollStyle.Render("↑ more above\n"))
 		}
 
-		// Show entries in current scroll window
+		// Show entries
 		for i := startIdx; i < endIdx; i++ {
 			entry := entries[i]
-
-			// Display key=value on same line unless value contains newlines
 			if strings.Contains(entry.Value, "\n") {
-				// Multiline value: key on first line, value on subsequent lines
 				keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
 				valueLine := formatValue(entry.Value)
 				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
 				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
 			} else {
-				// Single line: key = value
 				entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
 				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
 			}
 		}
 
-		// Show scroll indicator if there are more entries below
+		// Scroll indicator down
 		if endIdx < totalEntries {
 			remaining := totalEntries - endIdx
 			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render(fmt.Sprintf("   ↓ %d more entries below (l/→ to scroll down)\n", remaining)))
+			content.WriteString(scrollStyle.Render(fmt.Sprintf("↓ %d more (tab→detail, h/l scroll)\n", remaining)))
 		}
 	}
 
 	return content.String()
 }
 
-func (m tuiModel) renderSelectiveMetadata(test TestCase) string {
+func (m tuiModel) renderMetadata(test TestCase) string {
 	var content strings.Builder
 
-	// Show behavior tags if available in ccl-test-lib TestCase
-	variantTags := []string{}
-
-	// Add behaviors to variant tags
-	for _, behavior := range test.Behaviors {
-		variantTags = append(variantTags, "behavior:"+behavior)
-	}
-
-	// Add any other relevant metadata from TestCase
-	if len(test.Features) > 0 {
-		for _, feature := range test.Features {
-			variantTags = append(variantTags, "feature:"+feature)
-		}
-	}
-
-	if len(variantTags) > 0 {
-		content.WriteString(metaHeaderStyle.Render("🔄 VARIANTS:") + "\n")
-		content.WriteString("   ")
-		for i, tag := range variantTags {
+	// Behaviors
+	if len(test.Behaviors) > 0 {
+		content.WriteString(metaHeaderStyle.Render("Behaviors: "))
+		for i, b := range test.Behaviors {
 			if i > 0 {
 				content.WriteString(", ")
 			}
-			content.WriteString(tagStyle.Render(tag))
+			content.WriteString(tagStyle.Render(b))
+		}
+		content.WriteString("\n")
+	}
+
+	// Features
+	if len(test.Features) > 0 {
+		content.WriteString(metaHeaderStyle.Render("Features: "))
+		for i, f := range test.Features {
+			if i > 0 {
+				content.WriteString(", ")
+			}
+			content.WriteString(tagStyle.Render(f))
+		}
+		content.WriteString("\n")
+	}
+
+	// Variants
+	if len(test.Variants) > 0 {
+		content.WriteString(metaHeaderStyle.Render("Variants: "))
+		for i, v := range test.Variants {
+			if i > 0 {
+				content.WriteString(", ")
+			}
+			content.WriteString(tagStyle.Render(v))
 		}
 		content.WriteString("\n")
 	}
@@ -1096,79 +1431,38 @@ func (m tuiModel) renderSelectiveMetadata(test TestCase) string {
 	return content.String()
 }
 
-func (m tuiModel) renderParseValidation(parseData interface{}, compact bool) string {
-	parseMap, ok := parseData.(map[string]interface{})
-	if !ok {
-		return errorHeaderStyle.Render("❌ Invalid parse validation format")
+func (m tuiModel) renderHelpBar() string {
+	var parts []string
+
+	// Navigation
+	parts = append(parts, "j/k:navigate")
+	parts = append(parts, "g/G:first/last")
+	parts = append(parts, "tab:switch pane")
+
+	// Scrolling (when in detail pane)
+	if m.focusPane == 1 {
+		parts = append(parts, "h/l:scroll entries")
 	}
 
-	count, _ := parseMap["count"].(float64)
-
-	// Check if this is an error case
-	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
-		var content strings.Builder
-		content.WriteString(errorHeaderStyle.Render("❌ EXPECTED: Parse Error") + "\n")
-		content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
-
-		if errorMsg, ok := parseMap["error_message"].(string); ok {
-			content.WriteString(fmt.Sprintf("   Error: %s\n", errorMsg))
-		}
-		return content.String()
+	// Filter status
+	if m.filterMode != FilterNone {
+		parts = append(parts, "c:clear filter")
 	}
 
-	// Handle successful parse case
-	var content strings.Builder
-	content.WriteString(successHeaderStyle.Render("✅ EXPECTED: Parse Success") + "\n")
-	content.WriteString(fmt.Sprintf("   Count: %.0f assertion(s)\n", count))
+	// Exit
+	if m.directory != "" {
+		parts = append(parts, "esc:back")
+	}
+	parts = append(parts, "q:quit")
 
-	if expectedData, ok := parseMap["expected"].([]interface{}); ok && !compact {
-		totalEntries := len(expectedData)
-		content.WriteString(fmt.Sprintf("   Entries (%d total):\n", totalEntries))
-
-		// Handle scrolling
-		startIdx := m.entryScroll
-		if startIdx >= totalEntries {
-			startIdx = totalEntries - 1
-			if startIdx < 0 {
-				startIdx = 0
-			}
-		}
-
-		endIdx := startIdx + maxEntriesDisplay
-		if endIdx > totalEntries {
-			endIdx = totalEntries
-		}
-
-		// Show scroll indicators if needed
-		if startIdx > 0 {
-			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render("   ↑ More entries above (h/← to scroll up)\n"))
-		}
-
-		// Show entries in current scroll window
-		for i := startIdx; i < endIdx; i++ {
-			entryData := expectedData[i]
-			if entryMap, ok := entryData.(map[string]interface{}); ok {
-				key, _ := entryMap["key"].(string)
-				value, _ := entryMap["value"].(string)
-
-				// Boxed entry content with key/equals on first line, value on second
-				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
-				valueLine := formatValue(value)
-				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
-			}
-		}
-
-		// Show scroll indicator if there are more entries below
-		if endIdx < totalEntries {
-			remaining := totalEntries - endIdx
-			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render(fmt.Sprintf("   ↓ %d more entries below (l/→ to scroll down)\n", remaining)))
-		}
+	// Test count
+	countInfo := fmt.Sprintf("[%d/%d]", m.currentTest+1, len(m.filteredTests))
+	if len(m.filteredTests) != len(m.tests) {
+		countInfo = fmt.Sprintf("[%d/%d of %d]", m.currentTest+1, len(m.filteredTests), len(m.tests))
 	}
 
-	return content.String()
+	help := strings.Join(parts, " • ") + " " + summaryStyle.Render(countInfo)
+	return suiteInfoStyle.Render(help)
 }
 
 func runTUI(filename string) {
