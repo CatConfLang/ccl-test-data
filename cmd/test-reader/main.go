@@ -212,6 +212,26 @@ var (
 				Background(warningColor).
 				Bold(true).
 				Padding(0, 1)
+
+	// Object visualization styles (for build_hierarchy, load, etc.)
+	objectKeyStyle = lipgloss.NewStyle().
+			Foreground(primaryColor).
+			Bold(true)
+
+	objectValueStyle = lipgloss.NewStyle().
+				Foreground(lipgloss.Color("#FFFFFF"))
+
+	objectBranchStyle = lipgloss.NewStyle().
+				Foreground(subtleColor)
+
+	arrayIndexStyle = lipgloss.NewStyle().
+			Foreground(subtleColor)
+
+	objectBoxStyle = lipgloss.NewStyle().
+			Border(lipgloss.RoundedBorder()).
+			BorderForeground(subtleColor).
+			Padding(0, 1).
+			Margin(0, 0, 0, 2)
 )
 
 // Use types from ccl-test-lib - these are aliases for convenience
@@ -248,6 +268,104 @@ func formatInputContent(input string) string {
 		return "(empty)"
 	}
 	return visualizeWhitespaceInline(input)
+}
+
+// renderObjectValue renders a single value within an object (string, nested object, or array)
+// isLast indicates if this is the last item in the parent container
+// prefix is the accumulated branch characters from parent levels
+func renderObjectValue(key string, value interface{}, prefix string, isLast bool, lines *[]string) {
+	// Choose branch character
+	branch := "├─ "
+	childPrefix := prefix + "│  "
+	if isLast {
+		branch = "└─ "
+		childPrefix = prefix + "   "
+	}
+
+	switch v := value.(type) {
+	case string:
+		// Leaf value: key = "value"
+		line := prefix + objectBranchStyle.Render(branch) +
+			objectKeyStyle.Render(key) + " " +
+			entryEqualsStyle.Render("=") + " " +
+			objectValueStyle.Render(`"`+v+`"`)
+		*lines = append(*lines, line)
+
+	case map[string]interface{}:
+		// Nested object: show key, then recurse
+		line := prefix + objectBranchStyle.Render(branch) + objectKeyStyle.Render(key)
+		*lines = append(*lines, line)
+		renderObjectLines(v, childPrefix, lines)
+
+	case []interface{}:
+		// Array: show key, then list items
+		line := prefix + objectBranchStyle.Render(branch) + objectKeyStyle.Render(key)
+		*lines = append(*lines, line)
+		renderArrayLines(v, childPrefix, lines)
+
+	default:
+		// Other types: convert to string
+		line := prefix + objectBranchStyle.Render(branch) +
+			objectKeyStyle.Render(key) + " " +
+			entryEqualsStyle.Render("=") + " " +
+			objectValueStyle.Render(fmt.Sprintf("%v", v))
+		*lines = append(*lines, line)
+	}
+}
+
+// renderArrayLines renders array items with index indicators
+func renderArrayLines(arr []interface{}, prefix string, lines *[]string) {
+	for i, item := range arr {
+		isLast := i == len(arr)-1
+		branch := "├─ "
+		childPrefix := prefix + "│  "
+		if isLast {
+			branch = "└─ "
+			childPrefix = prefix + "   "
+		}
+
+		indexStr := arrayIndexStyle.Render(fmt.Sprintf("[%d]", i))
+
+		switch v := item.(type) {
+		case string:
+			line := prefix + objectBranchStyle.Render(branch) + indexStr + " " +
+				objectValueStyle.Render(`"`+v+`"`)
+			*lines = append(*lines, line)
+
+		case map[string]interface{}:
+			line := prefix + objectBranchStyle.Render(branch) + indexStr
+			*lines = append(*lines, line)
+			renderObjectLines(v, childPrefix, lines)
+
+		default:
+			line := prefix + objectBranchStyle.Render(branch) + indexStr + " " +
+				objectValueStyle.Render(fmt.Sprintf("%v", v))
+			*lines = append(*lines, line)
+		}
+	}
+}
+
+// renderObjectLines renders an object's key-value pairs with tree structure
+func renderObjectLines(obj map[string]interface{}, prefix string, lines *[]string) {
+	// Sort keys for consistent output
+	keys := make([]string, 0, len(obj))
+	for k := range obj {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
+	for i, key := range keys {
+		isLast := i == len(keys)-1
+		renderObjectValue(key, obj[key], prefix, isLast, lines)
+	}
+}
+
+// renderObject renders a complete object as a tree structure
+// Returns a slice of lines that can be displayed with scrolling
+func renderObject(obj map[string]interface{}) []string {
+	var lines []string
+	renderObjectLines(obj, "", &lines)
+	return lines
 }
 
 // FileInfo represents a test file with metadata
@@ -486,80 +604,198 @@ func displayTest(test TestCase, index int) {
 	fmt.Println()
 }
 
-func displayParseValidationFromTestCase(test TestCase) {
-	// Handle successful parse case using ccl-test-lib TestCase
-	fmt.Println(successHeaderStyle.Render("✅ EXPECTED: Parse Success"))
+// isObjectValidation returns true if the validation type expects an object (not entries)
+func isObjectValidation(validation string) bool {
+	switch validation {
+	case "build_hierarchy", "load":
+		return true
+	default:
+		return false
+	}
+}
 
-	// Handle Expected field which can be array of entries or map with entries
+// ExpectedContentResult holds the rendered expected output content
+type ExpectedContentResult struct {
+	Header       string   // "✅ EXPECTED: Object" or "✅ EXPECTED: Entries"
+	IsError      bool     // true if expecting an error
+	IsObject     bool     // true if object visualization, false for entries
+	Lines        []string // rendered lines (object tree lines or entry box strings)
+	TotalItems   int      // total number of items (for count display)
+	StartIdx     int      // actual start index after bounds checking
+	EndIdx       int      // actual end index after bounds checking
+	HasMoreAbove bool     // true if there are items above the visible range
+	HasMoreBelow bool     // true if there are items below the visible range
+}
+
+// extractEntries extracts Entry slice from test.Expected
+func extractEntries(expected interface{}) []Entry {
 	var entries []Entry
-	var count int
+	if expected == nil {
+		return entries
+	}
 
-	// Try to extract entries from Expected interface{}
-	if test.Expected != nil {
-		switch expected := test.Expected.(type) {
-		case []interface{}:
-			// Direct array of entries
-			for _, item := range expected {
+	switch exp := expected.(type) {
+	case []interface{}:
+		// Direct array of entries (from loader transformation)
+		for _, item := range exp {
+			if entryMap, ok := item.(map[string]interface{}); ok {
+				key, _ := entryMap["key"].(string)
+				value, _ := entryMap["value"].(string)
+				entries = append(entries, Entry{Key: key, Value: value})
+			}
+		}
+	case map[string]interface{}:
+		// Structured format with count/entries (raw JSON)
+		if entriesArray, ok := exp["entries"].([]interface{}); ok {
+			for _, item := range entriesArray {
 				if entryMap, ok := item.(map[string]interface{}); ok {
 					key, _ := entryMap["key"].(string)
 					value, _ := entryMap["value"].(string)
 					entries = append(entries, Entry{Key: key, Value: value})
 				}
 			}
-			count = len(entries)
-		case map[string]interface{}:
-			// Map with count and entries fields
-			if c, ok := expected["count"]; ok {
-				if countFloat, ok := c.(float64); ok {
-					count = int(countFloat)
+		}
+	}
+	return entries
+}
+
+// renderEntryLine renders a single entry as a styled string
+func renderEntryLine(entry Entry) string {
+	if strings.Contains(entry.Value, "\n") {
+		// Multiline value: key on first line, value on subsequent lines
+		keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
+		valueLine := formatValue(entry.Value)
+		entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
+		return entryBoxStyle.Render(entryContent)
+	}
+	// Single line: key = value
+	entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
+	return entryBoxStyle.Render(entryContent)
+}
+
+// renderExpectedContent generates the expected output content for both static and TUI modes
+// scrollOffset: starting index for display (0 for static mode)
+// maxDisplay: maximum items to show (maxEntriesDisplay typically)
+func renderExpectedContent(test TestCase, scrollOffset int, maxDisplay int) ExpectedContentResult {
+	result := ExpectedContentResult{}
+
+	// Handle error case
+	if test.ExpectError {
+		result.Header = "❌ EXPECTED: Error"
+		result.IsError = true
+		return result
+	}
+
+	// Check if this is an object-returning validation type
+	if isObjectValidation(test.Validation) {
+		if obj, ok := test.Expected.(map[string]interface{}); ok {
+			result.Header = "✅ EXPECTED: Object"
+			result.IsObject = true
+
+			// Render object as tree structure
+			result.Lines = renderObject(obj)
+			result.TotalItems = len(result.Lines)
+
+			// Calculate visible range with bounds checking
+			result.StartIdx = scrollOffset
+			if result.StartIdx >= result.TotalItems {
+				result.StartIdx = result.TotalItems - 1
+				if result.StartIdx < 0 {
+					result.StartIdx = 0
 				}
 			}
-			if entriesArray, ok := expected["entries"].([]interface{}); ok {
-				for _, item := range entriesArray {
-					if entryMap, ok := item.(map[string]interface{}); ok {
-						key, _ := entryMap["key"].(string)
-						value, _ := entryMap["value"].(string)
-						entries = append(entries, Entry{Key: key, Value: value})
-					}
-				}
+
+			result.EndIdx = result.StartIdx + maxDisplay
+			if result.EndIdx > result.TotalItems {
+				result.EndIdx = result.TotalItems
 			}
+
+			result.HasMoreAbove = result.StartIdx > 0
+			result.HasMoreBelow = result.EndIdx < result.TotalItems
+
+			return result
 		}
 	}
 
-	fmt.Printf("   Count: %d assertion(s)\n", count)
+	// Entry visualization mode (parse, parse_indented)
+	result.Header = "✅ EXPECTED: Entries"
+	result.IsObject = false
 
-	if len(entries) > 0 {
-		totalEntries := len(entries)
-		fmt.Printf("   Entries (%d total):\n", totalEntries)
+	entries := extractEntries(test.Expected)
+	result.TotalItems = len(entries)
 
-		// Show up to maxEntriesDisplay entries
-		entriesToShow := entries
-		if totalEntries > maxEntriesDisplay {
-			entriesToShow = entries[:maxEntriesDisplay]
+	// Pre-render all entry lines
+	for _, entry := range entries {
+		result.Lines = append(result.Lines, renderEntryLine(entry))
+	}
+
+	// Calculate visible range with bounds checking
+	result.StartIdx = scrollOffset
+	if result.StartIdx >= result.TotalItems {
+		result.StartIdx = result.TotalItems - 1
+		if result.StartIdx < 0 {
+			result.StartIdx = 0
 		}
+	}
 
-		for _, entry := range entriesToShow {
-			// Display key=value on same line unless value contains newlines
-			if strings.Contains(entry.Value, "\n") {
-				// Multiline value: key on first line, value on subsequent lines
-				keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
-				valueLine := formatValue(entry.Value)
-				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-				fmt.Println(entryBoxStyle.Render(entryContent))
-			} else {
-				// Single line: key = value
-				entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
-				fmt.Println(entryBoxStyle.Render(entryContent))
+	result.EndIdx = result.StartIdx + maxDisplay
+	if result.EndIdx > result.TotalItems {
+		result.EndIdx = result.TotalItems
+	}
+
+	result.HasMoreAbove = result.StartIdx > 0
+	result.HasMoreBelow = result.EndIdx < result.TotalItems
+
+	return result
+}
+
+func displayParseValidationFromTestCase(test TestCase) {
+	// Use unified rendering with no scroll offset for static mode
+	result := renderExpectedContent(test, 0, maxEntriesDisplay)
+
+	// Print header
+	if result.IsError {
+		fmt.Println(errorHeaderStyle.Render(result.Header))
+		return
+	}
+	fmt.Println(successHeaderStyle.Render(result.Header))
+
+	// Print count for entries mode
+	if !result.IsObject {
+		fmt.Printf("   Count: %d assertion(s)\n", result.TotalItems)
+		if result.TotalItems > 0 {
+			fmt.Printf("   Entries (%d total):\n", result.TotalItems)
+		}
+	}
+
+	// Print visible lines
+	if result.IsObject && len(result.Lines) > 0 {
+		// Object mode: combine lines into a single box
+		var objectContent strings.Builder
+		for i := result.StartIdx; i < result.EndIdx; i++ {
+			objectContent.WriteString(result.Lines[i])
+			if i < result.EndIdx-1 {
+				objectContent.WriteString("\n")
 			}
 		}
-
-		// Show truncation indicator if there are more entries
-		if totalEntries > maxEntriesDisplay {
-			remaining := totalEntries - maxEntriesDisplay
-			truncationMsg := fmt.Sprintf("... and %d more entries (use TUI mode for scrolling)", remaining)
-			truncationStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			fmt.Println(truncationStyle.Render("   " + truncationMsg))
+		fmt.Println(objectBoxStyle.Render(objectContent.String()))
+	} else {
+		// Entry mode: each line is already a boxed entry
+		for i := result.StartIdx; i < result.EndIdx; i++ {
+			fmt.Println(result.Lines[i])
 		}
+	}
+
+	// Print truncation indicator
+	if result.HasMoreBelow {
+		remaining := result.TotalItems - result.EndIdx
+		itemType := "entries"
+		if result.IsObject {
+			itemType = "lines"
+		}
+		truncationMsg := fmt.Sprintf("... and %d more %s (use TUI mode for scrolling)", remaining, itemType)
+		truncationStyle := lipgloss.NewStyle().Foreground(subtleColor)
+		fmt.Println(truncationStyle.Render("   " + truncationMsg))
 	}
 }
 
@@ -1303,95 +1539,50 @@ func (m tuiModel) renderDetailPane(width, height int) string {
 
 func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
 	var content strings.Builder
+	scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
 
-	// Determine success/error status
-	isError := test.ExpectError
-	if isError {
-		content.WriteString(errorHeaderStyle.Render("❌ EXPECTED: Error") + "\n")
+	// Use unified rendering with scroll offset from TUI state
+	result := renderExpectedContent(test, m.entryScroll, maxEntriesDisplay)
+
+	// Print header
+	if result.IsError {
+		content.WriteString(errorHeaderStyle.Render(result.Header) + "\n")
+		return content.String()
+	}
+	content.WriteString(successHeaderStyle.Render(result.Header) + "\n")
+
+	// Print count for entries mode
+	if !result.IsObject {
+		content.WriteString(fmt.Sprintf("Count: %d\n", result.TotalItems))
+	}
+
+	// Scroll indicator up
+	if result.HasMoreAbove {
+		content.WriteString(scrollStyle.Render("↑ more above\n"))
+	}
+
+	// Print visible lines
+	if result.IsObject && len(result.Lines) > 0 {
+		// Object mode: combine lines into a single box
+		var objectContent strings.Builder
+		for i := result.StartIdx; i < result.EndIdx; i++ {
+			objectContent.WriteString(result.Lines[i])
+			if i < result.EndIdx-1 {
+				objectContent.WriteString("\n")
+			}
+		}
+		content.WriteString(objectBoxStyle.Render(objectContent.String()) + "\n")
 	} else {
-		header := "✅ EXPECTED"
-		if test.Validation == "parse" || test.Validation == "parse_indented" {
-			header = "✅ EXPECTED: Entries"
-		}
-		content.WriteString(successHeaderStyle.Render(header) + "\n")
-	}
-
-	// Extract entries from Expected
-	// Note: ccl-test-lib loader transforms expected to just the entries array
-	// for parse/parse_indented validation types
-	var entries []Entry
-
-	if test.Expected != nil {
-		switch expected := test.Expected.(type) {
-		case []interface{}:
-			// Direct array of entries (from loader transformation)
-			for _, item := range expected {
-				if entryMap, ok := item.(map[string]interface{}); ok {
-					key, _ := entryMap["key"].(string)
-					value, _ := entryMap["value"].(string)
-					entries = append(entries, Entry{Key: key, Value: value})
-				}
-			}
-		case map[string]interface{}:
-			// Structured format with count/entries (raw JSON)
-			if entriesArray, ok := expected["entries"].([]interface{}); ok {
-				for _, item := range entriesArray {
-					if entryMap, ok := item.(map[string]interface{}); ok {
-						key, _ := entryMap["key"].(string)
-						value, _ := entryMap["value"].(string)
-						entries = append(entries, Entry{Key: key, Value: value})
-					}
-				}
-			}
+		// Entry mode: each line is already a boxed entry
+		for i := result.StartIdx; i < result.EndIdx; i++ {
+			content.WriteString(result.Lines[i] + "\n")
 		}
 	}
 
-	count := len(entries)
-	content.WriteString(fmt.Sprintf("Count: %d\n", count))
-
-	if len(entries) > 0 {
-		totalEntries := len(entries)
-
-		// Handle scrolling
-		startIdx := m.entryScroll
-		if startIdx >= totalEntries {
-			startIdx = totalEntries - 1
-			if startIdx < 0 {
-				startIdx = 0
-			}
-		}
-
-		endIdx := startIdx + maxEntriesDisplay
-		if endIdx > totalEntries {
-			endIdx = totalEntries
-		}
-
-		// Scroll indicator up
-		if startIdx > 0 {
-			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render("↑ more above\n"))
-		}
-
-		// Show entries
-		for i := startIdx; i < endIdx; i++ {
-			entry := entries[i]
-			if strings.Contains(entry.Value, "\n") {
-				keyLine := fmt.Sprintf("%s %s", formatKey(entry.Key), entryEqualsStyle.Render("="))
-				valueLine := formatValue(entry.Value)
-				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
-			} else {
-				entryContent := fmt.Sprintf("%s %s %s", formatKey(entry.Key), entryEqualsStyle.Render("="), formatValue(entry.Value))
-				content.WriteString(entryBoxStyle.Render(entryContent) + "\n")
-			}
-		}
-
-		// Scroll indicator down
-		if endIdx < totalEntries {
-			remaining := totalEntries - endIdx
-			scrollStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			content.WriteString(scrollStyle.Render(fmt.Sprintf("↓ %d more (tab→detail, h/l scroll)\n", remaining)))
-		}
+	// Scroll indicator down
+	if result.HasMoreBelow {
+		remaining := result.TotalItems - result.EndIdx
+		content.WriteString(scrollStyle.Render(fmt.Sprintf("↓ %d more (tab→detail, h/l scroll)\n", remaining)))
 	}
 
 	return content.String()
