@@ -3,7 +3,7 @@ name: Release Test Data
 on:
   push:
     tags:
-      - 'data-v*.*.*'
+      - 'v*.*.*'
 
 permissions:
   contents: write
@@ -34,7 +34,7 @@ jobs:
         id: version
         run: |
           TAG_NAME="${GITHUB_REF#refs/tags/}"
-          VERSION="${TAG_NAME#data-}"
+          VERSION="${TAG_NAME#v}"
           echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
@@ -61,10 +61,20 @@ jobs:
             jq --arg schema "$SCHEMA_URL" '.["$schema"] = $schema' "$file" > "release_assets/$filename"
           done
 
-      - name: Create ZIP archive
+      - name: Create generated tests ZIP archive
         run: |
           cd release_assets
-          zip -r ../ccl-test-data-${{ steps.version.outputs.tag }}.zip *.json
+          zip -r ../ccl-test-data-generated-${{ steps.version.outputs.tag }}.zip *.json
+
+      - name: Create source tests ZIP archive
+        run: |
+          zip -r ccl-test-data-source-${{ steps.version.outputs.tag }}.zip source_tests/
+
+      - name: Generate SHA256 checksums
+        run: |
+          sha256sum ccl-test-data-generated-${{ steps.version.outputs.tag }}.zip \
+                    ccl-test-data-source-${{ steps.version.outputs.tag }}.zip \
+                    > SHA256SUMS
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -74,5 +84,7 @@ jobs:
           body_path: RELEASE_NOTES.md
           files: |
             release_assets/*.json
-            ccl-test-data-${{ steps.version.outputs.tag }}.zip
+            ccl-test-data-generated-${{ steps.version.outputs.tag }}.zip
+            ccl-test-data-source-${{ steps.version.outputs.tag }}.zip
+            SHA256SUMS
           fail_on_unmatched_files: true
