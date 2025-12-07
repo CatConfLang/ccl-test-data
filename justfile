@@ -140,12 +140,12 @@ list:
     go run ./cmd/ccl-test-runner test --list
 
 # Interactive test viewer (TUI-based) - builds test-reader if needed
-view-tests PATH="source_tests":
+view-tests PATH="source_tests/core":
     just build-test-reader
     ./bin/test-reader {{PATH}}
 
 # Static test viewer (CLI output) - builds test-reader if needed
-view-tests-static PATH="source_tests":
+view-tests-static PATH="source_tests/core":
     just build-test-reader
     ./bin/test-reader {{PATH}} --static
 
