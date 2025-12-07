@@ -314,6 +314,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "inputs": [
         "\tkey\t=\tvalue"
       ]
@@ -337,6 +342,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "inputs": [
         "\tkey\t=\tvalue"
       ]
@@ -381,6 +391,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "inputs": [
         "text = First\n    four spaces\n\ttab preserved"
       ]
@@ -404,6 +419,11 @@
       "behaviors": [
         "tabs_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_to_spaces"
+        ]
+      },
       "inputs": [
         "text = First\n    four spaces\n\ttab preserved"
       ]
