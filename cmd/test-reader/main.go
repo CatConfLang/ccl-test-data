@@ -1317,17 +1317,24 @@ func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
 	}
 
 	// Extract entries from Expected
+	// Note: ccl-test-lib loader transforms expected to just the entries array
+	// for parse/parse_indented validation types
 	var entries []Entry
-	var count int
 
 	if test.Expected != nil {
-		if expectedMap, ok := test.Expected.(map[string]interface{}); ok {
-			if c, ok := expectedMap["count"]; ok {
-				if countFloat, ok := c.(float64); ok {
-					count = int(countFloat)
+		switch expected := test.Expected.(type) {
+		case []interface{}:
+			// Direct array of entries (from loader transformation)
+			for _, item := range expected {
+				if entryMap, ok := item.(map[string]interface{}); ok {
+					key, _ := entryMap["key"].(string)
+					value, _ := entryMap["value"].(string)
+					entries = append(entries, Entry{Key: key, Value: value})
 				}
 			}
-			if entriesArray, ok := expectedMap["entries"].([]interface{}); ok {
+		case map[string]interface{}:
+			// Structured format with count/entries (raw JSON)
+			if entriesArray, ok := expected["entries"].([]interface{}); ok {
 				for _, item := range entriesArray {
 					if entryMap, ok := item.(map[string]interface{}); ok {
 						key, _ := entryMap["key"].(string)
@@ -1339,6 +1346,7 @@ func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
 		}
 	}
 
+	count := len(entries)
 	content.WriteString(fmt.Sprintf("Count: %d\n", count))
 
 	if len(entries) > 0 {
