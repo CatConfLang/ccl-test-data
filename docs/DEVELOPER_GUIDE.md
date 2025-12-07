@@ -261,7 +261,7 @@ cargo install git-cliff
    This will:
    - Update CHANGELOG.md with all changes since last release
    - Commit the changelog
-   - Create tag `data-v1.2.0`
+   - Create tag `v1.2.0`
 
 4. **Push to trigger CI**:
    ```bash

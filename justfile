@@ -185,11 +185,11 @@ release-preview:
 
 # Create release: updates CHANGELOG.md, commits, and tags
 release version:
-    git cliff --tag data-v{{version}} -o CHANGELOG.md
+    git cliff --tag v{{version}} -o CHANGELOG.md
     git add CHANGELOG.md
-    git commit -m "chore(release): data-v{{version}}"
-    git tag data-v{{version}}
-    @echo "Release data-v{{version}} created. Push with: git push origin main --tags"
+    git commit -m "chore(release): v{{version}}"
+    git tag v{{version}}
+    @echo "Release v{{version}} created. Push with: git push origin main --tags"
 
 # === CONVENIENCE COMMANDS ===
 
