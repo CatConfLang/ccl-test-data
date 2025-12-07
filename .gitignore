@@ -42,7 +42,11 @@ Thumbs.db
 
 # Claude local settings (keep global but ignore local)
 .claude/settings.local.json
-bin
-test-reader
+
+# Built binaries
+bin/
+/test-reader
 .serena/
+
+# Binary in source directory (built by IDE/editor)
 cmd/test-reader/test-reader
