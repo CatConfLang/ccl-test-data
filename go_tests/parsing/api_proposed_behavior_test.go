@@ -134,7 +134,7 @@ func TestEmptyListBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// empty_list_get_list - function:get_list variant:proposed_behavior
+// empty_list_get_list - function:get_list behavior:list_coercion_enabled variant:proposed_behavior
 func TestEmptyListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -165,7 +165,7 @@ func TestListWithNumbersBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_numbers_get_list - function:get_list variant:proposed_behavior
+// list_with_numbers_get_list - function:get_list behavior:list_coercion_enabled variant:proposed_behavior
 func TestListWithNumbersGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -196,7 +196,7 @@ func TestListWithBooleansBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_booleans_get_list - function:get_list variant:proposed_behavior
+// list_with_booleans_get_list - function:get_list behavior:list_coercion_enabled variant:proposed_behavior
 func TestListWithBooleansGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -227,7 +227,7 @@ func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_whitespace_get_list - function:get_list feature:whitespace variant:proposed_behavior
+// list_with_whitespace_get_list - function:get_list feature:whitespace behavior:list_coercion_enabled variant:proposed_behavior
 func TestListWithWhitespaceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -260,7 +260,7 @@ func TestDeeplyNestedListBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// deeply_nested_list_get_list - function:get_list variant:proposed_behavior
+// deeply_nested_list_get_list - function:get_list behavior:list_coercion_enabled variant:proposed_behavior
 func TestDeeplyNestedListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -291,7 +291,7 @@ func TestListWithUnicodeBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_unicode_get_list - function:get_list feature:unicode variant:proposed_behavior
+// list_with_unicode_get_list - function:get_list feature:unicode behavior:list_coercion_enabled variant:proposed_behavior
 func TestListWithUnicodeGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -322,7 +322,7 @@ func TestListWithSpecialCharactersBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_with_special_characters_get_list - function:get_list variant:proposed_behavior
+// list_with_special_characters_get_list - function:get_list behavior:list_coercion_enabled variant:proposed_behavior
 func TestListWithSpecialCharactersGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -337,7 +337,7 @@ func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// list_multiline_values_get_list - function:get_list feature:multiline variant:proposed_behavior
+// list_multiline_values_get_list - function:get_list feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
 func TestListMultilineValuesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
