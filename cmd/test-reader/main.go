@@ -375,6 +375,7 @@ type FileInfo struct {
 	Description string
 	TestCount   int
 	ParseTests  int
+	IsVirtual   bool // True for the "All" entry that combines all files
 }
 
 func getJSONFiles(dir string) ([]FileInfo, error) {
@@ -384,6 +385,9 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 	}
 
 	var jsonFiles []FileInfo
+	totalTestCount := 0
+	totalParseTests := 0
+
 	for _, file := range files {
 		if !file.IsDir() && strings.HasSuffix(file.Name(), ".json") && !strings.Contains(file.Name(), "schema") {
 			filePath := filepath.Join(dir, file.Name())
@@ -398,6 +402,7 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 				if err := json.Unmarshal(data, &suite); err == nil {
 					fileInfo.Description = suite.Description
 					fileInfo.TestCount = len(suite.Tests)
+					totalTestCount += len(suite.Tests)
 
 					// Count parse tests (parse and parse_indented)
 					parseCount := 0
@@ -416,6 +421,7 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 						}
 					}
 					fileInfo.ParseTests = parseCount
+					totalParseTests += parseCount
 				}
 			}
 
@@ -427,6 +433,17 @@ func getJSONFiles(dir string) ([]FileInfo, error) {
 	sort.Slice(jsonFiles, func(i, j int) bool {
 		return jsonFiles[i].Name < jsonFiles[j].Name
 	})
+
+	// Prepend the virtual "All" entry
+	allEntry := FileInfo{
+		Path:        "", // Empty path indicates virtual entry
+		Name:        "📊 All Tests",
+		Description: "Combined view of all test files",
+		TestCount:   totalTestCount,
+		ParseTests:  totalParseTests,
+		IsVirtual:   true,
+	}
+	jsonFiles = append([]FileInfo{allEntry}, jsonFiles...)
 
 	return jsonFiles, nil
 }
@@ -970,9 +987,18 @@ func (m fileSelectionModel) View() string {
 			style = selectedFileStyle
 		}
 
-		// File name line
+		// File name line - use different style for virtual "All" entry
 		fileName := fmt.Sprintf("%s%s", prefix, file.Name)
-		fileList.WriteString(style.Render(fileName) + "\n")
+		if file.IsVirtual {
+			// Make the "All" entry stand out with a different style
+			virtualStyle := style.Bold(true)
+			if i != m.selectedFile {
+				virtualStyle = lipgloss.NewStyle().Bold(true).Foreground(primaryColor)
+			}
+			fileList.WriteString(virtualStyle.Render(fileName) + "\n")
+		} else {
+			fileList.WriteString(style.Render(fileName) + "\n")
+		}
 
 		// Description line (if selected or always show brief info)
 		if i == m.selectedFile && file.Description != "" {
@@ -986,6 +1012,11 @@ func (m fileSelectionModel) View() string {
 			stats := fmt.Sprintf("   Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)
 			statsStyle := lipgloss.NewStyle().Foreground(subtleColor)
 			fileList.WriteString(statsStyle.Render(stats) + "\n")
+		}
+
+		// Add separator line after the "All" entry
+		if file.IsVirtual {
+			fileList.WriteString(lipgloss.NewStyle().Foreground(subtleColor).Render("   ────────────────────────") + "\n")
 		}
 
 		fileList.WriteString("\n")
@@ -1025,8 +1056,13 @@ func runFileSelectionTUI(dir string) {
 	// Check if a file was selected
 	if fsModel, ok := finalModel.(fileSelectionModel); ok && fsModel.fileSelected && fsModel.selectedFile >= 0 && fsModel.selectedFile < len(fsModel.files) {
 		selectedFile := fsModel.files[fsModel.selectedFile]
-		// Run TUI with directory context for back navigation
-		runTUIWithBackNav(selectedFile.Path, dir)
+		if selectedFile.IsVirtual {
+			// Run TUI with all tests combined
+			runTUIWithAllTests(dir)
+		} else {
+			// Run TUI with directory context for back navigation
+			runTUIWithBackNav(selectedFile.Path, dir)
+		}
 	}
 }
 
@@ -1169,6 +1205,53 @@ func loadTestFileCmd(filename string) tea.Cmd {
 		return testLoadedMsg{
 			suite:    *suite,
 			filename: filename,
+		}
+	}
+}
+
+// loadAllTestFilesCmd loads all test files from a directory and combines them into a single suite
+func loadAllTestFilesCmd(dir string) tea.Cmd {
+	return func() tea.Msg {
+		files, err := os.ReadDir(dir)
+		if err != nil {
+			return nil
+		}
+
+		impl := config.ImplementationConfig{
+			Name:               "test-reader",
+			Version:            "1.0.0",
+			SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseIndented},
+		}
+		testLoader := loader.NewTestLoader(".", impl)
+
+		var allTests []TestCase
+		for _, file := range files {
+			if !file.IsDir() && strings.HasSuffix(file.Name(), ".json") && !strings.Contains(file.Name(), "schema") {
+				filePath := filepath.Join(dir, file.Name())
+				suite, err := testLoader.LoadTestFile(filePath, loader.LoadOptions{
+					Format:     loader.FormatFlat,
+					FilterMode: loader.FilterAll,
+				})
+				if err != nil {
+					continue
+				}
+
+				// Add source file info to test names for clarity
+				for i := range suite.Tests {
+					suite.Tests[i].Name = fmt.Sprintf("[%s] %s", file.Name(), suite.Tests[i].Name)
+				}
+				allTests = append(allTests, suite.Tests...)
+			}
+		}
+
+		combinedSuite := TestSuite{
+			Description: "All tests combined",
+			Tests:       allTests,
+		}
+
+		return testLoadedMsg{
+			suite:    combinedSuite,
+			filename: "All Tests",
 		}
 	}
 }
@@ -1346,7 +1429,11 @@ func (m tuiModel) View() string {
 	}
 	detailWidth := availableWidth - listWidth - 3 // 3 for gap between panes
 
-	availableHeight := m.height - 6 // Account for header, filter, and help
+	// Account for header (1), filter bar (1), help bar (1), and some padding
+	availableHeight := m.height - 5
+	if availableHeight < 5 {
+		availableHeight = 5
+	}
 
 	// Render split view panes
 	listPane := m.renderListPane(listWidth, availableHeight)
@@ -1359,7 +1446,15 @@ func (m tuiModel) View() string {
 	// Help bar
 	content.WriteString(m.renderHelpBar())
 
-	return content.String()
+	// Ensure the entire view doesn't exceed terminal height
+	result := content.String()
+	lines := strings.Split(result, "\n")
+	if len(lines) > m.height {
+		lines = lines[:m.height]
+		result = strings.Join(lines, "\n")
+	}
+
+	return result
 }
 
 func (m tuiModel) renderFilterBar() string {
@@ -1534,7 +1629,25 @@ func (m tuiModel) renderDetailPane(width, height int) string {
 		paneStyle = paneStyle.BorderForeground(primaryColor)
 	}
 
-	return paneStyle.Render(content.String())
+	// Truncate content to fit within the available height
+	// Account for borders (2 lines)
+	maxContentLines := height - 2
+	if maxContentLines < 1 {
+		maxContentLines = 1
+	}
+
+	contentStr := content.String()
+	lines := strings.Split(contentStr, "\n")
+	if len(lines) > maxContentLines {
+		lines = lines[:maxContentLines]
+		// Add indicator that content is truncated
+		if maxContentLines > 1 {
+			lines[maxContentLines-1] = lipgloss.NewStyle().Foreground(subtleColor).Render("↓ content truncated...")
+		}
+	}
+	truncatedContent := strings.Join(lines, "\n")
+
+	return paneStyle.Render(truncatedContent)
 }
 
 func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
@@ -1698,4 +1811,53 @@ func runTUIWithBackNav(filename, directory string) {
 			break
 		}
 	}
+}
+
+// runTUIWithAllTests runs the TUI with all tests from the directory combined
+func runTUIWithAllTests(directory string) {
+	for {
+		model := initialTUIModel()
+		model.filename = "" // Will be set by loadAllTestFilesCmd
+		model.directory = directory
+
+		// Create a custom init that loads all files
+		p := tea.NewProgram(&allTestsModel{tuiModel: model, dir: directory}, tea.WithAltScreen())
+		finalModel, err := p.Run()
+		if err != nil {
+			fmt.Printf("Error running TUI: %v", err)
+			os.Exit(1)
+		}
+
+		// Check if user pressed escape to go back
+		if m, ok := finalModel.(*allTestsModel); ok && m.tuiModel.wantsBack {
+			// Go back to directory selection
+			runFileSelectionTUI(directory)
+			break
+		} else {
+			// User quit normally, exit completely
+			break
+		}
+	}
+}
+
+// allTestsModel wraps tuiModel to load all tests on init
+type allTestsModel struct {
+	tuiModel tuiModel
+	dir      string
+}
+
+func (m *allTestsModel) Init() tea.Cmd {
+	return loadAllTestFilesCmd(m.dir)
+}
+
+func (m *allTestsModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	newModel, cmd := m.tuiModel.Update(msg)
+	if tm, ok := newModel.(tuiModel); ok {
+		m.tuiModel = tm
+	}
+	return m, cmd
+}
+
+func (m *allTestsModel) View() string {
+	return m.tuiModel.View()
 }
