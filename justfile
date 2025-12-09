@@ -128,7 +128,7 @@ validate:
 
 # Update README.md with current test statistics using remark.js AST processing
 docs-check:
-    cd scripts && node update-readme-remark.mjs
+    node scripts/update-readme-remark.mjs
     git diff --exit-code README.md
 
 # === UTILITIES ===
@@ -169,7 +169,7 @@ lint:
     go vet ./...
 
 deps:
-    cd scripts && npm install
+    npm install
     go mod download
     go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
 
