@@ -1319,29 +1319,45 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, tea.Quit
 			}
 		case "j", "down":
-			if m.currentTest < len(m.filteredTests)-1 {
-				m.currentTest++
-				m.entryScroll = 0
-				// Adjust list scroll to keep selection visible
-				visibleItems := m.height - 12 // Account for header/footer
-				if m.currentTest >= m.listScroll+visibleItems {
-					m.listScroll = m.currentTest - visibleItems + 1
+			if m.focusPane == 0 {
+				// List pane: navigate tests
+				if m.currentTest < len(m.filteredTests)-1 {
+					m.currentTest++
+					m.entryScroll = 0
+					// Adjust list scroll to keep selection visible
+					visibleItems := m.height - 12 // Account for header/footer
+					if m.currentTest >= m.listScroll+visibleItems {
+						m.listScroll = m.currentTest - visibleItems + 1
+					}
 				}
+			} else {
+				// Detail pane: scroll entries down
+				m.scrollEntriesDown()
 			}
 		case "k", "up":
-			if m.currentTest > 0 {
-				m.currentTest--
-				m.entryScroll = 0
-				if m.currentTest < m.listScroll {
-					m.listScroll = m.currentTest
+			if m.focusPane == 0 {
+				// List pane: navigate tests
+				if m.currentTest > 0 {
+					m.currentTest--
+					m.entryScroll = 0
+					if m.currentTest < m.listScroll {
+						m.listScroll = m.currentTest
+					}
+				}
+			} else {
+				// Detail pane: scroll entries up
+				if m.entryScroll > 0 {
+					m.entryScroll--
 				}
 			}
 		case "g":
-			m.currentTest = 0
-			m.listScroll = 0
+			if m.focusPane == 0 {
+				m.currentTest = 0
+				m.listScroll = 0
+			}
 			m.entryScroll = 0
 		case "G":
-			if len(m.filteredTests) > 0 {
+			if m.focusPane == 0 && len(m.filteredTests) > 0 {
 				m.currentTest = len(m.filteredTests) - 1
 				m.entryScroll = 0
 				visibleItems := m.height - 12
@@ -1353,13 +1369,13 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			// Toggle focus between panes
 			m.focusPane = (m.focusPane + 1) % 2
 		case "h", "left":
-			if m.focusPane == 1 && m.entryScroll > 0 {
+			// Scroll entries up (detail pane scrolling)
+			if m.entryScroll > 0 {
 				m.entryScroll--
 			}
 		case "l", "right":
-			if m.focusPane == 1 {
-				m.scrollEntriesDown()
-			}
+			// Scroll entries down (detail pane scrolling)
+			m.scrollEntriesDown()
 		// Filter shortcuts
 		case "/":
 			m.filterMode = FilterName
@@ -1422,14 +1438,14 @@ func (m tuiModel) View() string {
 	content.WriteString(m.renderFilterBar() + "\n")
 
 	// Calculate pane dimensions
-	availableWidth := m.width - 4 // Account for borders
+	availableWidth := m.width - 4 // Account for margins
 	listWidth := listPaneWidth
 	if listWidth > availableWidth/2 {
 		listWidth = availableWidth / 2
 	}
 	detailWidth := availableWidth - listWidth - 3 // 3 for gap between panes
 
-	// Account for header (1), filter bar (1), help bar (1), and some padding
+	// Account for header (1 line), filter bar (1 line), help bar (1 line), newlines (2)
 	availableHeight := m.height - 5
 	if availableHeight < 5 {
 		availableHeight = 5
@@ -1446,15 +1462,7 @@ func (m tuiModel) View() string {
 	// Help bar
 	content.WriteString(m.renderHelpBar())
 
-	// Ensure the entire view doesn't exceed terminal height
-	result := content.String()
-	lines := strings.Split(result, "\n")
-	if len(lines) > m.height {
-		lines = lines[:m.height]
-		result = strings.Join(lines, "\n")
-	}
-
-	return result
+	return content.String()
 }
 
 func (m tuiModel) renderFilterBar() string {
@@ -1502,11 +1510,16 @@ func (m tuiModel) renderFilterBar() string {
 func (m tuiModel) renderListPane(width, height int) string {
 	var content strings.Builder
 
-	// Calculate visible items
-	visibleItems := height - 2 // Account for border
-	if visibleItems < 1 {
-		visibleItems = 1
+	// Calculate visible items - account for borders (2) and padding (0)
+	// The pane style has Border (2 lines) + Padding(0,1) which doesn't affect height
+	maxContentLines := height - 2
+	if maxContentLines < 1 {
+		maxContentLines = 1
 	}
+
+	// Reserve 1 line for scroll indicator at bottom if needed
+	hasMoreBelow := false
+	visibleItems := maxContentLines
 
 	// Determine which tests to show
 	startIdx := m.listScroll
@@ -1515,12 +1528,26 @@ func (m tuiModel) renderListPane(width, height int) string {
 		endIdx = len(m.filteredTests)
 	}
 
-	// Show scroll indicator at top if needed
+	// Show scroll indicator at top if needed (takes 1 line)
 	if startIdx > 0 {
 		scrollUp := lipgloss.NewStyle().Foreground(subtleColor).Render("↑ more above")
 		content.WriteString(scrollUp + "\n")
 		visibleItems--
 		endIdx = startIdx + visibleItems
+		if endIdx > len(m.filteredTests) {
+			endIdx = len(m.filteredTests)
+		}
+	}
+
+	// Check if we need scroll indicator at bottom
+	if endIdx < len(m.filteredTests) {
+		hasMoreBelow = true
+		visibleItems--
+		endIdx = startIdx + visibleItems
+		if startIdx > 0 {
+			// Recalculate since we already decremented for top indicator
+			endIdx = startIdx + visibleItems
+		}
 		if endIdx > len(m.filteredTests) {
 			endIdx = len(m.filteredTests)
 		}
@@ -1551,7 +1578,10 @@ func (m tuiModel) renderListPane(width, height int) string {
 		}
 
 		// Truncate name to fit
-		maxNameLen := width - 6 // Account for prefix and badge
+		maxNameLen := width - 8 // Account for prefix, badge, brackets, borders
+		if maxNameLen < 10 {
+			maxNameLen = 10
+		}
 		name := test.Name
 		if len(name) > maxNameLen {
 			name = name[:maxNameLen-2] + ".."
@@ -1560,7 +1590,7 @@ func (m tuiModel) renderListPane(width, height int) string {
 		line := fmt.Sprintf("%s[%s] %s", prefix, badge, name)
 
 		if isSelected {
-			style := selectedFileStyle.Width(width - 2)
+			style := selectedFileStyle.Width(width - 4) // Account for border and padding
 			content.WriteString(style.Render(line) + "\n")
 		} else {
 			content.WriteString(line + "\n")
@@ -1568,7 +1598,7 @@ func (m tuiModel) renderListPane(width, height int) string {
 	}
 
 	// Show scroll indicator at bottom if needed
-	if endIdx < len(m.filteredTests) {
+	if hasMoreBelow {
 		remaining := len(m.filteredTests) - endIdx
 		scrollDown := lipgloss.NewStyle().Foreground(subtleColor).Render(fmt.Sprintf("↓ %d more below", remaining))
 		content.WriteString(scrollDown)
@@ -1584,6 +1614,12 @@ func (m tuiModel) renderListPane(width, height int) string {
 }
 
 func (m tuiModel) renderDetailPane(width, height int) string {
+	// Calculate max content lines - account for borders (2 lines)
+	maxContentLines := height - 2
+	if maxContentLines < 1 {
+		maxContentLines = 1
+	}
+
 	if len(m.filteredTests) == 0 {
 		emptyMsg := "No tests match the current filter"
 		paneStyle := detailPaneStyle.Width(width).Height(height)
@@ -1613,15 +1649,27 @@ func (m tuiModel) renderDetailPane(width, height int) string {
 	if len(test.Inputs) > 0 {
 		inputText = test.Inputs[0]
 	}
-	// Constrain input width
 	inputStyle := inputContentStyle.Width(width - 6)
 	content.WriteString(inputStyle.Render(formatInputContent(inputText)) + "\n\n")
 
-	// Expected output section
+	// Expected output section (uses m.entryScroll internally for scrolling entries)
 	content.WriteString(m.renderExpectedOutput(test, width-4) + "\n")
 
 	// Metadata section
 	content.WriteString(m.renderMetadata(test))
+
+	// Truncate content to fit within available height
+	contentStr := content.String()
+	lines := strings.Split(contentStr, "\n")
+
+	// Remove trailing empty lines
+	for len(lines) > 0 && lines[len(lines)-1] == "" {
+		lines = lines[:len(lines)-1]
+	}
+
+	if len(lines) > maxContentLines {
+		lines = lines[:maxContentLines]
+	}
 
 	// Apply detail pane style
 	paneStyle := detailPaneStyle.Width(width).Height(height)
@@ -1629,25 +1677,7 @@ func (m tuiModel) renderDetailPane(width, height int) string {
 		paneStyle = paneStyle.BorderForeground(primaryColor)
 	}
 
-	// Truncate content to fit within the available height
-	// Account for borders (2 lines)
-	maxContentLines := height - 2
-	if maxContentLines < 1 {
-		maxContentLines = 1
-	}
-
-	contentStr := content.String()
-	lines := strings.Split(contentStr, "\n")
-	if len(lines) > maxContentLines {
-		lines = lines[:maxContentLines]
-		// Add indicator that content is truncated
-		if maxContentLines > 1 {
-			lines[maxContentLines-1] = lipgloss.NewStyle().Foreground(subtleColor).Render("↓ content truncated...")
-		}
-	}
-	truncatedContent := strings.Join(lines, "\n")
-
-	return paneStyle.Render(truncatedContent)
+	return paneStyle.Render(strings.Join(lines, "\n"))
 }
 
 func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
@@ -1746,19 +1776,20 @@ func (m tuiModel) renderMetadata(test TestCase) string {
 func (m tuiModel) renderHelpBar() string {
 	var parts []string
 
-	// Navigation
-	parts = append(parts, "j/k:navigate")
+	// Navigation based on pane focus
+	if m.focusPane == 0 {
+		parts = append(parts, "j/k:navigate tests")
+	} else {
+		parts = append(parts, "j/k:scroll entries")
+	}
 	parts = append(parts, "g/G:first/last")
 	parts = append(parts, "tab:switch pane")
-
-	// Scrolling (when in detail pane)
-	if m.focusPane == 1 {
-		parts = append(parts, "h/l:scroll entries")
-	}
 
 	// Filter status
 	if m.filterMode != FilterNone {
 		parts = append(parts, "c:clear filter")
+	} else {
+		parts = append(parts, "/:filter")
 	}
 
 	// Exit
@@ -1767,10 +1798,14 @@ func (m tuiModel) renderHelpBar() string {
 	}
 	parts = append(parts, "q:quit")
 
-	// Test count
-	countInfo := fmt.Sprintf("[%d/%d]", m.currentTest+1, len(m.filteredTests))
+	// Test count and pane indicator
+	paneIndicator := "◀list"
+	if m.focusPane == 1 {
+		paneIndicator = "detail▶"
+	}
+	countInfo := fmt.Sprintf("[%d/%d] %s", m.currentTest+1, len(m.filteredTests), paneIndicator)
 	if len(m.filteredTests) != len(m.tests) {
-		countInfo = fmt.Sprintf("[%d/%d of %d]", m.currentTest+1, len(m.filteredTests), len(m.tests))
+		countInfo = fmt.Sprintf("[%d/%d of %d] %s", m.currentTest+1, len(m.filteredTests), len(m.tests), paneIndicator)
 	}
 
 	help := strings.Join(parts, " • ") + " " + summaryStyle.Render(countInfo)
