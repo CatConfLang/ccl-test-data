@@ -14,61 +14,43 @@ alias vs := view-tests-static
 
 # === BUILD ===
 
-# Build all binaries
+# Build: generate test files from source JSON
 build:
+    just generate-flat
+    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+
+# Build Go binaries
+build-bin:
     go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
     go build -o bin/test-reader ./cmd/test-reader
 
-# Build individual binaries (used by other tasks)
-build-test-runner:
-    go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
-
-build-test-reader:
-    go build -o bin/test-reader ./cmd/test-reader
-
-# Install all tools to $GOPATH/bin
+# Install tools to $GOPATH/bin
 install:
     go install ./cmd/ccl-test-runner
     go install ./cmd/test-reader
 
-# Install individual tools
-install-test-runner:
-    go install ./cmd/ccl-test-runner
-
-install-test-reader:
-    go install ./cmd/test-reader
-
 # === ESSENTIAL WORKFLOWS ===
 
-# Basic development: generate core tests and verify they pass (excludes known failing edge cases)
+# Basic development: clean, build, lint, test
 dev-basic:
     just clean
-    just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+    just build
     just lint
-    #!/usr/bin/env bash
-    echo "🧪 Running tests..."
-    echo "📋 Running basic tests (excluding known failing edge cases):"
-    echo "  - TestKeyWithNewlineBeforeEqualsParse: newline within key portion before equals"
-    echo "  - TestComplexMultiNewlineWhitespaceParse: complex whitespace with newlines in key"
-    echo "  - TestDeeplyNestedListParse: nested structure parsing (expects flat entries)"
-    echo "  - TestRoundTripWhitespaceNormalizationParse: whitespace handling inconsistencies"
-    just _run-tests --basic-only
+    just test
 
 # Full development: comprehensive test suite
 dev:
     just clean
     just generate
-    just test
+    just test-all
 
-# Production CI: complete validation pipeline (uses mock-compatible filters)
+# Production CI: complete validation pipeline
 ci:
     just validate
-    just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+    just build
     just lint
-    just _run-tests --basic-only
-    just docs-check
+    just test
+    just build-readme
 
 # === GENERATION ===
 
@@ -91,34 +73,13 @@ generate-flat *ARGS="":
 
 # === TESTING ===
 
-# Helper function for running tests with the test runner
-_run-tests *ARGS="":
-    go run ./cmd/ccl-test-runner test {{ARGS}}
-
-# Run tests (with optional filtering)
+# Run tests
 test *ARGS="":
-    #!/usr/bin/env bash
-    if [[ "{{ARGS}}" == *"--full"* ]]; then
-        just validate
-        just docs-check
-        just generate
-        just _run-tests
-    elif [[ "{{ARGS}}" == *"--all"* ]]; then
-        # Run all tests including failing ones
-        FILTERED_ARGS=$(echo "{{ARGS}}" | sed 's/--all//g' | sed 's/^ *//' | sed 's/ *$//')
-        if [[ -z "$FILTERED_ARGS" ]]; then
-            just _run-tests
-        else
-            just _run-tests $FILTERED_ARGS
-        fi
-    else
-        # Default: run only passing tests (basic-only mode)
-        if [[ -z "{{ARGS}}" ]]; then
-            just _run-tests --basic-only
-        else
-            just _run-tests --basic-only {{ARGS}}
-        fi
-    fi
+    go run ./cmd/ccl-test-runner test --basic-only {{ARGS}}
+
+# Run all tests including known failing ones
+test-all *ARGS="":
+    go run ./cmd/ccl-test-runner test {{ARGS}}
 
 # === VALIDATION ===
 
@@ -127,7 +88,7 @@ validate:
     npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
 
 # Update README.md with current test statistics using remark.js AST processing
-docs-check:
+build-readme:
     node scripts/update-readme-remark.mjs
     git diff --exit-code README.md
 
@@ -172,6 +133,11 @@ deps:
     npm install
     go mod download
 
+# Configure go.mod for CI (removes local replace directive)
+deps-ci:
+    go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
+    go mod tidy
+
 # === RELEASE ===
 
 # Show suggested next version based on conventional commits
@@ -199,8 +165,3 @@ generate-mock:
 # Test with verbose output
 test-verbose:
     just test --verbose
-
-# Run all tests including failing ones (overrides default basic-only mode)
-test-all:
-    just test --all
-

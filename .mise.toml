@@ -2,6 +2,7 @@
 git-cliff = "latest"
 go = "1.25.4"
 hk = "latest"
+just = "latest"
 # Node.js for running ESM scripts and commitlint
 node = "latest"
 
