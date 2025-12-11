@@ -5,8 +5,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/ccl-test-data/test-runner/internal/styles"
 	"github.com/CatConfLang/ccl-test-lib/generator"
+	"github.com/ccl-test-data/test-runner/internal/styles"
 	"github.com/urfave/cli/v2"
 )
 
