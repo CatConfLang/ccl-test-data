@@ -37,20 +37,12 @@
           "function": "filter",
           "expect": [
             {
-              "key": "/",
-              "value": "This is an environment section"
-            },
-            {
               "key": "port",
               "value": "8080"
             },
             {
               "key": "serve",
               "value": "index.html"
-            },
-            {
-              "key": "/",
-              "value": "Database section"
             },
             {
               "key": "mode",
@@ -75,12 +67,7 @@
       "tests": [
         {
           "function": "filter",
-          "expect": [
-            {
-              "key": "/",
-              "value": "this is a comment"
-            }
-          ]
+          "expect": []
         },
         {
           "function": "parse",
@@ -139,20 +126,12 @@
               "value": "= Database Config =="
             },
             {
-              "key": "/",
-              "value": "Connection settings"
-            },
-            {
               "key": "host",
               "value": "localhost"
             },
             {
               "key": "",
               "value": "== Cache Config ==="
-            },
-            {
-              "key": "/",
-              "value": "Redis configuration"
             },
             {
               "key": "port",

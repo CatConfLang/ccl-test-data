@@ -148,11 +148,15 @@ func (c *CCL) ParseIndented(input string) ([]Entry, error) {
 	return c.Parse(input)
 }
 
-// Filter implements entry filtering (for comment tests, this preserves all entries)
+// Filter implements entry filtering - removes comment entries (key="/")
 func (c *CCL) Filter(entries []Entry) []Entry {
-	// For the mock implementation, filter just returns all entries
-	// In a real implementation, this might filter based on certain criteria
-	return entries
+	var filtered []Entry
+	for _, entry := range entries {
+		if entry.Key != "/" {
+			filtered = append(filtered, entry)
+		}
+	}
+	return filtered
 }
 
 // Compose implements entry composition
