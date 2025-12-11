@@ -123,8 +123,8 @@ test *ARGS="":
 # === VALIDATION ===
 
 validate:
-    npx ajv-cli validate -s schemas/source-format.json -d "source_tests/**/*.json" --spec=draft7
-    npx ajv-cli validate -s schemas/generated-format.json -d "generated_tests/*.json" --spec=draft7
+    npx @sourcemeta/jsonschema validate schemas/source-format.json source_tests/
+    npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
 
 # Update README.md with current test statistics using remark.js AST processing
 docs-check:
