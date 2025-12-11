@@ -27,7 +27,7 @@ jobs:
 
       - name: Configure go.mod for CI
         run: |
-          go mod edit -dropreplace=github.com/tylerbu/ccl-test-lib
+          go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
           go mod tidy
 
       - name: Install Node dependencies

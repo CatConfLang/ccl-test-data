@@ -4,7 +4,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/tylerbu/ccl-test-lib/types"
+	"github.com/CatConfLang/ccl-test-lib/types"
 )
 
 // Pool manages reusable objects to reduce memory allocations

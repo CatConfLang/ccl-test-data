@@ -31,8 +31,8 @@ import (
 
 	"github.com/ccl-test-data/test-runner/internal/config"
 	"github.com/ccl-test-data/test-runner/internal/styles"
-	"github.com/tylerbu/ccl-test-lib/loader"
-	"github.com/tylerbu/ccl-test-lib/types"
+	"github.com/CatConfLang/ccl-test-lib/loader"
+	"github.com/CatConfLang/ccl-test-lib/types"
 )
 
 // Options configures test generation behavior

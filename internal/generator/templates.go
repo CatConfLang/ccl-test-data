@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/tylerbu/ccl-test-lib/types"
+	"github.com/CatConfLang/ccl-test-lib/types"
 )
 
 const testFileTemplate = `package {{.PackageName}}_test
