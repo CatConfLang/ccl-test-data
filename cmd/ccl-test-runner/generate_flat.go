@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	"github.com/ccl-test-data/test-runner/internal/styles"
-	"github.com/tylerbu/ccl-test-lib/generator"
+	"github.com/CatConfLang/ccl-test-lib/generator"
 	"github.com/urfave/cli/v2"
 )
 

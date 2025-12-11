@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # ratchet:actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # ratchet:actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Setup Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # ratchet:actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          cache: 'npm'
+
+      - name: Configure go.mod for CI
+        run: |
+          go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
+          go mod tidy
+
+      - name: Install Node dependencies
+        working-directory: scripts
+        run: npm ci
+
+      - name: Validate JSON schemas
+        run: |
+          npx ajv-cli validate -s schemas/source-format.json -d "source_tests/**/*.json" --spec=draft7
+          npx ajv-cli validate -s schemas/generated-format.json -d "generated_tests/*.json" --spec=draft7
+
+      - name: Lint
+        run: |
+          go fmt ./...
+          go vet ./...
+
+      - name: Generate and test
+        run: |
+          go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core
+          go run ./cmd/ccl-test-runner generate --run-only function:parse \
+            --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+          go run ./cmd/ccl-test-runner test --basic-only
+
+      - name: Check docs are up-to-date
+        run: |
+          node scripts/update-readme-remark.mjs
+          git diff --exit-code README.md

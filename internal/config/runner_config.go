@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/tylerbu/ccl-test-lib/config"
+	"github.com/CatConfLang/ccl-test-lib/config"
 )
 
 // RunnerConfig centralizes all behavioral choices, feature selections, and implementation capabilities
