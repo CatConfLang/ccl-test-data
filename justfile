@@ -123,8 +123,8 @@ test *ARGS="":
 # === VALIDATION ===
 
 validate:
-    jv schemas/source-format.json source_tests/**/*.json
-    jv schemas/generated-format.json generated_tests/*.json
+    npx ajv-cli validate -s schemas/source-format.json -d "source_tests/**/*.json" --spec=draft7
+    npx ajv-cli validate -s schemas/generated-format.json -d "generated_tests/*.json" --spec=draft7
 
 # Update README.md with current test statistics using remark.js AST processing
 docs-check:
@@ -171,7 +171,6 @@ lint:
 deps:
     npm install
     go mod download
-    go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
 
 # === RELEASE ===
 

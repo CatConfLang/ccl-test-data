@@ -25,11 +25,6 @@ jobs:
           node-version: 'lts/*'
           cache: 'npm'
 
-      - name: Install jv validator
-        run: |
-          curl -sL https://github.com/santhosh-tekuri/jsonschema/releases/download/cmd%2Fjv%2Fv0.7.0/jv-v0.7.0-linux-amd64.tar.gz | tar xz
-          sudo mv jv /usr/local/bin/
-
       - name: Configure go.mod for CI
         run: |
           go mod edit -dropreplace=github.com/tylerbu/ccl-test-lib
@@ -41,8 +36,8 @@ jobs:
 
       - name: Validate JSON schemas
         run: |
-          jv schemas/source-format.json source_tests/**/*.json
-          jv schemas/generated-format.json generated_tests/*.json
+          npx ajv-cli validate -s schemas/source-format.json -d "source_tests/**/*.json" --spec=draft7
+          npx ajv-cli validate -s schemas/generated-format.json -d "generated_tests/*.json" --spec=draft7
 
       - name: Lint
         run: |
