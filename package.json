@@ -27,7 +27,7 @@
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
-    "ajv-cli": "^5.0.0",
+    "@sourcemeta/jsonschema": "^12.10.1",
     "commitlint-plugin-selective-scope": "^1.0.1"
   }
 }
