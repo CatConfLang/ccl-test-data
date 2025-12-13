@@ -1,16 +1,17 @@
 # CCL Test Runner Justfile (Streamlined)
 
-# Show available commands
-default:
-    @just --list
-
-# Core aliases
+# Aliases
 alias t := test
 alias gen := generate
 alias flat := generate-flat
 alias reset := dev-basic
 alias view := view-tests
 alias vs := view-tests-static
+alias pr := ci
+
+# Show available commands
+default:
+    @just --list
 
 # === BUILD ===
 
@@ -90,6 +91,10 @@ validate:
 # Update README.md with current test statistics using remark.js AST processing
 build-readme:
     node scripts/update-readme-remark.mjs
+    just _check-readme-unchanged
+
+# Check if README.md has uncommitted changes
+_check-readme-unchanged:
     git diff --exit-code README.md
 
 # === UTILITIES ===
@@ -128,6 +133,9 @@ lint:
     go mod tidy
     go fmt ./...
     go vet ./...
+
+format:
+    go fmt ./...
 
 deps:
     npm install
