@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This repository contains a comprehensive JSON test suite for CCL (Categorical Configuration Language) implementations with feature-based tagging for precise test selection.
 
-**Test Suite Stats:** 327 tests across 13 JSON files organized in `source_tests/core/` and `source_tests/experimental/`
+**Test Suite Stats:** Test files organized in `source_tests/core/` and `source_tests/experimental/` (run `just stats` for current counts)
 
 **Essential first commands:**
 ```bash
@@ -103,32 +103,34 @@ source_tests/
 - **`parse_indented`**: Indentation-normalized parsing - calculates common leading whitespace and strips it from all lines (like Python's `textwrap.dedent`)
 - **`build_hierarchy`**: Recursively parses entry values to create nested object structure
 
-### Test Classification System
-- **`features`** - Optional language features:
-  - Standard: `comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`
-  - Prefixes: `experimental_*`, `optional_*`
-- **`behaviors`** - Implementation choices (mutually exclusive pairs):
-  - Boolean parsing: `boolean_strict`, `boolean_lenient`
-  - Line endings: `crlf_preserve_literal`, `crlf_normalize_to_lf`
-  - Tab handling: `tabs_preserve`, `tabs_to_spaces`
-  - Spacing: `strict_spacing`, `loose_spacing`
-  - List coercion: `list_coercion_enabled`, `list_coercion_disabled`
-  - Array ordering: `array_order_insertion`, `array_order_lexicographic`
-- **`variants`** - Specification variants: `proposed_behavior`, `reference_compliant`
-- **`conflicts`** - Mutually exclusive options by category (optional object with `functions`, `behaviors`, `variants`, `features` arrays)
+### Test Metadata
+- **`functions`** - Required CCL functions (filter: skip if unsupported)
+- **`features`** - Language features exercised (informational only, for reporting gaps)
+- **`behaviors`** - Implementation choices (filter via `conflicts` field)
+- **`variants`** - Spec interpretation (filter via `conflicts` field)
+- **`conflicts`** - Mutually exclusive options (filter: skip if your choice is listed)
 
-## Progressive Implementation
+## Function-Based Implementation
 
 ### Mock Implementation
 The `internal/mock/ccl.go` provides a working CCL implementation with core functions.
 
-### Implementation Steps
-1. Start with `parse` (basic lexical parsing to flat entries)
-2. Add `parse_indented` (indentation normalization - used by build_hierarchy for parsing nested values)
-3. Add `build_hierarchy` (object construction - recursively calls parse_indented on values)
-4. Add typed access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
-5. Add processing: `filter`, `compose`, `merge`
-6. Add formatting/IO: `canonical_format`, `load`, `round_trip`
+### Available Functions
+Tests are organized by the CCL functions they validate. Implement the functions your library needs:
+
+**Core Parsing:**
+- `parse` - Basic lexical parsing to flat entries
+- `parse_indented` - Indentation normalization (used by build_hierarchy)
+- `build_hierarchy` - Object construction from flat entries
+
+**Typed Access:**
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Type-safe value extraction
+
+**Processing:**
+- `filter`, `compose`, `merge` - Entry manipulation
+
+**Formatting/IO:**
+- `canonical_format`, `load`, `round_trip` - Output and validation
 
 ## Build System
 

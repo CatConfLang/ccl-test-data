@@ -1,9 +1,9 @@
 # CCL Test Suite
 
 > \[!NOTE]
-> This is a **comprehensive JSON test suite** for CCL implementations across all programming languages, featuring **feature-based classification** for precise test selection and progressive implementation support.
+> This is a **comprehensive JSON test suite** for CCL implementations across all programming languages, featuring **feature-based classification** for precise test selection and function-based implementation support.
 
-Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based classification** for precise test selection. Each test specifies which CCL functions to validate and uses structured metadata to enable progressive implementation.
+Language-agnostic test suite for the Categorical Configuration Language (CCL) with **feature-based classification** for precise test selection. Each test specifies which CCL functions to validate and uses structured metadata to enable function-based implementation.
 
 > \[!TIP]
 > **New to this project?** Check the **[Developer Guide](docs/DEVELOPER_GUIDE.md)** for development workflow and **[Architecture](docs/ARCHITECTURE.md)** for system design details.
@@ -11,14 +11,14 @@ Language-agnostic test suite for the Categorical Configuration Language (CCL) wi
 ## What is CCL?
 
 > \[!TIP]
-> New to CCL? Start with the **[Specification Summary](https://ccl.tylerbutler.com/specification-summary)** for a complete overview, then check the **[Syntax Reference](https://ccl.tylerbutler.com/syntax-reference)** for quick implementation guidance.
+> New to CCL? Start with the **[Getting Started Guide](https://ccl.tylerbutler.com/getting-started/)** for an overview, then check the **[Syntax Reference](https://ccl.tylerbutler.com/syntax-reference)** for quick implementation guidance.
 
 For comprehensive CCL documentation, see the **[CCL Documentation](https://ccl.tylerbutler.com)** which includes:
 
-- **[Specification Summary](https://ccl.tylerbutler.com/specification-summary)** - Complete language specification
+- **[Getting Started](https://ccl.tylerbutler.com/getting-started/)** - Language overview
 - **[Syntax Reference](https://ccl.tylerbutler.com/syntax-reference)** - Quick syntax guide
-- **[Parsing Algorithm](https://ccl.tylerbutler.com/parsing-algorithm)** - Implementation guide
-- **[Mathematical Theory](https://ccl.tylerbutler.com/theory)** - Theoretical foundations
+- **[Parsing Algorithm](https://ccl.tylerbutler.com/parsing-algorithm)** - Implementation details
+- **[Implementing CCL](https://ccl.tylerbutler.com/implementing-ccl/)** - Build your own parser
 
 ### Original Sources
 
@@ -38,11 +38,10 @@ This repository contains a **comprehensive JSON test suite** for CCL implementat
 ✅ **Direct API mapping** - Each validation maps to a specific API function\
 ✅ **Multi-stage testing** - Tests declare expected outputs for different parsing stages\
 ✅ **Conflict resolution** - Automatic handling of mutually exclusive behaviors\
-✅ **Progressive implementation** - Clear path from minimal parsing to full features\
+✅ **Function-based implementation** - Independent capabilities can be implemented in any order\
 ✅ **Simple test runners** - Direct iteration over `validations` object keys\
 ✅ **Assertion counting** - Required explicit counts for validation verification\
-✅ **Self-documenting** - Validation names explain what's being tested\
-✅ **452 test assertions** - Comprehensive coverage across all CCL features
+✅ **Self-documenting** - Validation names explain what's being tested
 
 ### Quick Start
 
@@ -68,30 +67,28 @@ just reset  # alias for dev-basic
 
 ### Test Files
 
-The test suite is organized by feature category:
+Test files are organized in `source_tests/`:
 
-#### Core Parsing
-
-- **`tests/api_essential-parsing.json`** - Basic parsing functionality for rapid prototyping
-- **`tests/api_comprehensive-parsing.json`** - Thorough parsing with edge cases and whitespace variations
-
-#### Advanced Processing
-
-- **`tests/api_processing.json`** - Entry composition, merging, and advanced processing
-- **`tests/api_comments.json`** - Comment syntax and filtering functionality
-
-#### Object Construction
-
-- **`tests/api_object-construction.json`** - Converting flat entries to nested objects
-- **`tests/api_dotted-keys.json`** - Dotted key expansion and conflict resolution
-
-#### Type System
-
-- **`tests/api_typed-access.json`** - Type-aware value extraction with smart inference
-
-#### Error Handling
-
-- **`tests/api_errors.json`** - Error handling validation
+```
+source_tests/
+├── core/
+│   ├── api_core_ccl_parsing.json       # Basic parsing
+│   ├── api_core_ccl_hierarchy.json     # Object construction
+│   ├── api_core_ccl_integration.json   # Full pipeline tests
+│   ├── api_typed_access.json           # Type-aware value extraction
+│   ├── api_comments.json               # Comment syntax
+│   ├── api_errors.json                 # Error handling
+│   ├── api_edge_cases.json             # Edge cases
+│   ├── api_list_access.json            # List operations
+│   ├── api_whitespace_behaviors.json   # Whitespace handling
+│   ├── api_advanced_processing.json    # Entry composition/merging
+│   ├── api_proposed_behavior.json      # Proposed spec behaviors
+│   ├── api_reference_compliant.json    # OCaml-compatible behaviors
+│   ├── property_round_trip.json        # Round-trip validation
+│   └── property_algebraic.json         # Algebraic properties
+└── experimental/
+    └── api_experimental.json           # Experimental features
+```
 
 ### Using the Test Suite
 
@@ -148,166 +145,33 @@ The test suite is organized by feature category:
 
 ## Dual-Format Architecture
 
-The test suite uses a **dual-format architecture** optimized for both maintainability and implementation:
+- **Source Format** (`source_tests/`): Multiple validations per test, human-maintainable
+- **Generated Format** (`generated_tests/`): One test per validation, implementation-friendly
 
-### Source Format (Maintainable)
+### Test Metadata
 
-- Multiple validations per test in a single object
-- Structured metadata for comprehensive classification
-- Located in `tests/` directory
+| Field | Purpose | Filter? |
+|-------|---------|---------|
+| `functions` | Required CCL functions | Yes - skip if unsupported |
+| `features` | Language features exercised | No - informational for reporting |
+| `behaviors` | Implementation choices | Via `conflicts` field |
+| `variants` | Spec interpretation (temporary) | Via `conflicts` field |
+| `conflicts` | Mutually exclusive options | Yes - skip if your choice is listed |
 
-### Generated Format (Implementation-Friendly)
-
-- One test per validation function (1:N transformation)
-- Separate typed fields instead of string parsing
-- Type-safe enums with validation
-- Direct field access for filtering
-
-### Test Metadata Categories
-
-**Functions** - CCL functions by category:
-
-- Core: `parse`, `build_hierarchy`
-- Typed Access: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
-- Processing: `filter`, `combine`, `expand_dotted`
-- Formatting: `canonical_format`
-
-**Features** - Optional language features:
-
-- `comments`, `experimental_dotted_keys`, `empty_keys`, `multiline`, `unicode`, `whitespace`
-
-**Behaviors** - Implementation choices (mutually exclusive):
-
-- `crlf_preserve_literal` vs `crlf_normalize_to_lf`
-- `boolean_strict` vs `boolean_lenient`
-- `list_coercion_enabled` vs `list_coercion_disabled`
-
-### Test Filtering Examples
+### Filtering Logic
 
 ```javascript
-// Minimal Implementation (Parse only)
-const parseTests = flatTests.filter(test =>
-  test.functions.includes('parse') && test.functions.length === 1
-);
-
-// Basic Implementation (Core functions)
-const coreTests = flatTests.filter(test =>
-  test.functions.some(f => ['parse', 'build_hierarchy'].includes(f)) &&
-  !test.features.includes('unicode')
-);
-
-// Advanced Implementation (Filter by behavior choices)
-const compatibleTests = flatTests.filter(test =>
-  !test.conflicts?.behaviors?.includes('crlf_preserve_literal')
-);
-```
-
-### Conflict Resolution
-
-Tests specify conflicting behaviors. If your implementation chooses `crlf_normalize_to_lf`, filter out tests with that value in `conflicts.behaviors`:
-
-```json
-{
-  "name": "crlf_preservation_test_parse",
-  "behaviors": ["crlf_preserve_literal"],
-  "conflicts": {
-    "behaviors": ["crlf_normalize_to_lf"]
-  }
+function shouldSkip(test, my) {
+  if (!test.functions.every(f => my.functions.includes(f))) return true;
+  if (test.conflicts?.behaviors?.some(b => my.behaviors.includes(b))) return true;
+  if (test.conflicts?.variants?.some(v => my.variants.includes(v))) return true;
+  return false;
 }
 ```
 
-### Generating Flat Format Tests
-
-Generate flat format tests from the maintainable source format:
-
-```bash
-just generate-flat     # Generate flat format tests
-just validate-flat     # Validate generated tests
-```
-
-The generator transforms 1:N (one source test → multiple flat tests) and provides separate typed fields for filtering.
-
-### Test Runner Implementation Example
-
-```javascript
-// Load flat format tests (type-safe with excellent API ergonomics)
-const flatTests = loadFlatTests('generated_tests/');
-
-// Filter tests based on implementation capabilities
-const supportedTests = flatTests.filter(test => {
-  // Check if we support all required functions
-  const unsupportedFunctions = test.functions.filter(f => 
-    !implementedFunctions.includes(f)
-  );
-  if (unsupportedFunctions.length > 0) return false;
-
-  // Check if we support all required features  
-  const unsupportedFeatures = test.features.filter(f => 
-    !implementedFeatures.includes(f)
-  );
-  if (unsupportedFeatures.length > 0) return false;
-
-  // Check for conflicting behaviors
-  const hasConflicts = test.conflicts.behaviors?.some(b => 
-    implementationBehaviors.includes(b)
-  );
-  if (hasConflicts) return false;
-
-  return true;
-});
-
-// Run tests with type-safe validation switching
-supportedTests.forEach(test => {
-  switch (test.validation) {
-    case 'parse':
-      if (test.expect_error) {
-        expect(() => parse(test.input)).toThrow(test.error_type);
-      } else {
-        const actual = parse(test.input);
-        expect(actual).toEqual(test.expected.entries);
-        expect(actual.length).toBe(test.expected.count);
-      }
-      break;
-    case 'build_hierarchy':
-      const entries = parse(test.input);
-      const objects = buildHierarchy(entries);
-      expect(objects).toEqual(test.expected.object);
-      break;
-    case 'get_string':
-      const ccl = buildHierarchy(parse(test.input));
-      const value = getString(ccl, ...test.args);
-      expect(value).toBe(test.expected.value);
-      break;
-  }
-});
-```
-
-## Assertion Counting
-
-> \[!IMPORTANT]
-> **Self-Validating Tests**: The `count` field enables test runners to verify they're executing the expected number of assertions, preventing silent test failures and ensuring comprehensive coverage.
-
-All validations include required `count` fields:
-
-### Count Field Guidelines
-
-- **For array results** (`parse`, `filter`, `expand_dotted`): `count` = number of items in `expected` array
-- **For object results** (`build_hierarchy`): `count` = typically 1 (single object)
-- **For typed access**: `count` = number of test cases in `cases` array
-- **For empty results**: `count` = 0 (e.g., empty input parsing)
-
-### Benefits
-
-- **Explicit counting**: Each validation declares exactly how many assertions it represents
-- **Self-validating**: Test runners can verify `count` matches actual array lengths
-- **Test complexity tracking**: Enables precise measurement of implementation complexity
+See [Test Selection Guide](docs/test-selection-guide.md) for complete filtering documentation.
 
 ## Go Test Runner
-
-> \[!TIP]
-> **Quick Development Cycle**: Use `just dev-mock` for rapid prototyping or `just reset` to maintain a clean repository state with only passing tests enabled.
-
-This repository includes a comprehensive Go-based test runner for CCL implementations:
 
 ### Available Commands
 
@@ -379,20 +243,16 @@ just test --functions core      # Run core function tests (all should pass)
 
 ## Documentation
 
-### Test Suite Schema
-
-- **[Schema Technical Reference](docs/generated-schema.md)** - Complete auto-generated field documentation
-- **[Schema Implementation Guide](docs/schema-reference.md)** - Practical usage examples and patterns
-
-### Test Suite Architecture
+### Test Suite Documentation
 
 - **[Test Architecture](docs/test-architecture.md)** - How to use this test suite
 - **[Test Filtering](docs/test-filtering.md)** - Advanced test filtering patterns
+- **[Schema Reference](docs/schema-reference.md)** - Practical usage examples
+- **[Generated Schema](docs/generated-schema.md)** - Auto-generated field documentation
 
-### General Implementation Guidance
+### CCL Implementation
 
-- **[Implementation Guide](https://ccl.tylerbutler.com/implementing-ccl)** - Complete CCL implementation guide
-- **[Test Architecture](https://ccl.tylerbutler.com/test-architecture)** - General testing concepts
+- **[Implementing CCL](https://ccl.tylerbutler.com/implementing-ccl/)** - Complete CCL implementation guide
 
 ## Contributing
 
@@ -429,41 +289,9 @@ just dev-basic
 
 ## Test Statistics
 
-> \[!NOTE]
-> **Comprehensive Coverage**: The test suite provides **452 assertions** across **167 tests**, ensuring thorough validation of CCL implementations from basic parsing to advanced features.
-
-The test suite provides comprehensive coverage with **452 assertions** across **167 tests**:
-
 ```bash
-# View detailed statistics
+# View current test statistics
 just stats
 ```
 
-### Current Breakdown
-
-**📊 Overall Statistics:**
-
-- **167 total tests** with **452 assertions** across **10 files**
-- **21 mutually exclusive tests** with behavioral/variant conflicts
-- **11 CCL functions** from basic parsing to advanced formatting
-- **6 language features** (comments, dotted-keys, unicode, etc.)
-- **3 behavioral choices** (CRLF, tabs, spacing handling)
-- **2 specification variants** (proposed vs reference behavior)
-
-**📚 Function Group Distribution:**
-
-- **Core Functions**: 54 tests (parsing and object construction)
-- **Typed Access Functions**: 56 tests (type-safe value extraction)
-- **Processing Functions**: 30 tests (entry manipulation)
-- **Experimental Functions**: 27 tests (experimental features)
-
-**⚙️ Function Coverage:**
-
-- **parse**: 132 tests (most essential)
-- **build-hierarchy**: 66 tests
-- **get-string, get-int, get-bool, get-float, get-list**: 38 tests (typed access)
-- **canonical-format**: 24 tests
-- **compose**: 12 tests
-- **Other functions**: 35 tests (filter, expand-dotted, parse-value)
-
-This test suite ensures consistent CCL behavior across all language implementations with precise control over which features to test.
+The test suite ensures consistent CCL behavior across all language implementations with precise control over which features to test.

@@ -41,7 +41,7 @@ const functionsSupported = test.functions.every(fn =>
 
 ### Features Array (`test.features[]`)
 
-Direct array containing optional language features that may not be supported by all implementations:
+**Informational tags** describing which language features a test exercises. Features are for reporting, not filtering.
 
 | Feature | Description | Example |
 |---------|-------------|---------|
@@ -51,28 +51,38 @@ Direct array containing optional language features that may not be supported by 
 | `unicode` | Unicode content | `name = José` |
 | `whitespace` | Complex whitespace handling | Preserving tabs, spaces |
 
-**Type-safe filtering:**
+**Use for reporting:**
 ```javascript
-// Check if implementation supports all required features
-const featuresSupported = test.features.every(feature => 
-  implementedFeatures.includes(feature)
-);
+// Find failing tests by feature to identify gaps
+const unicodeGaps = failingTests.filter(t => t.features.includes('unicode'));
+console.log(`Could support unicode by fixing ${unicodeGaps.length} tests`);
 ```
 
 ### Behaviors Array (`test.behaviors[]`)
 
-Direct array containing **implementation choices** - technical decisions about how to handle specific parsing details. These are stable, well-defined choices that implementations must make regardless of spec interpretation.
+**Implementation choices** describing how a test expects certain operations to behave. Behaviors fall into two categories:
 
-> **📖 Detailed Documentation:** See the [Behavior Reference](https://ccl.tylerbutler.com/behavior-reference/) for comprehensive explanations with code examples for each behavior.
+**Parsing behaviors** (affect core parsing):
+| Behavior | Description |
+|----------|-------------|
+| `crlf_preserve_literal` | Preserve `\r` characters in values |
+| `crlf_normalize_to_lf` | Normalize CRLF to LF during parsing |
+| `tabs_preserve` | Keep tab characters as-is |
+| `tabs_to_spaces` | Convert tabs to spaces |
+| `strict_spacing` | Require exact whitespace around `=` |
+| `loose_spacing` | Allow flexible whitespace |
 
-| Behavior Group | Options | Description |
-|----------------|---------|-------------|
-| Line Endings | `crlf_preserve_literal` vs `crlf_normalize_to_lf` | CRLF handling: preserve `\r` chars vs normalize to LF |
-| Boolean Parsing | `boolean_lenient` vs `boolean_strict` | Boolean values: accept "yes"/"no" vs only "true"/"false". Note: "true"/"false" work in both modes |
-| Tab Handling | `tabs_preserve` vs `tabs_to_spaces` | Tab character processing |
-| Whitespace | `strict_spacing` vs `loose_spacing` | Whitespace sensitivity |
-| List Access | `list_coercion_enabled` vs `list_coercion_disabled` | List access behavior |
-| Array Ordering | `array_order_insertion` vs `array_order_lexicographic` | Array element ordering: preserve insertion order vs sort lexicographically |
+**API-specific behaviors** (affect individual functions like `get_bool`):
+| Behavior | Description |
+|----------|-------------|
+| `boolean_strict` | Only accept "true"/"false" |
+| `boolean_lenient` | Also accept "yes"/"no", "1"/"0" (superset of strict) |
+| `list_coercion_enabled` | Single values coerce to single-item lists |
+| `list_coercion_disabled` | Require explicit list syntax |
+| `array_order_insertion` | Preserve insertion order |
+| `array_order_lexicographic` | Sort elements lexicographically |
+
+> **Note:** Only behaviors with populated `conflicts` fields are mutually exclusive. Some behaviors are supersets (e.g., `boolean_lenient` accepts everything `boolean_strict` does, plus more).
 
 ### Variants Array (`test.variants[]`) - Temporary Disambiguation
 
@@ -83,450 +93,127 @@ Direct array containing **specification variant interpretations** for areas wher
 | `proposed_behavior` | Enhanced/flexible interpretation of ambiguous spec areas | Proposed for future spec |
 | `reference_compliant` | Strict compatibility with OCaml reference implementation | Current baseline |
 
-**Type-safe filtering:**
+**Filtering:**
 ```javascript
-// Check for conflicting implementation choices
-const hasConflictingBehavior = test.conflicts?.behaviors?.some(behavior => 
-  implementationBehaviors.includes(behavior)
-);
-const hasConflictingVariant = test.conflicts?.variants?.some(variant => 
-  implementationVariants.includes(variant)
-);
-const isCompatible = !hasConflictingBehavior && !hasConflictingVariant;
+// Skip tests that conflict with your variant choice
+if (test.conflicts?.variants?.some(v => v === myVariant)) skipTest(test);
 ```
 
 **Important:** These variant values are **temporary disambiguation mechanisms**. Once the CCL specification owners clarify these ambiguities, the variant system will be eliminated and these choices will be converted to specific behaviors (e.g., `multiline-flexible` vs `multiline-strict`).
 
-## Behavior vs Variant: When to Use Which
+## Behavior vs Variant
 
-### Use `behavior:*` tags for:
-- **Technical implementation details** (CRLF handling, tab processing, boolean parsing)
-- **Choices that are implementation-specific** regardless of spec interpretation
-- **Stable decisions** that won't change based on spec evolution
+**Behaviors** are stable implementation choices:
+- Technical decisions (CRLF handling, boolean parsing)
+- Won't change based on spec evolution
 
-### Use `variant:*` tags for:
-- **Specification ambiguities** where the "correct" behavior is unclear
-- **Cases where OCaml reference and proposed spec differ**
-- **Temporary disambiguation** pending spec clarification
+**Variants** are temporary spec disambiguation:
+- Where OCaml reference and proposed behavior differ
+- Will be eliminated once spec is clarified
 
-### Examples:
+### Example Test Structure
 
-**Implementation Choice (behavior):**
 ```json
-// Technical decision: How to handle line endings
-"tags": ["behavior:crlf_normalize_to_lf"]
-"conflicts": ["behavior:crlf_preserve_literal"]
+{
+  "behaviors": ["crlf_normalize_to_lf"],
+  "conflicts": { "behaviors": ["crlf_preserve_literal"] }
+}
 ```
-
-**Specification Ambiguity (variant):**
-```json
-// Spec unclear: Should multiline values work without explicit continuation?
-"tags": ["variant:proposed_behavior"]  // Allow implicit continuation
-"conflicts": ["variant:reference_compliant"]  // Require explicit syntax
-```
-
-### Future Evolution
-
-When CCL spec owners resolve ambiguities, tests will be migrated:
-- If "reference is canonical" → Remove `variant:proposed_behavior` tests
-- If "proposed is canonical" → Remove `variant:reference_compliant` tests
-- Remaining variant behaviors become specific `behavior:*` tags
 
 ## Implementation Strategies
 
-### 1. Core Functions Only
+### Filtering Logic
 
-Basic CCL parsing and object construction:
+1. **Filter by functions** - Skip tests requiring unimplemented functions
+2. **Filter by conflicts** - Skip tests whose `conflicts.behaviors` or `conflicts.variants` include your choices
+3. **Report by features** - Use feature tags to identify gaps
 
-```json
-{
-  "supported_functions": ["function:parse"],
-  "skip_all_features": true,
-  "behavior_choices": {
-    "line_endings": "behavior:crlf_normalize_to_lf",
-    "boolean_parsing": "behavior:boolean_lenient",
-    "whitespace": "behavior:loose_spacing"
-  }
-}
+### Example
+
+```javascript
+const my = {
+  functions: ['parse', 'build_hierarchy', 'get_string'],
+  behaviors: ['crlf_normalize_to_lf', 'boolean_lenient'],
+  variants: ['proposed_behavior']
+};
+
+tests.filter(test => {
+  // Must support all required functions
+  if (!test.functions.every(f => my.functions.includes(f))) return false;
+  // Must not conflict with our choices
+  if (test.conflicts?.behaviors?.some(b => my.behaviors.includes(b))) return false;
+  if (test.conflicts?.variants?.some(v => my.variants.includes(v))) return false;
+  return true;
+});
 ```
 
-**Tests to run:** ~54 tests focusing only on basic parsing
-**Use case:** Configuration file readers, simple parsers
+## Language-Specific Examples
 
-### 2. Basic Implementation (Parse + Objects + Typed Access)
-
-For most CCL use cases:
-
-```json
-{
-  "supported_functions": [
-    "function:parse",
-    "function:parse_value",
-    "function:build_hierarchy",
-    "function:get_string",
-    "function:get_int",
-    "function:get_bool"
-  ],
-  "supported_features": ["feature:experimental_dotted_keys"],
-  "behavior_choices": {
-    "line_endings": "behavior:crlf_normalize_to_lf",
-    "tabs": "behavior:tabs_to_spaces",
-    "whitespace": "behavior:loose_spacing"
-  }
-}
-```
-
-**Tests to run:** ~120 tests covering parsing, object construction, and basic typed access
-**Use case:** Configuration libraries, application settings
-
-### 3. Processing Implementation (Add Advanced Functions)
-
-For advanced configuration manipulation:
-
-```json
-{
-  "supported_functions": [
-    "function:parse",
-    "function:parse_value",
-    "function:filter",
-    "function:compose",
-    "function:expand_dotted",
-    "function:build_hierarchy",
-    "function:get_string",
-    "function:get_int",
-    "function:get_bool",
-    "function:get_float"
-  ],
-  "supported_features": [
-    "feature:experimental_dotted_keys",
-    "feature:comments"
-  ]
-}
-```
-
-**Tests to run:** ~150 tests including entry processing and composition
-**Use case:** Configuration builders, template systems
-
-### 4. Complete Implementation
-
-All functions and features:
-
-```json
-{
-  "supported_functions": ["function:*"],
-  "supported_features": [
-    "feature:comments",
-    "feature:experimental_dotted_keys",
-    "feature:empty_keys",
-    "feature:multiline",
-    "feature:unicode"
-  ],
-  "variant_choice": "variant:proposed_behavior"
-}
-```
-
-**Tests to run:** All 180 tests with chosen behavioral variants
-**Use case:** Complete CCL libraries, specification-compliant implementations
-
-## Language-Specific Integration
-
-### Go Testing
+### Go
 
 ```go
-func TestCCLImplementation(t *testing.T) {
-    // Define implementation capabilities
-    supportedFunctions := []string{
-        "function:parse",
-        "function:parse_value",
-        "function:build_hierarchy",
-        "function:get_string",
-    }
-    supportedFeatures := []string{"feature:experimental_dotted_keys"}
-    behaviorChoices := map[string]string{
-        "line_endings": "behavior:crlf_normalize_to_lf",
-    }
-    
-    // Load and filter tests
-    for _, testFile := range loadTestFiles() {
-        for _, test := range testFile.Tests {
-            if shouldSkipTest(test, supportedFunctions, supportedFeatures, behaviorChoices) {
-                t.Skipf("Skipping %s: unsupported features", test.Name)
-                continue
-            }
-            
-            // Run test validations
-            runTestValidations(t, test)
+func shouldSkip(test Test, myFuncs, myBehaviors []string) bool {
+    // Skip if we don't support a required function
+    for _, f := range test.Functions {
+        if !contains(myFuncs, f) {
+            return true
         }
     }
-}
-
-func shouldSkipTest(test Test, supportedFunctions, supportedFeatures []string, behaviorChoices map[string]string) bool {
-    // Check required functions
-    for _, tag := range test.Meta.Tags {
-        if strings.HasPrefix(tag, "function:") {
-            function := strings.TrimPrefix(tag, "function:")
-            if !contains(supportedFunctions, "function:"+function) {
-                return true
-            }
+    // Skip if test conflicts with our behaviors
+    for _, b := range test.Conflicts.Behaviors {
+        if contains(myBehaviors, b) {
+            return true
         }
     }
-    
-    // Check optional features
-    for _, tag := range test.Meta.Tags {
-        if strings.HasPrefix(tag, "feature:") {
-            if !contains(supportedFeatures, tag) {
-                return true
-            }
-        }
-    }
-    
-    // Check behavioral conflicts
-    for _, conflict := range test.Meta.Conflicts {
-        for _, choice := range behaviorChoices {
-            if conflict == choice {
-                return true
-            }
-        }
-    }
-    
     return false
 }
 ```
 
-### Rust Testing
-
-```rust
-#[cfg(test)]
-mod ccl_tests {
-    use super::*;
-
-    #[test]
-    fn test_ccl_implementation() {
-        let supported_functions = vec![
-            "function:parse",
-            "function:parse_value",
-            "function:build_hierarchy",
-            "function:get_string",
-        ];
-
-        let supported_features = vec!["feature:experimental_dotted_keys"];
-
-        let behavior_choices = HashMap::from([
-            ("line_endings", "behavior:crlf_normalize_to_lf"),
-        ]);
-        
-        for test_file in load_test_files() {
-            for test in test_file.tests {
-                if should_skip_test(&test, &supported_functions, &supported_features, &behavior_choices) {
-                    continue;
-                }
-                
-                run_test_validations(&test);
-            }
-        }
-    }
-}
-
-// Use Rust features for conditional compilation
-#[cfg(feature = "ccl-comments")]
-#[test]
-fn test_comment_parsing() {
-    // Tests requiring feature:comments
-}
-
-#[cfg(not(feature = "ccl-unicode"))]
-#[test] 
-fn test_basic_parsing_only() {
-    // Tests that don't require feature:unicode
-}
-```
-
-### Python Testing (pytest)
-
-```python
-import pytest
-
-# Define implementation capabilities
-SUPPORTED_FUNCTIONS = [
-    "function:parse",
-    "function:parse_value",
-    "function:build_hierarchy",
-    "function:get_string"
-]
-
-SUPPORTED_FEATURES = ["feature:experimental_dotted_keys"]
-
-BEHAVIOR_CHOICES = {
-    "line_endings": "behavior:crlf_normalize_to_lf"
-}
-
-def should_skip_test(test):
-    # Check function requirements
-    for tag in test.meta.tags:
-        if tag.startswith("function:") and tag not in SUPPORTED_FUNCTIONS:
-            return True
-            
-    # Check feature requirements  
-    for tag in test.meta.tags:
-        if tag.startswith("feature:") and tag not in SUPPORTED_FEATURES:
-            return True
-            
-    # Check behavioral conflicts
-    for conflict in test.meta.get("conflicts", []):
-        if conflict in BEHAVIOR_CHOICES.values():
-            return True
-            
-    return False
-
-@pytest.mark.parametrize("test", load_tests())
-def test_ccl_implementation(test):
-    if should_skip_test(test):
-        pytest.skip(f"Unsupported features: {test.name}")
-    
-    run_test_validations(test)
-
-# Use pytest markers for feature-based filtering
-@pytest.mark.ccl_function("parse", "build_hierarchy")
-@pytest.mark.ccl_feature("comments")
-def test_comment_parsing():
-    # Tests requiring specific functions and features
-    pass
-
-# Command line usage:
-# pytest -m "ccl_function:parse"  # Only basic parsing tests
-# pytest -m "not ccl_feature:unicode"  # Skip unicode tests
-```
-
-### JavaScript Testing (Jest)
+### JavaScript
 
 ```javascript
-describe('CCL Implementation', () => {
-  const supportedFunctions = [
-    'function:parse',
-    'function:parse_value',
-    'function:build_hierarchy',
-    'function:get_string'
-  ];
-
-  const supportedFeatures = ['feature:experimental_dotted_keys'];
-
-  const behaviorChoices = {
-    line_endings: 'behavior:crlf_normalize_to_lf'
-  };
-  
-  function shouldSkipTest(test) {
-    // Check function requirements
-    for (const tag of test.meta.tags) {
-      if (tag.startsWith('function:') && !supportedFunctions.includes(tag)) {
-        return true;
-      }
-    }
-    
-    // Check feature requirements
-    for (const tag of test.meta.tags) {
-      if (tag.startsWith('feature:') && !supportedFeatures.includes(tag)) {
-        return true;
-      }
-    }
-    
-    // Check behavioral conflicts
-    for (const conflict of test.meta.conflicts || []) {
-      if (Object.values(behaviorChoices).includes(conflict)) {
-        return true;
-      }
-    }
-    
-    return false;
-  }
-  
-  const testFiles = loadTestFiles();
-  
-  testFiles.forEach(testFile => {
-    testFile.tests.forEach(test => {
-      const testName = `${testFile.suite}: ${test.name}`;
-      
-      if (shouldSkipTest(test)) {
-        test.skip(testName, () => {
-          // Test skipped due to unsupported features
-        });
-      } else {
-        test(testName, () => {
-          runTestValidations(test);
-        });
-      }
-    });
-  });
-});
-
-// Use describe.skip for feature-based exclusion
-describe.skipIf(!SUPPORTS_COMMENTS)('Comment parsing tests', () => {
-  // Tests requiring feature:comments
-});
-
-describe.skipIf(!SUPPORTS_UNICODE)('Unicode handling tests', () => {
-  // Tests requiring feature:unicode  
-});
+function shouldSkip(test, myFuncs, myBehaviors) {
+  if (!test.functions.every(f => myFuncs.includes(f))) return true;
+  if (test.conflicts?.behaviors?.some(b => myBehaviors.includes(b))) return true;
+  return false;
+}
 ```
 
-## Progressive Implementation Guide
+## Available Functions
 
-### Phase 1: Basic Parsing
-- **Target**: `function:parse` only
-- **Tests**: ~54 tests
-- **Goal**: Parse key-value pairs, handle empty input
-- **Time**: 1-2 days
+**Core Parsing:**
+- `parse` - Basic key-value parsing
+- `parse_indented` - Indentation-aware parsing
+- `build_hierarchy` - Object construction from flat entries
 
-### Phase 2: Enhanced Parsing
-- **Target**: Add `function:parse_value`
-- **Tests**: ~65 tests
-- **Goal**: Handle indentation-aware parsing
-- **Time**: 1-2 days
+**Typed Access:**
+- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Type-safe value extraction
 
-### Phase 3: Object Construction
-- **Target**: Add `function:build_hierarchy`
-- **Tests**: ~80 tests
-- **Goal**: Convert flat entries to nested objects
-- **Features**: Consider adding `feature:experimental_dotted_keys`
-- **Time**: 2-3 days
+**Processing:**
+- `filter`, `compose`, `expand_dotted` - Entry manipulation
 
-### Phase 4: Typed Access
-- **Target**: Add `function:get_string`, `function:get_int`, `function:get_bool`
-- **Tests**: ~120 tests
-- **Goal**: Type-safe value extraction
-- **Time**: 1-2 days
-
-### Phase 5: Processing Functions
-- **Target**: Add `function:filter`, `function:compose`, `function:expand_dotted`
-- **Tests**: ~150 tests
-- **Goal**: Advanced entry manipulation
-- **Features**: Consider adding `feature:comments`
-- **Time**: 3-4 days
-
-### Phase 6: Complete Implementation
-- **Target**: Add remaining functions and features
-- **Tests**: All 180 tests
-- **Goal**: Complete CCL specification support
+**Formatting/IO:**
+- `canonical_format`, `load`, `round_trip` - Output and validation
 
 ## Troubleshooting
 
 ### High Test Failure Rate
-- Check that your `supported_functions` list matches your actual implementation
-- Verify behavioral choices match your implementation's behavior
+- Check that your supported functions list matches your implementation
+- Verify your behavior choices match your implementation
 - Use `just stats` to see test distribution
 
 ### Conflicting Test Results
 - Review `conflicts` arrays in failing tests
-- Ensure behavioral choices are consistent across your implementation
-- Check for variant tag conflicts (`variant:proposed_behavior` vs `variant:reference_compliant`)
+- Ensure behavioral choices are consistent
 
-### Missing Features
-- Use feature tags to identify what's needed: `feature:comments`, `feature:unicode`, etc.
-- Implement features incrementally, updating supported lists as you go
-- Check the tag migration guide in `docs/tag-migration.json` for implementation hints
+### Reporting on Features
+Use feature tags to identify gaps:
+```javascript
+const gaps = failingTests.filter(t => t.features.includes('unicode'));
+console.log(`Could support unicode by fixing ${gaps.length} tests`);
+```
 
 ## Reference
 
-- **Schema**: `tests/schema.json` - Complete tag validation rules
-- **Migration Guide**: `docs/tag-migration.json` - Tag mapping and examples  
-- **Statistics**: Run `just stats` for current test breakdown
-- **Examples**: See language-specific implementation patterns above
+- **Schema**: `schemas/source-format.json`
+- **Statistics**: `just stats`
