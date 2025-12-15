@@ -736,6 +736,48 @@
       "source_test": "spacing_and_tabs_combined_loose_to_spaces",
       "validation": "parse",
       "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "package =\n  = brew\n  = scoop\n  = nix"
+      },
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
+      ],
+      "inputs": [
+        "package =\n  = brew\n  = scoop\n  = nix"
+      ],
+      "name": "nested_bare_list_indentation_canonical_format",
+      "source_test": "nested_bare_list_indentation",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "app =\n  = item1\n  = item2\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b"
+      },
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
+      ],
+      "inputs": [
+        "app =\n  = item1\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b\n  = item2"
+      ],
+      "name": "deeply_nested_bare_list_indentation_canonical_format",
+      "source_test": "deeply_nested_bare_list_indentation",
+      "validation": "canonical_format",
+      "variants": []
     }
   ]
 }

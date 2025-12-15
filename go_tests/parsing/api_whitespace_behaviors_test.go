@@ -259,3 +259,13 @@ func TestSpacingAndTabsCombinedLoosePreserveParse(t *testing.T) {
 func TestSpacingAndTabsCombinedLooseToSpacesParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
+
+// nested_bare_list_indentation_canonical_format - function:canonical_format feature:empty_keys feature:whitespace
+func TestNestedBareListIndentationCanonicalFormat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// deeply_nested_bare_list_indentation_canonical_format - function:canonical_format feature:empty_keys feature:whitespace
+func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
