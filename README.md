@@ -150,13 +150,13 @@ source_tests/
 
 ### Test Metadata
 
-| Field | Purpose | Filter? |
-|-------|---------|---------|
-| `functions` | Required CCL functions | Yes - skip if unsupported |
-| `features` | Language features exercised | No - informational for reporting |
-| `behaviors` | Implementation choices | Via `conflicts` field |
-| `variants` | Spec interpretation (temporary) | Via `conflicts` field |
-| `conflicts` | Mutually exclusive options | Yes - skip if your choice is listed |
+| Field       | Purpose                         | Filter?                             |
+| ----------- | ------------------------------- | ----------------------------------- |
+| `functions` | Required CCL functions          | Yes - skip if unsupported           |
+| `features`  | Language features exercised     | No - informational for reporting    |
+| `behaviors` | Implementation choices          | Via `conflicts` field               |
+| `variants`  | Spec interpretation (temporary) | Via `conflicts` field               |
+| `conflicts` | Mutually exclusive options      | Yes - skip if your choice is listed |
 
 ### Filtering Logic
 
