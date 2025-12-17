@@ -312,14 +312,14 @@
           "expect": [
             {
               "key": "key",
-              "value": "  value  with  tabs"
+              "value": " value with tabs"
             }
           ]
         },
         {
           "function": "build_hierarchy",
           "expect": {
-            "key": "  value  with  tabs"
+            "key": " value with tabs"
           }
         },
         {
@@ -327,7 +327,7 @@
           "args": [
             "key"
           ],
-          "expect": "  value  with  tabs"
+          "expect": " value with tabs"
         }
       ],
       "behaviors": [
@@ -348,7 +348,7 @@
           "expect": [
             {
               "key": "key",
-              "value": "  indented"
+              "value": " indented"
             }
           ]
         },
@@ -357,7 +357,7 @@
           "args": [
             "key"
           ],
-          "expect": "  indented"
+          "expect": " indented"
         }
       ],
       "behaviors": [
@@ -378,7 +378,7 @@
           "expect": [
             {
               "key": "key",
-              "value": "      three_tabs"
+              "value": "   three_tabs"
             }
           ]
         }
@@ -425,7 +425,7 @@
           "expect": [
             {
               "key": "section",
-              "value": "\n    indented_with_tabs\n    another_line"
+              "value": "\n  indented_with_tabs\n  another_line"
             }
           ]
         }
@@ -464,7 +464,7 @@
       "tests": [
         {
           "function": "canonical_format",
-          "expect": "key =   value"
+          "expect": "key =  value"
         }
       ],
       "behaviors": [
@@ -509,7 +509,7 @@
           "expect": [
             {
               "key": "key",
-              "value": "  value  with  tabs"
+              "value": " value with tabs"
             }
           ]
         }
@@ -852,7 +852,7 @@
           "expect": [
             {
               "key": "key",
-              "value": "  value  with  tabs"
+              "value": " value with tabs"
             }
           ]
         }
