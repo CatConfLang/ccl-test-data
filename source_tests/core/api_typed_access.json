@@ -930,6 +930,335 @@
       "inputs": [
         "existing = value"
       ]
+    },
+    {
+      "name": "boolean_case_sensitivity_uppercase",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "upper_true",
+              "value": "TRUE"
+            },
+            {
+              "key": "upper_false",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "upper_true"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "upper_true = TRUE\nupper_false = FALSE"
+      ]
+    },
+    {
+      "name": "boolean_case_sensitivity_mixed",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "mixed_true",
+              "value": "True"
+            },
+            {
+              "key": "mixed_false",
+              "value": "False"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "mixed_true"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "mixed_true = True\nmixed_false = False"
+      ]
+    },
+    {
+      "name": "boolean_lenient_uppercase_yes_no",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "upper_yes",
+              "value": "YES"
+            },
+            {
+              "key": "upper_no",
+              "value": "NO"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "upper_yes"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_lenient"
+      ],
+      "inputs": [
+        "upper_yes = YES\nupper_no = NO"
+      ]
+    },
+    {
+      "name": "boolean_numeric_one_zero_strict",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "one",
+              "value": "1"
+            },
+            {
+              "key": "zero",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "one"
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": 1,
+          "args": [
+            "one"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "one = 1\nzero = 0"
+      ]
+    },
+    {
+      "name": "boolean_with_whitespace",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "padded",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": true,
+          "args": [
+            "padded"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors",
+        "whitespace"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "padded =   true   "
+      ]
+    },
+    {
+      "name": "boolean_nested_object",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "debug": "true",
+              "verbose": "false",
+              "experimental": "yes"
+            }
+          }
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "config =\n  debug = true\n  verbose = false\n  experimental = yes"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_int_on_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "flag",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": null,
+          "args": [
+            "flag"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "flag = true"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_bool_on_int",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "number",
+              "value": "42"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "number"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "number = 42"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_float_on_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "flag",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "function": "get_float",
+          "expect": null,
+          "args": [
+            "flag"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "flag = false"
+      ]
+    },
+    {
+      "name": "type_mismatch_nested_path",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "name": "test",
+              "count": "abc"
+            }
+          }
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "config =\n  name = test\n  count = abc"
+      ]
+    },
+    {
+      "name": "boolean_empty_value_error",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "empty",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "empty"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "empty ="
+      ]
     }
   ]
 }
