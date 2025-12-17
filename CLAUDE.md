@@ -136,7 +136,51 @@ Tests are organized by the CCL functions they validate. Implement the functions 
 
 - **Build tool**: `just` (justfile)
 - **Go version**: 1.25.1
-- **Key deps**: CLI framework, JSON schema validation, ccl-test-lib
+- **Module**: `github.com/tylerbutler/ccl-test-data`
+
+## Shared Test Infrastructure
+
+This repository includes reusable Go packages for CCL implementations:
+
+```
+config/     # Type-safe capability constants (CCLFunction, CCLFeature, CCLBehavior)
+loader/     # Test loading with filtering by capabilities
+generator/  # Source-to-flat format transformation
+types/      # Unified data structures for test suites
+```
+
+### Usage in CCL Implementations
+
+```go
+import (
+    "github.com/tylerbutler/ccl-test-data/config"
+    "github.com/tylerbutler/ccl-test-data/loader"
+    "github.com/tylerbutler/ccl-test-data/types"
+)
+
+// Declare capabilities
+cfg := config.ImplementationConfig{
+    SupportedFunctions: []config.CCLFunction{
+        config.FunctionParse,
+        config.FunctionBuildHierarchy,
+    },
+    SupportedFeatures: []config.CCLFeature{
+        config.FeatureComments,
+    },
+}
+
+// Load compatible tests
+testLoader := loader.NewTestLoader("path/to/ccl-test-data", cfg)
+tests, _ := testLoader.LoadAllTests(loader.LoadOptions{
+    Format:     loader.FormatFlat,
+    FilterMode: loader.FilterCompatible,
+})
+```
+
+**Note:** These packages were consolidated from the deprecated `ccl-test-lib` repository. For local development, use a `replace` directive in your `go.mod`:
+```
+replace github.com/tylerbutler/ccl-test-data => ../ccl-test-data
+```
 
 ## Before Committing
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/CatConfLang/ccl-test-lib/types"
+	"github.com/tylerbutler/ccl-test-data/types"
 )
 
 const testFileTemplate = `package {{.PackageName}}_test
@@ -16,7 +16,7 @@ const testFileTemplate = `package {{.PackageName}}_test
 import (
 	"testing"
 	{{if .HasActiveTests}}
-	"github.com/ccl-test-data/test-runner/internal/mock"{{if .HasAssertions}}
+	"github.com/tylerbutler/ccl-test-data/internal/mock"{{if .HasAssertions}}
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"{{end}}{{end}}
 )

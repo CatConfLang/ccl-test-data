@@ -8,11 +8,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ccl-test-data/test-runner/internal/benchmark"
-	"github.com/ccl-test-data/test-runner/internal/config"
-	"github.com/ccl-test-data/test-runner/internal/generator"
-	"github.com/ccl-test-data/test-runner/internal/stats"
-	"github.com/ccl-test-data/test-runner/internal/styles"
+	"github.com/tylerbutler/ccl-test-data/internal/benchmark"
+	"github.com/tylerbutler/ccl-test-data/internal/config"
+	"github.com/tylerbutler/ccl-test-data/internal/generator"
+	"github.com/tylerbutler/ccl-test-data/internal/stats"
+	"github.com/tylerbutler/ccl-test-data/internal/styles"
 	"github.com/urfave/cli/v2"
 )
 

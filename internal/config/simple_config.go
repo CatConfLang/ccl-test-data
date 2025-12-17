@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/CatConfLang/ccl-test-lib/config"
+	"github.com/tylerbutler/ccl-test-data/config"
 	"gopkg.in/yaml.v3"
 )
 
