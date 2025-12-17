@@ -3,7 +3,7 @@ module github.com/ccl-test-data/test-runner
 go 1.25.4
 
 require (
-	github.com/CatConfLang/ccl-test-lib v0.0.0-20251211035333-88fd3859e11f
+	github.com/CatConfLang/ccl-test-lib v0.0.0-20251217202708-37587be2d91b
 	github.com/charmbracelet/bubbletea v1.3.8
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/santhosh-tekuri/jsonschema/cmd/jv v0.7.0
