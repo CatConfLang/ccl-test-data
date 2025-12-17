@@ -240,6 +240,11 @@ func TestTabsToSpacesMultilineParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
 }
 
+// tabs_to_spaces_mixed_indent_parse - function:parse feature:whitespace feature:multiline behavior:tabs_to_spaces
+func TestTabsToSpacesMixedIndentParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
+}
+
 // tabs_canonical_format_preserve_canonical_format - function:canonical_format feature:whitespace behavior:tabs_preserve
 func TestTabsCanonicalFormatPreserveCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -247,6 +252,16 @@ func TestTabsCanonicalFormatPreserveCanonicalFormat(t *testing.T) {
 
 // tabs_canonical_format_to_spaces_canonical_format - function:canonical_format feature:whitespace behavior:tabs_to_spaces
 func TestTabsCanonicalFormatToSpacesCanonicalFormat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// tabs_to_spaces_multiline_print_canonical_format - function:canonical_format feature:whitespace feature:multiline behavior:tabs_to_spaces
+func TestTabsToSpacesMultilinePrintCanonicalFormat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// tabs_to_spaces_round_trip_round_trip - function:round_trip feature:whitespace
+func TestTabsToSpacesRoundTripRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -360,31 +375,6 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 // crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-// strict_spacing_standard_format_parse - function:parse feature:whitespace behavior:strict_spacing
-func TestStrictSpacingStandardFormatParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
-}
-
-// strict_spacing_rejects_no_spaces_parse - function:parse feature:whitespace behavior:strict_spacing
-func TestStrictSpacingRejectsNoSpacesParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
-}
-
-// strict_spacing_rejects_left_space_only_parse - function:parse feature:whitespace behavior:strict_spacing
-func TestStrictSpacingRejectsLeftSpaceOnlyParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
-}
-
-// strict_spacing_rejects_right_space_only_parse - function:parse feature:whitespace behavior:strict_spacing
-func TestStrictSpacingRejectsRightSpaceOnlyParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
-}
-
-// strict_spacing_rejects_tabs_parse - function:parse feature:whitespace behavior:strict_spacing
-func TestStrictSpacingRejectsTabsParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
 }
 
 // behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_to_spaces behavior:crlf_normalize_to_lf

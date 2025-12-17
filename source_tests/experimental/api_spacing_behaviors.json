@@ -1,0 +1,120 @@
+{
+  "$schema": "../../schemas/source-format.json",
+  "tests": [
+    {
+      "name": "strict_spacing_standard_format",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key = value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_no_spaces",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key=value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key=value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_left_space_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key =value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key =value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_right_space_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key= value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key= value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_tabs",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key\t=\tvalue",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key\t=\tvalue"
+      ]
+    }
+  ]
+}

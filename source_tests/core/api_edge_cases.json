@@ -380,7 +380,7 @@
           "expect": [
             {
               "key": "text",
-              "value": "First\n    four spaces\n\ttab preserved"
+              "value": "First\n   four spaces\n\ttab preserved"
             }
           ]
         }
@@ -397,7 +397,7 @@
         ]
       },
       "inputs": [
-        "text = First\n    four spaces\n\ttab preserved"
+        "text = First\n    four spaces\n \ttab preserved"
       ]
     },
     {
@@ -408,7 +408,7 @@
           "expect": [
             {
               "key": "text",
-              "value": "First\n    four spaces\n tab preserved"
+              "value": "First\n   four spaces\n\ttab preserved"
             }
           ]
         }
@@ -425,7 +425,7 @@
         ]
       },
       "inputs": [
-        "text = First\n    four spaces\n\ttab preserved"
+        "text = First\n    four spaces\n \ttab preserved"
       ]
     },
     {

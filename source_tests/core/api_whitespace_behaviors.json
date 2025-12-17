@@ -401,7 +401,7 @@
           "expect": [
             {
               "key": "section",
-              "value": "\n\t\tindented_with_tabs\n\t\tanother_line"
+              "value": "\n \tindented_with_tabs\n \tanother_line"
             }
           ]
         }
@@ -414,7 +414,7 @@
         "multiline"
       ],
       "inputs": [
-        "section =\n\t\tindented_with_tabs\n\t\tanother_line"
+        "section =\n \tindented_with_tabs\n \tanother_line"
       ]
     },
     {
@@ -439,6 +439,30 @@
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
+      ]
+    },
+    {
+      "name": "tabs_to_spaces_mixed_indent",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "section",
+              "value": "\n  mixed_indent\n  another_line"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "tabs_to_spaces"
+      ],
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "inputs": [
+        "section =\n \tmixed_indent\n\t another_line"
       ]
     },
     {
@@ -475,6 +499,43 @@
       ],
       "inputs": [
         "key = \tvalue"
+      ]
+    },
+    {
+      "name": "tabs_to_spaces_multiline_print",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "section =\n  indented\n  another"
+        }
+      ],
+      "behaviors": [
+        "tabs_to_spaces"
+      ],
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "inputs": [
+        "section =\n\t\tindented\n\t\tanother"
+      ]
+    },
+    {
+      "name": "tabs_to_spaces_round_trip",
+      "tests": [
+        {
+          "function": "round_trip",
+          "expect": "key =  value with tabs"
+        }
+      ],
+      "behaviors": [
+        "tabs_to_spaces"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key = \tvalue\twith\ttabs"
       ]
     },
     {
@@ -727,121 +788,6 @@
       ],
       "inputs": [
         "config =\r\n  host = localhost\r\n  port = 8080"
-      ]
-    },
-    {
-      "name": "strict_spacing_standard_format",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = value"
-      ]
-    },
-    {
-      "name": "strict_spacing_rejects_no_spaces",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key=value",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key=value"
-      ]
-    },
-    {
-      "name": "strict_spacing_rejects_left_space_only",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key =value",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key =value"
-      ]
-    },
-    {
-      "name": "strict_spacing_rejects_right_space_only",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key= value",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key= value"
-      ]
-    },
-    {
-      "name": "strict_spacing_rejects_tabs",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key\t=\tvalue",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key\t=\tvalue"
       ]
     },
     {
