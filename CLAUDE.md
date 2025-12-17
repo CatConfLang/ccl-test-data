@@ -162,7 +162,7 @@ Tests are organized by the CCL functions they validate. Implement the functions 
         }
       ],
       "features": ["whitespace"],
-      "behaviors": ["strict_spacing"]
+      "behaviors": ["tabs_as_whitespace"]
     }
   ]
 }

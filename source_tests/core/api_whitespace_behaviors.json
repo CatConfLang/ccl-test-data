@@ -2,244 +2,7 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
-      "name": "spacing_strict_standard_format",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing",
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = value"
-      ]
-    },
-    {
-      "name": "spacing_loose_no_spaces",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key=value"
-      ]
-    },
-    {
-      "name": "spacing_loose_left_space_only",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key =value"
-      ]
-    },
-    {
-      "name": "spacing_loose_right_space_only",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key= value"
-      ]
-    },
-    {
-      "name": "spacing_loose_multiple_spaces",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key  =  value"
-      ]
-    },
-    {
-      "name": "spacing_loose_tabs_around_equals",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key\t=\tvalue"
-      ]
-    },
-    {
-      "name": "spacing_loose_mixed_whitespace",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key \t = \t value"
-      ]
-    },
-    {
-      "name": "spacing_loose_multiline_various",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "val1"
-            },
-            {
-              "key": "key2",
-              "value": "val2"
-            },
-            {
-              "key": "key3",
-              "value": "val3"
-            },
-            {
-              "key": "key4",
-              "value": "val4"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "key1": "val1",
-            "key2": "val2",
-            "key3": "val3",
-            "key4": "val4"
-          }
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key1=val1\nkey2 = val2\nkey3  =  val3\nkey4\t=\tval4"
-      ]
-    },
-    {
-      "name": "spacing_canonical_format_normalizes_loose",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "val1"
-            },
-            {
-              "key": "key2",
-              "value": "val2"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "key1 = val1\nkey2 = val2"
-        }
-      ],
-      "behaviors": [
-        "loose_spacing"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key1=val1\nkey2  =  val2"
-      ]
-    },
-    {
-      "name": "tabs_preserve_in_value",
+      "name": "tabs_as_content_in_value",
       "tests": [
         {
           "function": "parse",
@@ -265,7 +28,7 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "features": [
         "whitespace"
@@ -275,7 +38,7 @@
       ]
     },
     {
-      "name": "tabs_preserve_leading_tab",
+      "name": "tabs_as_content_leading_tab",
       "tests": [
         {
           "function": "parse",
@@ -295,7 +58,7 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "features": [
         "whitespace"
@@ -305,21 +68,21 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_in_value",
+      "name": "tabs_as_whitespace_in_value",
       "tests": [
         {
           "function": "parse",
           "expect": [
             {
               "key": "key",
-              "value": " value with tabs"
+              "value": "value with tabs"
             }
           ]
         },
         {
           "function": "build_hierarchy",
           "expect": {
-            "key": " value with tabs"
+            "key": "value with tabs"
           }
         },
         {
@@ -327,11 +90,11 @@
           "args": [
             "key"
           ],
-          "expect": " value with tabs"
+          "expect": "value with tabs"
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -341,14 +104,14 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_leading_tab",
+      "name": "tabs_as_whitespace_leading_tab",
       "tests": [
         {
           "function": "parse",
           "expect": [
             {
               "key": "key",
-              "value": " indented"
+              "value": "indented"
             }
           ]
         },
@@ -357,11 +120,11 @@
           "args": [
             "key"
           ],
-          "expect": " indented"
+          "expect": "indented"
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -371,20 +134,20 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_multiple_tabs",
+      "name": "tabs_as_whitespace_multiple_tabs",
       "tests": [
         {
           "function": "parse",
           "expect": [
             {
               "key": "key",
-              "value": "   three_tabs"
+              "value": "three_tabs"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -394,7 +157,7 @@
       ]
     },
     {
-      "name": "tabs_preserve_multiline",
+      "name": "tabs_as_content_multiline",
       "tests": [
         {
           "function": "parse",
@@ -407,7 +170,7 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "features": [
         "whitespace",
@@ -418,20 +181,20 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_multiline",
+      "name": "tabs_as_whitespace_multiline",
       "tests": [
         {
           "function": "parse",
           "expect": [
             {
               "key": "section",
-              "value": "\n  indented_with_tabs\n  another_line"
+              "value": "\nindented_with_tabs\nanother_line"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace",
@@ -442,20 +205,20 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_mixed_indent",
+      "name": "tabs_as_whitespace_mixed_indent",
       "tests": [
         {
           "function": "parse",
           "expect": [
             {
               "key": "section",
-              "value": "\n  mixed_indent\n  another_line"
+              "value": "\nmixed_indent\nanother_line"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace",
@@ -466,7 +229,7 @@
       ]
     },
     {
-      "name": "tabs_canonical_format_preserve",
+      "name": "tabs_canonical_format_as_content",
       "tests": [
         {
           "function": "canonical_format",
@@ -474,7 +237,7 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "features": [
         "whitespace"
@@ -484,15 +247,15 @@
       ]
     },
     {
-      "name": "tabs_canonical_format_to_spaces",
+      "name": "tabs_canonical_format_as_whitespace",
       "tests": [
         {
           "function": "canonical_format",
-          "expect": "key =  value"
+          "expect": "key = value"
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -502,7 +265,7 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_multiline_print",
+      "name": "tabs_as_whitespace_multiline_print",
       "tests": [
         {
           "function": "canonical_format",
@@ -510,7 +273,8 @@
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace",
+        "indent_spaces"
       ],
       "features": [
         "whitespace",
@@ -521,15 +285,15 @@
       ]
     },
     {
-      "name": "tabs_to_spaces_round_trip",
+      "name": "tabs_as_whitespace_round_trip",
       "tests": [
         {
           "function": "round_trip",
-          "expect": "key =  value with tabs"
+          "expect": "key = value with tabs"
         }
       ],
       "behaviors": [
-        "tabs_to_spaces"
+        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -539,60 +303,15 @@
       ]
     },
     {
-      "name": "spacing_and_tabs_combined_loose_preserve",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "\tvalue\twith\ttabs"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing",
-        "tabs_preserve"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key\t=\t\tvalue\twith\ttabs"
-      ]
-    },
-    {
-      "name": "spacing_and_tabs_combined_loose_to_spaces",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": " value with tabs"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "loose_spacing",
-        "tabs_to_spaces"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key\t=\t\tvalue\twith\ttabs"
-      ]
-    },
-    {
       "name": "nested_bare_list_indentation",
       "tests": [
         {
           "function": "canonical_format",
           "expect": "package =\n  = brew\n  = scoop\n  = nix"
         }
+      ],
+      "behaviors": [
+        "indent_spaces"
       ],
       "features": [
         "empty_keys",
@@ -609,6 +328,9 @@
           "function": "canonical_format",
           "expect": "app =\n  = item1\n  = item2\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b"
         }
+      ],
+      "behaviors": [
+        "indent_spaces"
       ],
       "features": [
         "empty_keys",
@@ -798,13 +520,13 @@
           "expect": [
             {
               "key": "key",
-              "value": " value with tabs"
+              "value": "value with tabs"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_to_spaces",
+        "tabs_as_whitespace",
         "crlf_normalize_to_lf"
       ],
       "features": [
@@ -815,7 +537,7 @@
       ]
     },
     {
-      "name": "behavior_combo_loose_tabs_crlf",
+      "name": "behavior_combo_content_tabs_crlf",
       "tests": [
         {
           "function": "parse",
@@ -832,15 +554,14 @@
         }
       ],
       "behaviors": [
-        "loose_spacing",
-        "tabs_preserve",
+        "tabs_as_content",
         "crlf_normalize_to_lf"
       ],
       "features": [
         "whitespace"
       ],
       "inputs": [
-        "key1=\tvalue1\r\nkey2\t=\tvalue2\r\n"
+        "key1 = \tvalue1\r\nkey2 = \tvalue2\r\n"
       ]
     }
   ]

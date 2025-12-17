@@ -98,9 +98,9 @@ Some behaviors are mutually exclusive - implementations must choose one approach
 // Conflicting behavior groups
 conflicts = {
   "line_endings": ["crlf_preserve_literal", "crlf_normalize_to_lf"],
-  "boolean_parsing": ["boolean_lenient", "boolean_strict"], 
-  "spacing": ["strict_spacing", "loose_spacing"],
-  "tab_handling": ["tabs_preserve", "tabs_to_spaces"],
+  "boolean_parsing": ["boolean_lenient", "boolean_strict"],
+  "tab_handling": ["tabs_as_content", "tabs_as_whitespace"],
+  "indent_output": ["indent_spaces", "indent_tabs"],
   "list_coercion": ["list_coercion_enabled", "list_coercion_disabled"]
 }
 ```
@@ -117,15 +117,15 @@ function resolve_behavior_conflicts(desired_behaviors, implementation_choices) {
   if "crlf_normalize_to_lf" in implementation_choices {
     skip_behaviors.append("crlf_preserve_literal")
   }
-  
-  // Skip strict spacing if implementation uses loose spacing
-  if "loose_spacing" in implementation_choices {
-    skip_behaviors.append("strict_spacing")
+
+  // Skip tabs_as_content if implementation treats tabs as whitespace
+  if "tabs_as_whitespace" in implementation_choices {
+    skip_behaviors.append("tabs_as_content")
   }
-  
-  // Skip tab preservation if implementation doesn't handle tabs
-  if "tabs_normalize" in implementation_choices {
-    skip_behaviors.append("tabs_preserve")
+
+  // Skip indent_tabs if implementation uses spaces for indentation
+  if "indent_spaces" in implementation_choices {
+    skip_behaviors.append("indent_tabs")
   }
   
   return skip_behaviors
@@ -138,12 +138,12 @@ function resolve_behavior_conflicts(desired_behaviors, implementation_choices) {
 # Implementation that normalizes CRLF to LF - skip literal preservation
 ccl-test-runner generate \
   --run-only function:parse \
-  --skip-tags behavior:crlf_preserve_literal,behavior:strict_spacing
+  --skip-tags behavior:crlf_preserve_literal
 
-# Implementation with loose spacing - skip strict spacing tests  
+# Implementation with tabs_as_whitespace - skip tabs_as_content tests
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects \
-  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+  --skip-tags behavior:tabs_as_content
 
 # Implementation with specific boolean handling - skip conflicting approach
 ccl-test-runner generate \
@@ -162,7 +162,7 @@ capabilities = {
 }
 
 // Filters to only function:parse tests
-// Skips tests requiring behaviors like tabs_preserve, strict_spacing
+// Skips tests requiring behaviors like tabs_as_content
 ```
 
 ### Stage 2: Parse + Processing  
@@ -273,12 +273,12 @@ ccl-test-runner generate --run-only function:parse
 # Stage 3: Parse + Objects, skip problematic behaviors  
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects \
-  --skip-tags behavior:strict_spacing,behavior:tabs_preserve,behavior:crlf_preserve_literal
+  --skip-tags behavior:tabs_as_content,behavior:crlf_preserve_literal
 
 # Stage 4: Full typed access
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects,function:get_string,function:get_int,function:get_bool \
-  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+  --skip-tags behavior:tabs_as_content
 ```
 
 ### Test Execution
@@ -309,7 +309,7 @@ ccl-test-runner test --format verbose
     "behaviors": ["crlf_normalize_to_lf", "boolean_lenient"]
   },
   "test_selection": {
-    "skip_behaviors": ["strict_spacing", "tabs_preserve", "crlf_preserve_literal"],
+    "skip_behaviors": ["tabs_as_content", "crlf_preserve_literal"],
     "skip_features": ["unicode", "multiline"],
     "skip_variants": ["proposed_behavior"]
   }
@@ -415,7 +415,7 @@ ccl-test-runner test --functions parse,build_hierarchy,get_string
 # Skip conflicting behaviors as you encounter them
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects,function:get_string \
-  --skip-tags behavior:strict_spacing,behavior:tabs_preserve
+  --skip-tags behavior:tabs_as_content
 ```
 
 ## Common Patterns
@@ -425,7 +425,7 @@ ccl-test-runner generate \
 # Generate tests that match current mock capabilities
 ccl-test-runner generate \
   --run-only function:parse,function:make_objects,function:get_string,function:get_int,function:get_bool \
-  --skip-tags behavior:strict_spacing,behavior:tabs_preserve,behavior:crlf_preserve_literal
+  --skip-tags behavior:tabs_as_content,behavior:crlf_preserve_literal
 ```
 
 ### Production Implementation Testing  
