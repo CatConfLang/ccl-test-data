@@ -669,3 +669,229 @@ func TestParseMissingPathErrorBuildHierarchy(t *testing.T) {
 func TestParseMissingPathErrorGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
+// boolean_case_sensitivity_uppercase_parse - function:parse feature:optional_typed_accessors
+func TestBooleanCaseSensitivityUppercaseParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `upper_true = TRUE
+upper_false = FALSE`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "upper_true", Value: "TRUE"}, mock.Entry{Key: "upper_false", Value: "FALSE"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_case_sensitivity_uppercase_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
+func TestBooleanCaseSensitivityUppercaseGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_case_sensitivity_mixed_parse - function:parse feature:optional_typed_accessors
+func TestBooleanCaseSensitivityMixedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mixed_true = True
+mixed_false = False`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "mixed_true", Value: "True"}, mock.Entry{Key: "mixed_false", Value: "False"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_case_sensitivity_mixed_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
+func TestBooleanCaseSensitivityMixedGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_lenient_uppercase_yes_no_parse - function:parse feature:optional_typed_accessors
+func TestBooleanLenientUppercaseYesNoParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `upper_yes = YES
+upper_no = NO`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "upper_yes", Value: "YES"}, mock.Entry{Key: "upper_no", Value: "NO"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_lenient_uppercase_yes_no_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
+func TestBooleanLenientUppercaseYesNoGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_numeric_one_zero_strict_parse - function:parse feature:optional_typed_accessors
+func TestBooleanNumericOneZeroStrictParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `one = 1
+zero = 0`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "one", Value: "1"}, mock.Entry{Key: "zero", Value: "0"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_numeric_one_zero_strict_get_int - function:get_int feature:optional_typed_accessors
+func TestBooleanNumericOneZeroStrictGetInt(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_numeric_one_zero_strict_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
+func TestBooleanNumericOneZeroStrictGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_with_whitespace_parse - function:parse feature:optional_typed_accessors feature:whitespace
+func TestBooleanWithWhitespaceParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `padded =   true   `
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "padded", Value: "true"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_with_whitespace_get_bool - function:get_bool feature:optional_typed_accessors feature:whitespace behavior:boolean_strict
+func TestBooleanWithWhitespaceGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_nested_object_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+func TestBooleanNestedObjectBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// type_mismatch_get_int_on_bool_parse - function:parse feature:optional_typed_accessors
+func TestTypeMismatchGetIntOnBoolParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `flag = true`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "flag", Value: "true"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// type_mismatch_get_int_on_bool_get_int - function:get_int feature:optional_typed_accessors
+func TestTypeMismatchGetIntOnBoolGetInt(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// type_mismatch_get_bool_on_int_parse - function:parse feature:optional_typed_accessors
+func TestTypeMismatchGetBoolOnIntParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `number = 42`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "number", Value: "42"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// type_mismatch_get_bool_on_int_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
+func TestTypeMismatchGetBoolOnIntGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// type_mismatch_get_float_on_bool_parse - function:parse feature:optional_typed_accessors
+func TestTypeMismatchGetFloatOnBoolParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `flag = false`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "flag", Value: "false"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// type_mismatch_get_float_on_bool_get_float - function:get_float feature:optional_typed_accessors
+func TestTypeMismatchGetFloatOnBoolGetFloat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// type_mismatch_nested_path_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+func TestTypeMismatchNestedPathBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// boolean_empty_value_error_parse - function:parse feature:optional_typed_accessors
+func TestBooleanEmptyValueErrorParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `empty =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "empty", Value: ""}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// boolean_empty_value_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
+func TestBooleanEmptyValueErrorGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}

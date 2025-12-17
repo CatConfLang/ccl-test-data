@@ -269,3 +269,130 @@ func TestNestedBareListIndentationCanonicalFormat(t *testing.T) {
 func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
+// crlf_normalize_to_lf_basic_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := "key1 = value1\r\nkey2 = value2\r\n"
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace
+func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// crlf_preserve_literal_basic_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
+}
+
+// crlf_normalize_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := "multiline =\r\n  line1\r\n  line2"
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "multiline", Value: "\n  line1\n  line2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// crlf_preserve_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_preserve_literal
+func TestCrlfPreserveMultilineValueParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
+}
+
+// crlf_mixed_line_endings_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfMixedLineEndingsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "lf_line", Value: "value1"}, mock.Entry{Key: "crlf_line", Value: "value2"}, mock.Entry{Key: "lf_again", Value: "value3"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// crlf_nested_structure_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNestedStructureParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := "config =\r\n  host = localhost\r\n  port = 8080"
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  host = localhost\n  port = 8080"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace
+func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// strict_spacing_standard_format_parse - function:parse feature:whitespace behavior:strict_spacing
+func TestStrictSpacingStandardFormatParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
+}
+
+// strict_spacing_rejects_no_spaces_parse - function:parse feature:whitespace behavior:strict_spacing
+func TestStrictSpacingRejectsNoSpacesParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
+}
+
+// strict_spacing_rejects_left_space_only_parse - function:parse feature:whitespace behavior:strict_spacing
+func TestStrictSpacingRejectsLeftSpaceOnlyParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
+}
+
+// strict_spacing_rejects_right_space_only_parse - function:parse feature:whitespace behavior:strict_spacing
+func TestStrictSpacingRejectsRightSpaceOnlyParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
+}
+
+// strict_spacing_rejects_tabs_parse - function:parse feature:whitespace behavior:strict_spacing
+func TestStrictSpacingRejectsTabsParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:strict_spacing")
+}
+
+// behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_to_spaces behavior:crlf_normalize_to_lf
+func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:tabs_to_spaces")
+}
+
+// behavior_combo_loose_tabs_crlf_parse - function:parse feature:whitespace behavior:loose_spacing behavior:tabs_preserve behavior:crlf_normalize_to_lf
+func TestBehaviorComboLooseTabsCrlfParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
+}

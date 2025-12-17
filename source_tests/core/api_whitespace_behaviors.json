@@ -556,6 +556,346 @@
       "inputs": [
         "app =\n  = item1\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b\n  = item2"
       ]
+    },
+    {
+      "name": "crlf_normalize_to_lf_basic",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1"
+            },
+            {
+              "key": "key2",
+              "value": "value2"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "key1": "value1",
+            "key2": "value2"
+          }
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ]
+    },
+    {
+      "name": "crlf_preserve_literal_basic",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1\r"
+            },
+            {
+              "key": "key2",
+              "value": "value2\r"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ]
+    },
+    {
+      "name": "crlf_normalize_multiline_value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "multiline",
+              "value": "\n  line1\n  line2"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "inputs": [
+        "multiline =\r\n  line1\r\n  line2"
+      ]
+    },
+    {
+      "name": "crlf_preserve_multiline_value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "multiline",
+              "value": "\r\n  line1\r\n  line2"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "inputs": [
+        "multiline =\r\n  line1\r\n  line2"
+      ]
+    },
+    {
+      "name": "crlf_mixed_line_endings",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "lf_line",
+              "value": "value1"
+            },
+            {
+              "key": "crlf_line",
+              "value": "value2"
+            },
+            {
+              "key": "lf_again",
+              "value": "value3"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
+      ]
+    },
+    {
+      "name": "crlf_nested_structure",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  host = localhost\n  port = 8080"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "host": "localhost",
+              "port": "8080"
+            }
+          }
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ]
+    },
+    {
+      "name": "strict_spacing_standard_format",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key = value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_no_spaces",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key=value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key=value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_left_space_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key =value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key =value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_right_space_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key= value",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key= value"
+      ]
+    },
+    {
+      "name": "strict_spacing_rejects_tabs",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key\t=\tvalue",
+              "value": ""
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "strict_spacing"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key\t=\tvalue"
+      ]
+    },
+    {
+      "name": "behavior_combo_tabs_and_crlf",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "  value  with  tabs"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "tabs_to_spaces",
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key = \tvalue\twith\ttabs\r\n"
+      ]
+    },
+    {
+      "name": "behavior_combo_loose_tabs_crlf",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "\tvalue1"
+            },
+            {
+              "key": "key2",
+              "value": "\tvalue2"
+            }
+          ]
+        }
+      ],
+      "behaviors": [
+        "loose_spacing",
+        "tabs_preserve",
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "key1=\tvalue1\r\nkey2\t=\tvalue2\r\n"
+      ]
     }
   ]
 }
