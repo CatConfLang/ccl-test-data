@@ -65,12 +65,12 @@ console.log(`Could support unicode by fixing ${unicodeGaps.length} tests`);
 **Parsing behaviors** (affect core parsing):
 | Behavior | Description |
 |----------|-------------|
-| `crlf_preserve_literal` | Preserve `\r` characters in values |
+| `crlf_preserve_literal` | Preserve `\r` characters in values (default) |
 | `crlf_normalize_to_lf` | Normalize CRLF to LF during parsing |
-| `tabs_preserve` | Keep tab characters as-is |
-| `tabs_to_spaces` | Convert tabs to spaces |
-| `strict_spacing` | Require exact whitespace around `=` |
-| `loose_spacing` | Allow flexible whitespace |
+| `tabs_as_content` | Tabs are content characters (never indentation, never trimmed) |
+| `tabs_as_whitespace` | Tabs are whitespace (count for indentation, get trimmed) |
+| `indent_spaces` | Use spaces for printed indentation |
+| `indent_tabs` | Use tabs for printed indentation |
 
 **API-specific behaviors** (affect individual functions like `get_bool`):
 | Behavior | Description |

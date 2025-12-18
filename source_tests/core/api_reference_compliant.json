@@ -680,7 +680,7 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "variants": [
         "reference_compliant"
@@ -745,9 +745,6 @@
           "function": "canonical_format",
           "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
         }
-      ],
-      "behaviors": [
-        "strict_spacing"
       ],
       "variants": [
         "reference_compliant"

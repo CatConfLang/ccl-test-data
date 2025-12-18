@@ -312,11 +312,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
@@ -340,11 +340,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
@@ -389,11 +389,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
@@ -417,11 +417,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [

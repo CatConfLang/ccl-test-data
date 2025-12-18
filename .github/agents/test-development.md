@@ -128,8 +128,8 @@ Implementation choices (mutually exclusive pairs):
 |----------|---------|-------------|
 | Boolean parsing | `boolean_strict`, `boolean_lenient` | How to parse boolean values |
 | Line endings | `crlf_preserve_literal`, `crlf_normalize_to_lf` | CRLF handling |
-| Tabs | `tabs_preserve`, `tabs_to_spaces` | Tab character handling |
-| Spacing | `strict_spacing`, `loose_spacing` | Whitespace sensitivity |
+| Tabs | `tabs_as_content`, `tabs_as_whitespace` | Tab character handling |
+| Spacing | `tabs_as_whitespace`, `tabs_as_content` | Whitespace sensitivity |
 | List coercion | `list_coercion_enabled`, `list_coercion_disabled` | Single value to list conversion |
 
 ### Variants Array
@@ -431,7 +431,7 @@ Test error conditions:
 
 - Use snake_case: `nested_object_with_comments`
 - Be descriptive: `multiline_value_with_unicode_chars`
-- Include key features: `empty_key_with_strict_spacing`
+- Include key features: `empty_key_with_tabs_as_whitespace`
 
 ### Input Guidelines
 

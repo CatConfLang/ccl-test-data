@@ -190,7 +190,7 @@ just test
        }
      ],
      "features": ["whitespace"],
-     "behaviors": ["strict_spacing"]
+     "behaviors": ["tabs_as_whitespace"]
    }
    ```
 3. Run validation and generation:
