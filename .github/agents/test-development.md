@@ -122,15 +122,16 @@ Optional language features that the test requires:
 
 ### Behaviors Array
 
-Implementation choices (mutually exclusive pairs):
+Implementation choices (use `conflicts` field to specify incompatible combinations per-test):
 
 | Category | Options | Description |
 |----------|---------|-------------|
 | Boolean parsing | `boolean_strict`, `boolean_lenient` | How to parse boolean values |
 | Line endings | `crlf_preserve_literal`, `crlf_normalize_to_lf` | CRLF handling |
-| Tabs | `tabs_as_content`, `tabs_as_whitespace` | Tab character handling |
-| Spacing | `tabs_as_whitespace`, `tabs_as_content` | Whitespace sensitivity |
+| Tab handling | `tabs_as_content`, `tabs_as_whitespace` | Tab character treatment in values |
+| Indentation | `indent_spaces`, `indent_tabs` | Output indentation style |
 | List coercion | `list_coercion_enabled`, `list_coercion_disabled` | Single value to list conversion |
+| Array ordering | `array_order_insertion`, `array_order_lexicographic` | List element ordering |
 
 ### Variants Array
 
@@ -143,7 +144,7 @@ Specification variant choices:
 
 ### Conflicts Object
 
-Specify mutually exclusive options:
+Specify which behaviors/variants/features are incompatible with a test:
 
 ```json
 {

@@ -92,7 +92,7 @@ function test_is_compatible(test, capabilities) {
 
 ### Understanding Behavior Conflicts
 
-Some behaviors are mutually exclusive - implementations must choose one approach:
+Some behavior combinations are incompatible for specific tests. The `conflicts` field on each test specifies which behaviors are mutually exclusive for that test:
 
 ```pseudocode
 // Conflicting behavior groups
