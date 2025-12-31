@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/tylerbutler/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/tylerbutler/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_reference_compliant.json
@@ -382,7 +382,7 @@ func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:canonical_format behavior:tabs_preserve variant:reference_compliant
+// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:canonical_format behavior:tabs_as_content variant:reference_compliant
 func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -114,9 +114,9 @@ Tests are organized by function groups:
 Tests include metadata for precise selection:
 
 - **`features`**: Optional language features (`comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`)
-- **`behaviors`**: Implementation choices (mutually exclusive pairs like `boolean_strict` vs `boolean_lenient`)
+- **`behaviors`**: Implementation choices (`boolean_strict`/`boolean_lenient`, `tabs_as_content`/`tabs_as_whitespace`, `indent_spaces`/`indent_tabs`, `crlf_preserve_literal`/`crlf_normalize_to_lf`, `list_coercion_enabled`/`list_coercion_disabled`, `array_order_insertion`/`array_order_lexicographic`)
 - **`variants`**: Specification variants (`proposed_behavior`, `reference_compliant`)
-- **`conflicts`**: Mutually exclusive options by category
+- **`conflicts`**: Specifies which behaviors/variants/features are incompatible with a test
 
 ## Development Workflow
 
@@ -190,7 +190,7 @@ just test
        }
      ],
      "features": ["whitespace"],
-     "behaviors": ["strict_spacing"]
+     "behaviors": ["tabs_as_whitespace"]
    }
    ```
 3. Run validation and generation:

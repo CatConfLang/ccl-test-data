@@ -16,11 +16,11 @@ import (
 	"sort"
 	"strings"
 
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 	"github.com/tylerbutler/ccl-test-data/config"
 	"github.com/tylerbutler/ccl-test-data/loader"
 	"github.com/tylerbutler/ccl-test-data/types"
-	tea "github.com/charmbracelet/bubbletea"
-	"github.com/charmbracelet/lipgloss"
 )
 
 // Configuration constants

@@ -312,11 +312,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
@@ -340,11 +340,11 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
@@ -380,7 +380,7 @@
           "expect": [
             {
               "key": "text",
-              "value": "First\n    four spaces\n\ttab preserved"
+              "value": "First\n   four spaces\n\ttab preserved"
             }
           ]
         }
@@ -389,15 +389,15 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
-        "text = First\n    four spaces\n\ttab preserved"
+        "text = First\n    four spaces\n \ttab preserved"
       ]
     },
     {
@@ -408,7 +408,7 @@
           "expect": [
             {
               "key": "text",
-              "value": "First\n    four spaces\n tab preserved"
+              "value": "First\n   four spaces\n\ttab preserved"
             }
           ]
         }
@@ -417,15 +417,15 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
+          "tabs_as_whitespace"
         ]
       },
       "inputs": [
-        "text = First\n    four spaces\n\ttab preserved"
+        "text = First\n    four spaces\n \ttab preserved"
       ]
     },
     {

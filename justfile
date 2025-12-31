@@ -18,7 +18,7 @@ default:
 # Build: generate test files from source JSON
 build:
     just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
+    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_as_content,behavior:tabs_as_whitespace
 
 # Build Go binaries
 build-bin:

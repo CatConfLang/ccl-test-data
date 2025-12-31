@@ -206,7 +206,7 @@ replace github.com/tylerbutler/ccl-test-data => ../ccl-test-data
         }
       ],
       "features": ["whitespace"],
-      "behaviors": ["strict_spacing"]
+      "behaviors": ["tabs_as_whitespace"]
     }
   ]
 }

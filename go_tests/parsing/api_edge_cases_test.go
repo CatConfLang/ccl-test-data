@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/tylerbutler/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/tylerbutler/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_edge_cases.json
@@ -261,14 +261,14 @@ key2 = val2`
 
 }
 
-// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_preserve
+// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestKeyWithTabsParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_preserve
+// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
 // whitespace_only_value_parse - function:parse feature:empty_keys feature:whitespace
@@ -289,12 +289,12 @@ func TestWhitespaceOnlyValueParse(t *testing.T) {
 
 }
 
-// spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_preserve
+// spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_preserve
+// spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationOcamlReferenceParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -31,13 +31,15 @@ The generated flat format provides type-safe filtering through separate arrays:
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 
-**Behaviors Array** (`test.behaviors[]`) - Implementation choices (mutually exclusive):
-- `crlf_preserve_literal` vs `crlf_normalize_to_lf`
-- `tabs_preserve` vs `tabs_to_spaces`
-- `strict_spacing` vs `loose_spacing`
-- `boolean_strict` vs `boolean_lenient`
-- `list_coercion_enabled` vs `list_coercion_disabled`
-- `array_order_insertion` vs `array_order_lexicographic`
+**Behaviors Array** (`test.behaviors[]`) - Implementation choices:
+- `crlf_preserve_literal` vs `crlf_normalize_to_lf` - Line ending handling
+- `tabs_as_content` vs `tabs_as_whitespace` - Tab character treatment
+- `indent_spaces` vs `indent_tabs` - Output indentation style
+- `boolean_strict` vs `boolean_lenient` - Boolean value parsing
+- `list_coercion_enabled` vs `list_coercion_disabled` - Single-to-list conversion
+- `array_order_insertion` vs `array_order_lexicographic` - List element ordering
+
+> **Note:** Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
 
 **Variants Array** (`test.variants[]`) - Specification variants:
 - `proposed_behavior` - Proposed specification behavior
@@ -106,10 +108,10 @@ Mutually exclusive behaviors and specification variants:
   "validation": "parse",
   "functions": ["parse"],
   "features": ["whitespace"],
-  "behaviors": ["tabs_preserve"],
+  "behaviors": ["tabs_as_content"],
   "variants": ["proposed_behavior"],
   "conflicts": {
-    "behaviors": ["tabs_to_spaces"],
+    "behaviors": ["tabs_as_whitespace"],
     "variants": ["reference_compliant"]
   }
 }
@@ -276,8 +278,8 @@ const progressiveTests = flatTests.filter(test => {
 
 ### Behaviors Array Values (Mutually Exclusive)
 - Line endings: `crlf_preserve_literal` vs `crlf_normalize_to_lf`
-- Tab handling: `tabs_preserve` vs `tabs_to_spaces`
-- Spacing: `strict_spacing` vs `loose_spacing`
+- Tab handling: `tabs_as_content` vs `tabs_as_whitespace`
+- Indent output: `indent_spaces` vs `indent_tabs`
 - Boolean parsing: `boolean_strict` vs `boolean_lenient`
 - List access: `list_coercion_enabled` vs `list_coercion_disabled`
 - Array ordering: `array_order_insertion` vs `array_order_lexicographic`

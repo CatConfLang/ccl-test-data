@@ -203,7 +203,7 @@ func TestImplementationConfig_IsValid_ValidConfig(t *testing.T) {
 		BehaviorChoices: []CCLBehavior{
 			BehaviorCRLFNormalize,
 			BehaviorBooleanLenient,
-			BehaviorTabsPreserve,
+			BehaviorTabsAsContent,
 		},
 		VariantChoice: VariantProposed,
 	}
@@ -530,8 +530,10 @@ func TestCCLBehavior_StringValues(t *testing.T) {
 	}{
 		{BehaviorCRLFNormalize, "crlf_normalize_to_lf"},
 		{BehaviorCRLFPreserve, "crlf_preserve_literal"},
-		{BehaviorTabsPreserve, "tabs_preserve"},
-		{BehaviorTabsToSpaces, "tabs_to_spaces"},
+		{BehaviorTabsAsContent, "tabs_as_content"},
+		{BehaviorTabsAsWhitespace, "tabs_as_whitespace"},
+		{BehaviorIndentSpaces, "indent_spaces"},
+		{BehaviorIndentTabs, "indent_tabs"},
 		{BehaviorStrictSpacing, "strict_spacing"},
 		{BehaviorLooseSpacing, "loose_spacing"},
 		{BehaviorBooleanStrict, "boolean_strict"},
