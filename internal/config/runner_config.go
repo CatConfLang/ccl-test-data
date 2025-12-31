@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/CatConfLang/ccl-test-lib/config"
+	"github.com/tylerbutler/ccl-test-data/config"
 )
 
 // RunnerConfig centralizes all behavioral choices, feature selections, and implementation capabilities
@@ -29,11 +29,11 @@ type ImplementationSettings struct {
 // BehaviorChoices contains REQUIRED mutually exclusive behavioral choices
 // All fields must be explicitly set - no defaults allowed
 type BehaviorChoices struct {
-	CRLFHandling *config.CCLBehavior `json:"crlf_handling"`  // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
-	TabHandling  *config.CCLBehavior `json:"tab_handling"`   // REQUIRED: tabs_as_content | tabs_as_whitespace
-	IndentOutput *config.CCLBehavior `json:"indent_output"`  // REQUIRED: indent_spaces | indent_tabs
-	Boolean      *config.CCLBehavior `json:"boolean"`        // REQUIRED: boolean_strict | boolean_lenient
-	ListCoercion *config.CCLBehavior `json:"list_coercion"`  // REQUIRED: list_coercion_enabled | list_coercion_disabled
+	CRLFHandling *config.CCLBehavior `json:"crlf_handling"` // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
+	TabHandling  *config.CCLBehavior `json:"tab_handling"`  // REQUIRED: tabs_as_content | tabs_as_whitespace
+	IndentOutput *config.CCLBehavior `json:"indent_output"` // REQUIRED: indent_spaces | indent_tabs
+	Boolean      *config.CCLBehavior `json:"boolean"`       // REQUIRED: boolean_strict | boolean_lenient
+	ListCoercion *config.CCLBehavior `json:"list_coercion"` // REQUIRED: list_coercion_enabled | list_coercion_disabled
 }
 
 // VariantChoice contains REQUIRED specification variant choice
@@ -52,9 +52,9 @@ type TestFilteringOptions struct {
 // DefaultConfig returns the default configuration for the CCL test runner
 // NOTE: This configuration makes explicit behavioral choices for the mock implementation
 func DefaultConfig() *RunnerConfig {
-	crlf := config.BehaviorCRLFNormalize        // Normalize CRLF to LF for consistent line endings
-	tabs := config.BehaviorTabsAsWhitespace     // Tabs are whitespace (count for indentation, get trimmed)
-	indent := config.BehaviorIndentSpaces       // Use spaces for printed indentation
+	crlf := config.BehaviorCRLFNormalize    // Normalize CRLF to LF for consistent line endings
+	tabs := config.BehaviorTabsAsWhitespace // Tabs are whitespace (count for indentation, get trimmed)
+	indent := config.BehaviorIndentSpaces   // Use spaces for printed indentation
 	boolean := config.BehaviorBooleanLenient
 	listCoercion := config.BehaviorListCoercionOff
 	variant := config.VariantProposed
@@ -93,7 +93,7 @@ func DefaultConfig() *RunnerConfig {
 		},
 		TestFiltering: TestFilteringOptions{
 			RunOnlyFunctions: []string{"parse", "get-string", "get-int", "get-bool", "get-float", "get-list"}, // Basic functions only
-			SkipTags:         []string{"crlf_normalize_to_lf", "tabs_as_content"},                             // Skip conflicting behaviors
+			SkipTags:         []string{"behavior:crlf_normalize_to_lf", "behavior:tabs_as_content"},           // Skip conflicting behaviors
 			SkipTestsByName: []string{
 				// Indentation-aware parsing (requires multiline value preservation)
 				"deep_nested_objects", "nested_duplicate_keys", "round_trip_deeply_nested",

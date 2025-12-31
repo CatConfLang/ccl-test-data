@@ -8,7 +8,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/CatConfLang/ccl-test-lib/types"
+	"github.com/tylerbutler/ccl-test-data/types"
 )
 
 // FeatureCategories maps feature names to categories

@@ -37,7 +37,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/CatConfLang/ccl-test-lib/types"
+	"github.com/tylerbutler/ccl-test-data/types"
 )
 
 // String slice pool for reducing allocations during stats collection
