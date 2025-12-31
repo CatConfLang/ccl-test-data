@@ -122,15 +122,16 @@ Optional language features that the test requires:
 
 ### Behaviors Array
 
-Implementation choices (mutually exclusive pairs):
+Implementation choices (use `conflicts` field to specify incompatible combinations per-test):
 
-| Category | Options | Description |
-|----------|---------|-------------|
-| Boolean parsing | `boolean_strict`, `boolean_lenient` | How to parse boolean values |
-| Line endings | `crlf_preserve_literal`, `crlf_normalize_to_lf` | CRLF handling |
-| Tabs | `tabs_as_content`, `tabs_as_whitespace` | Tab character handling |
-| Spacing | `tabs_as_whitespace`, `tabs_as_content` | Whitespace sensitivity |
-| List coercion | `list_coercion_enabled`, `list_coercion_disabled` | Single value to list conversion |
+| Category | Options | Affects Functions | Description |
+|----------|---------|-------------------|-------------|
+| Boolean parsing | `boolean_strict`, `boolean_lenient` | `get_bool`, `build_hierarchy` | How to interpret boolean values |
+| Line endings | `crlf_preserve_literal`, `crlf_normalize_to_lf` | `parse`, `canonical_format` | CRLF handling during parsing |
+| Tab handling | `tabs_as_content`, `tabs_as_whitespace` | `parse`, `parse_indented`, `get_string`, `canonical_format` | Tab character treatment in values |
+| Output indentation | `indent_spaces`, `indent_tabs` | `canonical_format` | Indentation style for printed output |
+| List coercion | `list_coercion_enabled`, `list_coercion_disabled` | `get_list`, `build_hierarchy` | Single value to list conversion |
+| Array ordering | `array_order_insertion`, `array_order_lexicographic` | `get_list`, `build_hierarchy` | List element ordering
 
 ### Variants Array
 
@@ -143,7 +144,7 @@ Specification variant choices:
 
 ### Conflicts Object
 
-Specify mutually exclusive options:
+Specify which behaviors/variants/features are incompatible with a test:
 
 ```json
 {

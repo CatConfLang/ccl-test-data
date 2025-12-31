@@ -92,18 +92,19 @@ function test_is_compatible(test, capabilities) {
 
 ### Understanding Behavior Conflicts
 
-Some behaviors are mutually exclusive - implementations must choose one approach:
+Some behavior combinations are incompatible for specific tests. Each test's `conflicts` field specifies which behaviors would cause the test to fail for implementations using those behaviors:
 
-```pseudocode
-// Conflicting behavior groups
-conflicts = {
-  "line_endings": ["crlf_preserve_literal", "crlf_normalize_to_lf"],
-  "boolean_parsing": ["boolean_lenient", "boolean_strict"],
-  "tab_handling": ["tabs_as_content", "tabs_as_whitespace"],
-  "indent_output": ["indent_spaces", "indent_tabs"],
-  "list_coercion": ["list_coercion_enabled", "list_coercion_disabled"]
+```json
+{
+  "name": "list_with_comments",
+  "behaviors": ["array_order_insertion"],
+  "conflicts": {
+    "behaviors": ["array_order_lexicographic"]
+  }
 }
 ```
+
+When running tests, skip any test where your implementation's behavior choices appear in the test's `conflicts.behaviors` array.
 
 ### Automatic Conflict Resolution
 
