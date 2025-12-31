@@ -162,7 +162,7 @@ func TestGetBehaviorConflicts_Structure(t *testing.T) {
 	expectedGroups := []string{
 		"crlf_handling",
 		"tab_handling",
-		"spacing",
+		"indent_output",
 		"boolean",
 		"list_coercion",
 	}
@@ -534,8 +534,6 @@ func TestCCLBehavior_StringValues(t *testing.T) {
 		{BehaviorTabsAsWhitespace, "tabs_as_whitespace"},
 		{BehaviorIndentSpaces, "indent_spaces"},
 		{BehaviorIndentTabs, "indent_tabs"},
-		{BehaviorStrictSpacing, "strict_spacing"},
-		{BehaviorLooseSpacing, "loose_spacing"},
 		{BehaviorBooleanStrict, "boolean_strict"},
 		{BehaviorBooleanLenient, "boolean_lenient"},
 		{BehaviorListCoercionOn, "list_coercion_enabled"},

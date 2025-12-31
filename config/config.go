@@ -88,29 +88,26 @@ func AllFeatures() []CCLFeature {
 type CCLBehavior string
 
 const (
-	BehaviorCRLFNormalize    CCLBehavior = "crlf_normalize_to_lf"
-	BehaviorCRLFPreserve     CCLBehavior = "crlf_preserve_literal"
-	BehaviorTabsAsContent    CCLBehavior = "tabs_as_content"
+	BehaviorCRLFNormalize   CCLBehavior = "crlf_normalize_to_lf"
+	BehaviorCRLFPreserve    CCLBehavior = "crlf_preserve_literal"
+	BehaviorTabsAsContent   CCLBehavior = "tabs_as_content"
 	BehaviorTabsAsWhitespace CCLBehavior = "tabs_as_whitespace"
-	BehaviorIndentSpaces     CCLBehavior = "indent_spaces"
-	BehaviorIndentTabs       CCLBehavior = "indent_tabs"
-	BehaviorStrictSpacing    CCLBehavior = "strict_spacing"
-	BehaviorLooseSpacing     CCLBehavior = "loose_spacing"
-	BehaviorBooleanStrict    CCLBehavior = "boolean_strict"
-	BehaviorBooleanLenient   CCLBehavior = "boolean_lenient"
-	BehaviorListCoercionOn   CCLBehavior = "list_coercion_enabled"
-	BehaviorListCoercionOff  CCLBehavior = "list_coercion_disabled"
+	BehaviorIndentSpaces    CCLBehavior = "indent_spaces"
+	BehaviorIndentTabs      CCLBehavior = "indent_tabs"
+	BehaviorBooleanStrict   CCLBehavior = "boolean_strict"
+	BehaviorBooleanLenient  CCLBehavior = "boolean_lenient"
+	BehaviorListCoercionOn  CCLBehavior = "list_coercion_enabled"
+	BehaviorListCoercionOff CCLBehavior = "list_coercion_disabled"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups
 func GetBehaviorConflicts() map[string][]CCLBehavior {
 	return map[string][]CCLBehavior{
-		"crlf_handling": {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
-		"tab_handling":  {BehaviorTabsAsContent, BehaviorTabsAsWhitespace},
-		"indent_output": {BehaviorIndentSpaces, BehaviorIndentTabs},
-		"spacing":       {BehaviorStrictSpacing, BehaviorLooseSpacing},
-		"boolean":       {BehaviorBooleanStrict, BehaviorBooleanLenient},
-		"list_coercion": {BehaviorListCoercionOn, BehaviorListCoercionOff},
+		"crlf_handling":   {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
+		"tab_handling":    {BehaviorTabsAsContent, BehaviorTabsAsWhitespace},
+		"indent_output":   {BehaviorIndentSpaces, BehaviorIndentTabs},
+		"boolean":         {BehaviorBooleanStrict, BehaviorBooleanLenient},
+		"list_coercion":   {BehaviorListCoercionOn, BehaviorListCoercionOff},
 	}
 }
 

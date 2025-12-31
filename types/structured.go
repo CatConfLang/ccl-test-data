@@ -109,8 +109,6 @@ const (
 	BehaviorTabsAsWhitespace     Behavior = "tabs_as_whitespace"
 	BehaviorIndentSpaces         Behavior = "indent_spaces"
 	BehaviorIndentTabs           Behavior = "indent_tabs"
-	BehaviorStrictSpacing        Behavior = "strict_spacing"
-	BehaviorLooseSpacing         Behavior = "loose_spacing"
 	BehaviorListCoercionEnabled  Behavior = "list_coercion_enabled"
 	BehaviorListCoercionDisabled Behavior = "list_coercion_disabled"
 )
