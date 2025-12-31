@@ -107,22 +107,22 @@ list:
 
 # Interactive test viewer (TUI-based) - builds test-reader if needed
 view-tests PATH="source_tests/core":
-    just build-test-reader
+    just build-bin
     ./bin/test-reader {{PATH}}
 
 # Static test viewer (CLI output) - builds test-reader if needed
 view-tests-static PATH="source_tests/core":
-    just build-test-reader
+    just build-bin
     ./bin/test-reader {{PATH}} --static
 
 # View specific test file interactively
 view-test FILE:
-    just build-test-reader
+    just build-bin
     ./bin/test-reader {{FILE}}
 
 # View specific test file with static output
 view-test-static FILE:
-    just build-test-reader
+    just build-bin
     ./bin/test-reader {{FILE}} --static
 
 clean:
