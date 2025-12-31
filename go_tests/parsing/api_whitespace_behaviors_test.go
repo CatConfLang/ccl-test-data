@@ -22,7 +22,7 @@ func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// tabs_as_content_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_content
+// tabs_as_content_in_value_get_string - function:get_string feature:whitespace
 func TestTabsAsContentInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -32,7 +32,7 @@ func TestTabsAsContentLeadingTabParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_content
+// tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace
 func TestTabsAsContentLeadingTabGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -47,7 +47,7 @@ func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -57,7 +57,7 @@ func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
-// tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -97,7 +97,7 @@ func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// tabs_as_whitespace_round_trip_round_trip - function:round_trip feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_round_trip_round_trip - function:round_trip feature:whitespace
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
