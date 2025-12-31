@@ -276,7 +276,7 @@ const progressiveTests = flatTests.filter(test => {
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 
-### Behaviors Array Values (Mutually Exclusive)
+### Behaviors Array Values
 - Line endings: `crlf_preserve_literal` vs `crlf_normalize_to_lf`
 - Tab handling: `tabs_as_content` vs `tabs_as_whitespace`
 - Indent output: `indent_spaces` vs `indent_tabs`
