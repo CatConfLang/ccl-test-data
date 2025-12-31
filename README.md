@@ -52,24 +52,24 @@ function shouldRun(test, myCapabilities) {
 
 ### Functions
 
-| Function | Description |
-|----------|-------------|
-| `parse` | Basic key-value parsing |
-| `build_hierarchy` | Object construction from entries |
-| `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` | Typed value access |
-| `filter`, `compose` | Entry processing |
-| `canonical_format`, `round_trip` | Formatting and validation |
+| Function                                                     | Description                      |
+| ------------------------------------------------------------ | -------------------------------- |
+| `parse`                                                      | Basic key-value parsing          |
+| `build_hierarchy`                                            | Object construction from entries |
+| `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` | Typed value access               |
+| `filter`, `compose`                                          | Entry processing                 |
+| `canonical_format`, `round_trip`                             | Formatting and validation        |
 
 ### Behaviors
 
 Mutually exclusive implementation choices:
 
-| Group | Options |
-|-------|---------|
-| CRLF handling | `crlf_normalize_to_lf`, `crlf_preserve_literal` |
-| Tab handling | `tabs_as_whitespace`, `tabs_as_content` |
-| Boolean parsing | `boolean_strict`, `boolean_lenient` |
-| List coercion | `list_coercion_enabled`, `list_coercion_disabled` |
+| Group           | Options                                           |
+| --------------- | ------------------------------------------------- |
+| CRLF handling   | `crlf_normalize_to_lf`, `crlf_preserve_literal`   |
+| Tab handling    | `tabs_as_whitespace`, `tabs_as_content`           |
+| Boolean parsing | `boolean_strict`, `boolean_lenient`               |
+| List coercion   | `list_coercion_enabled`, `list_coercion_disabled` |
 
 See [test-selection-guide.md](docs/test-selection-guide.md) for complete filtering documentation.
 
@@ -111,5 +111,6 @@ See [DEV.md](DEV.md) for development setup, contributing guidelines, and release
 ## Schema
 
 JSON schemas for validation:
+
 - `schemas/source-format.json` - Human-maintainable source format
 - `schemas/generated-format.json` - Machine-friendly generated format
