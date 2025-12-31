@@ -2,6 +2,27 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
+## [0.1.0] - 2025-12-31
+### Tests
+#### Bug Fixes
+- Remove incorrect canonical_format tests from proposed_behavior (#22)
+- Correct filter function expectations to remove comments (#20)
+- Correct tabs_to_spaces behavior to use single space (#28)
+- Correct tabs_to_spaces behavior to use single space (#29)
+
+#### Features
+- Add bare list indentation tests (#25)
+- Add comprehensive behavior tests (#26)
+
+#### Refactor
+- Simplify whitespace behavior model (#34)
+
+
+### Schema
+#### Features
+- Rename tab/spacing behaviors for clarity (#39)
+
+
 ## [0.0.1] - 2025-12-09
 ### Tests
 #### Bug Fixes
