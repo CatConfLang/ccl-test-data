@@ -249,6 +249,58 @@
       "inputs": [
         "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
       ]
+    },
+    {
+      "name": "deeply_nested_list",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": [
+                    "api1",
+                    "web1",
+                    "web2"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": null,
+          "args": [
+            "config",
+            "environments",
+            "production",
+            "servers"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ]
     }
   ]
 }

@@ -349,58 +349,6 @@
       ]
     },
     {
-      "name": "deeply_nested_list_reference",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "config": {
-              "environments": {
-                "production": {
-                  "servers": [
-                    "api1",
-                    "web1",
-                    "web2"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": null,
-          "args": [
-            "config",
-            "environments",
-            "production",
-            "servers"
-          ]
-        }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-      ]
-    },
-    {
       "name": "list_with_unicode_reference",
       "tests": [
         {

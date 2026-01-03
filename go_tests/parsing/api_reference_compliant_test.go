@@ -222,39 +222,6 @@ func TestListWithWhitespaceReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// deeply_nested_list_reference_parse - function:parse
-func TestDeeplyNestedListReferenceParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := `config =
-  environments =
-    production =
-      servers = web1
-      servers = web2
-      servers = api1`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// deeply_nested_list_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
-func TestDeeplyNestedListReferenceBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-// deeply_nested_list_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
-func TestDeeplyNestedListReferenceGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
 // list_with_unicode_reference_parse - function:parse feature:unicode
 func TestListWithUnicodeReferenceParse(t *testing.T) {
 
