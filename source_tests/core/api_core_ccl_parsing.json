@@ -195,6 +195,50 @@
       "inputs": [
         ""
       ]
+    },
+    {
+      "name": "leading_whitespace_baseline_zero",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value\n  second"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "  key = value\n  second"
+      ]
+    },
+    {
+      "name": "leading_whitespace_multiple_entries",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1"
+            },
+            {
+              "key": "key2",
+              "value": "value2"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "  key1 = value1\nkey2 = value2"
+      ]
     }
   ]
 }

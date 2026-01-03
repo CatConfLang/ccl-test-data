@@ -2,33 +2,28 @@ package parsing_test
 
 import (
 	"testing"
-	
-	"github.com/tylerbutler/ccl-test-data/internal/mock"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/tylerbutler/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/property_round_trip.json
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // round_trip_basic_parse - function:parse
 func TestRoundTripBasicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = value
 nested =
   sub = val`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -37,45 +32,23 @@ nested =
 
 }
 
-
 // round_trip_basic_round_trip - function:round_trip
 func TestRoundTripBasicRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key = value
-nested =
-  sub = val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_whitespace_normalization_parse - function:parse feature:whitespace
 func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `  key  =  value  
   nested  = 
     sub  =  val  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -84,45 +57,23 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 }
 
-
 // round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `  key  =  value  
-  nested  = 
-    sub  =  val  `
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_empty_keys_lists_parse - function:parse feature:empty_keys
 func TestRoundTripEmptyKeysListsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `= item1
 = item2
 regular = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -131,33 +82,13 @@ regular = value`
 
 }
 
-
 // round_trip_empty_keys_lists_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripEmptyKeysListsRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `= item1
-= item2
-regular = value`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_nested_structures_parse - function:parse
 func TestRoundTripNestedStructuresParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -166,13 +97,11 @@ func TestRoundTripNestedStructuresParse(t *testing.T) {
   db =
     name = mydb
     user = admin`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -181,49 +110,24 @@ func TestRoundTripNestedStructuresParse(t *testing.T) {
 
 }
 
-
 // round_trip_nested_structures_round_trip - function:round_trip
 func TestRoundTripNestedStructuresRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `config =
-  host = localhost
-  port = 8080
-  db =
-    name = mydb
-    user = admin`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_multiline_values_parse - function:parse feature:multiline
 func TestRoundTripMultilineValuesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `script =
   #!/bin/bash
   echo hello
   exit 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -232,34 +136,13 @@ func TestRoundTripMultilineValuesParse(t *testing.T) {
 
 }
 
-
 // round_trip_multiline_values_round_trip - function:round_trip feature:multiline
 func TestRoundTripMultilineValuesRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `script =
-  #!/bin/bash
-  echo hello
-  exit 0`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_mixed_content_parse - function:parse feature:empty_keys
 func TestRoundTripMixedContentParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
@@ -268,13 +151,11 @@ config =
   port = 3000
 = second item
 final = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -283,36 +164,13 @@ final = value`
 
 }
 
-
 // round_trip_mixed_content_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripMixedContentRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `name = Alice
-= first item
-config =
-  port = 3000
-= second item
-final = value`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_complex_nesting_parse - function:parse feature:empty_keys
 func TestRoundTripComplexNestingParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -323,13 +181,11 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
       host = localhost
       = db_item
   = item2`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -338,38 +194,13 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
 
 }
 
-
 // round_trip_complex_nesting_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripComplexNestingRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `app =
-  = item1
-  config =
-    = nested_item
-    db =
-      host = localhost
-      = db_item
-  = item2`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_deeply_nested_parse - function:parse feature:empty_keys
 func TestRoundTripDeeplyNestedParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `level1 =
@@ -378,13 +209,11 @@ func TestRoundTripDeeplyNestedParse(t *testing.T) {
       level4 =
         deep = value
         = deep_item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -393,48 +222,23 @@ func TestRoundTripDeeplyNestedParse(t *testing.T) {
 
 }
 
-
 // round_trip_deeply_nested_round_trip - function:round_trip feature:empty_keys
 func TestRoundTripDeeplyNestedRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `level1 =
-  level2 =
-    level3 =
-      level4 =
-        deep = value
-        = deep_item`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // round_trip_empty_multiline_parse - function:parse feature:empty_keys feature:multiline
 func TestRoundTripEmptyMultilineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_section =
 
 other = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -443,27 +247,7 @@ other = value`
 
 }
 
-
 // round_trip_empty_multiline_round_trip - function:round_trip feature:empty_keys feature:multiline
 func TestRoundTripEmptyMultilineRoundTrip(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `empty_section =
-
-other = value`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-
