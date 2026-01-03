@@ -16,6 +16,7 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 - Split on first `=`, handle multiline values via indentation
 - Preserve whitespace in values, trim keys
 - Support Unix/Windows/Mac line endings
+- **Continuation baseline**: Strips leading whitespace, uses N=0 (see [Continuation Behavior](#continuation-behavior))
 
 ### Object Construction (77 tests)
 **API**: `build_hierarchy(entries) → CCL` (public)
@@ -23,6 +24,17 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 - Fixed-point algorithm: recursively parse nested values using `parse_indented`
 - Merge duplicate keys, handle empty keys as lists
 - Creates hierarchical objects from flat entries
+
+### parse vs parse_indented
+
+| Function | Use Case | Baseline N |
+|----------|----------|------------|
+| `parse` | Top-level parsing | N=0 (after stripping leading whitespace) |
+| `parse_indented` | Nested value parsing | N = indentation of first content line |
+
+**`parse`** is for top-level document parsing. It strips leading whitespace and uses N=0, so any indented line becomes a continuation.
+
+**`parse_indented`** is for recursively parsing nested values (used internally by `build_hierarchy`). It determines N from the actual indentation of the first line after a newline, preserving relative indentation within nested structures.
 
 ### Typed Access (17 tests)
 **Functions**: `get_string()`, `get_int()`, `get_bool()`, `get_float()`, `get_list()`
@@ -127,6 +139,15 @@ for test in test_data {
 4. **Path navigation**: Handle missing keys gracefully
 5. **Type conversion**: Boolean parsing edge cases
 6. **Memory management**: String lifetime in non-GC languages
+
+## Continuation Behavior
+
+When parsing, leading whitespace before the first key is stripped. Continuation is then determined using **N = 0** as the baseline:
+
+- Lines with **0 spaces** → new entry
+- Lines with **> 0 spaces** → continuation of previous value
+
+This means any indented line after the first key becomes a continuation, regardless of how much the first key was indented in the original input.
 
 ## API Guidelines
 

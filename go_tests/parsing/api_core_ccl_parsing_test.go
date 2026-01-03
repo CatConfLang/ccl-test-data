@@ -165,3 +165,41 @@ func TestEmptyInputParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
+
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace
+func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `  key = value
+  second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value\n  second"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// leading_whitespace_multiple_entries_parse - function:parse feature:whitespace
+func TestLeadingWhitespaceMultipleEntriesParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `  key1 = value1
+key2 = value2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
