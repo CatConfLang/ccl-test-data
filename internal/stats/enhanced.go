@@ -373,6 +373,8 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 	allConflicts := make(map[string]map[string]bool) // behavior -> set of conflicts
 
 	// First pass: collect all conflict relationships from test data
+	// Only record conflicts between behaviors that share a common prefix
+	// (e.g., list_coercion_enabled conflicts with list_coercion_disabled)
 	for _, filePath := range testFiles {
 		fileData, err := c.analyzeEnhancedTestFile(filePath)
 		if err != nil {
@@ -390,7 +392,11 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 						allConflicts[behavior] = make(map[string]bool)
 					}
 					for _, conflict := range conflictSlice {
-						allConflicts[behavior][conflict] = true
+						// Only record conflict if they share a common prefix
+						// This prevents cross-contamination between different behavior types
+						if haveSameBehaviorPrefix(behavior, conflict) {
+							allConflicts[behavior][conflict] = true
+						}
 					}
 				}
 			}
@@ -515,41 +521,32 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 				// Count this as a mutually exclusive test
 				stats.MutuallyExclusive++
 
-				// Track all explicit conflicts from test data
+				// Track conflicts only for behaviors that are in the same conflict group
+				// This prevents incorrectly attributing array_order conflicts to list_coercion behaviors
 				for _, behavior := range behaviors {
-					fullTag := "behavior:" + behavior
-					if conflictPairs[fullTag] == nil {
-						conflictPairs[fullTag] = make(map[string]int)
-					}
-
 					for _, conflict := range conflictSlice {
-						conflictPairs[fullTag][conflict]++
+						// Only attribute conflict if they're in the same bidirectional group
+						if isInSameConflictGroup(behavior, conflict, behaviorGroups) {
+							fullTag := "behavior:" + behavior
+							if conflictPairs[fullTag] == nil {
+								conflictPairs[fullTag] = make(map[string]int)
+							}
+							conflictPairs[fullTag][conflict]++
+						}
 					}
 				}
 
-				// Also handle variant conflicts
+				// Handle variant conflicts (these don't need group filtering)
 				for _, variant := range variants {
 					for _, conflict := range conflictSlice {
-						fullTag := "variant:" + variant
-						if conflictPairs[fullTag] == nil {
-							conflictPairs[fullTag] = make(map[string]int)
+						// Check if the conflict is with another variant
+						if isInSameConflictGroup(variant, conflict, behaviorGroups) {
+							fullTag := "variant:" + variant
+							if conflictPairs[fullTag] == nil {
+								conflictPairs[fullTag] = make(map[string]int)
+							}
+							conflictPairs[fullTag][conflict]++
 						}
-						conflictPairs[fullTag][conflict]++
-					}
-				}
-			}
-
-			// Add implicit same-group conflicts for behaviors
-			// Behaviors in the same group conflict with each other
-			for _, behavior := range behaviors {
-				group := behaviorGroups[behavior]
-				for _, otherBehavior := range group {
-					if otherBehavior != behavior {
-						fullTag := "behavior:" + behavior
-						if conflictPairs[fullTag] == nil {
-							conflictPairs[fullTag] = make(map[string]int)
-						}
-						conflictPairs[fullTag][otherBehavior]++
 					}
 				}
 			}
@@ -616,6 +613,56 @@ func contains(slice []string, item string) bool {
 			return true
 		}
 	}
+	return false
+}
+
+// isInSameConflictGroup checks if two behaviors are in the same bidirectional conflict group
+func isInSameConflictGroup(behavior, conflict string, behaviorGroups map[string][]string) bool {
+	group, exists := behaviorGroups[behavior]
+	if !exists {
+		return false
+	}
+	for _, member := range group {
+		if member == conflict {
+			return true
+		}
+	}
+	return false
+}
+
+// haveSameBehaviorPrefix checks if two behavior names share a common prefix
+// indicating they are the same type of behavior (e.g., list_coercion_enabled and list_coercion_disabled)
+func haveSameBehaviorPrefix(a, b string) bool {
+	// Known behavior prefixes - behaviors with same prefix are alternatives
+	prefixes := []string{
+		"list_coercion_",
+		"array_order_",
+		"tabs_as_",
+		"crlf_",
+		"toplevel_indent_",
+		"boolean_",
+	}
+
+	for _, prefix := range prefixes {
+		aHas := strings.HasPrefix(a, prefix)
+		bHas := strings.HasPrefix(b, prefix)
+		if aHas && bHas {
+			return true
+		}
+		// If one has the prefix but the other doesn't, they're different types
+		if aHas || bHas {
+			return false
+		}
+	}
+
+	// If neither matches any known prefix, fall back to checking if they share
+	// a common underscore-separated prefix
+	aParts := strings.Split(a, "_")
+	bParts := strings.Split(b, "_")
+	if len(aParts) >= 2 && len(bParts) >= 2 {
+		return aParts[0] == bParts[0]
+	}
+
 	return false
 }
 
@@ -696,20 +743,70 @@ func PrintEnhancedStats(stats *EnhancedStatistics) {
 		fmt.Println()
 	}
 
-	// Conflict relationships
+	// Conflict relationships - display as bidirectional pairs
 	if len(stats.ConflictPairs) > 0 {
-		fmt.Printf("⚔️  Conflict Relationships:\n")
-		conflictKeys := make([]string, 0, len(stats.ConflictPairs))
-		for k := range stats.ConflictPairs {
-			conflictKeys = append(conflictKeys, k)
-		}
-		sort.Strings(conflictKeys)
+		fmt.Printf("⚔️  Conflict Relationships (mutually exclusive pairs):\n")
 
-		for _, tag := range conflictKeys {
-			conflicts := stats.ConflictPairs[tag]
-			if len(conflicts) > 0 {
-				fmt.Printf("  %s conflicts with: %s\n", tag, strings.Join(conflicts, ", "))
+		// ANSI color codes
+		const (
+			colorCyan   = "\033[36m"
+			colorYellow = "\033[33m"
+			colorReset  = "\033[0m"
+		)
+
+		// Collect unique bidirectional pairs
+		type conflictPair struct {
+			category string // "behavior" or "variant"
+			first    string
+			second   string
+		}
+		seenPairs := make(map[string]bool)
+		var pairs []conflictPair
+
+		for tag, conflicts := range stats.ConflictPairs {
+			// Parse the tag (e.g., "behavior:array_order_insertion")
+			parts := strings.SplitN(tag, ":", 2)
+			if len(parts) != 2 {
+				continue
 			}
+			category := parts[0]
+			name := parts[1]
+
+			for _, conflict := range conflicts {
+				// Create a canonical key for the pair (alphabetically sorted)
+				var pairKey string
+				if name < conflict {
+					pairKey = category + ":" + name + "<->" + conflict
+				} else {
+					pairKey = category + ":" + conflict + "<->" + name
+				}
+
+				if !seenPairs[pairKey] {
+					seenPairs[pairKey] = true
+					// Store with alphabetically first name first
+					if name < conflict {
+						pairs = append(pairs, conflictPair{category, name, conflict})
+					} else {
+						pairs = append(pairs, conflictPair{category, conflict, name})
+					}
+				}
+			}
+		}
+
+		// Sort pairs by category then by first name
+		sort.Slice(pairs, func(i, j int) bool {
+			if pairs[i].category != pairs[j].category {
+				return pairs[i].category < pairs[j].category
+			}
+			return pairs[i].first < pairs[j].first
+		})
+
+		// Print each pair on a single line with colors
+		for _, pair := range pairs {
+			fmt.Printf("  %s: %s%s%s ↔ %s%s%s\n",
+				pair.category,
+				colorCyan, pair.first, colorReset,
+				colorYellow, pair.second, colorReset)
 		}
 		fmt.Println()
 	}

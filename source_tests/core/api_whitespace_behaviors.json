@@ -30,6 +30,9 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_whitespace"]
+      },
       "features": [
         "whitespace"
       ],
@@ -60,6 +63,9 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_whitespace"]
+      },
       "features": [
         "whitespace"
       ],
@@ -96,6 +102,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace"
       ],
@@ -126,6 +135,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace"
       ],
@@ -149,6 +161,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace"
       ],
@@ -172,6 +187,9 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_whitespace"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -196,6 +214,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -220,6 +241,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -239,6 +263,9 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_whitespace"]
+      },
       "features": [
         "whitespace"
       ],
@@ -257,6 +284,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace"
       ],
@@ -276,6 +306,9 @@
         "tabs_as_whitespace",
         "indent_spaces"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -295,6 +328,9 @@
       "behaviors": [
         "tabs_as_whitespace"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content"]
+      },
       "features": [
         "whitespace"
       ],
@@ -367,6 +403,9 @@
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_preserve_literal"]
+      },
       "features": [
         "whitespace"
       ],
@@ -394,6 +433,9 @@
       "behaviors": [
         "crlf_preserve_literal"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_normalize_to_lf"]
+      },
       "features": [
         "whitespace"
       ],
@@ -417,6 +459,9 @@
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_preserve_literal"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -441,6 +486,9 @@
       "behaviors": [
         "crlf_preserve_literal"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_normalize_to_lf"]
+      },
       "features": [
         "whitespace",
         "multiline"
@@ -473,6 +521,9 @@
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_preserve_literal"]
+      },
       "features": [
         "whitespace"
       ],
@@ -505,6 +556,9 @@
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["crlf_preserve_literal"]
+      },
       "features": [
         "whitespace"
       ],
@@ -529,6 +583,9 @@
         "tabs_as_whitespace",
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_content", "crlf_preserve_literal"]
+      },
       "features": [
         "whitespace"
       ],
@@ -557,6 +614,9 @@
         "tabs_as_content",
         "crlf_normalize_to_lf"
       ],
+      "conflicts": {
+        "behaviors": ["tabs_as_whitespace", "crlf_preserve_literal"]
+      },
       "features": [
         "whitespace"
       ],

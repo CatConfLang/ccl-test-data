@@ -46,6 +46,9 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
+      "conflicts": {
+        "behaviors": ["list_coercion_disabled"]
+      },
       "inputs": [
         "servers = web1\nservers = web2\nservers = web3"
       ]
@@ -197,6 +200,9 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
+      "conflicts": {
+        "behaviors": ["list_coercion_disabled"]
+      },
       "inputs": [
         "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20"
       ]
@@ -264,7 +270,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_lexicographic"
+          "array_order_lexicographic",
+          "list_coercion_disabled"
         ]
       },
       "inputs": [
@@ -334,7 +341,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_disabled"
         ]
       },
       "inputs": [
@@ -913,6 +921,9 @@
       "behaviors": [
         "list_coercion_disabled"
       ],
+      "conflicts": {
+        "behaviors": ["list_coercion_enabled"]
+      },
       "inputs": [
         "config =\n  setting = value"
       ]

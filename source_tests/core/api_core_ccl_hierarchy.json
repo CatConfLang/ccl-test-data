@@ -295,7 +295,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "inputs": [
