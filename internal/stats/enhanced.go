@@ -371,6 +371,14 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 
 	conflictPairs := make(map[string]map[string]int)
 
+	// Build a map of which behaviors belong to which groups
+	behaviorGroups := make(map[string]string) // behavior -> group name
+	for groupName, behaviors := range getBehaviorConflictGroups() {
+		for _, behavior := range behaviors {
+			behaviorGroups[behavior] = groupName
+		}
+	}
+
 	for _, filePath := range testFiles {
 		fileData, err := c.analyzeEnhancedTestFile(filePath)
 		if err != nil {
@@ -456,25 +464,36 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 				// Count this as a mutually exclusive test
 				stats.MutuallyExclusive++
 
-				// Track conflict relationships for each tag in this test
-				allTags := append([]string{}, behaviors...)
-				allTags = append(allTags, variants...)
-
-				for _, tag := range allTags {
-					// Determine the full tag with prefix
-					var fullTag string
-					if contains(behaviors, tag) {
-						fullTag = "behavior:" + tag
-					} else {
-						fullTag = "variant:" + tag
+				// Only track conflicts between behaviors in the same group
+				for _, behavior := range behaviors {
+					// Find the group this behavior belongs to
+					group := behaviorGroups[behavior]
+					if group == "" {
+						continue // This behavior doesn't belong to a conflict group
 					}
 
-					// Record what this tag conflicts with
-					if conflictPairs[fullTag] == nil {
-						conflictPairs[fullTag] = make(map[string]int)
-					}
-
+					// For each conflicting behavior, only record if it's in the same group
 					for _, conflict := range conflictSlice {
+						conflictGroup := behaviorGroups[conflict]
+						if conflictGroup == group {
+							// Record this conflict
+							fullTag := "behavior:" + behavior
+							if conflictPairs[fullTag] == nil {
+								conflictPairs[fullTag] = make(map[string]int)
+							}
+							conflictPairs[fullTag][conflict]++
+						}
+					}
+				}
+
+				// Also handle variant conflicts
+				for _, variant := range variants {
+					for _, conflict := range conflictSlice {
+						// For variants, we record all conflicts (they might be variant-to-behavior or variant-to-variant)
+						fullTag := "variant:" + variant
+						if conflictPairs[fullTag] == nil {
+							conflictPairs[fullTag] = make(map[string]int)
+						}
 						conflictPairs[fullTag][conflict]++
 					}
 				}
@@ -543,6 +562,19 @@ func contains(slice []string, item string) bool {
 		}
 	}
 	return false
+}
+
+// getBehaviorConflictGroups returns the mutually exclusive behavior groups
+// This mirrors the groups defined in config/config.go
+func getBehaviorConflictGroups() map[string][]string {
+	return map[string][]string{
+		"crlf_handling":   {"crlf_normalize_to_lf", "crlf_preserve_literal"},
+		"tab_handling":    {"tabs_as_content", "tabs_as_whitespace"},
+		"indent_output":   {"indent_spaces", "indent_tabs"},
+		"boolean":         {"boolean_strict", "boolean_lenient"},
+		"list_coercion":   {"list_coercion_enabled", "list_coercion_disabled"},
+		"toplevel_indent": {"toplevel_indent_strip", "toplevel_indent_preserve"},
+	}
 }
 
 // PrintEnhancedStats prints enhanced statistics in a human-readable format
