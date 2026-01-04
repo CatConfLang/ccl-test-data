@@ -55,6 +55,11 @@
       "behaviors": [
         "list_coercion_disabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -107,6 +112,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -137,6 +147,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -213,6 +229,11 @@
       "behaviors": [
         "list_coercion_disabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -338,6 +359,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -369,6 +395,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -423,6 +455,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -454,6 +491,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -510,6 +553,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -541,6 +589,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -599,6 +653,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -632,6 +691,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -684,6 +749,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -714,6 +784,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -733,6 +809,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -777,6 +858,12 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
@@ -846,6 +933,11 @@
       "behaviors": [
         "list_coercion_disabled"
       ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 0
       },
