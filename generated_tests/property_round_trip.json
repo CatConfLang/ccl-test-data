@@ -50,6 +50,11 @@
       "behaviors": [
         "toplevel_indent_strip"
       ],
+      "conflicts": {
+        "behaviors": [
+          "toplevel_indent_preserve"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -79,6 +84,11 @@
       "behaviors": [
         "toplevel_indent_strip"
       ],
+      "conflicts": {
+        "behaviors": [
+          "toplevel_indent_preserve"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -103,6 +113,11 @@
       "behaviors": [
         "toplevel_indent_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "toplevel_indent_strip"
+        ]
+      },
       "expected": {
         "count": 2,
         "entries": [
@@ -134,6 +149,11 @@
       "behaviors": [
         "toplevel_indent_preserve"
       ],
+      "conflicts": {
+        "behaviors": [
+          "toplevel_indent_strip"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true

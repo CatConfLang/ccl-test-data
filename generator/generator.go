@@ -375,6 +375,7 @@ func (fg *FlatGenerator) convertToFlatFormat(test types.TestCase) generated.Gene
 	features := fg.convertFeatures(testFeatures)
 	variants := fg.convertVariants(testVariants)
 	functions := fg.convertFunctions(testFunctions)
+	conflicts := fg.convertConflicts(test.Conflicts)
 
 	// Create the flat test directly using the generated type
 	flatTest := generated.GeneratedFormatSimpleJsonTestsElem{
@@ -386,6 +387,7 @@ func (fg *FlatGenerator) convertToFlatFormat(test types.TestCase) generated.Gene
 		Features:   features,
 		Behaviors:  behaviors,
 		Variants:   variants,
+		Conflicts:  conflicts,
 		Args:       fg.getArgsForValidation(test.Validation, test.Args),
 		SourceTest: &test.SourceTest,
 	}
@@ -491,6 +493,18 @@ func (fg *FlatGenerator) convertFunctions(functions []string) []generated.Genera
 		result = append(result, generated.GeneratedFormatSimpleJsonTestsElemFunctionsElem(f))
 	}
 	return result
+}
+
+func (fg *FlatGenerator) convertConflicts(conflicts *types.ConflictSet) *generated.GeneratedFormatSimpleJsonTestsElemConflicts {
+	if conflicts == nil {
+		return nil
+	}
+	return &generated.GeneratedFormatSimpleJsonTestsElemConflicts{
+		Behaviors: conflicts.Behaviors,
+		Features:  conflicts.Features,
+		Functions: conflicts.Functions,
+		Variants:  conflicts.Variants,
+	}
 }
 
 // Helper functions
