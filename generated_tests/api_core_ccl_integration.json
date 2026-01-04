@@ -186,6 +186,11 @@
       "behaviors": [
         "array_order_insertion"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -247,6 +252,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
