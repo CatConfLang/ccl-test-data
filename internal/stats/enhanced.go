@@ -464,37 +464,47 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 				// Count this as a mutually exclusive test
 				stats.MutuallyExclusive++
 
-				// Only track conflicts between behaviors in the same group
+				// Track all explicit conflicts from test data
 				for _, behavior := range behaviors {
-					// Find the group this behavior belongs to
-					group := behaviorGroups[behavior]
-					if group == "" {
-						continue // This behavior doesn't belong to a conflict group
+					fullTag := "behavior:" + behavior
+					if conflictPairs[fullTag] == nil {
+						conflictPairs[fullTag] = make(map[string]int)
 					}
 
-					// For each conflicting behavior, only record if it's in the same group
 					for _, conflict := range conflictSlice {
-						conflictGroup := behaviorGroups[conflict]
-						if conflictGroup == group {
-							// Record this conflict
-							fullTag := "behavior:" + behavior
-							if conflictPairs[fullTag] == nil {
-								conflictPairs[fullTag] = make(map[string]int)
-							}
-							conflictPairs[fullTag][conflict]++
-						}
+						conflictPairs[fullTag][conflict]++
 					}
 				}
 
 				// Also handle variant conflicts
 				for _, variant := range variants {
 					for _, conflict := range conflictSlice {
-						// For variants, we record all conflicts (they might be variant-to-behavior or variant-to-variant)
 						fullTag := "variant:" + variant
 						if conflictPairs[fullTag] == nil {
 							conflictPairs[fullTag] = make(map[string]int)
 						}
 						conflictPairs[fullTag][conflict]++
+					}
+				}
+			}
+
+			// Add implicit same-group conflicts for behaviors
+			// Behaviors in the same mutually exclusive group conflict with each other
+			for _, behavior := range behaviors {
+				group := behaviorGroups[behavior]
+				if group == "" {
+					continue // Not in a conflict group
+				}
+
+				// Find all other behaviors in the same group
+				groupBehaviors := getBehaviorConflictGroups()[group]
+				for _, otherBehavior := range groupBehaviors {
+					if otherBehavior != behavior {
+						fullTag := "behavior:" + behavior
+						if conflictPairs[fullTag] == nil {
+							conflictPairs[fullTag] = make(map[string]int)
+						}
+						conflictPairs[fullTag][otherBehavior]++
 					}
 				}
 			}
