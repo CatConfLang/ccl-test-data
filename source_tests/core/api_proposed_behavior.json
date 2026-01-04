@@ -103,7 +103,12 @@
       ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "mixed_indentation_levels",
@@ -187,7 +192,12 @@
       ],
       "inputs": [
         "item = single"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "mixed_duplicate_single_keys",
@@ -247,7 +257,12 @@
       ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "nested_list_access",
@@ -303,7 +318,12 @@
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "empty_list",
@@ -341,7 +361,12 @@
       ],
       "inputs": [
         "empty_list ="
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_with_numbers",
@@ -399,7 +424,12 @@
       ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_with_booleans",
@@ -457,7 +487,12 @@
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_with_whitespace",
@@ -518,7 +553,12 @@
       ],
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_with_unicode",
@@ -579,7 +619,12 @@
       ],
       "inputs": [
         "names = 张三\nnames = José\nnames = François\nnames = العربية"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_with_special_characters",
@@ -637,7 +682,12 @@
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_multiline_values",
@@ -697,7 +747,12 @@
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "complex_mixed_list_scenarios",
@@ -828,7 +883,12 @@
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "list_path_traversal_protection",
@@ -877,7 +937,12 @@
       ],
       "inputs": [
         "safe = value"
-      ]
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      }
     },
     {
       "name": "parse_empty_value",
