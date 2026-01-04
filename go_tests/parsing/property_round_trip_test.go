@@ -37,7 +37,7 @@ func TestRoundTripBasicRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_whitespace_normalization_parse - function:parse feature:whitespace behavior:baseline_zero variant:reference_compliant
+// round_trip_whitespace_normalization_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -57,18 +57,18 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 }
 
-// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace behavior:baseline_zero variant:reference_compliant
+// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// round_trip_whitespace_normalization_baseline_first_key_parse - function:parse feature:whitespace behavior:baseline_first_key
-func TestRoundTripWhitespaceNormalizationBaselineFirstKeyParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:baseline_first_key")
+// round_trip_whitespace_normalization_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
+func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
 }
 
-// round_trip_whitespace_normalization_baseline_first_key_round_trip - function:round_trip feature:whitespace behavior:baseline_first_key
-func TestRoundTripWhitespaceNormalizationBaselineFirstKeyRoundTrip(t *testing.T) {
+// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_preserve
+func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

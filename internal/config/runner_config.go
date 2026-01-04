@@ -29,12 +29,12 @@ type ImplementationSettings struct {
 // BehaviorChoices contains REQUIRED mutually exclusive behavioral choices
 // All fields must be explicitly set - no defaults allowed
 type BehaviorChoices struct {
-	CRLFHandling      *config.CCLBehavior `json:"crlf_handling"`      // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
-	TabHandling       *config.CCLBehavior `json:"tab_handling"`       // REQUIRED: tabs_as_content | tabs_as_whitespace
-	IndentOutput      *config.CCLBehavior `json:"indent_output"`      // REQUIRED: indent_spaces | indent_tabs
-	Boolean           *config.CCLBehavior `json:"boolean"`            // REQUIRED: boolean_strict | boolean_lenient
-	ListCoercion      *config.CCLBehavior `json:"list_coercion"`      // REQUIRED: list_coercion_enabled | list_coercion_disabled
-	BaselineDetection *config.CCLBehavior `json:"baseline_detection"` // REQUIRED: baseline_zero | baseline_first_key
+	CRLFHandling   *config.CCLBehavior `json:"crlf_handling"`   // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
+	TabHandling    *config.CCLBehavior `json:"tab_handling"`    // REQUIRED: tabs_as_content | tabs_as_whitespace
+	IndentOutput   *config.CCLBehavior `json:"indent_output"`   // REQUIRED: indent_spaces | indent_tabs
+	Boolean        *config.CCLBehavior `json:"boolean"`         // REQUIRED: boolean_strict | boolean_lenient
+	ListCoercion   *config.CCLBehavior `json:"list_coercion"`   // REQUIRED: list_coercion_enabled | list_coercion_disabled
+	ToplevelIndent *config.CCLBehavior `json:"toplevel_indent"` // REQUIRED: toplevel_indent_strip | toplevel_indent_preserve
 }
 
 // VariantChoice contains REQUIRED specification variant choice
@@ -58,7 +58,7 @@ func DefaultConfig() *RunnerConfig {
 	indent := config.BehaviorIndentSpaces   // Use spaces for printed indentation
 	boolean := config.BehaviorBooleanLenient
 	listCoercion := config.BehaviorListCoercionOff
-	baseline := config.BehaviorBaselineZero // Top-level parsing uses N=0 (matches OCaml reference)
+	toplevelIndent := config.BehaviorToplevelIndentStrip // Strip leading indent at top-level (matches OCaml reference)
 	variant := config.VariantProposed
 
 	return &RunnerConfig{
@@ -84,12 +84,12 @@ func DefaultConfig() *RunnerConfig {
 			},
 		},
 		Behaviors: BehaviorChoices{
-			CRLFHandling:      &crlf,
-			TabHandling:       &tabs,
-			IndentOutput:      &indent,
-			Boolean:           &boolean,
-			ListCoercion:      &listCoercion,
-			BaselineDetection: &baseline,
+			CRLFHandling:   &crlf,
+			TabHandling:    &tabs,
+			IndentOutput:   &indent,
+			Boolean:        &boolean,
+			ListCoercion:   &listCoercion,
+			ToplevelIndent: &toplevelIndent,
 		},
 		Variant: VariantChoice{
 			Specification: &variant,
@@ -151,8 +151,8 @@ func (rc *RunnerConfig) Validate() error {
 	if rc.Behaviors.ListCoercion == nil {
 		errors = append(errors, "List coercion choice is required (list_coercion_enabled | list_coercion_disabled)")
 	}
-	if rc.Behaviors.BaselineDetection == nil {
-		errors = append(errors, "Baseline detection choice is required (baseline_zero | baseline_first_key)")
+	if rc.Behaviors.ToplevelIndent == nil {
+		errors = append(errors, "Toplevel indent choice is required (toplevel_indent_strip | toplevel_indent_preserve)")
 	}
 
 	// Validate required variant choice is made
@@ -186,8 +186,8 @@ func (rc *RunnerConfig) Validate() error {
 			errors = append(errors, err.Error())
 		}
 	}
-	if rc.Behaviors.BaselineDetection != nil {
-		if err := rc.validateBehaviorInGroup(*rc.Behaviors.BaselineDetection, "baseline_detection"); err != nil {
+	if rc.Behaviors.ToplevelIndent != nil {
+		if err := rc.validateBehaviorInGroup(*rc.Behaviors.ToplevelIndent, "toplevel_indent"); err != nil {
 			errors = append(errors, err.Error())
 		}
 	}
@@ -242,8 +242,8 @@ func (rc *RunnerConfig) ToImplementationConfig() config.ImplementationConfig {
 	if rc.Behaviors.ListCoercion != nil {
 		behaviorChoices = append(behaviorChoices, *rc.Behaviors.ListCoercion)
 	}
-	if rc.Behaviors.BaselineDetection != nil {
-		behaviorChoices = append(behaviorChoices, *rc.Behaviors.BaselineDetection)
+	if rc.Behaviors.ToplevelIndent != nil {
+		behaviorChoices = append(behaviorChoices, *rc.Behaviors.ToplevelIndent)
 	}
 
 	var variantChoice config.CCLVariant
@@ -296,5 +296,5 @@ func (rc *RunnerConfig) isBehaviorChosen(behavior config.CCLBehavior) bool {
 		(rc.Behaviors.IndentOutput != nil && *rc.Behaviors.IndentOutput == behavior) ||
 		(rc.Behaviors.Boolean != nil && *rc.Behaviors.Boolean == behavior) ||
 		(rc.Behaviors.ListCoercion != nil && *rc.Behaviors.ListCoercion == behavior) ||
-		(rc.Behaviors.BaselineDetection != nil && *rc.Behaviors.BaselineDetection == behavior)
+		(rc.Behaviors.ToplevelIndent != nil && *rc.Behaviors.ToplevelIndent == behavior)
 }

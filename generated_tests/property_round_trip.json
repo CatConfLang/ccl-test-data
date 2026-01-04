@@ -48,7 +48,7 @@
     },
     {
       "behaviors": [
-        "baseline_zero"
+        "toplevel_indent_strip"
       ],
       "expected": {
         "count": 1,
@@ -77,7 +77,7 @@
     },
     {
       "behaviors": [
-        "baseline_zero"
+        "toplevel_indent_strip"
       ],
       "expected": {
         "count": 1,
@@ -101,7 +101,7 @@
     },
     {
       "behaviors": [
-        "baseline_first_key"
+        "toplevel_indent_preserve"
       ],
       "expected": {
         "count": 2,
@@ -125,14 +125,14 @@
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ],
-      "name": "round_trip_whitespace_normalization_baseline_first_key_parse",
-      "source_test": "round_trip_whitespace_normalization_baseline_first_key",
+      "name": "round_trip_whitespace_normalization_toplevel_indent_preserve_parse",
+      "source_test": "round_trip_whitespace_normalization_toplevel_indent_preserve",
       "validation": "parse",
       "variants": []
     },
     {
       "behaviors": [
-        "baseline_first_key"
+        "toplevel_indent_preserve"
       ],
       "expected": {
         "count": 1,
@@ -147,8 +147,8 @@
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ],
-      "name": "round_trip_whitespace_normalization_baseline_first_key_round_trip",
-      "source_test": "round_trip_whitespace_normalization_baseline_first_key",
+      "name": "round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip",
+      "source_test": "round_trip_whitespace_normalization_toplevel_indent_preserve",
       "validation": "round_trip",
       "variants": []
     },

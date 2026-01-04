@@ -213,7 +213,7 @@
     },
     {
       "behaviors": [
-        "baseline_zero"
+        "toplevel_indent_strip"
       ],
       "expected": {
         "count": 1,
@@ -271,7 +271,7 @@
     },
     {
       "behaviors": [
-        "baseline_first_key"
+        "toplevel_indent_preserve"
       ],
       "expected": {
         "count": 2,
@@ -295,8 +295,8 @@
       "inputs": [
         "  key = value\n  second = entry"
       ],
-      "name": "leading_whitespace_baseline_first_key_parse",
-      "source_test": "leading_whitespace_baseline_first_key",
+      "name": "leading_whitespace_toplevel_indent_preserve_parse",
+      "source_test": "leading_whitespace_toplevel_indent_preserve",
       "validation": "parse",
       "variants": []
     }

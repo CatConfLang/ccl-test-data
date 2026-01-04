@@ -51,20 +51,20 @@
         "whitespace"
       ],
       "behaviors": [
-        "baseline_zero"
+        "toplevel_indent_strip"
       ],
       "variants": [
         "reference_compliant"
       ],
       "conflicts": {
-        "behaviors": ["baseline_first_key"]
+        "behaviors": ["toplevel_indent_preserve"]
       },
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ]
     },
     {
-      "name": "round_trip_whitespace_normalization_baseline_first_key",
+      "name": "round_trip_whitespace_normalization_toplevel_indent_preserve",
       "tests": [
         {
           "function": "round_trip",
@@ -88,10 +88,10 @@
         "whitespace"
       ],
       "behaviors": [
-        "baseline_first_key"
+        "toplevel_indent_preserve"
       ],
       "conflicts": {
-        "behaviors": ["baseline_zero"]
+        "behaviors": ["toplevel_indent_strip"]
       },
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "

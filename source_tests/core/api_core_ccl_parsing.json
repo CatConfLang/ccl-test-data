@@ -213,13 +213,13 @@
         "whitespace"
       ],
       "behaviors": [
-        "baseline_zero"
+        "toplevel_indent_strip"
       ],
       "variants": [
         "reference_compliant"
       ],
       "conflicts": {
-        "behaviors": ["baseline_first_key"]
+        "behaviors": ["toplevel_indent_preserve"]
       },
       "inputs": [
         "  key = value\n  second"
@@ -250,7 +250,7 @@
       ]
     },
     {
-      "name": "leading_whitespace_baseline_first_key",
+      "name": "leading_whitespace_toplevel_indent_preserve",
       "tests": [
         {
           "function": "parse",
@@ -270,10 +270,10 @@
         "whitespace"
       ],
       "behaviors": [
-        "baseline_first_key"
+        "toplevel_indent_preserve"
       ],
       "conflicts": {
-        "behaviors": ["baseline_zero"]
+        "behaviors": ["toplevel_indent_strip"]
       },
       "inputs": [
         "  key = value\n  second = entry"

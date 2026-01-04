@@ -166,7 +166,7 @@ func TestEmptyInputParse(t *testing.T) {
 
 }
 
-// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:baseline_zero variant:reference_compliant
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
 func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -204,7 +204,7 @@ key2 = value2`
 
 }
 
-// leading_whitespace_baseline_first_key_parse - function:parse feature:whitespace behavior:baseline_first_key
-func TestLeadingWhitespaceBaselineFirstKeyParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:baseline_first_key")
+// leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
+func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
 }
