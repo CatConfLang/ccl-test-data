@@ -2,6 +2,27 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
+## [0.2.0] - 2026-01-04
+### Tests
+#### Bug Fixes
+- Remove incorrect proposed_behavior for nested parsing (#45)
+- Add reference_compliant variant to key_with_tabs_ocaml_reference
+
+
+### Schema
+#### Bug Fixes
+- Add continuation baseline behaviors to config schema (#51)
+
+#### Features
+- Add toplevel_indent_strip and toplevel_indent_preserve behavior pair (#47)
+
+
+### Cli
+#### Bug Fixes
+- Update view commands to use build-bin recipe
+- Improve behavior conflict detection and display (#48)
+
+
 ## [0.1.0] - 2025-12-31
 ### Tests
 #### Bug Fixes
