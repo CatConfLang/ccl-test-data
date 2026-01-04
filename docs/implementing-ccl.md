@@ -29,7 +29,23 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 
 The distinction between these functions depends on which baseline behavior you implement:
 
-#### With `baseline_zero` (OCaml reference)
+#### With `toplevel_indent_preserve` (simpler)
+
+| Function | Use Case | Baseline N |
+|----------|----------|------------|
+| `parse` | All contexts | N = indentation of first content line |
+
+No distinction needed—one algorithm works everywhere:
+
+```pseudocode
+function parse(text):
+    baseline = find_first_line_indent(text)
+    return parse_with_baseline(text, baseline)
+```
+
+This is simpler to implement but differs from the OCaml reference behavior.
+
+#### With `toplevel_indent_strip` (OCaml reference)
 
 | Function | Use Case | Baseline N |
 |----------|----------|------------|
@@ -47,22 +63,6 @@ function parse(text):
 
     return parse_with_baseline(text, baseline)
 ```
-
-#### With `baseline_first_key` (simplified alternative)
-
-| Function | Use Case | Baseline N |
-|----------|----------|------------|
-| `parse` | All contexts | N = indentation of first content line |
-
-No distinction needed—one algorithm works everywhere:
-
-```pseudocode
-function parse(text):
-    baseline = find_first_line_indent(text)
-    return parse_with_baseline(text, baseline)
-```
-
-This is simpler to implement but differs from the OCaml reference behavior.
 
 #### Worked Example
 
@@ -102,15 +102,15 @@ Result: [{key: "host", value: "localhost"}, {key: "port", value: "8080"}]
 
 #### Why This Matters
 
-**With `baseline_zero`:** Context detection is critical. If you always use N=0:
+**With `toplevel_indent_preserve`:** No context detection needed. The same algorithm (use first line's indent as N) works for both top-level and nested parsing.
+
+**With `toplevel_indent_strip`:** Context detection is critical. If you always use N=0:
 - Top-level parsing works correctly
 - But nested values like `"\n  host = localhost\n  port = 8080"` would parse as ONE entry (since both lines have indent > 0)
 
 The OCaml reference implementation handles this with two functions:
 - `kvs_p` - top-level, uses `key_val 0`
 - `nested_kvs_p` - determines prefix from first content line, uses `key_val prefix_len`
-
-**With `baseline_first_key`:** No context detection needed. The same algorithm (use first line's indent as N) works for both top-level and nested parsing.
 
 ### Typed Access (17 tests)
 **Functions**: `get_string()`, `get_int()`, `get_bool()`, `get_float()`, `get_list()`
@@ -220,16 +220,7 @@ for test in test_data {
 
 How continuation is determined depends on the baseline behavior:
 
-### With `baseline_zero` (default)
-
-Uses **N = 0** as the baseline for top-level parsing:
-
-- Lines with **0 spaces** → new entry
-- Lines with **> 0 spaces** → continuation of previous value
-
-This means any indented line after the first key becomes a continuation, regardless of how much the first key was indented in the original input.
-
-### With `baseline_first_key`
+### With `toplevel_indent_preserve`
 
 Uses the **first key's indentation** as N:
 
@@ -237,6 +228,15 @@ Uses the **first key's indentation** as N:
 - Lines with **greater indent** → continuation of previous value
 
 This means indenting your whole document doesn't change parsing semantics.
+
+### With `toplevel_indent_strip` (OCaml reference)
+
+Uses **N = 0** as the baseline for top-level parsing:
+
+- Lines with **0 spaces** → new entry
+- Lines with **> 0 spaces** → continuation of previous value
+
+This means any indented line after the first key becomes a continuation, regardless of how much the first key was indented in the original input.
 
 See the test suite's `behaviors` field for declaring which behavior your implementation uses.
 
