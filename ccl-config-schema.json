@@ -71,7 +71,9 @@
           "list_coercion_enabled",
           "list_coercion_disabled",
           "array_order_insertion",
-          "array_order_lexicographic"
+          "array_order_lexicographic",
+          "toplevel_indent_strip",
+          "toplevel_indent_preserve"
         ]
       }
     },
