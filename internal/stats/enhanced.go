@@ -370,15 +370,66 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 	}
 
 	conflictPairs := make(map[string]map[string]int)
+	allConflicts := make(map[string]map[string]bool) // behavior -> set of conflicts
 
-	// Build a map of which behaviors belong to which groups
-	behaviorGroups := make(map[string]string) // behavior -> group name
-	for groupName, behaviors := range getBehaviorConflictGroups() {
-		for _, behavior := range behaviors {
-			behaviorGroups[behavior] = groupName
+	// First pass: collect all conflict relationships from test data
+	for _, filePath := range testFiles {
+		fileData, err := c.analyzeEnhancedTestFile(filePath)
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "Warning: %v\n", err)
+			continue
+		}
+
+		tests := fileData["tests"].([]map[string]interface{})
+		for _, testData := range tests {
+			behaviors := testData["behaviors"].([]string)
+
+			if conflictSlice, ok := testData["conflicts"].([]string); ok && len(conflictSlice) > 0 {
+				for _, behavior := range behaviors {
+					if allConflicts[behavior] == nil {
+						allConflicts[behavior] = make(map[string]bool)
+					}
+					for _, conflict := range conflictSlice {
+						allConflicts[behavior][conflict] = true
+					}
+				}
+			}
 		}
 	}
 
+	// Infer groups: behaviors that conflict with each other bidirectionally are in the same group
+	behaviorGroups := make(map[string][]string)
+	processed := make(map[string]bool)
+
+	for behavior := range allConflicts {
+		if processed[behavior] {
+			continue
+		}
+
+		group := []string{behavior}
+		processed[behavior] = true
+
+		// Find all other behaviors that conflict with this one bidirectionally
+		for otherBehavior := range allConflicts {
+			if processed[otherBehavior] {
+				continue
+			}
+			// Both must conflict with each other
+			if allConflicts[behavior][otherBehavior] && allConflicts[otherBehavior][behavior] {
+				group = append(group, otherBehavior)
+				processed[otherBehavior] = true
+			}
+		}
+
+		// Store the group for all members
+		if len(group) > 1 {
+			for _, b := range group {
+				behaviorGroups[b] = group
+			}
+		}
+	}
+
+	// Second pass: collect stats and build conflict pairs
 	for _, filePath := range testFiles {
 		fileData, err := c.analyzeEnhancedTestFile(filePath)
 		if err != nil {
@@ -489,16 +540,10 @@ func (c *EnhancedCollector) CollectEnhancedStats() (*EnhancedStatistics, error) 
 			}
 
 			// Add implicit same-group conflicts for behaviors
-			// Behaviors in the same mutually exclusive group conflict with each other
+			// Behaviors in the same group conflict with each other
 			for _, behavior := range behaviors {
 				group := behaviorGroups[behavior]
-				if group == "" {
-					continue // Not in a conflict group
-				}
-
-				// Find all other behaviors in the same group
-				groupBehaviors := getBehaviorConflictGroups()[group]
-				for _, otherBehavior := range groupBehaviors {
+				for _, otherBehavior := range group {
 					if otherBehavior != behavior {
 						fullTag := "behavior:" + behavior
 						if conflictPairs[fullTag] == nil {
@@ -572,19 +617,6 @@ func contains(slice []string, item string) bool {
 		}
 	}
 	return false
-}
-
-// getBehaviorConflictGroups returns the mutually exclusive behavior groups
-// This mirrors the groups defined in config/config.go
-func getBehaviorConflictGroups() map[string][]string {
-	return map[string][]string{
-		"crlf_handling":   {"crlf_normalize_to_lf", "crlf_preserve_literal"},
-		"tab_handling":    {"tabs_as_content", "tabs_as_whitespace"},
-		"indent_output":   {"indent_spaces", "indent_tabs"},
-		"boolean":         {"boolean_strict", "boolean_lenient"},
-		"list_coercion":   {"list_coercion_enabled", "list_coercion_disabled"},
-		"toplevel_indent": {"toplevel_indent_strip", "toplevel_indent_preserve"},
-	}
 }
 
 // PrintEnhancedStats prints enhanced statistics in a human-readable format
