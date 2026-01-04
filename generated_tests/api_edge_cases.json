@@ -436,7 +436,9 @@
       "name": "key_with_tabs_ocaml_reference_parse",
       "source_test": "key_with_tabs_ocaml_reference",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],

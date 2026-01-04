@@ -342,6 +342,9 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "variants": [
+        "reference_compliant"
+      ],
       "conflicts": {
         "behaviors": [
           "tabs_as_whitespace"
