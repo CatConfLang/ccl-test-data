@@ -27,14 +27,90 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 
 ### parse vs parse_indented
 
+The distinction between these functions depends on which baseline behavior you implement:
+
+#### With `toplevel_indent_preserve` (simpler)
+
 | Function | Use Case | Baseline N |
 |----------|----------|------------|
-| `parse` | Top-level parsing | N=0 (after stripping leading whitespace) |
+| `parse` | All contexts | N = indentation of first content line |
+
+No distinction needed—one algorithm works everywhere:
+
+```pseudocode
+function parse(text):
+    baseline = find_first_line_indent(text)
+    return parse_with_baseline(text, baseline)
+```
+
+This is simpler to implement but differs from the OCaml reference behavior.
+
+#### With `toplevel_indent_strip` (OCaml reference)
+
+| Function | Use Case | Baseline N |
+|----------|----------|------------|
+| `parse` | Top-level parsing | N=0 (any indented line is continuation) |
 | `parse_indented` | Nested value parsing | N = indentation of first content line |
 
-**`parse`** is for top-level document parsing. It strips leading whitespace and uses N=0, so any indented line becomes a continuation.
+You need context detection:
 
-**`parse_indented`** is for recursively parsing nested values (used internally by `build_hierarchy`). It determines N from the actual indentation of the first line after a newline, preserving relative indentation within nested structures.
+```pseudocode
+function parse(text):
+    if text is empty or text[0] != '\n':
+        baseline = 0  // Top-level: always 0
+    else:
+        baseline = find_first_line_indent(text)  // Nested: dynamic
+
+    return parse_with_baseline(text, baseline)
+```
+
+#### Worked Example
+
+**Input document:**
+```ccl
+server =
+  host = localhost
+  port = 8080
+```
+
+**Step 1: Top-level parse (N=0)**
+```
+Line "server =" at indent 0 → first entry
+Line "  host = localhost" at indent 2 → 2 > 0 → continuation
+Line "  port = 8080" at indent 2 → 2 > 0 → continuation
+
+Result: [{key: "server", value: "\n  host = localhost\n  port = 8080"}]
+```
+
+**Step 2: build_hierarchy calls parse on the value**
+
+The value is `"\n  host = localhost\n  port = 8080"`:
+```
+Starts with '\n' → nested context
+First content line "  host = localhost" has indent 2 → N = 2
+
+Line "  host = localhost" at indent 2 → 2 > 2 is FALSE → new entry
+Line "  port = 8080" at indent 2 → 2 > 2 is FALSE → new entry
+
+Result: [{key: "host", value: "localhost"}, {key: "port", value: "8080"}]
+```
+
+**Final hierarchy:**
+```json
+{"server": {"host": "localhost", "port": "8080"}}
+```
+
+#### Why This Matters
+
+**With `toplevel_indent_preserve`:** No context detection needed. The same algorithm (use first line's indent as N) works for both top-level and nested parsing.
+
+**With `toplevel_indent_strip`:** Context detection is critical. If you always use N=0:
+- Top-level parsing works correctly
+- But nested values like `"\n  host = localhost\n  port = 8080"` would parse as ONE entry (since both lines have indent > 0)
+
+The OCaml reference implementation handles this with two functions:
+- `kvs_p` - top-level, uses `key_val 0`
+- `nested_kvs_p` - determines prefix from first content line, uses `key_val prefix_len`
 
 ### Typed Access (17 tests)
 **Functions**: `get_string()`, `get_int()`, `get_bool()`, `get_float()`, `get_list()`
@@ -142,12 +218,27 @@ for test in test_data {
 
 ## Continuation Behavior
 
-When parsing, leading whitespace before the first key is stripped. Continuation is then determined using **N = 0** as the baseline:
+How continuation is determined depends on the baseline behavior:
+
+### With `toplevel_indent_preserve`
+
+Uses the **first key's indentation** as N:
+
+- Lines with **same indent as first key** → new entry
+- Lines with **greater indent** → continuation of previous value
+
+This means indenting your whole document doesn't change parsing semantics.
+
+### With `toplevel_indent_strip` (OCaml reference)
+
+Uses **N = 0** as the baseline for top-level parsing:
 
 - Lines with **0 spaces** → new entry
 - Lines with **> 0 spaces** → continuation of previous value
 
 This means any indented line after the first key becomes a continuation, regardless of how much the first key was indented in the original input.
+
+See the test suite's `behaviors` field for declaring which behavior your implementation uses.
 
 ## API Guidelines
 
