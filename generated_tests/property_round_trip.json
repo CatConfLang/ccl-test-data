@@ -47,7 +47,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "baseline_zero"
+      ],
       "expected": {
         "count": 1,
         "entries": [
@@ -69,10 +71,14 @@
       "name": "round_trip_whitespace_normalization_parse",
       "source_test": "round_trip_whitespace_normalization",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "baseline_zero"
+      ],
       "expected": {
         "count": 1,
         "value": true
@@ -88,6 +94,61 @@
       ],
       "name": "round_trip_whitespace_normalization_round_trip",
       "source_test": "round_trip_whitespace_normalization",
+      "validation": "round_trip",
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "behaviors": [
+        "baseline_first_key"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "nested",
+            "value": "\n    sub  =  val"
+          }
+        ]
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "  key  =  value  \n  nested  = \n    sub  =  val  "
+      ],
+      "name": "round_trip_whitespace_normalization_baseline_first_key_parse",
+      "source_test": "round_trip_whitespace_normalization_baseline_first_key",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "baseline_first_key"
+      ],
+      "expected": {
+        "count": 1,
+        "value": true
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "round_trip"
+      ],
+      "inputs": [
+        "  key  =  value  \n  nested  = \n    sub  =  val  "
+      ],
+      "name": "round_trip_whitespace_normalization_baseline_first_key_round_trip",
+      "source_test": "round_trip_whitespace_normalization_baseline_first_key",
       "validation": "round_trip",
       "variants": []
     },

@@ -166,7 +166,7 @@ func TestEmptyInputParse(t *testing.T) {
 
 }
 
-// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:baseline_zero variant:reference_compliant
 func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
 
 	ccl := mock.New()
@@ -202,4 +202,9 @@ key2 = value2`
 	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
 	assert.Equal(t, expected, parseResult)
 
+}
+
+// leading_whitespace_baseline_first_key_parse - function:parse feature:whitespace behavior:baseline_first_key
+func TestLeadingWhitespaceBaselineFirstKeyParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:baseline_first_key")
 }

@@ -50,6 +50,49 @@
       "features": [
         "whitespace"
       ],
+      "behaviors": [
+        "baseline_zero"
+      ],
+      "variants": [
+        "reference_compliant"
+      ],
+      "conflicts": {
+        "behaviors": ["baseline_first_key"]
+      },
+      "inputs": [
+        "  key  =  value  \n  nested  = \n    sub  =  val  "
+      ]
+    },
+    {
+      "name": "round_trip_whitespace_normalization_baseline_first_key",
+      "tests": [
+        {
+          "function": "round_trip",
+          "expect": true
+        },
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            },
+            {
+              "key": "nested",
+              "value": "\n    sub  =  val"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "behaviors": [
+        "baseline_first_key"
+      ],
+      "conflicts": {
+        "behaviors": ["baseline_zero"]
+      },
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ]

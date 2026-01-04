@@ -212,6 +212,15 @@
       "features": [
         "whitespace"
       ],
+      "behaviors": [
+        "baseline_zero"
+      ],
+      "variants": [
+        "reference_compliant"
+      ],
+      "conflicts": {
+        "behaviors": ["baseline_first_key"]
+      },
       "inputs": [
         "  key = value\n  second"
       ]
@@ -238,6 +247,36 @@
       ],
       "inputs": [
         "  key1 = value1\nkey2 = value2"
+      ]
+    },
+    {
+      "name": "leading_whitespace_baseline_first_key",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            },
+            {
+              "key": "second",
+              "value": "entry"
+            }
+          ]
+        }
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "behaviors": [
+        "baseline_first_key"
+      ],
+      "conflicts": {
+        "behaviors": ["baseline_zero"]
+      },
+      "inputs": [
+        "  key = value\n  second = entry"
       ]
     }
   ]

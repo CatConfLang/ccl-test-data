@@ -212,7 +212,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "baseline_zero"
+      ],
       "expected": {
         "count": 1,
         "entries": [
@@ -234,7 +236,9 @@
       "name": "leading_whitespace_baseline_zero_parse",
       "source_test": "leading_whitespace_baseline_zero",
       "validation": "parse",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [],
@@ -262,6 +266,37 @@
       ],
       "name": "leading_whitespace_multiple_entries_parse",
       "source_test": "leading_whitespace_multiple_entries",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "baseline_first_key"
+      ],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value"
+          },
+          {
+            "key": "second",
+            "value": "entry"
+          }
+        ]
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "  key = value\n  second = entry"
+      ],
+      "name": "leading_whitespace_baseline_first_key_parse",
+      "source_test": "leading_whitespace_baseline_first_key",
       "validation": "parse",
       "variants": []
     }

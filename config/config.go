@@ -98,16 +98,19 @@ const (
 	BehaviorBooleanLenient   CCLBehavior = "boolean_lenient"
 	BehaviorListCoercionOn   CCLBehavior = "list_coercion_enabled"
 	BehaviorListCoercionOff  CCLBehavior = "list_coercion_disabled"
+	BehaviorBaselineZero     CCLBehavior = "baseline_zero"
+	BehaviorBaselineFirstKey CCLBehavior = "baseline_first_key"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups
 func GetBehaviorConflicts() map[string][]CCLBehavior {
 	return map[string][]CCLBehavior{
-		"crlf_handling": {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
-		"tab_handling":  {BehaviorTabsAsContent, BehaviorTabsAsWhitespace},
-		"indent_output": {BehaviorIndentSpaces, BehaviorIndentTabs},
-		"boolean":       {BehaviorBooleanStrict, BehaviorBooleanLenient},
-		"list_coercion": {BehaviorListCoercionOn, BehaviorListCoercionOff},
+		"crlf_handling":      {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
+		"tab_handling":       {BehaviorTabsAsContent, BehaviorTabsAsWhitespace},
+		"indent_output":      {BehaviorIndentSpaces, BehaviorIndentTabs},
+		"boolean":            {BehaviorBooleanStrict, BehaviorBooleanLenient},
+		"list_coercion":      {BehaviorListCoercionOn, BehaviorListCoercionOff},
+		"baseline_detection": {BehaviorBaselineZero, BehaviorBaselineFirstKey},
 	}
 }
 
