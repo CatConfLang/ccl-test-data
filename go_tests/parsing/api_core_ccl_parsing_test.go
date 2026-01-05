@@ -200,7 +200,7 @@ func TestEmptyInputParse(t *testing.T) {
 }
 
 
-// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace variant:reference_compliant
 func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
 	
 
@@ -246,7 +246,7 @@ key2 = value2`
 }
 
 
-// leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
+// leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace
 func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
 	
 

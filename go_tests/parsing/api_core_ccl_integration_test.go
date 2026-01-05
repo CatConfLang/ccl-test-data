@@ -169,7 +169,7 @@ config =
 }
 
 
-// complete_lists_workflow_parse - function:parse behavior:array_order_insertion
+// complete_lists_workflow_parse - function:parse
 func TestCompleteListsWorkflowParse(t *testing.T) {
 	
 
@@ -226,7 +226,7 @@ ports =
 }
 
 
-// complete_lists_workflow_lexicographic_parse - function:parse behavior:array_order_lexicographic
+// complete_lists_workflow_lexicographic_parse - function:parse
 func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
 	
 

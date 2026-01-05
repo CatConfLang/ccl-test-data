@@ -61,7 +61,7 @@ nested =
 }
 
 
-// round_trip_whitespace_normalization_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// round_trip_whitespace_normalization_parse - function:parse feature:whitespace variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 	
 
@@ -85,7 +85,7 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 }
 
 
-// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	
 
@@ -108,7 +108,7 @@ func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 }
 
 
-// round_trip_whitespace_normalization_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
+// round_trip_whitespace_normalization_toplevel_indent_preserve_parse - function:parse feature:whitespace
 func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.T) {
 	
 
@@ -132,7 +132,7 @@ func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.
 }
 
 
-// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_preserve
+// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:round_trip feature:whitespace
 func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveRoundTrip(t *testing.T) {
 	
 

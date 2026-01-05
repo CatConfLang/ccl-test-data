@@ -60,7 +60,7 @@ key = value`
 }
 
 
-// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
+// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline variant:proposed_behavior
 func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
 	
 
@@ -83,7 +83,7 @@ descriptions = Another item`
 }
 
 
-// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
+// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline variant:proposed_behavior
 func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
 	
 
@@ -186,7 +186,7 @@ not indented key
 }
 
 
-// single_item_as_list_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// single_item_as_list_parse - function:parse variant:proposed_behavior
 func TestSingleItemAsListParse(t *testing.T) {
 	
 
@@ -208,7 +208,7 @@ func TestSingleItemAsListParse(t *testing.T) {
 }
 
 
-// single_item_as_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// single_item_as_list_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestSingleItemAsListBuildHierarchy(t *testing.T) {
 	
 
@@ -255,7 +255,7 @@ func TestSingleItemAsListGetList(t *testing.T) {
 }
 
 
-// mixed_duplicate_single_keys_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// mixed_duplicate_single_keys_parse - function:parse variant:proposed_behavior
 func TestMixedDuplicateSingleKeysParse(t *testing.T) {
 	
 
@@ -279,7 +279,7 @@ host = localhost`
 }
 
 
-// mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestMixedDuplicateSingleKeysBuildHierarchy(t *testing.T) {
 	
 
@@ -330,7 +330,7 @@ host = localhost`
 }
 
 
-// nested_list_access_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// nested_list_access_parse - function:parse variant:proposed_behavior
 func TestNestedListAccessParse(t *testing.T) {
 	
 
@@ -355,7 +355,7 @@ func TestNestedListAccessParse(t *testing.T) {
 }
 
 
-// nested_list_access_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// nested_list_access_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestNestedListAccessBuildHierarchy(t *testing.T) {
 	
 
@@ -408,7 +408,7 @@ func TestNestedListAccessGetList(t *testing.T) {
 }
 
 
-// empty_list_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// empty_list_parse - function:parse variant:proposed_behavior
 func TestEmptyListParse(t *testing.T) {
 	
 
@@ -430,7 +430,7 @@ func TestEmptyListParse(t *testing.T) {
 }
 
 
-// empty_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// empty_list_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestEmptyListBuildHierarchy(t *testing.T) {
 	
 
@@ -477,7 +477,7 @@ func TestEmptyListGetList(t *testing.T) {
 }
 
 
-// list_with_numbers_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_numbers_parse - function:parse variant:proposed_behavior
 func TestListWithNumbersParse(t *testing.T) {
 	
 
@@ -502,7 +502,7 @@ numbers = 0`
 }
 
 
-// list_with_numbers_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_numbers_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestListWithNumbersBuildHierarchy(t *testing.T) {
 	
 
@@ -555,7 +555,7 @@ numbers = 0`
 }
 
 
-// list_with_booleans_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_booleans_parse - function:parse variant:proposed_behavior
 func TestListWithBooleansParse(t *testing.T) {
 	
 
@@ -580,7 +580,7 @@ flags = no`
 }
 
 
-// list_with_booleans_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_booleans_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestListWithBooleansBuildHierarchy(t *testing.T) {
 	
 
@@ -633,7 +633,7 @@ flags = no`
 }
 
 
-// list_with_whitespace_parse - function:parse feature:whitespace behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_whitespace_parse - function:parse feature:whitespace variant:proposed_behavior
 func TestListWithWhitespaceParse(t *testing.T) {
 	
 
@@ -658,7 +658,7 @@ items =   `
 }
 
 
-// list_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace variant:proposed_behavior
 func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
 	
 
@@ -711,7 +711,7 @@ items =   `
 }
 
 
-// list_with_unicode_parse - function:parse feature:unicode behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_unicode_parse - function:parse feature:unicode variant:proposed_behavior
 func TestListWithUnicodeParse(t *testing.T) {
 	
 
@@ -736,7 +736,7 @@ names = العربية`
 }
 
 
-// list_with_unicode_build_hierarchy - function:build_hierarchy feature:unicode behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_unicode_build_hierarchy - function:build_hierarchy feature:unicode variant:proposed_behavior
 func TestListWithUnicodeBuildHierarchy(t *testing.T) {
 	
 
@@ -789,7 +789,7 @@ names = العربية`
 }
 
 
-// list_with_special_characters_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_special_characters_parse - function:parse variant:proposed_behavior
 func TestListWithSpecialCharactersParse(t *testing.T) {
 	
 
@@ -814,7 +814,7 @@ symbols = <>=+`
 }
 
 
-// list_with_special_characters_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// list_with_special_characters_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestListWithSpecialCharactersBuildHierarchy(t *testing.T) {
 	
 
@@ -867,7 +867,7 @@ symbols = <>=+`
 }
 
 
-// list_multiline_values_parse_indented - function:parse_indented feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
+// list_multiline_values_parse_indented - function:parse_indented feature:multiline variant:proposed_behavior
 func TestListMultilineValuesParseIndented(t *testing.T) {
 	
 
@@ -891,7 +891,7 @@ descriptions = Third item`
 }
 
 
-// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline behavior:list_coercion_enabled variant:proposed_behavior
+// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline variant:proposed_behavior
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 	
 
@@ -944,7 +944,7 @@ descriptions = Third item`
 }
 
 
-// complex_mixed_list_scenarios_parse_indented - function:parse_indented behavior:list_coercion_enabled variant:proposed_behavior
+// complex_mixed_list_scenarios_parse_indented - function:parse_indented variant:proposed_behavior
 func TestComplexMixedListScenariosParseIndented(t *testing.T) {
 	
 
@@ -975,7 +975,7 @@ features = ui`
 }
 
 
-// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
 	
 
@@ -1042,7 +1042,7 @@ features = ui`
 }
 
 
-// list_path_traversal_protection_parse - function:parse behavior:list_coercion_enabled variant:proposed_behavior
+// list_path_traversal_protection_parse - function:parse variant:proposed_behavior
 func TestListPathTraversalProtectionParse(t *testing.T) {
 	
 
@@ -1064,7 +1064,7 @@ func TestListPathTraversalProtectionParse(t *testing.T) {
 }
 
 
-// list_path_traversal_protection_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled variant:proposed_behavior
+// list_path_traversal_protection_build_hierarchy - function:build_hierarchy variant:proposed_behavior
 func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
 	
 

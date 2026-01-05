@@ -328,7 +328,7 @@ func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
 }
 
 
-// deeply_nested_list_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// deeply_nested_list_parse - function:parse
 func TestDeeplyNestedListParse(t *testing.T) {
 	
 
@@ -355,7 +355,7 @@ func TestDeeplyNestedListParse(t *testing.T) {
 }
 
 
-// deeply_nested_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// deeply_nested_list_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestDeeplyNestedListBuildHierarchy(t *testing.T) {
 	
 

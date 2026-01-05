@@ -24,27 +24,49 @@ const (
 
 // FlatGenerator transforms source format to implementation-friendly flat format
 type FlatGenerator struct {
-	SourceDir string
-	OutputDir string
-	Options   GenerateOptions
+	SourceDir        string
+	OutputDir        string
+	Options          GenerateOptions
+	BehaviorMetadata *BehaviorMetadata // Loaded from schemas/behavior-metadata.json
 }
 
 // GenerateOptions controls flat format generation behavior
 type GenerateOptions struct {
-	SkipPropertyTests bool                 // Skip property-*.json files
-	SkipFunctions     []config.CCLFunction // Skip specific functions
-	OnlyFunctions     []config.CCLFunction // Generate only these functions
-	SourceFormat      loader.TestFormat    // Input format (compact or flat)
-	Verbose           bool                 // Enable verbose output
+	SkipPropertyTests    bool                 // Skip property-*.json files
+	SkipFunctions        []config.CCLFunction // Skip specific functions
+	OnlyFunctions        []config.CCLFunction // Generate only these functions
+	SourceFormat         loader.TestFormat    // Input format (compact or flat)
+	Verbose              bool                 // Enable verbose output
+	SchemasDir           string               // Path to schemas directory (for behavior metadata)
+	AutoGenerateConflicts bool                // Auto-generate conflicts from behavior metadata
+	ValidateSourceTests  bool                 // Validate source tests against metadata
 }
 
 // NewFlatGenerator creates a new flat format generator
 func NewFlatGenerator(sourceDir, outputDir string, opts GenerateOptions) *FlatGenerator {
-	return &FlatGenerator{
+	fg := &FlatGenerator{
 		SourceDir: sourceDir,
 		OutputDir: outputDir,
 		Options:   opts,
 	}
+
+	// Load behavior metadata if schemas directory is specified
+	if opts.SchemasDir != "" {
+		metadata, err := LoadBehaviorMetadata(opts.SchemasDir)
+		if err != nil {
+			if opts.Verbose {
+				fmt.Printf("Warning: failed to load behavior metadata: %v\n", err)
+				fmt.Println("Continuing without behavior filtering...")
+			}
+		} else {
+			fg.BehaviorMetadata = metadata
+			if opts.Verbose {
+				fmt.Printf("Loaded behavior metadata with %d behaviors\n", len(metadata.Behaviors))
+			}
+		}
+	}
+
+	return fg
 }
 
 // GenerateAll processes all source test files and generates flat format
@@ -104,6 +126,21 @@ func (fg *FlatGenerator) GenerateFile(sourceFile string) error {
 	}
 
 	for _, sourceTest := range sourceSuite.Tests {
+		// Validate source test if enabled
+		if fg.Options.ValidateSourceTests && fg.BehaviorMetadata != nil {
+			var declaredConflicts []string
+			if sourceTest.Conflicts != nil {
+				declaredConflicts = sourceTest.Conflicts.Behaviors
+			}
+			result := fg.BehaviorMetadata.ValidateSourceTest(sourceTest.Name, sourceTest.Behaviors, declaredConflicts)
+			for _, warning := range result.Warnings {
+				fmt.Printf("Warning [%s]: %s\n", sourceTest.Name, warning)
+			}
+			for _, errMsg := range result.Errors {
+				fmt.Printf("Error [%s]: %s\n", sourceTest.Name, errMsg)
+			}
+		}
+
 		flatTests, err := fg.TransformSourceToFlat(sourceTest)
 		if err != nil {
 			return fmt.Errorf("failed to transform test %s: %w", sourceTest.Name, err)
@@ -204,9 +241,13 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 		}
 		flatTest.Features = uniqueFeatures
 
-		// Copy behaviors directly from source test. The source format is self-contained
-		// and doesn't need function-specific filtering.
-		flatTest.Behaviors = copyStringSlice(sourceTest.Behaviors)
+		// Filter behaviors to only those affecting this function (if metadata available)
+		if fg.BehaviorMetadata != nil {
+			flatTest.Behaviors = fg.BehaviorMetadata.FilterBehaviorsForFunction(sourceTest.Behaviors, validationName)
+		} else {
+			// Fallback: copy all behaviors (legacy behavior)
+			flatTest.Behaviors = copyStringSlice(sourceTest.Behaviors)
+		}
 
 		// Copy variants from source, ensuring never nil
 		if sourceTest.Variants != nil {
@@ -215,9 +256,8 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 			flatTest.Variants = make([]string, 0)
 		}
 
-		// Copy conflicts directly from source test. The source format is self-contained
-		// and doesn't need function-specific filtering.
-		flatTest.Conflicts = copyConflictSet(sourceTest.Conflicts)
+		// Handle conflicts: start with source conflicts, then auto-generate if enabled
+		flatTest.Conflicts = fg.generateConflicts(sourceTest.Conflicts, flatTest.Behaviors)
 
 		// Validation components are already parsed and applied above
 		// No special case handling needed - all validation types are handled uniformly
@@ -633,4 +673,56 @@ func copyConflictSet(conflicts *types.ConflictSet) *types.ConflictSet {
 		Variants:  copyStringSlice(conflicts.Variants),
 		Features:  copyStringSlice(conflicts.Features),
 	}
+}
+
+// generateConflicts creates the conflicts for a flat test, optionally auto-generating
+// behavior conflicts from the metadata's mutuallyExclusiveWith definitions.
+func (fg *FlatGenerator) generateConflicts(sourceConflicts *types.ConflictSet, behaviors []string) *types.ConflictSet {
+	// Start with source conflicts
+	var result *types.ConflictSet
+	if sourceConflicts != nil {
+		result = &types.ConflictSet{
+			Functions: copyStringSlice(sourceConflicts.Functions),
+			Behaviors: copyStringSlice(sourceConflicts.Behaviors),
+			Variants:  copyStringSlice(sourceConflicts.Variants),
+			Features:  copyStringSlice(sourceConflicts.Features),
+		}
+	}
+
+	// Auto-generate behavior conflicts if enabled and metadata is available
+	if fg.Options.AutoGenerateConflicts && fg.BehaviorMetadata != nil && len(behaviors) > 0 {
+		autoConflicts := fg.BehaviorMetadata.GetConflictingBehaviors(behaviors)
+		if len(autoConflicts) > 0 {
+			if result == nil {
+				result = &types.ConflictSet{
+					Behaviors: autoConflicts,
+				}
+			} else {
+				// Merge auto-generated with existing, avoiding duplicates
+				existingSet := make(map[string]bool)
+				for _, b := range result.Behaviors {
+					existingSet[b] = true
+				}
+				for _, b := range autoConflicts {
+					if !existingSet[b] {
+						result.Behaviors = append(result.Behaviors, b)
+					}
+				}
+			}
+		}
+	}
+
+	// Return nil if no conflicts
+	if result == nil {
+		return nil
+	}
+	hasConflicts := len(result.Functions) > 0 ||
+		len(result.Behaviors) > 0 ||
+		len(result.Variants) > 0 ||
+		len(result.Features) > 0
+	if !hasConflicts {
+		return nil
+	}
+
+	return result
 }

@@ -4,6 +4,7 @@ package main
 
 import (
 	"fmt"
+	"path/filepath"
 
 	"github.com/tylerbutler/ccl-test-data/generator"
 	"github.com/tylerbutler/ccl-test-data/internal/styles"
@@ -30,16 +31,45 @@ import (
 func generateFlatAction(ctx *cli.Context) error {
 	sourceDir := ctx.String("source")
 	generatedDir := ctx.String("generated")
+	schemasDir := ctx.String("schemas")
+	autoConflicts := ctx.Bool("auto-conflicts")
+	validate := ctx.Bool("validate")
+	verbose := ctx.Bool("verbose")
 
 	styles.Status("⚡", fmt.Sprintf("Generating flat tests from %s to %s...", sourceDir, generatedDir))
+
+	// Resolve schemas directory relative to source directory if not absolute
+	if schemasDir != "" && !filepath.IsAbs(schemasDir) {
+		// Try relative to current directory first
+		if _, err := filepath.Abs(schemasDir); err != nil {
+			// Fall back to relative to source directory parent
+			schemasDir = filepath.Join(filepath.Dir(sourceDir), schemasDir)
+		}
+	}
 
 	// DELEGATION: Create ccl-test-lib generator with compact format support
 	// The actual logic lives in ccl-test-lib/generator.NewFlatGenerator()
 	// This CLI command simply provides a convenient interface to that functionality
 	flatGen := generator.NewFlatGenerator(sourceDir, generatedDir, generator.GenerateOptions{
-		Verbose:           true,
-		SkipPropertyTests: false, // Include property-based tests in output
+		Verbose:              verbose,
+		SkipPropertyTests:    false, // Include property-based tests in output
+		SchemasDir:           schemasDir,
+		AutoGenerateConflicts: autoConflicts,
+		ValidateSourceTests:  validate,
 	})
+
+	// Show metadata status
+	if flatGen.BehaviorMetadata != nil {
+		styles.InfoLite("Loaded behavior metadata with %d behaviors", len(flatGen.BehaviorMetadata.Behaviors))
+		if autoConflicts {
+			styles.InfoLite("Auto-generating conflicts from behavior metadata")
+		}
+		if validate {
+			styles.InfoLite("Validating source tests against behavior metadata")
+		}
+	} else if schemasDir != "" {
+		styles.Warning("Could not load behavior metadata from %s", schemasDir)
+	}
 
 	// DELEGATION: Execute the flat generation using ccl-test-lib
 	// All conversion logic, validation, and file writing happens in the library

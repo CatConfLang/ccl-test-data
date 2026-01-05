@@ -47,9 +47,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "toplevel_indent_strip"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_preserve"
@@ -81,9 +79,7 @@
       ]
     },
     {
-      "behaviors": [
-        "toplevel_indent_strip"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_preserve"
@@ -110,9 +106,7 @@
       ]
     },
     {
-      "behaviors": [
-        "toplevel_indent_preserve"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_strip"
@@ -146,9 +140,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "toplevel_indent_preserve"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_strip"

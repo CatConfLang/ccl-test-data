@@ -65,9 +65,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -103,9 +101,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -241,9 +237,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -273,9 +267,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -334,9 +326,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -374,9 +364,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -439,9 +427,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -471,9 +457,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -539,9 +523,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -571,9 +553,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -632,9 +612,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -676,9 +654,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -745,9 +721,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -789,9 +763,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -858,9 +830,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -904,9 +874,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -977,9 +945,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1023,9 +989,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1096,9 +1060,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1140,9 +1102,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1209,9 +1169,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1255,9 +1213,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1327,9 +1283,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1399,9 +1353,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1480,9 +1432,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"
@@ -1512,9 +1462,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_disabled"

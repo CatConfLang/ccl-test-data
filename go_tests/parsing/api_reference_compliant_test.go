@@ -14,7 +14,7 @@ import (
 
 
 
-// single_item_as_list_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// single_item_as_list_reference_parse - function:parse variant:reference_compliant
 func TestSingleItemAsListReferenceParse(t *testing.T) {
 	
 
@@ -36,7 +36,7 @@ func TestSingleItemAsListReferenceParse(t *testing.T) {
 }
 
 
-// single_item_as_list_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// single_item_as_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -86,7 +86,7 @@ func TestSingleItemAsListReferenceGetList(t *testing.T) {
 }
 
 
-// mixed_duplicate_single_keys_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// mixed_duplicate_single_keys_reference_parse - function:parse
 func TestMixedDuplicateSingleKeysReferenceParse(t *testing.T) {
 	
 
@@ -110,7 +110,7 @@ host = localhost`
 }
 
 
-// mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -164,7 +164,7 @@ host = localhost`
 }
 
 
-// nested_list_access_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// nested_list_access_reference_parse - function:parse variant:reference_compliant
 func TestNestedListAccessReferenceParse(t *testing.T) {
 	
 
@@ -189,7 +189,7 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 }
 
 
-// nested_list_access_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -317,7 +317,7 @@ func TestEmptyListReferenceGetList(t *testing.T) {
 }
 
 
-// list_with_numbers_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_numbers_reference_parse - function:parse
 func TestListWithNumbersReferenceParse(t *testing.T) {
 	
 
@@ -342,7 +342,7 @@ numbers = 0`
 }
 
 
-// list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -398,7 +398,7 @@ numbers = 0`
 }
 
 
-// list_with_booleans_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_booleans_reference_parse - function:parse
 func TestListWithBooleansReferenceParse(t *testing.T) {
 	
 
@@ -423,7 +423,7 @@ flags = no`
 }
 
 
-// list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -479,7 +479,7 @@ flags = no`
 }
 
 
-// list_with_whitespace_reference_parse - function:parse feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_whitespace_reference_parse - function:parse feature:whitespace
 func TestListWithWhitespaceReferenceParse(t *testing.T) {
 	
 
@@ -504,7 +504,7 @@ items =   `
 }
 
 
-// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -560,7 +560,7 @@ items =   `
 }
 
 
-// list_with_unicode_reference_parse - function:parse feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_unicode_reference_parse - function:parse feature:unicode
 func TestListWithUnicodeReferenceParse(t *testing.T) {
 	
 
@@ -585,7 +585,7 @@ names = العربية`
 }
 
 
-// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -641,7 +641,7 @@ names = العربية`
 }
 
 
-// list_with_special_characters_reference_parse - function:parse behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_special_characters_reference_parse - function:parse
 func TestListWithSpecialCharactersReferenceParse(t *testing.T) {
 	
 
@@ -665,7 +665,7 @@ symbols = []{}|`
 }
 
 
-// list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -719,7 +719,7 @@ symbols = []{}|`
 }
 
 
-// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled behavior:array_order_lexicographic
+// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
 	
 
@@ -789,7 +789,7 @@ features = ui`
 }
 
 
-// list_path_traversal_protection_reference_parse - function:parse behavior:list_coercion_disabled variant:reference_compliant
+// list_path_traversal_protection_reference_parse - function:parse variant:reference_compliant
 func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 	
 
@@ -811,7 +811,7 @@ func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 }
 
 
-// list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled variant:reference_compliant
+// list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
 	
 

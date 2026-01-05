@@ -2,9 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -34,9 +32,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -92,10 +88,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -133,7 +126,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -194,9 +186,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -226,9 +216,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -360,10 +348,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -405,7 +390,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -467,10 +451,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -512,7 +493,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -574,10 +554,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -621,7 +598,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -685,10 +661,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -732,7 +705,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -798,10 +770,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion",
@@ -839,7 +808,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -901,7 +869,6 @@
     },
     {
       "behaviors": [
-        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
@@ -976,9 +943,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -1008,9 +973,7 @@
       ]
     },
     {
-      "behaviors": [
-        "list_coercion_disabled"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
@@ -1136,6 +1099,11 @@
       "behaviors": [
         "tabs_as_content"
       ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_whitespace"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "value_with_tabs =\n  text\t\twith\ttabs =\n"
@@ -1180,6 +1148,11 @@
       "behaviors": [
         "crlf_preserve_literal"
       ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
       "expected": {
         "count": 2,
         "entries": [
@@ -1211,6 +1184,11 @@
       "behaviors": [
         "crlf_preserve_literal"
       ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "key1 =\n  value1\r =\nkey2 =\n  value2\r =\n"

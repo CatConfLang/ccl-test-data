@@ -156,9 +156,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "array_order_insertion"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_lexicographic"
@@ -229,9 +227,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "array_order_lexicographic"
-      ],
+      "behaviors": [],
       "conflicts": {
         "behaviors": [
           "array_order_insertion"

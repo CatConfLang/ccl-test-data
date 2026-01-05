@@ -14,7 +14,7 @@ import (
 
 
 
-// basic_list_from_duplicates_parse - function:parse behavior:list_coercion_enabled
+// basic_list_from_duplicates_parse - function:parse
 func TestBasicListFromDuplicatesParse(t *testing.T) {
 	
 
@@ -38,7 +38,7 @@ servers = web3`
 }
 
 
-// basic_list_from_duplicates_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled
+// basic_list_from_duplicates_build_hierarchy - function:build_hierarchy
 func TestBasicListFromDuplicatesBuildHierarchy(t *testing.T) {
 	
 
@@ -89,7 +89,7 @@ servers = web3`
 }
 
 
-// large_list_parse - function:parse behavior:list_coercion_enabled
+// large_list_parse - function:parse
 func TestLargeListParse(t *testing.T) {
 	
 
@@ -130,7 +130,7 @@ items = item20`
 }
 
 
-// large_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_enabled
+// large_list_build_hierarchy - function:build_hierarchy
 func TestLargeListBuildHierarchy(t *testing.T) {
 	
 
@@ -215,7 +215,7 @@ items = item20`
 }
 
 
-// list_with_comments_parse - function:parse feature:comments behavior:list_coercion_enabled behavior:array_order_insertion
+// list_with_comments_parse - function:parse feature:comments
 func TestListWithCommentsParse(t *testing.T) {
 	
 
@@ -241,7 +241,7 @@ servers = web3
 }
 
 
-// list_with_comments_build_hierarchy - function:build_hierarchy feature:comments behavior:list_coercion_enabled behavior:array_order_insertion
+// list_with_comments_build_hierarchy - function:build_hierarchy feature:comments behavior:array_order_insertion
 func TestListWithCommentsBuildHierarchy(t *testing.T) {
 	
 
@@ -296,7 +296,7 @@ servers = web3
 }
 
 
-// list_with_comments_lexicographic_parse - function:parse feature:comments behavior:list_coercion_enabled behavior:array_order_lexicographic
+// list_with_comments_lexicographic_parse - function:parse feature:comments
 func TestListWithCommentsLexicographicParse(t *testing.T) {
 	
 
@@ -322,7 +322,7 @@ servers = web3
 }
 
 
-// list_with_comments_lexicographic_build_hierarchy - function:build_hierarchy feature:comments behavior:list_coercion_enabled behavior:array_order_lexicographic
+// list_with_comments_lexicographic_build_hierarchy - function:build_hierarchy feature:comments behavior:array_order_lexicographic
 func TestListWithCommentsLexicographicBuildHierarchy(t *testing.T) {
 	
 
@@ -746,7 +746,7 @@ func TestBareListBasicGetList(t *testing.T) {
 }
 
 
-// bare_list_nested_parse - function:parse feature:empty_keys behavior:array_order_insertion
+// bare_list_nested_parse - function:parse feature:empty_keys
 func TestBareListNestedParse(t *testing.T) {
 	
 
@@ -827,7 +827,7 @@ func TestBareListNestedGetList(t *testing.T) {
 }
 
 
-// bare_list_nested_lexicographic_parse - function:parse feature:empty_keys behavior:array_order_lexicographic
+// bare_list_nested_lexicographic_parse - function:parse feature:empty_keys
 func TestBareListNestedLexicographicParse(t *testing.T) {
 	
 
@@ -908,7 +908,7 @@ func TestBareListNestedLexicographicGetList(t *testing.T) {
 }
 
 
-// bare_list_with_comments_parse - function:parse feature:empty_keys feature:comments behavior:array_order_insertion
+// bare_list_with_comments_parse - function:parse feature:empty_keys feature:comments
 func TestBareListWithCommentsParse(t *testing.T) {
 	
 
@@ -989,7 +989,7 @@ func TestBareListWithCommentsGetList(t *testing.T) {
 }
 
 
-// bare_list_with_comments_lexicographic_parse - function:parse feature:empty_keys feature:comments behavior:array_order_lexicographic
+// bare_list_with_comments_lexicographic_parse - function:parse feature:empty_keys feature:comments
 func TestBareListWithCommentsLexicographicParse(t *testing.T) {
 	
 
@@ -1070,7 +1070,7 @@ func TestBareListWithCommentsLexicographicGetList(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_parse - function:parse feature:empty_keys behavior:array_order_insertion
+// bare_list_deeply_nested_parse - function:parse feature:empty_keys
 func TestBareListDeeplyNestedParse(t *testing.T) {
 	
 
@@ -1157,7 +1157,7 @@ func TestBareListDeeplyNestedGetList(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_lexicographic_parse - function:parse feature:empty_keys behavior:array_order_lexicographic
+// bare_list_deeply_nested_lexicographic_parse - function:parse feature:empty_keys
 func TestBareListDeeplyNestedLexicographicParse(t *testing.T) {
 	
 
@@ -1328,7 +1328,7 @@ func TestBareListMixedWithOtherKeysGetList(t *testing.T) {
 }
 
 
-// bare_list_error_not_a_list_parse - function:parse behavior:list_coercion_disabled
+// bare_list_error_not_a_list_parse - function:parse
 func TestBareListErrorNotAListParse(t *testing.T) {
 	
 
@@ -1351,7 +1351,7 @@ func TestBareListErrorNotAListParse(t *testing.T) {
 }
 
 
-// bare_list_error_not_a_list_build_hierarchy - function:build_hierarchy behavior:list_coercion_disabled
+// bare_list_error_not_a_list_build_hierarchy - function:build_hierarchy
 func TestBareListErrorNotAListBuildHierarchy(t *testing.T) {
 	
 

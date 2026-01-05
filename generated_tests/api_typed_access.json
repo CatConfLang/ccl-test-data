@@ -142,10 +142,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -170,10 +167,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -202,6 +196,12 @@
         "boolean_strict",
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient",
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -221,9 +221,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -248,9 +246,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -278,6 +274,11 @@
       "behaviors": [
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -297,9 +298,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -324,9 +323,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -354,6 +351,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -372,10 +374,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -400,10 +399,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict",
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -432,6 +428,12 @@
         "boolean_strict",
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient",
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": false
@@ -585,9 +587,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 3,
         "entries": [
@@ -621,9 +621,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -651,9 +649,7 @@
       "args": [
         "count"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 0
@@ -680,6 +676,11 @@
       "behaviors": [
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": false
@@ -703,9 +704,7 @@
       "args": [
         "distance"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 0
@@ -726,9 +725,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 3,
         "entries": [
@@ -762,9 +759,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -792,9 +787,7 @@
       "args": [
         "count"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 0
@@ -821,6 +814,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -843,9 +841,7 @@
       "args": [
         "distance"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 0
@@ -866,9 +862,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 7,
         "entries": [
@@ -917,9 +911,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -950,9 +942,7 @@
       "args": [
         "flag3"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 1
@@ -978,6 +968,11 @@
       "behaviors": [
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -997,9 +992,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 7,
         "entries": [
@@ -1048,9 +1041,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -1081,9 +1072,7 @@
       "args": [
         "flag3"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 1
@@ -1109,6 +1098,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -1127,9 +1121,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 5,
         "entries": [
@@ -1170,9 +1162,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -1201,9 +1191,7 @@
       "args": [
         "host"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": "localhost"
@@ -1226,9 +1214,7 @@
       "args": [
         "port"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 8080
@@ -1254,6 +1240,11 @@
       "behaviors": [
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -1276,9 +1267,7 @@
       "args": [
         "timeout"
       ],
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 30.5
@@ -1298,9 +1287,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 5,
         "entries": [
@@ -1341,9 +1328,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -1372,9 +1357,7 @@
       "args": [
         "host"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": "localhost"
@@ -1397,9 +1380,7 @@
       "args": [
         "port"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 8080
@@ -1425,6 +1406,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -1447,9 +1433,7 @@
       "args": [
         "timeout"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 30.5
@@ -1817,9 +1801,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -1844,9 +1826,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -1874,6 +1854,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -1955,9 +1940,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
@@ -1992,6 +1975,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -2010,9 +1998,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
@@ -2047,6 +2033,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -2065,9 +2056,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_lenient"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
@@ -2102,6 +2091,11 @@
       "behaviors": [
         "boolean_lenient"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_strict"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -2120,9 +2114,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 2,
         "entries": [
@@ -2154,9 +2146,7 @@
       "args": [
         "one"
       ],
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": 1
@@ -2182,6 +2172,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -2200,9 +2195,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -2234,6 +2227,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": true
@@ -2327,9 +2325,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -2360,6 +2356,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },
@@ -2450,9 +2451,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "boolean_strict"
-      ],
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -2483,6 +2482,11 @@
       "behaviors": [
         "boolean_strict"
       ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient"
+        ]
+      },
       "expected": {
         "count": 1
       },

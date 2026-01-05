@@ -174,7 +174,7 @@ func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	
 
@@ -220,7 +220,7 @@ func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
 	
 
@@ -403,7 +403,7 @@ func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_round_trip_round_trip - function:round_trip feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_round_trip_round_trip - function:round_trip feature:whitespace
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
 	
 
