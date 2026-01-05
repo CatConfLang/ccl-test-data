@@ -2,18 +2,21 @@ package parsing_test
 
 import (
 	"testing"
-
+	
+	"github.com/tylerbutler/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/tylerbutler/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_comments.json
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // comment_extension_parse - function:parse feature:comments
 func TestCommentExtensionParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= This is an environment section
@@ -22,11 +25,13 @@ serve = index.html
 /= Database section
 mode = in-memory
 connections = 16`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -35,21 +40,46 @@ connections = 16`
 
 }
 
+
 // comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `/= This is an environment section
+port = 8080
+serve = index.html
+/= Database section
+mode = in-memory
+connections = 16`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
+
 
 // comment_syntax_slash_equals_parse - function:parse feature:comments
 func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= this is a comment`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -58,13 +88,31 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 }
 
+
 // comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `/= this is a comment`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
+
 
 // section_headers_with_comments_parse - function:parse feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `== Database Config ==
@@ -73,11 +121,13 @@ host = localhost
 === Cache Config ===
 /= Redis configuration
 port = 6379`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -86,7 +136,30 @@ port = 6379`
 
 }
 
+
 // section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `== Database Config ==
+/= Connection settings
+host = localhost
+=== Cache Config ===
+/= Redis configuration
+port = 6379`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
+
+
