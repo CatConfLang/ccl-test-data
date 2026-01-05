@@ -156,7 +156,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 2,
         "entries": [
@@ -222,7 +229,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 2,
         "entries": [

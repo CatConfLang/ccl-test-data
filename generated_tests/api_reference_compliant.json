@@ -2,7 +2,14 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -27,7 +34,14 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -78,7 +92,16 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "entries": [
@@ -110,11 +133,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -169,7 +194,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -194,7 +226,14 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -321,7 +360,16 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 4,
         "entries": [
@@ -357,11 +405,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -417,7 +467,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 4,
         "entries": [
@@ -453,11 +512,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -513,7 +574,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 4,
         "entries": [
@@ -551,11 +621,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -613,7 +685,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 4,
         "entries": [
@@ -651,11 +732,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -715,7 +798,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "entries": [
@@ -747,11 +839,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -807,11 +901,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_disabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -880,7 +976,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -905,7 +1008,14 @@
       ]
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {

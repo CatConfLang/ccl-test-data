@@ -2,7 +2,14 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 3,
         "entries": [
@@ -33,7 +40,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -89,7 +103,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 20,
         "entries": [
@@ -188,7 +209,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -278,7 +306,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic",
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 5,
         "entries": [
@@ -320,11 +357,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_enabled",
         "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_lexicographic"
+          "array_order_lexicographic",
+          "list_coercion_disabled"
         ]
       },
       "expected": {
@@ -392,7 +431,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion",
+          "list_coercion_disabled"
+        ]
+      },
       "expected": {
         "count": 5,
         "entries": [
@@ -434,11 +482,13 @@
     },
     {
       "behaviors": [
+        "list_coercion_enabled",
         "array_order_lexicographic"
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_disabled"
         ]
       },
       "expected": {
@@ -834,7 +884,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -931,7 +988,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1028,7 +1092,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1126,7 +1197,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1224,7 +1302,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1327,7 +1412,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_lexicographic"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1513,7 +1605,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1536,7 +1635,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "list_coercion_enabled"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {

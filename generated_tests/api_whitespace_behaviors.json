@@ -66,7 +66,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_content"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_whitespace"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "\tvalue\twith\ttabs"
@@ -121,7 +128,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_content"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_whitespace"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "\tindented"
@@ -205,7 +219,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_whitespace"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_content"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "value with tabs"
@@ -260,7 +281,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_whitespace"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_content"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "indented"
@@ -494,7 +522,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_whitespace"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_content"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "key = value with tabs"
@@ -596,7 +631,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -793,7 +835,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {

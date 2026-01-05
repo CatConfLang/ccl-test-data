@@ -711,23 +711,13 @@ func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (s
 		}
 	}
 
-	// Handle normal case with object result
-	if object, ok := expectedMap["object"]; ok {
-		return fmt.Sprintf(`// BuildHierarchy validation
+	// Handle normal case with object result (already extracted by loader)
+	return fmt.Sprintf(`// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult := ccl.BuildHierarchy(parseResult)
 	expected := %s
-	assert.Equal(t, expected, objectResult)`, formatGoValue(object)), nil
-	} else {
-		// Handle case with only count (empty result)
-		return `// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)`, nil
-	}
+	assert.Equal(t, expected, objectResult)`, formatGoValue(expectedMap)), nil
 }
 
 // generateFlatTypedAccessValidation generates typed access validation for flat format
