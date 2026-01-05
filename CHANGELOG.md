@@ -2,6 +2,17 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
+## [0.3.0] - 2026-01-05
+### Tests
+#### Bug Fixes
+- Add missing CRLF behavior tags to build_hierarchy tests
+
+
+### Schema
+#### Features
+- Add behavior metadata for auto-conflict generation (#54)
+
+
 ## [0.2.0] - 2026-01-04
 ### Tests
 #### Bug Fixes
