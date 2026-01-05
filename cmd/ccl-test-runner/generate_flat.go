@@ -51,11 +51,11 @@ func generateFlatAction(ctx *cli.Context) error {
 	// The actual logic lives in ccl-test-lib/generator.NewFlatGenerator()
 	// This CLI command simply provides a convenient interface to that functionality
 	flatGen := generator.NewFlatGenerator(sourceDir, generatedDir, generator.GenerateOptions{
-		Verbose:              verbose,
-		SkipPropertyTests:    false, // Include property-based tests in output
-		SchemasDir:           schemasDir,
+		Verbose:               verbose,
+		SkipPropertyTests:     false, // Include property-based tests in output
+		SchemasDir:            schemasDir,
 		AutoGenerateConflicts: autoConflicts,
-		ValidateSourceTests:  validate,
+		ValidateSourceTests:   validate,
 	})
 
 	// Show metadata status

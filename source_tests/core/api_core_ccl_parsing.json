@@ -218,9 +218,6 @@
       "variants": [
         "reference_compliant"
       ],
-      "conflicts": {
-        "behaviors": ["toplevel_indent_preserve"]
-      },
       "inputs": [
         "  key = value\n  second"
       ]
@@ -272,9 +269,6 @@
       "behaviors": [
         "toplevel_indent_preserve"
       ],
-      "conflicts": {
-        "behaviors": ["toplevel_indent_strip"]
-      },
       "inputs": [
         "  key = value\n  second = entry"
       ]

@@ -27,19 +27,19 @@ type FlatGenerator struct {
 	SourceDir        string
 	OutputDir        string
 	Options          GenerateOptions
-	BehaviorMetadata *BehaviorMetadata // Loaded from schemas/behavior-metadata.json
+	BehaviorMetadata *BehaviorMetadata // Loaded from x-behaviorMetadata in schemas/source-format.json
 }
 
 // GenerateOptions controls flat format generation behavior
 type GenerateOptions struct {
-	SkipPropertyTests    bool                 // Skip property-*.json files
-	SkipFunctions        []config.CCLFunction // Skip specific functions
-	OnlyFunctions        []config.CCLFunction // Generate only these functions
-	SourceFormat         loader.TestFormat    // Input format (compact or flat)
-	Verbose              bool                 // Enable verbose output
-	SchemasDir           string               // Path to schemas directory (for behavior metadata)
-	AutoGenerateConflicts bool                // Auto-generate conflicts from behavior metadata
-	ValidateSourceTests  bool                 // Validate source tests against metadata
+	SkipPropertyTests     bool                 // Skip property-*.json files
+	SkipFunctions         []config.CCLFunction // Skip specific functions
+	OnlyFunctions         []config.CCLFunction // Generate only these functions
+	SourceFormat          loader.TestFormat    // Input format (compact or flat)
+	Verbose               bool                 // Enable verbose output
+	SchemasDir            string               // Path to schemas directory (for behavior metadata)
+	AutoGenerateConflicts bool                 // Auto-generate conflicts from behavior metadata
+	ValidateSourceTests   bool                 // Validate source tests against metadata
 }
 
 // NewFlatGenerator creates a new flat format generator

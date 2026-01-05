@@ -220,11 +220,6 @@
         "key"
       ],
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
       "expected": {
         "count": 1,
         "value": "value with tabs"
@@ -280,11 +275,6 @@
         "key"
       ],
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
       "expected": {
         "count": 1,
         "value": "indented"
@@ -520,11 +510,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
       "expected": {
         "count": 1,
         "value": "key = value with tabs"

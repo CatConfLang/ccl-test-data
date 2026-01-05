@@ -149,11 +149,6 @@
       "behaviors": [
         "array_order_insertion"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_lexicographic"
-        ]
-      },
       "inputs": [
         "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443"
       ]
@@ -200,11 +195,6 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "servers =\n  server = web1\n  server = web2\n  server = web3\nports =\n  port = 80\n  port = 443"
       ]

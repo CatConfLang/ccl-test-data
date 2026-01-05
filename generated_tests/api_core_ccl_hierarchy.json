@@ -317,12 +317,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -350,8 +344,7 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
+          "array_order_insertion"
         ]
       },
       "expected": {
@@ -395,8 +388,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
+          "list_coercion_enabled",
+          "array_order_insertion"
         ]
       },
       "expected": {

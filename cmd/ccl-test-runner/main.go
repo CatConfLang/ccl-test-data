@@ -208,7 +208,7 @@ creating a simple, uniform format that's easy for test runners to process.`,
 					&cli.StringFlag{
 						Name:  "schemas",
 						Value: "schemas",
-						Usage: "Directory containing behavior-metadata.json for behavior filtering",
+						Usage: "Directory containing source-format.json with behavior metadata for filtering",
 					},
 					&cli.BoolFlag{
 						Name:  "auto-conflicts",

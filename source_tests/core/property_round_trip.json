@@ -56,9 +56,6 @@
       "variants": [
         "reference_compliant"
       ],
-      "conflicts": {
-        "behaviors": ["toplevel_indent_preserve"]
-      },
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ]
@@ -90,9 +87,6 @@
       "behaviors": [
         "toplevel_indent_preserve"
       ],
-      "conflicts": {
-        "behaviors": ["toplevel_indent_strip"]
-      },
       "inputs": [
         "  key  =  value  \n  nested  = \n    sub  =  val  "
       ]

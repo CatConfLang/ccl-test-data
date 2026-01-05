@@ -212,7 +212,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "toplevel_indent_strip"
+      ],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_preserve"
@@ -273,7 +275,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "toplevel_indent_preserve"
+      ],
       "conflicts": {
         "behaviors": [
           "toplevel_indent_strip"

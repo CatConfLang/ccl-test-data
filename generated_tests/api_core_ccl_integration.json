@@ -157,11 +157,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "array_order_lexicographic"
-        ]
-      },
       "expected": {
         "count": 2,
         "entries": [
@@ -228,11 +223,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "expected": {
         "count": 2,
         "entries": [

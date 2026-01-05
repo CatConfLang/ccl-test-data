@@ -9,20 +9,16 @@ import (
 	"path/filepath"
 )
 
-// BehaviorMetadata represents the behavior-metadata.json file structure
+// BehaviorMetadata represents the x-behaviorMetadata section in source-format.json
 type BehaviorMetadata struct {
-	Schema      string                      `json:"$schema,omitempty"`
-	ID          string                      `json:"$id,omitempty"`
-	Title       string                      `json:"title,omitempty"`
-	Description string                      `json:"description,omitempty"`
-	Behaviors   map[string]BehaviorInfo     `json:"behaviors"`
-	Defaults    BehaviorMetadataDefaults    `json:"defaults,omitempty"`
+	Behaviors map[string]BehaviorInfo  `json:"behaviors"`
+	Defaults  BehaviorMetadataDefaults `json:"defaults,omitempty"`
 }
 
 // BehaviorInfo contains metadata about a single behavior
 type BehaviorInfo struct {
-	Description         string   `json:"description"`
-	AffectedFunctions   []string `json:"affectedFunctions"`
+	Description           string   `json:"description"`
+	AffectedFunctions     []string `json:"affectedFunctions"`
 	MutuallyExclusiveWith []string `json:"mutuallyExclusiveWith"`
 }
 
@@ -32,21 +28,30 @@ type BehaviorMetadataDefaults struct {
 	Description      string `json:"description"`
 }
 
-// LoadBehaviorMetadata loads behavior metadata from the schemas directory
+// sourceFormatSchema represents the structure needed to extract x-behaviorMetadata
+type sourceFormatSchema struct {
+	BehaviorMetadata *BehaviorMetadata `json:"x-behaviorMetadata"`
+}
+
+// LoadBehaviorMetadata loads behavior metadata from source-format.json in the schemas directory
 func LoadBehaviorMetadata(schemasDir string) (*BehaviorMetadata, error) {
-	metadataPath := filepath.Join(schemasDir, "behavior-metadata.json")
+	schemaPath := filepath.Join(schemasDir, "source-format.json")
 
-	data, err := os.ReadFile(metadataPath)
+	data, err := os.ReadFile(schemaPath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read behavior metadata: %w", err)
+		return nil, fmt.Errorf("failed to read source-format.json: %w", err)
 	}
 
-	var metadata BehaviorMetadata
-	if err := json.Unmarshal(data, &metadata); err != nil {
-		return nil, fmt.Errorf("failed to parse behavior metadata: %w", err)
+	var schema sourceFormatSchema
+	if err := json.Unmarshal(data, &schema); err != nil {
+		return nil, fmt.Errorf("failed to parse source-format.json: %w", err)
 	}
 
-	return &metadata, nil
+	if schema.BehaviorMetadata == nil {
+		return nil, fmt.Errorf("x-behaviorMetadata section not found in source-format.json")
+	}
+
+	return schema.BehaviorMetadata, nil
 }
 
 // FilterBehaviorsForFunction filters behaviors to only include those that affect
@@ -126,12 +131,14 @@ func (m *BehaviorMetadata) GetAllBehaviors() []string {
 
 // ValidationResult contains results from validating source tests
 type ValidationResult struct {
-	TestName       string
-	Warnings       []string
-	Errors         []string
+	TestName string
+	Warnings []string
+	Errors   []string
 }
 
 // ValidateSourceTest validates a source test against the behavior metadata
+// Note: Missing conflict declarations are not warned about since auto-generation
+// from behavior metadata handles conflicts automatically (--auto-conflicts=true by default)
 func (m *BehaviorMetadata) ValidateSourceTest(testName string, behaviors []string, declaredConflicts []string) ValidationResult {
 	result := ValidationResult{
 		TestName: testName,
@@ -147,22 +154,9 @@ func (m *BehaviorMetadata) ValidateSourceTest(testName string, behaviors []strin
 		}
 	}
 
-	// Check for missing conflict declarations
-	expectedConflicts := m.GetConflictingBehaviors(behaviors)
-	if len(expectedConflicts) > 0 {
-		declaredSet := make(map[string]bool)
-		for _, c := range declaredConflicts {
-			declaredSet[c] = true
-		}
-
-		for _, expected := range expectedConflicts {
-			if !declaredSet[expected] {
-				result.Warnings = append(result.Warnings,
-					fmt.Sprintf("missing conflict declaration: behavior '%s' should conflict with '%s'",
-						findBehaviorCausingConflict(behaviors, expected, m), expected))
-			}
-		}
-	}
+	// Conflicts are auto-generated from behavior metadata, so we don't warn about
+	// missing declarations in source tests. The x-behaviorMetadata section in source-format.json is the
+	// single source of truth for mutually exclusive behaviors.
 
 	return result
 }

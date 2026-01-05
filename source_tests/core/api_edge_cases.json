@@ -314,11 +314,6 @@
       "behaviors": [
         "tabs_as_content"
       ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
       "inputs": [
         "\tkey\t=\tvalue"
       ]
@@ -345,11 +340,6 @@
       "variants": [
         "reference_compliant"
       ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
       "inputs": [
         "\tkey\t=\tvalue"
       ]
@@ -394,11 +384,6 @@
       "behaviors": [
         "tabs_as_content"
       ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
       "inputs": [
         "text = First\n    four spaces\n \ttab preserved"
       ]
@@ -422,11 +407,6 @@
       "behaviors": [
         "tabs_as_content"
       ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
       "inputs": [
         "text = First\n    four spaces\n \ttab preserved"
       ]

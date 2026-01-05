@@ -35,12 +35,7 @@
       ],
       "inputs": [
         "item = single"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "list_coercion_enabled"
-        ]
-      }
+      ]
     },
     {
       "name": "mixed_duplicate_single_keys_reference",
@@ -91,12 +86,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
       ]
@@ -150,12 +139,7 @@
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "list_coercion_enabled"
-        ]
-      }
+      ]
     },
     {
       "name": "empty_list_reference",
@@ -237,12 +221,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
       ]
@@ -294,12 +272,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
       ]
@@ -352,12 +324,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
       ]
@@ -412,12 +378,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "names = 张三\nnames = José\nnames = François\nnames = العربية"
       ]
@@ -464,12 +424,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|"
       ]
@@ -538,12 +492,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
-        ]
-      },
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
       ]
@@ -593,12 +541,7 @@
       ],
       "inputs": [
         "safe = value"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "list_coercion_enabled"
-        ]
-      }
+      ]
     },
     {
       "name": "empty_value_reference_behavior",

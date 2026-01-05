@@ -69,7 +69,7 @@ generate-go *ARGS="":
 # - Logic lives in: ccl-test-lib/generator.NewFlatGenerator()
 # - CLI wrapper: cmd/ccl-test-runner/generate_flat.go
 # - Separation: Library contains logic, CLI provides convenience interface
-# Uses behavior-metadata.json for function-specific filtering and auto-conflicts
+# Uses x-behaviorMetadata in source-format.json for function-specific filtering and auto-conflicts
 generate-flat *ARGS="":
     go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate {{ARGS}}
 
