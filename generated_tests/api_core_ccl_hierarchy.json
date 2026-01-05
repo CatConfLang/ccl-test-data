@@ -388,8 +388,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion",
-          "list_coercion_enabled"
+          "list_coercion_enabled",
+          "array_order_insertion"
         ]
       },
       "expected": {

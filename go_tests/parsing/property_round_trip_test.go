@@ -57,7 +57,7 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 
 }
 
-// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// round_trip_whitespace_normalization_round_trip - function:round_trip feature:whitespace variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -67,7 +67,7 @@ func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.
 	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
 }
 
-// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:round_trip feature:whitespace behavior:toplevel_indent_preserve
+// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:round_trip feature:whitespace
 func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveRoundTrip(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

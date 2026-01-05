@@ -66,7 +66,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_content"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_whitespace"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "\tvalue\twith\ttabs"
@@ -121,7 +128,14 @@
       "args": [
         "key"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "tabs_as_content"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "tabs_as_whitespace"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "\tindented"
@@ -471,7 +485,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_content"
+          "tabs_as_content",
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -517,6 +532,11 @@
       "behaviors": [
         "indent_spaces"
       ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "package =\n  = brew\n  = scoop\n  = nix"
@@ -540,6 +560,11 @@
       "behaviors": [
         "indent_spaces"
       ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "app =\n  = item1\n  = item2\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b"
@@ -596,7 +621,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -793,7 +825,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {

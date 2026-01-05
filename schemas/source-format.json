@@ -5,6 +5,163 @@
   "description": "Schema for source test files (api_*.json)",
   "type": "object",
   "required": ["tests"],
+
+  "$defs": {
+    "behaviorMetadata": {
+      "description": "Metadata about CCL behaviors including function affinity and mutual exclusivity. Used by the generator to filter behaviors to only the functions they affect.",
+      "type": "object",
+      "properties": {
+        "boolean_strict": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Only 'true' and 'false' (case-sensitive) are valid boolean values. Other values like 'yes', 'no', '1', '0' return errors from get_bool." },
+            "affectedFunctions": { "const": ["get_bool"] },
+            "mutuallyExclusiveWith": { "const": ["boolean_lenient"] }
+          }
+        },
+        "boolean_lenient": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Accept various boolean representations: 'true'/'false', 'yes'/'no', '1'/'0', 'on'/'off' (case-insensitive)." },
+            "affectedFunctions": { "const": ["get_bool"] },
+            "mutuallyExclusiveWith": { "const": ["boolean_strict"] }
+          }
+        },
+        "crlf_normalize_to_lf": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Normalize CRLF (\\r\\n) line endings to LF (\\n) during parsing. Affects all text processing." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["crlf_preserve_literal"] }
+          }
+        },
+        "crlf_preserve_literal": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Preserve CRLF (\\r\\n) line endings literally without normalization." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["crlf_normalize_to_lf"] }
+          }
+        },
+        "tabs_as_content": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Treat tab characters as content, not whitespace. Tabs in values are preserved literally." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "get_string", "canonical_format"] },
+            "mutuallyExclusiveWith": { "const": ["tabs_as_whitespace"] }
+          }
+        },
+        "tabs_as_whitespace": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Treat tab characters as whitespace for indentation purposes." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format"] },
+            "mutuallyExclusiveWith": { "const": ["tabs_as_content"] }
+          }
+        },
+        "indent_spaces": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Use spaces for indentation in formatted output." },
+            "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["indent_tabs"] }
+          }
+        },
+        "indent_tabs": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Use tabs for indentation in formatted output." },
+            "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["indent_spaces"] }
+          }
+        },
+        "list_coercion_enabled": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Single values are coerced to single-element lists when accessed via get_list." },
+            "affectedFunctions": { "const": ["get_list"] },
+            "mutuallyExclusiveWith": { "const": ["list_coercion_disabled"] }
+          }
+        },
+        "list_coercion_disabled": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Single values return an error when accessed via get_list (strict list typing)." },
+            "affectedFunctions": { "const": ["get_list"] },
+            "mutuallyExclusiveWith": { "const": ["list_coercion_enabled"] }
+          }
+        },
+        "array_order_insertion": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Arrays/lists preserve insertion order when building hierarchy." },
+            "affectedFunctions": { "const": ["build_hierarchy", "get_list"] },
+            "mutuallyExclusiveWith": { "const": ["array_order_lexicographic"] }
+          }
+        },
+        "array_order_lexicographic": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Arrays/lists are sorted lexicographically when building hierarchy." },
+            "affectedFunctions": { "const": ["build_hierarchy", "get_list"] },
+            "mutuallyExclusiveWith": { "const": ["array_order_insertion"] }
+          }
+        },
+        "toplevel_indent_strip": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Strip common leading indentation from top-level values (like Python's textwrap.dedent)." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["toplevel_indent_preserve"] }
+          }
+        },
+        "toplevel_indent_preserve": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Preserve indentation of top-level values exactly as written." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["toplevel_indent_strip"] }
+          }
+        }
+      }
+    },
+    "behaviorName": {
+      "type": "string",
+      "enum": [
+        "boolean_strict", "boolean_lenient",
+        "crlf_preserve_literal", "crlf_normalize_to_lf",
+        "tabs_as_content", "tabs_as_whitespace",
+        "indent_spaces", "indent_tabs",
+        "list_coercion_enabled", "list_coercion_disabled",
+        "array_order_insertion", "array_order_lexicographic",
+        "toplevel_indent_strip", "toplevel_indent_preserve"
+      ]
+    },
+    "functionName": {
+      "type": "string",
+      "enum": [
+        "parse", "parse_indented", "filter", "compose",
+        "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
+        "print", "canonical_format", "load", "round_trip",
+        "compose_associative", "identity_left", "identity_right"
+      ]
+    },
+    "featureName": {
+      "type": "string",
+      "oneOf": [
+        {
+          "enum": ["comments", "empty_keys", "multiline", "unicode", "whitespace"]
+        },
+        { "pattern": "^experimental_" },
+        { "pattern": "^optional_" }
+      ]
+    },
+    "variantName": {
+      "type": "string",
+      "enum": ["proposed_behavior", "reference_compliant"]
+    }
+  },
+
   "properties": {
     "$schema": {
       "type": "string",
@@ -38,14 +195,8 @@
               "required": ["function", "expect"],
               "properties": {
                 "function": {
-                  "type": "string",
-                  "description": "CCL function to test",
-                  "enum": [
-                    "parse", "parse_indented", "filter", "compose",
-                    "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
-                    "print", "canonical_format", "load", "round_trip",
-                    "compose_associative", "identity_left", "identity_right"
-                  ]
+                  "$ref": "#/$defs/functionName",
+                  "description": "CCL function to test"
                 },
                 "expect": {
                   "description": "Expected result from the function",
@@ -64,9 +215,7 @@
                             },
                             "additionalProperties": false
                           },
-                          {
-                            "type": "string"
-                          }
+                          { "type": "string" }
                         ]
                       }
                     },
@@ -95,9 +244,7 @@
                 "args": {
                   "type": "array",
                   "description": "Optional arguments for parameterized functions",
-                  "items": {
-                    "type": "string"
-                  }
+                  "items": { "type": "string" }
                 },
                 "error": {
                   "type": "boolean",
@@ -111,72 +258,40 @@
           "features": {
             "type": "array",
             "description": "Required language features for this test",
-            "items": {
-              "type": "string",
-              "oneOf": [
-                {
-                  "enum": [
-                    "comments", "empty_keys", "multiline", "unicode", "whitespace"
-                  ]
-                },
-                {
-                  "pattern": "^experimental_"
-                },
-                {
-                  "pattern": "^optional_"
-                }
-              ]
-            },
+            "items": { "$ref": "#/$defs/featureName" },
             "uniqueItems": true
           },
           "behaviors": {
             "type": "array",
-            "description": "Implementation behavior requirements (optional)",
-            "items": {
-              "type": "string",
-              "enum": [
-                "boolean_strict", "boolean_lenient",
-                "crlf_preserve_literal", "crlf_normalize_to_lf",
-                "tabs_as_content", "tabs_as_whitespace",
-                "indent_spaces", "indent_tabs",
-                "list_coercion_enabled", "list_coercion_disabled",
-                "array_order_insertion", "array_order_lexicographic",
-                "toplevel_indent_strip", "toplevel_indent_preserve"
-              ]
-            },
+            "description": "Implementation behavior requirements (optional). Conflicts are auto-generated from behavior metadata.",
+            "items": { "$ref": "#/$defs/behaviorName" },
             "uniqueItems": true
           },
           "variants": {
             "type": "array",
             "description": "Specification variants (optional)",
-            "items": {
-              "type": "string",
-              "enum": ["proposed_behavior", "reference_compliant"]
-            },
+            "items": { "$ref": "#/$defs/variantName" },
             "uniqueItems": true
           },
           "conflicts": {
             "type": "object",
-            "description": "Mutually exclusive options by category (optional)",
+            "deprecated": true,
+            "description": "DEPRECATED: Conflicts are now auto-generated from $defs/behaviorMetadata. This field is ignored and will be removed in a future version.",
             "properties": {
               "functions": {
                 "type": "array",
-                "description": "Functions that conflict with this test",
                 "items": {"type": "string"}
               },
               "behaviors": {
                 "type": "array",
-                "description": "Behaviors that conflict with this test's requirements",
                 "items": {"type": "string"}
               },
               "variants": {
                 "type": "array",
-                "description": "Variants that conflict with this test",
                 "items": {"type": "string"}
               },
               "features": {
                 "type": "array",
-                "description": "Features that conflict with this test",
                 "items": {"type": "string"}
               }
             },
@@ -187,5 +302,86 @@
       }
     }
   },
+
+  "x-behaviorMetadata": {
+    "$comment": "This section contains behavior metadata used by the generator for auto-generating conflicts. It mirrors $defs/behaviorMetadata but in a format that's easier to parse programmatically.",
+    "behaviors": {
+      "boolean_strict": {
+        "description": "Only 'true' and 'false' (case-sensitive) are valid boolean values. Other values like 'yes', 'no', '1', '0' return errors from get_bool.",
+        "affectedFunctions": ["get_bool"],
+        "mutuallyExclusiveWith": ["boolean_lenient"]
+      },
+      "boolean_lenient": {
+        "description": "Accept various boolean representations: 'true'/'false', 'yes'/'no', '1'/'0', 'on'/'off' (case-insensitive).",
+        "affectedFunctions": ["get_bool"],
+        "mutuallyExclusiveWith": ["boolean_strict"]
+      },
+      "crlf_normalize_to_lf": {
+        "description": "Normalize CRLF (\\r\\n) line endings to LF (\\n) during parsing. Affects all text processing.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"],
+        "mutuallyExclusiveWith": ["crlf_preserve_literal"]
+      },
+      "crlf_preserve_literal": {
+        "description": "Preserve CRLF (\\r\\n) line endings literally without normalization.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"],
+        "mutuallyExclusiveWith": ["crlf_normalize_to_lf"]
+      },
+      "tabs_as_content": {
+        "description": "Treat tab characters as content, not whitespace. Tabs in values are preserved literally.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "get_string", "canonical_format"],
+        "mutuallyExclusiveWith": ["tabs_as_whitespace"]
+      },
+      "tabs_as_whitespace": {
+        "description": "Treat tab characters as whitespace for indentation purposes.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format"],
+        "mutuallyExclusiveWith": ["tabs_as_content"]
+      },
+      "indent_spaces": {
+        "description": "Use spaces for indentation in formatted output.",
+        "affectedFunctions": ["canonical_format", "print", "round_trip"],
+        "mutuallyExclusiveWith": ["indent_tabs"]
+      },
+      "indent_tabs": {
+        "description": "Use tabs for indentation in formatted output.",
+        "affectedFunctions": ["canonical_format", "print", "round_trip"],
+        "mutuallyExclusiveWith": ["indent_spaces"]
+      },
+      "list_coercion_enabled": {
+        "description": "Single values are coerced to single-element lists when accessed via get_list.",
+        "affectedFunctions": ["get_list"],
+        "mutuallyExclusiveWith": ["list_coercion_disabled"]
+      },
+      "list_coercion_disabled": {
+        "description": "Single values return an error when accessed via get_list (strict list typing).",
+        "affectedFunctions": ["get_list"],
+        "mutuallyExclusiveWith": ["list_coercion_enabled"]
+      },
+      "array_order_insertion": {
+        "description": "Arrays/lists preserve insertion order when building hierarchy.",
+        "affectedFunctions": ["build_hierarchy", "get_list"],
+        "mutuallyExclusiveWith": ["array_order_lexicographic"]
+      },
+      "array_order_lexicographic": {
+        "description": "Arrays/lists are sorted lexicographically when building hierarchy.",
+        "affectedFunctions": ["build_hierarchy", "get_list"],
+        "mutuallyExclusiveWith": ["array_order_insertion"]
+      },
+      "toplevel_indent_strip": {
+        "description": "Strip common leading indentation from top-level values (like Python's textwrap.dedent).",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["toplevel_indent_preserve"]
+      },
+      "toplevel_indent_preserve": {
+        "description": "Preserve indentation of top-level values exactly as written.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["toplevel_indent_strip"]
+      }
+    },
+    "defaults": {
+      "unmappedBehavior": "global",
+      "description": "Behaviors not listed in this file are considered 'global' and apply to all functions."
+    }
+  },
+
   "additionalProperties": false
 }

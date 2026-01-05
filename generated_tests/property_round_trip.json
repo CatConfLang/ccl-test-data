@@ -81,14 +81,7 @@
       ]
     },
     {
-      "behaviors": [
-        "toplevel_indent_strip"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "toplevel_indent_preserve"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": true
@@ -146,14 +139,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "toplevel_indent_preserve"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "toplevel_indent_strip"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": true

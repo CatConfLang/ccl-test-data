@@ -24,27 +24,49 @@ const (
 
 // FlatGenerator transforms source format to implementation-friendly flat format
 type FlatGenerator struct {
-	SourceDir string
-	OutputDir string
-	Options   GenerateOptions
+	SourceDir        string
+	OutputDir        string
+	Options          GenerateOptions
+	BehaviorMetadata *BehaviorMetadata // Loaded from x-behaviorMetadata in schemas/source-format.json
 }
 
 // GenerateOptions controls flat format generation behavior
 type GenerateOptions struct {
-	SkipPropertyTests bool                 // Skip property-*.json files
-	SkipFunctions     []config.CCLFunction // Skip specific functions
-	OnlyFunctions     []config.CCLFunction // Generate only these functions
-	SourceFormat      loader.TestFormat    // Input format (compact or flat)
-	Verbose           bool                 // Enable verbose output
+	SkipPropertyTests     bool                 // Skip property-*.json files
+	SkipFunctions         []config.CCLFunction // Skip specific functions
+	OnlyFunctions         []config.CCLFunction // Generate only these functions
+	SourceFormat          loader.TestFormat    // Input format (compact or flat)
+	Verbose               bool                 // Enable verbose output
+	SchemasDir            string               // Path to schemas directory (for behavior metadata)
+	AutoGenerateConflicts bool                 // Auto-generate conflicts from behavior metadata
+	ValidateSourceTests   bool                 // Validate source tests against metadata
 }
 
 // NewFlatGenerator creates a new flat format generator
 func NewFlatGenerator(sourceDir, outputDir string, opts GenerateOptions) *FlatGenerator {
-	return &FlatGenerator{
+	fg := &FlatGenerator{
 		SourceDir: sourceDir,
 		OutputDir: outputDir,
 		Options:   opts,
 	}
+
+	// Load behavior metadata if schemas directory is specified
+	if opts.SchemasDir != "" {
+		metadata, err := LoadBehaviorMetadata(opts.SchemasDir)
+		if err != nil {
+			if opts.Verbose {
+				fmt.Printf("Warning: failed to load behavior metadata: %v\n", err)
+				fmt.Println("Continuing without behavior filtering...")
+			}
+		} else {
+			fg.BehaviorMetadata = metadata
+			if opts.Verbose {
+				fmt.Printf("Loaded behavior metadata with %d behaviors\n", len(metadata.Behaviors))
+			}
+		}
+	}
+
+	return fg
 }
 
 // GenerateAll processes all source test files and generates flat format
@@ -104,6 +126,21 @@ func (fg *FlatGenerator) GenerateFile(sourceFile string) error {
 	}
 
 	for _, sourceTest := range sourceSuite.Tests {
+		// Validate source test if enabled
+		if fg.Options.ValidateSourceTests && fg.BehaviorMetadata != nil {
+			var declaredConflicts []string
+			if sourceTest.Conflicts != nil {
+				declaredConflicts = sourceTest.Conflicts.Behaviors
+			}
+			result := fg.BehaviorMetadata.ValidateSourceTest(sourceTest.Name, sourceTest.Behaviors, declaredConflicts)
+			for _, warning := range result.Warnings {
+				fmt.Printf("Warning [%s]: %s\n", sourceTest.Name, warning)
+			}
+			for _, errMsg := range result.Errors {
+				fmt.Printf("Error [%s]: %s\n", sourceTest.Name, errMsg)
+			}
+		}
+
 		flatTests, err := fg.TransformSourceToFlat(sourceTest)
 		if err != nil {
 			return fmt.Errorf("failed to transform test %s: %w", sourceTest.Name, err)
@@ -204,10 +241,13 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 		}
 		flatTest.Features = uniqueFeatures
 
-		// Filter behaviors to only include those relevant to this validation function.
-		// This ensures function-specific behaviors (like boolean_strict/lenient) are
-		// only tagged on functions where they actually affect behavior.
-		flatTest.Behaviors = filterBehaviorsForFunction(sourceTest.Behaviors, validationName)
+		// Filter behaviors to only those affecting this function (if metadata available)
+		if fg.BehaviorMetadata != nil {
+			flatTest.Behaviors = fg.BehaviorMetadata.FilterBehaviorsForFunction(sourceTest.Behaviors, validationName)
+		} else {
+			// Fallback: copy all behaviors (legacy behavior)
+			flatTest.Behaviors = copyStringSlice(sourceTest.Behaviors)
+		}
 
 		// Copy variants from source, ensuring never nil
 		if sourceTest.Variants != nil {
@@ -216,8 +256,8 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 			flatTest.Variants = make([]string, 0)
 		}
 
-		// Filter conflicts to only include behavior conflicts relevant to this function
-		flatTest.Conflicts = filterConflictsForFunction(sourceTest.Conflicts, validationName)
+		// Handle conflicts: start with source conflicts, then auto-generate if enabled
+		flatTest.Conflicts = fg.generateConflicts(sourceTest.Conflicts, flatTest.Behaviors)
 
 		// Validation components are already parsed and applied above
 		// No special case handling needed - all validation types are handled uniformly
@@ -599,78 +639,27 @@ func expectErrorFromValue(value interface{}) bool {
 	return false
 }
 
-// behaviorFunctionMap defines which behaviors apply to which functions.
-// Behaviors not listed here apply to all functions (global behaviors).
-// This mapping ensures that function-specific behaviors like boolean_strict/lenient
-// are only tagged on the functions where they actually affect behavior.
-var behaviorFunctionMap = map[string][]string{
-	// Boolean parsing behavior only affects get_bool
-	"boolean_strict":  {"get_bool"},
-	"boolean_lenient": {"get_bool"},
-
-	// List coercion only affects get_list
-	"list_coercion_enabled":  {"get_list"},
-	"list_coercion_disabled": {"get_list"},
-
-	// CRLF handling affects parsing and formatting functions
-	"crlf_preserve_literal": {"parse", "parse_indented", "canonical_format", "load"},
-	"crlf_normalize_to_lf":  {"parse", "parse_indented", "canonical_format", "load"},
-
-	// Tab handling affects parsing, formatting, and hierarchy building functions
-	"tabs_as_content":    {"parse", "parse_indented", "canonical_format", "load", "build_hierarchy"},
-	"tabs_as_whitespace": {"parse", "parse_indented", "canonical_format", "load", "build_hierarchy"},
-
-	// Indent output affects formatting functions
-	"indent_spaces": {"canonical_format", "print", "round_trip"},
-	"indent_tabs":   {"canonical_format", "print", "round_trip"},
-
-	// Array ordering affects hierarchy building and list access
-	"array_order_insertion":     {"build_hierarchy", "get_list"},
-	"array_order_lexicographic": {"build_hierarchy", "get_list"},
-}
-
-// filterBehaviorsForFunction filters behaviors to only include those relevant
-// to the given validation function. Behaviors not in behaviorFunctionMap are
-// considered global and always included.
-func filterBehaviorsForFunction(behaviors []string, validationName string) []string {
-	if behaviors == nil {
+// copyStringSlice creates a deep copy of a string slice, ensuring never nil
+func copyStringSlice(slice []string) []string {
+	if slice == nil {
 		return make([]string, 0)
 	}
-
-	filtered := make([]string, 0, len(behaviors))
-	for _, behavior := range behaviors {
-		applicableFunctions, hasMapping := behaviorFunctionMap[behavior]
-		if !hasMapping {
-			// Behavior not in map = global behavior, always include
-			filtered = append(filtered, behavior)
-			continue
-		}
-
-		// Check if this validation function is in the applicable list
-		for _, fn := range applicableFunctions {
-			if fn == validationName {
-				filtered = append(filtered, behavior)
-				break
-			}
-		}
+	copy := make([]string, len(slice))
+	for i, val := range slice {
+		copy[i] = val
 	}
-
-	return filtered
+	return copy
 }
 
-// filterConflictsForFunction filters conflict behaviors to only include those
-// relevant to the given validation function.
-func filterConflictsForFunction(conflicts *types.ConflictSet, validationName string) *types.ConflictSet {
+// copyConflictSet creates a deep copy of a ConflictSet, ensuring never nil
+func copyConflictSet(conflicts *types.ConflictSet) *types.ConflictSet {
 	if conflicts == nil {
 		return nil
 	}
 
-	// Filter behavior conflicts
-	filteredBehaviors := filterBehaviorsForFunction(conflicts.Behaviors, validationName)
-
-	// Check if we still have any conflicts after filtering
+	// Check if we have any conflicts
 	hasConflicts := len(conflicts.Functions) > 0 ||
-		len(filteredBehaviors) > 0 ||
+		len(conflicts.Behaviors) > 0 ||
 		len(conflicts.Variants) > 0 ||
 		len(conflicts.Features) > 0
 
@@ -679,9 +668,61 @@ func filterConflictsForFunction(conflicts *types.ConflictSet, validationName str
 	}
 
 	return &types.ConflictSet{
-		Functions: conflicts.Functions,
-		Behaviors: filteredBehaviors,
-		Variants:  conflicts.Variants,
-		Features:  conflicts.Features,
+		Functions: copyStringSlice(conflicts.Functions),
+		Behaviors: copyStringSlice(conflicts.Behaviors),
+		Variants:  copyStringSlice(conflicts.Variants),
+		Features:  copyStringSlice(conflicts.Features),
 	}
+}
+
+// generateConflicts creates the conflicts for a flat test, optionally auto-generating
+// behavior conflicts from the metadata's mutuallyExclusiveWith definitions.
+func (fg *FlatGenerator) generateConflicts(sourceConflicts *types.ConflictSet, behaviors []string) *types.ConflictSet {
+	// Start with source conflicts
+	var result *types.ConflictSet
+	if sourceConflicts != nil {
+		result = &types.ConflictSet{
+			Functions: copyStringSlice(sourceConflicts.Functions),
+			Behaviors: copyStringSlice(sourceConflicts.Behaviors),
+			Variants:  copyStringSlice(sourceConflicts.Variants),
+			Features:  copyStringSlice(sourceConflicts.Features),
+		}
+	}
+
+	// Auto-generate behavior conflicts if enabled and metadata is available
+	if fg.Options.AutoGenerateConflicts && fg.BehaviorMetadata != nil && len(behaviors) > 0 {
+		autoConflicts := fg.BehaviorMetadata.GetConflictingBehaviors(behaviors)
+		if len(autoConflicts) > 0 {
+			if result == nil {
+				result = &types.ConflictSet{
+					Behaviors: autoConflicts,
+				}
+			} else {
+				// Merge auto-generated with existing, avoiding duplicates
+				existingSet := make(map[string]bool)
+				for _, b := range result.Behaviors {
+					existingSet[b] = true
+				}
+				for _, b := range autoConflicts {
+					if !existingSet[b] {
+						result.Behaviors = append(result.Behaviors, b)
+					}
+				}
+			}
+		}
+	}
+
+	// Return nil if no conflicts
+	if result == nil {
+		return nil
+	}
+	hasConflicts := len(result.Functions) > 0 ||
+		len(result.Behaviors) > 0 ||
+		len(result.Variants) > 0 ||
+		len(result.Features) > 0
+	if !hasConflicts {
+		return nil
+	}
+
+	return result
 }

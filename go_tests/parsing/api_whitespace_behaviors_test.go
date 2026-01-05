@@ -22,7 +22,7 @@ func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// tabs_as_content_in_value_get_string - function:get_string feature:whitespace
+// tabs_as_content_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -32,7 +32,7 @@ func TestTabsAsContentLeadingTabParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace
+// tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentLeadingTabGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -130,7 +130,7 @@ func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
 
 }
 
-// crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace
+// crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -199,7 +199,7 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 
 }
 
-// crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace
+// crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

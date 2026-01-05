@@ -365,8 +365,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_lexicographic",
-          "list_coercion_disabled"
+          "list_coercion_disabled",
+          "array_order_lexicographic"
         ]
       },
       "expected": {
@@ -479,8 +479,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "array_order_insertion",
-          "list_coercion_disabled"
+          "list_coercion_disabled",
+          "array_order_insertion"
         ]
       },
       "expected": {
