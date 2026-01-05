@@ -688,6 +688,36 @@
     },
     {
       "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "key1": "value1\r",
+          "key2": "value2\r"
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "name": "crlf_preserve_literal_basic_build_hierarchy",
+      "source_test": "crlf_preserve_literal_basic",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "crlf_normalize_to_lf"
       ],
       "conflicts": {
@@ -853,6 +883,70 @@
       ],
       "name": "crlf_nested_structure_build_hierarchy",
       "source_test": "crlf_nested_structure",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "config",
+            "value": "\r\n  host = localhost\r\n  port = 8080"
+          }
+        ]
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "name": "crlf_preserve_nested_structure_parse",
+      "source_test": "crlf_preserve_nested_structure",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "host": "localhost\r",
+            "port": "8080"
+          }
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "name": "crlf_preserve_nested_structure_build_hierarchy",
+      "source_test": "crlf_preserve_nested_structure",
       "validation": "build_hierarchy",
       "variants": []
     },

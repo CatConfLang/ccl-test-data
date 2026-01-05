@@ -140,6 +140,11 @@ func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+// crlf_preserve_literal_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // crlf_normalize_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
 
@@ -201,6 +206,16 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 
 // crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// crlf_preserve_nested_structure_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveNestedStructureParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
+}
+
+// crlf_preserve_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

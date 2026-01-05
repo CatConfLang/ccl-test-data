@@ -389,6 +389,13 @@
               "value": "value2\r"
             }
           ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "key1": "value1\r",
+            "key2": "value2\r"
+          }
         }
       ],
       "behaviors": [
@@ -504,6 +511,38 @@
       ],
       "behaviors": [
         "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ]
+    },
+    {
+      "name": "crlf_preserve_nested_structure",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\r\n  host = localhost\r\n  port = 8080"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "host": "localhost\r",
+              "port": "8080"
+            }
+          }
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
       ],
       "features": [
         "whitespace"
