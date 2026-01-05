@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://ccl.tylerbutler.com/schemas/source-format.json",
+  "$id": "ccl-test-source-format",
   "title": "CCL Test Source Format",
-  "description": "Schema for source test files (api_*.json). Includes behavior metadata for auto-generating conflicts.",
+  "description": "Schema for source test files (api_*.json)",
   "type": "object",
   "required": ["tests"],
 
