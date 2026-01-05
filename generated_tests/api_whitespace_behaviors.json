@@ -485,8 +485,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_content",
-          "indent_tabs"
+          "indent_tabs",
+          "tabs_as_content"
         ]
       },
       "expected": {
