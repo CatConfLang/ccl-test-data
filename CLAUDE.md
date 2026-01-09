@@ -136,7 +136,7 @@ Tests are organized by the CCL functions they validate. Implement the functions 
 
 - **Build tool**: `just` (justfile)
 - **Go version**: 1.25.1
-- **Module**: `github.com/tylerbutler/ccl-test-data`
+- **Module**: `github.com/catconflang/ccl-test-data`
 
 ## Shared Test Infrastructure
 
@@ -153,9 +153,9 @@ types/      # Unified data structures for test suites
 
 ```go
 import (
-    "github.com/tylerbutler/ccl-test-data/config"
-    "github.com/tylerbutler/ccl-test-data/loader"
-    "github.com/tylerbutler/ccl-test-data/types"
+    "github.com/catconflang/ccl-test-data/config"
+    "github.com/catconflang/ccl-test-data/loader"
+    "github.com/catconflang/ccl-test-data/types"
 )
 
 // Declare capabilities
@@ -179,7 +179,7 @@ tests, _ := testLoader.LoadAllTests(loader.LoadOptions{
 
 **Note:** These packages were consolidated from the deprecated `ccl-test-lib` repository. For local development, use a `replace` directive in your `go.mod`:
 ```
-replace github.com/tylerbutler/ccl-test-data => ../ccl-test-data
+replace github.com/catconflang/ccl-test-data => ../ccl-test-data
 ```
 
 ## Before Committing

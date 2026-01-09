@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tylerbutler/ccl-test-data.git"
+    "url": "git+https://github.com/catconflang/ccl-test-data.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tylerbutler/ccl-test-data/issues"
+    "url": "https://github.com/catconflang/ccl-test-data/issues"
   },
-  "homepage": "https://github.com/tylerbutler/ccl-test-data#readme",
+  "homepage": "https://github.com/catconflang/ccl-test-data#readme",
   "dependencies": {
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
