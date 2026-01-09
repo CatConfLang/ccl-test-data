@@ -2,6 +2,7 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
+## [0.3.1] - 2026-01-09
 ## [0.3.0] - 2026-01-05
 ### Tests
 #### Bug Fixes
