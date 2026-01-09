@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/tylerbutler/ccl-test-data/generator"
-	"github.com/tylerbutler/ccl-test-data/internal/styles"
+	"github.com/catconflang/ccl-test-data/generator"
+	"github.com/catconflang/ccl-test-data/internal/styles"
 	"github.com/urfave/cli/v2"
 )
 

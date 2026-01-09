@@ -8,8 +8,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/tylerbutler/ccl-test-data/config"
-	"github.com/tylerbutler/ccl-test-data/types"
+	"github.com/catconflang/ccl-test-data/config"
+	"github.com/catconflang/ccl-test-data/types"
 )
 
 // TestLoader handles both source and flat format loading with type-safe filtering

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/tylerbutler/ccl-test-data/internal/config"
+	"github.com/catconflang/ccl-test-data/internal/config"
 )
 
 func main() {

@@ -6,11 +6,11 @@ Language-agnostic JSON test suite for [CCL (Categorical Configuration Language)]
 
 ## Quick Start
 
-Download test files from [GitHub Releases](https://github.com/tylerbutler/ccl-test-data/releases) or use the generated flat format directly.
+Download test files from [GitHub Releases](https://github.com/catconflang/ccl-test-data/releases) or use the generated flat format directly.
 
 ```bash
 # Clone for development
-git clone https://github.com/tylerbutler/ccl-test-data.git
+git clone https://github.com/catconflang/ccl-test-data.git
 cd ccl-test-data
 ```
 
@@ -81,8 +81,8 @@ For Go implementations, import the test infrastructure directly:
 
 ```go
 import (
-    "github.com/tylerbutler/ccl-test-data/config"
-    "github.com/tylerbutler/ccl-test-data/loader"
+    "github.com/catconflang/ccl-test-data/config"
+    "github.com/catconflang/ccl-test-data/loader"
 )
 
 cfg := config.ImplementationConfig{
