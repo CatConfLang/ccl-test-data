@@ -957,8 +957,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_content",
-          "crlf_preserve_literal"
+          "crlf_preserve_literal",
+          "tabs_as_content"
         ]
       },
       "expected": {
@@ -991,8 +991,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_whitespace",
-          "crlf_preserve_literal"
+          "crlf_preserve_literal",
+          "tabs_as_whitespace"
         ]
       },
       "expected": {
