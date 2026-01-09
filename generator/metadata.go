@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 )
 
 // BehaviorMetadata represents the x-behaviorMetadata section in source-format.json
@@ -111,6 +112,9 @@ func (m *BehaviorMetadata) GetConflictingBehaviors(behaviors []string) []string 
 		conflicts = append(conflicts, conflict)
 	}
 
+	// Sort for deterministic output
+	sort.Strings(conflicts)
+
 	return conflicts
 }
 
@@ -120,12 +124,13 @@ func (m *BehaviorMetadata) ValidateBehavior(behavior string) bool {
 	return exists
 }
 
-// GetAllBehaviors returns all known behavior names
+// GetAllBehaviors returns all known behavior names in sorted order
 func (m *BehaviorMetadata) GetAllBehaviors() []string {
 	behaviors := make([]string, 0, len(m.Behaviors))
 	for name := range m.Behaviors {
 		behaviors = append(behaviors, name)
 	}
+	sort.Strings(behaviors)
 	return behaviors
 }
 

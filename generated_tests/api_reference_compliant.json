@@ -397,8 +397,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -493,8 +493,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -591,8 +591,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -693,8 +693,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -786,8 +786,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
@@ -860,8 +860,8 @@
       ],
       "conflicts": {
         "behaviors": [
-          "list_coercion_enabled",
-          "array_order_insertion"
+          "array_order_insertion",
+          "list_coercion_enabled"
         ]
       },
       "expected": {
