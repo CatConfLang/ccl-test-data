@@ -1,4 +1,5 @@
 /** @type {import('@commitlint/types').UserConfig} */
+// Auto-generated from commit-types.json - edit that file instead
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   plugins: ['selective-scope'],
@@ -9,26 +10,18 @@ module.exports = {
 
     // Allowed scopes per type
     // - Types listed with array: scope REQUIRED, must be from the list
-    // - Types listed with [null, ...]: scope OPTIONAL, if present must be from list
     // - Types not listed: scope not enforced
     'selective-scope': [
       2,
       'always',
       {
-        // These types REQUIRE a scope from the allowed list
-        feat: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        fix: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        refactor: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        perf: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        test: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        revert: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-        style: ['schema', 'tests', 'generation', 'config', 'test-reader', 'cli'],
-
-        // These types: scope NOT enforced (not listed)
-        // - chore
-        // - ci
-        // - build
-        // - docs
+        feat: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        fix: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        perf: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        refactor: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        test: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        revert: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        style: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
       },
     ],
   },

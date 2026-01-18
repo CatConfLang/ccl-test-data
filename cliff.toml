@@ -1,3 +1,6 @@
+# git-cliff config for ccl-test-data
+# Auto-generated from commit-types.json - edit that file instead
+
 [changelog]
 header = """
 # Changelog\n
@@ -27,13 +30,14 @@ footer = ""
 trim = true
 
 [changelog.scopes]
-build = "Build"
-cli = "CLI"
-config = "Configuration"
-generation = "Generator"
 schema = "Schema"
-test-reader = "Test Reader"
 tests = "Tests"
+test-reader = "Test Reader"
+cli = "CLI"
+generation = "Generator"
+config = "Configuration"
+build = "Build"
+release = "Release"
 
 [git]
 conventional_commits = true
@@ -41,21 +45,23 @@ filter_unconventional = true
 split_commits = false
 commit_parsers = [
     # Skip noise
+    { message = "^revert", skip = true },
+    { message = "^style", skip = true },
     { message = "^chore", skip = true },
     { message = "^build", skip = true },
     { message = "^ci", skip = true },
-    { scope = "release", skip = true },
-    { scope = "build", skip = true },
-    { scope = "config", skip = true },
     { scope = "generation", skip = true },
+    { scope = "config", skip = true },
+    { scope = "build", skip = true },
+    { scope = "release", skip = true },
 
-    # Group by type (scoped commits only)
+    # Group by type
     { message = "^feat", group = "Features" },
     { message = "^fix", group = "Bug Fixes" },
-    { message = "^doc", group = "Documentation" },
     { message = "^perf", group = "Performance" },
     { message = "^refactor", group = "Refactor" },
     { message = "^test", group = "Testing" },
+    { message = "^docs", group = "Documentation" },
 ]
 filter_commits = false
 tag_pattern = "v[0-9].*"
