@@ -28,6 +28,7 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@sourcemeta/jsonschema": "^12.10.1",
+    "@tylerbu/cli": "^0.7.0",
     "commitlint-plugin-selective-scope": "^1.0.1"
   }
 }
