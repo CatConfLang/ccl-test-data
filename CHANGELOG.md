@@ -2,6 +2,19 @@
 
 All notable changes to the CCL test data will be documented in this file.
 
+## [0.4.0] - 2026-01-22
+### Tests
+#### Bug Fixes
+- Add composite function mapping and bare list nested object tests (#61)
+- Composite function mapping
+- Bare list nested object tests
+
+
+### Schema
+#### Bug Fixes
+- Allow nested objects in expect arrays
+
+
 ## [0.3.1] - 2026-01-09
 ## [0.3.0] - 2026-01-05
 ### Tests
@@ -28,6 +41,9 @@ All notable changes to the CCL test data will be documented in this file.
 #### Features
 - Add toplevel_indent_strip and toplevel_indent_preserve behavior pair (#47)
 
+#### Testing
+- Add toplevel_indent_strip and toplevel_indent_preserve behavior pair (#47)
+
 
 ### Cli
 #### Bug Fixes
@@ -50,6 +66,9 @@ All notable changes to the CCL test data will be documented in this file.
 #### Refactor
 - Simplify whitespace behavior model (#34)
 
+#### Testing
+- Simplify whitespace behavior model (#34)
+
 
 ### Schema
 #### Features
@@ -69,6 +88,9 @@ All notable changes to the CCL test data will be documented in this file.
 - Add algebraic property functions and multi-input support
 - Unify tests to use inputs field
 - Add indented line continuation test cases (#18)
+
+#### Testing
+- Add list_coercion_enabled behavior to api_list_access tests (#9)
 
 
 ### Schema
