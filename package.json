@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/catconflang/ccl-test-data#readme",
   "dependencies": {
+    "consola": "^3.4.2",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",

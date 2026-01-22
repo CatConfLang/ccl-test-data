@@ -1,5 +1,5 @@
 /** @type {import('@commitlint/types').UserConfig} */
-// Auto-generated from commit-types.json - edit that file instead
+// Auto-generated from commit-types.ccl - edit that file instead
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   plugins: ['selective-scope'],
@@ -15,13 +15,13 @@ module.exports = {
       2,
       'always',
       {
-        feat: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        fix: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        perf: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        refactor: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        test: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        revert: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
-        style: ["schema", "tests", "test-reader", "cli", "generation", "config", "build", "release"],
+        feat: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        fix: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        perf: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        refactor: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        test: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        revert: ["schema","tests","test-reader","cli","generation","config","build","release"],
+        style: ["schema","tests","test-reader","cli","generation","config","build","release"],
       },
     ],
   },
