@@ -1010,7 +1010,8 @@
       },
       "features": [],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "empty_key ="
@@ -1037,7 +1038,8 @@
       },
       "features": [],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "value_with_tabs = text\t\twith\ttabs\t"
@@ -1059,7 +1061,8 @@
         "unicode"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "unicode = 你好世界\nemo = 🌟✨"
@@ -1122,7 +1125,8 @@
       },
       "features": [],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
@@ -1142,7 +1146,8 @@
       },
       "features": [],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
@@ -1162,7 +1167,8 @@
       },
       "features": [],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "z = last\na = first\nm = middle"

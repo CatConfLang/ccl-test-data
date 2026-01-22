@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_list_access.json
@@ -553,4 +553,207 @@ func TestBareListErrorNotAListBuildHierarchy(t *testing.T) {
 // bare_list_error_not_a_list_get_list - function:get_list behavior:list_coercion_disabled
 func TestBareListErrorNotAListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_basic_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsBasicParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    name = first
+    value = 1
+  =
+    name = second
+    value = 2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_basic_build_hierarchy - function:build_hierarchy feature:empty_keys
+func TestBareListNestedObjectsBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_basic_get_list - function:get_list feature:empty_keys
+func TestBareListNestedObjectsBasicGetList(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_single_item_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsSingleItemParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    name = only
+    value = 42`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  =\n    name = only\n    value = 42"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_single_item_build_hierarchy - function:build_hierarchy feature:empty_keys
+func TestBareListNestedObjectsSingleItemBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_single_item_get_list - function:get_list feature:empty_keys
+func TestBareListNestedObjectsSingleItemGetList(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_minimal_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsMinimalParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    name = first
+  =
+    name = second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  =\n    name = first\n  =\n    name = second"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_minimal_build_hierarchy - function:build_hierarchy feature:empty_keys
+func TestBareListNestedObjectsMinimalBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_deeply_nested_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsDeeplyNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    config =
+      host = localhost
+      port = 8080
+  =
+    config =
+      host = example.com
+      port = 443`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_deeply_nested_build_hierarchy - function:build_hierarchy feature:empty_keys
+func TestBareListNestedObjectsDeeplyNestedBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_mixed_with_strings_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsMixedWithStringsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  = simple_string
+  =
+    name = nested
+    value = obj
+  = another_string`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_mixed_with_strings_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:array_order_insertion
+func TestBareListNestedObjectsMixedWithStringsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_round_trip_parse - function:parse feature:empty_keys
+func TestBareListNestedObjectsRoundTripParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    name = first
+    value = 1
+  =
+    name = second
+    value = 2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "items", Value: "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// bare_list_nested_objects_round_trip_print - function:print feature:empty_keys
+func TestBareListNestedObjectsRoundTripPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// bare_list_nested_objects_round_trip_round_trip - function:parse function:print feature:empty_keys
+func TestBareListNestedObjectsRoundTripRoundTrip(t *testing.T) {
+
+	ccl := mock.New()
+	input := `items =
+  =
+    name = first
+    value = 1
+  =
+    name = second
+    value = 2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement round_trip validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }

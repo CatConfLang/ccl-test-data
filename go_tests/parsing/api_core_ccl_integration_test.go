@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_core_ccl_integration.json
@@ -36,6 +36,11 @@ func TestCompleteBasicWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// complete_basic_workflow_print - function:print
+func TestCompleteBasicWorkflowPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // complete_nested_workflow_parse - function:parse
 func TestCompleteNestedWorkflowParse(t *testing.T) {
 
@@ -59,6 +64,11 @@ func TestCompleteNestedWorkflowParse(t *testing.T) {
 
 // complete_nested_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteNestedWorkflowBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// complete_nested_workflow_print - function:print
+func TestCompleteNestedWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -91,6 +101,11 @@ func TestCompleteMixedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// complete_mixed_workflow_print - function:print
+func TestCompleteMixedWorkflowPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // complete_lists_workflow_parse - function:parse
 func TestCompleteListsWorkflowParse(t *testing.T) {
 
@@ -117,6 +132,11 @@ ports =
 
 // complete_lists_workflow_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// complete_lists_workflow_print - function:print
+func TestCompleteListsWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -149,6 +169,11 @@ func TestCompleteListsWorkflowLexicographicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// complete_lists_workflow_lexicographic_print - function:print
+func TestCompleteListsWorkflowLexicographicPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // complete_multiline_workflow_parse - function:parse feature:multiline
 func TestCompleteMultilineWorkflowParse(t *testing.T) {
 
@@ -175,6 +200,11 @@ config =
 
 // complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// complete_multiline_workflow_print - function:print feature:multiline
+func TestCompleteMultilineWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -218,5 +248,10 @@ features =
 
 // real_world_complete_workflow_build_hierarchy - function:build_hierarchy
 func TestRealWorldCompleteWorkflowBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// real_world_complete_workflow_print - function:print
+func TestRealWorldCompleteWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

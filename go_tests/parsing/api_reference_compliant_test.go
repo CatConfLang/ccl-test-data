@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_reference_compliant.json
@@ -344,19 +344,44 @@ func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_empty_values_ocaml_reference_canonical_format - function:canonical_format variant:reference_compliant
+// canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
 func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `empty_key =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
-// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:canonical_format behavior:tabs_as_content variant:reference_compliant
+// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print behavior:tabs_as_content variant:reference_compliant
 func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// canonical_format_unicode_ocaml_reference_canonical_format - function:canonical_format feature:unicode variant:reference_compliant
+// canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print feature:unicode variant:reference_compliant
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `unicode = 你好世界
+emo = 🌟✨`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal variant:reference_compliant
@@ -364,17 +389,45 @@ func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_line_endings_reference_behavior_canonical_format - function:canonical_format behavior:crlf_preserve_literal variant:reference_compliant
+// canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print behavior:crlf_preserve_literal variant:reference_compliant
 func TestCanonicalFormatLineEndingsReferenceBehaviorCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:canonical_format variant:reference_compliant
+// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
 func TestCanonicalFormatConsistentSpacingOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `key1=value1
+key2  =  value2
+key3	=	value3`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
-// deterministic_output_ocaml_reference_canonical_format - function:canonical_format variant:reference_compliant
+// deterministic_output_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
 func TestDeterministicOutputOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `z = last
+a = first
+m = middle`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }

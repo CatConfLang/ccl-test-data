@@ -28,18 +28,21 @@ type ImplementationConfig struct {
 type CCLFunction string
 
 const (
-	FunctionParse          CCLFunction = "parse"
-	FunctionParseIndented  CCLFunction = "parse_indented"
-	FunctionFilter         CCLFunction = "filter"
-	FunctionCombine        CCLFunction = "combine"
-	FunctionExpandDotted   CCLFunction = "expand_dotted"
-	FunctionBuildHierarchy CCLFunction = "build_hierarchy"
-	FunctionGetString      CCLFunction = "get_string"
-	FunctionGetInt         CCLFunction = "get_int"
-	FunctionGetBool        CCLFunction = "get_bool"
-	FunctionGetFloat       CCLFunction = "get_float"
-	FunctionGetList        CCLFunction = "get_list"
-	FunctionPrettyPrint    CCLFunction = "pretty_print"
+	FunctionParse           CCLFunction = "parse"
+	FunctionParseIndented   CCLFunction = "parse_indented"
+	FunctionFilter          CCLFunction = "filter"
+	FunctionCombine         CCLFunction = "combine"
+	FunctionExpandDotted    CCLFunction = "expand_dotted"
+	FunctionBuildHierarchy  CCLFunction = "build_hierarchy"
+	FunctionGetString       CCLFunction = "get_string"
+	FunctionGetInt          CCLFunction = "get_int"
+	FunctionGetBool         CCLFunction = "get_bool"
+	FunctionGetFloat        CCLFunction = "get_float"
+	FunctionGetList         CCLFunction = "get_list"
+	FunctionPrint           CCLFunction = "print"
+	FunctionRoundTrip       CCLFunction = "round_trip"
+	FunctionCanonicalFormat CCLFunction = "canonical_format"
+	FunctionLoad            CCLFunction = "load"
 )
 
 // AllFunctions returns all valid CCL functions
@@ -56,7 +59,10 @@ func AllFunctions() []CCLFunction {
 		FunctionGetBool,
 		FunctionGetFloat,
 		FunctionGetList,
-		FunctionPrettyPrint,
+		FunctionPrint,
+		FunctionRoundTrip,
+		FunctionCanonicalFormat,
+		FunctionLoad,
 	}
 }
 

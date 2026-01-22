@@ -203,9 +203,9 @@
                   "oneOf": [
                     {
                       "type": "array",
-                      "description": "Array of key-value entries for parse functions OR array of strings for list functions",
+                      "description": "Array of entries for parse functions, strings for simple lists, or objects for lists with nested items",
                       "items": {
-                        "oneOf": [
+                        "anyOf": [
                           {
                             "type": "object",
                             "required": ["key", "value"],
@@ -215,7 +215,11 @@
                             },
                             "additionalProperties": false
                           },
-                          { "type": "string" }
+                          { "type": "string" },
+                          {
+                            "type": "object",
+                            "description": "Nested object for list items (get_list with nested objects)"
+                          }
                         ]
                       }
                     },

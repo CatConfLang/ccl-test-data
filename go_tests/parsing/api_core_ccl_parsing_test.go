@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_core_ccl_parsing.json
@@ -31,6 +31,11 @@ age = 42`
 
 }
 
+// basic_key_value_pairs_print - function:print
+func TestBasicKeyValuePairsPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // equals_in_values_parse - function:parse
 func TestEqualsInValuesParse(t *testing.T) {
 
@@ -48,6 +53,11 @@ path = /bin/app=prod`
 	expected := []mock.Entry{mock.Entry{Key: "msg", Value: "k=v pairs work fine"}, mock.Entry{Key: "path", Value: "/bin/app=prod"}}
 	assert.Equal(t, expected, parseResult)
 
+}
+
+// equals_in_values_print - function:print
+func TestEqualsInValuesPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // whitespace_trimming_parse - function:parse feature:whitespace
@@ -90,6 +100,11 @@ done = yes`
 
 }
 
+// multiline_values_print - function:print feature:multiline
+func TestMultilineValuesPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // empty_values_parse - function:parse feature:empty_keys
 func TestEmptyValuesParse(t *testing.T) {
 
@@ -107,6 +122,11 @@ other = value`
 	expected := []mock.Entry{mock.Entry{Key: "empty", Value: ""}, mock.Entry{Key: "other", Value: "value"}}
 	assert.Equal(t, expected, parseResult)
 
+}
+
+// empty_values_print - function:print feature:empty_keys
+func TestEmptyValuesPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // nested_structure_parsing_parse - function:parse
@@ -129,6 +149,11 @@ func TestNestedStructureParsingParse(t *testing.T) {
 
 }
 
+// nested_structure_parsing_print - function:print
+func TestNestedStructureParsingPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // unicode_parsing_parse - function:parse feature:unicode
 func TestUnicodeParsingParse(t *testing.T) {
 
@@ -148,6 +173,11 @@ func TestUnicodeParsingParse(t *testing.T) {
 
 }
 
+// unicode_parsing_print - function:print feature:unicode
+func TestUnicodeParsingPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // empty_input_parse - function:parse
 func TestEmptyInputParse(t *testing.T) {
 
@@ -164,6 +194,11 @@ func TestEmptyInputParse(t *testing.T) {
 	expected := []mock.Entry{}
 	assert.Equal(t, expected, parseResult)
 
+}
+
+// empty_input_print - function:print
+func TestEmptyInputPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant

@@ -508,7 +508,7 @@ func (tl *TestLoader) loadCompactFormat(data []byte) ([]types.TestCase, error) {
 				validations.GetFloat = validationValue
 			case "get_list":
 				validations.GetList = validationValue
-			case "pretty_print":
+			case "print":
 				validations.PrettyPrint = validationValue
 			case "round_trip":
 				validations.RoundTrip = validationValue

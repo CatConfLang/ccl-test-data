@@ -75,7 +75,10 @@ func TestAllFunctions_Completeness(t *testing.T) {
 		FunctionGetBool,
 		FunctionGetFloat,
 		FunctionGetList,
-		FunctionPrettyPrint,
+		FunctionPrint,
+		FunctionRoundTrip,
+		FunctionCanonicalFormat,
+		FunctionLoad,
 	}
 
 	if len(functions) != len(expectedFunctions) {
@@ -491,7 +494,10 @@ func TestCCLFunction_StringValues(t *testing.T) {
 		{FunctionGetBool, "get_bool"},
 		{FunctionGetFloat, "get_float"},
 		{FunctionGetList, "get_list"},
-		{FunctionPrettyPrint, "pretty_print"},
+		{FunctionPrint, "print"},
+		{FunctionRoundTrip, "round_trip"},
+		{FunctionCanonicalFormat, "canonical_format"},
+		{FunctionLoad, "load"},
 	}
 
 	for _, tc := range testCases {

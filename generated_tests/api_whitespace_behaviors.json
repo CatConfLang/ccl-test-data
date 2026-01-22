@@ -441,7 +441,8 @@
         "whitespace"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "key = \tvalue"
@@ -468,7 +469,8 @@
         "whitespace"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "key = \tvalue"
@@ -498,7 +500,8 @@
         "multiline"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -518,7 +521,8 @@
         "whitespace"
       ],
       "functions": [
-        "round_trip"
+        "parse",
+        "print"
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
@@ -546,7 +550,8 @@
         "whitespace"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "package =\n  = brew\n  = scoop\n  = nix"
@@ -574,7 +579,8 @@
         "whitespace"
       ],
       "functions": [
-        "canonical_format"
+        "parse",
+        "print"
       ],
       "inputs": [
         "app =\n  = item1\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b\n  = item2"

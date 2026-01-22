@@ -876,6 +876,181 @@
       "inputs": [
         "config =\n  setting = value"
       ]
+    },
+    {
+      "name": "bare_list_nested_objects_basic",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": {
+              "": [
+                {"name": "first", "value": "1"},
+                {"name": "second", "value": "2"}
+              ]
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            {"name": "first", "value": "1"},
+            {"name": "second", "value": "2"}
+          ],
+          "args": ["items"]
+        }
+      ],
+      "features": ["empty_keys"],
+      "inputs": ["items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"]
+    },
+    {
+      "name": "bare_list_nested_objects_single_item",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    name = only\n    value = 42"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": {
+              "": [
+                {"name": "only", "value": "42"}
+              ]
+            }
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            {"name": "only", "value": "42"}
+          ],
+          "args": ["items"]
+        }
+      ],
+      "features": ["empty_keys"],
+      "inputs": ["items =\n  =\n    name = only\n    value = 42"]
+    },
+    {
+      "name": "bare_list_nested_objects_minimal",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    name = first\n  =\n    name = second"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": {
+              "": [
+                {"name": "first"},
+                {"name": "second"}
+              ]
+            }
+          }
+        }
+      ],
+      "features": ["empty_keys"],
+      "inputs": ["items =\n  =\n    name = first\n  =\n    name = second"]
+    },
+    {
+      "name": "bare_list_nested_objects_deeply_nested",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": {
+              "": [
+                {"config": {"host": "localhost", "port": "8080"}},
+                {"config": {"host": "example.com", "port": "443"}}
+              ]
+            }
+          }
+        }
+      ],
+      "features": ["empty_keys"],
+      "inputs": ["items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"]
+    },
+    {
+      "name": "bare_list_nested_objects_mixed_with_strings",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "items": {
+              "": [
+                "simple_string",
+                {"name": "nested", "value": "obj"},
+                "another_string"
+              ]
+            }
+          }
+        }
+      ],
+      "features": ["empty_keys"],
+      "behaviors": ["array_order_insertion"],
+      "inputs": ["items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"]
+    },
+    {
+      "name": "bare_list_nested_objects_round_trip",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+            }
+          ]
+        },
+        {
+          "function": "print",
+          "expect": "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+        },
+        {
+          "function": "round_trip",
+          "expect": true
+        }
+      ],
+      "features": ["empty_keys"],
+      "inputs": ["items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"]
     }
   ]
 }
