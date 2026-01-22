@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_whitespace_behaviors.json
@@ -82,34 +82,81 @@ func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
-// tabs_canonical_format_as_content_canonical_format - function:canonical_format feature:whitespace behavior:tabs_as_content
+// tabs_canonical_format_as_content_canonical_format - function:parse function:print feature:whitespace behavior:tabs_as_content
 func TestTabsCanonicalFormatAsContentCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// tabs_canonical_format_as_whitespace_canonical_format - function:canonical_format feature:whitespace behavior:tabs_as_whitespace
+// tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print feature:whitespace behavior:tabs_as_whitespace
 func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
-// tabs_as_whitespace_multiline_print_canonical_format - function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_spaces
+// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_spaces
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
-// tabs_as_whitespace_round_trip_round_trip - function:round_trip feature:whitespace
+// tabs_as_whitespace_round_trip_round_trip - function:parse function:print feature:whitespace
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `key = 	value	with	tabs`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement round_trip validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
-// nested_bare_list_indentation_canonical_format - function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
+// nested_bare_list_indentation_canonical_format - function:parse function:print feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestNestedBareListIndentationCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `package =
+  = brew
+  = scoop
+  = nix`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
-// deeply_nested_bare_list_indentation_canonical_format - function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
+// deeply_nested_bare_list_indentation_canonical_format - function:parse function:print feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `app =
+  = item1
+  config =
+    = nested1
+    = nested2
+    deep =
+      = level3a
+      = level3b
+  = item2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // crlf_normalize_to_lf_basic_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf

@@ -60,7 +60,7 @@ type ValidationSet struct {
 	GetBool            interface{} `json:"get_bool,omitempty"`
 	GetFloat           interface{} `json:"get_float,omitempty"`
 	GetList            interface{} `json:"get_list,omitempty"`
-	PrettyPrint        interface{} `json:"pretty_print,omitempty"`
+	PrettyPrint        interface{} `json:"print,omitempty"`
 	RoundTrip          interface{} `json:"round_trip,omitempty"`
 	Canonical          interface{} `json:"canonical_format,omitempty"`
 	ComposeAssociative interface{} `json:"compose_associative,omitempty"`

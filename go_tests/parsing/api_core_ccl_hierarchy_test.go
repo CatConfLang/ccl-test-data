@@ -3,9 +3,9 @@ package parsing_test
 import (
 	"testing"
 
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/catconflang/ccl-test-data/internal/mock"
 )
 
 // Generated from generated_tests/api_core_ccl_hierarchy.json
@@ -33,6 +33,11 @@ age = 42`
 
 // basic_object_construction_build_hierarchy - function:build_hierarchy
 func TestBasicObjectConstructionBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// basic_object_construction_print - function:print
+func TestBasicObjectConstructionPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -64,6 +69,11 @@ func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// deep_nested_objects_print - function:print
+func TestDeepNestedObjectsPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // duplicate_keys_to_lists_parse - function:parse
 func TestDuplicateKeysToListsParse(t *testing.T) {
 
@@ -86,6 +96,11 @@ item = third`
 
 // duplicate_keys_to_lists_build_hierarchy - function:build_hierarchy
 func TestDuplicateKeysToListsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// duplicate_keys_to_lists_print - function:print
+func TestDuplicateKeysToListsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -112,6 +127,11 @@ func TestNestedDuplicateKeysParse(t *testing.T) {
 
 // nested_duplicate_keys_build_hierarchy - function:build_hierarchy
 func TestNestedDuplicateKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// nested_duplicate_keys_print - function:print
+func TestNestedDuplicateKeysPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -142,6 +162,11 @@ func TestMixedFlatAndNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// mixed_flat_and_nested_print - function:print
+func TestMixedFlatAndNestedPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // nested_objects_with_lists_parse - function:parse
 func TestNestedObjectsWithListsParse(t *testing.T) {
 
@@ -169,6 +194,11 @@ func TestNestedObjectsWithListsParse(t *testing.T) {
 
 // nested_objects_with_lists_build_hierarchy - function:build_hierarchy
 func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// nested_objects_with_lists_print - function:print
+func TestNestedObjectsWithListsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

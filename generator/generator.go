@@ -268,10 +268,23 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 	return flatTests, nil
 }
 
+// compositeFunctionMap defines validations that require multiple underlying functions.
+// For example, round_trip validation requires both parse and print functions.
+var compositeFunctionMap = map[string][]string{
+	"round_trip":       {"parse", "print"},
+	"load":             {"parse", "build_hierarchy"},
+	"canonical_format": {"parse", "print"},
+}
+
 // GenerateMetadataFromValidation creates type-safe metadata from validation type
 func (fg *FlatGenerator) GenerateMetadataFromValidation(validationName string) (functions []string, features []string) {
-	// Map validation names to functions
-	functions = []string{validationName}
+	// Check composite function mapping first
+	if compositeFunctions, ok := compositeFunctionMap[validationName]; ok {
+		functions = compositeFunctions
+	} else {
+		// Map validation names to functions (1:1 mapping)
+		functions = []string{validationName}
+	}
 
 	// Initialize features as empty slice, never nil
 	features = make([]string, 0)
