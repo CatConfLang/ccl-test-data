@@ -16,7 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # ratchet:actions/checkout@v4
         with:
-          fetch-depth: 0 # Required for git-cliff to see full history
+          fetch-depth: 0 # Required for semantic-release to see full history
 
       - name: Setup Go
         uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # ratchet:actions/setup-go@v5
@@ -38,14 +38,35 @@ jobs:
           echo "tag=$TAG_NAME" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install semantic-release
+        run: pip install python-semantic-release
+
       - name: Generate release notes
         id: changelog
-        uses: orhun/git-cliff-action@d77b37db2e3f7398432d34b72a12aa3e2ba87e51 # ratchet:orhun/git-cliff-action@v4
-        with:
-          config: cliff.toml
-          args: --latest --strip header
-        env:
-          OUTPUT: RELEASE_NOTES.md
+        run: |
+          # semantic-release generates .release_notes.md from the template
+          semantic-release version --print-last-released-tag > /dev/null 2>&1 || true
+          # Use Python to extract release notes for this version
+          python3 << 'EOF'
+          import re
+          version = "${{ steps.version.outputs.version }}"
+          with open("CHANGELOG.md", "r") as f:
+              content = f.read()
+          # Match from version header to next version header (or end)
+          pattern = rf"## \[{re.escape(version)}\][^\n]*\n(.*?)(?=\n## \[|\Z)"
+          match = re.search(pattern, content, re.DOTALL)
+          if match:
+              with open("RELEASE_NOTES.md", "w") as f:
+                  f.write(match.group(1).strip())
+          else:
+              with open("RELEASE_NOTES.md", "w") as f:
+                  f.write(f"Release {version}")
+          EOF
 
       - name: Rewrite schema URLs in JSON files
         env:

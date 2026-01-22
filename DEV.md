@@ -7,7 +7,7 @@ Development setup and contribution guide for the CCL Test Data repository.
 - Go 1.25+
 - Node.js (for schema validation and README generation)
 - [just](https://github.com/casey/just) (command runner)
-- [git-cliff](https://git-cliff.org/) (for releases)
+- [uv](https://docs.astral.sh/uv/) (Python package manager, for semantic-release)
 
 ## Setup
 
@@ -91,7 +91,7 @@ See [docs/test-architecture.md](docs/test-architecture.md) for test structure de
 
 ## Release Process
 
-This project uses [git-cliff](https://git-cliff.org/) for changelog generation and [Conventional Commits](https://www.conventionalcommits.org/).
+This project uses [Python Semantic Release](https://python-semantic-release.readthedocs.io/) for changelog generation and [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Commit Message Format
 
@@ -103,17 +103,37 @@ This project uses [git-cliff](https://git-cliff.org/) for changelog generation a
 | `refactor:` | Patch | `refactor: simplify parser` |
 | `feat!:` or `BREAKING CHANGE:` | Major | Breaking changes |
 
+### Squash Merge Commit Format
+
+When squash merging PRs with multiple logical changes, format the commit body with `*` prefixes:
+
+```
+feat(scope): main PR title (#123)
+
+Brief summary.
+
+* fix(tests): first logical change
+
+Description of change.
+
+* fix(schema): second logical change
+
+Description of change.
+```
+
+Each `* type(scope): description` entry becomes a separate changelog entry.
+
 ### Creating a Release
 
 ```bash
 # 1. Check suggested version
 just release-check
 
-# 2. Preview changelog
+# 2. Preview changelog (dry-run)
 just release-preview
 
 # 3. Create release (updates CHANGELOG.md, commits, tags)
-just release 1.2.0
+just release
 
 # 4. Push to trigger CI
 git push origin main --tags

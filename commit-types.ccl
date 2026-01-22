@@ -1,5 +1,5 @@
 /= Single source of truth for conventional commit types
-/= Used by commitlint and git-cliff
+/= Used by commitlint
 
 types =
   feat =

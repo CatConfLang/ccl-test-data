@@ -138,6 +138,46 @@ Tests are organized by the CCL functions they validate. Implement the functions 
 - **Go version**: 1.25.1
 - **Module**: `github.com/catconflang/ccl-test-data`
 
+## Changelog Generation
+
+This project uses [Python Semantic Release](https://python-semantic-release.readthedocs.io/) for changelog generation.
+
+### Squash Merge Commit Format
+
+When squash merging PRs with multiple logical changes, format the commit body with `*` prefixes for each sub-commit:
+
+```
+feat(scope): main PR title (#123)
+
+Brief summary of the changes.
+
+* fix(tests): first logical change
+
+Description of the first change.
+
+* fix(schema): second logical change
+
+Description of the second change.
+
+* feat(cli): third logical change
+
+Description of the third change.
+```
+
+**Key points:**
+- Main commit title follows conventional commits: `type(scope): description`
+- Each sub-entry starts with `* type(scope): description` on its own line
+- Include a blank line and description after each sub-entry
+- Each sub-entry becomes a separate changelog entry with its body text preserved
+- `chore` type entries are excluded from the changelog
+
+### Changelog Commands
+```bash
+semantic-release changelog          # Generate/update CHANGELOG.md
+semantic-release --noop version     # Preview what would happen
+semantic-release version --no-push  # Version without pushing
+```
+
 ## Shared Test Infrastructure
 
 This repository includes reusable Go packages for CCL implementations:

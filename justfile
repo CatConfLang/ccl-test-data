@@ -151,19 +151,20 @@ deps-ci:
 
 # Show suggested next version based on conventional commits
 release-check:
-    git cliff --bumped-version
+    semantic-release version --print
 
-# Preview changelog for next release
+# Preview changelog for next release (dry-run)
 release-preview:
-    git cliff --unreleased
+    semantic-release --noop version
+
+# Generate changelog without version bump
+release-changelog:
+    semantic-release changelog
 
 # Create release: updates CHANGELOG.md, commits, and tags
-release version:
-    git cliff --tag v{{version}} -o CHANGELOG.md
-    git add CHANGELOG.md
-    git commit -m "chore(release): v{{version}}"
-    git tag v{{version}}
-    @echo "Release v{{version}} created. Push with: git push origin main --tags"
+release:
+    semantic-release version --no-push
+    @echo "Release created. Push with: git push origin main --tags"
 
 # === CONVENIENCE COMMANDS ===
 
