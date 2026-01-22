@@ -19,7 +19,7 @@ body = """
     ### {{ scope_name | replace(from="-", to=" ") | title }}
     {% for group, grouped_commits in scope_commits | group_by(attribute="group") %}\
         #### {{ group | striptags | trim | upper_first }}
-        {% for commit in grouped_commits %}\
+        {% for commit in grouped_commits | unique(attribute="message") %}\
             - {{ commit.message | upper_first }}
         {% endfor %}
     {% endfor %}
@@ -42,7 +42,11 @@ release = "Release"
 [git]
 conventional_commits = true
 filter_unconventional = true
-split_commits = false
+split_commits = true
+commit_preprocessors = [
+    # Strip markdown header prefixes (###) to expose conventional commit format in body
+    { pattern = "^#{1,6} ", replace = "" },
+]
 commit_parsers = [
     # Skip noise
     { message = "^revert", skip = true },
