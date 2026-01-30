@@ -135,7 +135,7 @@ Tests are organized by the CCL functions they validate. Implement the functions 
 ## Build System
 
 - **Build tool**: `just` (justfile)
-- **Go version**: 1.25.1
+- **Go version**: See go.mod for current version
 - **Module**: `github.com/catconflang/ccl-test-data`
 
 ## Changelog Generation
