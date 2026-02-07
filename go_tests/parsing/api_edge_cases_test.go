@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,21 +12,16 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // basic_single_no_spaces_parse - function:parse
 func TestBasicSingleNoSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key=val`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -34,21 +29,17 @@ func TestBasicSingleNoSpacesParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // basic_with_spaces_parse - function:parse feature:whitespace
 func TestBasicWithSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = val`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -56,42 +47,22 @@ func TestBasicWithSpacesParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // indented_key_parse_indented - function:parse_indented feature:whitespace
 func TestIndentedKeyParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `  key = val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // value_trailing_spaces_parse - function:parse feature:whitespace
 func TestValueTrailingSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = val  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -99,21 +70,17 @@ func TestValueTrailingSpacesParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // key_value_surrounded_spaces_parse - function:parse feature:whitespace
 func TestKeyValueSurroundedSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `  key  =  val  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -122,22 +89,18 @@ func TestKeyValueSurroundedSpacesParse(t *testing.T) {
 
 }
 
-
 // surrounded_by_newlines_parse - function:parse
 func TestSurroundedByNewlinesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `
 key = val
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -146,20 +109,16 @@ key = val
 
 }
 
-
 // key_empty_value_parse - function:parse feature:empty_keys
 func TestKeyEmptyValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -168,21 +127,17 @@ func TestKeyEmptyValueParse(t *testing.T) {
 
 }
 
-
 // empty_value_with_newline_parse - function:parse feature:empty_keys
 func TestEmptyValueWithNewlineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -190,21 +145,17 @@ func TestEmptyValueWithNewlineParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // empty_value_with_spaces_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyValueWithSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -213,42 +164,22 @@ func TestEmptyValueWithSpacesParse(t *testing.T) {
 
 }
 
-
 // empty_key_indented_parse_indented - function:parse_indented feature:empty_keys
 func TestEmptyKeyIndentedParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `  = val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // empty_key_with_newline_parse - function:parse feature:empty_keys
 func TestEmptyKeyWithNewlineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `
   = val`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -257,20 +188,16 @@ func TestEmptyKeyWithNewlineParse(t *testing.T) {
 
 }
 
-
 // empty_key_value_with_spaces_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyKeyValueWithSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `  =  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -279,20 +206,16 @@ func TestEmptyKeyValueWithSpacesParse(t *testing.T) {
 
 }
 
-
 // equals_in_value_no_spaces_parse - function:parse
 func TestEqualsInValueNoSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `a=b=c`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -301,20 +224,16 @@ func TestEqualsInValueNoSpacesParse(t *testing.T) {
 
 }
 
-
 // equals_in_value_with_spaces_parse - function:parse feature:whitespace
 func TestEqualsInValueWithSpacesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `a = b = c`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -323,21 +242,17 @@ func TestEqualsInValueWithSpacesParse(t *testing.T) {
 
 }
 
-
 // multiple_key_value_pairs_parse - function:parse
 func TestMultipleKeyValuePairsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key1 = val1
 key2 = val2`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -346,64 +261,26 @@ key2 = val2`
 
 }
 
-
 // key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestKeyWithTabsParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `	key	=	value`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "\tvalue"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
-
 
 // key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_content variant:reference_compliant
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `	key	=	value`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
-
 
 // whitespace_only_value_parse - function:parse feature:empty_keys feature:whitespace
 func TestWhitespaceOnlyValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `onlyspaces =     `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -412,66 +289,26 @@ func TestWhitespaceOnlyValueParse(t *testing.T) {
 
 }
 
-
 // spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `text = First
-    four spaces
- 	tab preserved`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationOcamlReferenceParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `text = First
-    four spaces
- 	tab preserved`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // multiple_empty_equality_parse - function:parse feature:empty_keys feature:whitespace
 func TestMultipleEmptyEqualityParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := ` =  = `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -480,22 +317,18 @@ func TestMultipleEmptyEqualityParse(t *testing.T) {
 
 }
 
-
 // key_with_newline_before_equals_parse - function:parse feature:empty_keys feature:whitespace
 func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key 
 = val
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -504,23 +337,19 @@ func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 
 }
 
-
 // complex_multi_newline_whitespace_parse - function:parse feature:empty_keys feature:whitespace
 func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `  
  key  
 =  val  
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -529,21 +358,17 @@ func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
 
 }
 
-
 // empty_value_with_trailing_spaces_newline_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyValueWithTrailingSpacesNewlineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =  
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -552,22 +377,18 @@ func TestEmptyValueWithTrailingSpacesNewlineParse(t *testing.T) {
 
 }
 
-
 // empty_key_value_with_surrounding_newlines_parse - function:parse feature:empty_keys feature:whitespace
 func TestEmptyKeyValueWithSurroundingNewlinesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `
   =  
 `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -576,20 +397,16 @@ func TestEmptyKeyValueWithSurroundingNewlinesParse(t *testing.T) {
 
 }
 
-
 // quotes_treated_as_literal_unquoted_parse - function:parse
 func TestQuotesTreatedAsLiteralUnquotedParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -598,20 +415,16 @@ func TestQuotesTreatedAsLiteralUnquotedParse(t *testing.T) {
 
 }
 
-
 // quotes_treated_as_literal_quoted_parse - function:parse
 func TestQuotesTreatedAsLiteralQuotedParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = "localhost"`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -620,21 +433,17 @@ func TestQuotesTreatedAsLiteralQuotedParse(t *testing.T) {
 
 }
 
-
 // nested_single_line_parse - function:parse
 func TestNestedSingleLineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =
   val`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -643,22 +452,18 @@ func TestNestedSingleLineParse(t *testing.T) {
 
 }
 
-
 // nested_multi_line_parse - function:parse feature:multiline
 func TestNestedMultiLineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key =
   line1
   line2`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -667,72 +472,29 @@ func TestNestedMultiLineParse(t *testing.T) {
 
 }
 
-
 // nested_with_blank_line_parse_indented - function:parse_indented feature:multiline
 func TestNestedWithBlankLineParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key =
-  line1
-
-  line2`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // deep_nested_structure_parse_indented - function:parse_indented
 func TestDeepNestedStructureParseIndented(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key =
-  field1 = value1
-  field2 =
-    subfield = x
-    another = y`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // realistic_stress_test_parse - function:parse
 func TestRealisticStressTestParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Dmitrii Kovanikov
 login = chshersh
 language = OCaml
 date = 2024-05-25`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -741,10 +503,8 @@ date = 2024-05-25`
 
 }
 
-
 // ocaml_stress_test_original_parse - function:parse feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `/= This is a CCL document
@@ -766,13 +526,11 @@ user =
 user =
   login = chshersh
   createdAt = 2024-12-31`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -781,105 +539,28 @@ user =
 
 }
 
-
 // ocaml_stress_test_original_build_hierarchy - function:build_hierarchy feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= This is a CCL document
-title = CCL Example
-
-database =
-  enabled = true
-  ports =
-    = 8000
-    = 8001
-    = 8002
-  limits =
-    cpu = 1500mi
-    memory = 10Gb
-
-user =
-  guestId = 42
-
-user =
-  login = chshersh
-  createdAt = 2024-12-31`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"/": "This is a CCL document", "database": map[string]interface{}{"enabled": "true", "limits": map[string]interface{}{"cpu": "1500mi", "memory": "10Gb"}, "ports": map[string]interface{}{"": []interface{}{"8000", "8001", "8002"}}}, "title": "CCL Example", "user": map[string]interface{}{"createdAt": "2024-12-31", "guestId": "42", "login": "chshersh"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // ocaml_stress_test_original_get_string - function:get_string feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalGetString(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= This is a CCL document
-title = CCL Example
-
-database =
-  enabled = true
-  ports =
-    = 8000
-    = 8001
-    = 8002
-  limits =
-    cpu = 1500mi
-    memory = 10Gb
-
-user =
-  guestId = 42
-
-user =
-  login = chshersh
-  createdAt = 2024-12-31`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// get_string validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetString(hierarchy, []string{"title"})
-	require.NoError(t, err)
-	assert.Equal(t, "CCL Example", result)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // forward_slashes_in_map_keys_parse - function:parse
 func TestForwardSlashesInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `mappings =
   config/settings.json = .vscode/settings.json
   src/template.env = .env`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -888,73 +569,28 @@ func TestForwardSlashesInMapKeysParse(t *testing.T) {
 
 }
 
-
 // forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestForwardSlashesInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `mappings =
-  config/settings.json = .vscode/settings.json
-  src/template.env = .env`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"mappings": map[string]interface{}{"config/settings.json": ".vscode/settings.json", "src/template.env": ".env"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // forward_slashes_in_map_keys_get_string - function:get_string
 func TestForwardSlashesInMapKeysGetString(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `mappings =
-  config/settings.json = .vscode/settings.json
-  src/template.env = .env`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// get_string validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetString(hierarchy, []string{"mappings", "config/settings.json"})
-	require.NoError(t, err)
-	assert.Equal(t, ".vscode/settings.json", result)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // backslashes_in_map_keys_parse - function:parse
 func TestBackslashesInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `paths =
   C:\Users\config = user_settings
   D:\data\file.txt = backup`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -963,47 +599,23 @@ func TestBackslashesInMapKeysParse(t *testing.T) {
 
 }
 
-
 // backslashes_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestBackslashesInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `paths =
-  C:\Users\config = user_settings
-  D:\data\file.txt = backup`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"paths": map[string]interface{}{"C:\\Users\\config": "user_settings", "D:\\data\\file.txt": "backup"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // colons_in_map_keys_parse - function:parse
 func TestColonsInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `timestamps =
   12:30:45 = morning
   23:59:59 = midnight`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1012,47 +624,23 @@ func TestColonsInMapKeysParse(t *testing.T) {
 
 }
 
-
 // colons_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestColonsInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `timestamps =
-  12:30:45 = morning
-  23:59:59 = midnight`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"timestamps": map[string]interface{}{"12:30:45": "morning", "23:59:59": "midnight"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // hyphens_in_map_keys_parse - function:parse
 func TestHyphensInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `packages =
   my-package-name = 1.0.0
   another-lib = 2.3.4`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1061,47 +649,23 @@ func TestHyphensInMapKeysParse(t *testing.T) {
 
 }
 
-
 // hyphens_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestHyphensInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `packages =
-  my-package-name = 1.0.0
-  another-lib = 2.3.4`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"packages": map[string]interface{}{"another-lib": "2.3.4", "my-package-name": "1.0.0"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // at_signs_in_map_keys_parse - function:parse
 func TestAtSignsInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `emails =
   user@example.com = primary
   admin@test.org = secondary`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1110,47 +674,23 @@ func TestAtSignsInMapKeysParse(t *testing.T) {
 
 }
 
-
 // at_signs_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestAtSignsInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `emails =
-  user@example.com = primary
-  admin@test.org = secondary`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"emails": map[string]interface{}{"admin@test.org": "secondary", "user@example.com": "primary"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // hash_in_map_keys_parse - function:parse
 func TestHashInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `issues =
   issue#123 = open
   bug#456 = closed`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1159,47 +699,23 @@ func TestHashInMapKeysParse(t *testing.T) {
 
 }
 
-
 // hash_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestHashInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `issues =
-  issue#123 = open
-  bug#456 = closed`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"issues": map[string]interface{}{"bug#456": "closed", "issue#123": "open"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // brackets_in_map_keys_parse - function:parse
 func TestBracketsInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `arrays =
   items[0] = first
   items[1] = second`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1208,47 +724,23 @@ func TestBracketsInMapKeysParse(t *testing.T) {
 
 }
 
-
 // brackets_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestBracketsInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `arrays =
-  items[0] = first
-  items[1] = second`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"arrays": map[string]interface{}{"items[0]": "first", "items[1]": "second"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // parentheses_in_map_keys_parse - function:parse
 func TestParenthesesInMapKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `functions =
   init() = setup
   run(args) = execute`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1257,48 +749,24 @@ func TestParenthesesInMapKeysParse(t *testing.T) {
 
 }
 
-
 // parentheses_in_map_keys_build_hierarchy - function:build_hierarchy
 func TestParenthesesInMapKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `functions =
-  init() = setup
-  run(args) = execute`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"functions": map[string]interface{}{"init()": "setup", "run(args)": "execute"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // mixed_special_chars_in_keys_parse - function:parse
 func TestMixedSpecialCharsInKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `complex =
   user@host:8080/api = endpoint
   file#v1.2.3 = release
   path\to\[item] = location`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1307,48 +775,23 @@ func TestMixedSpecialCharsInKeysParse(t *testing.T) {
 
 }
 
-
 // mixed_special_chars_in_keys_build_hierarchy - function:build_hierarchy
 func TestMixedSpecialCharsInKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `complex =
-  user@host:8080/api = endpoint
-  file#v1.2.3 = release
-  path\to\[item] = location`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"complex": map[string]interface{}{"file#v1.2.3": "release", "path\\to\\[item]": "location", "user@host:8080/api": "endpoint"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // url_like_keys_parse - function:parse
 func TestUrlLikeKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `endpoints =
   https://api.example.com/v1 = production
   http://localhost:3000/test = development`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1357,29 +800,7 @@ func TestUrlLikeKeysParse(t *testing.T) {
 
 }
 
-
 // url_like_keys_build_hierarchy - function:build_hierarchy
 func TestUrlLikeKeysBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `endpoints =
-  https://api.example.com/v1 = production
-  http://localhost:3000/test = development`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"endpoints": map[string]interface{}{"http://localhost:3000/test": "development", "https://api.example.com/v1": "production"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-
