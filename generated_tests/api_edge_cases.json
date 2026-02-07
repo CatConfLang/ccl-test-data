@@ -945,6 +945,74 @@
       "source_test": "ocaml_stress_test_original",
       "validation": "get_string",
       "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "mappings",
+            "value": "\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+      ],
+      "name": "forward_slashes_in_map_keys_parse",
+      "source_test": "forward_slashes_in_map_keys",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "mappings": {
+            "config/settings.json": ".vscode/settings.json",
+            "src/template.env": ".env"
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+      ],
+      "name": "forward_slashes_in_map_keys_build_hierarchy",
+      "source_test": "forward_slashes_in_map_keys",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "mappings",
+        "config/settings.json"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": ".vscode/settings.json"
+      },
+      "features": [],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+      ],
+      "name": "forward_slashes_in_map_keys_get_string",
+      "source_test": "forward_slashes_in_map_keys",
+      "validation": "get_string",
+      "variants": []
     }
   ]
 }

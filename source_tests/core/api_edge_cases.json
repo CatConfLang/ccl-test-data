@@ -722,6 +722,37 @@
       "inputs": [
         "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31"
       ]
+    },
+    {
+      "name": "forward_slashes_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "mappings",
+              "value": "\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "mappings": {
+              "config/settings.json": ".vscode/settings.json",
+              "src/template.env": ".env"
+            }
+          }
+        },
+        {
+          "function": "get_string",
+          "args": ["mappings", "config/settings.json"],
+          "expect": ".vscode/settings.json"
+        }
+      ],
+      "inputs": [
+        "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+      ]
     }
   ]
 }
