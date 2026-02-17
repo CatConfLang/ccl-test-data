@@ -21,7 +21,9 @@ var (
 	Punctuation    = []rune{':', ';', '@', '#', '$', '%', '&', '*', '+', '-', '_'}
 	Brackets       = []rune{'(', ')', '[', ']', '{', '}', '<', '>'}
 	Quotes         = []rune{'\'', '"'}
-	Other          = []rune{'~', '`', '|', '?', '!'}
+	// Note: backtick (`) is excluded because the Go test generator uses
+	// backtick-delimited raw strings, and backticks cannot be escaped in them.
+	Other = []rune{'~', '|', '?', '!'}
 
 	// AllSpecialChars is the combined set of all special characters.
 	AllSpecialChars []rune
