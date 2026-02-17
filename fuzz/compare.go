@@ -28,16 +28,16 @@ type CompareReport struct {
 	CategoriesMatch bool
 
 	// Aggregate metrics
-	NamesSharedByAll   int
-	NamesInAnySeed     int
-	CharsSharedByAll   int
-	CharsInAnySeed     int
-	KeysSharedByAll    int
-	KeysInAnySeed      int
-	InputsSharedByAll  int
-	InputsInAnySeed    int
-	ValuesSharedByAll  int
-	ValuesInAnySeed    int
+	NamesSharedByAll  int
+	NamesInAnySeed    int
+	CharsSharedByAll  int
+	CharsInAnySeed    int
+	KeysSharedByAll   int
+	KeysInAnySeed     int
+	InputsSharedByAll int
+	InputsInAnySeed   int
+	ValuesSharedByAll int
+	ValuesInAnySeed   int
 }
 
 // Compare generates datasets for each seed and compares them.

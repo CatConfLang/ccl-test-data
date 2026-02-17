@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,22 +12,17 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // complete_basic_workflow_parse - function:parse
 func TestCompleteBasicWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -36,35 +31,29 @@ age = 42`
 
 }
 
-
 // complete_basic_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteBasicWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_basic_workflow_print - function:print
 func TestCompleteBasicWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_nested_workflow_parse - function:parse
 func TestCompleteNestedWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   port = 5432
   enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -73,22 +62,18 @@ func TestCompleteNestedWorkflowParse(t *testing.T) {
 
 }
 
-
 // complete_nested_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteNestedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_nested_workflow_print - function:print
 func TestCompleteNestedWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_mixed_workflow_parse - function:parse
 func TestCompleteMixedWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app = MyApp
@@ -98,13 +83,11 @@ config =
   features =
     feature1 = enabled
     feature2 = disabled`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -113,22 +96,18 @@ config =
 
 }
 
-
 // complete_mixed_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteMixedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_mixed_workflow_print - function:print
 func TestCompleteMixedWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_lists_workflow_parse - function:parse
 func TestCompleteListsWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `servers =
@@ -138,13 +117,11 @@ func TestCompleteListsWorkflowParse(t *testing.T) {
 ports =
   port = 80
   port = 443`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -152,23 +129,19 @@ ports =
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // complete_lists_workflow_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_lists_workflow_print - function:print
 func TestCompleteListsWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_lists_workflow_lexicographic_parse - function:parse
 func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `servers =
@@ -178,13 +151,11 @@ func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
 ports =
   port = 80
   port = 443`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -193,22 +164,18 @@ ports =
 
 }
 
-
 // complete_lists_workflow_lexicographic_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestCompleteListsWorkflowLexicographicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_lists_workflow_lexicographic_print - function:print
 func TestCompleteListsWorkflowLexicographicPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // complete_multiline_workflow_parse - function:parse feature:multiline
 func TestCompleteMultilineWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `description = Welcome to our app
@@ -218,13 +185,11 @@ config =
   settings =
     value1 = one
     value2 = two`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -233,22 +198,18 @@ config =
 
 }
 
-
 // complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_multiline_workflow_print - function:print feature:multiline
 func TestCompleteMultilineWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // real_world_complete_workflow_parse - function:parse
 func TestRealWorldCompleteWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `service = MyMicroservice
@@ -272,13 +233,11 @@ features =
   feature_a = enabled
   feature_b = disabled
   feature_c = experimental`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -287,16 +246,12 @@ features =
 
 }
 
-
 // real_world_complete_workflow_build_hierarchy - function:build_hierarchy
 func TestRealWorldCompleteWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-
 // real_world_complete_workflow_print - function:print
 func TestRealWorldCompleteWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-
