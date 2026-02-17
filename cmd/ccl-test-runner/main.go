@@ -262,6 +262,31 @@ the generate-flat pipeline.`,
 					},
 				},
 			},
+			{
+				Name:    "compare-fuzz",
+				Usage:   "Compare two fuzz datasets generated with different seeds",
+				Description: `Generate two fuzz datasets in-memory with different seeds and
+print a comparison report showing name overlap, character coverage,
+and input/value uniqueness.`,
+				Action: compareFuzzAction,
+				Flags: []cli.Flag{
+					&cli.Int64Flag{
+						Name:  "seed-a",
+						Value: 42,
+						Usage: "First random seed",
+					},
+					&cli.Int64Flag{
+						Name:  "seed-b",
+						Value: 99,
+						Usage: "Second random seed",
+					},
+					&cli.IntFlag{
+						Name:  "count",
+						Value: 50,
+						Usage: "Number of test cases per seed",
+					},
+				},
+			},
 		},
 	}
 
