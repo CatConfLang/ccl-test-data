@@ -73,7 +73,6 @@ generate-go *ARGS="":
 # Uses x-behaviorMetadata in source-format.json for function-specific filtering and auto-conflicts
 generate-flat *ARGS="":
     go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate {{ARGS}}
-    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/fuzz --validate {{ARGS}}
 
 # Generate fuzz test cases (seeded randomized special character tests)
 generate-fuzz *ARGS="":

@@ -235,8 +235,8 @@ creating a simple, uniform format that's easy for test runners to process.`,
 				Description: `Generate randomized test cases with special character combinations
 in keys and values. Uses seeded randomness for reproducible output.
 
-Output is written in source format to source_tests/fuzz/, ready for
-the generate-flat pipeline.`,
+Output is written in source format to source_tests/core/, alongside
+other test files for the generate-flat pipeline.`,
 				Action: generateFuzzAction,
 				Flags: []cli.Flag{
 					&cli.Int64Flag{
@@ -252,7 +252,7 @@ the generate-flat pipeline.`,
 					&cli.StringFlag{
 						Name:    "output",
 						Aliases: []string{"o"},
-						Value:   "source_tests/fuzz",
+						Value:   "source_tests/core",
 						Usage:   "Output directory for generated test files",
 					},
 					&cli.BoolFlag{

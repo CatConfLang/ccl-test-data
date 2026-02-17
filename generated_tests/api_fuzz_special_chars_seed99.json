@@ -7,8 +7,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "(",
-            "value": "val620"
+            "key": "_",
+            "value": "val35"
           }
         ]
       },
@@ -17,56 +17,10 @@
         "parse"
       ],
       "inputs": [
-        "( = val620"
+        "_ = val35"
       ],
-      "name": "s42_fuzz_single_lparen_parse",
-      "source_test": "s42_fuzz_single_lparen",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "-",
-            "value": "val619"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "- = val619"
-      ],
-      "name": "s42_fuzz_single_hyphen_parse",
-      "source_test": "s42_fuzz_single_hyphen",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "]",
-            "value": "val334"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "] = val334"
-      ],
-      "name": "s42_fuzz_single_rbracket_parse",
-      "source_test": "s42_fuzz_single_rbracket",
+      "name": "s99_fuzz_single_underscore_parse",
+      "source_test": "s99_fuzz_single_underscore",
       "validation": "parse",
       "variants": []
     },
@@ -77,7 +31,7 @@
         "entries": [
           {
             "key": "\\",
-            "value": "val595"
+            "value": "val524"
           }
         ]
       },
@@ -86,10 +40,10 @@
         "parse"
       ],
       "inputs": [
-        "\\ = val595"
+        "\\ = val524"
       ],
-      "name": "s42_fuzz_single_backslash_parse",
-      "source_test": "s42_fuzz_single_backslash",
+      "name": "s99_fuzz_single_backslash_parse",
+      "source_test": "s99_fuzz_single_backslash",
       "validation": "parse",
       "variants": []
     },
@@ -99,8 +53,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "/",
-            "value": "val509"
+            "key": "%",
+            "value": "val196"
           }
         ]
       },
@@ -109,79 +63,10 @@
         "parse"
       ],
       "inputs": [
-        "/ = val509"
+        "% = val196"
       ],
-      "name": "s42_fuzz_single_slash_parse",
-      "source_test": "s42_fuzz_single_slash",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "$",
-            "value": "val877"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "$ = val877"
-      ],
-      "name": "s42_fuzz_single_dollar_parse",
-      "source_test": "s42_fuzz_single_dollar",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "}",
-            "value": "val644"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "} = val644"
-      ],
-      "name": "s42_fuzz_single_rbrace_parse",
-      "source_test": "s42_fuzz_single_rbrace",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "+",
-            "value": "val412"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "+ = val412"
-      ],
-      "name": "s42_fuzz_single_plus_parse",
-      "source_test": "s42_fuzz_single_plus",
+      "name": "s99_fuzz_single_percent_parse",
+      "source_test": "s99_fuzz_single_percent",
       "validation": "parse",
       "variants": []
     },
@@ -192,7 +77,7 @@
         "entries": [
           {
             "key": "\"",
-            "value": "val691"
+            "value": "val52"
           }
         ]
       },
@@ -201,10 +86,10 @@
         "parse"
       ],
       "inputs": [
-        "\" = val691"
+        "\" = val52"
       ],
-      "name": "s42_fuzz_single_dquote_parse",
-      "source_test": "s42_fuzz_single_dquote",
+      "name": "s99_fuzz_single_dquote_parse",
+      "source_test": "s99_fuzz_single_dquote",
       "validation": "parse",
       "variants": []
     },
@@ -214,8 +99,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "!",
-            "value": "val528"
+            "key": "|",
+            "value": "val653"
           }
         ]
       },
@@ -224,102 +109,10 @@
         "parse"
       ],
       "inputs": [
-        "! = val528"
+        "| = val653"
       ],
-      "name": "s42_fuzz_single_bang_parse",
-      "source_test": "s42_fuzz_single_bang",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "#",
-            "value": "val238"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "# = val238"
-      ],
-      "name": "s42_fuzz_single_hash_parse",
-      "source_test": "s42_fuzz_single_hash",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "\u003e",
-            "value": "val318"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "\u003e = val318"
-      ],
-      "name": "s42_fuzz_single_gt_parse",
-      "source_test": "s42_fuzz_single_gt",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "[",
-            "value": "val72"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "[ = val72"
-      ],
-      "name": "s42_fuzz_single_lbracket_parse",
-      "source_test": "s42_fuzz_single_lbracket",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": ")",
-            "value": "val688"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        ") = val688"
-      ],
-      "name": "s42_fuzz_single_rparen_parse",
-      "source_test": "s42_fuzz_single_rparen",
+      "name": "s99_fuzz_single_pipe_parse",
+      "source_test": "s99_fuzz_single_pipe",
       "validation": "parse",
       "variants": []
     },
@@ -330,7 +123,7 @@
         "entries": [
           {
             "key": "?",
-            "value": "val825"
+            "value": "val143"
           }
         ]
       },
@@ -339,10 +132,10 @@
         "parse"
       ],
       "inputs": [
-        "? = val825"
+        "? = val143"
       ],
-      "name": "s42_fuzz_single_question_parse",
-      "source_test": "s42_fuzz_single_question",
+      "name": "s99_fuzz_single_question_parse",
+      "source_test": "s99_fuzz_single_question",
       "validation": "parse",
       "variants": []
     },
@@ -352,8 +145,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "|\u003c;",
-            "value": "combo808"
+            "key": "}",
+            "value": "val623"
           }
         ]
       },
@@ -362,10 +155,10 @@
         "parse"
       ],
       "inputs": [
-        "|\u003c; = combo808"
+        "} = val623"
       ],
-      "name": "s42_fuzz_combo_pipe_lt_semicolon_parse",
-      "source_test": "s42_fuzz_combo_pipe_lt_semicolon",
+      "name": "s99_fuzz_single_rbrace_parse",
+      "source_test": "s99_fuzz_single_rbrace",
       "validation": "parse",
       "variants": []
     },
@@ -375,8 +168,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "]\"*",
-            "value": "combo591"
+            "key": "-",
+            "value": "val645"
           }
         ]
       },
@@ -385,10 +178,10 @@
         "parse"
       ],
       "inputs": [
-        "]\"* = combo591"
+        "- = val645"
       ],
-      "name": "s42_fuzz_combo_rbracket_dquote_asterisk_parse",
-      "source_test": "s42_fuzz_combo_rbracket_dquote_asterisk",
+      "name": "s99_fuzz_single_hyphen_parse",
+      "source_test": "s99_fuzz_single_hyphen",
       "validation": "parse",
       "variants": []
     },
@@ -398,8 +191,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "}'+",
-            "value": "combo440"
+            "key": "(",
+            "value": "val220"
           }
         ]
       },
@@ -408,10 +201,10 @@
         "parse"
       ],
       "inputs": [
-        "}'+ = combo440"
+        "( = val220"
       ],
-      "name": "s42_fuzz_combo_rbrace_squote_plus_parse",
-      "source_test": "s42_fuzz_combo_rbrace_squote_plus",
+      "name": "s99_fuzz_single_lparen_parse",
+      "source_test": "s99_fuzz_single_lparen",
       "validation": "parse",
       "variants": []
     },
@@ -421,8 +214,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "\u0026\")",
-            "value": "combo488"
+            "key": "/",
+            "value": "val115"
           }
         ]
       },
@@ -431,10 +224,10 @@
         "parse"
       ],
       "inputs": [
-        "\u0026\") = combo488"
+        "/ = val115"
       ],
-      "name": "s42_fuzz_combo_ampersand_dquote_rparen_parse",
-      "source_test": "s42_fuzz_combo_ampersand_dquote_rparen",
+      "name": "s99_fuzz_single_slash_parse",
+      "source_test": "s99_fuzz_single_slash",
       "validation": "parse",
       "variants": []
     },
@@ -444,8 +237,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "-~",
-            "value": "combo135"
+            "key": "!",
+            "value": "val103"
           }
         ]
       },
@@ -454,10 +247,10 @@
         "parse"
       ],
       "inputs": [
-        "-~ = combo135"
+        "! = val103"
       ],
-      "name": "s42_fuzz_combo_hyphen_tilde_parse",
-      "source_test": "s42_fuzz_combo_hyphen_tilde",
+      "name": "s99_fuzz_single_bang_parse",
+      "source_test": "s99_fuzz_single_bang",
       "validation": "parse",
       "variants": []
     },
@@ -467,8 +260,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "@\u003c;[",
-            "value": "combo491"
+            "key": "#",
+            "value": "val874"
           }
         ]
       },
@@ -477,10 +270,10 @@
         "parse"
       ],
       "inputs": [
-        "@\u003c;[ = combo491"
+        "# = val874"
       ],
-      "name": "s42_fuzz_combo_at_lt_semicolon_lbracket_parse",
-      "source_test": "s42_fuzz_combo_at_lt_semicolon_lbracket",
+      "name": "s99_fuzz_single_hash_parse",
+      "source_test": "s99_fuzz_single_hash",
       "validation": "parse",
       "variants": []
     },
@@ -490,8 +283,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "'_",
-            "value": "combo768"
+            "key": "\u0026",
+            "value": "val520"
           }
         ]
       },
@@ -500,10 +293,10 @@
         "parse"
       ],
       "inputs": [
-        "'_ = combo768"
+        "\u0026 = val520"
       ],
-      "name": "s42_fuzz_combo_squote_underscore_parse",
-      "source_test": "s42_fuzz_combo_squote_underscore",
+      "name": "s99_fuzz_single_ampersand_parse",
+      "source_test": "s99_fuzz_single_ampersand",
       "validation": "parse",
       "variants": []
     },
@@ -513,8 +306,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "\u003c:",
-            "value": "combo590"
+            "key": "$",
+            "value": "val921"
           }
         ]
       },
@@ -523,10 +316,10 @@
         "parse"
       ],
       "inputs": [
-        "\u003c: = combo590"
+        "$ = val921"
       ],
-      "name": "s42_fuzz_combo_lt_colon_parse",
-      "source_test": "s42_fuzz_combo_lt_colon",
+      "name": "s99_fuzz_single_dollar_parse",
+      "source_test": "s99_fuzz_single_dollar",
       "validation": "parse",
       "variants": []
     },
@@ -536,8 +329,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "@/*",
-            "value": "combo681"
+            "key": ":",
+            "value": "val671"
           }
         ]
       },
@@ -546,10 +339,10 @@
         "parse"
       ],
       "inputs": [
-        "@/* = combo681"
+        ": = val671"
       ],
-      "name": "s42_fuzz_combo_at_slash_asterisk_parse",
-      "source_test": "s42_fuzz_combo_at_slash_asterisk",
+      "name": "s99_fuzz_single_colon_parse",
+      "source_test": "s99_fuzz_single_colon",
       "validation": "parse",
       "variants": []
     },
@@ -559,8 +352,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "\"|/",
-            "value": "combo76"
+            "key": "[*\u003e",
+            "value": "combo828"
           }
         ]
       },
@@ -569,10 +362,10 @@
         "parse"
       ],
       "inputs": [
-        "\"|/ = combo76"
+        "[*\u003e = combo828"
       ],
-      "name": "s42_fuzz_combo_dquote_pipe_slash_parse",
-      "source_test": "s42_fuzz_combo_dquote_pipe_slash",
+      "name": "s99_fuzz_combo_lbracket_asterisk_gt_parse",
+      "source_test": "s99_fuzz_combo_lbracket_asterisk_gt",
       "validation": "parse",
       "variants": []
     },
@@ -582,8 +375,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "!port",
-            "value": "pos235"
+            "key": "%;'",
+            "value": "combo983"
           }
         ]
       },
@@ -592,10 +385,10 @@
         "parse"
       ],
       "inputs": [
-        "!port = pos235"
+        "%;' = combo983"
       ],
-      "name": "s42_fuzz_pos_start_bang_port_parse",
-      "source_test": "s42_fuzz_pos_start_bang_port",
+      "name": "s99_fuzz_combo_percent_semicolon_squote_parse",
+      "source_test": "s99_fuzz_combo_percent_semicolon_squote",
       "validation": "parse",
       "variants": []
     },
@@ -605,8 +398,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "da'ta",
-            "value": "pos941"
+            "key": "'_)'",
+            "value": "combo857"
           }
         ]
       },
@@ -615,10 +408,10 @@
         "parse"
       ],
       "inputs": [
-        "da'ta = pos941"
+        "'_)' = combo857"
       ],
-      "name": "s42_fuzz_pos_middle_squote_data_parse",
-      "source_test": "s42_fuzz_pos_middle_squote_data",
+      "name": "s99_fuzz_combo_squote_underscore_rparen_squote_parse",
+      "source_test": "s99_fuzz_combo_squote_underscore_rparen_squote",
       "validation": "parse",
       "variants": []
     },
@@ -628,8 +421,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "data\u003e",
-            "value": "pos187"
+            "key": "_[\u003c\\",
+            "value": "combo602"
           }
         ]
       },
@@ -638,10 +431,10 @@
         "parse"
       ],
       "inputs": [
-        "data\u003e = pos187"
+        "_[\u003c\\ = combo602"
       ],
-      "name": "s42_fuzz_pos_end_gt_data_parse",
-      "source_test": "s42_fuzz_pos_end_gt_data",
+      "name": "s99_fuzz_combo_underscore_lbracket_lt_backslash_parse",
+      "source_test": "s99_fuzz_combo_underscore_lbracket_lt_backslash",
       "validation": "parse",
       "variants": []
     },
@@ -651,8 +444,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "/host",
-            "value": "pos306"
+            "key": "\u0026(\"",
+            "value": "combo48"
           }
         ]
       },
@@ -661,10 +454,10 @@
         "parse"
       ],
       "inputs": [
-        "/host = pos306"
+        "\u0026(\" = combo48"
       ],
-      "name": "s42_fuzz_pos_start_slash_host_parse",
-      "source_test": "s42_fuzz_pos_start_slash_host",
+      "name": "s99_fuzz_combo_ampersand_lparen_dquote_parse",
+      "source_test": "s99_fuzz_combo_ampersand_lparen_dquote",
       "validation": "parse",
       "variants": []
     },
@@ -674,8 +467,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "na#me",
-            "value": "pos189"
+            "key": ")|(#",
+            "value": "combo531"
           }
         ]
       },
@@ -684,10 +477,10 @@
         "parse"
       ],
       "inputs": [
-        "na#me = pos189"
+        ")|(# = combo531"
       ],
-      "name": "s42_fuzz_pos_middle_hash_name_parse",
-      "source_test": "s42_fuzz_pos_middle_hash_name",
+      "name": "s99_fuzz_combo_rparen_pipe_lparen_hash_parse",
+      "source_test": "s99_fuzz_combo_rparen_pipe_lparen_hash",
       "validation": "parse",
       "variants": []
     },
@@ -697,8 +490,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "delta+",
-            "value": "pos397"
+            "key": "~*@?",
+            "value": "combo716"
           }
         ]
       },
@@ -707,10 +500,10 @@
         "parse"
       ],
       "inputs": [
-        "delta+ = pos397"
+        "~*@? = combo716"
       ],
-      "name": "s42_fuzz_pos_end_plus_delta_parse",
-      "source_test": "s42_fuzz_pos_end_plus_delta",
+      "name": "s99_fuzz_combo_tilde_asterisk_at_question_parse",
+      "source_test": "s99_fuzz_combo_tilde_asterisk_at_question",
       "validation": "parse",
       "variants": []
     },
@@ -720,8 +513,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "'path",
-            "value": "pos238"
+            "key": "_*?",
+            "value": "combo909"
           }
         ]
       },
@@ -730,10 +523,10 @@
         "parse"
       ],
       "inputs": [
-        "'path = pos238"
+        "_*? = combo909"
       ],
-      "name": "s42_fuzz_pos_start_squote_path_parse",
-      "source_test": "s42_fuzz_pos_start_squote_path",
+      "name": "s99_fuzz_combo_underscore_asterisk_question_parse",
+      "source_test": "s99_fuzz_combo_underscore_asterisk_question",
       "validation": "parse",
       "variants": []
     },
@@ -743,8 +536,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "po(rt",
-            "value": "pos139"
+            "key": "!'",
+            "value": "combo182"
           }
         ]
       },
@@ -753,10 +546,10 @@
         "parse"
       ],
       "inputs": [
-        "po(rt = pos139"
+        "!' = combo182"
       ],
-      "name": "s42_fuzz_pos_middle_lparen_port_parse",
-      "source_test": "s42_fuzz_pos_middle_lparen_port",
+      "name": "s99_fuzz_combo_bang_squote_parse",
+      "source_test": "s99_fuzz_combo_bang_squote",
       "validation": "parse",
       "variants": []
     },
@@ -766,8 +559,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "gamma;",
-            "value": "pos404"
+            "key": "?_\"",
+            "value": "combo211"
           }
         ]
       },
@@ -776,10 +569,10 @@
         "parse"
       ],
       "inputs": [
-        "gamma; = pos404"
+        "?_\" = combo211"
       ],
-      "name": "s42_fuzz_pos_end_semicolon_gamma_parse",
-      "source_test": "s42_fuzz_pos_end_semicolon_gamma",
+      "name": "s99_fuzz_combo_question_underscore_dquote_parse",
+      "source_test": "s99_fuzz_combo_question_underscore_dquote",
       "validation": "parse",
       "variants": []
     },
@@ -789,8 +582,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "\u003ealpha",
-            "value": "pos196"
+            "key": "%item",
+            "value": "pos832"
           }
         ]
       },
@@ -799,10 +592,10 @@
         "parse"
       ],
       "inputs": [
-        "\u003ealpha = pos196"
+        "%item = pos832"
       ],
-      "name": "s42_fuzz_pos_start_gt_alpha_parse",
-      "source_test": "s42_fuzz_pos_start_gt_alpha",
+      "name": "s99_fuzz_pos_start_percent_item_parse",
+      "source_test": "s99_fuzz_pos_start_percent_item",
       "validation": "parse",
       "variants": []
     },
@@ -812,68 +605,21 @@
         "count": 1,
         "entries": [
           {
-            "key": "data",
-            "value": "data|x58"
+            "key": "da]ta",
+            "value": "pos418"
           }
         ]
       },
-      "features": [
-        "optional_typed_accessors"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
       "inputs": [
-        "data = data|x58"
+        "da]ta = pos418"
       ],
-      "name": "s42_fuzz_val_data_0_parse",
-      "source_test": "s42_fuzz_val_data_0",
+      "name": "s99_fuzz_pos_middle_rbracket_data_parse",
+      "source_test": "s99_fuzz_pos_middle_rbracket_data",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "object": {
-          "data": "data|x58"
-        }
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "data = data|x58"
-      ],
-      "name": "s42_fuzz_val_data_0_build_hierarchy",
-      "source_test": "s42_fuzz_val_data_0",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "data"
-      ],
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "value": "data|x58"
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "data = data|x58"
-      ],
-      "name": "s42_fuzz_val_data_0_get_string",
-      "source_test": "s42_fuzz_val_data_0",
-      "validation": "get_string",
       "variants": []
     },
     {
@@ -882,68 +628,21 @@
         "count": 1,
         "entries": [
           {
-            "key": "beta",
-            "value": "data\\x12"
+            "key": "delta\u003e",
+            "value": "pos239"
           }
         ]
       },
-      "features": [
-        "optional_typed_accessors"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
       "inputs": [
-        "beta = data\\x12"
+        "delta\u003e = pos239"
       ],
-      "name": "s42_fuzz_val_beta_1_parse",
-      "source_test": "s42_fuzz_val_beta_1",
+      "name": "s99_fuzz_pos_end_gt_delta_parse",
+      "source_test": "s99_fuzz_pos_end_gt_delta",
       "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "object": {
-          "beta": "data\\x12"
-        }
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "beta = data\\x12"
-      ],
-      "name": "s42_fuzz_val_beta_1_build_hierarchy",
-      "source_test": "s42_fuzz_val_beta_1",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "beta"
-      ],
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "value": "data\\x12"
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "beta = data\\x12"
-      ],
-      "name": "s42_fuzz_val_beta_1_get_string",
-      "source_test": "s42_fuzz_val_beta_1",
-      "validation": "get_string",
       "variants": []
     },
     {
@@ -952,22 +651,20 @@
         "count": 1,
         "entries": [
           {
-            "key": "name",
-            "value": "data\\x77\"x95_x85"
+            "key": ")port",
+            "value": "pos895"
           }
         ]
       },
-      "features": [
-        "optional_typed_accessors"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
       "inputs": [
-        "name = data\\x77\"x95_x85"
+        ")port = pos895"
       ],
-      "name": "s42_fuzz_val_name_2_parse",
-      "source_test": "s42_fuzz_val_name_2",
+      "name": "s99_fuzz_pos_start_rparen_port_parse",
+      "source_test": "s99_fuzz_pos_start_rparen_port",
       "validation": "parse",
       "variants": []
     },
@@ -975,45 +672,138 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "object": {
-          "name": "data\\x77\"x95_x85"
-        }
+        "entries": [
+          {
+            "key": "al_pha",
+            "value": "pos195"
+          }
+        ]
       },
-      "features": [
-        "optional_typed_accessors"
-      ],
+      "features": [],
       "functions": [
-        "build_hierarchy"
+        "parse"
       ],
       "inputs": [
-        "name = data\\x77\"x95_x85"
+        "al_pha = pos195"
       ],
-      "name": "s42_fuzz_val_name_2_build_hierarchy",
-      "source_test": "s42_fuzz_val_name_2",
-      "validation": "build_hierarchy",
+      "name": "s99_fuzz_pos_middle_underscore_alpha_parse",
+      "source_test": "s99_fuzz_pos_middle_underscore_alpha",
+      "validation": "parse",
       "variants": []
     },
     {
-      "args": [
-        "name"
-      ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "data\\x77\"x95_x85"
+        "entries": [
+          {
+            "key": "epsilon{",
+            "value": "pos824"
+          }
+        ]
       },
-      "features": [
-        "optional_typed_accessors"
-      ],
+      "features": [],
       "functions": [
-        "get_string"
+        "parse"
       ],
       "inputs": [
-        "name = data\\x77\"x95_x85"
+        "epsilon{ = pos824"
       ],
-      "name": "s42_fuzz_val_name_2_get_string",
-      "source_test": "s42_fuzz_val_name_2",
-      "validation": "get_string",
+      "name": "s99_fuzz_pos_end_lbrace_epsilon_parse",
+      "source_test": "s99_fuzz_pos_end_lbrace_epsilon",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "\u003calpha",
+            "value": "pos633"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\u003calpha = pos633"
+      ],
+      "name": "s99_fuzz_pos_start_lt_alpha_parse",
+      "source_test": "s99_fuzz_pos_start_lt_alpha",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "ho%st",
+            "value": "pos14"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "ho%st = pos14"
+      ],
+      "name": "s99_fuzz_pos_middle_percent_host_parse",
+      "source_test": "s99_fuzz_pos_middle_percent_host",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "item|",
+            "value": "pos19"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "item| = pos19"
+      ],
+      "name": "s99_fuzz_pos_end_pipe_item_parse",
+      "source_test": "s99_fuzz_pos_end_pipe_item",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "%server",
+            "value": "pos981"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "%server = pos981"
+      ],
+      "name": "s99_fuzz_pos_start_percent_server_parse",
+      "source_test": "s99_fuzz_pos_start_percent_server",
+      "validation": "parse",
       "variants": []
     },
     {
@@ -1023,7 +813,7 @@
         "entries": [
           {
             "key": "path",
-            "value": "data-x45"
+            "value": "data'x66"
           }
         ]
       },
@@ -1034,10 +824,10 @@
         "parse"
       ],
       "inputs": [
-        "path = data-x45"
+        "path = data'x66"
       ],
-      "name": "s42_fuzz_val_path_3_parse",
-      "source_test": "s42_fuzz_val_path_3",
+      "name": "s99_fuzz_val_path_0_parse",
+      "source_test": "s99_fuzz_val_path_0",
       "validation": "parse",
       "variants": []
     },
@@ -1046,7 +836,7 @@
       "expected": {
         "count": 1,
         "object": {
-          "path": "data-x45"
+          "path": "data'x66"
         }
       },
       "features": [
@@ -1056,10 +846,10 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "path = data-x45"
+        "path = data'x66"
       ],
-      "name": "s42_fuzz_val_path_3_build_hierarchy",
-      "source_test": "s42_fuzz_val_path_3",
+      "name": "s99_fuzz_val_path_0_build_hierarchy",
+      "source_test": "s99_fuzz_val_path_0",
       "validation": "build_hierarchy",
       "variants": []
     },
@@ -1070,7 +860,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "data-x45"
+        "value": "data'x66"
       },
       "features": [
         "optional_typed_accessors"
@@ -1079,10 +869,10 @@
         "get_string"
       ],
       "inputs": [
-        "path = data-x45"
+        "path = data'x66"
       ],
-      "name": "s42_fuzz_val_path_3_get_string",
-      "source_test": "s42_fuzz_val_path_3",
+      "name": "s99_fuzz_val_path_0_get_string",
+      "source_test": "s99_fuzz_val_path_0",
       "validation": "get_string",
       "variants": []
     },
@@ -1092,8 +882,8 @@
         "count": 1,
         "entries": [
           {
-            "key": "name",
-            "value": "data{x49\"x55"
+            "key": "item",
+            "value": "data]x41!x78"
           }
         ]
       },
@@ -1104,10 +894,10 @@
         "parse"
       ],
       "inputs": [
-        "name = data{x49\"x55"
+        "item = data]x41!x78"
       ],
-      "name": "s42_fuzz_val_name_4_parse",
-      "source_test": "s42_fuzz_val_name_4",
+      "name": "s99_fuzz_val_item_1_parse",
+      "source_test": "s99_fuzz_val_item_1",
       "validation": "parse",
       "variants": []
     },
@@ -1116,7 +906,7 @@
       "expected": {
         "count": 1,
         "object": {
-          "name": "data{x49\"x55"
+          "item": "data]x41!x78"
         }
       },
       "features": [
@@ -1126,21 +916,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "name = data{x49\"x55"
+        "item = data]x41!x78"
       ],
-      "name": "s42_fuzz_val_name_4_build_hierarchy",
-      "source_test": "s42_fuzz_val_name_4",
+      "name": "s99_fuzz_val_item_1_build_hierarchy",
+      "source_test": "s99_fuzz_val_item_1",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "name"
+        "item"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "data{x49\"x55"
+        "value": "data]x41!x78"
       },
       "features": [
         "optional_typed_accessors"
@@ -1149,10 +939,220 @@
         "get_string"
       ],
       "inputs": [
-        "name = data{x49\"x55"
+        "item = data]x41!x78"
       ],
-      "name": "s42_fuzz_val_name_4_get_string",
-      "source_test": "s42_fuzz_val_name_4",
+      "name": "s99_fuzz_val_item_1_get_string",
+      "source_test": "s99_fuzz_val_item_1",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "server",
+            "value": "data[x73;x54!x24"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "server = data[x73;x54!x24"
+      ],
+      "name": "s99_fuzz_val_server_2_parse",
+      "source_test": "s99_fuzz_val_server_2",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "server": "data[x73;x54!x24"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "server = data[x73;x54!x24"
+      ],
+      "name": "s99_fuzz_val_server_2_build_hierarchy",
+      "source_test": "s99_fuzz_val_server_2",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "server"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "data[x73;x54!x24"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "server = data[x73;x54!x24"
+      ],
+      "name": "s99_fuzz_val_server_2_get_string",
+      "source_test": "s99_fuzz_val_server_2",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "path",
+            "value": "data~x4\u003ex82~x46"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "path = data~x4\u003ex82~x46"
+      ],
+      "name": "s99_fuzz_val_path_3_parse",
+      "source_test": "s99_fuzz_val_path_3",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "path": "data~x4\u003ex82~x46"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "path = data~x4\u003ex82~x46"
+      ],
+      "name": "s99_fuzz_val_path_3_build_hierarchy",
+      "source_test": "s99_fuzz_val_path_3",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "path"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "data~x4\u003ex82~x46"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "path = data~x4\u003ex82~x46"
+      ],
+      "name": "s99_fuzz_val_path_3_get_string",
+      "source_test": "s99_fuzz_val_path_3",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "alpha",
+            "value": "data\u003cx11[x43"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "alpha = data\u003cx11[x43"
+      ],
+      "name": "s99_fuzz_val_alpha_4_parse",
+      "source_test": "s99_fuzz_val_alpha_4",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "alpha": "data\u003cx11[x43"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "alpha = data\u003cx11[x43"
+      ],
+      "name": "s99_fuzz_val_alpha_4_build_hierarchy",
+      "source_test": "s99_fuzz_val_alpha_4",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "alpha"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "data\u003cx11[x43"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "alpha = data\u003cx11[x43"
+      ],
+      "name": "s99_fuzz_val_alpha_4_get_string",
+      "source_test": "s99_fuzz_val_alpha_4",
       "validation": "get_string",
       "variants": []
     },
@@ -1162,12 +1162,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "{host",
-            "value": "nested259"
+            "key": "/data",
+            "value": "nested929"
           },
           {
-            "key": "]name",
-            "value": "deep985"
+            "key": ")item",
+            "value": "deep37"
           }
         ]
       },
@@ -1178,10 +1178,10 @@
         "parse"
       ],
       "inputs": [
-        "{host = nested259\n]name = deep985"
+        "/data = nested929\n)item = deep37"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbracket_0_parse",
-      "source_test": "s42_fuzz_nested_lbrace_rbracket_0",
+      "name": "s99_fuzz_nested_slash_rparen_0_parse",
+      "source_test": "s99_fuzz_nested_slash_rparen_0",
       "validation": "parse",
       "variants": []
     },
@@ -1190,8 +1190,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "]name": "deep985",
-          "{host": "nested259"
+          ")item": "deep37",
+          "/data": "nested929"
         }
       },
       "features": [
@@ -1201,21 +1201,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "{host = nested259\n]name = deep985"
+        "/data = nested929\n)item = deep37"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbracket_0_build_hierarchy",
-      "source_test": "s42_fuzz_nested_lbrace_rbracket_0",
+      "name": "s99_fuzz_nested_slash_rparen_0_build_hierarchy",
+      "source_test": "s99_fuzz_nested_slash_rparen_0",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "{host"
+        "/data"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested259"
+        "value": "nested929"
       },
       "features": [
         "optional_typed_accessors"
@@ -1224,10 +1224,10 @@
         "get_string"
       ],
       "inputs": [
-        "{host = nested259\n]name = deep985"
+        "/data = nested929\n)item = deep37"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbracket_0_get_string",
-      "source_test": "s42_fuzz_nested_lbrace_rbracket_0",
+      "name": "s99_fuzz_nested_slash_rparen_0_get_string",
+      "source_test": "s99_fuzz_nested_slash_rparen_0",
       "validation": "get_string",
       "variants": []
     },
@@ -1237,12 +1237,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "{port",
-            "value": "nested169"
+            "key": "\u003cport",
+            "value": "nested722"
           },
           {
-            "key": "}mode",
-            "value": "deep270"
+            "key": "%config",
+            "value": "deep795"
           }
         ]
       },
@@ -1253,10 +1253,10 @@
         "parse"
       ],
       "inputs": [
-        "{port = nested169\n}mode = deep270"
+        "\u003cport = nested722\n%config = deep795"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_1_parse",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_1",
+      "name": "s99_fuzz_nested_lt_percent_1_parse",
+      "source_test": "s99_fuzz_nested_lt_percent_1",
       "validation": "parse",
       "variants": []
     },
@@ -1265,8 +1265,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "{port": "nested169",
-          "}mode": "deep270"
+          "%config": "deep795",
+          "\u003cport": "nested722"
         }
       },
       "features": [
@@ -1276,21 +1276,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "{port = nested169\n}mode = deep270"
+        "\u003cport = nested722\n%config = deep795"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_1_build_hierarchy",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_1",
+      "name": "s99_fuzz_nested_lt_percent_1_build_hierarchy",
+      "source_test": "s99_fuzz_nested_lt_percent_1",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "{port"
+        "\u003cport"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested169"
+        "value": "nested722"
       },
       "features": [
         "optional_typed_accessors"
@@ -1299,10 +1299,10 @@
         "get_string"
       ],
       "inputs": [
-        "{port = nested169\n}mode = deep270"
+        "\u003cport = nested722\n%config = deep795"
       ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_1_get_string",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_1",
+      "name": "s99_fuzz_nested_lt_percent_1_get_string",
+      "source_test": "s99_fuzz_nested_lt_percent_1",
       "validation": "get_string",
       "variants": []
     },
@@ -1312,12 +1312,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "\u0026delta",
-            "value": "nested56"
+            "key": "/epsilon",
+            "value": "nested268"
           },
           {
-            "key": "%data",
-            "value": "deep952"
+            "key": "{server",
+            "value": "deep795"
           }
         ]
       },
@@ -1328,10 +1328,10 @@
         "parse"
       ],
       "inputs": [
-        "\u0026delta = nested56\n%data = deep952"
+        "/epsilon = nested268\n{server = deep795"
       ],
-      "name": "s42_fuzz_nested_ampersand_percent_2_parse",
-      "source_test": "s42_fuzz_nested_ampersand_percent_2",
+      "name": "s99_fuzz_nested_slash_lbrace_2_parse",
+      "source_test": "s99_fuzz_nested_slash_lbrace_2",
       "validation": "parse",
       "variants": []
     },
@@ -1340,8 +1340,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "%data": "deep952",
-          "\u0026delta": "nested56"
+          "/epsilon": "nested268",
+          "{server": "deep795"
         }
       },
       "features": [
@@ -1351,21 +1351,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "\u0026delta = nested56\n%data = deep952"
+        "/epsilon = nested268\n{server = deep795"
       ],
-      "name": "s42_fuzz_nested_ampersand_percent_2_build_hierarchy",
-      "source_test": "s42_fuzz_nested_ampersand_percent_2",
+      "name": "s99_fuzz_nested_slash_lbrace_2_build_hierarchy",
+      "source_test": "s99_fuzz_nested_slash_lbrace_2",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "\u0026delta"
+        "/epsilon"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested56"
+        "value": "nested268"
       },
       "features": [
         "optional_typed_accessors"
@@ -1374,10 +1374,10 @@
         "get_string"
       ],
       "inputs": [
-        "\u0026delta = nested56\n%data = deep952"
+        "/epsilon = nested268\n{server = deep795"
       ],
-      "name": "s42_fuzz_nested_ampersand_percent_2_get_string",
-      "source_test": "s42_fuzz_nested_ampersand_percent_2",
+      "name": "s99_fuzz_nested_slash_lbrace_2_get_string",
+      "source_test": "s99_fuzz_nested_slash_lbrace_2",
       "validation": "get_string",
       "variants": []
     },
@@ -1387,12 +1387,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "\"epsilon",
-            "value": "nested885"
+            "key": "\"host",
+            "value": "nested435"
           },
           {
-            "key": "\u003euser",
-            "value": "deep168"
+            "key": "[server",
+            "value": "deep479"
           }
         ]
       },
@@ -1403,10 +1403,10 @@
         "parse"
       ],
       "inputs": [
-        "\"epsilon = nested885\n\u003euser = deep168"
+        "\"host = nested435\n[server = deep479"
       ],
-      "name": "s42_fuzz_nested_dquote_gt_3_parse",
-      "source_test": "s42_fuzz_nested_dquote_gt_3",
+      "name": "s99_fuzz_nested_dquote_lbracket_3_parse",
+      "source_test": "s99_fuzz_nested_dquote_lbracket_3",
       "validation": "parse",
       "variants": []
     },
@@ -1415,8 +1415,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "\"epsilon": "nested885",
-          "\u003euser": "deep168"
+          "\"host": "nested435",
+          "[server": "deep479"
         }
       },
       "features": [
@@ -1426,21 +1426,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "\"epsilon = nested885\n\u003euser = deep168"
+        "\"host = nested435\n[server = deep479"
       ],
-      "name": "s42_fuzz_nested_dquote_gt_3_build_hierarchy",
-      "source_test": "s42_fuzz_nested_dquote_gt_3",
+      "name": "s99_fuzz_nested_dquote_lbracket_3_build_hierarchy",
+      "source_test": "s99_fuzz_nested_dquote_lbracket_3",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "\"epsilon"
+        "\"host"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested885"
+        "value": "nested435"
       },
       "features": [
         "optional_typed_accessors"
@@ -1449,10 +1449,10 @@
         "get_string"
       ],
       "inputs": [
-        "\"epsilon = nested885\n\u003euser = deep168"
+        "\"host = nested435\n[server = deep479"
       ],
-      "name": "s42_fuzz_nested_dquote_gt_3_get_string",
-      "source_test": "s42_fuzz_nested_dquote_gt_3",
+      "name": "s99_fuzz_nested_dquote_lbracket_3_get_string",
+      "source_test": "s99_fuzz_nested_dquote_lbracket_3",
       "validation": "get_string",
       "variants": []
     },
@@ -1462,12 +1462,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "%alpha",
-            "value": "nested438"
+            "key": "\\item",
+            "value": "nested708"
           },
           {
-            "key": "$path",
-            "value": "deep65"
+            "key": "\\name",
+            "value": "deep133"
           }
         ]
       },
@@ -1478,10 +1478,10 @@
         "parse"
       ],
       "inputs": [
-        "%alpha = nested438\n$path = deep65"
+        "\\item = nested708\n\\name = deep133"
       ],
-      "name": "s42_fuzz_nested_percent_dollar_4_parse",
-      "source_test": "s42_fuzz_nested_percent_dollar_4",
+      "name": "s99_fuzz_nested_backslash_backslash_4_parse",
+      "source_test": "s99_fuzz_nested_backslash_backslash_4",
       "validation": "parse",
       "variants": []
     },
@@ -1490,8 +1490,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "$path": "deep65",
-          "%alpha": "nested438"
+          "\\item": "nested708",
+          "\\name": "deep133"
         }
       },
       "features": [
@@ -1501,21 +1501,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "%alpha = nested438\n$path = deep65"
+        "\\item = nested708\n\\name = deep133"
       ],
-      "name": "s42_fuzz_nested_percent_dollar_4_build_hierarchy",
-      "source_test": "s42_fuzz_nested_percent_dollar_4",
+      "name": "s99_fuzz_nested_backslash_backslash_4_build_hierarchy",
+      "source_test": "s99_fuzz_nested_backslash_backslash_4",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "%alpha"
+        "\\item"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested438"
+        "value": "nested708"
       },
       "features": [
         "optional_typed_accessors"
@@ -1524,10 +1524,10 @@
         "get_string"
       ],
       "inputs": [
-        "%alpha = nested438\n$path = deep65"
+        "\\item = nested708\n\\name = deep133"
       ],
-      "name": "s42_fuzz_nested_percent_dollar_4_get_string",
-      "source_test": "s42_fuzz_nested_percent_dollar_4",
+      "name": "s99_fuzz_nested_backslash_backslash_4_get_string",
+      "source_test": "s99_fuzz_nested_backslash_backslash_4",
       "validation": "get_string",
       "variants": []
     },
@@ -1537,12 +1537,12 @@
         "count": 2,
         "entries": [
           {
-            "key": "\"gamma",
-            "value": "nested524"
+            "key": "?delta",
+            "value": "nested18"
           },
           {
-            "key": "]mode",
-            "value": "deep57"
+            "key": "\"item",
+            "value": "deep576"
           }
         ]
       },
@@ -1553,10 +1553,10 @@
         "parse"
       ],
       "inputs": [
-        "\"gamma = nested524\n]mode = deep57"
+        "?delta = nested18\n\"item = deep576"
       ],
-      "name": "s42_fuzz_nested_dquote_rbracket_5_parse",
-      "source_test": "s42_fuzz_nested_dquote_rbracket_5",
+      "name": "s99_fuzz_nested_question_dquote_5_parse",
+      "source_test": "s99_fuzz_nested_question_dquote_5",
       "validation": "parse",
       "variants": []
     },
@@ -1565,8 +1565,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "\"gamma": "nested524",
-          "]mode": "deep57"
+          "\"item": "deep576",
+          "?delta": "nested18"
         }
       },
       "features": [
@@ -1576,21 +1576,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "\"gamma = nested524\n]mode = deep57"
+        "?delta = nested18\n\"item = deep576"
       ],
-      "name": "s42_fuzz_nested_dquote_rbracket_5_build_hierarchy",
-      "source_test": "s42_fuzz_nested_dquote_rbracket_5",
+      "name": "s99_fuzz_nested_question_dquote_5_build_hierarchy",
+      "source_test": "s99_fuzz_nested_question_dquote_5",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "\"gamma"
+        "?delta"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested524"
+        "value": "nested18"
       },
       "features": [
         "optional_typed_accessors"
@@ -1599,10 +1599,10 @@
         "get_string"
       ],
       "inputs": [
-        "\"gamma = nested524\n]mode = deep57"
+        "?delta = nested18\n\"item = deep576"
       ],
-      "name": "s42_fuzz_nested_dquote_rbracket_5_get_string",
-      "source_test": "s42_fuzz_nested_dquote_rbracket_5",
+      "name": "s99_fuzz_nested_question_dquote_5_get_string",
+      "source_test": "s99_fuzz_nested_question_dquote_5",
       "validation": "get_string",
       "variants": []
     },
@@ -1612,12 +1612,237 @@
         "count": 2,
         "entries": [
           {
-            "key": "{data",
-            "value": "nested474"
+            "key": "\"user",
+            "value": "nested759"
+          },
+          {
+            "key": "\\data",
+            "value": "deep718"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\"user = nested759\n\\data = deep718"
+      ],
+      "name": "s99_fuzz_nested_dquote_backslash_6_parse",
+      "source_test": "s99_fuzz_nested_dquote_backslash_6",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "\"user": "nested759",
+          "\\data": "deep718"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "\"user = nested759\n\\data = deep718"
+      ],
+      "name": "s99_fuzz_nested_dquote_backslash_6_build_hierarchy",
+      "source_test": "s99_fuzz_nested_dquote_backslash_6",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "\"user"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "nested759"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "\"user = nested759\n\\data = deep718"
+      ],
+      "name": "s99_fuzz_nested_dquote_backslash_6_get_string",
+      "source_test": "s99_fuzz_nested_dquote_backslash_6",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": ")port",
+            "value": "nested292"
+          },
+          {
+            "key": "\\server",
+            "value": "deep527"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        ")port = nested292\n\\server = deep527"
+      ],
+      "name": "s99_fuzz_nested_rparen_backslash_7_parse",
+      "source_test": "s99_fuzz_nested_rparen_backslash_7",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          ")port": "nested292",
+          "\\server": "deep527"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        ")port = nested292\n\\server = deep527"
+      ],
+      "name": "s99_fuzz_nested_rparen_backslash_7_build_hierarchy",
+      "source_test": "s99_fuzz_nested_rparen_backslash_7",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        ")port"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "nested292"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        ")port = nested292\n\\server = deep527"
+      ],
+      "name": "s99_fuzz_nested_rparen_backslash_7_get_string",
+      "source_test": "s99_fuzz_nested_rparen_backslash_7",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "}delta",
+            "value": "nested591"
+          },
+          {
+            "key": "$gamma",
+            "value": "deep225"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "}delta = nested591\n$gamma = deep225"
+      ],
+      "name": "s99_fuzz_nested_rbrace_dollar_8_parse",
+      "source_test": "s99_fuzz_nested_rbrace_dollar_8",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "$gamma": "deep225",
+          "}delta": "nested591"
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "}delta = nested591\n$gamma = deep225"
+      ],
+      "name": "s99_fuzz_nested_rbrace_dollar_8_build_hierarchy",
+      "source_test": "s99_fuzz_nested_rbrace_dollar_8",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "}delta"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "nested591"
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "}delta = nested591\n$gamma = deep225"
+      ],
+      "name": "s99_fuzz_nested_rbrace_dollar_8_get_string",
+      "source_test": "s99_fuzz_nested_rbrace_dollar_8",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "%epsilon",
+            "value": "nested761"
           },
           {
             "key": "\u0026port",
-            "value": "deep22"
+            "value": "deep211"
           }
         ]
       },
@@ -1628,10 +1853,10 @@
         "parse"
       ],
       "inputs": [
-        "{data = nested474\n\u0026port = deep22"
+        "%epsilon = nested761\n\u0026port = deep211"
       ],
-      "name": "s42_fuzz_nested_lbrace_ampersand_6_parse",
-      "source_test": "s42_fuzz_nested_lbrace_ampersand_6",
+      "name": "s99_fuzz_nested_percent_ampersand_9_parse",
+      "source_test": "s99_fuzz_nested_percent_ampersand_9",
       "validation": "parse",
       "variants": []
     },
@@ -1640,8 +1865,8 @@
       "expected": {
         "count": 1,
         "object": {
-          "\u0026port": "deep22",
-          "{data": "nested474"
+          "%epsilon": "nested761",
+          "\u0026port": "deep211"
         }
       },
       "features": [
@@ -1651,21 +1876,21 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "{data = nested474\n\u0026port = deep22"
+        "%epsilon = nested761\n\u0026port = deep211"
       ],
-      "name": "s42_fuzz_nested_lbrace_ampersand_6_build_hierarchy",
-      "source_test": "s42_fuzz_nested_lbrace_ampersand_6",
+      "name": "s99_fuzz_nested_percent_ampersand_9_build_hierarchy",
+      "source_test": "s99_fuzz_nested_percent_ampersand_9",
       "validation": "build_hierarchy",
       "variants": []
     },
     {
       "args": [
-        "{data"
+        "%epsilon"
       ],
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "nested474"
+        "value": "nested761"
       },
       "features": [
         "optional_typed_accessors"
@@ -1674,235 +1899,10 @@
         "get_string"
       ],
       "inputs": [
-        "{data = nested474\n\u0026port = deep22"
+        "%epsilon = nested761\n\u0026port = deep211"
       ],
-      "name": "s42_fuzz_nested_lbrace_ampersand_6_get_string",
-      "source_test": "s42_fuzz_nested_lbrace_ampersand_6",
-      "validation": "get_string",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": ";data",
-            "value": "nested239"
-          },
-          {
-            "key": "-server",
-            "value": "deep284"
-          }
-        ]
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        ";data = nested239\n-server = deep284"
-      ],
-      "name": "s42_fuzz_nested_semicolon_hyphen_7_parse",
-      "source_test": "s42_fuzz_nested_semicolon_hyphen_7",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "object": {
-          "-server": "deep284",
-          ";data": "nested239"
-        }
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        ";data = nested239\n-server = deep284"
-      ],
-      "name": "s42_fuzz_nested_semicolon_hyphen_7_build_hierarchy",
-      "source_test": "s42_fuzz_nested_semicolon_hyphen_7",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        ";data"
-      ],
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "value": "nested239"
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        ";data = nested239\n-server = deep284"
-      ],
-      "name": "s42_fuzz_nested_semicolon_hyphen_7_get_string",
-      "source_test": "s42_fuzz_nested_semicolon_hyphen_7",
-      "validation": "get_string",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "{host",
-            "value": "nested125"
-          },
-          {
-            "key": "}user",
-            "value": "deep615"
-          }
-        ]
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "{host = nested125\n}user = deep615"
-      ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_8_parse",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_8",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "object": {
-          "{host": "nested125",
-          "}user": "deep615"
-        }
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "{host = nested125\n}user = deep615"
-      ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_8_build_hierarchy",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_8",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "{host"
-      ],
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "value": "nested125"
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "{host = nested125\n}user = deep615"
-      ],
-      "name": "s42_fuzz_nested_lbrace_rbrace_8_get_string",
-      "source_test": "s42_fuzz_nested_lbrace_rbrace_8",
-      "validation": "get_string",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "~beta",
-            "value": "nested835"
-          },
-          {
-            "key": "\u0026gamma",
-            "value": "deep966"
-          }
-        ]
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "~beta = nested835\n\u0026gamma = deep966"
-      ],
-      "name": "s42_fuzz_nested_tilde_ampersand_9_parse",
-      "source_test": "s42_fuzz_nested_tilde_ampersand_9",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "object": {
-          "\u0026gamma": "deep966",
-          "~beta": "nested835"
-        }
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "~beta = nested835\n\u0026gamma = deep966"
-      ],
-      "name": "s42_fuzz_nested_tilde_ampersand_9_build_hierarchy",
-      "source_test": "s42_fuzz_nested_tilde_ampersand_9",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "~beta"
-      ],
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "value": "nested835"
-      },
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "~beta = nested835\n\u0026gamma = deep966"
-      ],
-      "name": "s42_fuzz_nested_tilde_ampersand_9_get_string",
-      "source_test": "s42_fuzz_nested_tilde_ampersand_9",
+      "name": "s99_fuzz_nested_percent_ampersand_9_get_string",
+      "source_test": "s99_fuzz_nested_percent_ampersand_9",
       "validation": "get_string",
       "variants": []
     }
