@@ -394,7 +394,8 @@ func (g *Generator) generateSpecialValueTests(count int) ([]SourceTest, error) {
 		}
 
 		// Include both parse and get_string validations
-		hierarchy := g.ccl.BuildHierarchy(entries)
+		filtered := g.ccl.Filter(entries)
+		hierarchy := g.ccl.BuildHierarchy(filtered)
 		strVal, err := g.ccl.GetString(hierarchy, []string{key})
 		if err != nil {
 			return nil, fmt.Errorf("get_string %q: %w", key, err)
@@ -595,12 +596,19 @@ func deduplicateNames(tests []SourceTest) []SourceTest {
 	seen := make(map[string]int)
 	for i := range tests {
 		name := tests[i].Name
-		if count, exists := seen[name]; exists {
-			tests[i].Name = fmt.Sprintf("%s_%d", name, count+1)
-			seen[name] = count + 1
-		} else {
-			seen[name] = 0
+		candidate := name
+		if n, exists := seen[candidate]; exists {
+			for {
+				n++
+				candidate = fmt.Sprintf("%s_%d", name, n)
+				if _, exists := seen[candidate]; !exists {
+					break
+				}
+			}
+			seen[name] = n
 		}
+		tests[i].Name = candidate
+		seen[candidate] = 0
 	}
 	return tests
 }
