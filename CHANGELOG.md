@@ -3,6 +3,85 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.5.0] - 2026-02-17
+
+
+
+### Documentation
+
+- Fix go version reference in claude.md ([`f105c3e`](https://github.com/CatConfLang/ccl-test-data/commit/f105c3e49ee8e9550002c8fb69381cc771743d83))
+
+- Update release process documentation ([`8561c42`](https://github.com/CatConfLang/ccl-test-data/commit/8561c42fa3e443bf8b9611b2e08161aea01f1026))
+
+  Update CLAUDE.md, DEV.md, and DEVELOPER_GUIDE.md with new squash merge commit format (`* type(scope): description`) and semantic-release commands.
+
+
+
+
+
+### Features
+
+- **tests:** Add randomized fuzz test generator for special characters ([`64112a2`](https://github.com/CatConfLang/ccl-test-data/commit/64112a28da853a052757873b318cdb4c16f2caac))
+
+  ## Summary
+
+    Closes #66
+
+    - Add `fuzz/` package with seeded randomized test generator producing source-format JSON test cases covering special character combinations in CCL keys and values
+  - Add `generate-fuzz` CLI subcommand to `ccl-test-runner` with `--seed`, `--count`, `--output`, `--validate` flags
+  - Update `justfile` with `generate-fuzz` recipe and extend `generate-flat` to process `source_tests/fuzz/`
+  - Generate and commit 50 fuzz tests (seed 42) covering 5 categories: single char keys, combo keys, positional chars, special values, nested structures
+
+- **tests:** Add test case for forward slashes in map keys ([`950d0d2`](https://github.com/CatConfLang/ccl-test-data/commit/950d0d25111c2c6861734190146f58b364beda72))
+
+  ## Summary
+
+    Add test case verifying that forward slashes in map keys are parsed correctly.
+
+    This addresses the issue discovered while testing repoverlay, where sickle fails to parse map keys containing forward slashes (tracked in tylerbutler/santa#71).
+
+    ## Test Case
+
+    ```ccl mappings =
+    config/settings.json = .vscode/settings.json
+    src/template.env = .env ```
+
+    Validates:
+  - **parse**: flat entry extraction with forward slashes in nested keys
+  - **build_hierarchy**: nested object construction with keys like `config/settings.json`
+  - **get_string**: typed value access via path containing forward slashes
+
+    Closes #62
+
+- **build:** Replace git-cliff with python-semantic-release ([`8561c42`](https://github.com/CatConfLang/ccl-test-data/commit/8561c42fa3e443bf8b9611b2e08161aea01f1026))
+
+  Switch changelog generation from git-cliff to Python Semantic Release for better squash merge commit parsing.
+
+- **build:** Add python-semantic-release configuration ([`8561c42`](https://github.com/CatConfLang/ccl-test-data/commit/8561c42fa3e443bf8b9611b2e08161aea01f1026))
+
+  Configure PSR with parse_squash_commits for extracting multiple conventional commits from squash merge bodies. Add custom Jinja2 templates for changelog and release notes with commit links.
+
+
+
+
+
+### Refactoring
+
+- **build:** Replace python commitlint generator with @tylerbu/cli ([`5859f17`](https://github.com/CatConfLang/ccl-test-data/commit/5859f1763cbd6b0b57ba96f05425a195743c6d0c))
+
+  Use `npx tbu generate commit-config` to generate commitlint.config.cjs from commit-types.ccl instead of the custom Python script.
+
+    - Remove scripts/generate-commitlint-config.py
+  - Add consola dependency (required by @tylerbu/cli-api)
+  - Update commitlint.config.cjs source reference to commit-types.ccl
+
+- **build:** Update release workflow for semantic-release ([`8561c42`](https://github.com/CatConfLang/ccl-test-data/commit/8561c42fa3e443bf8b9611b2e08161aea01f1026))
+
+  Replace git-cliff GitHub Action with Python-based semantic-release. Use Python script for extracting release notes instead of awk.
+
+
+
+
 ## [0.4.0] - 2026-01-21
 
 
