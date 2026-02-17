@@ -228,6 +228,40 @@ creating a simple, uniform format that's easy for test runners to process.`,
 					},
 				},
 			},
+			{
+				Name:    "generate-fuzz",
+				Aliases: []string{"fuzz"},
+				Usage:   "Generate randomized fuzz tests for special character edge cases",
+				Description: `Generate randomized test cases with special character combinations
+in keys and values. Uses seeded randomness for reproducible output.
+
+Output is written in source format to source_tests/fuzz/, ready for
+the generate-flat pipeline.`,
+				Action: generateFuzzAction,
+				Flags: []cli.Flag{
+					&cli.Int64Flag{
+						Name:  "seed",
+						Value: 42,
+						Usage: "Random seed for reproducible generation",
+					},
+					&cli.IntFlag{
+						Name:  "count",
+						Value: 50,
+						Usage: "Number of test cases to generate",
+					},
+					&cli.StringFlag{
+						Name:    "output",
+						Aliases: []string{"o"},
+						Value:   "source_tests/fuzz",
+						Usage:   "Output directory for generated test files",
+					},
+					&cli.BoolFlag{
+						Name:  "validate",
+						Value: true,
+						Usage: "Validate generated tests against mock implementation",
+					},
+				},
+			},
 		},
 	}
 
