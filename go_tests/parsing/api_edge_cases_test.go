@@ -548,3 +548,259 @@ func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
 func TestOcamlStressTestOriginalGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
+// forward_slashes_in_map_keys_parse - function:parse
+func TestForwardSlashesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  config/settings.json = .vscode/settings.json
+  src/template.env = .env`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "mappings", Value: "\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestForwardSlashesInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// forward_slashes_in_map_keys_get_string - function:get_string
+func TestForwardSlashesInMapKeysGetString(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// backslashes_in_map_keys_parse - function:parse
+func TestBackslashesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  C:\Users\config = user_settings
+  D:\data\file.txt = backup`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "paths", Value: "\n  C:\\Users\\config = user_settings\n  D:\\data\\file.txt = backup"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// backslashes_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestBackslashesInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// colons_in_map_keys_parse - function:parse
+func TestColonsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `timestamps =
+  12:30:45 = morning
+  23:59:59 = midnight`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "timestamps", Value: "\n  12:30:45 = morning\n  23:59:59 = midnight"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// colons_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestColonsInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// hyphens_in_map_keys_parse - function:parse
+func TestHyphensInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `packages =
+  my-package-name = 1.0.0
+  another-lib = 2.3.4`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "packages", Value: "\n  my-package-name = 1.0.0\n  another-lib = 2.3.4"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// hyphens_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestHyphensInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// at_signs_in_map_keys_parse - function:parse
+func TestAtSignsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `emails =
+  user@example.com = primary
+  admin@test.org = secondary`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "emails", Value: "\n  user@example.com = primary\n  admin@test.org = secondary"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// at_signs_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestAtSignsInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// hash_in_map_keys_parse - function:parse
+func TestHashInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `issues =
+  issue#123 = open
+  bug#456 = closed`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "issues", Value: "\n  issue#123 = open\n  bug#456 = closed"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// hash_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestHashInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// brackets_in_map_keys_parse - function:parse
+func TestBracketsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `arrays =
+  items[0] = first
+  items[1] = second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "arrays", Value: "\n  items[0] = first\n  items[1] = second"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// brackets_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestBracketsInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// parentheses_in_map_keys_parse - function:parse
+func TestParenthesesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `functions =
+  init() = setup
+  run(args) = execute`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "functions", Value: "\n  init() = setup\n  run(args) = execute"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// parentheses_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestParenthesesInMapKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// mixed_special_chars_in_keys_parse - function:parse
+func TestMixedSpecialCharsInKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `complex =
+  user@host:8080/api = endpoint
+  file#v1.2.3 = release
+  path\to\[item] = location`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "complex", Value: "\n  user@host:8080/api = endpoint\n  file#v1.2.3 = release\n  path\\to\\[item] = location"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// mixed_special_chars_in_keys_build_hierarchy - function:build_hierarchy
+func TestMixedSpecialCharsInKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// url_like_keys_parse - function:parse
+func TestUrlLikeKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoints =
+  https://api.example.com/v1 = production
+  http://localhost:3000/test = development`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "endpoints", Value: "\n  https://api.example.com/v1 = production\n  http://localhost:3000/test = development"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_like_keys_build_hierarchy - function:build_hierarchy
+func TestUrlLikeKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}

@@ -722,6 +722,272 @@
       "inputs": [
         "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31"
       ]
+    },
+    {
+      "name": "forward_slashes_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "mappings",
+              "value": "\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "mappings": {
+              "config/settings.json": ".vscode/settings.json",
+              "src/template.env": ".env"
+            }
+          }
+        },
+        {
+          "function": "get_string",
+          "args": ["mappings", "config/settings.json"],
+          "expect": ".vscode/settings.json"
+        }
+      ],
+      "inputs": [
+        "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
+      ]
+    },
+    {
+      "name": "backslashes_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "paths",
+              "value": "\n  C:\\Users\\config = user_settings\n  D:\\data\\file.txt = backup"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "paths": {
+              "C:\\Users\\config": "user_settings",
+              "D:\\data\\file.txt": "backup"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "paths =\n  C:\\Users\\config = user_settings\n  D:\\data\\file.txt = backup"
+      ]
+    },
+    {
+      "name": "colons_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "timestamps",
+              "value": "\n  12:30:45 = morning\n  23:59:59 = midnight"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "timestamps": {
+              "12:30:45": "morning",
+              "23:59:59": "midnight"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "timestamps =\n  12:30:45 = morning\n  23:59:59 = midnight"
+      ]
+    },
+    {
+      "name": "hyphens_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "packages",
+              "value": "\n  my-package-name = 1.0.0\n  another-lib = 2.3.4"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "packages": {
+              "my-package-name": "1.0.0",
+              "another-lib": "2.3.4"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "packages =\n  my-package-name = 1.0.0\n  another-lib = 2.3.4"
+      ]
+    },
+    {
+      "name": "at_signs_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "emails",
+              "value": "\n  user@example.com = primary\n  admin@test.org = secondary"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "emails": {
+              "user@example.com": "primary",
+              "admin@test.org": "secondary"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "emails =\n  user@example.com = primary\n  admin@test.org = secondary"
+      ]
+    },
+    {
+      "name": "hash_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "issues",
+              "value": "\n  issue#123 = open\n  bug#456 = closed"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "issues": {
+              "issue#123": "open",
+              "bug#456": "closed"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "issues =\n  issue#123 = open\n  bug#456 = closed"
+      ]
+    },
+    {
+      "name": "brackets_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "arrays",
+              "value": "\n  items[0] = first\n  items[1] = second"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "arrays": {
+              "items[0]": "first",
+              "items[1]": "second"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "arrays =\n  items[0] = first\n  items[1] = second"
+      ]
+    },
+    {
+      "name": "parentheses_in_map_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "functions",
+              "value": "\n  init() = setup\n  run(args) = execute"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "functions": {
+              "init()": "setup",
+              "run(args)": "execute"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "functions =\n  init() = setup\n  run(args) = execute"
+      ]
+    },
+    {
+      "name": "mixed_special_chars_in_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "complex",
+              "value": "\n  user@host:8080/api = endpoint\n  file#v1.2.3 = release\n  path\\to\\[item] = location"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "complex": {
+              "user@host:8080/api": "endpoint",
+              "file#v1.2.3": "release",
+              "path\\to\\[item]": "location"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "complex =\n  user@host:8080/api = endpoint\n  file#v1.2.3 = release\n  path\\to\\[item] = location"
+      ]
+    },
+    {
+      "name": "url_like_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "endpoints",
+              "value": "\n  https://api.example.com/v1 = production\n  http://localhost:3000/test = development"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "endpoints": {
+              "https://api.example.com/v1": "production",
+              "http://localhost:3000/test": "development"
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "endpoints =\n  https://api.example.com/v1 = production\n  http://localhost:3000/test = development"
+      ]
     }
   ]
 }
