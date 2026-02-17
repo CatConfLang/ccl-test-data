@@ -150,6 +150,7 @@ format:
 deps:
     npm install
     go mod download
+    uv tool install python-semantic-release
 
 # Configure go.mod for CI (removes local replace directive)
 deps-ci:
