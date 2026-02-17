@@ -141,7 +141,12 @@ func (g *Generator) Generate() (*SourceFile, error) {
 	}, nil
 }
 
-// WriteToFile writes the generated tests to outputDir/api_fuzz_special_chars.json.
+// Filename returns the output filename including the seed for traceability.
+func (g *Generator) Filename() string {
+	return fmt.Sprintf("api_fuzz_special_chars_seed%d.json", g.opts.Seed)
+}
+
+// WriteToFile writes the generated tests to outputDir/<filename>.
 func (g *Generator) WriteToFile(sf *SourceFile, outputDir string) error {
 	if err := os.MkdirAll(outputDir, 0o755); err != nil {
 		return fmt.Errorf("create output directory: %w", err)
@@ -153,7 +158,7 @@ func (g *Generator) WriteToFile(sf *SourceFile, outputDir string) error {
 	}
 	data = append(data, '\n')
 
-	outPath := filepath.Join(outputDir, "api_fuzz_special_chars.json")
+	outPath := filepath.Join(outputDir, g.Filename())
 	return os.WriteFile(outPath, data, 0o644)
 }
 

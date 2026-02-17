@@ -150,7 +150,7 @@ func TestWriteToFile(t *testing.T) {
 		t.Fatalf("WriteToFile() error: %v", err)
 	}
 
-	outPath := filepath.Join(tmpDir, "api_fuzz_special_chars.json")
+	outPath := filepath.Join(tmpDir, gen.Filename())
 	data, err := os.ReadFile(outPath)
 	if err != nil {
 		t.Fatalf("read output file: %v", err)

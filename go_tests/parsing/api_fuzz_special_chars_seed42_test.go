@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// Generated from generated_tests/api_fuzz_special_chars.json
+// Generated from generated_tests/api_fuzz_special_chars_seed42.json
 // Suite: Flat Format
 // Version: 1.0
 
