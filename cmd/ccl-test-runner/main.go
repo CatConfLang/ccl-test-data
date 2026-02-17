@@ -263,19 +263,16 @@ the generate-flat pipeline.`,
 				},
 			},
 			{
-				Name:    "compare-fuzz",
-				Usage:   "Compare fuzz datasets generated with different seeds",
+				Name:      "compare-fuzz",
+				Usage:     "Compare fuzz datasets generated with different seeds",
+				ArgsUsage: "SEED [SEED...]",
 				Description: `Generate multiple fuzz datasets in-memory with different seeds and
 print a comparison report showing name overlap, character coverage,
 and input/value uniqueness across all seeds.
 
-Example: ccl-test-runner compare-fuzz --seeds 42 --seeds 99 --seeds 7`,
+Example: ccl-test-runner compare-fuzz 42 99 7`,
 				Action: compareFuzzAction,
 				Flags: []cli.Flag{
-					&cli.Int64SliceFlag{
-						Name:  "seeds",
-						Usage: "Seeds to compare (specify multiple times, e.g. --seeds 42 --seeds 99)",
-					},
 					&cli.IntFlag{
 						Name:  "count",
 						Value: 50,

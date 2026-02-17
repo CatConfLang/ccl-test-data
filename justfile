@@ -79,8 +79,8 @@ generate-flat *ARGS="":
 generate-fuzz *ARGS="":
     go run ./cmd/ccl-test-runner generate-fuzz {{ARGS}}
 
-# Compare fuzz datasets across seeds (default: 42, 99, 7)
-compare-fuzz *ARGS="--seeds 42 --seeds 99 --seeds 7":
+# Compare fuzz datasets across seeds (default: 42 99 7)
+compare-fuzz *ARGS="42 99 7":
     go run ./cmd/ccl-test-runner compare-fuzz {{ARGS}}
 
 # === TESTING ===

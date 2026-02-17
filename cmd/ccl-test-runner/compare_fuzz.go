@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 
 	"github.com/catconflang/ccl-test-data/fuzz"
@@ -10,11 +11,21 @@ import (
 )
 
 func compareFuzzAction(ctx *cli.Context) error {
-	seeds := ctx.Int64Slice("seeds")
 	count := ctx.Int("count")
 
-	if len(seeds) < 2 {
-		return fmt.Errorf("need at least 2 seeds (got %d), e.g.: --seeds 42 --seeds 99", len(seeds))
+	// Parse seeds from positional args
+	args := ctx.Args().Slice()
+	if len(args) < 2 {
+		return fmt.Errorf("need at least 2 seeds, e.g.: compare-fuzz 42 99 7")
+	}
+
+	seeds := make([]int64, len(args))
+	for i, arg := range args {
+		v, err := strconv.ParseInt(arg, 10, 64)
+		if err != nil {
+			return fmt.Errorf("invalid seed %q: %w", arg, err)
+		}
+		seeds[i] = v
 	}
 
 	seedStrs := make([]string, len(seeds))
