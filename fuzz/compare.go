@@ -6,97 +6,86 @@ import (
 	"strings"
 )
 
-// CompareReport holds the comparison results between two fuzz datasets.
-type CompareReport struct {
-	SeedA int64
-	SeedB int64
-	Count int
-
-	// Category counts (should be identical across seeds)
-	CategoriesMatch bool
-
-	// Name analysis
-	SharedNames  []string
-	OnlyInA      []string
-	OnlyInB      []string
-
-	// Key analysis
-	SingleCharsA    []string
-	SingleCharsB    []string
-	SharedChars     []string
-	UniqueCharsA    []string
-	UniqueCharsB    []string
-	CompoundKeysA   int
-	CompoundKeysB   int
-	SharedCompound  int
-
-	// Input/value overlap
-	SharedInputs int
-	SharedValues int
-	TotalInputsA int
-	TotalInputsB int
-	UniqueValuesA int
-	UniqueValuesB int
+// DatasetStats holds extracted metrics for a single seed's dataset.
+type DatasetStats struct {
+	Seed         int64
+	Names        []string
+	SingleChars  []string
+	CompoundKeys []string
+	Inputs       []string
+	Values       []string
 }
 
-// Compare generates two datasets with different seeds and compares them.
-func Compare(seedA, seedB int64, count int) (*CompareReport, error) {
-	genA := NewGenerator(GeneratorOptions{Seed: seedA, Count: count})
-	genB := NewGenerator(GeneratorOptions{Seed: seedB, Count: count})
+// CompareReport holds the comparison results across multiple fuzz datasets.
+type CompareReport struct {
+	Seeds []int64
+	Count int
 
-	suiteA, err := genA.Generate()
-	if err != nil {
-		return nil, fmt.Errorf("generate seed %d: %w", seedA, err)
-	}
-	suiteB, err := genB.Generate()
-	if err != nil {
-		return nil, fmt.Errorf("generate seed %d: %w", seedB, err)
+	// Per-seed stats
+	Datasets []DatasetStats
+
+	// Categories match across all seeds
+	CategoriesMatch bool
+
+	// Aggregate metrics
+	NamesSharedByAll   int
+	NamesInAnySeed     int
+	CharsSharedByAll   int
+	CharsInAnySeed     int
+	KeysSharedByAll    int
+	KeysInAnySeed      int
+	InputsSharedByAll  int
+	InputsInAnySeed    int
+	ValuesSharedByAll  int
+	ValuesInAnySeed    int
+}
+
+// Compare generates datasets for each seed and compares them.
+func Compare(seeds []int64, count int) (*CompareReport, error) {
+	if len(seeds) < 2 {
+		return nil, fmt.Errorf("need at least 2 seeds to compare, got %d", len(seeds))
 	}
 
 	report := &CompareReport{
-		SeedA: seedA,
-		SeedB: seedB,
+		Seeds: seeds,
 		Count: count,
 	}
 
-	// Compare categories
-	catsA := categoryBreakdown(suiteA)
-	catsB := categoryBreakdown(suiteB)
-	report.CategoriesMatch = mapsEqual(catsA, catsB)
+	var suites []*SourceFile
+	for _, seed := range seeds {
+		gen := NewGenerator(GeneratorOptions{Seed: seed, Count: count})
+		suite, err := gen.Generate()
+		if err != nil {
+			return nil, fmt.Errorf("generate seed %d: %w", seed, err)
+		}
+		suites = append(suites, suite)
 
-	// Compare names
-	namesA := testNames(suiteA)
-	namesB := testNames(suiteB)
-	report.SharedNames, report.OnlyInA, report.OnlyInB = setDiff(namesA, namesB)
+		report.Datasets = append(report.Datasets, DatasetStats{
+			Seed:         seed,
+			Names:        testNames(suite),
+			SingleChars:  singleCharKeys(suite),
+			CompoundKeys: allKeys(suite),
+			Inputs:       allInputs(suite),
+			Values:       allValues(suite),
+		})
+	}
 
-	// Compare single-char keys (from fuzz_single_* tests)
-	report.SingleCharsA = singleCharKeys(suiteA)
-	report.SingleCharsB = singleCharKeys(suiteB)
-	report.SharedChars, report.UniqueCharsA, report.UniqueCharsB = setDiff(report.SingleCharsA, report.SingleCharsB)
+	// Check categories match across all seeds
+	report.CategoriesMatch = true
+	firstCats := categoryBreakdown(suites[0])
+	for i := 1; i < len(suites); i++ {
+		if !mapsEqual(firstCats, categoryBreakdown(suites[i])) {
+			report.CategoriesMatch = false
+			break
+		}
+	}
 
-	// Compare compound keys
-	compA := allKeys(suiteA)
-	compB := allKeys(suiteB)
-	sharedComp, _, _ := setDiff(compA, compB)
-	report.CompoundKeysA = len(compA)
-	report.CompoundKeysB = len(compB)
-	report.SharedCompound = len(sharedComp)
-
-	// Compare inputs
-	inputsA := allInputs(suiteA)
-	inputsB := allInputs(suiteB)
-	sharedInputs, _, _ := setDiff(inputsA, inputsB)
-	report.SharedInputs = len(sharedInputs)
-	report.TotalInputsA = len(inputsA)
-	report.TotalInputsB = len(inputsB)
-
-	// Compare values
-	valsA := allValues(suiteA)
-	valsB := allValues(suiteB)
-	sharedVals, _, _ := setDiff(valsA, valsB)
-	report.SharedValues = len(sharedVals)
-	report.UniqueValuesA = len(valsA)
-	report.UniqueValuesB = len(valsB)
+	// Compute aggregate set metrics
+	report.NamesSharedByAll, report.NamesInAnySeed = multiSetStats(extractField(report.Datasets, func(d DatasetStats) []string { return d.Names }))
+	report.CharsSharedByAll, report.CharsInAnySeed = multiSetStats(extractField(report.Datasets, func(d DatasetStats) []string { return d.SingleChars }))
+	report.KeysSharedByAll, report.KeysInAnySeed = multiSetStats(extractField(report.Datasets, func(d DatasetStats) []string { return d.CompoundKeys }))
+	report.InputsSharedByAll, report.InputsInAnySeed = multiSetStats(extractField(report.Datasets, func(d DatasetStats) []string { return d.Inputs }))
+	report.ValuesSharedByAll, report.ValuesInAnySeed = multiSetStats(extractField(report.Datasets, func(d DatasetStats) []string { return d.Values }))
 
 	return report, nil
 }
@@ -104,8 +93,15 @@ func Compare(seedA, seedB int64, count int) (*CompareReport, error) {
 // FormatReport produces a human-readable comparison report.
 func (r *CompareReport) FormatReport() string {
 	var sb strings.Builder
+	n := len(r.Seeds)
 
-	sb.WriteString(fmt.Sprintf("Fuzz Dataset Comparison: seed %d vs seed %d (%d tests each)\n", r.SeedA, r.SeedB, r.Count))
+	seedStrs := make([]string, n)
+	for i, s := range r.Seeds {
+		seedStrs[i] = fmt.Sprintf("%d", s)
+	}
+
+	sb.WriteString(fmt.Sprintf("Fuzz Dataset Comparison: %d seeds [%s] (%d tests each)\n",
+		n, strings.Join(seedStrs, ", "), r.Count))
 	sb.WriteString(strings.Repeat("=", 60) + "\n\n")
 
 	// Structure
@@ -117,48 +113,73 @@ func (r *CompareReport) FormatReport() string {
 	}
 	sb.WriteString(fmt.Sprintf("  Categories match:  %s\n\n", match))
 
-	// Names
-	sb.WriteString("Test Names\n")
+	// Per-seed table
+	sb.WriteString("Per-Seed Counts\n")
 	sb.WriteString(strings.Repeat("-", 40) + "\n")
-	sb.WriteString(fmt.Sprintf("  Shared:            %d\n", len(r.SharedNames)))
-	sb.WriteString(fmt.Sprintf("  Only in seed %d:   %d\n", r.SeedA, len(r.OnlyInA)))
-	sb.WriteString(fmt.Sprintf("  Only in seed %d:   %d\n", r.SeedB, len(r.OnlyInB)))
-	sb.WriteString("\n")
-
-	// Single-char coverage
-	sb.WriteString("Single-Character Key Coverage\n")
-	sb.WriteString(strings.Repeat("-", 40) + "\n")
-	sb.WriteString(fmt.Sprintf("  seed %d:            %d chars\n", r.SeedA, len(r.SingleCharsA)))
-	sb.WriteString(fmt.Sprintf("  seed %d:            %d chars\n", r.SeedB, len(r.SingleCharsB)))
-	sb.WriteString(fmt.Sprintf("  Shared:            %d\n", len(r.SharedChars)))
-	sb.WriteString(fmt.Sprintf("  Combined unique:   %d\n", len(r.SharedChars)+len(r.UniqueCharsA)+len(r.UniqueCharsB)))
-	if len(r.UniqueCharsA) > 0 {
-		sb.WriteString(fmt.Sprintf("  Only in seed %d:   %s\n", r.SeedA, strings.Join(r.UniqueCharsA, " ")))
-	}
-	if len(r.UniqueCharsB) > 0 {
-		sb.WriteString(fmt.Sprintf("  Only in seed %d:   %s\n", r.SeedB, strings.Join(r.UniqueCharsB, " ")))
+	sb.WriteString(fmt.Sprintf("  %-12s %6s %6s %6s %6s\n", "Seed", "Names", "Chars", "Keys", "Values"))
+	for _, ds := range r.Datasets {
+		sb.WriteString(fmt.Sprintf("  %-12d %6d %6d %6d %6d\n",
+			ds.Seed, len(ds.Names), len(ds.SingleChars), len(ds.CompoundKeys), len(ds.Values)))
 	}
 	sb.WriteString("\n")
 
-	// Compound keys
-	sb.WriteString("Compound Keys\n")
+	// Aggregate coverage
+	sb.WriteString("Combined Coverage\n")
 	sb.WriteString(strings.Repeat("-", 40) + "\n")
-	sb.WriteString(fmt.Sprintf("  seed %d:            %d keys\n", r.SeedA, r.CompoundKeysA))
-	sb.WriteString(fmt.Sprintf("  seed %d:            %d keys\n", r.SeedB, r.CompoundKeysB))
-	sb.WriteString(fmt.Sprintf("  Shared:            %d\n", r.SharedCompound))
-	sb.WriteString(fmt.Sprintf("  Combined unique:   %d\n", r.CompoundKeysA+r.CompoundKeysB-r.SharedCompound))
+	sb.WriteString(fmt.Sprintf("  %-22s %6s %6s\n", "Metric", "All", "Any"))
+	sb.WriteString(fmt.Sprintf("  %-22s %6d %6d\n", "Test names", r.NamesSharedByAll, r.NamesInAnySeed))
+	sb.WriteString(fmt.Sprintf("  %-22s %6d %6d\n", "Single-char keys", r.CharsSharedByAll, r.CharsInAnySeed))
+	sb.WriteString(fmt.Sprintf("  %-22s %6d %6d\n", "Compound keys", r.KeysSharedByAll, r.KeysInAnySeed))
+	sb.WriteString(fmt.Sprintf("  %-22s %6d %6d\n", "Unique inputs", r.InputsSharedByAll, r.InputsInAnySeed))
+	sb.WriteString(fmt.Sprintf("  %-22s %6d %6d\n", "Unique values", r.ValuesSharedByAll, r.ValuesInAnySeed))
 	sb.WriteString("\n")
-
-	// Inputs and values
-	sb.WriteString("Input/Value Overlap\n")
-	sb.WriteString(strings.Repeat("-", 40) + "\n")
-	sb.WriteString(fmt.Sprintf("  Shared inputs:     %d / %d\n", r.SharedInputs, r.TotalInputsA))
-	sb.WriteString(fmt.Sprintf("  Shared values:     %d / %d\n", r.SharedValues, r.UniqueValuesA))
+	sb.WriteString("  All = present in every seed; Any = present in at least one seed\n")
 
 	return sb.String()
 }
 
 // helpers
+
+// multiSetStats computes intersection and union sizes across multiple string sets.
+func multiSetStats(sets [][]string) (sharedByAll, inAny int) {
+	if len(sets) == 0 {
+		return 0, 0
+	}
+
+	// Union: everything across all sets
+	union := map[string]bool{}
+	// Count: how many sets contain each item
+	counts := map[string]int{}
+
+	for _, set := range sets {
+		seen := map[string]bool{}
+		for _, s := range set {
+			union[s] = true
+			if !seen[s] {
+				counts[s]++
+				seen[s] = true
+			}
+		}
+	}
+
+	n := len(sets)
+	for _, count := range counts {
+		if count == n {
+			sharedByAll++
+		}
+	}
+	inAny = len(union)
+	return
+}
+
+// extractField extracts a string slice from each dataset using the given accessor.
+func extractField(datasets []DatasetStats, fn func(DatasetStats) []string) [][]string {
+	result := make([][]string, len(datasets))
+	for i, ds := range datasets {
+		result[i] = fn(ds)
+	}
+	return result
+}
 
 func categoryBreakdown(sf *SourceFile) map[string]int {
 	counts := map[string]int{}
@@ -187,7 +208,6 @@ func singleCharKeys(sf *SourceFile) []string {
 	var keys []string
 	for _, t := range sf.Tests {
 		if strings.HasPrefix(t.Name, "fuzz_single_") && len(t.Inputs) > 0 {
-			// Extract the key from "key = value"
 			input := t.Inputs[0]
 			if idx := strings.Index(input, " = "); idx > 0 {
 				keys = append(keys, input[:idx])
@@ -254,33 +274,6 @@ func allValues(sf *SourceFile) []string {
 		result = append(result, k)
 	}
 	return result
-}
-
-func setDiff(a, b []string) (shared, onlyA, onlyB []string) {
-	setA := map[string]bool{}
-	setB := map[string]bool{}
-	for _, s := range a {
-		setA[s] = true
-	}
-	for _, s := range b {
-		setB[s] = true
-	}
-	for _, s := range a {
-		if setB[s] {
-			shared = append(shared, s)
-		} else {
-			onlyA = append(onlyA, s)
-		}
-	}
-	for _, s := range b {
-		if !setA[s] {
-			onlyB = append(onlyB, s)
-		}
-	}
-	sort.Strings(shared)
-	sort.Strings(onlyA)
-	sort.Strings(onlyB)
-	return
 }
 
 func mapsEqual(a, b map[string]int) bool {

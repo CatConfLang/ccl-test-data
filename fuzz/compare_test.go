@@ -1,11 +1,12 @@
 package fuzz
 
 import (
+	"strings"
 	"testing"
 )
 
-func TestCompare(t *testing.T) {
-	report, err := Compare(42, 99, 50)
+func TestCompareTwoSeeds(t *testing.T) {
+	report, err := Compare([]int64{42, 99}, 50)
 	if err != nil {
 		t.Fatalf("Compare() error: %v", err)
 	}
@@ -14,38 +15,57 @@ func TestCompare(t *testing.T) {
 		t.Error("expected categories to match across seeds")
 	}
 
-	if len(report.SharedNames)+len(report.OnlyInA)+len(report.OnlyInB) != 50+len(report.OnlyInB) {
-		// Sanity: shared + onlyA should cover all of A
-		if len(report.SharedNames)+len(report.OnlyInA) != 50 {
-			t.Errorf("name accounting error: shared(%d) + onlyInA(%d) != 50",
-				len(report.SharedNames), len(report.OnlyInA))
-		}
+	if report.InputsSharedByAll == report.InputsInAnySeed {
+		t.Error("expected different seeds to have some non-overlapping inputs")
 	}
 
-	if report.SharedInputs == 50 {
-		t.Error("expected different seeds to produce different inputs")
+	if report.NamesInAnySeed <= 50 {
+		t.Error("expected union of names to exceed a single seed's count")
 	}
 }
 
-func TestCompareSameSeed(t *testing.T) {
-	report, err := Compare(42, 42, 10)
+func TestCompareThreeSeeds(t *testing.T) {
+	report, err := Compare([]int64{42, 99, 7}, 20)
 	if err != nil {
 		t.Fatalf("Compare() error: %v", err)
 	}
 
-	if len(report.OnlyInA) != 0 || len(report.OnlyInB) != 0 {
-		t.Errorf("same seed should produce identical names: onlyA=%d onlyB=%d",
-			len(report.OnlyInA), len(report.OnlyInB))
+	if len(report.Datasets) != 3 {
+		t.Errorf("expected 3 datasets, got %d", len(report.Datasets))
 	}
 
-	if report.SharedInputs != report.TotalInputsA {
-		t.Errorf("same seed should have all inputs shared: %d != %d",
-			report.SharedInputs, report.TotalInputsA)
+	// With 3 seeds, union should be larger than any single seed
+	if report.KeysInAnySeed <= len(report.Datasets[0].CompoundKeys) {
+		t.Error("expected combined key coverage to exceed a single seed")
+	}
+}
+
+func TestCompareSameSeed(t *testing.T) {
+	report, err := Compare([]int64{42, 42}, 10)
+	if err != nil {
+		t.Fatalf("Compare() error: %v", err)
+	}
+
+	if report.NamesSharedByAll != report.NamesInAnySeed {
+		t.Errorf("same seed should have identical names: all=%d any=%d",
+			report.NamesSharedByAll, report.NamesInAnySeed)
+	}
+
+	if report.InputsSharedByAll != report.InputsInAnySeed {
+		t.Errorf("same seed should have identical inputs: all=%d any=%d",
+			report.InputsSharedByAll, report.InputsInAnySeed)
+	}
+}
+
+func TestCompareNeedsTwoSeeds(t *testing.T) {
+	_, err := Compare([]int64{42}, 10)
+	if err == nil {
+		t.Error("expected error with only 1 seed")
 	}
 }
 
 func TestCompareFormatReport(t *testing.T) {
-	report, err := Compare(42, 99, 10)
+	report, err := Compare([]int64{42, 99, 7}, 10)
 	if err != nil {
 		t.Fatalf("Compare() error: %v", err)
 	}
@@ -55,21 +75,13 @@ func TestCompareFormatReport(t *testing.T) {
 		t.Error("FormatReport() returned empty string")
 	}
 
-	// Should contain both seed values
-	if !containsStr(output, "seed 42") || !containsStr(output, "seed 99") {
-		t.Error("report should mention both seeds")
-	}
-}
-
-func containsStr(s, substr string) bool {
-	return len(s) >= len(substr) && searchStr(s, substr)
-}
-
-func searchStr(s, substr string) bool {
-	for i := 0; i <= len(s)-len(substr); i++ {
-		if s[i:i+len(substr)] == substr {
-			return true
+	for _, seed := range []string{"42", "99", "7"} {
+		if !strings.Contains(output, seed) {
+			t.Errorf("report should mention seed %s", seed)
 		}
 	}
-	return false
+
+	if !strings.Contains(output, "3 seeds") {
+		t.Error("report should mention number of seeds")
+	}
 }
