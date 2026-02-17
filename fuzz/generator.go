@@ -135,6 +135,12 @@ func (g *Generator) Generate() (*SourceFile, error) {
 	// Deduplicate test names by appending suffix if needed
 	tests = deduplicateNames(tests)
 
+	// Prefix seed to all names for cross-seed uniqueness
+	seedPrefix := fmt.Sprintf("s%d_", g.opts.Seed)
+	for i := range tests {
+		tests[i].Name = seedPrefix + tests[i].Name
+	}
+
 	return &SourceFile{
 		Schema: "../../schemas/source-format.json",
 		Tests:  tests,

@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
+	"strings"
 	"testing"
 )
 
@@ -243,7 +244,7 @@ func TestNestedTestsHaveBuildHierarchy(t *testing.T) {
 }
 
 func isNestedTest(name string) bool {
-	return len(name) > 12 && name[:12] == "fuzz_nested_"
+	return strings.Contains(name, "fuzz_nested_")
 }
 
 func TestInputsNonEmpty(t *testing.T) {
