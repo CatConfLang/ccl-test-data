@@ -141,6 +141,10 @@ func (g *Generator) Generate() (*SourceFile, error) {
 
 // WriteToFile writes the generated tests to outputDir/api_fuzz_special_chars.json.
 func (g *Generator) WriteToFile(sf *SourceFile, outputDir string) error {
+	if err := os.MkdirAll(outputDir, 0o755); err != nil {
+		return fmt.Errorf("create output directory: %w", err)
+	}
+
 	data, err := json.MarshalIndent(sf, "", "  ")
 	if err != nil {
 		return fmt.Errorf("marshal JSON: %w", err)
