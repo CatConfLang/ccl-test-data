@@ -723,6 +723,310 @@ func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
 }
 
 
+// crlf_normalize_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeCommentOnlyParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= this is a comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "this is a comment"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_normalize_comment_only_filter - function:filter feature:comments feature:whitespace
+func TestCrlfNormalizeCommentOnlyFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= this is a comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// crlf_preserve_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveCommentOnlyParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= this is a comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "this is a comment\r"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_preserve_comment_only_filter - function:filter feature:comments feature:whitespace
+func TestCrlfPreserveCommentOnlyFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= this is a comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// crlf_normalize_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeCommentsAndValuesParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "Server config"}, mock.Entry{Key: "host", Value: "localhost"}, mock.Entry{Key: "/", Value: "Port setting"}, mock.Entry{Key: "port", Value: "8080"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_normalize_comments_and_values_filter - function:filter feature:comments feature:whitespace
+func TestCrlfNormalizeCommentsAndValuesFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// crlf_normalize_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"host": "localhost", "port": "8080"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// crlf_preserve_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveCommentsAndValuesParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "Server config\r"}, mock.Entry{Key: "host", Value: "localhost\r"}, mock.Entry{Key: "/", Value: "Port setting\r"}, mock.Entry{Key: "port", Value: "8080\r"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_preserve_comments_and_values_filter - function:filter feature:comments feature:whitespace
+func TestCrlfPreserveCommentsAndValuesFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// crlf_preserve_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"host": "localhost\r", "port": "8080\r"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+
+// crlf_normalize_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeMultipleCommentsParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "first comment"}, mock.Entry{Key: "/", Value: "second comment"}, mock.Entry{Key: "/", Value: "third comment"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_normalize_multiple_comments_filter - function:filter feature:comments feature:whitespace
+func TestCrlfNormalizeMultipleCommentsFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// crlf_preserve_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveMultipleCommentsParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "/", Value: "first comment\r"}, mock.Entry{Key: "/", Value: "second comment\r"}, mock.Entry{Key: "/", Value: "third comment\r"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// crlf_preserve_multiple_comments_filter - function:filter feature:comments feature:whitespace
+func TestCrlfPreserveMultipleCommentsFilter(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
 // behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_as_whitespace behavior:crlf_normalize_to_lf
 func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
 	
