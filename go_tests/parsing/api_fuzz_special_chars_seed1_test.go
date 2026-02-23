@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,16 +12,21 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // s1_fuzz_single_squote_parse - function:parse
 func TestS1FuzzSingleSquoteParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `' = val406`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -30,16 +35,20 @@ func TestS1FuzzSingleSquoteParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_asterisk_parse - function:parse
 func TestS1FuzzSingleAsteriskParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `* = val236`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -48,16 +57,20 @@ func TestS1FuzzSingleAsteriskParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_backslash_parse - function:parse
 func TestS1FuzzSingleBackslashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `\ = val775`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -66,16 +79,20 @@ func TestS1FuzzSingleBackslashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_rbrace_parse - function:parse
 func TestS1FuzzSingleRbraceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `} = val221`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -84,16 +101,20 @@ func TestS1FuzzSingleRbraceParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_tilde_parse - function:parse
 func TestS1FuzzSingleTildeParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `~ = val416`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -102,16 +123,20 @@ func TestS1FuzzSingleTildeParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_semicolon_parse - function:parse
 func TestS1FuzzSingleSemicolonParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `; = val155`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -120,16 +145,20 @@ func TestS1FuzzSingleSemicolonParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_plus_parse - function:parse
 func TestS1FuzzSinglePlusParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `+ = val794`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -138,16 +167,20 @@ func TestS1FuzzSinglePlusParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_dollar_parse - function:parse
 func TestS1FuzzSingleDollarParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `$ = val665`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -156,16 +189,20 @@ func TestS1FuzzSingleDollarParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_percent_parse - function:parse
 func TestS1FuzzSinglePercentParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `% = val973`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -174,16 +211,20 @@ func TestS1FuzzSinglePercentParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_at_parse - function:parse
 func TestS1FuzzSingleAtParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `@ = val410`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -192,16 +233,20 @@ func TestS1FuzzSingleAtParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_dquote_parse - function:parse
 func TestS1FuzzSingleDquoteParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `" = val797`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -210,16 +255,20 @@ func TestS1FuzzSingleDquoteParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_lparen_parse - function:parse
 func TestS1FuzzSingleLparenParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `( = val364`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -228,16 +277,20 @@ func TestS1FuzzSingleLparenParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_lt_parse - function:parse
 func TestS1FuzzSingleLtParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `< = val789`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -246,16 +299,20 @@ func TestS1FuzzSingleLtParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_lbracket_parse - function:parse
 func TestS1FuzzSingleLbracketParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `[ = val216`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -264,16 +321,20 @@ func TestS1FuzzSingleLbracketParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_single_rparen_parse - function:parse
 func TestS1FuzzSingleRparenParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `) = val374`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -282,16 +343,20 @@ func TestS1FuzzSingleRparenParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_at_lt_slash_parse - function:parse
 func TestS1FuzzComboAtLtSlashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `@</ = combo594`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -300,16 +365,20 @@ func TestS1FuzzComboAtLtSlashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_slash_lparen_semicolon_backslash_parse - function:parse
 func TestS1FuzzComboSlashLparenSemicolonBackslashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/(;\ = combo220`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -318,16 +387,20 @@ func TestS1FuzzComboSlashLparenSemicolonBackslashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_lt_hash_parse - function:parse
 func TestS1FuzzComboLtHashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `<# = combo31`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -336,16 +409,20 @@ func TestS1FuzzComboLtHashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_lparen_dquote_bang_parse - function:parse
 func TestS1FuzzComboLparenDquoteBangParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `("! = combo359`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -354,16 +431,20 @@ func TestS1FuzzComboLparenDquoteBangParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_slash_hash_backslash_dquote_parse - function:parse
 func TestS1FuzzComboSlashHashBackslashDquoteParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/#\" = combo87`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -372,16 +453,20 @@ func TestS1FuzzComboSlashHashBackslashDquoteParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_slash_percent_pipe_parse - function:parse
 func TestS1FuzzComboSlashPercentPipeParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/%| = combo957`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -390,16 +475,20 @@ func TestS1FuzzComboSlashPercentPipeParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_lbrace_pipe_backslash_parse - function:parse
 func TestS1FuzzComboLbracePipeBackslashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `{|\ = combo828`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -408,16 +497,20 @@ func TestS1FuzzComboLbracePipeBackslashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_bang_percent_slash_parse - function:parse
 func TestS1FuzzComboBangPercentSlashParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `!%/ = combo382`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -426,16 +519,20 @@ func TestS1FuzzComboBangPercentSlashParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_lbrace_pipe_rparen_parse - function:parse
 func TestS1FuzzComboLbracePipeRparenParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `{|) = combo608`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -444,16 +541,20 @@ func TestS1FuzzComboLbracePipeRparenParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_combo_colon_semicolon_squote_lt_parse - function:parse
 func TestS1FuzzComboColonSemicolonSquoteLtParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `:;'< = combo488`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -462,16 +563,20 @@ func TestS1FuzzComboColonSemicolonSquoteLtParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_start_lbracket_host_parse - function:parse
 func TestS1FuzzPosStartLbracketHostParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `[host = pos428`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -480,16 +585,20 @@ func TestS1FuzzPosStartLbracketHostParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_middle_dollar_gamma_parse - function:parse
 func TestS1FuzzPosMiddleDollarGammaParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `ga$mma = pos138`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -498,16 +607,20 @@ func TestS1FuzzPosMiddleDollarGammaParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_end_pipe_name_parse - function:parse
 func TestS1FuzzPosEndPipeNameParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `name| = pos691`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -516,16 +629,20 @@ func TestS1FuzzPosEndPipeNameParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_start_asterisk_server_parse - function:parse
 func TestS1FuzzPosStartAsteriskServerParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `*server = pos50`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -534,16 +651,20 @@ func TestS1FuzzPosStartAsteriskServerParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_middle_gt_alpha_parse - function:parse
 func TestS1FuzzPosMiddleGtAlphaParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `al>pha = pos153`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -552,16 +673,20 @@ func TestS1FuzzPosMiddleGtAlphaParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_end_squote_item_parse - function:parse
 func TestS1FuzzPosEndSquoteItemParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `item' = pos133`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -570,16 +695,20 @@ func TestS1FuzzPosEndSquoteItemParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_start_dquote_mode_parse - function:parse
 func TestS1FuzzPosStartDquoteModeParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `"mode = pos155`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -588,16 +717,20 @@ func TestS1FuzzPosStartDquoteModeParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_middle_ampersand_port_parse - function:parse
 func TestS1FuzzPosMiddleAmpersandPortParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `po&rt = pos601`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -606,16 +739,20 @@ func TestS1FuzzPosMiddleAmpersandPortParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_end_hash_host_parse - function:parse
 func TestS1FuzzPosEndHashHostParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `host# = pos976`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -624,16 +761,20 @@ func TestS1FuzzPosEndHashHostParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_pos_start_dollar_path_parse - function:parse
 func TestS1FuzzPosStartDollarPathParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `$path = pos556`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -642,16 +783,20 @@ func TestS1FuzzPosStartDollarPathParse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_name_0_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzValName0Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `name = data?x77]x88`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -660,26 +805,67 @@ func TestS1FuzzValName0Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_name_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzValName0BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data?x77]x88`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"name": "data?x77]x88"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_val_name_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzValName0GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data?x77]x88`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"name"})
+	require.NoError(t, err)
+	assert.Equal(t, "data?x77]x88", result)
+
 }
+
 
 // s1_fuzz_val_data_1_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzValData1Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `data = data'x23!x22`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -688,26 +874,67 @@ func TestS1FuzzValData1Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_data_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzValData1BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `data = data'x23!x22`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"data": "data'x23!x22"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_val_data_1_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzValData1GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `data = data'x23!x22`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"data"})
+	require.NoError(t, err)
+	assert.Equal(t, "data'x23!x22", result)
+
 }
+
 
 // s1_fuzz_val_mode_2_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzValMode2Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `mode = data?x30"x15~x73`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -716,26 +943,67 @@ func TestS1FuzzValMode2Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_mode_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzValMode2BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `mode = data?x30"x15~x73`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"mode": "data?x30\"x15~x73"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_val_mode_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzValMode2GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `mode = data?x30"x15~x73`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"mode"})
+	require.NoError(t, err)
+	assert.Equal(t, "data?x30\"x15~x73", result)
+
 }
+
 
 // s1_fuzz_val_name_3_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzValName3Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `name = data$x23~x81@x41`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -744,26 +1012,67 @@ func TestS1FuzzValName3Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_name_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzValName3BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data$x23~x81@x41`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"name": "data$x23~x81@x41"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_val_name_3_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzValName3GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data$x23~x81@x41`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"name"})
+	require.NoError(t, err)
+	assert.Equal(t, "data$x23~x81@x41", result)
+
 }
+
 
 // s1_fuzz_val_user_4_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzValUser4Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `user = data}x85$x2$x43`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -772,27 +1081,68 @@ func TestS1FuzzValUser4Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_val_user_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzValUser4BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `user = data}x85$x2$x43`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"user": "data}x85$x2$x43"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_val_user_4_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzValUser4GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `user = data}x85$x2$x43`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"user"})
+	require.NoError(t, err)
+	assert.Equal(t, "data}x85$x2$x43", result)
+
 }
+
 
 // s1_fuzz_nested_ampersand_rbrace_0_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandRbrace0Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `&alpha = nested297
 }gamma = deep715`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -801,27 +1151,70 @@ func TestS1FuzzNestedAmpersandRbrace0Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_ampersand_rbrace_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandRbrace0BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `&alpha = nested297
+}gamma = deep715`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"&alpha": "nested297", "}gamma": "deep715"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_ampersand_rbrace_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandRbrace0GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `&alpha = nested297
+}gamma = deep715`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"&alpha"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested297", result)
+
 }
+
 
 // s1_fuzz_nested_question_rbracket_1_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedQuestionRbracket1Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `?port = nested105
 ]name = deep997`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -830,27 +1223,70 @@ func TestS1FuzzNestedQuestionRbracket1Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_question_rbracket_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedQuestionRbracket1BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `?port = nested105
+]name = deep997`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"?port": "nested105", "]name": "deep997"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_question_rbracket_1_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedQuestionRbracket1GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `?port = nested105
+]name = deep997`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"?port"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested105", result)
+
 }
+
 
 // s1_fuzz_nested_plus_slash_2_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedPlusSlash2Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `+config = nested427
 /server = deep329`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -859,27 +1295,70 @@ func TestS1FuzzNestedPlusSlash2Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_plus_slash_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedPlusSlash2BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `+config = nested427
+/server = deep329`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"+config": "nested427", "/server": "deep329"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_plus_slash_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedPlusSlash2GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `+config = nested427
+/server = deep329`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"+config"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested427", result)
+
 }
+
 
 // s1_fuzz_nested_ampersand_dollar_3_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandDollar3Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `&name = nested41
 $port = deep486`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -888,27 +1367,70 @@ $port = deep486`
 
 }
 
+
 // s1_fuzz_nested_ampersand_dollar_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandDollar3BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `&name = nested41
+$port = deep486`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"$port": "deep486", "&name": "nested41"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_ampersand_dollar_3_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedAmpersandDollar3GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `&name = nested41
+$port = deep486`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"&name"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested41", result)
+
 }
+
 
 // s1_fuzz_nested_tilde_squote_4_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedTildeSquote4Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `~beta = nested332
 'beta = deep158`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -917,27 +1439,70 @@ func TestS1FuzzNestedTildeSquote4Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_tilde_squote_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedTildeSquote4BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `~beta = nested332
+'beta = deep158`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"'beta": "deep158", "~beta": "nested332"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_tilde_squote_4_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedTildeSquote4GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `~beta = nested332
+'beta = deep158`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"~beta"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested332", result)
+
 }
+
 
 // s1_fuzz_nested_hyphen_ampersand_5_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedHyphenAmpersand5Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `-config = nested723
 &epsilon = deep891`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -946,27 +1511,70 @@ func TestS1FuzzNestedHyphenAmpersand5Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_hyphen_ampersand_5_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedHyphenAmpersand5BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `-config = nested723
+&epsilon = deep891`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"&epsilon": "deep891", "-config": "nested723"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_hyphen_ampersand_5_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedHyphenAmpersand5GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `-config = nested723
+&epsilon = deep891`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"-config"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested723", result)
+
 }
+
 
 // s1_fuzz_nested_dollar_asterisk_6_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedDollarAsterisk6Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `$path = nested884
 *mode = deep88`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -975,27 +1583,70 @@ func TestS1FuzzNestedDollarAsterisk6Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_dollar_asterisk_6_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedDollarAsterisk6BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `$path = nested884
+*mode = deep88`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"$path": "nested884", "*mode": "deep88"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_dollar_asterisk_6_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedDollarAsterisk6GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `$path = nested884
+*mode = deep88`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"$path"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested884", result)
+
 }
+
 
 // s1_fuzz_nested_underscore_semicolon_7_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedUnderscoreSemicolon7Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `_path = nested515
 ;alpha = deep519`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1004,27 +1655,70 @@ func TestS1FuzzNestedUnderscoreSemicolon7Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_underscore_semicolon_7_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedUnderscoreSemicolon7BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `_path = nested515
+;alpha = deep519`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{";alpha": "deep519", "_path": "nested515"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_underscore_semicolon_7_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedUnderscoreSemicolon7GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `_path = nested515
+;alpha = deep519`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"_path"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested515", result)
+
 }
+
 
 // s1_fuzz_nested_at_rparen_8_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedAtRparen8Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `@server = nested286
 )gamma = deep475`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1033,27 +1727,70 @@ func TestS1FuzzNestedAtRparen8Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_at_rparen_8_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedAtRparen8BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `@server = nested286
+)gamma = deep475`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{")gamma": "deep475", "@server": "nested286"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_at_rparen_8_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedAtRparen8GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `@server = nested286
+)gamma = deep475`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"@server"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested286", result)
+
 }
+
 
 // s1_fuzz_nested_rbrace_tilde_9_parse - function:parse feature:optional_typed_accessors
 func TestS1FuzzNestedRbraceTilde9Parse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `}beta = nested295
 ~alpha = deep415`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1062,12 +1799,53 @@ func TestS1FuzzNestedRbraceTilde9Parse(t *testing.T) {
 
 }
 
+
 // s1_fuzz_nested_rbrace_tilde_9_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS1FuzzNestedRbraceTilde9BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `}beta = nested295
+~alpha = deep415`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"}beta": "nested295", "~alpha": "deep415"}
+	assert.Equal(t, expected, objectResult)
+
 }
+
 
 // s1_fuzz_nested_rbrace_tilde_9_get_string - function:get_string feature:optional_typed_accessors
 func TestS1FuzzNestedRbraceTilde9GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `}beta = nested295
+~alpha = deep415`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"}beta"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested295", result)
+
 }
+
+

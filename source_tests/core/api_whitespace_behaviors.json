@@ -552,6 +552,246 @@
       ]
     },
     {
+      "name": "crlf_normalize_comment_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "this is a comment"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": []
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= this is a comment\r\n"
+      ]
+    },
+    {
+      "name": "crlf_preserve_comment_only",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "this is a comment\r"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": []
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= this is a comment\r\n"
+      ]
+    },
+    {
+      "name": "crlf_normalize_comments_and_values",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "Server config"
+            },
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "/",
+              "value": "Port setting"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": [
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "host": "localhost",
+            "port": "8080"
+          }
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ]
+    },
+    {
+      "name": "crlf_preserve_comments_and_values",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "Server config\r"
+            },
+            {
+              "key": "host",
+              "value": "localhost\r"
+            },
+            {
+              "key": "/",
+              "value": "Port setting\r"
+            },
+            {
+              "key": "port",
+              "value": "8080\r"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": [
+            {
+              "key": "host",
+              "value": "localhost\r"
+            },
+            {
+              "key": "port",
+              "value": "8080\r"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "host": "localhost\r",
+            "port": "8080\r"
+          }
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ]
+    },
+    {
+      "name": "crlf_normalize_multiple_comments",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "first comment"
+            },
+            {
+              "key": "/",
+              "value": "second comment"
+            },
+            {
+              "key": "/",
+              "value": "third comment"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": []
+        }
+      ],
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ]
+    },
+    {
+      "name": "crlf_preserve_multiple_comments",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "/",
+              "value": "first comment\r"
+            },
+            {
+              "key": "/",
+              "value": "second comment\r"
+            },
+            {
+              "key": "/",
+              "value": "third comment\r"
+            }
+          ]
+        },
+        {
+          "function": "filter",
+          "expect": []
+        }
+      ],
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "inputs": [
+        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ]
+    },
+    {
       "name": "behavior_combo_tabs_and_crlf",
       "tests": [
         {
