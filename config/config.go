@@ -106,6 +106,8 @@ const (
 	BehaviorListCoercionOff        CCLBehavior = "list_coercion_disabled"
 	BehaviorToplevelIndentStrip    CCLBehavior = "toplevel_indent_strip"
 	BehaviorToplevelIndentPreserve CCLBehavior = "toplevel_indent_preserve"
+	BehaviorDelimiterFirstEquals   CCLBehavior = "delimiter_first_equals"
+	BehaviorDelimiterPreferSpaced  CCLBehavior = "delimiter_prefer_spaced"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups
@@ -117,6 +119,7 @@ func GetBehaviorConflicts() map[string][]CCLBehavior {
 		"boolean":         {BehaviorBooleanStrict, BehaviorBooleanLenient},
 		"list_coercion":   {BehaviorListCoercionOn, BehaviorListCoercionOff},
 		"toplevel_indent": {BehaviorToplevelIndentStrip, BehaviorToplevelIndentPreserve},
+		"delimiter":       {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
 	}
 }
 

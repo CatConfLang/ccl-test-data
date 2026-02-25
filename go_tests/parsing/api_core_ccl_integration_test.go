@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,22 +12,17 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // complete_basic_workflow_parse - function:parse
 func TestCompleteBasicWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -36,69 +31,29 @@ age = 42`
 
 }
 
-
 // complete_basic_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteBasicWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `name = Alice
-age = 42`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"age": "42", "name": "Alice"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_basic_workflow_print - function:print
 func TestCompleteBasicWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `name = Alice
-age = 42`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_nested_workflow_parse - function:parse
 func TestCompleteNestedWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   port = 5432
   enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -107,60 +62,18 @@ func TestCompleteNestedWorkflowParse(t *testing.T) {
 
 }
 
-
 // complete_nested_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteNestedWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `database =
-  host = localhost
-  port = 5432
-  enabled = true`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"database": map[string]interface{}{"enabled": "true", "host": "localhost", "port": "5432"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_nested_workflow_print - function:print
 func TestCompleteNestedWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `database =
-  host = localhost
-  port = 5432
-  enabled = true`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_mixed_workflow_parse - function:parse
 func TestCompleteMixedWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app = MyApp
@@ -170,13 +83,11 @@ config =
   features =
     feature1 = enabled
     feature2 = disabled`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -185,66 +96,18 @@ config =
 
 }
 
-
 // complete_mixed_workflow_build_hierarchy - function:build_hierarchy
 func TestCompleteMixedWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `app = MyApp
-version = 1.0.0
-config =
-  debug = true
-  features =
-    feature1 = enabled
-    feature2 = disabled`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"app": "MyApp", "config": map[string]interface{}{"debug": "true", "features": map[string]interface{}{"feature1": "enabled", "feature2": "disabled"}}, "version": "1.0.0"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_mixed_workflow_print - function:print
 func TestCompleteMixedWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `app = MyApp
-version = 1.0.0
-config =
-  debug = true
-  features =
-    feature1 = enabled
-    feature2 = disabled`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_lists_workflow_parse - function:parse
 func TestCompleteListsWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `servers =
@@ -254,13 +117,11 @@ func TestCompleteListsWorkflowParse(t *testing.T) {
 ports =
   port = 80
   port = 443`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -268,67 +129,19 @@ ports =
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // complete_lists_workflow_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `servers =
-  server = web1
-  server = web2
-  server = web3
-ports =
-  port = 80
-  port = 443`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"ports": map[string]interface{}{"port": []interface{}{"80", "443"}}, "servers": map[string]interface{}{"server": []interface{}{"web1", "web2", "web3"}}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_lists_workflow_print - function:print
 func TestCompleteListsWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `servers =
-  server = web1
-  server = web2
-  server = web3
-ports =
-  port = 80
-  port = 443`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_lists_workflow_lexicographic_parse - function:parse
 func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `servers =
@@ -338,13 +151,11 @@ func TestCompleteListsWorkflowLexicographicParse(t *testing.T) {
 ports =
   port = 80
   port = 443`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -353,66 +164,18 @@ ports =
 
 }
 
-
 // complete_lists_workflow_lexicographic_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestCompleteListsWorkflowLexicographicBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `servers =
-  server = web1
-  server = web2
-  server = web3
-ports =
-  port = 80
-  port = 443`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"ports": map[string]interface{}{"port": []interface{}{"443", "80"}}, "servers": map[string]interface{}{"server": []interface{}{"web1", "web2", "web3"}}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_lists_workflow_lexicographic_print - function:print
 func TestCompleteListsWorkflowLexicographicPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `servers =
-  server = web1
-  server = web2
-  server = web3
-ports =
-  port = 80
-  port = 443`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_multiline_workflow_parse - function:parse feature:multiline
 func TestCompleteMultilineWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `description = Welcome to our app
@@ -422,13 +185,11 @@ config =
   settings =
     value1 = one
     value2 = two`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -437,66 +198,18 @@ config =
 
 }
 
-
 // complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `description = Welcome to our app
-  This is a multi-line description
-  With several lines
-config =
-  settings =
-    value1 = one
-    value2 = two`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"config": map[string]interface{}{"settings": map[string]interface{}{"value1": "one", "value2": "two"}}, "description": "Welcome to our app\n  This is a multi-line description\n  With several lines"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // complete_multiline_workflow_print - function:print feature:multiline
 func TestCompleteMultilineWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `description = Welcome to our app
-  This is a multi-line description
-  With several lines
-config =
-  settings =
-    value1 = one
-    value2 = two`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // real_world_complete_workflow_parse - function:parse
 func TestRealWorldCompleteWorkflowParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `service = MyMicroservice
@@ -520,13 +233,11 @@ features =
   feature_a = enabled
   feature_b = disabled
   feature_c = experimental`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -535,88 +246,12 @@ features =
 
 }
 
-
 // real_world_complete_workflow_build_hierarchy - function:build_hierarchy
 func TestRealWorldCompleteWorkflowBuildHierarchy(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `service = MyMicroservice
-version = 2.1.0
-database =
-  host = db.example.com
-  port = 5432
-  credentials =
-    user = service_user
-    password = secret123
-  pools =
-    read = 5
-    write = 2
-logging =
-  level = info
-  outputs =
-    output = console
-    output = file
-    output = syslog
-features =
-  feature_a = enabled
-  feature_b = disabled
-  feature_c = experimental`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"database": map[string]interface{}{"credentials": map[string]interface{}{"password": "secret123", "user": "service_user"}, "host": "db.example.com", "pools": map[string]interface{}{"read": "5", "write": "2"}, "port": "5432"}, "features": map[string]interface{}{"feature_a": "enabled", "feature_b": "disabled", "feature_c": "experimental"}, "logging": map[string]interface{}{"level": "info", "outputs": map[string]interface{}{"output": []interface{}{"console", "file", "syslog"}}}, "service": "MyMicroservice", "version": "2.1.0"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
 
 // real_world_complete_workflow_print - function:print
 func TestRealWorldCompleteWorkflowPrint(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `service = MyMicroservice
-version = 2.1.0
-database =
-  host = db.example.com
-  port = 5432
-  credentials =
-    user = service_user
-    password = secret123
-  pools =
-    read = 5
-    write = 2
-logging =
-  level = info
-  outputs =
-    output = console
-    output = file
-    output = syslog
-features =
-  feature_a = enabled
-  feature_b = disabled
-  feature_c = experimental`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
-
-

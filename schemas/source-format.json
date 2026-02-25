@@ -122,6 +122,22 @@
             "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
             "mutuallyExclusiveWith": { "const": ["toplevel_indent_strip"] }
           }
+        },
+        "delimiter_first_equals": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "Always split on the first '=' character. Keys cannot contain '='." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["delimiter_prefer_spaced"] }
+          }
+        },
+        "delimiter_prefer_spaced": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "When multiple '=' exist, prefer ' = ' (space-equals-space) as the delimiter. Falls back to first bare '=' if no spaced delimiter exists." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["delimiter_first_equals"] }
+          }
         }
       }
     },
@@ -134,7 +150,8 @@
         "indent_spaces", "indent_tabs",
         "list_coercion_enabled", "list_coercion_disabled",
         "array_order_insertion", "array_order_lexicographic",
-        "toplevel_indent_strip", "toplevel_indent_preserve"
+        "toplevel_indent_strip", "toplevel_indent_preserve",
+        "delimiter_first_equals", "delimiter_prefer_spaced"
       ]
     },
     "functionName": {
@@ -379,6 +396,16 @@
         "description": "Preserve indentation of top-level values exactly as written.",
         "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
         "mutuallyExclusiveWith": ["toplevel_indent_strip"]
+      },
+      "delimiter_first_equals": {
+        "description": "Always split on the first '=' character. Keys cannot contain '='.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["delimiter_prefer_spaced"]
+      },
+      "delimiter_prefer_spaced": {
+        "description": "When multiple '=' exist, prefer ' = ' (space-equals-space) as the delimiter. Falls back to first bare '=' if no spaced delimiter exists.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["delimiter_first_equals"]
       }
     },
     "defaults": {

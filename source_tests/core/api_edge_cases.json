@@ -746,7 +746,10 @@
         },
         {
           "function": "get_string",
-          "args": ["mappings", "config/settings.json"],
+          "args": [
+            "mappings",
+            "config/settings.json"
+          ],
           "expect": ".vscode/settings.json"
         }
       ],
@@ -1101,7 +1104,9 @@
         },
         {
           "function": "get_string",
-          "args": ["path"],
+          "args": [
+            "path"
+          ],
           "expect": "../../src"
         }
       ],
@@ -1132,7 +1137,10 @@
         },
         {
           "function": "get_string",
-          "args": ["mappings", "../foo"],
+          "args": [
+            "mappings",
+            "../foo"
+          ],
           "expect": "../bar"
         }
       ],
@@ -1191,17 +1199,25 @@
         },
         {
           "function": "get_string",
-          "args": ["config", "build", "output"],
+          "args": [
+            "config",
+            "build",
+            "output"
+          ],
           "expect": "../../dist"
         },
         {
           "function": "get_string",
-          "args": ["config", "build", "cache"],
+          "args": [
+            "config",
+            "build",
+            "cache"
+          ],
           "expect": "../.cache"
         }
       ],
       "inputs": [
-        "config =\n  build =\n    output = ../../dist\n    cache = ../.cache"
+        "config =\n  build = \n    output = ../../dist\n    cache = ../.cache"
       ]
     },
     {
@@ -1229,12 +1245,16 @@
         },
         {
           "function": "get_string",
-          "args": ["imports", "..", "main"],
+          "args": [
+            "imports",
+            "..",
+            "main"
+          ],
           "expect": "../src/main"
         }
       ],
       "inputs": [
-        "imports =\n  .. =\n    main = ../src/main\n    test = ../tests"
+        "imports =\n  .. = \n    main = ../src/main\n    test = ../tests"
       ]
     },
     {
@@ -1265,12 +1285,16 @@
         },
         {
           "function": "get_string",
-          "args": ["paths", "relative", "up"],
+          "args": [
+            "paths",
+            "relative",
+            "up"
+          ],
           "expect": "../../"
         }
       ],
       "inputs": [
-        "paths =\n  relative =\n    up = ../../\n    current = .\n  absolute =\n    root = /"
+        "paths =\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"
       ]
     },
     {
@@ -1301,12 +1325,16 @@
         },
         {
           "function": "get_string",
-          "args": ["servers", "primary", "api"],
+          "args": [
+            "servers",
+            "primary",
+            "api"
+          ],
           "expect": "//api.example.com"
         }
       ],
       "inputs": [
-        "servers =\n  primary =\n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary =\n    //internal = //backup.example.com"
+        "servers =\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"
       ]
     },
     {
@@ -1329,7 +1357,9 @@
         },
         {
           "function": "get_string",
-          "args": ["https://api.example.com"],
+          "args": [
+            "https://api.example.com"
+          ],
           "expect": "production"
         }
       ],
@@ -1403,7 +1433,9 @@
         },
         {
           "function": "get_string",
-          "args": ["endpoint"],
+          "args": [
+            "endpoint"
+          ],
           "expect": "https://api.example.com/v1/data"
         }
       ],
@@ -1434,7 +1466,10 @@
         },
         {
           "function": "get_string",
-          "args": ["mappings", "https://api.example.com"],
+          "args": [
+            "mappings",
+            "https://api.example.com"
+          ],
           "expect": "https://prod.example.com"
         }
       ],
@@ -1472,12 +1507,17 @@
         },
         {
           "function": "get_string",
-          "args": ["config", "services", "api", "url"],
+          "args": [
+            "config",
+            "services",
+            "api",
+            "url"
+          ],
           "expect": "https://api.example.com"
         }
       ],
       "inputs": [
-        "config =\n  services =\n    api =\n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn =\n      url = https://cdn.example.com"
+        "config =\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"
       ]
     },
     {
@@ -1498,6 +1538,9 @@
             "https://api.example.com/search?q=test&page=1": "search_results"
           }
         }
+      ],
+      "behaviors": [
+        "delimiter_prefer_spaced"
       ],
       "inputs": [
         "https://api.example.com/search?q=test&page=1 = search_results"

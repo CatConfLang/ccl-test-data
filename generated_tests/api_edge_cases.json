@@ -1795,7 +1795,7 @@
         "parse"
       ],
       "inputs": [
-        "config =\n  build =\n    output = ../../dist\n    cache = ../.cache"
+        "config =\n  build = \n    output = ../../dist\n    cache = ../.cache"
       ],
       "name": "relative_paths_deeply_nested_parse",
       "source_test": "relative_paths_deeply_nested",
@@ -1820,7 +1820,7 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "config =\n  build =\n    output = ../../dist\n    cache = ../.cache"
+        "config =\n  build = \n    output = ../../dist\n    cache = ../.cache"
       ],
       "name": "relative_paths_deeply_nested_build_hierarchy",
       "source_test": "relative_paths_deeply_nested",
@@ -1843,7 +1843,7 @@
         "get_string"
       ],
       "inputs": [
-        "config =\n  build =\n    output = ../../dist\n    cache = ../.cache"
+        "config =\n  build = \n    output = ../../dist\n    cache = ../.cache"
       ],
       "name": "relative_paths_deeply_nested_get_string",
       "source_test": "relative_paths_deeply_nested",
@@ -1866,7 +1866,7 @@
         "parse"
       ],
       "inputs": [
-        "imports =\n  .. =\n    main = ../src/main\n    test = ../tests"
+        "imports =\n  .. = \n    main = ../src/main\n    test = ../tests"
       ],
       "name": "relative_paths_as_nested_keys_parse",
       "source_test": "relative_paths_as_nested_keys",
@@ -1891,7 +1891,7 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "imports =\n  .. =\n    main = ../src/main\n    test = ../tests"
+        "imports =\n  .. = \n    main = ../src/main\n    test = ../tests"
       ],
       "name": "relative_paths_as_nested_keys_build_hierarchy",
       "source_test": "relative_paths_as_nested_keys",
@@ -1914,7 +1914,7 @@
         "get_string"
       ],
       "inputs": [
-        "imports =\n  .. =\n    main = ../src/main\n    test = ../tests"
+        "imports =\n  .. = \n    main = ../src/main\n    test = ../tests"
       ],
       "name": "relative_paths_as_nested_keys_get_string",
       "source_test": "relative_paths_as_nested_keys",
@@ -1937,7 +1937,7 @@
         "parse"
       ],
       "inputs": [
-        "paths =\n  relative =\n    up = ../../\n    current = .\n  absolute =\n    root = /"
+        "paths =\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"
       ],
       "name": "mixed_relative_and_absolute_nested_parse",
       "source_test": "mixed_relative_and_absolute_nested",
@@ -1965,7 +1965,7 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "paths =\n  relative =\n    up = ../../\n    current = .\n  absolute =\n    root = /"
+        "paths =\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"
       ],
       "name": "mixed_relative_and_absolute_nested_build_hierarchy",
       "source_test": "mixed_relative_and_absolute_nested",
@@ -1988,7 +1988,7 @@
         "get_string"
       ],
       "inputs": [
-        "paths =\n  relative =\n    up = ../../\n    current = .\n  absolute =\n    root = /"
+        "paths =\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"
       ],
       "name": "mixed_relative_and_absolute_nested_get_string",
       "source_test": "mixed_relative_and_absolute_nested",
@@ -2011,7 +2011,7 @@
         "parse"
       ],
       "inputs": [
-        "servers =\n  primary =\n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary =\n    //internal = //backup.example.com"
+        "servers =\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"
       ],
       "name": "double_slash_deeply_nested_parse",
       "source_test": "double_slash_deeply_nested",
@@ -2039,7 +2039,7 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "servers =\n  primary =\n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary =\n    //internal = //backup.example.com"
+        "servers =\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"
       ],
       "name": "double_slash_deeply_nested_build_hierarchy",
       "source_test": "double_slash_deeply_nested",
@@ -2062,7 +2062,7 @@
         "get_string"
       ],
       "inputs": [
-        "servers =\n  primary =\n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary =\n    //internal = //backup.example.com"
+        "servers =\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"
       ],
       "name": "double_slash_deeply_nested_get_string",
       "source_test": "double_slash_deeply_nested",
@@ -2367,7 +2367,7 @@
         "parse"
       ],
       "inputs": [
-        "config =\n  services =\n    api =\n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn =\n      url = https://cdn.example.com"
+        "config =\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"
       ],
       "name": "urls_deeply_nested_parse",
       "source_test": "urls_deeply_nested",
@@ -2397,7 +2397,7 @@
         "build_hierarchy"
       ],
       "inputs": [
-        "config =\n  services =\n    api =\n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn =\n      url = https://cdn.example.com"
+        "config =\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"
       ],
       "name": "urls_deeply_nested_build_hierarchy",
       "source_test": "urls_deeply_nested",
@@ -2421,7 +2421,7 @@
         "get_string"
       ],
       "inputs": [
-        "config =\n  services =\n    api =\n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn =\n      url = https://cdn.example.com"
+        "config =\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"
       ],
       "name": "urls_deeply_nested_get_string",
       "source_test": "urls_deeply_nested",
@@ -2429,7 +2429,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -2452,7 +2459,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {

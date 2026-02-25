@@ -126,8 +126,6 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 					}
 				}
 
-				// Line ending normalization already handled at input level
-
 				entries = append(entries, Entry{
 					Key:   key,
 					Value: value,
