@@ -3,6 +3,70 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.6.0] - 2026-02-24
+
+
+
+### Bug Fixes
+
+- **tests:** Use no-leading-space format for top-level empty keys in print ([`13fb778`](https://github.com/CatConfLang/ccl-test-data/commit/13fb7789f2c37c82e779cc29663b3e332c1db7a7))
+
+  The print expectations for top-level empty keys used ` = value` (leading space), which would be re-parsed as a continuation line, making round_trip: true contradictory. Changed to `= value` (no leading space) to match the input format. Indented empty keys within continuation values are unaffected.
+
+    Fixes #72
+
+
+
+
+
+### Features
+
+- **tests:** Add delimiter_first_equals test cases ([`e219dd8`](https://github.com/CatConfLang/ccl-test-data/commit/e219dd89d6b2128c919cb40a56ec01935720d4e1))
+
+  Add three tests showing first-equals delimiter behavior as counterparts to the existing delimiter_prefer_spaced tests. Same inputs produce different parse results under each behavior:
+  - delimiter_first_url_with_query_params: URL splits at first bare `=`
+  - delimiter_first_multiple_equals: `a=b = c=d` splits at first `=`
+  - delimiter_first_empty_value: `a=b =` splits at first `=`
+
+- **tests:** Add delimiter_prefer_spaced test cases ([`ac139eb`](https://github.com/CatConfLang/ccl-test-data/commit/ac139eb548942cd54d37459a0396c1a2c2b46699))
+
+  Add three new tests for the delimiter_prefer_spaced behavior:
+  - delimiter_spaced_multiple_equals: `a=b = c=d` splits on ` = `
+  - delimiter_spaced_fallback_no_space: `key=value` falls back to bare `=`
+  - delimiter_spaced_empty_value: `a=b =` with empty value after ` = `
+
+    Closes #73
+
+- **tests:** Add edge case tests, delimiter behavior, and update dependencies ([`59c1d6d`](https://github.com/CatConfLang/ccl-test-data/commit/59c1d6d24487a259a4755909eb41c79d0104cb07))
+
+  ## Summary
+
+    - Add comprehensive edge case tests for relative paths, double slashes, URLs with special characters, and deeply nested structures
+  - Add `delimiter_first_equals` / `delimiter_prefer_spaced` behavior pair to schema and config, addressing how parsers handle `=` in keys (e.g., URLs with query params)
+  - Fix test inputs for intermediate section header lines to include trailing spaces, matching expected parse values
+  - Upgrade JSON Schema dialect from Draft-07 to Draft 2019-09 to support `$defs` keyword
+  - Bump Go from 1.25.4 to 1.26.0
+  - Update npm dependencies: `@commitlint/*` to ^20.4.2, `@sourcemeta/jsonschema` to ^14.13.3, `@tylerbu/cli` to ^0.9.0, `unist-util-visit` to ^5.1.0
+
+    Relates to #73, #74
+
+- **tests:** Add crlf + comments test coverage ([`d09d581`](https://github.com/CatConfLang/ccl-test-data/commit/d09d5813c9fa05b355184ef7447016f05ed8d737))
+
+  ## Summary
+
+    Add test cases for CRLF line endings combined with `/=` comment syntax, addressing the gap identified in #68.
+
+    ## New Tests
+
+    | Test Name | Behavior | Description | |-----------|----------|-------------| | `crlf_normalize_comment_only` | `crlf_normalize_to_lf` | Single comment with CRLF ending; parse recognizes comment, filter removes it | | `crlf_preserve_comment_only` | `crlf_preserve_literal` | Single comment with CRLF; `\r` preserved in value, filter still removes it | | `crlf_normalize_comments_and_values` | `crlf_normalize_to_lf` | Mixed comments and key-value pairs with CRLF | | `crlf_preserve_comments_and_values` | `crlf_preserve_literal` | Mixed comments and key-value pairs with CRLF; `\r` preserved | | `crlf_normalize_multiple_comments` | `crlf_normalize_to_lf` | Three consecutive comments with CRLF | | `crlf_preserve_multiple_comments` | `crlf_preserve_literal` | Three consecutive comments with CRLF; `\r` preserved |
+
+    These 6 source tests generate **14 flat test assertions** covering `parse`, `filter`, and `build_hierarchy` functions.
+
+    Closes #68
+
+
+
+
 ## [0.5.0] - 2026-02-17
 
 
