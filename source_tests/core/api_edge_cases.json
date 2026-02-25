@@ -1547,6 +1547,84 @@
       ]
     },
     {
+      "name": "delimiter_spaced_multiple_equals",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "a=b",
+              "value": "c=d"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "a=b": "c=d"
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ]
+    },
+    {
+      "name": "delimiter_spaced_fallback_no_space",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "key": "value"
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "inputs": [
+        "key=value"
+      ]
+    },
+    {
+      "name": "delimiter_spaced_empty_value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "a=b",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "a=b": ""
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "inputs": [
+        "a=b ="
+      ]
+    },
+    {
       "name": "url_with_fragment_as_key",
       "tests": [
         {

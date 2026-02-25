@@ -2486,6 +2486,177 @@
       "variants": []
     },
     {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "a=b",
+            "value": "c=d"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ],
+      "name": "delimiter_spaced_multiple_equals_parse",
+      "source_test": "delimiter_spaced_multiple_equals",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "a=b": "c=d"
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ],
+      "name": "delimiter_spaced_multiple_equals_build_hierarchy",
+      "source_test": "delimiter_spaced_multiple_equals",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "key",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "key=value"
+      ],
+      "name": "delimiter_spaced_fallback_no_space_parse",
+      "source_test": "delimiter_spaced_fallback_no_space",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "key": "value"
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "key=value"
+      ],
+      "name": "delimiter_spaced_fallback_no_space_build_hierarchy",
+      "source_test": "delimiter_spaced_fallback_no_space",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "a=b",
+            "value": ""
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "a=b ="
+      ],
+      "name": "delimiter_spaced_empty_value_parse",
+      "source_test": "delimiter_spaced_empty_value",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_prefer_spaced"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_first_equals"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "a=b": ""
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "a=b ="
+      ],
+      "name": "delimiter_spaced_empty_value_build_hierarchy",
+      "source_test": "delimiter_spaced_empty_value",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
       "behaviors": [],
       "expected": {
         "count": 1,

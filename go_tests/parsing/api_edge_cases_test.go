@@ -1284,6 +1284,36 @@ func TestUrlWithQueryParamsAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// delimiter_spaced_multiple_equals_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedMultipleEqualsParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:delimiter_prefer_spaced")
+}
+
+// delimiter_spaced_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedMultipleEqualsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// delimiter_spaced_fallback_no_space_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedFallbackNoSpaceParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:delimiter_prefer_spaced")
+}
+
+// delimiter_spaced_fallback_no_space_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedFallbackNoSpaceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// delimiter_spaced_empty_value_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedEmptyValueParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:delimiter_prefer_spaced")
+}
+
+// delimiter_spaced_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedEmptyValueBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // url_with_fragment_as_key_parse - function:parse
 func TestUrlWithFragmentAsKeyParse(t *testing.T) {
 
