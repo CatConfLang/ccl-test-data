@@ -2487,6 +2487,177 @@
     },
     {
       "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "https://api.example.com/search?q",
+            "value": "test\u0026page=1 = search_results"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "https://api.example.com/search?q=test\u0026page=1 = search_results"
+      ],
+      "name": "delimiter_first_url_with_query_params_parse",
+      "source_test": "delimiter_first_url_with_query_params",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "https://api.example.com/search?q": "test\u0026page=1 = search_results"
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "https://api.example.com/search?q=test\u0026page=1 = search_results"
+      ],
+      "name": "delimiter_first_url_with_query_params_build_hierarchy",
+      "source_test": "delimiter_first_url_with_query_params",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "a",
+            "value": "b = c=d"
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ],
+      "name": "delimiter_first_multiple_equals_parse",
+      "source_test": "delimiter_first_multiple_equals",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "a": "b = c=d"
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ],
+      "name": "delimiter_first_multiple_equals_build_hierarchy",
+      "source_test": "delimiter_first_multiple_equals",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "a",
+            "value": "b ="
+          }
+        ]
+      },
+      "features": [],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "a=b ="
+      ],
+      "name": "delimiter_first_empty_value_parse",
+      "source_test": "delimiter_first_empty_value",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "delimiter_prefer_spaced"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "a": "b ="
+        }
+      },
+      "features": [],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "a=b ="
+      ],
+      "name": "delimiter_first_empty_value_build_hierarchy",
+      "source_test": "delimiter_first_empty_value",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "delimiter_prefer_spaced"
       ],
       "conflicts": {

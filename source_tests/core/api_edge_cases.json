@@ -1547,6 +1547,84 @@
       ]
     },
     {
+      "name": "delimiter_first_url_with_query_params",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "https://api.example.com/search?q",
+              "value": "test&page=1 = search_results"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "https://api.example.com/search?q": "test&page=1 = search_results"
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "inputs": [
+        "https://api.example.com/search?q=test&page=1 = search_results"
+      ]
+    },
+    {
+      "name": "delimiter_first_multiple_equals",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "a",
+              "value": "b = c=d"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "a": "b = c=d"
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "inputs": [
+        "a=b = c=d"
+      ]
+    },
+    {
+      "name": "delimiter_first_empty_value",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "a",
+              "value": "b ="
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "a": "b ="
+          }
+        }
+      ],
+      "behaviors": [
+        "delimiter_first_equals"
+      ],
+      "inputs": [
+        "a=b ="
+      ]
+    },
+    {
       "name": "delimiter_spaced_multiple_equals",
       "tests": [
         {

@@ -1284,6 +1284,75 @@ func TestUrlWithQueryParamsAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+// delimiter_first_url_with_query_params_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstUrlWithQueryParamsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/search?q=test&page=1 = search_results`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://api.example.com/search?q", Value: "test&page=1 = search_results"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_url_with_query_params_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstUrlWithQueryParamsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// delimiter_first_multiple_equals_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstMultipleEqualsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b = c=d`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a", Value: "b = c=d"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstMultipleEqualsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// delimiter_first_empty_value_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstEmptyValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a", Value: "b ="}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstEmptyValueBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
 // delimiter_spaced_multiple_equals_parse - function:parse behavior:delimiter_prefer_spaced
 func TestDelimiterSpacedMultipleEqualsParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:delimiter_prefer_spaced")
