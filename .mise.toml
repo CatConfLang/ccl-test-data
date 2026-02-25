@@ -1,5 +1,5 @@
 [tools]
-go = "1.25.4"
+go = "1.26.0"
 hk = "latest"
 just = "latest"
 # Node.js for running ESM scripts and commitlint
