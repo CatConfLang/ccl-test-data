@@ -647,6 +647,10 @@
         {
           "function": "build_hierarchy",
           "expect": {
+            "/": [
+              "Server config",
+              "Port setting"
+            ],
             "host": "localhost",
             "port": "8080"
           }
@@ -703,6 +707,10 @@
         {
           "function": "build_hierarchy",
           "expect": {
+            "/": [
+              "Server config\r",
+              "Port setting\r"
+            ],
             "host": "localhost\r",
             "port": "8080\r"
           }

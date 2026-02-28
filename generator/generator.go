@@ -242,8 +242,14 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 		flatTest.Features = uniqueFeatures
 
 		// Filter behaviors to only those affecting this function (if metadata available)
+		// For composite validations (e.g., round_trip → parse + print), check all
+		// component functions so behavior tags aren't incorrectly dropped.
 		if fg.BehaviorMetadata != nil {
-			flatTest.Behaviors = fg.BehaviorMetadata.FilterBehaviorsForFunction(sourceTest.Behaviors, validationName)
+			functionsToCheck := []string{validationName}
+			if compositeFns, ok := compositeFunctionMap[validationName]; ok {
+				functionsToCheck = compositeFns
+			}
+			flatTest.Behaviors = fg.BehaviorMetadata.FilterBehaviorsForFunctions(sourceTest.Behaviors, functionsToCheck)
 		} else {
 			// Fallback: copy all behaviors (legacy behavior)
 			flatTest.Behaviors = copyStringSlice(sourceTest.Behaviors)
