@@ -3,6 +3,41 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.6.1] - 2026-02-28
+
+
+
+### Bug Fixes
+
+- **tests:** Resolve issues ([`b691aa5`](https://github.com/CatConfLang/ccl-test-data/commit/b691aa5ec8d9810cf43aeecae488fb47fd7457a9))
+
+  ## Summary
+
+    Fixes three related issues with test generation and expectations.
+
+    ### Changes
+
+    * **fix(generator): add `canonical_format` to its own compositeFunctionMap entry (#79)** Tests with `canonical_format` validation now include `canonical_format` in their functions array, so implementations that support `parse`+`print` but not `canonical_format` will correctly skip these tests.
+
+    * **fix(schema): add `filter` to CRLF behavior `affectedFunctions` (#80)** The `crlf_preserve_literal` and `crlf_normalize_to_lf` behaviors now list `filter` in their `affectedFunctions`. This ensures the `filter` sub-test inherits CRLF behavior tags and conflict metadata during flat test generation, so implementations with `crlf_normalize_to_lf` correctly skip CRLF-preserving filter tests.
+
+    * **fix(tests): remove trailing whitespace from print expectations (#81)** 21 print test expectations had trailing whitespace on lines where a key has a continuation or empty value (e.g. `config = \n` instead of `config =\n`). This caused `round_trip: true` assertions to be self-contradictory since `print(parse(input)) != input`. Updated the mock `Print` function to omit trailing space when the value is empty or starts with a newline, and fixed all affected test expectations.
+
+    Closes #79, closes #80, closes #81
+
+- **tests:** Resolve test inconsistencies ([`338d2fd`](https://github.com/CatConfLang/ccl-test-data/commit/338d2fdc2df10fe0e559e0d91edd92a73a7a6e3f))
+
+  ## Summary
+
+    - **#75**: Update `round_trip_property_complex` print expectation to use no-leading-space format (`= item1`) for empty keys, consistent with the fix in 13fb778
+  - **#76**: Fix behavior tag propagation for composite validations (`round_trip`, `canonical_format`, `load`) by resolving to component functions before filtering — `tabs_as_whitespace_round_trip_round_trip` now correctly has `behaviors: ["tabs_as_whitespace"]`
+  - **#77**: Update CRLF `build_hierarchy` tests to include `/` comment keys (as arrays for duplicates), consistent with `ocaml_stress_test_original` behavior
+
+    Closes #75, closes #76, closes #77
+
+
+
+
 ## [0.6.0] - 2026-02-24
 
 
