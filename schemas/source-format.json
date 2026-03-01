@@ -31,7 +31,7 @@
           "type": "object",
           "properties": {
             "description": { "const": "Normalize CRLF (\\r\\n) line endings to LF (\\n) during parsing. Affects all text processing." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"] },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "filter", "canonical_format", "load", "round_trip"] },
             "mutuallyExclusiveWith": { "const": ["crlf_preserve_literal"] }
           }
         },
@@ -39,7 +39,7 @@
           "type": "object",
           "properties": {
             "description": { "const": "Preserve CRLF (\\r\\n) line endings literally without normalization." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"] },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "filter", "canonical_format", "load", "round_trip"] },
             "mutuallyExclusiveWith": { "const": ["crlf_normalize_to_lf"] }
           }
         },
@@ -339,12 +339,12 @@
       },
       "crlf_normalize_to_lf": {
         "description": "Normalize CRLF (\\r\\n) line endings to LF (\\n) during parsing. Affects all text processing.",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"],
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "filter", "canonical_format", "load", "round_trip"],
         "mutuallyExclusiveWith": ["crlf_preserve_literal"]
       },
       "crlf_preserve_literal": {
         "description": "Preserve CRLF (\\r\\n) line endings literally without normalization.",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "load", "round_trip"],
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "filter", "canonical_format", "load", "round_trip"],
         "mutuallyExclusiveWith": ["crlf_normalize_to_lf"]
       },
       "tabs_as_content": {

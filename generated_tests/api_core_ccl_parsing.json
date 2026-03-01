@@ -202,7 +202,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "empty = \nother = value"
+        "value": "empty =\nother = value"
       },
       "features": [
         "empty_keys"
@@ -245,7 +245,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "database = \n  host = localhost\n  port = 5432"
+        "value": "database =\n  host = localhost\n  port = 5432"
       },
       "features": [],
       "functions": [

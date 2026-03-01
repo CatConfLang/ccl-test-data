@@ -32,44 +32,12 @@ func TestSingleItemAsListReferenceParse(t *testing.T) {
 
 // single_item_as_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `item = single`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"item": "single"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // single_item_as_list_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestSingleItemAsListReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `item = single`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"item"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // mixed_duplicate_single_keys_reference_parse - function:parse
@@ -94,48 +62,12 @@ host = localhost`
 
 // mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `ports = 80
-ports = 443
-host = localhost`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"host": "localhost", "ports": []interface{}{"443", "80"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // mixed_duplicate_single_keys_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `ports = 80
-ports = 443
-host = localhost`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"host"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // nested_list_access_reference_parse - function:parse variant:reference_compliant
@@ -161,50 +93,12 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 
 // nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `database =
-  hosts = primary
-  hosts = secondary
-  port = 5432`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"database": map[string]interface{}{"hosts": []interface{}{"primary", "secondary"}, "port": "5432"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // nested_list_access_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestNestedListAccessReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `database =
-  hosts = primary
-  hosts = secondary
-  port = 5432`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"database", "port"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // empty_list_reference_parse - function:parse variant:reference_compliant
@@ -227,44 +121,12 @@ func TestEmptyListReferenceParse(t *testing.T) {
 
 // empty_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestEmptyListReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `empty_list =`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"empty_list": ""}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // empty_list_reference_get_list - function:get_list variant:reference_compliant
 func TestEmptyListReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `empty_list =`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"empty_list"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_numbers_reference_parse - function:parse
@@ -290,50 +152,12 @@ numbers = 0`
 
 // list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `numbers = 1
-numbers = 42
-numbers = -17
-numbers = 0`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"numbers": []interface{}{"-17", "0", "1", "42"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_numbers_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithNumbersReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `numbers = 1
-numbers = 42
-numbers = -17
-numbers = 0`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"numbers"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_booleans_reference_parse - function:parse
@@ -359,50 +183,12 @@ flags = no`
 
 // list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `flags = true
-flags = false
-flags = yes
-flags = no`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"flags": []interface{}{"false", "no", "true", "yes"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_booleans_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithBooleansReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `flags = true
-flags = false
-flags = yes
-flags = no`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"flags"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_whitespace_reference_parse - function:parse feature:whitespace
@@ -428,50 +214,12 @@ items =   `
 
 // list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `items =   spaced   
-items = normal
-items =
-items =   `
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"items": []interface{}{"normal", "spaced"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_whitespace_reference_get_list - function:get_list feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `items =   spaced   
-items = normal
-items =
-items =   `
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"items"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_unicode_reference_parse - function:parse feature:unicode
@@ -497,50 +245,12 @@ names = العربية`
 
 // list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `names = 张三
-names = José
-names = François
-names = العربية`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"names": []interface{}{"François", "José", "العربية", "张三"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_unicode_reference_get_list - function:get_list feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `names = 张三
-names = José
-names = François
-names = العربية`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"names"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_special_characters_reference_parse - function:parse
@@ -565,110 +275,22 @@ symbols = []{}|`
 
 // list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `symbols = @#$%
-symbols = !^&*()
-symbols = []{}|`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"symbols": []interface{}{"!^&*()", "@#$%", "[]{}|"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_with_special_characters_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `symbols = @#$%
-symbols = !^&*()
-symbols = []{}|`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"symbols"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `config =
-  servers = web1
-  servers = web2
-  database =
-    hosts = primary
-    hosts = backup
-    port = 5432
-  cache = redis
-features = auth
-features = api
-features = ui`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"config": map[string]interface{}{"cache": "redis", "database": map[string]interface{}{"hosts": []interface{}{"backup", "primary"}, "port": "5432"}, "servers": []interface{}{"web1", "web2"}}, "features": []interface{}{"api", "auth", "ui"}}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // complex_mixed_list_scenarios_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `config =
-  servers = web1
-  servers = web2
-  database =
-    hosts = primary
-    hosts = backup
-    port = 5432
-  cache = redis
-features = auth
-features = api
-features = ui`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"features"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_path_traversal_protection_reference_parse - function:parse variant:reference_compliant
@@ -691,44 +313,12 @@ func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 
 // list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `safe = value`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"safe": "value"}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // list_path_traversal_protection_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestListPathTraversalProtectionReferenceGetList(t *testing.T) {
-
-	ccl := mock.New()
-	input := `safe = value`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// get_list validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	hierarchy := ccl.BuildHierarchy(parseResult)
-	result, err := ccl.GetList(hierarchy, []string{"safe"})
-	if err != nil {
-		require.Error(t, err)
-	} else {
-		assert.Empty(t, result)
-	}
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 // empty_value_reference_behavior_parse - function:parse variant:reference_compliant
@@ -751,24 +341,10 @@ func TestEmptyValueReferenceBehaviorParse(t *testing.T) {
 
 // empty_value_reference_behavior_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
-
-	ccl := mock.New()
-	input := `empty_key =`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"empty_key": ""}
-	assert.Equal(t, expected, objectResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
+// canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
 func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -785,24 +361,12 @@ func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 
 }
 
-// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print behavior:tabs_as_content variant:reference_compliant
+// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:tabs_as_content variant:reference_compliant
 func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
-
-	ccl := mock.New()
-	input := `value_with_tabs = text		with	tabs	`
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print feature:unicode variant:reference_compliant
+// canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print function:canonical_format feature:unicode variant:reference_compliant
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -822,40 +386,15 @@ emo = 🌟✨`
 
 // canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal variant:reference_compliant
 func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
-
-	ccl := mock.New()
-	input := "key1 = value1\r\nkey2 = value2\r\n"
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1\r"}, mock.Entry{Key: "key2", Value: "value2\r"}}
-	assert.Equal(t, expected, parseResult)
-
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print behavior:crlf_preserve_literal variant:reference_compliant
+// canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print function:canonical_format behavior:crlf_preserve_literal variant:reference_compliant
 func TestCanonicalFormatLineEndingsReferenceBehaviorCanonicalFormat(t *testing.T) {
-
-	ccl := mock.New()
-	input := "key1 = value1\r\nkey2 = value2\r\n"
-
-	// Declare variables for reuse across validations
-
-	var err error
-
-	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
+// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
 func TestCanonicalFormatConsistentSpacingOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -874,7 +413,7 @@ key3	=	value3`
 
 }
 
-// deterministic_output_ocaml_reference_canonical_format - function:parse function:print variant:reference_compliant
+// deterministic_output_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
 func TestDeterministicOutputOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()

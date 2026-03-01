@@ -173,7 +173,7 @@
         },
         {
           "function": "print",
-          "expect": "config = \n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+          "expect": "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
         },
         {
           "function": "round_trip",
@@ -210,7 +210,7 @@
         },
         {
           "function": "print",
-          "expect": "= item1\n= item2\nconfig = \n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
+          "expect": "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
         },
         {
           "function": "round_trip",

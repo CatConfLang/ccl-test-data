@@ -54,7 +54,7 @@
         },
         {
           "function": "print",
-          "expect": "server = \n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
         },
         {
           "function": "build_hierarchy",
@@ -152,7 +152,7 @@
         },
         {
           "function": "print",
-          "expect": "config = \n  server = web1\n  server = web2\n  port = 80"
+          "expect": "config =\n  server = web1\n  server = web2\n  port = 80"
         },
         {
           "function": "build_hierarchy",
@@ -193,7 +193,7 @@
         },
         {
           "function": "print",
-          "expect": "name = Alice\nconfig = \n  debug = true\n  timeout = 30\nversion = 1.0"
+          "expect": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
         },
         {
           "function": "build_hierarchy",
@@ -225,7 +225,7 @@
         },
         {
           "function": "print",
-          "expect": "environments = \n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+          "expect": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
         },
         {
           "function": "build_hierarchy",
