@@ -335,7 +335,7 @@
         "whitespace"
       ],
       "behaviors": [
-        "tabs_as_content"
+        "tabs_as_whitespace"
       ],
       "variants": [
         "reference_compliant"
