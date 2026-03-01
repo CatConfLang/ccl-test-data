@@ -279,7 +279,7 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 var compositeFunctionMap = map[string][]string{
 	"round_trip":       {"parse", "print"},
 	"load":             {"parse", "build_hierarchy"},
-	"canonical_format": {"parse", "print"},
+	"canonical_format": {"parse", "print", "canonical_format"},
 }
 
 // GenerateMetadataFromValidation creates type-safe metadata from validation type

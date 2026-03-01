@@ -357,9 +357,14 @@ func (c *CCL) Print(entries []Entry) string {
 			continue
 		}
 
-		// Write key
+		// Write key and separator
 		sb.WriteString(entry.Key)
-		sb.WriteString(" = ")
+		if entry.Value == "" || strings.HasPrefix(entry.Value, "\n") {
+			// Empty or continuation value: avoid trailing whitespace on the key line
+			sb.WriteString(" =")
+		} else {
+			sb.WriteString(" = ")
+		}
 
 		// Write value - if multiline, the value already contains the newlines and indentation
 		sb.WriteString(entry.Value)

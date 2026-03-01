@@ -121,7 +121,7 @@
         },
         {
           "function": "print",
-          "expect": "empty = \nother = value"
+          "expect": "empty =\nother = value"
         }
       ],
       "features": [
@@ -145,7 +145,7 @@
         },
         {
           "function": "print",
-          "expect": "database = \n  host = localhost\n  port = 5432"
+          "expect": "database =\n  host = localhost\n  port = 5432"
         }
       ],
       "inputs": [
