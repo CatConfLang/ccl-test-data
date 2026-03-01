@@ -3,6 +3,19 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.6.2] - 2026-03-01
+
+
+
+### Bug Fixes
+
+- **tests:** Correct behavior tag on key_with_tabs_ocaml_reference ([`bcea90e`](https://github.com/CatConfLang/ccl-test-data/commit/bcea90e9a7b05bafdb6c38a393f35ec5f3951ae4))
+
+  The reference_compliant variant strips tabs around the `=` delimiter, which is tabs_as_whitespace behavior, not tabs_as_content. Fixes #83.
+
+
+
+
 ## [0.6.1] - 2026-02-28
 
 
