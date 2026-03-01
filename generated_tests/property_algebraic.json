@@ -346,7 +346,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": " = item1\n = item2\nconfig = \n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
+        "value": "= item1\n= item2\nconfig = \n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
       },
       "features": [
         "empty_keys"

@@ -83,6 +83,44 @@ func (m *BehaviorMetadata) FilterBehaviorsForFunction(behaviors []string, functi
 	return filtered
 }
 
+// FilterBehaviorsForFunctions filters behaviors to only include those that affect
+// any of the given functions. This handles composite validations like round_trip
+// which map to multiple underlying functions (e.g., parse + print).
+func (m *BehaviorMetadata) FilterBehaviorsForFunctions(behaviors []string, functions []string) []string {
+	if behaviors == nil {
+		return make([]string, 0)
+	}
+
+	filtered := make([]string, 0, len(behaviors))
+	for _, behavior := range behaviors {
+		info, exists := m.Behaviors[behavior]
+		if !exists {
+			// Unmapped behavior = global, always include
+			filtered = append(filtered, behavior)
+			continue
+		}
+
+		// Check if any of the target functions is in the affected list
+		found := false
+		for _, affected := range info.AffectedFunctions {
+			for _, target := range functions {
+				if affected == target {
+					found = true
+					break
+				}
+			}
+			if found {
+				break
+			}
+		}
+		if found {
+			filtered = append(filtered, behavior)
+		}
+	}
+
+	return filtered
+}
+
 // GetConflictingBehaviors returns all behaviors that conflict with the given behaviors
 // based on the mutuallyExclusiveWith definitions.
 func (m *BehaviorMetadata) GetConflictingBehaviors(behaviors []string) []string {
