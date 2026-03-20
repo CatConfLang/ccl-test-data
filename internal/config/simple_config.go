@@ -64,7 +64,6 @@ var ValidBehaviors = []string{
 
 // ValidVariants defines all supported specification variants
 var ValidVariants = []string{
-	"proposed_behavior",
 	"reference_compliant",
 }
 
@@ -273,19 +272,14 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 	variant := VariantChoice{}
 	if len(c.Variants) > 0 {
 		switch c.Variants[0] {
-		case "proposed_behavior":
-			proposed := config.VariantProposed
-			variant.Specification = &proposed
 		case "reference_compliant":
-			// Note: Using the same constant as proposed for now
-			// TODO: Update when VariantReferenceCompliant is available
-			reference := config.VariantProposed
+			reference := config.VariantReference
 			variant.Specification = &reference
 		}
 	} else {
-		// Default to proposed behavior
-		proposed := config.VariantProposed
-		variant.Specification = &proposed
+		// Default to reference_compliant
+		reference := config.VariantReference
+		variant.Specification = &reference
 	}
 
 	return &RunnerConfig{

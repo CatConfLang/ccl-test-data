@@ -29,9 +29,7 @@
       "name": "multiline_section_header_value_parse_indented",
       "source_test": "multiline_section_header_value",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -60,9 +58,7 @@
       "name": "unindented_multiline_becomes_continuation_parse_indented",
       "source_test": "unindented_multiline_becomes_continuation",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -91,9 +87,7 @@
       "name": "indented_line_is_continuation_parse_indented",
       "source_test": "indented_line_is_continuation",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -118,9 +112,7 @@
       "name": "indented_line_is_continuation_build_hierarchy",
       "source_test": "indented_line_is_continuation",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -153,9 +145,7 @@
       "name": "indented_line_is_continuation_get_list",
       "source_test": "indented_line_is_continuation",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -193,9 +183,7 @@
       "name": "mixed_indentation_levels_parse_indented",
       "source_test": "mixed_indentation_levels",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -222,9 +210,7 @@
       "name": "mixed_indentation_levels_build_hierarchy",
       "source_test": "mixed_indentation_levels",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -247,9 +233,7 @@
       "name": "single_item_as_list_parse",
       "source_test": "single_item_as_list",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -269,9 +253,7 @@
       "name": "single_item_as_list_build_hierarchy",
       "source_test": "single_item_as_list",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -301,9 +283,7 @@
       "name": "single_item_as_list_get_list",
       "source_test": "single_item_as_list",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -334,9 +314,7 @@
       "name": "mixed_duplicate_single_keys_parse",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -360,9 +338,7 @@
       "name": "mixed_duplicate_single_keys_build_hierarchy",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -392,9 +368,7 @@
       "name": "mixed_duplicate_single_keys_get_list",
       "source_test": "mixed_duplicate_single_keys",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -417,9 +391,7 @@
       "name": "nested_list_access_parse",
       "source_test": "nested_list_access",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -445,9 +417,7 @@
       "name": "nested_list_access_build_hierarchy",
       "source_test": "nested_list_access",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -478,9 +448,7 @@
       "name": "nested_list_access_get_list",
       "source_test": "nested_list_access",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -503,9 +471,7 @@
       "name": "empty_list_parse",
       "source_test": "empty_list",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -525,9 +491,7 @@
       "name": "empty_list_build_hierarchy",
       "source_test": "empty_list",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -557,9 +521,7 @@
       "name": "empty_list_get_list",
       "source_test": "empty_list",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -594,9 +556,7 @@
       "name": "list_with_numbers_parse",
       "source_test": "list_with_numbers",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -621,9 +581,7 @@
       "name": "list_with_numbers_build_hierarchy",
       "source_test": "list_with_numbers",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -656,9 +614,7 @@
       "name": "list_with_numbers_get_list",
       "source_test": "list_with_numbers",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -693,9 +649,7 @@
       "name": "list_with_booleans_parse",
       "source_test": "list_with_booleans",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -720,9 +674,7 @@
       "name": "list_with_booleans_build_hierarchy",
       "source_test": "list_with_booleans",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -755,9 +707,7 @@
       "name": "list_with_booleans_get_list",
       "source_test": "list_with_booleans",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -794,9 +744,7 @@
       "name": "list_with_whitespace_parse",
       "source_test": "list_with_whitespace",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -823,9 +771,7 @@
       "name": "list_with_whitespace_build_hierarchy",
       "source_test": "list_with_whitespace",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -860,9 +806,7 @@
       "name": "list_with_whitespace_get_list",
       "source_test": "list_with_whitespace",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -899,9 +843,7 @@
       "name": "list_with_unicode_parse",
       "source_test": "list_with_unicode",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -928,9 +870,7 @@
       "name": "list_with_unicode_build_hierarchy",
       "source_test": "list_with_unicode",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -965,9 +905,7 @@
       "name": "list_with_unicode_get_list",
       "source_test": "list_with_unicode",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1002,9 +940,7 @@
       "name": "list_with_special_characters_parse",
       "source_test": "list_with_special_characters",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1029,9 +965,7 @@
       "name": "list_with_special_characters_build_hierarchy",
       "source_test": "list_with_special_characters",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -1064,9 +998,7 @@
       "name": "list_with_special_characters_get_list",
       "source_test": "list_with_special_characters",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1103,9 +1035,7 @@
       "name": "list_multiline_values_parse_indented",
       "source_test": "list_multiline_values",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1132,9 +1062,7 @@
       "name": "list_multiline_values_build_hierarchy",
       "source_test": "list_multiline_values",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -1168,9 +1096,7 @@
       "name": "list_multiline_values_get_list",
       "source_test": "list_multiline_values",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1233,9 +1159,7 @@
       "name": "complex_mixed_list_scenarios_parse_indented",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "parse_indented",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1273,9 +1197,7 @@
       "name": "complex_mixed_list_scenarios_build_hierarchy",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -1307,9 +1229,7 @@
       "name": "complex_mixed_list_scenarios_get_list",
       "source_test": "complex_mixed_list_scenarios",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1332,9 +1252,7 @@
       "name": "list_path_traversal_protection_parse",
       "source_test": "list_path_traversal_protection",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1354,9 +1272,7 @@
       "name": "list_path_traversal_protection_build_hierarchy",
       "source_test": "list_path_traversal_protection",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -1386,9 +1302,7 @@
       "name": "list_path_traversal_protection_get_list",
       "source_test": "list_path_traversal_protection",
       "validation": "get_list",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1411,9 +1325,7 @@
       "name": "parse_empty_value_parse",
       "source_test": "parse_empty_value",
       "validation": "parse",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "behaviors": [],
@@ -1433,9 +1345,7 @@
       "name": "parse_empty_value_build_hierarchy",
       "source_test": "parse_empty_value",
       "validation": "build_hierarchy",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     },
     {
       "args": [
@@ -1456,9 +1366,7 @@
       "name": "parse_empty_value_get_string",
       "source_test": "parse_empty_value",
       "validation": "get_string",
-      "variants": [
-        "proposed_behavior"
-      ]
+      "variants": []
     }
   ]
 }

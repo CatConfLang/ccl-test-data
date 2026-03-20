@@ -39,7 +39,7 @@ type BehaviorChoices struct {
 
 // VariantChoice contains REQUIRED specification variant choice
 type VariantChoice struct {
-	Specification *config.CCLVariant `json:"specification"` // REQUIRED: proposed_behavior | reference_compliant
+	Specification *config.CCLVariant `json:"specification"` // REQUIRED: reference_compliant
 }
 
 // TestFilteringOptions controls which tests are run
@@ -59,7 +59,7 @@ func DefaultConfig() *RunnerConfig {
 	boolean := config.BehaviorBooleanLenient
 	listCoercion := config.BehaviorListCoercionOff
 	toplevelIndent := config.BehaviorToplevelIndentStrip // Strip leading indent at top-level (matches OCaml reference)
-	variant := config.VariantProposed
+	variant := config.VariantReference
 
 	return &RunnerConfig{
 		Implementation: ImplementationSettings{
@@ -157,7 +157,7 @@ func (rc *RunnerConfig) Validate() error {
 
 	// Validate required variant choice is made
 	if rc.Variant.Specification == nil {
-		errors = append(errors, "Specification variant choice is required (proposed_behavior | reference_compliant)")
+		errors = append(errors, "Specification variant choice is required (reference_compliant)")
 	}
 
 	// Validate behavioral choices are from valid conflict groups
@@ -277,12 +277,10 @@ func (rc *RunnerConfig) GetConflictingTags() []string {
 		}
 	}
 
-	// Add variant conflicts
+	// Add variant conflicts (exclude variants not chosen)
 	if rc.Variant.Specification != nil {
-		if *rc.Variant.Specification == config.VariantProposed {
+		if *rc.Variant.Specification != config.VariantReference {
 			conflictingTags = append(conflictingTags, "variant:reference_compliant")
-		} else {
-			conflictingTags = append(conflictingTags, "variant:proposed_behavior")
 		}
 	}
 

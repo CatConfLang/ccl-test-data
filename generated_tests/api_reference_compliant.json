@@ -1020,16 +1020,16 @@
       "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
       "source_test": "canonical_format_empty_values_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
-        "tabs_as_content"
+        "tabs_as_content",
+        "indent_spaces"
       ],
       "conflicts": {
         "behaviors": [
+          "indent_tabs",
           "tabs_as_whitespace"
         ]
       },
@@ -1049,12 +1049,17 @@
       "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
       "source_test": "canonical_format_tab_preservation_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
@@ -1073,9 +1078,7 @@
       "name": "canonical_format_unicode_ocaml_reference_canonical_format",
       "source_test": "canonical_format_unicode_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
@@ -1109,17 +1112,17 @@
       "name": "canonical_format_line_endings_reference_behavior_parse",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "parse",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
-        "crlf_preserve_literal"
+        "crlf_preserve_literal",
+        "indent_spaces"
       ],
       "conflicts": {
         "behaviors": [
-          "crlf_normalize_to_lf"
+          "crlf_normalize_to_lf",
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -1138,12 +1141,17 @@
       "name": "canonical_format_line_endings_reference_behavior_canonical_format",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
@@ -1160,12 +1168,17 @@
       "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
       "source_test": "canonical_format_consistent_spacing_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
       "expected": {
         "count": 1,
         "value": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
@@ -1182,9 +1195,7 @@
       "name": "deterministic_output_ocaml_reference_canonical_format",
       "source_test": "deterministic_output_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     }
   ]
 }

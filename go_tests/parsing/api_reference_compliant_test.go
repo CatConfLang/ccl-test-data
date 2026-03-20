@@ -344,7 +344,7 @@ func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
-// canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
+// canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print function:canonical_format
 func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -361,12 +361,12 @@ func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 
 }
 
-// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:tabs_as_content variant:reference_compliant
+// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:tabs_as_content behavior:indent_spaces
 func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print function:canonical_format feature:unicode variant:reference_compliant
+// canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print function:canonical_format feature:unicode behavior:indent_spaces
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -384,17 +384,17 @@ emo = 🌟✨`
 
 }
 
-// canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal variant:reference_compliant
+// canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal
 func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print function:canonical_format behavior:crlf_preserve_literal variant:reference_compliant
+// canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print function:canonical_format behavior:crlf_preserve_literal behavior:indent_spaces
 func TestCanonicalFormatLineEndingsReferenceBehaviorCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
-// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
+// canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:indent_spaces
 func TestCanonicalFormatConsistentSpacingOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
@@ -413,7 +413,7 @@ key3	=	value3`
 
 }
 
-// deterministic_output_ocaml_reference_canonical_format - function:parse function:print function:canonical_format variant:reference_compliant
+// deterministic_output_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:indent_spaces
 func TestDeterministicOutputOcamlReferenceCanonicalFormat(t *testing.T) {
 
 	ccl := mock.New()
