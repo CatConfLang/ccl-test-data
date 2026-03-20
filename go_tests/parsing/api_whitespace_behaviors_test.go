@@ -147,6 +147,119 @@ func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
 
 }
 
+// print_nested_indent_spaces_print - function:print behavior:indent_spaces
+func TestPrintNestedIndentSpacesPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// print_deeply_nested_indent_spaces_print - function:print behavior:indent_spaces
+func TestPrintDeeplyNestedIndentSpacesPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// print_nested_indent_tabs_print - function:print behavior:indent_tabs
+func TestPrintNestedIndentTabsPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// print_deeply_nested_indent_tabs_print - function:print behavior:indent_tabs
+func TestPrintDeeplyNestedIndentTabsPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// print_mixed_flat_and_nested_indent_tabs_print - function:print behavior:indent_tabs
+func TestPrintMixedFlatAndNestedIndentTabsPrint(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+// canonical_format_deterministic_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
+func TestCanonicalFormatDeterministicIndentTabsCanonicalFormat(t *testing.T) {
+
+	ccl := mock.New()
+	input := `z = last
+a = first
+m = middle`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
+// canonical_format_consistent_spacing_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
+func TestCanonicalFormatConsistentSpacingIndentTabsCanonicalFormat(t *testing.T) {
+
+	ccl := mock.New()
+	input := `key1=value1
+key2  =  value2
+key3	=	value3`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
+// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_tabs
+func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+}
+
+// nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
+func TestNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
+
+	ccl := mock.New()
+	input := `package =
+	= brew
+	= scoop
+	= nix`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
+// deeply_nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
+func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
+
+	ccl := mock.New()
+	input := `app =
+	= item1
+	config =
+		= nested1
+		= nested2
+		deep =
+			= level3a
+			= level3b
+	= item2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement canonical_format validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
 // crlf_normalize_to_lf_basic_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
 
