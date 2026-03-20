@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,118 +12,143 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // tabs_as_content_in_value_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
+
 
 // tabs_as_content_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // tabs_as_content_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // tabs_as_content_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentLeadingTabParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
+
 // tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentLeadingTabGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // tabs_as_whitespace_in_value_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceInValueParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // tabs_as_whitespace_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // tabs_as_whitespace_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
+
 
 // tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // tabs_as_whitespace_multiple_tabs_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
+
 
 // tabs_as_content_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_content
 func TestTabsAsContentMultilineParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
+
 // tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
+
 
 // tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // tabs_canonical_format_as_content_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_content
 func TestTabsCanonicalFormatAsContentCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
+
 
 // tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_whitespace
 func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_spaces
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
+
 
 // tabs_as_whitespace_round_trip_round_trip - function:parse function:print feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // nested_bare_list_indentation_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestNestedBareListIndentationCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `package =
   = brew
   = scoop
   = nix`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // deeply_nested_bare_list_indentation_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `app =
@@ -135,108 +160,130 @@ func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
       = level3a
       = level3b
   = item2`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
+
 
 // print_nested_indent_spaces_print - function:print behavior:indent_spaces
 func TestPrintNestedIndentSpacesPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // print_deeply_nested_indent_spaces_print - function:print behavior:indent_spaces
 func TestPrintDeeplyNestedIndentSpacesPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // print_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintNestedIndentTabsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // print_deeply_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintDeeplyNestedIndentTabsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // print_mixed_flat_and_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintMixedFlatAndNestedIndentTabsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // canonical_format_deterministic_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatDeterministicIndentTabsCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `z = last
 a = first
 m = middle`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // canonical_format_consistent_spacing_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatConsistentSpacingIndentTabsCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `key1=value1
 key2  =  value2
 key3	=	value3`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
+
 
 // tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_tabs
 func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `package =
 	= brew
 	= scoop
 	= nix`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // deeply_nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `app =
@@ -248,28 +295,34 @@ func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
 			= level3a
 			= level3b
 	= item2`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // crlf_normalize_to_lf_basic_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -278,31 +331,38 @@ func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
 
 }
 
+
 // crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // crlf_preserve_literal_basic_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+
 // crlf_preserve_literal_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_normalize_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "multiline =\r\n  line1\r\n  line2"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -311,21 +371,26 @@ func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
 
 }
 
+
 // crlf_preserve_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_preserve_literal
 func TestCrlfPreserveMultilineValueParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+
 // crlf_mixed_line_endings_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfMixedLineEndingsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -334,16 +399,20 @@ func TestCrlfMixedLineEndingsParse(t *testing.T) {
 
 }
 
+
 // crlf_nested_structure_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "config =\r\n  host = localhost\r\n  port = 8080"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -352,31 +421,38 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 
 }
 
+
 // crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // crlf_preserve_nested_structure_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+
 // crlf_preserve_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_normalize_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentOnlyParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "/= this is a comment\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -385,31 +461,38 @@ func TestCrlfNormalizeCommentOnlyParse(t *testing.T) {
 
 }
 
+
 // crlf_normalize_comment_only_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentOnlyFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // crlf_preserve_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentOnlyParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+
 // crlf_preserve_comment_only_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentOnlyFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_normalize_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -418,41 +501,50 @@ func TestCrlfNormalizeCommentsAndValuesParse(t *testing.T) {
 
 }
 
+
 // crlf_normalize_comments_and_values_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // crlf_normalize_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_preserve_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
+
 
 // crlf_preserve_comments_and_values_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_preserve_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
+
 // crlf_normalize_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultipleCommentsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -461,27 +553,34 @@ func TestCrlfNormalizeMultipleCommentsParse(t *testing.T) {
 
 }
 
+
 // crlf_normalize_multiple_comments_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultipleCommentsFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // crlf_preserve_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveMultipleCommentsParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }
 
+
 // crlf_preserve_multiple_comments_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveMultipleCommentsFilter(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
+
 
 // behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_as_whitespace behavior:crlf_normalize_to_lf
 func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
+
 // behavior_combo_content_tabs_crlf_parse - function:parse feature:whitespace behavior:tabs_as_content behavior:crlf_normalize_to_lf
 func TestBehaviorComboContentTabsCrlfParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
+
+
