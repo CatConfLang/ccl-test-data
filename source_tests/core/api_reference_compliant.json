@@ -577,9 +577,6 @@
           "expect": "empty_key =\n"
         }
       ],
-      "variants": [
-        "reference_compliant"
-      ],
       "inputs": [
         "empty_key ="
       ]
@@ -593,10 +590,8 @@
         }
       ],
       "behaviors": [
-        "tabs_as_content"
-      ],
-      "variants": [
-        "reference_compliant"
+        "tabs_as_content",
+        "indent_spaces"
       ],
       "inputs": [
         "value_with_tabs = text\t\twith\ttabs\t"
@@ -613,8 +608,8 @@
       "features": [
         "unicode"
       ],
-      "variants": [
-        "reference_compliant"
+      "behaviors": [
+        "indent_spaces"
       ],
       "inputs": [
         "unicode = 你好世界\nemo = 🌟✨"
@@ -642,10 +637,8 @@
         }
       ],
       "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "variants": [
-        "reference_compliant"
+        "crlf_preserve_literal",
+        "indent_spaces"
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
@@ -659,8 +652,8 @@
           "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
         }
       ],
-      "variants": [
-        "reference_compliant"
+      "behaviors": [
+        "indent_spaces"
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
@@ -674,8 +667,8 @@
           "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
         }
       ],
-      "variants": [
-        "reference_compliant"
+      "behaviors": [
+        "indent_spaces"
       ],
       "inputs": [
         "z = last\na = first\nm = middle"

@@ -22,9 +22,6 @@
         "empty_keys",
         "multiline"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
       ]
@@ -48,9 +45,6 @@
       ],
       "features": [
         "empty_keys"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
@@ -98,9 +92,6 @@
       "features": [
         "multiline"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
       ]
@@ -144,9 +135,6 @@
         "multiline",
         "empty_keys"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
       ]
@@ -181,9 +169,6 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "item = single"
@@ -242,9 +227,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
       ]
@@ -298,9 +280,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
       ]
@@ -335,9 +314,6 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "empty_list ="
@@ -394,9 +370,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
       ]
@@ -451,9 +424,6 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
@@ -513,9 +483,6 @@
       "features": [
         "whitespace"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
       ]
@@ -574,9 +541,6 @@
       "features": [
         "unicode"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "names = 张三\nnames = José\nnames = François\nnames = العربية"
       ]
@@ -631,9 +595,6 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
@@ -691,9 +652,6 @@
       ],
       "features": [
         "multiline"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
@@ -823,9 +781,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
       ]
@@ -872,9 +827,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "safe = value"
       ]
@@ -904,9 +856,6 @@
             }
           ]
         }
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "empty_key ="

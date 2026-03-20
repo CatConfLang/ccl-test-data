@@ -129,6 +129,5 @@ const (
 type Variant string
 
 const (
-	VariantProposedBehavior   Variant = "proposed_behavior"
 	VariantReferenceCompliant Variant = "reference_compliant"
 )

@@ -23,7 +23,7 @@ func TestImplementationConfig_JSONMarshaling(t *testing.T) {
 			BehaviorCRLFNormalize,
 			BehaviorBooleanLenient,
 		},
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 		UnsupportedFeatures: []CCLFeature{
 			FeatureExperimentalDottedKeys,
 		},
@@ -54,8 +54,8 @@ func TestImplementationConfig_JSONMarshaling(t *testing.T) {
 	if len(unmarshaled.BehaviorChoices) != 2 {
 		t.Errorf("Expected 2 behavior choices, got %d", len(unmarshaled.BehaviorChoices))
 	}
-	if unmarshaled.VariantChoice != VariantProposed {
-		t.Errorf("Expected variant %s, got %s", VariantProposed, unmarshaled.VariantChoice)
+	if unmarshaled.VariantChoice != VariantReference {
+		t.Errorf("Expected variant %s, got %s", VariantReference, unmarshaled.VariantChoice)
 	}
 }
 
@@ -135,7 +135,6 @@ func TestAllVariants_Completeness(t *testing.T) {
 	variants := AllVariants()
 
 	expectedVariants := []CCLVariant{
-		VariantProposed,
 		VariantReference,
 	}
 
@@ -208,7 +207,7 @@ func TestImplementationConfig_IsValid_ValidConfig(t *testing.T) {
 			BehaviorBooleanLenient,
 			BehaviorTabsAsContent,
 		},
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 	}
 
 	if err := config.IsValid(); err != nil {
@@ -224,7 +223,7 @@ func TestImplementationConfig_IsValid_ConflictingBehaviors(t *testing.T) {
 			BehaviorCRLFNormalize,
 			BehaviorCRLFPreserve, // Conflicting with above
 		},
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 	}
 
 	err := config.IsValid()
@@ -252,7 +251,7 @@ func TestImplementationConfig_IsValid_MultipleBooleanConflicts(t *testing.T) {
 			BehaviorBooleanStrict,
 			BehaviorBooleanLenient, // Conflicting with above
 		},
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 	}
 
 	err := config.IsValid()
@@ -407,21 +406,21 @@ func TestImplementationConfig_HasBehavior_Negative(t *testing.T) {
 
 func TestImplementationConfig_HasVariant_Positive(t *testing.T) {
 	config := ImplementationConfig{
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 	}
 
-	if !config.HasVariant(VariantProposed) {
-		t.Error("Should have proposed variant")
+	if !config.HasVariant(VariantReference) {
+		t.Error("Should have reference variant")
 	}
 }
 
 func TestImplementationConfig_HasVariant_Negative(t *testing.T) {
 	config := ImplementationConfig{
-		VariantChoice: VariantProposed,
+		VariantChoice: VariantReference,
 	}
 
-	if config.HasVariant(VariantReference) {
-		t.Error("Should not have reference variant")
+	if config.HasVariant(CCLVariant("nonexistent_variant")) {
+		t.Error("Should not have nonexistent variant")
 	}
 }
 
@@ -459,7 +458,7 @@ func TestImplementationConfig_AllConflictGroups(t *testing.T) {
 		// Create config with all behaviors in the group (should be invalid)
 		config := ImplementationConfig{
 			BehaviorChoices: conflictingBehaviors,
-			VariantChoice:   VariantProposed,
+			VariantChoice:   VariantReference,
 		}
 
 		err := config.IsValid()
@@ -559,7 +558,6 @@ func TestCCLVariant_StringValues(t *testing.T) {
 		variant  CCLVariant
 		expected string
 	}{
-		{VariantProposed, "proposed_behavior"},
 		{VariantReference, "reference_compliant"},
 	}
 

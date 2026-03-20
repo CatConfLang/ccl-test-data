@@ -266,9 +266,9 @@ func TestKeyWithTabsParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
-// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_content variant:reference_compliant
+// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_whitespace variant:reference_compliant
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
+	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
 // whitespace_only_value_parse - function:parse feature:empty_keys feature:whitespace

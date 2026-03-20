@@ -341,6 +341,169 @@
       ]
     },
     {
+      "name": "print_nested_indent_spaces",
+      "tests": [
+        {
+          "function": "print",
+          "expect": "database =\n  host = localhost\n  port = 5432"
+        }
+      ],
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432"
+      ]
+    },
+    {
+      "name": "print_deeply_nested_indent_spaces",
+      "tests": [
+        {
+          "function": "print",
+          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+        }
+      ],
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "inputs": [
+        "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      ]
+    },
+    {
+      "name": "print_nested_indent_tabs",
+      "tests": [
+        {
+          "function": "print",
+          "expect": "database =\n\thost = localhost\n\tport = 5432"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "inputs": [
+        "database =\n\thost = localhost\n\tport = 5432"
+      ]
+    },
+    {
+      "name": "print_deeply_nested_indent_tabs",
+      "tests": [
+        {
+          "function": "print",
+          "expect": "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "inputs": [
+        "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
+      ]
+    },
+    {
+      "name": "print_mixed_flat_and_nested_indent_tabs",
+      "tests": [
+        {
+          "function": "print",
+          "expect": "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "inputs": [
+        "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
+      ]
+    },
+    {
+      "name": "canonical_format_deterministic_indent_tabs",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "a =\n\tfirst =\nm =\n\tmiddle =\nz =\n\tlast =\n"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "inputs": [
+        "z = last\na = first\nm = middle"
+      ]
+    },
+    {
+      "name": "canonical_format_consistent_spacing_indent_tabs",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "key1 =\n\tvalue1 =\nkey2 =\n\tvalue2 =\nkey3 =\n\tvalue3 =\n"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ]
+    },
+    {
+      "name": "tabs_as_whitespace_multiline_canonical_indent_tabs",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "section =\n\tindented\n\tanother"
+        }
+      ],
+      "behaviors": [
+        "tabs_as_whitespace",
+        "indent_tabs"
+      ],
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "inputs": [
+        "section =\n\t\tindented\n\t\tanother"
+      ]
+    },
+    {
+      "name": "nested_bare_list_indentation_tabs",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "package =\n\t= brew\n\t= scoop\n\t= nix"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "inputs": [
+        "package =\n\t= brew\n\t= scoop\n\t= nix"
+      ]
+    },
+    {
+      "name": "deeply_nested_bare_list_indentation_tabs",
+      "tests": [
+        {
+          "function": "canonical_format",
+          "expect": "app =\n\t= item1\n\t= item2\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b"
+        }
+      ],
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "inputs": [
+        "app =\n\t= item1\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b\n\t= item2"
+      ]
+    },
+    {
       "name": "crlf_normalize_to_lf_basic",
       "tests": [
         {

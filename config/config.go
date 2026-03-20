@@ -127,14 +127,12 @@ func GetBehaviorConflicts() map[string][]CCLBehavior {
 type CCLVariant string
 
 const (
-	VariantProposed  CCLVariant = "proposed_behavior"
 	VariantReference CCLVariant = "reference_compliant"
 )
 
 // AllVariants returns all valid CCL variants
 func AllVariants() []CCLVariant {
 	return []CCLVariant{
-		VariantProposed,
 		VariantReference,
 	}
 }

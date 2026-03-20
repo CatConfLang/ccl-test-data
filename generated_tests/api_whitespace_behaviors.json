@@ -604,6 +604,277 @@
     },
     {
       "behaviors": [
+        "indent_spaces"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "database =\n  host = localhost\n  port = 5432"
+      },
+      "features": [],
+      "functions": [
+        "print"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432"
+      ],
+      "name": "print_nested_indent_spaces_print",
+      "source_test": "print_nested_indent_spaces",
+      "validation": "print",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_spaces"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      },
+      "features": [],
+      "functions": [
+        "print"
+      ],
+      "inputs": [
+        "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      ],
+      "name": "print_deeply_nested_indent_spaces_print",
+      "source_test": "print_deeply_nested_indent_spaces",
+      "validation": "print",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "database =\n\thost = localhost\n\tport = 5432"
+      },
+      "features": [],
+      "functions": [
+        "print"
+      ],
+      "inputs": [
+        "database =\n\thost = localhost\n\tport = 5432"
+      ],
+      "name": "print_nested_indent_tabs_print",
+      "source_test": "print_nested_indent_tabs",
+      "validation": "print",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
+      },
+      "features": [],
+      "functions": [
+        "print"
+      ],
+      "inputs": [
+        "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
+      ],
+      "name": "print_deeply_nested_indent_tabs_print",
+      "source_test": "print_deeply_nested_indent_tabs",
+      "validation": "print",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
+      },
+      "features": [],
+      "functions": [
+        "print"
+      ],
+      "inputs": [
+        "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
+      ],
+      "name": "print_mixed_flat_and_nested_indent_tabs_print",
+      "source_test": "print_mixed_flat_and_nested_indent_tabs",
+      "validation": "print",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "a =\n\tfirst =\nm =\n\tmiddle =\nz =\n\tlast =\n"
+      },
+      "features": [],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "z = last\na = first\nm = middle"
+      ],
+      "name": "canonical_format_deterministic_indent_tabs_canonical_format",
+      "source_test": "canonical_format_deterministic_indent_tabs",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "key1 =\n\tvalue1 =\nkey2 =\n\tvalue2 =\nkey3 =\n\tvalue3 =\n"
+      },
+      "features": [],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ],
+      "name": "canonical_format_consistent_spacing_indent_tabs_canonical_format",
+      "source_test": "canonical_format_consistent_spacing_indent_tabs",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "tabs_as_whitespace",
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces",
+          "tabs_as_content"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "section =\n\tindented\n\tanother"
+      },
+      "features": [
+        "whitespace",
+        "multiline"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "section =\n\t\tindented\n\t\tanother"
+      ],
+      "name": "tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format",
+      "source_test": "tabs_as_whitespace_multiline_canonical_indent_tabs",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "package =\n\t= brew\n\t= scoop\n\t= nix"
+      },
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "package =\n\t= brew\n\t= scoop\n\t= nix"
+      ],
+      "name": "nested_bare_list_indentation_tabs_canonical_format",
+      "source_test": "nested_bare_list_indentation_tabs",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_tabs"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_spaces"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "app =\n\t= item1\n\t= item2\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b"
+      },
+      "features": [
+        "empty_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "app =\n\t= item1\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b\n\t= item2"
+      ],
+      "name": "deeply_nested_bare_list_indentation_tabs_canonical_format",
+      "source_test": "deeply_nested_bare_list_indentation_tabs",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "crlf_normalize_to_lf"
       ],
       "conflicts": {
