@@ -25,8 +25,7 @@ just reset
 
 | Command | Purpose |
 |---------|---------|
-| `just reset` | Clean state: generate + lint + test (use before commits) |
-| `just dev` | Full development cycle: generate all tests and run |
+| `just reset` | Clean state: build + lint + test (use before commits) |
 | `just test` | Run tests (basic tests by default) |
 | `just lint` | Format and lint Go code |
 | `just validate` | Validate JSON schemas |
@@ -154,7 +153,6 @@ just validate   # Schema validation
 just build      # Generate test files
 just lint       # Go formatting and linting
 just test       # Run test suite
-just build-readme  # Update README stats
 ```
 
 ## Troubleshooting

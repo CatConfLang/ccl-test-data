@@ -302,7 +302,6 @@ Follow conventional commits for automatic changelog generation:
 
 ### Debug Commands
 ```bash
-just test-verbose               # Detailed test output
-just stats --format json       # Statistics breakdown
+just stats                     # Test statistics
 ./ccl-test-runner generate --run-only function:parse  # Specific subset
 ```
