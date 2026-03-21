@@ -94,20 +94,22 @@ func AllFeatures() []CCLFeature {
 type CCLBehavior string
 
 const (
-	BehaviorCRLFNormalize          CCLBehavior = "crlf_normalize_to_lf"
-	BehaviorCRLFPreserve           CCLBehavior = "crlf_preserve_literal"
-	BehaviorTabsAsContent          CCLBehavior = "tabs_as_content"
-	BehaviorTabsAsWhitespace       CCLBehavior = "tabs_as_whitespace"
-	BehaviorIndentSpaces           CCLBehavior = "indent_spaces"
-	BehaviorIndentTabs             CCLBehavior = "indent_tabs"
-	BehaviorBooleanStrict          CCLBehavior = "boolean_strict"
-	BehaviorBooleanLenient         CCLBehavior = "boolean_lenient"
-	BehaviorListCoercionOn         CCLBehavior = "list_coercion_enabled"
-	BehaviorListCoercionOff        CCLBehavior = "list_coercion_disabled"
-	BehaviorToplevelIndentStrip    CCLBehavior = "toplevel_indent_strip"
-	BehaviorToplevelIndentPreserve CCLBehavior = "toplevel_indent_preserve"
-	BehaviorDelimiterFirstEquals   CCLBehavior = "delimiter_first_equals"
-	BehaviorDelimiterPreferSpaced  CCLBehavior = "delimiter_prefer_spaced"
+	BehaviorCRLFNormalize           CCLBehavior = "crlf_normalize_to_lf"
+	BehaviorCRLFPreserve            CCLBehavior = "crlf_preserve_literal"
+	BehaviorTabsAsContent           CCLBehavior = "tabs_as_content"
+	BehaviorTabsAsWhitespace        CCLBehavior = "tabs_as_whitespace"
+	BehaviorIndentSpaces            CCLBehavior = "indent_spaces"
+	BehaviorIndentTabs              CCLBehavior = "indent_tabs"
+	BehaviorBooleanStrict           CCLBehavior = "boolean_strict"
+	BehaviorBooleanLenient          CCLBehavior = "boolean_lenient"
+	BehaviorListCoercionOn          CCLBehavior = "list_coercion_enabled"
+	BehaviorListCoercionOff         CCLBehavior = "list_coercion_disabled"
+	BehaviorToplevelIndentStrip     CCLBehavior = "toplevel_indent_strip"
+	BehaviorToplevelIndentPreserve  CCLBehavior = "toplevel_indent_preserve"
+	BehaviorDelimiterFirstEquals    CCLBehavior = "delimiter_first_equals"
+	BehaviorDelimiterPreferSpaced   CCLBehavior = "delimiter_prefer_spaced"
+	BehaviorArrayOrderInsertion     CCLBehavior = "array_order_insertion"
+	BehaviorArrayOrderLexicographic CCLBehavior = "array_order_lexicographic"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups
@@ -120,6 +122,7 @@ func GetBehaviorConflicts() map[string][]CCLBehavior {
 		"list_coercion":   {BehaviorListCoercionOn, BehaviorListCoercionOff},
 		"toplevel_indent": {BehaviorToplevelIndentStrip, BehaviorToplevelIndentPreserve},
 		"delimiter":       {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
+		"array_ordering":  {BehaviorArrayOrderInsertion, BehaviorArrayOrderLexicographic},
 	}
 }
 

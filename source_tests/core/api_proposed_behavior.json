@@ -87,7 +87,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "multiline"
@@ -225,7 +226,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
@@ -313,7 +315,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "empty_list ="
@@ -368,7 +371,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
@@ -423,7 +427,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
@@ -478,7 +483,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "whitespace"
@@ -536,7 +542,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "unicode"
@@ -594,7 +601,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
@@ -648,7 +656,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "multiline"
@@ -779,7 +788,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"

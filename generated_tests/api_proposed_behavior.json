@@ -90,7 +90,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -119,10 +126,12 @@
         "descriptions"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -317,7 +326,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -345,10 +361,12 @@
         "host"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -474,7 +492,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -498,10 +523,12 @@
         "empty_list"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -559,7 +586,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -588,10 +622,12 @@
         "numbers"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -652,7 +688,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -681,10 +724,12 @@
         "flags"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -747,7 +792,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -778,10 +830,12 @@
         "items"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -846,7 +900,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -877,10 +938,12 @@
         "names"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -943,7 +1006,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -972,10 +1042,12 @@
         "symbols"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -1038,7 +1110,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -1069,10 +1148,12 @@
         "descriptions"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
@@ -1162,7 +1243,14 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_lexicographic"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -1204,10 +1292,12 @@
         "features"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_lexicographic",
           "list_coercion_disabled"
         ]
       },
