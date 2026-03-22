@@ -42,6 +42,26 @@ ci: format lint test build
 
 alias pr := ci
 
+# === CI ===
+
+# CI-specific dependency setup (drops local replace directives)
+deps-ci:
+    go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
+    go mod tidy
+
+# Build README and verify no uncommitted changes
+build-readme:
+    node scripts/update-readme-remark.mjs
+    just _check-readme-unchanged
+
+# Check if README.md has uncommitted changes
+_check-readme-unchanged:
+    #!/usr/bin/env bash
+    if ! git diff --quiet HEAD -- README.md; then
+        echo "ERROR: README.md has uncommitted changes. Run 'just build-readme' locally and commit."
+        exit 1
+    fi
+
 # === UTILITIES ===
 
 # Install dependencies
