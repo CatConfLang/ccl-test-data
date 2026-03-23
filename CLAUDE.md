@@ -25,16 +25,14 @@ just reset                  # Generate basic tests, verify they pass
 just validate               # Validate JSON test files
 
 # Development cycle
-just dev                    # Generate all tests and run them
-just test                   # Run tests with optional filtering
+just test                   # Run tests
+just test-all               # Run all tests including failing ones
 ```
 
 ### Testing Options
 ```bash
 just test                       # Run tests (basic tests by default)
 just test-all                   # Run all tests including failing ones
-just test-verbose              # Run tests with verbose output
-just test -- <go-test-args>    # Pass custom arguments to go test
 ```
 
 ### Adding New Tests
@@ -74,8 +72,7 @@ source_tests/
 
 | Command | Purpose | When to Use |
 |---------|---------|-------------|
-| `just reset` (alias: `dev-basic`) | Generate core tests and verify they pass | Before commits, quick verification |
-| `just dev` | Full development cycle: generate all tests and run | Complete test suite development |
+| `just reset` | Clean, build, lint, and test (ensures clean state) | Before commits, quick verification |
 | `just lint` | Format and lint Go code | Before every commit (required) |
 | `just validate` | Validate JSON schema compliance | After modifying test files |
 | `just stats` | Show detailed test statistics | Review function coverage, feature distribution |

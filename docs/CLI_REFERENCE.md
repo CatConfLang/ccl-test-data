@@ -14,9 +14,11 @@ Command-line interface reference for the CCL Test Suite's test runner and utilit
 ## Installation
 
 ```bash
-# Build and install
-go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
-just install                # Install to PATH
+# Build
+just build
+
+# Install to $GOPATH/bin
+just install
 ```
 
 ## Main Command: ccl-test-runner

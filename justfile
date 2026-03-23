@@ -1,161 +1,114 @@
-# CCL Test Runner Justfile (Streamlined)
+# CCL Test Data - JSON test suite for CCL implementations
 
-# Aliases
+# === ALIASES ===
+alias b := build
 alias t := test
-alias gen := generate
-alias flat := generate-flat
-alias fuzz := generate-fuzz
-alias reset := dev-basic
-alias view := view-tests
-alias vs := view-tests-static
-alias pr := ci
+alias f := format
+alias l := lint
+alias c := clean
 
-# Show available commands
+# Default recipe
 default:
     @just --list
 
-# === BUILD ===
+# === STANDARD RECIPES ===
 
-# Build: generate test files from source JSON
+# Generate test files from source JSON
 build:
-    just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_as_content,behavior:tabs_as_whitespace,behavior:toplevel_indent_preserve,behavior:delimiter_prefer_spaced
-
-# Build Go binaries
-build-bin:
-    go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
-    go build -o bin/test-reader ./cmd/test-reader
-
-# Install tools to $GOPATH/bin
-install:
-    go install ./cmd/ccl-test-runner
-    go install ./cmd/test-reader
-
-# === ESSENTIAL WORKFLOWS ===
-
-# Basic development: clean, build, lint, test
-dev-basic:
-    just clean
-    just build
-    just lint
-    just test
-
-# Full development: comprehensive test suite
-dev:
-    just clean
-    just generate
-    just test-all
-
-# Production CI: complete validation pipeline
-ci:
-    just validate
-    just build
-    just lint
-    just test
-    just build-readme
-
-# === GENERATION ===
-
-# Generate all: flat JSON files then Go test files
-generate *ARGS="":
-    just generate-flat {{ARGS}}
-    just generate-go {{ARGS}}
-
-# Generate Go test files from flat JSON files (with optional filtering)
-generate-go *ARGS="":
-    go run ./cmd/ccl-test-runner generate {{ARGS}}
-
-# Generate flat JSON files from source JSON files (source-to-flat conversion)
-# ARCHITECTURE NOTE: This delegates to ccl-test-lib via a thin CLI wrapper
-# - Logic lives in: ccl-test-lib/generator.NewFlatGenerator()
-# - CLI wrapper: cmd/ccl-test-runner/generate_flat.go
-# - Separation: Library contains logic, CLI provides convenience interface
-# Uses x-behaviorMetadata in source-format.json for function-specific filtering and auto-conflicts
-generate-flat *ARGS="":
-    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate {{ARGS}}
-
-# Generate fuzz test cases (seeded randomized special character tests)
-generate-fuzz *ARGS="":
-    go run ./cmd/ccl-test-runner generate-fuzz {{ARGS}}
-
-# Compare fuzz datasets across seeds (default: 42 99 7)
-compare-fuzz *ARGS="42 99 7":
-    go run ./cmd/ccl-test-runner compare-fuzz {{ARGS}}
-
-# === TESTING ===
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
+    go run ./cmd/ccl-test-runner generate --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_as_content,behavior:tabs_as_whitespace,behavior:toplevel_indent_preserve,behavior:delimiter_prefer_spaced
 
 # Run tests
-test *ARGS="":
-    go run ./cmd/ccl-test-runner test --basic-only {{ARGS}}
+test:
+    go run ./cmd/ccl-test-runner test --basic-only
 
-# Run all tests including known failing ones
-test-all *ARGS="":
-    go run ./cmd/ccl-test-runner test {{ARGS}}
+# Format Go code
+format:
+    go fmt ./...
 
-# === VALIDATION ===
+# Run linter
+lint:
+    go mod tidy
+    go vet ./...
 
-validate:
-    npx @sourcemeta/jsonschema validate schemas/source-format.json source_tests/
-    npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
+# Remove build artifacts
+clean:
+    go run ./cmd/clean go_tests bin
+    rm -f bin/ccl-test-runner bin/test-reader
 
-# Update README.md with current test statistics using remark.js AST processing
+# Full validation workflow
+ci: format lint test build
+    just validate
+
+alias pr := ci
+
+# === CI ===
+
+# CI-specific dependency setup (drops local replace directives)
+deps-ci:
+    go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
+    go mod tidy
+
+# Build README and verify no uncommitted changes
 build-readme:
     node scripts/update-readme-remark.mjs
     just _check-readme-unchanged
 
 # Check if README.md has uncommitted changes
 _check-readme-unchanged:
-    git diff --exit-code README.md
+    #!/usr/bin/env bash
+    if ! git diff --quiet HEAD -- README.md; then
+        echo "ERROR: README.md has uncommitted changes. Run 'just build-readme' locally and commit."
+        exit 1
+    fi
 
 # === UTILITIES ===
 
-stats:
-    go run ./cmd/ccl-test-runner stats --input source_tests
-
-list:
-    go run ./cmd/ccl-test-runner test --list
-
-# Interactive test viewer (TUI-based) - builds test-reader if needed
-view-tests PATH="source_tests/core":
-    just build-bin
-    ./bin/test-reader {{PATH}}
-
-# Static test viewer (CLI output) - builds test-reader if needed
-view-tests-static PATH="source_tests/core":
-    just build-bin
-    ./bin/test-reader {{PATH}} --static
-
-# View specific test file interactively
-view-test FILE:
-    just build-bin
-    ./bin/test-reader {{FILE}}
-
-# View specific test file with static output
-view-test-static FILE:
-    just build-bin
-    ./bin/test-reader {{FILE}} --static
-
-clean:
-    go run ./cmd/clean go_tests bin
-    rm -f bin/ccl-test-runner bin/test-reader
-
-lint:
-    go mod tidy
-    go fmt ./...
-    go vet ./...
-
-format:
-    go fmt ./...
-
+# Install dependencies
 deps:
     npm install
     go mod download
     uv tool install python-semantic-release
 
-# Configure go.mod for CI (removes local replace directive)
-deps-ci:
-    go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
-    go mod tidy
+# Validate JSON schema compliance
+validate:
+    npx @sourcemeta/jsonschema validate schemas/source-format.json source_tests/
+    npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
+
+# Show test statistics
+stats:
+    go run ./cmd/ccl-test-runner stats --input source_tests
+
+# Clean, build, lint, and test (ensures clean state)
+reset:
+    just clean
+    just build
+    just lint
+    just test
+
+# Run all tests including known failing ones
+test-all:
+    go run ./cmd/ccl-test-runner test
+
+# === GENERATION ===
+
+# Generate all test files (flat JSON + Go tests)
+generate:
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
+    go run ./cmd/ccl-test-runner generate
+
+# Generate flat JSON files from source
+generate-flat:
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
+
+# Generate Go test files from flat JSON
+generate-go:
+    go run ./cmd/ccl-test-runner generate
+
+# Install CLI tools to $GOPATH/bin
+install:
+    go install ./cmd/ccl-test-runner
+    go install ./cmd/test-reader
 
 # === RELEASE ===
 
@@ -175,13 +128,3 @@ release-changelog:
 release:
     semantic-release version --no-push
     @echo "Release created. Push with: git push origin main --tags"
-
-# === CONVENIENCE COMMANDS ===
-
-# Generate only basic tests for mock implementation
-generate-mock:
-    just generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior
-
-# Test with verbose output
-test-verbose:
-    just test --verbose
