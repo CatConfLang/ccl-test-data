@@ -661,7 +661,7 @@ func TestOcamlStressTestOriginalGetString(t *testing.T) {
 }
 
 
-// forward_slashes_in_map_keys_parse - function:parse
+// forward_slashes_in_map_keys_parse - function:parse feature:path_traversal
 func TestForwardSlashesInMapKeysParse(t *testing.T) {
 	
 
@@ -685,13 +685,13 @@ func TestForwardSlashesInMapKeysParse(t *testing.T) {
 }
 
 
-// forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy
+// forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestForwardSlashesInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// forward_slashes_in_map_keys_get_string - function:get_string
+// forward_slashes_in_map_keys_get_string - function:get_string feature:path_traversal
 func TestForwardSlashesInMapKeysGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1114,7 +1114,7 @@ func TestRelativePathInValueGetString(t *testing.T) {
 }
 
 
-// relative_path_in_nested_value_parse - function:parse
+// relative_path_in_nested_value_parse - function:parse feature:path_traversal
 func TestRelativePathInNestedValueParse(t *testing.T) {
 	
 
@@ -1138,13 +1138,13 @@ func TestRelativePathInNestedValueParse(t *testing.T) {
 }
 
 
-// relative_path_in_nested_value_build_hierarchy - function:build_hierarchy
+// relative_path_in_nested_value_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestRelativePathInNestedValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// relative_path_in_nested_value_get_string - function:get_string
+// relative_path_in_nested_value_get_string - function:get_string feature:path_traversal
 func TestRelativePathInNestedValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1180,7 +1180,7 @@ func TestDoubleSlashInNestedBuildHierarchy(t *testing.T) {
 }
 
 
-// relative_paths_deeply_nested_parse - function:parse
+// relative_paths_deeply_nested_parse - function:parse feature:path_traversal
 func TestRelativePathsDeeplyNestedParse(t *testing.T) {
 	
 
@@ -1205,19 +1205,19 @@ func TestRelativePathsDeeplyNestedParse(t *testing.T) {
 }
 
 
-// relative_paths_deeply_nested_build_hierarchy - function:build_hierarchy
+// relative_paths_deeply_nested_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestRelativePathsDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// relative_paths_deeply_nested_get_string - function:get_string
+// relative_paths_deeply_nested_get_string - function:get_string feature:path_traversal
 func TestRelativePathsDeeplyNestedGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// relative_paths_as_nested_keys_parse - function:parse
+// relative_paths_as_nested_keys_parse - function:parse feature:path_traversal
 func TestRelativePathsAsNestedKeysParse(t *testing.T) {
 	
 
@@ -1242,19 +1242,19 @@ func TestRelativePathsAsNestedKeysParse(t *testing.T) {
 }
 
 
-// relative_paths_as_nested_keys_build_hierarchy - function:build_hierarchy
+// relative_paths_as_nested_keys_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestRelativePathsAsNestedKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// relative_paths_as_nested_keys_get_string - function:get_string
+// relative_paths_as_nested_keys_get_string - function:get_string feature:path_traversal
 func TestRelativePathsAsNestedKeysGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// mixed_relative_and_absolute_nested_parse - function:parse
+// mixed_relative_and_absolute_nested_parse - function:parse feature:path_traversal
 func TestMixedRelativeAndAbsoluteNestedParse(t *testing.T) {
 	
 
@@ -1281,19 +1281,19 @@ func TestMixedRelativeAndAbsoluteNestedParse(t *testing.T) {
 }
 
 
-// mixed_relative_and_absolute_nested_build_hierarchy - function:build_hierarchy
+// mixed_relative_and_absolute_nested_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestMixedRelativeAndAbsoluteNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// mixed_relative_and_absolute_nested_get_string - function:get_string
+// mixed_relative_and_absolute_nested_get_string - function:get_string feature:path_traversal
 func TestMixedRelativeAndAbsoluteNestedGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// double_slash_deeply_nested_parse - function:parse
+// double_slash_deeply_nested_parse - function:parse feature:path_traversal
 func TestDoubleSlashDeeplyNestedParse(t *testing.T) {
 	
 
@@ -1320,13 +1320,13 @@ func TestDoubleSlashDeeplyNestedParse(t *testing.T) {
 }
 
 
-// double_slash_deeply_nested_build_hierarchy - function:build_hierarchy
+// double_slash_deeply_nested_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestDoubleSlashDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// double_slash_deeply_nested_get_string - function:get_string
+// double_slash_deeply_nested_get_string - function:get_string feature:path_traversal
 func TestDoubleSlashDeeplyNestedGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1456,7 +1456,7 @@ func TestUrlInValueGetString(t *testing.T) {
 }
 
 
-// urls_as_nested_keys_and_values_parse - function:parse
+// urls_as_nested_keys_and_values_parse - function:parse feature:path_traversal
 func TestUrlsAsNestedKeysAndValuesParse(t *testing.T) {
 	
 
@@ -1480,19 +1480,19 @@ func TestUrlsAsNestedKeysAndValuesParse(t *testing.T) {
 }
 
 
-// urls_as_nested_keys_and_values_build_hierarchy - function:build_hierarchy
+// urls_as_nested_keys_and_values_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestUrlsAsNestedKeysAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// urls_as_nested_keys_and_values_get_string - function:get_string
+// urls_as_nested_keys_and_values_get_string - function:get_string feature:path_traversal
 func TestUrlsAsNestedKeysAndValuesGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// urls_deeply_nested_parse - function:parse
+// urls_deeply_nested_parse - function:parse feature:path_traversal
 func TestUrlsDeeplyNestedParse(t *testing.T) {
 	
 
@@ -1520,13 +1520,13 @@ func TestUrlsDeeplyNestedParse(t *testing.T) {
 }
 
 
-// urls_deeply_nested_build_hierarchy - function:build_hierarchy
+// urls_deeply_nested_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestUrlsDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// urls_deeply_nested_get_string - function:get_string
+// urls_deeply_nested_get_string - function:get_string feature:path_traversal
 func TestUrlsDeeplyNestedGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -531,7 +531,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "path_traversal"
       ],
       "behaviors": [
         "array_order_insertion"
@@ -580,7 +581,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "path_traversal"
       ],
       "behaviors": [
         "array_order_lexicographic"
@@ -731,7 +733,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "path_traversal"
       ],
       "behaviors": [
         "array_order_insertion"
@@ -786,7 +789,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "path_traversal"
       ],
       "behaviors": [
         "array_order_lexicographic"
@@ -835,7 +839,8 @@
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "path_traversal"
       ],
       "inputs": [
         "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
@@ -869,6 +874,9 @@
             "setting"
           ]
         }
+      ],
+      "features": [
+        "path_traversal"
       ],
       "behaviors": [
         "list_coercion_disabled"

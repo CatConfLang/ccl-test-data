@@ -755,7 +755,8 @@
       ],
       "inputs": [
         "mappings =\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "backslashes_in_map_keys",
@@ -1146,7 +1147,8 @@
       ],
       "inputs": [
         "mappings =\n  ../foo = ../bar\n  ../../config = ../../data"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "double_slash_in_nested",
@@ -1218,7 +1220,8 @@
       ],
       "inputs": [
         "config =\n  build = \n    output = ../../dist\n    cache = ../.cache"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "relative_paths_as_nested_keys",
@@ -1255,7 +1258,8 @@
       ],
       "inputs": [
         "imports =\n  .. = \n    main = ../src/main\n    test = ../tests"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "mixed_relative_and_absolute_nested",
@@ -1295,7 +1299,8 @@
       ],
       "inputs": [
         "paths =\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "double_slash_deeply_nested",
@@ -1335,7 +1340,8 @@
       ],
       "inputs": [
         "servers =\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "url_as_key",
@@ -1475,7 +1481,8 @@
       ],
       "inputs": [
         "mappings =\n  https://api.example.com = https://prod.example.com\n  https://staging.example.com = https://stage.example.com"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "urls_deeply_nested",
@@ -1518,7 +1525,8 @@
       ],
       "inputs": [
         "config =\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"
-      ]
+      ],
+      "features": ["path_traversal"]
     },
     {
       "name": "url_with_query_params_as_key",

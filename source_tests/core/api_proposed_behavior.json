@@ -279,6 +279,9 @@
           ]
         }
       ],
+      "features": [
+        "path_traversal"
+      ],
       "behaviors": [
         "list_coercion_enabled"
       ],
@@ -786,6 +789,9 @@
             ]
           }
         }
+      ],
+      "features": [
+        "path_traversal"
       ],
       "behaviors": [
         "list_coercion_enabled",

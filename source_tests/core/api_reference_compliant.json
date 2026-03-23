@@ -131,6 +131,9 @@
           ]
         }
       ],
+      "features": [
+        "path_traversal"
+      ],
       "behaviors": [
         "list_coercion_disabled"
       ],
@@ -487,6 +490,9 @@
             "features"
           ]
         }
+      ],
+      "features": [
+        "path_traversal"
       ],
       "behaviors": [
         "list_coercion_disabled",
