@@ -399,7 +399,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "parse"
       ],
@@ -425,7 +427,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -456,7 +460,9 @@
           "5432"
         ]
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "get_list"
       ],
@@ -1230,7 +1236,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "parse_indented"
       ],
@@ -1275,7 +1283,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -1309,7 +1319,9 @@
           "ui"
         ]
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "get_list"
       ],

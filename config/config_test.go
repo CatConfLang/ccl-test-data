@@ -108,6 +108,7 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
 		FeatureMultiline,
+		FeaturePathTraversal,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}
@@ -516,6 +517,7 @@ func TestCCLFeature_StringValues(t *testing.T) {
 		{FeatureExperimentalDottedKeys, "experimental_dotted_keys"},
 		{FeatureEmptyKeys, "empty_keys"},
 		{FeatureMultiline, "multiline"},
+		{FeaturePathTraversal, "path_traversal"},
 		{FeatureUnicode, "unicode"},
 		{FeatureWhitespace, "whitespace"},
 	}

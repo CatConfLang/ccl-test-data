@@ -353,7 +353,7 @@ func TestBareListBasicGetList(t *testing.T) {
 }
 
 
-// bare_list_nested_parse - function:parse feature:empty_keys
+// bare_list_nested_parse - function:parse feature:empty_keys feature:path_traversal
 func TestBareListNestedParse(t *testing.T) {
 	
 
@@ -379,19 +379,19 @@ func TestBareListNestedParse(t *testing.T) {
 }
 
 
-// bare_list_nested_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:array_order_insertion
+// bare_list_nested_build_hierarchy - function:build_hierarchy feature:empty_keys feature:path_traversal behavior:array_order_insertion
 func TestBareListNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_nested_get_list - function:get_list feature:empty_keys behavior:array_order_insertion
+// bare_list_nested_get_list - function:get_list feature:empty_keys feature:path_traversal behavior:array_order_insertion
 func TestBareListNestedGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_nested_lexicographic_parse - function:parse feature:empty_keys
+// bare_list_nested_lexicographic_parse - function:parse feature:empty_keys feature:path_traversal
 func TestBareListNestedLexicographicParse(t *testing.T) {
 	
 
@@ -417,13 +417,13 @@ func TestBareListNestedLexicographicParse(t *testing.T) {
 }
 
 
-// bare_list_nested_lexicographic_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:array_order_lexicographic
+// bare_list_nested_lexicographic_build_hierarchy - function:build_hierarchy feature:empty_keys feature:path_traversal behavior:array_order_lexicographic
 func TestBareListNestedLexicographicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_nested_lexicographic_get_list - function:get_list feature:empty_keys behavior:array_order_lexicographic
+// bare_list_nested_lexicographic_get_list - function:get_list feature:empty_keys feature:path_traversal behavior:array_order_lexicographic
 func TestBareListNestedLexicographicGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -505,7 +505,7 @@ func TestBareListWithCommentsLexicographicGetList(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_parse - function:parse feature:empty_keys
+// bare_list_deeply_nested_parse - function:parse feature:empty_keys feature:path_traversal
 func TestBareListDeeplyNestedParse(t *testing.T) {
 	
 
@@ -533,19 +533,19 @@ func TestBareListDeeplyNestedParse(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:array_order_insertion
+// bare_list_deeply_nested_build_hierarchy - function:build_hierarchy feature:empty_keys feature:path_traversal behavior:array_order_insertion
 func TestBareListDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_deeply_nested_get_list - function:get_list feature:empty_keys behavior:array_order_insertion
+// bare_list_deeply_nested_get_list - function:get_list feature:empty_keys feature:path_traversal behavior:array_order_insertion
 func TestBareListDeeplyNestedGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_deeply_nested_lexicographic_parse - function:parse feature:empty_keys
+// bare_list_deeply_nested_lexicographic_parse - function:parse feature:empty_keys feature:path_traversal
 func TestBareListDeeplyNestedLexicographicParse(t *testing.T) {
 	
 
@@ -573,19 +573,19 @@ func TestBareListDeeplyNestedLexicographicParse(t *testing.T) {
 }
 
 
-// bare_list_deeply_nested_lexicographic_build_hierarchy - function:build_hierarchy feature:empty_keys behavior:array_order_lexicographic
+// bare_list_deeply_nested_lexicographic_build_hierarchy - function:build_hierarchy feature:empty_keys feature:path_traversal behavior:array_order_lexicographic
 func TestBareListDeeplyNestedLexicographicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_deeply_nested_lexicographic_get_list - function:get_list feature:empty_keys behavior:array_order_lexicographic
+// bare_list_deeply_nested_lexicographic_get_list - function:get_list feature:empty_keys feature:path_traversal behavior:array_order_lexicographic
 func TestBareListDeeplyNestedLexicographicGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_mixed_with_other_keys_parse - function:parse feature:empty_keys
+// bare_list_mixed_with_other_keys_parse - function:parse feature:empty_keys feature:path_traversal
 func TestBareListMixedWithOtherKeysParse(t *testing.T) {
 	
 
@@ -612,19 +612,19 @@ func TestBareListMixedWithOtherKeysParse(t *testing.T) {
 }
 
 
-// bare_list_mixed_with_other_keys_build_hierarchy - function:build_hierarchy feature:empty_keys
+// bare_list_mixed_with_other_keys_build_hierarchy - function:build_hierarchy feature:empty_keys feature:path_traversal
 func TestBareListMixedWithOtherKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_mixed_with_other_keys_get_list - function:get_list feature:empty_keys
+// bare_list_mixed_with_other_keys_get_list - function:get_list feature:empty_keys feature:path_traversal
 func TestBareListMixedWithOtherKeysGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_error_not_a_list_parse - function:parse
+// bare_list_error_not_a_list_parse - function:parse feature:path_traversal
 func TestBareListErrorNotAListParse(t *testing.T) {
 	
 
@@ -647,13 +647,13 @@ func TestBareListErrorNotAListParse(t *testing.T) {
 }
 
 
-// bare_list_error_not_a_list_build_hierarchy - function:build_hierarchy
+// bare_list_error_not_a_list_build_hierarchy - function:build_hierarchy feature:path_traversal
 func TestBareListErrorNotAListBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// bare_list_error_not_a_list_get_list - function:get_list behavior:list_coercion_disabled
+// bare_list_error_not_a_list_get_list - function:get_list feature:path_traversal behavior:list_coercion_disabled
 func TestBareListErrorNotAListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

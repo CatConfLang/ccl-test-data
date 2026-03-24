@@ -2503,6 +2503,741 @@
       "source_test": "boolean_empty_value_error",
       "validation": "get_bool",
       "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "server",
+            "value": "\n  port = 8080\n  max_connections = 1000"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "server =\n  port = 8080\n  max_connections = 1000"
+      ],
+      "name": "nested_get_int_parse",
+      "source_test": "nested_get_int",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "server": {
+            "max_connections": "1000",
+            "port": "8080"
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "server =\n  port = 8080\n  max_connections = 1000"
+      ],
+      "name": "nested_get_int_build_hierarchy",
+      "source_test": "nested_get_int",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "server",
+        "max_connections"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 1000
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_int"
+      ],
+      "inputs": [
+        "server =\n  port = 8080\n  max_connections = 1000"
+      ],
+      "name": "nested_get_int_get_int",
+      "source_test": "nested_get_int",
+      "validation": "get_int",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "config",
+            "value": "\n  database =\n    pool =\n      min = 5\n      max = 50"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "config =\n  database =\n    pool =\n      min = 5\n      max = 50"
+      ],
+      "name": "deeply_nested_get_int_parse",
+      "source_test": "deeply_nested_get_int",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "database": {
+              "pool": {
+                "max": "50",
+                "min": "5"
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "config =\n  database =\n    pool =\n      min = 5\n      max = 50"
+      ],
+      "name": "deeply_nested_get_int_build_hierarchy",
+      "source_test": "deeply_nested_get_int",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "config",
+        "database",
+        "pool",
+        "max"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 50
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_int"
+      ],
+      "inputs": [
+        "config =\n  database =\n    pool =\n      min = 5\n      max = 50"
+      ],
+      "name": "deeply_nested_get_int_get_int",
+      "source_test": "deeply_nested_get_int",
+      "validation": "get_int",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "metrics",
+            "value": "\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "metrics =\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+      ],
+      "name": "nested_get_float_parse",
+      "source_test": "nested_get_float",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "metrics": {
+            "cpu_threshold": "0.85",
+            "memory_limit": "2.5"
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "metrics =\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+      ],
+      "name": "nested_get_float_build_hierarchy",
+      "source_test": "nested_get_float",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "metrics",
+        "memory_limit"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 2.5
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_float"
+      ],
+      "inputs": [
+        "metrics =\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+      ],
+      "name": "nested_get_float_get_float",
+      "source_test": "nested_get_float",
+      "validation": "get_float",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "app",
+            "value": "\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "app =\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+      ],
+      "name": "deeply_nested_get_float_parse",
+      "source_test": "deeply_nested_get_float",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "app": {
+            "scoring": {
+              "weights": {
+                "freshness": "0.4",
+                "relevance": "0.6"
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "app =\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+      ],
+      "name": "deeply_nested_get_float_build_hierarchy",
+      "source_test": "deeply_nested_get_float",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "app",
+        "scoring",
+        "weights",
+        "freshness"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 0.4
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_float"
+      ],
+      "inputs": [
+        "app =\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+      ],
+      "name": "deeply_nested_get_float_get_float",
+      "source_test": "deeply_nested_get_float",
+      "validation": "get_float",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "feature_flags",
+            "value": "\n  dark_mode = true\n  beta_access = false"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "feature_flags =\n  dark_mode = true\n  beta_access = false"
+      ],
+      "name": "nested_get_bool_parse",
+      "source_test": "nested_get_bool",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "feature_flags": {
+            "beta_access": "false",
+            "dark_mode": "true"
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "feature_flags =\n  dark_mode = true\n  beta_access = false"
+      ],
+      "name": "nested_get_bool_build_hierarchy",
+      "source_test": "nested_get_bool",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "feature_flags",
+        "beta_access"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient",
+          "boolean_strict"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": false
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_bool"
+      ],
+      "inputs": [
+        "feature_flags =\n  dark_mode = true\n  beta_access = false"
+      ],
+      "name": "nested_get_bool_get_bool",
+      "source_test": "nested_get_bool",
+      "validation": "get_bool",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "services",
+            "value": "\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+      ],
+      "name": "deeply_nested_get_bool_parse",
+      "source_test": "deeply_nested_get_bool",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "services": {
+            "auth": {
+              "settings": {
+                "allow_anonymous": "false",
+                "require_mfa": "true"
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+      ],
+      "name": "deeply_nested_get_bool_build_hierarchy",
+      "source_test": "deeply_nested_get_bool",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "services",
+        "auth",
+        "settings",
+        "allow_anonymous"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient",
+          "boolean_strict"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": false
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_bool"
+      ],
+      "inputs": [
+        "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+      ],
+      "name": "deeply_nested_get_bool_get_bool",
+      "source_test": "deeply_nested_get_bool",
+      "validation": "get_bool",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "database",
+            "value": "\n  host = localhost\n  name = mydb"
+          }
+        ]
+      },
+      "features": [
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  name = mydb"
+      ],
+      "name": "nested_get_string_basic_parse",
+      "source_test": "nested_get_string_basic",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "database": {
+            "host": "localhost",
+            "name": "mydb"
+          }
+        }
+      },
+      "features": [
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  name = mydb"
+      ],
+      "name": "nested_get_string_basic_build_hierarchy",
+      "source_test": "nested_get_string_basic",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "database",
+        "name"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "mydb"
+      },
+      "features": [
+        "path_traversal"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  name = mydb"
+      ],
+      "name": "nested_get_string_basic_get_string",
+      "source_test": "nested_get_string_basic",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "server",
+            "value": "\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+          }
+        ]
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_parse",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "server": {
+            "debug": "true",
+            "host": "0.0.0.0",
+            "port": "3000",
+            "rate_limit": "1.5"
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_build_hierarchy",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "args": [
+        "server",
+        "host"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": "0.0.0.0"
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_string"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_get_string",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "get_string",
+      "variants": []
+    },
+    {
+      "args": [
+        "server",
+        "port"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 3000
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_int"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_get_int",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "get_int",
+      "variants": []
+    },
+    {
+      "args": [
+        "server",
+        "debug"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "boolean_lenient",
+          "boolean_strict"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": true
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_bool"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_get_bool",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "get_bool",
+      "variants": []
+    },
+    {
+      "args": [
+        "server",
+        "rate_limit"
+      ],
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "value": 1.5
+      },
+      "features": [
+        "optional_typed_accessors",
+        "path_traversal"
+      ],
+      "functions": [
+        "get_float"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "name": "nested_mixed_typed_access_get_float",
+      "source_test": "nested_mixed_typed_access",
+      "validation": "get_float",
+      "variants": []
     }
   ]
 }

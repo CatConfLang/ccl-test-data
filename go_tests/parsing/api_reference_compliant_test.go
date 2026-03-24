@@ -84,7 +84,7 @@ func TestMixedDuplicateSingleKeysReferenceGetList(t *testing.T) {
 }
 
 
-// nested_list_access_reference_parse - function:parse variant:reference_compliant
+// nested_list_access_reference_parse - function:parse feature:path_traversal variant:reference_compliant
 func TestNestedListAccessReferenceParse(t *testing.T) {
 	
 
@@ -109,13 +109,13 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 }
 
 
-// nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// nested_list_access_reference_build_hierarchy - function:build_hierarchy feature:path_traversal variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// nested_list_access_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
+// nested_list_access_reference_get_list - function:get_list feature:path_traversal behavior:list_coercion_disabled variant:reference_compliant
 func TestNestedListAccessReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -339,13 +339,13 @@ func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
 }
 
 
-// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy feature:path_traversal behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// complex_mixed_list_scenarios_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
+// complex_mixed_list_scenarios_reference_get_list - function:get_list feature:path_traversal behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

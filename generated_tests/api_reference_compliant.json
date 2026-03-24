@@ -179,7 +179,9 @@
           }
         ]
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "parse"
       ],
@@ -207,7 +209,9 @@
           }
         }
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -237,7 +241,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "get_list"
       ],
@@ -838,7 +844,9 @@
           ]
         }
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "build_hierarchy"
       ],
@@ -867,7 +875,9 @@
       "expected": {
         "count": 0
       },
-      "features": [],
+      "features": [
+        "path_traversal"
+      ],
       "functions": [
         "get_list"
       ],

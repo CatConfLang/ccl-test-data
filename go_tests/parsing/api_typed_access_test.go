@@ -1080,3 +1080,317 @@ func TestBooleanEmptyValueErrorGetBool(t *testing.T) {
 }
 
 
+// nested_get_int_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetIntParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `server =
+  port = 8080
+  max_connections = 1000`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "server", Value: "\n  port = 8080\n  max_connections = 1000"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetIntBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_int_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetIntGetInt(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_int_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetIntParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `config =
+  database =
+    pool =
+      min = 5
+      max = 50`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  database =\n    pool =\n      min = 5\n      max = 50"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// deeply_nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_int_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetIntGetInt(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_float_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetFloatParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `metrics =
+  cpu_threshold = 0.85
+  memory_limit = 2.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "metrics", Value: "\n  cpu_threshold = 0.85\n  memory_limit = 2.5"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetFloatBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_float_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetFloatGetFloat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_float_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetFloatParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `app =
+  scoring =
+    weights =
+      relevance = 0.6
+      freshness = 0.4`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "app", Value: "\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// deeply_nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_float_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetFloatGetFloat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_bool_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetBoolParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `feature_flags =
+  dark_mode = true
+  beta_access = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "feature_flags", Value: "\n  dark_mode = true\n  beta_access = false"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestNestedGetBoolBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+func TestNestedGetBoolGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_bool_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetBoolParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `services =
+  auth =
+    settings =
+      require_mfa = true
+      allow_anonymous = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "services", Value: "\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// deeply_nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// deeply_nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+func TestDeeplyNestedGetBoolGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_string_basic_parse - function:parse feature:path_traversal
+func TestNestedGetStringBasicParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `database =
+  host = localhost
+  name = mydb`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "database", Value: "\n  host = localhost\n  name = mydb"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_get_string_basic_build_hierarchy - function:build_hierarchy feature:path_traversal
+func TestNestedGetStringBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_get_string_basic_get_string - function:get_string feature:path_traversal
+func TestNestedGetStringBasicGetString(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_mixed_typed_access_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+func TestNestedMixedTypedAccessParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "server", Value: "\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// nested_mixed_typed_access_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_mixed_typed_access_get_string - function:get_string feature:optional_typed_accessors feature:path_traversal
+func TestNestedMixedTypedAccessGetString(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_mixed_typed_access_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+func TestNestedMixedTypedAccessGetInt(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_mixed_typed_access_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+func TestNestedMixedTypedAccessGetBool(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// nested_mixed_typed_access_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+func TestNestedMixedTypedAccessGetFloat(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
