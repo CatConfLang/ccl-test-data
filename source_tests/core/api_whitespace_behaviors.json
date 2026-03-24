@@ -75,14 +75,14 @@
           "expect": [
             {
               "key": "key",
-              "value": "value with tabs"
+              "value": "value\twith\ttabs"
             }
           ]
         },
         {
           "function": "build_hierarchy",
           "expect": {
-            "key": "value with tabs"
+            "key": "value\twith\ttabs"
           }
         },
         {
@@ -90,7 +90,7 @@
           "args": [
             "key"
           ],
-          "expect": "value with tabs"
+          "expect": "value\twith\ttabs"
         }
       ],
       "behaviors": [
@@ -289,7 +289,7 @@
       "tests": [
         {
           "function": "round_trip",
-          "expect": "key = value with tabs"
+          "expect": "key = value\twith\ttabs"
         }
       ],
       "behaviors": [

@@ -168,7 +168,7 @@
         "entries": [
           {
             "key": "key",
-            "value": "value with tabs"
+            "value": "value\twith\ttabs"
           }
         ]
       },
@@ -198,7 +198,7 @@
       "expected": {
         "count": 1,
         "object": {
-          "key": "value with tabs"
+          "key": "value\twith\ttabs"
         }
       },
       "features": [
@@ -222,7 +222,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": "value with tabs"
+        "value": "value\twith\ttabs"
       },
       "features": [
         "whitespace"
@@ -525,7 +525,7 @@
       },
       "expected": {
         "count": 1,
-        "value": "key = value with tabs"
+        "value": "key = value\twith\ttabs"
       },
       "features": [
         "whitespace"
