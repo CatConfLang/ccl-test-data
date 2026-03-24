@@ -145,7 +145,7 @@ func TestTabsAsWhitespaceInValueParse(t *testing.T) {
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value with tabs"}}
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value\twith\ttabs"}}
 	assert.Equal(t, expected, parseResult)
 
 }
@@ -168,7 +168,7 @@ func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"key": "value with tabs"}
+	expected := map[string]interface{}{"key": "value\twith\ttabs"}
 	assert.Equal(t, expected, objectResult)
 
 }
@@ -193,7 +193,7 @@ func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetString(hierarchy, []string{"key"})
 	require.NoError(t, err)
-	assert.Equal(t, "value with tabs", result)
+	assert.Equal(t, "value\twith\ttabs", result)
 
 }
 
