@@ -91,7 +91,8 @@
         "array_order_insertion"
       ],
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
@@ -134,6 +135,7 @@
       ],
       "features": [
         "multiline",
+        "multiline_continuation",
         "empty_keys"
       ],
       "inputs": [
@@ -663,7 +665,8 @@
         "array_order_insertion"
       ],
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"

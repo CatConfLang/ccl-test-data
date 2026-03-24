@@ -74,6 +74,7 @@ const (
 	FeatureExperimentalDottedKeys CCLFeature = "experimental_dotted_keys"
 	FeatureEmptyKeys              CCLFeature = "empty_keys"
 	FeatureMultiline              CCLFeature = "multiline"
+	FeatureMultilineContinuation  CCLFeature = "multiline_continuation"
 	FeaturePathTraversal          CCLFeature = "path_traversal"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"

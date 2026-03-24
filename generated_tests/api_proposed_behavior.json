@@ -76,7 +76,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -108,7 +109,8 @@
         }
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "build_hierarchy"
@@ -143,7 +145,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "get_list"
@@ -181,6 +184,7 @@
       },
       "features": [
         "multiline",
+        "multiline_continuation",
         "empty_keys"
       ],
       "functions": [
@@ -208,6 +212,7 @@
       },
       "features": [
         "multiline",
+        "multiline_continuation",
         "empty_keys"
       ],
       "functions": [
@@ -1102,7 +1107,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -1136,7 +1142,8 @@
         }
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "build_hierarchy"
@@ -1172,7 +1179,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_continuation"
       ],
       "functions": [
         "get_list"
