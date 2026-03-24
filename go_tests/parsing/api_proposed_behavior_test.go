@@ -60,7 +60,7 @@ key = value`
 }
 
 
-// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline
+// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
 	
 
@@ -83,7 +83,7 @@ descriptions = Another item`
 }
 
 
-// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline behavior:array_order_insertion
+// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
 	
 
@@ -108,7 +108,7 @@ descriptions = Another item`
 }
 
 
-// indented_line_is_continuation_get_list - function:get_list feature:multiline behavior:list_coercion_enabled behavior:array_order_insertion
+// indented_line_is_continuation_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestIndentedLineIsContinuationGetList(t *testing.T) {
 	
 
@@ -134,7 +134,7 @@ descriptions = Another item`
 }
 
 
-// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline feature:empty_keys
+// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsParseIndented(t *testing.T) {
 	
 
@@ -159,7 +159,7 @@ not indented key
 }
 
 
-// mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline feature:empty_keys
+// mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
 	
 
@@ -867,7 +867,7 @@ symbols = <>=+`
 }
 
 
-// list_multiline_values_parse_indented - function:parse_indented feature:multiline
+// list_multiline_values_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestListMultilineValuesParseIndented(t *testing.T) {
 	
 
@@ -891,7 +891,7 @@ descriptions = Third item`
 }
 
 
-// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline behavior:array_order_insertion
+// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 	
 
@@ -917,7 +917,7 @@ descriptions = Third item`
 }
 
 
-// list_multiline_values_get_list - function:get_list feature:multiline behavior:list_coercion_enabled behavior:array_order_insertion
+// list_multiline_values_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListMultilineValuesGetList(t *testing.T) {
 	
 
