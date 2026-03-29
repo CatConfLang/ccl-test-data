@@ -16,43 +16,173 @@ import (
 
 // multiline_section_header_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline
 func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `== Section Header =
+  This continues the header
+key = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
 // unindented_multiline_becomes_continuation_parse_indented - function:parse_indented feature:empty_keys
 func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `== Section Header =
+This continues the header
+key = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
 // indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+  second line
+descriptions = Another item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
 // indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+  second line
+descriptions = Another item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"descriptions": []interface{}{"First line\n  second line", "Another item"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // indented_line_is_continuation_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestIndentedLineIsContinuationGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+  second line
+descriptions = Another item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"descriptions"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"First line\n  second line", "Another item"}, result)
+
 }
 
 
 // mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `key1 = value1
+  indented continuation
+key2 = value2
+not indented key
+  indented for not indented`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
 // mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `key1 = value1
+  indented continuation
+key2 = value2
+not indented key
+  indented for not indented`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"key1": "value1\n  indented continuation", "key2": "value2", "not indented key": map[string]interface{}{"indented for not indented": ""}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
@@ -80,13 +210,48 @@ func TestSingleItemAsListParse(t *testing.T) {
 
 // single_item_as_list_build_hierarchy - function:build_hierarchy
 func TestSingleItemAsListBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `item = single`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"item": "single"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // single_item_as_list_get_list - function:get_list behavior:list_coercion_enabled
 func TestSingleItemAsListGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `item = single`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"item"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"single"}, result)
+
 }
 
 
@@ -116,17 +281,56 @@ host = localhost`
 
 // mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestMixedDuplicateSingleKeysBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `ports = 80
+ports = 443
+host = localhost`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"host": "localhost", "ports": []interface{}{"80", "443"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // mixed_duplicate_single_keys_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestMixedDuplicateSingleKeysGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `ports = 80
+ports = 443
+host = localhost`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"host"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"localhost"}, result)
+
 }
 
 
-// nested_list_access_parse - function:parse feature:path_traversal
+// nested_list_access_parse - function:parse
 func TestNestedListAccessParse(t *testing.T) {
 	
 
@@ -151,15 +355,56 @@ func TestNestedListAccessParse(t *testing.T) {
 }
 
 
-// nested_list_access_build_hierarchy - function:build_hierarchy feature:path_traversal
+// nested_list_access_build_hierarchy - function:build_hierarchy
 func TestNestedListAccessBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `database =
+  hosts = primary
+  hosts = secondary
+  port = 5432`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"database": map[string]interface{}{"hosts": []interface{}{"primary", "secondary"}, "port": "5432"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_list_access_get_list - function:get_list feature:path_traversal behavior:list_coercion_enabled
+// nested_list_access_get_list - function:get_list behavior:list_coercion_enabled behavior:path_traversal
 func TestNestedListAccessGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `database =
+  hosts = primary
+  hosts = secondary
+  port = 5432`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"database", "port"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"5432"}, result)
+
 }
 
 
@@ -187,13 +432,48 @@ func TestEmptyListParse(t *testing.T) {
 
 // empty_list_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestEmptyListBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty_list =`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"empty_list": ""}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // empty_list_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestEmptyListGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty_list =`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"empty_list"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{""}, result)
+
 }
 
 
@@ -224,13 +504,54 @@ numbers = 0`
 
 // list_with_numbers_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithNumbersBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `numbers = 1
+numbers = 42
+numbers = -17
+numbers = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"numbers": []interface{}{"1", "42", "-17", "0"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_with_numbers_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithNumbersGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `numbers = 1
+numbers = 42
+numbers = -17
+numbers = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"numbers"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"1", "42", "-17", "0"}, result)
+
 }
 
 
@@ -261,13 +582,54 @@ flags = no`
 
 // list_with_booleans_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithBooleansBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flags = true
+flags = false
+flags = yes
+flags = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"flags": []interface{}{"true", "false", "yes", "no"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_with_booleans_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithBooleansGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flags = true
+flags = false
+flags = yes
+flags = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"flags"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"true", "false", "yes", "no"}, result)
+
 }
 
 
@@ -298,13 +660,54 @@ items =   `
 
 // list_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_insertion
 func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `items =   spaced   
+items = normal
+items =
+items =   `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"items": []interface{}{"spaced", "normal", "", ""}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_with_whitespace_get_list - function:get_list feature:whitespace behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithWhitespaceGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `items =   spaced   
+items = normal
+items =
+items =   `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"items"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"spaced", "normal", "", ""}, result)
+
 }
 
 
@@ -335,13 +738,54 @@ names = العربية`
 
 // list_with_unicode_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_insertion
 func TestListWithUnicodeBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `names = 张三
+names = José
+names = François
+names = العربية`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"names": []interface{}{"张三", "José", "François", "العربية"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_with_unicode_get_list - function:get_list feature:unicode behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithUnicodeGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `names = 张三
+names = José
+names = François
+names = العربية`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"names"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"张三", "José", "François", "العربية"}, result)
+
 }
 
 
@@ -372,49 +816,229 @@ symbols = <>=+`
 
 // list_with_special_characters_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithSpecialCharactersBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `symbols = @#$%
+symbols = !^&*()
+symbols = []{}|
+symbols = <>=+`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"symbols": []interface{}{"@#$%", "!^&*()", "[]{}|", "<>=+"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_with_special_characters_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithSpecialCharactersGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `symbols = @#$%
+symbols = !^&*()
+symbols = []{}|
+symbols = <>=+`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"symbols"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"@#$%", "!^&*()", "[]{}|", "<>=+"}, result)
+
 }
 
 
 // list_multiline_values_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestListMultilineValuesParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+second line
+descriptions = Another item
+descriptions = Third item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
 // list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+second line
+descriptions = Another item
+descriptions = Third item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"descriptions": []interface{}{"First line", "Another item", "Third item"}, "second line": ""}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_multiline_values_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListMultilineValuesGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `descriptions = First line
+second line
+descriptions = Another item
+descriptions = Third item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"descriptions"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"First line", "Another item", "Third item"}, result)
+
 }
 
 
-// complex_mixed_list_scenarios_parse_indented - function:parse_indented feature:path_traversal
+// complex_mixed_list_scenarios_parse_indented - function:parse_indented
 func TestComplexMixedListScenariosParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  servers = web1
+  servers = web2
+  database =
+    hosts = primary
+    hosts = backup
+    port = 5432
+  cache = redis
+features = auth
+features = api
+features = ui`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement parse_indented validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
-// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy feature:path_traversal behavior:array_order_insertion
+// complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  servers = web1
+  servers = web2
+  database =
+    hosts = primary
+    hosts = backup
+    port = 5432
+  cache = redis
+features = auth
+features = api
+features = ui`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"cache": "redis", "database": map[string]interface{}{"hosts": []interface{}{"primary", "backup"}, "port": "5432"}, "servers": []interface{}{"web1", "web2"}}, "features": []interface{}{"auth", "api", "ui"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// complex_mixed_list_scenarios_get_list - function:get_list feature:path_traversal behavior:list_coercion_enabled behavior:array_order_insertion
+// complex_mixed_list_scenarios_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion behavior:path_traversal
 func TestComplexMixedListScenariosGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  servers = web1
+  servers = web2
+  database =
+    hosts = primary
+    hosts = backup
+    port = 5432
+  cache = redis
+features = auth
+features = api
+features = ui`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"features"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"auth", "api", "ui"}, result)
+
 }
 
 
@@ -442,13 +1066,48 @@ func TestListPathTraversalProtectionParse(t *testing.T) {
 
 // list_path_traversal_protection_build_hierarchy - function:build_hierarchy
 func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `safe = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"safe": "value"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // list_path_traversal_protection_get_list - function:get_list behavior:list_coercion_enabled
 func TestListPathTraversalProtectionGetList(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `safe = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_list validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetList(hierarchy, []string{"safe"})
+	require.NoError(t, err)
+	assert.Equal(t, []interface {}{"value"}, result)
+
 }
 
 
@@ -476,13 +1135,48 @@ func TestParseEmptyValueParse(t *testing.T) {
 
 // parse_empty_value_build_hierarchy - function:build_hierarchy
 func TestParseEmptyValueBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty_key =`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"empty_key": ""}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_empty_value_get_string - function:get_string
 func TestParseEmptyValueGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty_key =`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"empty_key"})
+	require.NoError(t, err)
+	assert.Equal(t, "", result)
+
 }
 
 

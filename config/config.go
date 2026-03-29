@@ -75,7 +75,6 @@ const (
 	FeatureEmptyKeys              CCLFeature = "empty_keys"
 	FeatureMultiline              CCLFeature = "multiline"
 	FeatureMultilineContinuation  CCLFeature = "multiline_continuation"
-	FeaturePathTraversal          CCLFeature = "path_traversal"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
 )
@@ -87,7 +86,6 @@ func AllFeatures() []CCLFeature {
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
 		FeatureMultiline,
-		FeaturePathTraversal,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}
@@ -113,6 +111,7 @@ const (
 	BehaviorDelimiterPreferSpaced   CCLBehavior = "delimiter_prefer_spaced"
 	BehaviorArrayOrderInsertion     CCLBehavior = "array_order_insertion"
 	BehaviorArrayOrderLexicographic CCLBehavior = "array_order_lexicographic"
+	BehaviorPathTraversal           CCLBehavior = "path_traversal"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups

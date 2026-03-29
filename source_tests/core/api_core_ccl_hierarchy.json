@@ -289,12 +289,10 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
         "list_coercion_disabled",
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"

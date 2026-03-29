@@ -808,13 +808,48 @@ func TestS49FuzzValEpsilon0Parse(t *testing.T) {
 
 // s49_fuzz_val_epsilon_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzValEpsilon0BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `epsilon = data;x5&x96?x73`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"epsilon": "data;x5&x96?x73"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_val_epsilon_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzValEpsilon0GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `epsilon = data;x5&x96?x73`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"epsilon"})
+	require.NoError(t, err)
+	assert.Equal(t, "data;x5&x96?x73", result)
+
 }
 
 
@@ -842,13 +877,48 @@ func TestS49FuzzValConfig1Parse(t *testing.T) {
 
 // s49_fuzz_val_config_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzValConfig1BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config = data'x33`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": "data'x33"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_val_config_1_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzValConfig1GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config = data'x33`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"config"})
+	require.NoError(t, err)
+	assert.Equal(t, "data'x33", result)
+
 }
 
 
@@ -876,13 +946,48 @@ func TestS49FuzzValName2Parse(t *testing.T) {
 
 // s49_fuzz_val_name_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzValName2BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data<x71`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"name": "data<x71"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_val_name_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzValName2GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = data<x71`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"name"})
+	require.NoError(t, err)
+	assert.Equal(t, "data<x71", result)
+
 }
 
 
@@ -910,13 +1015,48 @@ func TestS49FuzzValMode3Parse(t *testing.T) {
 
 // s49_fuzz_val_mode_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzValMode3BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `mode = data+x19`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"mode": "data+x19"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_val_mode_3_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzValMode3GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `mode = data+x19`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"mode"})
+	require.NoError(t, err)
+	assert.Equal(t, "data+x19", result)
+
 }
 
 
@@ -944,13 +1084,48 @@ func TestS49FuzzValServer4Parse(t *testing.T) {
 
 // s49_fuzz_val_server_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzValServer4BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server = data#x70-x10`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"server": "data#x70-x10"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_val_server_4_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzValServer4GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server = data#x70-x10`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"server"})
+	require.NoError(t, err)
+	assert.Equal(t, "data#x70-x10", result)
+
 }
 
 
@@ -979,13 +1154,50 @@ func TestS49FuzzNestedSquoteLbrace0Parse(t *testing.T) {
 
 // s49_fuzz_nested_squote_lbrace_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedSquoteLbrace0BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `'name = nested330
+{user = deep34`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"'name": "nested330", "{user": "deep34"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_squote_lbrace_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedSquoteLbrace0GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `'name = nested330
+{user = deep34`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"'name"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested330", result)
+
 }
 
 
@@ -1014,13 +1226,50 @@ _user = deep650`
 
 // s49_fuzz_nested_at_underscore_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedAtUnderscore1BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `@name = nested517
+_user = deep650`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"@name": "nested517", "_user": "deep650"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_at_underscore_1_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedAtUnderscore1GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `@name = nested517
+_user = deep650`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"@name"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested517", result)
+
 }
 
 
@@ -1049,13 +1298,50 @@ func TestS49FuzzNestedRparenBackslash2Parse(t *testing.T) {
 
 // s49_fuzz_nested_rparen_backslash_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedRparenBackslash2BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `)epsilon = nested451
+\delta = deep648`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{")epsilon": "nested451", "\\delta": "deep648"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_rparen_backslash_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedRparenBackslash2GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `)epsilon = nested451
+\delta = deep648`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{")epsilon"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested451", result)
+
 }
 
 
@@ -1084,13 +1370,50 @@ func TestS49FuzzNestedDollarGt3Parse(t *testing.T) {
 
 // s49_fuzz_nested_dollar_gt_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedDollarGt3BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `$port = nested76
+>host = deep444`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"$port": "nested76", ">host": "deep444"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_dollar_gt_3_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedDollarGt3GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `$port = nested76
+>host = deep444`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"$port"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested76", result)
+
 }
 
 
@@ -1119,13 +1442,50 @@ func TestS49FuzzNestedDquoteLbrace4Parse(t *testing.T) {
 
 // s49_fuzz_nested_dquote_lbrace_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedDquoteLbrace4BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `"host = nested587
+{gamma = deep774`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"\"host": "nested587", "{gamma": "deep774"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_dquote_lbrace_4_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedDquoteLbrace4GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `"host = nested587
+{gamma = deep774`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"\"host"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested587", result)
+
 }
 
 
@@ -1154,13 +1514,50 @@ func TestS49FuzzNestedSemicolonAsterisk5Parse(t *testing.T) {
 
 // s49_fuzz_nested_semicolon_asterisk_5_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedSemicolonAsterisk5BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `;host = nested246
+*item = deep424`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"*item": "deep424", ";host": "nested246"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_semicolon_asterisk_5_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedSemicolonAsterisk5GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `;host = nested246
+*item = deep424`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{";host"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested246", result)
+
 }
 
 
@@ -1189,13 +1586,50 @@ func TestS49FuzzNestedQuestionAsterisk6Parse(t *testing.T) {
 
 // s49_fuzz_nested_question_asterisk_6_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedQuestionAsterisk6BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `?epsilon = nested334
+*delta = deep689`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"*delta": "deep689", "?epsilon": "nested334"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_question_asterisk_6_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedQuestionAsterisk6GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `?epsilon = nested334
+*delta = deep689`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"?epsilon"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested334", result)
+
 }
 
 
@@ -1224,13 +1658,50 @@ func TestS49FuzzNestedPlusAmpersand7Parse(t *testing.T) {
 
 // s49_fuzz_nested_plus_ampersand_7_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedPlusAmpersand7BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `+server = nested496
+&gamma = deep440`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"&gamma": "deep440", "+server": "nested496"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_plus_ampersand_7_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedPlusAmpersand7GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `+server = nested496
+&gamma = deep440`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"+server"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested496", result)
+
 }
 
 
@@ -1259,13 +1730,50 @@ func TestS49FuzzNestedAsteriskDquote8Parse(t *testing.T) {
 
 // s49_fuzz_nested_asterisk_dquote_8_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedAsteriskDquote8BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `*item = nested578
+"delta = deep232`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"\"delta": "deep232", "*item": "nested578"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_asterisk_dquote_8_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedAsteriskDquote8GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `*item = nested578
+"delta = deep232`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"*item"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested578", result)
+
 }
 
 
@@ -1294,13 +1802,50 @@ func TestS49FuzzNestedRbraceSlash9Parse(t *testing.T) {
 
 // s49_fuzz_nested_rbrace_slash_9_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestS49FuzzNestedRbraceSlash9BuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `}host = nested668
+/delta = deep756`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"/delta": "deep756", "}host": "nested668"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // s49_fuzz_nested_rbrace_slash_9_get_string - function:get_string feature:optional_typed_accessors
 func TestS49FuzzNestedRbraceSlash9GetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `}host = nested668
+/delta = deep756`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"}host"})
+	require.NoError(t, err)
+	assert.Equal(t, "nested668", result)
+
 }
 
 

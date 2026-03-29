@@ -40,7 +40,24 @@ nested =
 
 // round_trip_basic_print - function:print
 func TestRoundTripBasicPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `key = value
+nested =
+  sub = val`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -116,13 +133,48 @@ func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 
 // round_trip_whitespace_normalization_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
 func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
+	
+
+	ccl := mock.New()
+	input := `  key  =  value  
+  nested  = 
+    sub  =  val  `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}, mock.Entry{Key: "nested", Value: "\n    sub  =  val"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
 // round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:parse function:print feature:whitespace behavior:toplevel_indent_preserve
 func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveRoundTrip(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
+	
+
+	ccl := mock.New()
+	input := `  key  =  value  
+  nested  = 
+    sub  =  val  `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement round_trip validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -152,7 +204,24 @@ regular = value`
 
 // round_trip_empty_keys_lists_print - function:print feature:empty_keys
 func TestRoundTripEmptyKeysListsPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `= item1
+= item2
+regular = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -208,7 +277,27 @@ func TestRoundTripNestedStructuresParse(t *testing.T) {
 
 // round_trip_nested_structures_print - function:print
 func TestRoundTripNestedStructuresPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  host = localhost
+  port = 8080
+  db =
+    name = mydb
+    user = admin`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -265,7 +354,25 @@ func TestRoundTripMultilineValuesParse(t *testing.T) {
 
 // round_trip_multiline_values_print - function:print feature:multiline
 func TestRoundTripMultilineValuesPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `script =
+  #!/bin/bash
+  echo hello
+  exit 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -322,7 +429,27 @@ final = value`
 
 // round_trip_mixed_content_print - function:print feature:empty_keys
 func TestRoundTripMixedContentPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = Alice
+= first item
+config =
+  port = 3000
+= second item
+final = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -383,7 +510,29 @@ func TestRoundTripComplexNestingParse(t *testing.T) {
 
 // round_trip_complex_nesting_print - function:print feature:empty_keys
 func TestRoundTripComplexNestingPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `app =
+  = item1
+  config =
+    = nested_item
+    db =
+      host = localhost
+      = db_item
+  = item2`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -444,7 +593,27 @@ func TestRoundTripDeeplyNestedParse(t *testing.T) {
 
 // round_trip_deeply_nested_print - function:print feature:empty_keys
 func TestRoundTripDeeplyNestedPrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `level1 =
+  level2 =
+    level3 =
+      level4 =
+        deep = value
+        = deep_item`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -500,7 +669,24 @@ other = value`
 
 // round_trip_empty_multiline_print - function:print feature:empty_keys feature:multiline
 func TestRoundTripEmptyMultilinePrint(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty_section =
+
+other = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement print validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 

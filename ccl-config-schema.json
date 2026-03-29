@@ -74,7 +74,8 @@
           "array_order_insertion",
           "array_order_lexicographic",
           "toplevel_indent_strip",
-          "toplevel_indent_preserve"
+          "toplevel_indent_preserve",
+          "path_traversal"
         ]
       }
     },

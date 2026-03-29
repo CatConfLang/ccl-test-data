@@ -845,8 +845,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "parse"
@@ -883,8 +882,7 @@
         }
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -903,7 +901,8 @@
         "ports"
       ],
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -919,8 +918,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "get_list"
@@ -945,8 +943,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "parse"
@@ -983,8 +980,7 @@
         }
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -1003,7 +999,8 @@
         "ports"
       ],
       "behaviors": [
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -1019,8 +1016,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "get_list"
@@ -1241,8 +1237,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "parse"
@@ -1283,8 +1278,7 @@
         }
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -1305,7 +1299,8 @@
         "servers"
       ],
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -1321,8 +1316,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "get_list"
@@ -1347,8 +1341,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "parse"
@@ -1389,8 +1382,7 @@
         }
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -1411,7 +1403,8 @@
         "servers"
       ],
       "behaviors": [
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -1427,8 +1420,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "get_list"
@@ -1453,8 +1445,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "parse"
@@ -1485,8 +1476,7 @@
         }
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -1504,7 +1494,9 @@
         "database",
         "replicas"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 2,
         "list": [
@@ -1513,8 +1505,7 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "functions": [
         "get_list"
@@ -1538,9 +1529,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -1562,9 +1551,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1582,7 +1569,8 @@
         "setting"
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -1592,9 +1580,7 @@
       "expected": {
         "count": 0
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_list"
       ],

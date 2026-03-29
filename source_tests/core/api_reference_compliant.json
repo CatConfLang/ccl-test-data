@@ -131,11 +131,9 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "path_traversal"
       ],
       "variants": [
         "reference_compliant"
@@ -491,12 +489,10 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
         "list_coercion_disabled",
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"

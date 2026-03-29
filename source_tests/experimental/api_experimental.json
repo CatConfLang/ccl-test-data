@@ -369,11 +369,13 @@
         }
       ],
       "features": [
-        "experimental_dotted_keys",
-        "path_traversal"
+        "experimental_dotted_keys"
       ],
       "inputs": [
         "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     }
   ]

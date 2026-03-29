@@ -108,7 +108,6 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
 		FeatureMultiline,
-		FeaturePathTraversal,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}
@@ -517,7 +516,6 @@ func TestCCLFeature_StringValues(t *testing.T) {
 		{FeatureExperimentalDottedKeys, "experimental_dotted_keys"},
 		{FeatureEmptyKeys, "empty_keys"},
 		{FeatureMultiline, "multiline"},
-		{FeaturePathTraversal, "path_traversal"},
 		{FeatureUnicode, "unicode"},
 		{FeatureWhitespace, "whitespace"},
 	}
@@ -545,6 +543,7 @@ func TestCCLBehavior_StringValues(t *testing.T) {
 		{BehaviorBooleanLenient, "boolean_lenient"},
 		{BehaviorListCoercionOn, "list_coercion_enabled"},
 		{BehaviorListCoercionOff, "list_coercion_disabled"},
+		{BehaviorPathTraversal, "path_traversal"},
 	}
 
 	for _, tc := range testCases {

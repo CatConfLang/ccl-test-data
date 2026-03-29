@@ -2516,8 +2516,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2542,8 +2541,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2561,14 +2559,15 @@
         "server",
         "max_connections"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 1000
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -2593,8 +2592,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2623,8 +2621,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2644,14 +2641,15 @@
         "pool",
         "max"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 50
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -2676,8 +2674,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2702,8 +2699,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2721,14 +2717,15 @@
         "metrics",
         "memory_limit"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 2.5
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_float"
@@ -2753,8 +2750,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2783,8 +2779,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2804,14 +2799,15 @@
         "weights",
         "freshness"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 0.4
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_float"
@@ -2836,8 +2832,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2862,8 +2857,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2883,7 +2877,8 @@
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -2896,8 +2891,7 @@
         "value": false
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -2922,8 +2916,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -2952,8 +2945,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -2975,7 +2967,8 @@
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -2988,8 +2981,7 @@
         "value": false
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -3013,9 +3005,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -3038,9 +3028,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -3057,14 +3045,14 @@
         "database",
         "name"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "mydb"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -3088,8 +3076,7 @@
         ]
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "parse"
@@ -3116,8 +3103,7 @@
         }
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy"
@@ -3135,14 +3121,15 @@
         "server",
         "host"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "0.0.0.0"
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_string"
@@ -3160,14 +3147,15 @@
         "server",
         "port"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 3000
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_int"
@@ -3187,7 +3175,8 @@
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -3200,8 +3189,7 @@
         "value": true
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_bool"
@@ -3219,14 +3207,15 @@
         "server",
         "rate_limit"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": 1.5
       },
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "functions": [
         "get_float"
