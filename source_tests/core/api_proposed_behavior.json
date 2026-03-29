@@ -281,11 +281,9 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "path_traversal"
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
@@ -793,12 +791,10 @@
           }
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"

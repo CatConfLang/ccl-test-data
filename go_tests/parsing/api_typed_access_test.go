@@ -38,13 +38,48 @@ func TestParseBasicIntegerParse(t *testing.T) {
 
 // parse_basic_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `port = 8080`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"port": "8080"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_basic_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBasicIntegerGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `port = 8080`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"port"})
+	require.NoError(t, err)
+	assert.Equal(t, 8080, result)
+
 }
 
 
@@ -72,13 +107,48 @@ func TestParseBasicFloatParse(t *testing.T) {
 
 // parse_basic_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicFloatBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `temperature = 98.6`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"temperature": "98.6"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_basic_float_get_float - function:get_float feature:optional_typed_accessors
 func TestParseBasicFloatGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `temperature = 98.6`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"temperature"})
+	require.NoError(t, err)
+	assert.Equal(t, 98.6, result)
+
 }
 
 
@@ -106,13 +176,48 @@ func TestParseBooleanTrueParse(t *testing.T) {
 
 // parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `enabled = true`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"enabled": "true"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_true_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanTrueGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `enabled = true`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"enabled"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
@@ -140,13 +245,48 @@ func TestParseBooleanYesParse(t *testing.T) {
 
 // parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `active = yes`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"active": "yes"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_yes_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanYesGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `active = yes`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"active"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
@@ -174,13 +314,51 @@ func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 
 // parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `active = yes`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"active": "yes"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_yes_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `active = yes`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"active"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -208,13 +386,48 @@ func TestParseBooleanFalseParse(t *testing.T) {
 
 // parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `disabled = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"disabled": "false"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_false_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanFalseGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `disabled = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"disabled"})
+	require.NoError(t, err)
+	assert.Equal(t, false, result)
+
 }
 
 
@@ -242,13 +455,48 @@ func TestParseStringFallbackParse(t *testing.T) {
 
 // parse_string_fallback_build_hierarchy - function:build_hierarchy
 func TestParseStringFallbackBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = Alice`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"name": "Alice"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_string_fallback_get_string - function:get_string
 func TestParseStringFallbackGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `name = Alice`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"name"})
+	require.NoError(t, err)
+	assert.Equal(t, "Alice", result)
+
 }
 
 
@@ -276,13 +524,48 @@ func TestParseNegativeIntegerParse(t *testing.T) {
 
 // parse_negative_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `offset = -42`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"offset": "-42"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_negative_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseNegativeIntegerGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `offset = -42`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"offset"})
+	require.NoError(t, err)
+	assert.Equal(t, -42, result)
+
 }
 
 
@@ -312,25 +595,104 @@ disabled = no`
 
 // parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"count": "0", "disabled": "no", "distance": "0.0"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_zero_values_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"count"})
+	require.NoError(t, err)
+	assert.Equal(t, 0, result)
+
 }
 
 
 // parse_zero_values_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"disabled"})
+	require.NoError(t, err)
+	assert.Equal(t, false, result)
+
 }
 
 
 // parse_zero_values_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"distance"})
+	require.NoError(t, err)
+	assert.Equal(t, 0, result)
+
 }
 
 
@@ -360,25 +722,107 @@ disabled = no`
 
 // parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"count": "0", "disabled": "no", "distance": "0.0"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"count"})
+	require.NoError(t, err)
+	assert.Equal(t, 0, result)
+
 }
 
 
 // parse_zero_values_strict_literal_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"disabled"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
 // parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `count = 0
+distance = 0.0
+disabled = no`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"distance"})
+	require.NoError(t, err)
+	assert.Equal(t, 0, result)
+
 }
 
 
@@ -412,19 +856,90 @@ flag7 = 0`
 
 // parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"flag1": "yes", "flag2": "on", "flag3": "1", "flag4": "false", "flag5": "no", "flag6": "off", "flag7": "0"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_variants_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"flag3"})
+	require.NoError(t, err)
+	assert.Equal(t, 1, result)
+
 }
 
 
 // parse_boolean_variants_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"flag1"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
@@ -458,19 +973,93 @@ flag7 = 0`
 
 // parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"flag1": "yes", "flag2": "on", "flag3": "1", "flag4": "false", "flag5": "no", "flag6": "off", "flag7": "0"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_variants_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"flag3"})
+	require.NoError(t, err)
+	assert.Equal(t, 1, result)
+
 }
 
 
 // parse_boolean_variants_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag1 = yes
+flag2 = on
+flag3 = 1
+flag4 = false
+flag5 = no
+flag6 = off
+flag7 = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"flag1"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -502,31 +1091,140 @@ debug = off`
 
 // parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"debug": "off", "host": "localhost", "port": "8080", "ssl": "true", "timeout": "30.5"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_mixed_types_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"host"})
+	require.NoError(t, err)
+	assert.Equal(t, "localhost", result)
+
 }
 
 
 // parse_mixed_types_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"port"})
+	require.NoError(t, err)
+	assert.Equal(t, 8080, result)
+
 }
 
 
 // parse_mixed_types_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"ssl"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
 // parse_mixed_types_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"timeout"})
+	require.NoError(t, err)
+	assert.Equal(t, 30.5, result)
+
 }
 
 
@@ -558,31 +1256,140 @@ debug = off`
 
 // parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"debug": "off", "host": "localhost", "port": "8080", "ssl": "true", "timeout": "30.5"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_mixed_types_strict_literal_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"host"})
+	require.NoError(t, err)
+	assert.Equal(t, "localhost", result)
+
 }
 
 
 // parse_mixed_types_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"port"})
+	require.NoError(t, err)
+	assert.Equal(t, 8080, result)
+
 }
 
 
 // parse_mixed_types_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"ssl"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
 // parse_mixed_types_strict_literal_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `host = localhost
+port = 8080
+ssl = true
+timeout = 30.5
+debug = off`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"timeout"})
+	require.NoError(t, err)
+	assert.Equal(t, 30.5, result)
+
 }
 
 
@@ -611,19 +1418,75 @@ flag =  true  `
 
 // parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number =   42   
+flag =  true  `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"flag": "true", "number": "42"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_with_whitespace_get_int - function:get_int feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number =   42   
+flag =  true  `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"number"})
+	require.NoError(t, err)
+	assert.Equal(t, 42, result)
+
 }
 
 
 // parse_with_whitespace_get_bool - function:get_bool feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number =   42   
+flag =  true  `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"flag"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
@@ -654,19 +1517,81 @@ text = hello`
 
 // parse_with_conservative_options_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseWithConservativeOptionsBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number = 42
+decimal = 3.14
+flag = true
+text = hello`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"decimal": "3.14", "flag": "true", "number": "42", "text": "hello"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_with_conservative_options_get_string - function:get_string feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number = 42
+decimal = 3.14
+flag = true
+text = hello`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"decimal"})
+	require.NoError(t, err)
+	assert.Equal(t, "3.14", result)
+
 }
 
 
 // parse_with_conservative_options_get_int - function:get_int feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number = 42
+decimal = 3.14
+flag = true
+text = hello`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"number"})
+	require.NoError(t, err)
+	assert.Equal(t, 42, result)
+
 }
 
 
@@ -694,13 +1619,51 @@ func TestParseIntegerErrorParse(t *testing.T) {
 
 // parse_integer_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `port = not_a_number`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"port": "not_a_number"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_integer_error_get_int - function:get_int feature:optional_typed_accessors
 func TestParseIntegerErrorGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `port = not_a_number`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"port"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0, result)
+	}
+
 }
 
 
@@ -728,13 +1691,51 @@ func TestParseFloatErrorParse(t *testing.T) {
 
 // parse_float_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseFloatErrorBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `temperature = invalid`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"temperature": "invalid"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_float_error_get_float - function:get_float feature:optional_typed_accessors
 func TestParseFloatErrorGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `temperature = invalid`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"temperature"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0.0, result)
+	}
+
 }
 
 
@@ -762,13 +1763,51 @@ func TestParseBooleanErrorParse(t *testing.T) {
 
 // parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `enabled = maybe`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"enabled": "maybe"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_boolean_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanErrorGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `enabled = maybe`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"enabled"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -796,13 +1835,51 @@ func TestParseMissingPathErrorParse(t *testing.T) {
 
 // parse_missing_path_error_build_hierarchy - function:build_hierarchy
 func TestParseMissingPathErrorBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `existing = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"existing": "value"}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
 // parse_missing_path_error_get_string - function:get_string
 func TestParseMissingPathErrorGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `existing = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"missing"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, "", result)
+	}
+
 }
 
 
@@ -831,7 +1908,29 @@ upper_false = FALSE`
 
 // boolean_case_sensitivity_uppercase_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanCaseSensitivityUppercaseGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `upper_true = TRUE
+upper_false = FALSE`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"upper_true"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -860,7 +1959,29 @@ mixed_false = False`
 
 // boolean_case_sensitivity_mixed_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanCaseSensitivityMixedGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `mixed_true = True
+mixed_false = False`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"mixed_true"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -889,7 +2010,29 @@ upper_no = NO`
 
 // boolean_lenient_uppercase_yes_no_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestBooleanLenientUppercaseYesNoGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `upper_yes = YES
+upper_no = NO`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"upper_yes"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -918,13 +2061,54 @@ zero = 0`
 
 // boolean_numeric_one_zero_strict_get_int - function:get_int feature:optional_typed_accessors
 func TestBooleanNumericOneZeroStrictGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `one = 1
+zero = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"one"})
+	require.NoError(t, err)
+	assert.Equal(t, 1, result)
+
 }
 
 
 // boolean_numeric_one_zero_strict_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanNumericOneZeroStrictGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `one = 1
+zero = 0`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"one"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -952,13 +2136,51 @@ func TestBooleanWithWhitespaceParse(t *testing.T) {
 
 // boolean_with_whitespace_get_bool - function:get_bool feature:optional_typed_accessors feature:whitespace behavior:boolean_strict
 func TestBooleanWithWhitespaceGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `padded =   true   `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"padded"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
 // boolean_nested_object_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestBooleanNestedObjectBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  debug = true
+  verbose = false
+  experimental = yes`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"debug": "true", "experimental": "yes", "verbose": "false"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
@@ -986,7 +2208,28 @@ func TestTypeMismatchGetIntOnBoolParse(t *testing.T) {
 
 // type_mismatch_get_int_on_bool_get_int - function:get_int feature:optional_typed_accessors
 func TestTypeMismatchGetIntOnBoolGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag = true`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"flag"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0, result)
+	}
+
 }
 
 
@@ -1014,7 +2257,28 @@ func TestTypeMismatchGetBoolOnIntParse(t *testing.T) {
 
 // type_mismatch_get_bool_on_int_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestTypeMismatchGetBoolOnIntGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `number = 42`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"number"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
@@ -1042,13 +2306,53 @@ func TestTypeMismatchGetFloatOnBoolParse(t *testing.T) {
 
 // type_mismatch_get_float_on_bool_get_float - function:get_float feature:optional_typed_accessors
 func TestTypeMismatchGetFloatOnBoolGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `flag = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"flag"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, 0.0, result)
+	}
+
 }
 
 
 // type_mismatch_nested_path_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestTypeMismatchNestedPathBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  name = test
+  count = abc`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"count": "abc", "name": "test"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
@@ -1076,11 +2380,32 @@ func TestBooleanEmptyValueErrorParse(t *testing.T) {
 
 // boolean_empty_value_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanEmptyValueErrorGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `empty =`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"empty"})
+	if err != nil {
+		require.Error(t, err)
+	} else {
+		assert.Equal(t, false, result)
+	}
+
 }
 
 
-// nested_get_int_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// nested_get_int_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetIntParse(t *testing.T) {
 	
 
@@ -1104,19 +2429,58 @@ func TestNestedGetIntParse(t *testing.T) {
 }
 
 
-// nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetIntBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  port = 8080
+  max_connections = 1000`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"server": map[string]interface{}{"max_connections": "1000", "port": "8080"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_get_int_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+// nested_get_int_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestNestedGetIntGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  port = 8080
+  max_connections = 1000`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"server", "max_connections"})
+	require.NoError(t, err)
+	assert.Equal(t, 1000, result)
+
 }
 
 
-// deeply_nested_get_int_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_int_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetIntParse(t *testing.T) {
 	
 
@@ -1142,19 +2506,62 @@ func TestDeeplyNestedGetIntParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  database =
+    pool =
+      min = 5
+      max = 50`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"database": map[string]interface{}{"pool": map[string]interface{}{"max": "50", "min": "5"}}}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// deeply_nested_get_int_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_int_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestDeeplyNestedGetIntGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `config =
+  database =
+    pool =
+      min = 5
+      max = 50`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"config", "database", "pool", "max"})
+	require.NoError(t, err)
+	assert.Equal(t, 50, result)
+
 }
 
 
-// nested_get_float_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// nested_get_float_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetFloatParse(t *testing.T) {
 	
 
@@ -1178,19 +2585,58 @@ func TestNestedGetFloatParse(t *testing.T) {
 }
 
 
-// nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetFloatBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `metrics =
+  cpu_threshold = 0.85
+  memory_limit = 2.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"metrics": map[string]interface{}{"cpu_threshold": "0.85", "memory_limit": "2.5"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_get_float_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+// nested_get_float_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestNestedGetFloatGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `metrics =
+  cpu_threshold = 0.85
+  memory_limit = 2.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"metrics", "memory_limit"})
+	require.NoError(t, err)
+	assert.Equal(t, 2.5, result)
+
 }
 
 
-// deeply_nested_get_float_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_float_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetFloatParse(t *testing.T) {
 	
 
@@ -1216,19 +2662,62 @@ func TestDeeplyNestedGetFloatParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `app =
+  scoring =
+    weights =
+      relevance = 0.6
+      freshness = 0.4`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"app": map[string]interface{}{"scoring": map[string]interface{}{"weights": map[string]interface{}{"freshness": "0.4", "relevance": "0.6"}}}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// deeply_nested_get_float_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_float_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestDeeplyNestedGetFloatGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `app =
+  scoring =
+    weights =
+      relevance = 0.6
+      freshness = 0.4`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"app", "scoring", "weights", "freshness"})
+	require.NoError(t, err)
+	assert.Equal(t, 0.4, result)
+
 }
 
 
-// nested_get_bool_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// nested_get_bool_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetBoolParse(t *testing.T) {
 	
 
@@ -1252,19 +2741,58 @@ func TestNestedGetBoolParse(t *testing.T) {
 }
 
 
-// nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetBoolBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `feature_flags =
+  dark_mode = true
+  beta_access = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"feature_flags": map[string]interface{}{"beta_access": "false", "dark_mode": "true"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+// nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestNestedGetBoolGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `feature_flags =
+  dark_mode = true
+  beta_access = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"feature_flags", "beta_access"})
+	require.NoError(t, err)
+	assert.Equal(t, false, result)
+
 }
 
 
-// deeply_nested_get_bool_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_bool_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetBoolParse(t *testing.T) {
 	
 
@@ -1290,19 +2818,62 @@ func TestDeeplyNestedGetBoolParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// deeply_nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `services =
+  auth =
+    settings =
+      require_mfa = true
+      allow_anonymous = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"services": map[string]interface{}{"auth": map[string]interface{}{"settings": map[string]interface{}{"allow_anonymous": "false", "require_mfa": "true"}}}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// deeply_nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+// deeply_nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestDeeplyNestedGetBoolGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `services =
+  auth =
+    settings =
+      require_mfa = true
+      allow_anonymous = false`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"services", "auth", "settings", "allow_anonymous"})
+	require.NoError(t, err)
+	assert.Equal(t, false, result)
+
 }
 
 
-// nested_get_string_basic_parse - function:parse feature:path_traversal
+// nested_get_string_basic_parse - function:parse
 func TestNestedGetStringBasicParse(t *testing.T) {
 	
 
@@ -1326,19 +2897,58 @@ func TestNestedGetStringBasicParse(t *testing.T) {
 }
 
 
-// nested_get_string_basic_build_hierarchy - function:build_hierarchy feature:path_traversal
+// nested_get_string_basic_build_hierarchy - function:build_hierarchy
 func TestNestedGetStringBasicBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `database =
+  host = localhost
+  name = mydb`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"database": map[string]interface{}{"host": "localhost", "name": "mydb"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_get_string_basic_get_string - function:get_string feature:path_traversal
+// nested_get_string_basic_get_string - function:get_string behavior:path_traversal
 func TestNestedGetStringBasicGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `database =
+  host = localhost
+  name = mydb`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"database", "name"})
+	require.NoError(t, err)
+	assert.Equal(t, "mydb", result)
+
 }
 
 
-// nested_mixed_typed_access_parse - function:parse feature:optional_typed_accessors feature:path_traversal
+// nested_mixed_typed_access_parse - function:parse feature:optional_typed_accessors
 func TestNestedMixedTypedAccessParse(t *testing.T) {
 	
 
@@ -1364,33 +2974,142 @@ func TestNestedMixedTypedAccessParse(t *testing.T) {
 }
 
 
-// nested_mixed_typed_access_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors feature:path_traversal
+// nested_mixed_typed_access_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"server": map[string]interface{}{"debug": "true", "host": "0.0.0.0", "port": "3000", "rate_limit": "1.5"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 
-// nested_mixed_typed_access_get_string - function:get_string feature:optional_typed_accessors feature:path_traversal
+// nested_mixed_typed_access_get_string - function:get_string feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"server", "host"})
+	require.NoError(t, err)
+	assert.Equal(t, "0.0.0.0", result)
+
 }
 
 
-// nested_mixed_typed_access_get_int - function:get_int feature:optional_typed_accessors feature:path_traversal
+// nested_mixed_typed_access_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetInt(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_int validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetInt(hierarchy, []string{"server", "port"})
+	require.NoError(t, err)
+	assert.Equal(t, 3000, result)
+
 }
 
 
-// nested_mixed_typed_access_get_bool - function:get_bool feature:optional_typed_accessors feature:path_traversal behavior:boolean_strict behavior:boolean_lenient
+// nested_mixed_typed_access_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestNestedMixedTypedAccessGetBool(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_bool validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetBool(hierarchy, []string{"server", "debug"})
+	require.NoError(t, err)
+	assert.Equal(t, true, result)
+
 }
 
 
-// nested_mixed_typed_access_get_float - function:get_float feature:optional_typed_accessors feature:path_traversal
+// nested_mixed_typed_access_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetFloat(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+	
+
+	ccl := mock.New()
+	input := `server =
+  host = 0.0.0.0
+  port = 3000
+  debug = true
+  rate_limit = 1.5`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// get_float validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetFloat(hierarchy, []string{"server", "rate_limit"})
+	require.NoError(t, err)
+	assert.Equal(t, 1.5, result)
+
 }
 
 

@@ -531,11 +531,11 @@
         }
       ],
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "inputs": [
         "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
@@ -581,11 +581,11 @@
         }
       ],
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "behaviors": [
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "inputs": [
         "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
@@ -733,11 +733,11 @@
         }
       ],
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
@@ -789,11 +789,11 @@
         }
       ],
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "behaviors": [
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
@@ -839,11 +839,13 @@
         }
       ],
       "features": [
-        "empty_keys",
-        "path_traversal"
+        "empty_keys"
       ],
       "inputs": [
         "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -875,11 +877,9 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  setting = value"
@@ -902,8 +902,14 @@
           "expect": {
             "items": {
               "": [
-                {"name": "first", "value": "1"},
-                {"name": "second", "value": "2"}
+                {
+                  "name": "first",
+                  "value": "1"
+                },
+                {
+                  "name": "second",
+                  "value": "2"
+                }
               ]
             }
           }
@@ -911,14 +917,26 @@
         {
           "function": "get_list",
           "expect": [
-            {"name": "first", "value": "1"},
-            {"name": "second", "value": "2"}
+            {
+              "name": "first",
+              "value": "1"
+            },
+            {
+              "name": "second",
+              "value": "2"
+            }
           ],
-          "args": ["items"]
+          "args": [
+            "items"
+          ]
         }
       ],
-      "features": ["empty_keys"],
-      "inputs": ["items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"]
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+      ]
     },
     {
       "name": "bare_list_nested_objects_single_item",
@@ -937,7 +955,10 @@
           "expect": {
             "items": {
               "": [
-                {"name": "only", "value": "42"}
+                {
+                  "name": "only",
+                  "value": "42"
+                }
               ]
             }
           }
@@ -945,13 +966,22 @@
         {
           "function": "get_list",
           "expect": [
-            {"name": "only", "value": "42"}
+            {
+              "name": "only",
+              "value": "42"
+            }
           ],
-          "args": ["items"]
+          "args": [
+            "items"
+          ]
         }
       ],
-      "features": ["empty_keys"],
-      "inputs": ["items =\n  =\n    name = only\n    value = 42"]
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = only\n    value = 42"
+      ]
     },
     {
       "name": "bare_list_nested_objects_minimal",
@@ -970,15 +1000,23 @@
           "expect": {
             "items": {
               "": [
-                {"name": "first"},
-                {"name": "second"}
+                {
+                  "name": "first"
+                },
+                {
+                  "name": "second"
+                }
               ]
             }
           }
         }
       ],
-      "features": ["empty_keys"],
-      "inputs": ["items =\n  =\n    name = first\n  =\n    name = second"]
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n  =\n    name = second"
+      ]
     },
     {
       "name": "bare_list_nested_objects_deeply_nested",
@@ -997,15 +1035,29 @@
           "expect": {
             "items": {
               "": [
-                {"config": {"host": "localhost", "port": "8080"}},
-                {"config": {"host": "example.com", "port": "443"}}
+                {
+                  "config": {
+                    "host": "localhost",
+                    "port": "8080"
+                  }
+                },
+                {
+                  "config": {
+                    "host": "example.com",
+                    "port": "443"
+                  }
+                }
               ]
             }
           }
         }
       ],
-      "features": ["empty_keys"],
-      "inputs": ["items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"]
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
+      ]
     },
     {
       "name": "bare_list_nested_objects_mixed_with_strings",
@@ -1025,16 +1077,25 @@
             "items": {
               "": [
                 "simple_string",
-                {"name": "nested", "value": "obj"},
+                {
+                  "name": "nested",
+                  "value": "obj"
+                },
                 "another_string"
               ]
             }
           }
         }
       ],
-      "features": ["empty_keys"],
-      "behaviors": ["array_order_insertion"],
-      "inputs": ["items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"]
+      "features": [
+        "empty_keys"
+      ],
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "inputs": [
+        "items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
+      ]
     },
     {
       "name": "bare_list_nested_objects_round_trip",
@@ -1057,8 +1118,12 @@
           "expect": true
         }
       ],
-      "features": ["empty_keys"],
-      "inputs": ["items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"]
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+      ]
     }
   ]
 }

@@ -957,9 +957,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -982,9 +980,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1001,14 +997,14 @@
         "mappings",
         "config/settings.json"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": ".vscode/settings.json"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -1682,9 +1678,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -1707,9 +1701,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1726,14 +1718,14 @@
         "mappings",
         "../foo"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "../bar"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -1802,9 +1794,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -1829,9 +1819,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1849,14 +1837,14 @@
         "build",
         "cache"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "../.cache"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -1879,9 +1867,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -1906,9 +1892,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1926,14 +1910,14 @@
         "..",
         "main"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "../src/main"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -1956,9 +1940,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -1986,9 +1968,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -2006,14 +1986,14 @@
         "relative",
         "up"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "../../"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -2036,9 +2016,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -2066,9 +2044,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -2086,14 +2062,14 @@
         "primary",
         "api"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "//api.example.com"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -2330,9 +2306,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -2355,9 +2329,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -2374,14 +2346,14 @@
         "mappings",
         "https://api.example.com"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "https://prod.example.com"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],
@@ -2404,9 +2376,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -2436,9 +2406,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -2457,14 +2425,14 @@
         "api",
         "url"
       ],
-      "behaviors": [],
+      "behaviors": [
+        "path_traversal"
+      ],
       "expected": {
         "count": 1,
         "value": "https://api.example.com"
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_string"
       ],

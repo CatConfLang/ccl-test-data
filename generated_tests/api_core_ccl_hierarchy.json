@@ -434,9 +434,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -473,9 +471,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -496,7 +492,8 @@
       ],
       "behaviors": [
         "list_coercion_disabled",
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -507,9 +504,7 @@
       "expected": {
         "count": 0
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_list"
       ],

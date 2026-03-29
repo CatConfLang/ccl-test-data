@@ -404,9 +404,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse"
       ],
@@ -432,9 +430,7 @@
           }
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -452,7 +448,8 @@
         "port"
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -465,9 +462,7 @@
           "5432"
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_list"
       ],
@@ -1244,9 +1239,7 @@
           }
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "parse_indented"
       ],
@@ -1291,9 +1284,7 @@
           ]
         }
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "build_hierarchy"
       ],
@@ -1311,7 +1302,8 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
@@ -1327,9 +1319,7 @@
           "ui"
         ]
       },
-      "features": [
-        "path_traversal"
-      ],
+      "features": [],
       "functions": [
         "get_list"
       ],

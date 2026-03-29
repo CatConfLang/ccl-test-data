@@ -1299,11 +1299,13 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "inputs": [
         "server =\n  port = 8080\n  max_connections = 1000"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -1353,11 +1355,13 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "inputs": [
         "config =\n  database =\n    pool =\n      min = 5\n      max = 50"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -1399,11 +1403,13 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "inputs": [
         "metrics =\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -1453,11 +1459,13 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "inputs": [
         "app =\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -1499,12 +1507,12 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "inputs": [
         "feature_flags =\n  dark_mode = true\n  beta_access = false"
@@ -1557,12 +1565,12 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "inputs": [
         "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
@@ -1606,11 +1614,11 @@
           ]
         }
       ],
-      "features": [
-        "path_traversal"
-      ],
       "inputs": [
         "database =\n  host = localhost\n  name = mydb"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     },
     {
@@ -1670,12 +1678,12 @@
         }
       ],
       "features": [
-        "optional_typed_accessors",
-        "path_traversal"
+        "optional_typed_accessors"
       ],
       "behaviors": [
         "boolean_strict",
-        "boolean_lenient"
+        "boolean_lenient",
+        "path_traversal"
       ],
       "inputs": [
         "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
