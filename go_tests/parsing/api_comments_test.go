@@ -43,27 +43,7 @@ connections = 16`
 
 // comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= This is an environment section
-port = 8080
-serve = index.html
-/= Database section
-mode = in-memory
-connections = 16`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -91,22 +71,7 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 // comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= this is a comment`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -139,27 +104,7 @@ port = 6379`
 
 // section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `== Database Config ==
-/= Connection settings
-host = localhost
-=== Cache Config ===
-/= Redis configuration
-port = 6379`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
