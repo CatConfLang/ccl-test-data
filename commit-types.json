@@ -19,12 +19,12 @@
     },
     "refactor": {
       "description": "A code change that neither fixes a bug nor adds a feature",
-      "changelog_group": "Refactor",
+      "changelog_group": null,
       "scope_required": true
     },
     "test": {
       "description": "Adding missing tests or correcting existing tests",
-      "changelog_group": "Testing",
+      "changelog_group": null,
       "scope_required": true
     },
     "revert": {
@@ -39,7 +39,7 @@
     },
     "docs": {
       "description": "Documentation only changes",
-      "changelog_group": "Documentation",
+      "changelog_group": null,
       "scope_required": false
     },
     "chore": {

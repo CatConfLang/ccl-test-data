@@ -41,6 +41,9 @@ exclude_commit_patterns = [
     '''ci(?:\([^)]*?\))?: .+''',
     '''style(?:\([^)]*?\))?: .+''',
     '''build(?:\([^)]*?\))?: .+''',
+    '''test(?:\([^)]*?\))?: .+''',
+    '''refactor(?:\([^)]*?\))?: .+''',
+    '''docs?(?:\([^)]*?\))?: .+''',
 ]
 
 [tool.semantic_release.changelog.default_templates]
