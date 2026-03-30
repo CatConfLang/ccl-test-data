@@ -662,7 +662,7 @@
       "behaviors": [],
       "expected": {
         "count": 1,
-        "value": false
+        "value": true
       },
       "features": [
         "empty_keys",
