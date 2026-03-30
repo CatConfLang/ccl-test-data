@@ -285,7 +285,7 @@
       "tests": [
         {
           "function": "round_trip",
-          "expect": false
+          "expect": true
         },
         {
           "function": "parse",
