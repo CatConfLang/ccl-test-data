@@ -3,6 +3,23 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.7.1] - 2026-03-29
+
+
+
+### Bug Fixes
+
+- **tests:** Update round_trip_empty_multiline to expect true ([`a9ae5e6`](https://github.com/CatConfLang/ccl-test-data/commit/a9ae5e6afee2bd704401bb109b8d2038c9e9519c))
+
+
+
+  The round_trip_empty_multiline test expected false because the sickle printer previously added a trailing space after = for section keys, causing re-parse to differ. Now that the printer correctly omits the trailing space, parse(print(parse(x))) == parse(x) holds true.
+
+  Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+
+
+
+
 ## [0.7.0] - 2026-03-29
 
 
