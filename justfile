@@ -86,6 +86,9 @@ list:
 build-test-reader:
     go build -o bin/test-reader ./cmd/test-reader
 
+# Launch interactive test viewer TUI
+tui: view-tests
+
 # Interactive test viewer (TUI-based) - builds test-reader if needed
 view-tests PATH="generated_tests":
     just build-test-reader
