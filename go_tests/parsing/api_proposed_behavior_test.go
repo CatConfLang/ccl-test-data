@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,92 +12,75 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // multiline_section_header_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline
 func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `== Section Header =
   This continues the header
 key = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // unindented_multiline_becomes_continuation_parse_indented - function:parse_indented feature:empty_keys
 func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `== Section Header =
 This continues the header
 key = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
-
 
 // indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
   second line
 descriptions = Another item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
   second line
 descriptions = Another item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -107,36 +90,30 @@ descriptions = Another item`
 
 }
 
-
 // indented_line_is_continuation_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestIndentedLineIsContinuationGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
   second line
 descriptions = Another item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"descriptions"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"First line\n  second line", "Another item"}, result)
+	assert.Equal(t, []interface{}{"First line\n  second line", "Another item"}, result)
 
 }
-
 
 // mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key1 = value1
@@ -144,24 +121,20 @@ func TestMixedIndentationLevelsParseIndented(t *testing.T) {
 key2 = value2
 not indented key
   indented for not indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation feature:empty_keys
 func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key1 = value1
@@ -169,13 +142,11 @@ func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
 key2 = value2
 not indented key
   indented for not indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -185,20 +156,16 @@ not indented key
 
 }
 
-
 // single_item_as_list_parse - function:parse
 func TestSingleItemAsListParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = single`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -207,20 +174,16 @@ func TestSingleItemAsListParse(t *testing.T) {
 
 }
 
-
 // single_item_as_list_build_hierarchy - function:build_hierarchy
 func TestSingleItemAsListBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = single`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -230,46 +193,38 @@ func TestSingleItemAsListBuildHierarchy(t *testing.T) {
 
 }
 
-
 // single_item_as_list_get_list - function:get_list behavior:list_coercion_enabled
 func TestSingleItemAsListGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = single`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"item"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"single"}, result)
+	assert.Equal(t, []interface{}{"single"}, result)
 
 }
 
-
 // mixed_duplicate_single_keys_parse - function:parse
 func TestMixedDuplicateSingleKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -278,22 +233,18 @@ host = localhost`
 
 }
 
-
 // mixed_duplicate_single_keys_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestMixedDuplicateSingleKeysBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -303,49 +254,41 @@ host = localhost`
 
 }
 
-
 // mixed_duplicate_single_keys_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestMixedDuplicateSingleKeysGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"host"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"localhost"}, result)
+	assert.Equal(t, []interface{}{"localhost"}, result)
 
 }
 
-
 // nested_list_access_parse - function:parse
 func TestNestedListAccessParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -354,23 +297,19 @@ func TestNestedListAccessParse(t *testing.T) {
 
 }
 
-
 // nested_list_access_build_hierarchy - function:build_hierarchy
 func TestNestedListAccessBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -380,47 +319,39 @@ func TestNestedListAccessBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_list_access_get_list - function:get_list behavior:list_coercion_enabled behavior:path_traversal
 func TestNestedListAccessGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"database", "port"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"5432"}, result)
+	assert.Equal(t, []interface{}{"5432"}, result)
 
 }
 
-
 // empty_list_parse - function:parse
 func TestEmptyListParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_list =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -429,20 +360,16 @@ func TestEmptyListParse(t *testing.T) {
 
 }
 
-
 // empty_list_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestEmptyListBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_list =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -452,47 +379,39 @@ func TestEmptyListBuildHierarchy(t *testing.T) {
 
 }
 
-
 // empty_list_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestEmptyListGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_list =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"empty_list"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{""}, result)
+	assert.Equal(t, []interface{}{""}, result)
 
 }
 
-
 // list_with_numbers_parse - function:parse
 func TestListWithNumbersParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -501,23 +420,19 @@ numbers = 0`
 
 }
 
-
 // list_with_numbers_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithNumbersBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -527,50 +442,42 @@ numbers = 0`
 
 }
 
-
 // list_with_numbers_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithNumbersGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"numbers"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"1", "42", "-17", "0"}, result)
+	assert.Equal(t, []interface{}{"1", "42", "-17", "0"}, result)
 
 }
 
-
 // list_with_booleans_parse - function:parse
 func TestListWithBooleansParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -579,23 +486,19 @@ flags = no`
 
 }
 
-
 // list_with_booleans_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithBooleansBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -605,50 +508,42 @@ flags = no`
 
 }
 
-
 // list_with_booleans_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithBooleansGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"flags"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"true", "false", "yes", "no"}, result)
+	assert.Equal(t, []interface{}{"true", "false", "yes", "no"}, result)
 
 }
 
-
 // list_with_whitespace_parse - function:parse feature:whitespace
 func TestListWithWhitespaceParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -657,23 +552,19 @@ items =   `
 
 }
 
-
 // list_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_insertion
 func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -683,50 +574,42 @@ items =   `
 
 }
 
-
 // list_with_whitespace_get_list - function:get_list feature:whitespace behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithWhitespaceGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"items"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"spaced", "normal", "", ""}, result)
+	assert.Equal(t, []interface{}{"spaced", "normal", "", ""}, result)
 
 }
 
-
 // list_with_unicode_parse - function:parse feature:unicode
 func TestListWithUnicodeParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -735,23 +618,19 @@ names = العربية`
 
 }
 
-
 // list_with_unicode_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_insertion
 func TestListWithUnicodeBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -761,50 +640,42 @@ names = العربية`
 
 }
 
-
 // list_with_unicode_get_list - function:get_list feature:unicode behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithUnicodeGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"names"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"张三", "José", "François", "العربية"}, result)
+	assert.Equal(t, []interface{}{"张三", "José", "François", "العربية"}, result)
 
 }
 
-
 // list_with_special_characters_parse - function:parse
 func TestListWithSpecialCharactersParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|
 symbols = <>=+`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -813,23 +684,19 @@ symbols = <>=+`
 
 }
 
-
 // list_with_special_characters_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestListWithSpecialCharactersBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|
 symbols = <>=+`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -839,74 +706,62 @@ symbols = <>=+`
 
 }
 
-
 // list_with_special_characters_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithSpecialCharactersGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|
 symbols = <>=+`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"symbols"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"@#$%", "!^&*()", "[]{}|", "<>=+"}, result)
+	assert.Equal(t, []interface{}{"@#$%", "!^&*()", "[]{}|", "<>=+"}, result)
 
 }
-
 
 // list_multiline_values_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation
 func TestListMultilineValuesParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
 second line
 descriptions = Another item
 descriptions = Third item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation behavior:array_order_insertion
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
 second line
 descriptions = Another item
 descriptions = Third item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -916,37 +771,31 @@ descriptions = Third item`
 
 }
 
-
 // list_multiline_values_get_list - function:get_list feature:multiline feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListMultilineValuesGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `descriptions = First line
 second line
 descriptions = Another item
 descriptions = Third item`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"descriptions"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"First line", "Another item", "Third item"}, result)
+	assert.Equal(t, []interface{}{"First line", "Another item", "Third item"}, result)
 
 }
-
 
 // complex_mixed_list_scenarios_parse_indented - function:parse_indented
 func TestComplexMixedListScenariosParseIndented(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -960,24 +809,20 @@ func TestComplexMixedListScenariosParseIndented(t *testing.T) {
 features = auth
 features = api
 features = ui`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement parse_indented validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // complex_mixed_list_scenarios_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
 func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -991,13 +836,11 @@ func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
 features = auth
 features = api
 features = ui`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1007,10 +850,8 @@ features = ui`
 
 }
 
-
 // complex_mixed_list_scenarios_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion behavior:path_traversal
 func TestComplexMixedListScenariosGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -1024,37 +865,31 @@ func TestComplexMixedListScenariosGetList(t *testing.T) {
 features = auth
 features = api
 features = ui`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"features"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"auth", "api", "ui"}, result)
+	assert.Equal(t, []interface{}{"auth", "api", "ui"}, result)
 
 }
 
-
 // list_path_traversal_protection_parse - function:parse
 func TestListPathTraversalProtectionParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `safe = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1063,20 +898,16 @@ func TestListPathTraversalProtectionParse(t *testing.T) {
 
 }
 
-
 // list_path_traversal_protection_build_hierarchy - function:build_hierarchy
 func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `safe = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1086,44 +917,36 @@ func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
 
 }
 
-
 // list_path_traversal_protection_get_list - function:get_list behavior:list_coercion_enabled
 func TestListPathTraversalProtectionGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `safe = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	hierarchy := ccl.BuildHierarchy(parseResult)
 	result, err := ccl.GetList(hierarchy, []string{"safe"})
 	require.NoError(t, err)
-	assert.Equal(t, []interface {}{"value"}, result)
+	assert.Equal(t, []interface{}{"value"}, result)
 
 }
 
-
 // parse_empty_value_parse - function:parse
 func TestParseEmptyValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_key =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1132,20 +955,16 @@ func TestParseEmptyValueParse(t *testing.T) {
 
 }
 
-
 // parse_empty_value_build_hierarchy - function:build_hierarchy
 func TestParseEmptyValueBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_key =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1155,20 +974,16 @@ func TestParseEmptyValueBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_empty_value_get_string - function:get_string
 func TestParseEmptyValueGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty_key =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1178,5 +993,3 @@ func TestParseEmptyValueGetString(t *testing.T) {
 	assert.Equal(t, "", result)
 
 }
-
-

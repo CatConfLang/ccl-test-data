@@ -1295,6 +1295,11 @@
         "/= this is a comment\r\n"
       ],
       "name": "crlf_normalize_comment_only_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_normalize_comment_only",
       "validation": "filter",
       "variants": []
@@ -1355,6 +1360,11 @@
         "/= this is a comment\r\n"
       ],
       "name": "crlf_preserve_comment_only_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_preserve_comment_only",
       "validation": "filter",
       "variants": []
@@ -1437,6 +1447,11 @@
         "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
       ],
       "name": "crlf_normalize_comments_and_values_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_normalize_comments_and_values",
       "validation": "filter",
       "variants": []
@@ -1554,6 +1569,11 @@
         "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
       ],
       "name": "crlf_preserve_comments_and_values_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_preserve_comments_and_values",
       "validation": "filter",
       "variants": []
@@ -1657,6 +1677,11 @@
         "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
       ],
       "name": "crlf_normalize_multiple_comments_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_normalize_multiple_comments",
       "validation": "filter",
       "variants": []
@@ -1725,6 +1750,11 @@
         "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
       ],
       "name": "crlf_preserve_multiple_comments_filter",
+      "predicate": {
+        "field": "key",
+        "op": "!=",
+        "value": "/"
+      },
       "source_test": "crlf_preserve_multiple_comments",
       "validation": "filter",
       "variants": []

@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,21 +12,16 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // tabs_as_content_in_value_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -35,20 +30,16 @@ func TestTabsAsContentInValueParse(t *testing.T) {
 
 }
 
-
 // tabs_as_content_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -58,20 +49,16 @@ func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
 
 }
 
-
 // tabs_as_content_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentInValueGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -82,20 +69,16 @@ func TestTabsAsContentInValueGetString(t *testing.T) {
 
 }
 
-
 // tabs_as_content_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentLeadingTabParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -104,20 +87,16 @@ func TestTabsAsContentLeadingTabParse(t *testing.T) {
 
 }
 
-
 // tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentLeadingTabGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -128,20 +107,16 @@ func TestTabsAsContentLeadingTabGetString(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_in_value_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceInValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -150,20 +125,16 @@ func TestTabsAsWhitespaceInValueParse(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -173,20 +144,16 @@ func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -197,20 +164,16 @@ func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -219,20 +182,16 @@ func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_leading_tab_get_string - function:get_string feature:whitespace
 func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	indented`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -243,20 +202,16 @@ func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_multiple_tabs_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 			three_tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -265,22 +220,18 @@ func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
 
 }
 
-
 // tabs_as_content_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_content
 func TestTabsAsContentMultilineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `section =
  	indented_with_tabs
  	another_line`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -289,22 +240,18 @@ func TestTabsAsContentMultilineParse(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `section =
 		indented_with_tabs
 		another_line`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -313,22 +260,18 @@ func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
 
 }
 
-
 // tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `section =
  	mixed_indent
 	 another_line`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -337,120 +280,98 @@ func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 
 }
 
-
 // tabs_canonical_format_as_content_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_content
 func TestTabsCanonicalFormatAsContentCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
-
 
 // tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_whitespace
 func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_spaces
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `section =
 		indented
 		another`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
-
 
 // tabs_as_whitespace_round_trip_round_trip - function:parse function:print feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key = 	value	with	tabs`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement round_trip validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // nested_bare_list_indentation_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestNestedBareListIndentationCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `package =
   = brew
   = scoop
   = nix`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // deeply_nested_bare_list_indentation_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_spaces
 func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -462,47 +383,39 @@ func TestDeeplyNestedBareListIndentationCanonicalFormat(t *testing.T) {
       = level3a
       = level3b
   = item2`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // print_nested_indent_spaces_print - function:print behavior:indent_spaces
 func TestPrintNestedIndentSpacesPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   port = 5432`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // print_deeply_nested_indent_spaces_print - function:print behavior:indent_spaces
 func TestPrintDeeplyNestedIndentSpacesPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -511,47 +424,39 @@ func TestPrintDeeplyNestedIndentSpacesPrint(t *testing.T) {
     port = 5432
   cache =
     enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // print_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintNestedIndentTabsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
 	host = localhost
 	port = 5432`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // print_deeply_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintDeeplyNestedIndentTabsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -560,24 +465,20 @@ func TestPrintDeeplyNestedIndentTabsPrint(t *testing.T) {
 		port = 5432
 	cache =
 		enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // print_mixed_flat_and_nested_indent_tabs_print - function:print behavior:indent_tabs
 func TestPrintMixedFlatAndNestedIndentTabsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
@@ -585,117 +486,97 @@ config =
 	debug = true
 	timeout = 30
 version = 1.0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // canonical_format_deterministic_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatDeterministicIndentTabsCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `z = last
 a = first
 m = middle`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // canonical_format_consistent_spacing_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatConsistentSpacingIndentTabsCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `key1=value1
 key2  =  value2
 key3	=	value3`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_tabs
 func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `section =
 		indented
 		another`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `package =
 	= brew
 	= scoop
 	= nix`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // deeply_nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -707,34 +588,28 @@ func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
 			= level3a
 			= level3b
 	= item2`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // crlf_normalize_to_lf_basic_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -743,20 +618,16 @@ func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
 
 }
 
-
 // crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -766,20 +637,16 @@ func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_preserve_literal_basic_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -788,20 +655,16 @@ func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_literal_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -811,20 +674,16 @@ func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_normalize_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "multiline =\r\n  line1\r\n  line2"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -833,20 +692,16 @@ func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_preserve_literal
 func TestCrlfPreserveMultilineValueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "multiline =\r\n  line1\r\n  line2"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -855,20 +710,16 @@ func TestCrlfPreserveMultilineValueParse(t *testing.T) {
 
 }
 
-
 // crlf_mixed_line_endings_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfMixedLineEndingsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -877,20 +728,16 @@ func TestCrlfMixedLineEndingsParse(t *testing.T) {
 
 }
 
-
 // crlf_nested_structure_parse - function:parse feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "config =\r\n  host = localhost\r\n  port = 8080"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -899,20 +746,16 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 
 }
 
-
 // crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "config =\r\n  host = localhost\r\n  port = 8080"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -922,20 +765,16 @@ func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_preserve_nested_structure_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "config =\r\n  host = localhost\r\n  port = 8080"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -944,20 +783,16 @@ func TestCrlfPreserveNestedStructureParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "config =\r\n  host = localhost\r\n  port = 8080"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -967,20 +802,16 @@ func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_normalize_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentOnlyParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= this is a comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -989,41 +820,37 @@ func TestCrlfNormalizeCommentOnlyParse(t *testing.T) {
 
 }
 
-
 // crlf_normalize_comment_only_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentOnlyFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= this is a comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry(nil)
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // crlf_preserve_comment_only_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentOnlyParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= this is a comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1032,41 +859,37 @@ func TestCrlfPreserveCommentOnlyParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_comment_only_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentOnlyFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= this is a comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry(nil)
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // crlf_normalize_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1075,41 +898,40 @@ func TestCrlfNormalizeCommentsAndValuesParse(t *testing.T) {
 
 }
 
-
 // crlf_normalize_comments_and_values_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry{
+		mock.Entry{Key: `host`, Value: `localhost`},
+		mock.Entry{Key: `port`, Value: `8080`},
+	}
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // crlf_normalize_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1119,20 +941,16 @@ func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_preserve_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1141,41 +959,40 @@ func TestCrlfPreserveCommentsAndValuesParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_comments_and_values_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry{
+		mock.Entry{Key: `host`, Value: `localhost`},
+		mock.Entry{Key: `port`, Value: `8080`},
+	}
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // crlf_preserve_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1185,20 +1002,16 @@ func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
 
 }
 
-
 // crlf_normalize_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultipleCommentsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1207,41 +1020,37 @@ func TestCrlfNormalizeMultipleCommentsParse(t *testing.T) {
 
 }
 
-
 // crlf_normalize_multiple_comments_filter - function:filter feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultipleCommentsFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry(nil)
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // crlf_preserve_multiple_comments_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveMultipleCommentsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1250,41 +1059,37 @@ func TestCrlfPreserveMultipleCommentsParse(t *testing.T) {
 
 }
 
-
 // crlf_preserve_multiple_comments_filter - function:filter feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveMultipleCommentsFilter(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
 	var err error
-	
-	// TODO: Implement filter validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry(nil)
+	assert.Equal(t, expectedFilter, filterResult)
 
 }
 
-
 // behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_as_whitespace behavior:crlf_normalize_to_lf
 func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key = \tvalue\twith\ttabs\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1293,20 +1098,16 @@ func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
 
 }
 
-
 // behavior_combo_content_tabs_crlf_parse - function:parse feature:whitespace behavior:tabs_as_content behavior:crlf_normalize_to_lf
 func TestBehaviorComboContentTabsCrlfParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := "key1 = \tvalue1\r\nkey2 = \tvalue2\r\n"
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1314,5 +1115,3 @@ func TestBehaviorComboContentTabsCrlfParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
-
-

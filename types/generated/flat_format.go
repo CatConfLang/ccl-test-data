@@ -45,6 +45,9 @@ type GeneratedFormatSimpleJsonTestsElem struct {
 	// Name corresponds to the JSON schema field "name".
 	Name string `json:"name" yaml:"name" mapstructure:"name"`
 
+	// Predicate corresponds to the JSON schema field "predicate".
+	Predicate *GeneratedFormatSimpleJsonTestsElemPredicate `json:"predicate,omitempty" yaml:"predicate,omitempty" mapstructure:"predicate,omitempty"`
+
 	// Requires corresponds to the JSON schema field "requires".
 	Requires []string `json:"requires,omitempty" yaml:"requires,omitempty" mapstructure:"requires,omitempty"`
 
@@ -120,6 +123,18 @@ type GeneratedFormatSimpleJsonTestsElemConflicts struct {
 
 	// Variants corresponds to the JSON schema field "variants".
 	Variants []string `json:"variants,omitempty" yaml:"variants,omitempty" mapstructure:"variants,omitempty"`
+}
+
+// GeneratedFormatSimpleJsonTestsElemPredicate represents a filter predicate specification.
+type GeneratedFormatSimpleJsonTestsElemPredicate struct {
+	// Field corresponds to the JSON schema field "field".
+	Field string `json:"field" yaml:"field" mapstructure:"field"`
+
+	// Op corresponds to the JSON schema field "op".
+	Op string `json:"op" yaml:"op" mapstructure:"op"`
+
+	// Value corresponds to the JSON schema field "value".
+	Value string `json:"value" yaml:"value" mapstructure:"value"`
 }
 
 type GeneratedFormatSimpleJsonTestsElemExpected struct {
