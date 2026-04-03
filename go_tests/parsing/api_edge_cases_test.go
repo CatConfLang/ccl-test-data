@@ -3,7 +3,7 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -50,7 +50,19 @@ func TestBasicWithSpacesParse(t *testing.T) {
 
 // indented_key_parse_indented - function:parse_indented feature:whitespace
 func TestIndentedKeyParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `  key = val`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // value_trailing_spaces_parse - function:parse feature:whitespace
@@ -166,7 +178,19 @@ func TestEmptyValueWithSpacesParse(t *testing.T) {
 
 // empty_key_indented_parse_indented - function:parse_indented feature:empty_keys
 func TestEmptyKeyIndentedParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `  = val`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // empty_key_with_newline_parse - function:parse feature:empty_keys
@@ -261,14 +285,40 @@ key2 = val2`
 
 }
 
-// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_preserve
+// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_as_content
 func TestKeyWithTabsParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
+
+	ccl := mock.New()
+	input := `	key	=	value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "\tvalue"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
-// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_preserve
+// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_whitespace variant:reference_compliant
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_preserve")
+
+	ccl := mock.New()
+	input := `	key	=	value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 // whitespace_only_value_parse - function:parse feature:empty_keys feature:whitespace
@@ -289,14 +339,42 @@ func TestWhitespaceOnlyValueParse(t *testing.T) {
 
 }
 
-// spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_preserve
+// spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `text = First
+    four spaces
+ 	tab preserved`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
-// spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_preserve
+// spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
 func TestSpacesVsTabsContinuationOcamlReferenceParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `text = First
+    four spaces
+ 	tab preserved`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // multiple_empty_equality_parse - function:parse feature:empty_keys feature:whitespace
@@ -474,12 +552,43 @@ func TestNestedMultiLineParse(t *testing.T) {
 
 // nested_with_blank_line_parse_indented - function:parse_indented feature:multiline
 func TestNestedWithBlankLineParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `key =
+  line1
+
+  line2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // deep_nested_structure_parse_indented - function:parse_indented
 func TestDeepNestedStructureParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `key =
+  field1 = value1
+  field2 =
+    subfield = x
+    another = y`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement parse_indented validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
 }
 
 // realistic_stress_test_parse - function:parse
@@ -541,10 +650,1716 @@ user =
 
 // ocaml_stress_test_original_build_hierarchy - function:build_hierarchy feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `/= This is a CCL document
+title = CCL Example
+
+database =
+  enabled = true
+  ports =
+    = 8000
+    = 8001
+    = 8002
+  limits =
+    cpu = 1500mi
+    memory = 10Gb
+
+user =
+  guestId = 42
+
+user =
+  login = chshersh
+  createdAt = 2024-12-31`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"/": "This is a CCL document", "database": map[string]interface{}{"enabled": "true", "limits": map[string]interface{}{"cpu": "1500mi", "memory": "10Gb"}, "ports": map[string]interface{}{"": []interface{}{"8000", "8001", "8002"}}}, "title": "CCL Example", "user": map[string]interface{}{"createdAt": "2024-12-31", "guestId": "42", "login": "chshersh"}}
+	assert.Equal(t, expected, objectResult)
+
 }
 
 // ocaml_stress_test_original_get_string - function:get_string feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `/= This is a CCL document
+title = CCL Example
+
+database =
+  enabled = true
+  ports =
+    = 8000
+    = 8001
+    = 8002
+  limits =
+    cpu = 1500mi
+    memory = 10Gb
+
+user =
+  guestId = 42
+
+user =
+  login = chshersh
+  createdAt = 2024-12-31`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"title"})
+	require.NoError(t, err)
+	assert.Equal(t, "CCL Example", result)
+
+}
+
+// forward_slashes_in_map_keys_parse - function:parse
+func TestForwardSlashesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  config/settings.json = .vscode/settings.json
+  src/template.env = .env`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "mappings", Value: "\n  config/settings.json = .vscode/settings.json\n  src/template.env = .env"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestForwardSlashesInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  config/settings.json = .vscode/settings.json
+  src/template.env = .env`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"mappings": map[string]interface{}{"config/settings.json": ".vscode/settings.json", "src/template.env": ".env"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// forward_slashes_in_map_keys_get_string - function:get_string behavior:path_traversal
+func TestForwardSlashesInMapKeysGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  config/settings.json = .vscode/settings.json
+  src/template.env = .env`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"mappings", "config/settings.json"})
+	require.NoError(t, err)
+	assert.Equal(t, ".vscode/settings.json", result)
+
+}
+
+// backslashes_in_map_keys_parse - function:parse
+func TestBackslashesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  C:\Users\config = user_settings
+  D:\data\file.txt = backup`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "paths", Value: "\n  C:\\Users\\config = user_settings\n  D:\\data\\file.txt = backup"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// backslashes_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestBackslashesInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  C:\Users\config = user_settings
+  D:\data\file.txt = backup`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"paths": map[string]interface{}{"C:\\Users\\config": "user_settings", "D:\\data\\file.txt": "backup"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// colons_in_map_keys_parse - function:parse
+func TestColonsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `timestamps =
+  12:30:45 = morning
+  23:59:59 = midnight`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "timestamps", Value: "\n  12:30:45 = morning\n  23:59:59 = midnight"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// colons_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestColonsInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `timestamps =
+  12:30:45 = morning
+  23:59:59 = midnight`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"timestamps": map[string]interface{}{"12:30:45": "morning", "23:59:59": "midnight"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// hyphens_in_map_keys_parse - function:parse
+func TestHyphensInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `packages =
+  my-package-name = 1.0.0
+  another-lib = 2.3.4`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "packages", Value: "\n  my-package-name = 1.0.0\n  another-lib = 2.3.4"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// hyphens_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestHyphensInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `packages =
+  my-package-name = 1.0.0
+  another-lib = 2.3.4`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"packages": map[string]interface{}{"another-lib": "2.3.4", "my-package-name": "1.0.0"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// at_signs_in_map_keys_parse - function:parse
+func TestAtSignsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `emails =
+  user@example.com = primary
+  admin@test.org = secondary`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "emails", Value: "\n  user@example.com = primary\n  admin@test.org = secondary"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// at_signs_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestAtSignsInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `emails =
+  user@example.com = primary
+  admin@test.org = secondary`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"emails": map[string]interface{}{"admin@test.org": "secondary", "user@example.com": "primary"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// hash_in_map_keys_parse - function:parse
+func TestHashInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `issues =
+  issue#123 = open
+  bug#456 = closed`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "issues", Value: "\n  issue#123 = open\n  bug#456 = closed"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// hash_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestHashInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `issues =
+  issue#123 = open
+  bug#456 = closed`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"issues": map[string]interface{}{"bug#456": "closed", "issue#123": "open"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// brackets_in_map_keys_parse - function:parse
+func TestBracketsInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `arrays =
+  items[0] = first
+  items[1] = second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "arrays", Value: "\n  items[0] = first\n  items[1] = second"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// brackets_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestBracketsInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `arrays =
+  items[0] = first
+  items[1] = second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"arrays": map[string]interface{}{"items[0]": "first", "items[1]": "second"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// parentheses_in_map_keys_parse - function:parse
+func TestParenthesesInMapKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `functions =
+  init() = setup
+  run(args) = execute`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "functions", Value: "\n  init() = setup\n  run(args) = execute"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// parentheses_in_map_keys_build_hierarchy - function:build_hierarchy
+func TestParenthesesInMapKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `functions =
+  init() = setup
+  run(args) = execute`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"functions": map[string]interface{}{"init()": "setup", "run(args)": "execute"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// mixed_special_chars_in_keys_parse - function:parse
+func TestMixedSpecialCharsInKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `complex =
+  user@host:8080/api = endpoint
+  file#v1.2.3 = release
+  path\to\[item] = location`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "complex", Value: "\n  user@host:8080/api = endpoint\n  file#v1.2.3 = release\n  path\\to\\[item] = location"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// mixed_special_chars_in_keys_build_hierarchy - function:build_hierarchy
+func TestMixedSpecialCharsInKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `complex =
+  user@host:8080/api = endpoint
+  file#v1.2.3 = release
+  path\to\[item] = location`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"complex": map[string]interface{}{"file#v1.2.3": "release", "path\\to\\[item]": "location", "user@host:8080/api": "endpoint"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_like_keys_parse - function:parse
+func TestUrlLikeKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoints =
+  https://api.example.com/v1 = production
+  http://localhost:3000/test = development`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "endpoints", Value: "\n  https://api.example.com/v1 = production\n  http://localhost:3000/test = development"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_like_keys_build_hierarchy - function:build_hierarchy
+func TestUrlLikeKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoints =
+  https://api.example.com/v1 = production
+  http://localhost:3000/test = development`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"endpoints": map[string]interface{}{"http://localhost:3000/test": "development", "https://api.example.com/v1": "production"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_parent_parent_parse - function:parse
+func TestRelativePathParentParentParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `../.. = up_two_levels`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "../..", Value: "up_two_levels"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_path_parent_parent_build_hierarchy - function:build_hierarchy
+func TestRelativePathParentParentBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `../.. = up_two_levels`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"../..": "up_two_levels"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_parent_parse - function:parse
+func TestRelativePathParentParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `../ = parent_dir`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "../", Value: "parent_dir"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_path_parent_build_hierarchy - function:build_hierarchy
+func TestRelativePathParentBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `../ = parent_dir`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"../": "parent_dir"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_single_dot_parse - function:parse
+func TestRelativePathSingleDotParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `. = current_dir`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: ".", Value: "current_dir"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_path_single_dot_build_hierarchy - function:build_hierarchy
+func TestRelativePathSingleDotBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `. = current_dir`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{".": "current_dir"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// double_slash_parse - function:parse
+func TestDoubleSlashParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `// = double_slash_value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "//", Value: "double_slash_value"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// double_slash_build_hierarchy - function:build_hierarchy
+func TestDoubleSlashBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `// = double_slash_value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"//": "double_slash_value"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_in_value_parse - function:parse
+func TestRelativePathInValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `path = ../../src`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "path", Value: "../../src"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_path_in_value_build_hierarchy - function:build_hierarchy
+func TestRelativePathInValueBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `path = ../../src`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"path": "../../src"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_in_value_get_string - function:get_string
+func TestRelativePathInValueGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `path = ../../src`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"path"})
+	require.NoError(t, err)
+	assert.Equal(t, "../../src", result)
+
+}
+
+// relative_path_in_nested_value_parse - function:parse
+func TestRelativePathInNestedValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  ../foo = ../bar
+  ../../config = ../../data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "mappings", Value: "\n  ../foo = ../bar\n  ../../config = ../../data"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_path_in_nested_value_build_hierarchy - function:build_hierarchy
+func TestRelativePathInNestedValueBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  ../foo = ../bar
+  ../../config = ../../data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"mappings": map[string]interface{}{"../../config": "../../data", "../foo": "../bar"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_path_in_nested_value_get_string - function:get_string behavior:path_traversal
+func TestRelativePathInNestedValueGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  ../foo = ../bar
+  ../../config = ../../data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"mappings", "../foo"})
+	require.NoError(t, err)
+	assert.Equal(t, "../bar", result)
+
+}
+
+// double_slash_in_nested_parse - function:parse
+func TestDoubleSlashInNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `urls =
+  //api = //backup
+  //server = /root`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "urls", Value: "\n  //api = //backup\n  //server = /root"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// double_slash_in_nested_build_hierarchy - function:build_hierarchy
+func TestDoubleSlashInNestedBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `urls =
+  //api = //backup
+  //server = /root`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"urls": map[string]interface{}{"//api": "//backup", "//server": "/root"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_paths_deeply_nested_parse - function:parse
+func TestRelativePathsDeeplyNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  build = 
+    output = ../../dist
+    cache = ../.cache`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  build = \n    output = ../../dist\n    cache = ../.cache"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_paths_deeply_nested_build_hierarchy - function:build_hierarchy
+func TestRelativePathsDeeplyNestedBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  build = 
+    output = ../../dist
+    cache = ../.cache`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"build": map[string]interface{}{"cache": "../.cache", "output": "../../dist"}}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_paths_deeply_nested_get_string - function:get_string behavior:path_traversal
+func TestRelativePathsDeeplyNestedGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  build = 
+    output = ../../dist
+    cache = ../.cache`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"config", "build", "cache"})
+	require.NoError(t, err)
+	assert.Equal(t, "../.cache", result)
+
+}
+
+// relative_paths_as_nested_keys_parse - function:parse
+func TestRelativePathsAsNestedKeysParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `imports =
+  .. = 
+    main = ../src/main
+    test = ../tests`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "imports", Value: "\n  .. = \n    main = ../src/main\n    test = ../tests"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// relative_paths_as_nested_keys_build_hierarchy - function:build_hierarchy
+func TestRelativePathsAsNestedKeysBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `imports =
+  .. = 
+    main = ../src/main
+    test = ../tests`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"imports": map[string]interface{}{"..": map[string]interface{}{"main": "../src/main", "test": "../tests"}}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// relative_paths_as_nested_keys_get_string - function:get_string behavior:path_traversal
+func TestRelativePathsAsNestedKeysGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `imports =
+  .. = 
+    main = ../src/main
+    test = ../tests`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"imports", "..", "main"})
+	require.NoError(t, err)
+	assert.Equal(t, "../src/main", result)
+
+}
+
+// mixed_relative_and_absolute_nested_parse - function:parse
+func TestMixedRelativeAndAbsoluteNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  relative = 
+    up = ../../
+    current = .
+  absolute = 
+    root = /`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "paths", Value: "\n  relative = \n    up = ../../\n    current = .\n  absolute = \n    root = /"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// mixed_relative_and_absolute_nested_build_hierarchy - function:build_hierarchy
+func TestMixedRelativeAndAbsoluteNestedBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  relative = 
+    up = ../../
+    current = .
+  absolute = 
+    root = /`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"paths": map[string]interface{}{"absolute": map[string]interface{}{"root": "/"}, "relative": map[string]interface{}{"current": ".", "up": "../../"}}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// mixed_relative_and_absolute_nested_get_string - function:get_string behavior:path_traversal
+func TestMixedRelativeAndAbsoluteNestedGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `paths =
+  relative = 
+    up = ../../
+    current = .
+  absolute = 
+    root = /`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"paths", "relative", "up"})
+	require.NoError(t, err)
+	assert.Equal(t, "../../", result)
+
+}
+
+// double_slash_deeply_nested_parse - function:parse
+func TestDoubleSlashDeeplyNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `servers =
+  primary = 
+    api = //api.example.com
+    cdn = //cdn.example.com
+  secondary = 
+    //internal = //backup.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "servers", Value: "\n  primary = \n    api = //api.example.com\n    cdn = //cdn.example.com\n  secondary = \n    //internal = //backup.example.com"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// double_slash_deeply_nested_build_hierarchy - function:build_hierarchy
+func TestDoubleSlashDeeplyNestedBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `servers =
+  primary = 
+    api = //api.example.com
+    cdn = //cdn.example.com
+  secondary = 
+    //internal = //backup.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"servers": map[string]interface{}{"primary": map[string]interface{}{"api": "//api.example.com", "cdn": "//cdn.example.com"}, "secondary": map[string]interface{}{"//internal": "//backup.example.com"}}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// double_slash_deeply_nested_get_string - function:get_string behavior:path_traversal
+func TestDoubleSlashDeeplyNestedGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `servers =
+  primary = 
+    api = //api.example.com
+    cdn = //cdn.example.com
+  secondary = 
+    //internal = //backup.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"servers", "primary", "api"})
+	require.NoError(t, err)
+	assert.Equal(t, "//api.example.com", result)
+
+}
+
+// url_as_key_parse - function:parse
+func TestUrlAsKeyParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com = production`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://api.example.com", Value: "production"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_as_key_build_hierarchy - function:build_hierarchy
+func TestUrlAsKeyBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com = production`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"https://api.example.com": "production"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_as_key_get_string - function:get_string
+func TestUrlAsKeyGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com = production`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"https://api.example.com"})
+	require.NoError(t, err)
+	assert.Equal(t, "production", result)
+
+}
+
+// url_with_port_as_key_parse - function:parse
+func TestUrlWithPortAsKeyParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `http://localhost:8080 = dev`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "http://localhost:8080", Value: "dev"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_with_port_as_key_build_hierarchy - function:build_hierarchy
+func TestUrlWithPortAsKeyBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `http://localhost:8080 = dev`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"http://localhost:8080": "dev"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_with_path_as_key_parse - function:parse
+func TestUrlWithPathAsKeyParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/v1/users = users_endpoint`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://api.example.com/v1/users", Value: "users_endpoint"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_with_path_as_key_build_hierarchy - function:build_hierarchy
+func TestUrlWithPathAsKeyBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/v1/users = users_endpoint`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"https://api.example.com/v1/users": "users_endpoint"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_in_value_parse - function:parse
+func TestUrlInValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoint = https://api.example.com/v1/data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "endpoint", Value: "https://api.example.com/v1/data"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_in_value_build_hierarchy - function:build_hierarchy
+func TestUrlInValueBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoint = https://api.example.com/v1/data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"endpoint": "https://api.example.com/v1/data"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_in_value_get_string - function:get_string
+func TestUrlInValueGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `endpoint = https://api.example.com/v1/data`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"endpoint"})
+	require.NoError(t, err)
+	assert.Equal(t, "https://api.example.com/v1/data", result)
+
+}
+
+// urls_as_nested_keys_and_values_parse - function:parse
+func TestUrlsAsNestedKeysAndValuesParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  https://api.example.com = https://prod.example.com
+  https://staging.example.com = https://stage.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "mappings", Value: "\n  https://api.example.com = https://prod.example.com\n  https://staging.example.com = https://stage.example.com"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// urls_as_nested_keys_and_values_build_hierarchy - function:build_hierarchy
+func TestUrlsAsNestedKeysAndValuesBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  https://api.example.com = https://prod.example.com
+  https://staging.example.com = https://stage.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"mappings": map[string]interface{}{"https://api.example.com": "https://prod.example.com", "https://staging.example.com": "https://stage.example.com"}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// urls_as_nested_keys_and_values_get_string - function:get_string behavior:path_traversal
+func TestUrlsAsNestedKeysAndValuesGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `mappings =
+  https://api.example.com = https://prod.example.com
+  https://staging.example.com = https://stage.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"mappings", "https://api.example.com"})
+	require.NoError(t, err)
+	assert.Equal(t, "https://prod.example.com", result)
+
+}
+
+// urls_deeply_nested_parse - function:parse
+func TestUrlsDeeplyNestedParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  services = 
+    api = 
+      url = https://api.example.com
+      backup = https://backup.example.com
+    cdn = 
+      url = https://cdn.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "config", Value: "\n  services = \n    api = \n      url = https://api.example.com\n      backup = https://backup.example.com\n    cdn = \n      url = https://cdn.example.com"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// urls_deeply_nested_build_hierarchy - function:build_hierarchy
+func TestUrlsDeeplyNestedBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  services = 
+    api = 
+      url = https://api.example.com
+      backup = https://backup.example.com
+    cdn = 
+      url = https://cdn.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"config": map[string]interface{}{"services": map[string]interface{}{"api": map[string]interface{}{"backup": "https://backup.example.com", "url": "https://api.example.com"}, "cdn": map[string]interface{}{"url": "https://cdn.example.com"}}}}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// urls_deeply_nested_get_string - function:get_string behavior:path_traversal
+func TestUrlsDeeplyNestedGetString(t *testing.T) {
+
+	ccl := mock.New()
+	input := `config =
+  services = 
+    api = 
+      url = https://api.example.com
+      backup = https://backup.example.com
+    cdn = 
+      url = https://cdn.example.com`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// get_string validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	hierarchy := ccl.BuildHierarchy(parseResult)
+	result, err := ccl.GetString(hierarchy, []string{"config", "services", "api", "url"})
+	require.NoError(t, err)
+	assert.Equal(t, "https://api.example.com", result)
+
+}
+
+// url_with_query_params_as_key_parse - function:parse behavior:delimiter_prefer_spaced
+func TestUrlWithQueryParamsAsKeyParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/search?q=test&page=1 = search_results`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://api.example.com/search?q=test&page=1", Value: "search_results"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_with_query_params_as_key_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestUrlWithQueryParamsAsKeyBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/search?q=test&page=1 = search_results`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"https://api.example.com/search?q=test&page=1": "search_results"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_first_url_with_query_params_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstUrlWithQueryParamsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/search?q=test&page=1 = search_results`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://api.example.com/search?q", Value: "test&page=1 = search_results"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_url_with_query_params_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstUrlWithQueryParamsBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://api.example.com/search?q=test&page=1 = search_results`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"https://api.example.com/search?q": "test&page=1 = search_results"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_first_multiple_equals_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstMultipleEqualsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b = c=d`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a", Value: "b = c=d"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstMultipleEqualsBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b = c=d`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"a": "b = c=d"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_first_empty_value_parse - function:parse behavior:delimiter_first_equals
+func TestDelimiterFirstEmptyValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a", Value: "b ="}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_first_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+func TestDelimiterFirstEmptyValueBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"a": "b ="}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_spaced_multiple_equals_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedMultipleEqualsParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b = c=d`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a=b", Value: "c=d"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_spaced_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedMultipleEqualsBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b = c=d`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"a=b": "c=d"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_spaced_fallback_no_space_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedFallbackNoSpaceParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `key=value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_spaced_fallback_no_space_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedFallbackNoSpaceBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `key=value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"key": "value"}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// delimiter_spaced_empty_value_parse - function:parse behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedEmptyValueParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a=b", Value: ""}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// delimiter_spaced_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+func TestDelimiterSpacedEmptyValueBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `a=b =`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"a=b": ""}
+	assert.Equal(t, expected, objectResult)
+
+}
+
+// url_with_fragment_as_key_parse - function:parse
+func TestUrlWithFragmentAsKeyParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://docs.example.com/guide#section-1 = docs_section_1`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "https://docs.example.com/guide#section-1", Value: "docs_section_1"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// url_with_fragment_as_key_build_hierarchy - function:build_hierarchy
+func TestUrlWithFragmentAsKeyBuildHierarchy(t *testing.T) {
+
+	ccl := mock.New()
+	input := `https://docs.example.com/guide#section-1 = docs_section_1`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// BuildHierarchy validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	objectResult := ccl.BuildHierarchy(parseResult)
+	expected := map[string]interface{}{"https://docs.example.com/guide#section-1": "docs_section_1"}
+	assert.Equal(t, expected, objectResult)
+
 }

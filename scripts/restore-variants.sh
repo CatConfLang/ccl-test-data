@@ -60,7 +60,7 @@ add_variants_to_file() {
     done < "$variant_mapping_file"
 
     # Validate the updated file
-    if jv schemas/source-format.json "$file_path" > /dev/null 2>&1; then
+    if npx ajv-cli validate -s schemas/source-format.json -d "$file_path" --spec=draft7 > /dev/null 2>&1; then
         echo "  ✅ $file_path updated and validated successfully"
         rm "$backup_file"
     else
@@ -109,7 +109,7 @@ VALIDATION_PASSED=true
 
 for file in source_tests/core/*.json source_tests/experimental/*.json; do
     if [ -f "$file" ]; then
-        if jv schemas/source-format.json "$file" > /dev/null 2>&1; then
+        if npx ajv-cli validate -s schemas/source-format.json -d "$file" --spec=draft7 > /dev/null 2>&1; then
             echo "  ✅ $(basename "$file") - valid"
         else
             echo "  ❌ $(basename "$file") - validation failed"

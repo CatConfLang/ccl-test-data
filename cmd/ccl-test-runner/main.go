@@ -8,11 +8,11 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ccl-test-data/test-runner/internal/benchmark"
-	"github.com/ccl-test-data/test-runner/internal/config"
-	"github.com/ccl-test-data/test-runner/internal/generator"
-	"github.com/ccl-test-data/test-runner/internal/stats"
-	"github.com/ccl-test-data/test-runner/internal/styles"
+	"github.com/catconflang/ccl-test-data/internal/benchmark"
+	"github.com/catconflang/ccl-test-data/internal/config"
+	"github.com/catconflang/ccl-test-data/internal/generator"
+	"github.com/catconflang/ccl-test-data/internal/stats"
+	"github.com/catconflang/ccl-test-data/internal/styles"
 	"github.com/urfave/cli/v2"
 )
 
@@ -205,6 +205,79 @@ creating a simple, uniform format that's easy for test runners to process.`,
 						Value:   "generated_tests",
 						Usage:   "Output directory for flat format tests",
 					},
+					&cli.StringFlag{
+						Name:  "schemas",
+						Value: "schemas",
+						Usage: "Directory containing source-format.json with behavior metadata for filtering",
+					},
+					&cli.BoolFlag{
+						Name:  "auto-conflicts",
+						Value: true,
+						Usage: "Auto-generate behavior conflicts from metadata (default: true)",
+					},
+					&cli.BoolFlag{
+						Name:  "validate",
+						Value: false,
+						Usage: "Validate source tests against behavior metadata",
+					},
+					&cli.BoolFlag{
+						Name:    "verbose",
+						Aliases: []string{"v"},
+						Value:   true,
+						Usage:   "Verbose output",
+					},
+				},
+			},
+			{
+				Name:    "generate-fuzz",
+				Aliases: []string{"fuzz"},
+				Usage:   "Generate randomized fuzz tests for special character edge cases",
+				Description: `Generate randomized test cases with special character combinations
+in keys and values. Uses seeded randomness for reproducible output.
+
+Output is written in source format to source_tests/core/, alongside
+other test files for the generate-flat pipeline.`,
+				Action: generateFuzzAction,
+				Flags: []cli.Flag{
+					&cli.Int64Flag{
+						Name:  "seed",
+						Value: 42,
+						Usage: "Random seed for reproducible generation",
+					},
+					&cli.IntFlag{
+						Name:  "count",
+						Value: 50,
+						Usage: "Number of test cases to generate",
+					},
+					&cli.StringFlag{
+						Name:    "output",
+						Aliases: []string{"o"},
+						Value:   "source_tests/core",
+						Usage:   "Output directory for generated test files",
+					},
+					&cli.BoolFlag{
+						Name:  "validate",
+						Value: true,
+						Usage: "Validate generated tests against mock implementation",
+					},
+				},
+			},
+			{
+				Name:      "compare-fuzz",
+				Usage:     "Compare fuzz datasets generated with different seeds",
+				ArgsUsage: "SEED [SEED...]",
+				Description: `Generate multiple fuzz datasets in-memory with different seeds and
+print a comparison report showing name overlap, character coverage,
+and input/value uniqueness across all seeds.
+
+Example: ccl-test-runner compare-fuzz 42 99 7`,
+				Action: compareFuzzAction,
+				Flags: []cli.Flag{
+					&cli.IntFlag{
+						Name:  "count",
+						Value: 50,
+						Usage: "Number of test cases per seed",
+					},
 				},
 			},
 		},
@@ -286,7 +359,6 @@ func testAction(ctx *cli.Context) error {
 		defaultSkipTests := []string{
 			"TestKeyWithNewlineBeforeEqualsParse",
 			"TestComplexMultiNewlineWhitespaceParse",
-			"TestDeeplyNestedListParse",
 			"TestRoundTripWhitespaceNormalizationParse",
 		}
 		skipTests = append(skipTests, defaultSkipTests...)

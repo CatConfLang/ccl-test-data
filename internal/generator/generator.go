@@ -29,10 +29,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/ccl-test-data/test-runner/internal/config"
-	"github.com/ccl-test-data/test-runner/internal/styles"
-	"github.com/tylerbu/ccl-test-lib/loader"
-	"github.com/tylerbu/ccl-test-lib/types"
+	"github.com/catconflang/ccl-test-data/internal/config"
+	"github.com/catconflang/ccl-test-data/internal/styles"
+	"github.com/catconflang/ccl-test-data/loader"
+	"github.com/catconflang/ccl-test-data/types"
 )
 
 // Options configures test generation behavior

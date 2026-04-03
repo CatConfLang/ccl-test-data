@@ -8,7 +8,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/tylerbu/ccl-test-lib/types"
+	"github.com/catconflang/ccl-test-data/types"
 )
 
 const testFileTemplate = `package {{.PackageName}}_test
@@ -16,7 +16,7 @@ const testFileTemplate = `package {{.PackageName}}_test
 import (
 	"testing"
 	{{if .HasActiveTests}}
-	"github.com/ccl-test-data/test-runner/internal/mock"{{if .HasAssertions}}
+	"github.com/catconflang/ccl-test-data/internal/mock"{{if .HasAssertions}}
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"{{end}}{{end}}
 )
@@ -183,10 +183,13 @@ func (g *Generator) generateTestCase(test types.TestCase) (string, error) {
 	// Flat format has real validations
 	data.HasValidations = true
 
-	// No variables needed for TODO validations
-	data.NeedsParseResult = false
+	// Set variable declarations based on validation type
+	// Only declare parseResult/filterResult for comment-exclusion filters (which the mock supports)
+	isCommentFilter := test.Validation == "filter" &&
+		(test.Predicate == nil || (test.Predicate.Field == "key" && test.Predicate.Op == "!=" && test.Predicate.Value == "/"))
+	data.NeedsParseResult = isCommentFilter
 	data.NeedsObjectResult = false
-	data.NeedsFilterResult = false
+	data.NeedsFilterResult = isCommentFilter
 
 	// Execute template
 	tmpl, err := template.New("testcase").Parse(testCaseTemplate)
@@ -592,6 +595,8 @@ func (g *Generator) generateFlatFormatValidation(test types.TestCase) (string, e
 	switch test.Validation {
 	case "parse":
 		return g.generateFlatParseValidation(test)
+	case "filter":
+		return g.generateFlatFilterValidation(test)
 	case "build_hierarchy":
 		return g.generateFlatBuildHierarchyValidation(test)
 	case "get_string", "get_int", "get_bool", "get_float", "get_list":
@@ -692,6 +697,95 @@ func (g *Generator) generateFlatParseValidation(test types.TestCase) (string, er
 	}
 }
 
+// generateFlatFilterValidation generates filter validation for flat format
+func (g *Generator) generateFlatFilterValidation(test types.TestCase) (string, error) {
+	// Check if the predicate is the comment-exclusion predicate that the mock supports,
+	// or if no predicate is specified (backwards-compatible default)
+	isCommentExclusion := test.Predicate == nil ||
+		(test.Predicate.Field == "key" && test.Predicate.Op == "!=" && test.Predicate.Value == "/")
+
+	if !isCommentExclusion {
+		// Non-comment predicates are not supported by the Go mock
+		var inputVarLines string
+		if len(test.Inputs) == 1 {
+			inputVarLines = "\t_ = input // Prevent unused variable warning"
+		} else if len(test.Inputs) > 1 {
+			var lines []string
+			for i := range test.Inputs {
+				lines = append(lines, fmt.Sprintf("\t_ = input%d // Prevent unused variable warning", i))
+			}
+			inputVarLines = strings.Join(lines, "\n")
+		}
+		predicateDesc := fmt.Sprintf("%s %s %q", test.Predicate.Field, test.Predicate.Op, test.Predicate.Value)
+		return fmt.Sprintf(`// TODO: Implement filter validation with predicate: %s
+	// The Go mock only supports comment-exclusion (key != "/")
+	_ = ccl // Prevent unused variable warning
+%s
+	_ = err // Prevent unused variable warning`, predicateDesc, inputVarLines), nil
+	}
+
+	// Handle comment-exclusion filter (supported by mock)
+	if entriesArray, ok := test.Expected.([]interface{}); ok {
+		var goEntries []string
+		for _, entry := range entriesArray {
+			entryMap, ok := entry.(map[string]interface{})
+			if !ok {
+				continue
+			}
+			key, _ := entryMap["key"].(string)
+			value, _ := entryMap["value"].(string)
+			goEntries = append(goEntries, fmt.Sprintf(`mock.Entry{Key: %s, Value: %s}`, escapeGoString(key), escapeGoString(value)))
+		}
+
+		expectedStr := "[]mock.Entry(nil)"
+		if len(goEntries) > 0 {
+			expectedStr = fmt.Sprintf("[]mock.Entry{\n\t\t%s,\n\t}", strings.Join(goEntries, ",\n\t\t"))
+		}
+
+		return fmt.Sprintf(`// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := %s
+	assert.Equal(t, expectedFilter, filterResult)`, expectedStr), nil
+	}
+
+	// Handle structured expected with count/entries fields
+	if expectedMap, ok := test.Expected.(map[string]interface{}); ok {
+		// Extract entries if present, otherwise empty
+		var goEntries []string
+		if entries, hasEntries := expectedMap["entries"]; hasEntries {
+			if entriesArray, ok := entries.([]interface{}); ok {
+				for _, entry := range entriesArray {
+					if entryMap, ok := entry.(map[string]interface{}); ok {
+						key, _ := entryMap["key"].(string)
+						value, _ := entryMap["value"].(string)
+						goEntries = append(goEntries, fmt.Sprintf(`mock.Entry{Key: %s, Value: %s}`, escapeGoString(key), escapeGoString(value)))
+					}
+				}
+			}
+		}
+
+		expectedStr := "[]mock.Entry(nil)"
+		if len(goEntries) > 0 {
+			expectedStr = fmt.Sprintf("[]mock.Entry{\n\t\t%s,\n\t}", strings.Join(goEntries, ",\n\t\t"))
+		}
+
+		return fmt.Sprintf(`// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := %s
+	assert.Equal(t, expectedFilter, filterResult)`, expectedStr), nil
+	}
+
+	// Fallback for unexpected formats
+	return fmt.Sprintf(`// TODO: Implement filter validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning`), nil
+}
+
 // generateFlatBuildHierarchyValidation generates build_hierarchy validation for flat format
 func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (string, error) {
 	// For build_hierarchy, expected is usually a nested object
@@ -711,23 +805,13 @@ func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (s
 		}
 	}
 
-	// Handle normal case with object result
-	if object, ok := expectedMap["object"]; ok {
-		return fmt.Sprintf(`// BuildHierarchy validation
+	// Handle normal case with object result (already extracted by loader)
+	return fmt.Sprintf(`// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult := ccl.BuildHierarchy(parseResult)
 	expected := %s
-	assert.Equal(t, expected, objectResult)`, formatGoValue(object)), nil
-	} else {
-		// Handle case with only count (empty result)
-		return `// BuildHierarchy validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{}
-	assert.Equal(t, expected, objectResult)`, nil
-	}
+	assert.Equal(t, expected, objectResult)`, formatGoValue(expectedMap)), nil
 }
 
 // generateFlatTypedAccessValidation generates typed access validation for flat format

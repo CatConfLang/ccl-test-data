@@ -930,6 +930,764 @@
       "inputs": [
         "existing = value"
       ]
+    },
+    {
+      "name": "boolean_case_sensitivity_uppercase",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "upper_true",
+              "value": "TRUE"
+            },
+            {
+              "key": "upper_false",
+              "value": "FALSE"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "upper_true"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "upper_true = TRUE\nupper_false = FALSE"
+      ]
+    },
+    {
+      "name": "boolean_case_sensitivity_mixed",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "mixed_true",
+              "value": "True"
+            },
+            {
+              "key": "mixed_false",
+              "value": "False"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "mixed_true"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "mixed_true = True\nmixed_false = False"
+      ]
+    },
+    {
+      "name": "boolean_lenient_uppercase_yes_no",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "upper_yes",
+              "value": "YES"
+            },
+            {
+              "key": "upper_no",
+              "value": "NO"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "upper_yes"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_lenient"
+      ],
+      "inputs": [
+        "upper_yes = YES\nupper_no = NO"
+      ]
+    },
+    {
+      "name": "boolean_numeric_one_zero_strict",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "one",
+              "value": "1"
+            },
+            {
+              "key": "zero",
+              "value": "0"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "one"
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": 1,
+          "args": [
+            "one"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "one = 1\nzero = 0"
+      ]
+    },
+    {
+      "name": "boolean_with_whitespace",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "padded",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": true,
+          "args": [
+            "padded"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors",
+        "whitespace"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "padded =   true   "
+      ]
+    },
+    {
+      "name": "boolean_nested_object",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "debug": "true",
+              "verbose": "false",
+              "experimental": "yes"
+            }
+          }
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "config =\n  debug = true\n  verbose = false\n  experimental = yes"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_int_on_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "flag",
+              "value": "true"
+            }
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": null,
+          "args": [
+            "flag"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "flag = true"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_bool_on_int",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "number",
+              "value": "42"
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "number"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "number = 42"
+      ]
+    },
+    {
+      "name": "type_mismatch_get_float_on_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "flag",
+              "value": "false"
+            }
+          ]
+        },
+        {
+          "function": "get_float",
+          "expect": null,
+          "args": [
+            "flag"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "flag = false"
+      ]
+    },
+    {
+      "name": "type_mismatch_nested_path",
+      "tests": [
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "name": "test",
+              "count": "abc"
+            }
+          }
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "config =\n  name = test\n  count = abc"
+      ]
+    },
+    {
+      "name": "boolean_empty_value_error",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "empty",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": null,
+          "args": [
+            "empty"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict"
+      ],
+      "inputs": [
+        "empty ="
+      ]
+    },
+    {
+      "name": "nested_get_int",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "server",
+              "value": "\n  port = 8080\n  max_connections = 1000"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "server": {
+              "port": "8080",
+              "max_connections": "1000"
+            }
+          }
+        },
+        {
+          "function": "get_int",
+          "expect": 8080,
+          "args": [
+            "server",
+            "port"
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": 1000,
+          "args": [
+            "server",
+            "max_connections"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "server =\n  port = 8080\n  max_connections = 1000"
+      ],
+      "behaviors": [
+        "path_traversal"
+      ]
+    },
+    {
+      "name": "deeply_nested_get_int",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "config",
+              "value": "\n  database =\n    pool =\n      min = 5\n      max = 50"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "config": {
+              "database": {
+                "pool": {
+                  "min": "5",
+                  "max": "50"
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_int",
+          "expect": 5,
+          "args": [
+            "config",
+            "database",
+            "pool",
+            "min"
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": 50,
+          "args": [
+            "config",
+            "database",
+            "pool",
+            "max"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "config =\n  database =\n    pool =\n      min = 5\n      max = 50"
+      ],
+      "behaviors": [
+        "path_traversal"
+      ]
+    },
+    {
+      "name": "nested_get_float",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "metrics",
+              "value": "\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "metrics": {
+              "cpu_threshold": "0.85",
+              "memory_limit": "2.5"
+            }
+          }
+        },
+        {
+          "function": "get_float",
+          "expect": 0.85,
+          "args": [
+            "metrics",
+            "cpu_threshold"
+          ]
+        },
+        {
+          "function": "get_float",
+          "expect": 2.5,
+          "args": [
+            "metrics",
+            "memory_limit"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "metrics =\n  cpu_threshold = 0.85\n  memory_limit = 2.5"
+      ],
+      "behaviors": [
+        "path_traversal"
+      ]
+    },
+    {
+      "name": "deeply_nested_get_float",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "app",
+              "value": "\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "app": {
+              "scoring": {
+                "weights": {
+                  "relevance": "0.6",
+                  "freshness": "0.4"
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_float",
+          "expect": 0.6,
+          "args": [
+            "app",
+            "scoring",
+            "weights",
+            "relevance"
+          ]
+        },
+        {
+          "function": "get_float",
+          "expect": 0.4,
+          "args": [
+            "app",
+            "scoring",
+            "weights",
+            "freshness"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "inputs": [
+        "app =\n  scoring =\n    weights =\n      relevance = 0.6\n      freshness = 0.4"
+      ],
+      "behaviors": [
+        "path_traversal"
+      ]
+    },
+    {
+      "name": "nested_get_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "feature_flags",
+              "value": "\n  dark_mode = true\n  beta_access = false"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "feature_flags": {
+              "dark_mode": "true",
+              "beta_access": "false"
+            }
+          }
+        },
+        {
+          "function": "get_bool",
+          "expect": true,
+          "args": [
+            "feature_flags",
+            "dark_mode"
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": false,
+          "args": [
+            "feature_flags",
+            "beta_access"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient",
+        "path_traversal"
+      ],
+      "inputs": [
+        "feature_flags =\n  dark_mode = true\n  beta_access = false"
+      ]
+    },
+    {
+      "name": "deeply_nested_get_bool",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "services",
+              "value": "\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "services": {
+              "auth": {
+                "settings": {
+                  "require_mfa": "true",
+                  "allow_anonymous": "false"
+                }
+              }
+            }
+          }
+        },
+        {
+          "function": "get_bool",
+          "expect": true,
+          "args": [
+            "services",
+            "auth",
+            "settings",
+            "require_mfa"
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": false,
+          "args": [
+            "services",
+            "auth",
+            "settings",
+            "allow_anonymous"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient",
+        "path_traversal"
+      ],
+      "inputs": [
+        "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+      ]
+    },
+    {
+      "name": "nested_get_string_basic",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "database",
+              "value": "\n  host = localhost\n  name = mydb"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "database": {
+              "host": "localhost",
+              "name": "mydb"
+            }
+          }
+        },
+        {
+          "function": "get_string",
+          "expect": "localhost",
+          "args": [
+            "database",
+            "host"
+          ]
+        },
+        {
+          "function": "get_string",
+          "expect": "mydb",
+          "args": [
+            "database",
+            "name"
+          ]
+        }
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  name = mydb"
+      ],
+      "behaviors": [
+        "path_traversal"
+      ]
+    },
+    {
+      "name": "nested_mixed_typed_access",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "server",
+              "value": "\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "server": {
+              "host": "0.0.0.0",
+              "port": "3000",
+              "debug": "true",
+              "rate_limit": "1.5"
+            }
+          }
+        },
+        {
+          "function": "get_string",
+          "expect": "0.0.0.0",
+          "args": [
+            "server",
+            "host"
+          ]
+        },
+        {
+          "function": "get_int",
+          "expect": 3000,
+          "args": [
+            "server",
+            "port"
+          ]
+        },
+        {
+          "function": "get_bool",
+          "expect": true,
+          "args": [
+            "server",
+            "debug"
+          ]
+        },
+        {
+          "function": "get_float",
+          "expect": 1.5,
+          "args": [
+            "server",
+            "rate_limit"
+          ]
+        }
+      ],
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "behaviors": [
+        "boolean_strict",
+        "boolean_lenient",
+        "path_traversal"
+      ],
+      "inputs": [
+        "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ]
     }
   ]
 }

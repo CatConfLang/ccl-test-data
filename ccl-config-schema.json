@@ -40,6 +40,7 @@
               "comments",
               "unicode",
               "multiline",
+              "multiline_continuation",
               "whitespace",
               "empty_keys"
             ]
@@ -62,16 +63,19 @@
         "enum": [
           "boolean_strict",
           "boolean_lenient",
-          "tabs_preserve",
-          "tabs_to_spaces",
+          "tabs_as_content",
+          "tabs_as_whitespace",
+          "indent_spaces",
+          "indent_tabs",
           "crlf_preserve_literal",
           "crlf_normalize_to_lf",
-          "strict_spacing",
-          "loose_spacing",
           "list_coercion_enabled",
           "list_coercion_disabled",
           "array_order_insertion",
-          "array_order_lexicographic"
+          "array_order_lexicographic",
+          "toplevel_indent_strip",
+          "toplevel_indent_preserve",
+          "path_traversal"
         ]
       }
     },

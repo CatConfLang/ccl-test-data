@@ -213,15 +213,14 @@ Error: ccl-test-runner: command not found
 
 **Solution:**
 ```bash
-# Build and install CLI
+# Build project
 just build
-just install
 
 # Or run directly
 go run ./cmd/ccl-test-runner generate
 
-# Add to PATH
-export PATH=$PATH:$(pwd)/bin
+# Install to $GOPATH/bin
+just install
 ```
 
 #### Issue: CLI flag parsing errors

@@ -1,13 +1,12 @@
-module github.com/ccl-test-data/test-runner
+module github.com/catconflang/ccl-test-data
 
-go 1.25.4
+go 1.25.1
 
 require (
 	github.com/charmbracelet/bubbletea v1.3.8
 	github.com/charmbracelet/lipgloss v1.1.0
 	github.com/santhosh-tekuri/jsonschema/cmd/jv v0.7.0
 	github.com/stretchr/testify v1.10.0
-	github.com/tylerbu/ccl-test-lib v0.0.0-00010101000000-000000000000
 	github.com/urfave/cli/v2 v2.27.7
 	github.com/xeipuuv/gojsonschema v1.2.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -41,5 +40,3 @@ require (
 	golang.org/x/sys v0.36.0 // indirect
 	golang.org/x/text v0.17.0 // indirect
 )
-
-replace github.com/tylerbu/ccl-test-lib => ../ccl-test-lib

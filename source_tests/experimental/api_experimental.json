@@ -373,6 +373,9 @@
       ],
       "inputs": [
         "database.hosts = primary\ndatabase.hosts = secondary\ndatabase.port = 5432"
+      ],
+      "behaviors": [
+        "path_traversal"
       ]
     }
   ]

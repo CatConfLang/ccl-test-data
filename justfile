@@ -1,138 +1,81 @@
-# CCL Test Runner Justfile (Streamlined)
+# CCL Test Data - JSON test suite for CCL implementations
 
-# Show available commands
+# === ALIASES ===
+alias b := build
+alias t := test
+alias f := format
+alias l := lint
+alias c := clean
+
+# Default recipe
 default:
     @just --list
 
-# Core aliases
-alias t := test
-alias gen := generate
-alias flat := generate-flat
-alias reset := dev-basic
-alias view := view-tests
-alias vs := view-tests-static
+# === STANDARD RECIPES ===
 
-# === BUILD ===
-
-# Build all binaries
+# Generate test files from source JSON
 build:
-    go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
-    go build -o bin/test-reader ./cmd/test-reader
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
+    go run ./cmd/ccl-test-runner generate --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_as_content,behavior:tabs_as_whitespace,behavior:toplevel_indent_preserve,behavior:delimiter_prefer_spaced
 
-# Build individual binaries (used by other tasks)
-build-test-runner:
-    go build -o bin/ccl-test-runner ./cmd/ccl-test-runner
+# Run tests
+test:
+    go run ./cmd/ccl-test-runner test --basic-only
 
-build-test-reader:
-    go build -o bin/test-reader ./cmd/test-reader
+# Format Go code
+format:
+    go fmt ./...
 
-# Install all tools to $GOPATH/bin
-install:
-    go install ./cmd/ccl-test-runner
-    go install ./cmd/test-reader
+# Run linter
+lint:
+    go mod tidy
+    go vet ./...
 
-# Install individual tools
-install-test-runner:
-    go install ./cmd/ccl-test-runner
+# Remove build artifacts
+clean:
+    go run ./cmd/clean go_tests bin
+    rm -f bin/ccl-test-runner bin/test-reader
 
-install-test-reader:
-    go install ./cmd/test-reader
-
-# === ESSENTIAL WORKFLOWS ===
-
-# Basic development: generate core tests and verify they pass (excludes known failing edge cases)
-dev-basic:
-    just clean
-    just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
-    just lint
-    #!/usr/bin/env bash
-    echo "🧪 Running tests..."
-    echo "📋 Running basic tests (excluding known failing edge cases):"
-    echo "  - TestKeyWithNewlineBeforeEqualsParse: newline within key portion before equals"
-    echo "  - TestComplexMultiNewlineWhitespaceParse: complex whitespace with newlines in key"
-    echo "  - TestDeeplyNestedListParse: nested structure parsing (expects flat entries)"
-    echo "  - TestRoundTripWhitespaceNormalizationParse: whitespace handling inconsistencies"
-    just _run-tests --basic-only
-
-# Full development: comprehensive test suite
-dev:
-    just clean
-    just generate
-    just test
-
-# Production CI: complete validation pipeline (uses mock-compatible filters)
-ci:
+# Full validation workflow
+ci: format lint test build
     just validate
-    just generate-flat
-    just generate-go --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_preserve,behavior:tabs_to_spaces,behavior:strict_spacing
-    just lint
-    just _run-tests --basic-only
-    just docs-check
 
-# === GENERATION ===
+alias pr := ci
 
-# Generate all: flat JSON files then Go test files
-generate *ARGS="":
-    just generate-flat {{ARGS}}
-    just generate-go {{ARGS}}
+# === CI ===
 
-# Generate Go test files from flat JSON files (with optional filtering)
-generate-go *ARGS="":
-    go run ./cmd/ccl-test-runner generate {{ARGS}}
+# CI-specific dependency setup (drops local replace directives)
+deps-ci:
+    go mod edit -dropreplace=github.com/CatConfLang/ccl-test-lib
+    go mod tidy
 
-# Generate flat JSON files from source JSON files (source-to-flat conversion)
-# ARCHITECTURE NOTE: This delegates to ccl-test-lib via a thin CLI wrapper
-# - Logic lives in: ccl-test-lib/generator.NewFlatGenerator()
-# - CLI wrapper: cmd/ccl-test-runner/generate_flat.go
-# - Separation: Library contains logic, CLI provides convenience interface
-generate-flat *ARGS="":
-    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core {{ARGS}}
+# Build README and verify no uncommitted changes
+build-readme:
+    node scripts/update-readme-remark.mjs
+    just _check-readme-unchanged
 
-# === TESTING ===
-
-# Helper function for running tests with the test runner
-_run-tests *ARGS="":
-    go run ./cmd/ccl-test-runner test {{ARGS}}
-
-# Run tests (with optional filtering)
-test *ARGS="":
+# Check if README.md has uncommitted changes
+_check-readme-unchanged:
     #!/usr/bin/env bash
-    if [[ "{{ARGS}}" == *"--full"* ]]; then
-        just validate
-        just docs-check
-        just generate
-        just _run-tests
-    elif [[ "{{ARGS}}" == *"--all"* ]]; then
-        # Run all tests including failing ones
-        FILTERED_ARGS=$(echo "{{ARGS}}" | sed 's/--all//g' | sed 's/^ *//' | sed 's/ *$//')
-        if [[ -z "$FILTERED_ARGS" ]]; then
-            just _run-tests
-        else
-            just _run-tests $FILTERED_ARGS
-        fi
-    else
-        # Default: run only passing tests (basic-only mode)
-        if [[ -z "{{ARGS}}" ]]; then
-            just _run-tests --basic-only
-        else
-            just _run-tests --basic-only {{ARGS}}
-        fi
+    if ! git diff --quiet HEAD -- README.md; then
+        echo "ERROR: README.md has uncommitted changes. Run 'just build-readme' locally and commit."
+        exit 1
     fi
-
-# === VALIDATION ===
-
-validate:
-    jv schemas/source-format.json source_tests/**/*.json
-    jv schemas/generated-format.json generated_tests/*.json
-
-# Update README.md with current test statistics using remark.js AST processing
-docs-check:
-    cd scripts && node update-readme-remark.mjs
-    git diff --exit-code README.md
 
 # === UTILITIES ===
 
+# Install dependencies
+deps:
+    npm install
+    go mod download
+    uv tool install python-semantic-release
+
+# Validate JSON schema compliance
+validate:
+    npx @sourcemeta/jsonschema validate schemas/source-format.json source_tests/
+    npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
+
+# Show test statistics
 stats:
     go run ./cmd/ccl-test-runner stats --input source_tests
 
@@ -148,60 +91,52 @@ view-tests PATH="generated_tests":
 view-tests-static PATH="generated_tests":
     just build-test-reader
     ./bin/test-reader {{PATH}} --static
+# Clean, build, lint, and test (ensures clean state)
+reset:
+    just clean
+    just build
+    just lint
+    just test
 
-# View specific test file interactively
-view-test FILE:
-    just build-test-reader
-    ./bin/test-reader {{FILE}}
+# Run all tests including known failing ones
+test-all:
+    go run ./cmd/ccl-test-runner test
 
-# View specific test file with static output
-view-test-static FILE:
-    just build-test-reader
-    ./bin/test-reader {{FILE}} --static
+# === GENERATION ===
 
-clean:
-    go run ./cmd/clean go_tests bin
-    rm -f bin/ccl-test-runner bin/test-reader
+# Generate all test files (flat JSON + Go tests)
+generate:
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
+    go run ./cmd/ccl-test-runner generate
 
-lint:
-    go mod tidy
-    go fmt ./...
-    go vet ./...
+# Generate flat JSON files from source
+generate-flat:
+    go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
 
-deps:
-    cd scripts && npm install
-    go mod download
-    go install github.com/santhosh-tekuri/jsonschema/cmd/jv@latest
+# Generate Go test files from flat JSON
+generate-go:
+    go run ./cmd/ccl-test-runner generate
+
+# Install CLI tools to $GOPATH/bin
+install:
+    go install ./cmd/ccl-test-runner
+    go install ./cmd/test-reader
 
 # === RELEASE ===
 
 # Show suggested next version based on conventional commits
 release-check:
-    git cliff --bumped-version
+    semantic-release version --print
 
-# Preview changelog for next release
+# Preview changelog for next release (dry-run)
 release-preview:
-    git cliff --unreleased
+    semantic-release --noop version
+
+# Generate changelog without version bump
+release-changelog:
+    semantic-release changelog
 
 # Create release: updates CHANGELOG.md, commits, and tags
-release version:
-    git cliff --tag v{{version}} -o CHANGELOG.md
-    git add CHANGELOG.md
-    git commit -m "chore(release): v{{version}}"
-    git tag v{{version}}
-    @echo "Release v{{version}} created. Push with: git push origin main --tags"
-
-# === CONVENIENCE COMMANDS ===
-
-# Generate only basic tests for mock implementation
-generate-mock:
-    just generate --skip-tags multiline,error,flexible-boolean-parsing,crlf-normalization,proposed-behavior
-
-# Test with verbose output
-test-verbose:
-    just test --verbose
-
-# Run all tests including failing ones (overrides default basic-only mode)
-test-all:
-    just test --all
-
+release:
+    semantic-release version --no-push
+    @echo "Release created. Push with: git push origin main --tags"

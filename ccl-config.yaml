@@ -22,7 +22,7 @@ behaviors:
 
 # Optional: Specification variant choice
 variants:
-  - proposed_behavior    # vs reference_compliant
+  - reference_compliant
 
 # Optional: Specific tests to skip by name
 skip_tests:

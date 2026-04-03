@@ -126,8 +126,6 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 					}
 				}
 
-				// Line ending normalization already handled at input level
-
 				entries = append(entries, Entry{
 					Key:   key,
 					Value: value,
@@ -148,11 +146,15 @@ func (c *CCL) ParseIndented(input string) ([]Entry, error) {
 	return c.Parse(input)
 }
 
-// Filter implements entry filtering (for comment tests, this preserves all entries)
+// Filter implements entry filtering - removes comment entries (key="/")
 func (c *CCL) Filter(entries []Entry) []Entry {
-	// For the mock implementation, filter just returns all entries
-	// In a real implementation, this might filter based on certain criteria
-	return entries
+	var filtered []Entry
+	for _, entry := range entries {
+		if entry.Key != "/" {
+			filtered = append(filtered, entry)
+		}
+	}
+	return filtered
 }
 
 // Compose implements entry composition
@@ -355,9 +357,14 @@ func (c *CCL) Print(entries []Entry) string {
 			continue
 		}
 
-		// Write key
+		// Write key and separator
 		sb.WriteString(entry.Key)
-		sb.WriteString(" = ")
+		if entry.Value == "" || strings.HasPrefix(entry.Value, "\n") {
+			// Empty or continuation value: avoid trailing whitespace on the key line
+			sb.WriteString(" =")
+		} else {
+			sb.WriteString(" = ")
+		}
 
 		// Write value - if multiline, the value already contains the newlines and indentation
 		sb.WriteString(entry.Value)

@@ -1,9 +1,11 @@
 [tools]
-git-cliff = "latest"
-go = "1.25.4"
+go = "1.26.1"
 hk = "latest"
+just = "latest"
 # Node.js for running ESM scripts and commitlint
 node = "latest"
+# Python package manager for semantic-release
+uv = "latest"
 
 [env]
 # Ensure tools are available in PATH

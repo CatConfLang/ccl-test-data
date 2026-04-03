@@ -3,7 +3,7 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -37,7 +37,33 @@ connections = 16`
 
 // comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `/= This is an environment section
+port = 8080
+serve = index.html
+/= Database section
+mode = in-memory
+connections = 16`
+
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
+	var err error
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry{
+		mock.Entry{Key: `port`, Value: `8080`},
+		mock.Entry{Key: `serve`, Value: `index.html`},
+		mock.Entry{Key: `mode`, Value: `in-memory`},
+		mock.Entry{Key: `connections`, Value: `16`},
+	}
+	assert.Equal(t, expectedFilter, filterResult)
+
 }
 
 // comment_syntax_slash_equals_parse - function:parse feature:comments
@@ -60,7 +86,23 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 // comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `/= this is a comment`
+
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
+	var err error
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry(nil)
+	assert.Equal(t, expectedFilter, filterResult)
+
 }
 
 // section_headers_with_comments_parse - function:parse feature:comments feature:empty_keys
@@ -88,5 +130,31 @@ port = 6379`
 
 // section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
+
+	ccl := mock.New()
+	input := `== Database Config ==
+/= Connection settings
+host = localhost
+=== Cache Config ===
+/= Redis configuration
+port = 6379`
+
+	// Declare variables for reuse across validations
+	var parseResult []mock.Entry
+
+	var filterResult []mock.Entry
+	var err error
+
+	// Filter validation (predicate: key != "/")
+	parseResult, err = ccl.Parse(input)
+	require.NoError(t, err)
+	filterResult = ccl.Filter(parseResult)
+	expectedFilter := []mock.Entry{
+		mock.Entry{Key: "", Value: `= Database Config ==`},
+		mock.Entry{Key: `host`, Value: `localhost`},
+		mock.Entry{Key: "", Value: `== Cache Config ===`},
+		mock.Entry{Key: `port`, Value: `6379`},
+	}
+	assert.Equal(t, expectedFilter, filterResult)
+
 }

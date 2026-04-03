@@ -1,0 +1,122 @@
+{
+  "$schema": "../../schemas/source-format.json",
+  "tests": [
+    {
+      "name": "filter_by_key_equality",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            { "key": "host", "value": "localhost" },
+            { "key": "port", "value": "8080" },
+            { "key": "mode", "value": "debug" }
+          ]
+        },
+        {
+          "function": "filter",
+          "predicate": { "field": "key", "op": "==", "value": "port" },
+          "expect": [
+            { "key": "port", "value": "8080" }
+          ]
+        }
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080\nmode = debug"
+      ]
+    },
+    {
+      "name": "filter_by_value_not_empty",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            { "key": "name", "value": "app" },
+            { "key": "description", "value": "" },
+            { "key": "version", "value": "1.0" }
+          ]
+        },
+        {
+          "function": "filter",
+          "predicate": { "field": "value", "op": "!=", "value": "" },
+          "expect": [
+            { "key": "name", "value": "app" },
+            { "key": "version", "value": "1.0" }
+          ]
+        }
+      ],
+      "features": [
+        "empty_keys"
+      ],
+      "inputs": [
+        "name = app\ndescription =\nversion = 1.0"
+      ]
+    },
+    {
+      "name": "filter_by_value_equality",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            { "key": "debug", "value": "true" },
+            { "key": "verbose", "value": "false" },
+            { "key": "logging", "value": "true" }
+          ]
+        },
+        {
+          "function": "filter",
+          "predicate": { "field": "value", "op": "==", "value": "true" },
+          "expect": [
+            { "key": "debug", "value": "true" },
+            { "key": "logging", "value": "true" }
+          ]
+        }
+      ],
+      "inputs": [
+        "debug = true\nverbose = false\nlogging = true"
+      ]
+    },
+    {
+      "name": "filter_no_matches",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            { "key": "host", "value": "localhost" },
+            { "key": "port", "value": "8080" }
+          ]
+        },
+        {
+          "function": "filter",
+          "predicate": { "field": "key", "op": "==", "value": "nonexistent" },
+          "expect": []
+        }
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080"
+      ]
+    },
+    {
+      "name": "filter_keeps_all",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            { "key": "host", "value": "localhost" },
+            { "key": "port", "value": "8080" }
+          ]
+        },
+        {
+          "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "nonexistent" },
+          "expect": [
+            { "key": "host", "value": "localhost" },
+            { "key": "port", "value": "8080" }
+          ]
+        }
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080"
+      ]
+    }
+  ]
+}

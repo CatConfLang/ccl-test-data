@@ -468,10 +468,6 @@ log.Printf("DEBUG: value = %+v\n", value)
 ### Tracing Test Generation
 
 ```bash
-# Verbose output
-just generate-flat --verbose
-just generate-go --verbose
-
 # Check intermediate files
 cat generated_tests/api_core_ccl_parsing.json | jq
 ```

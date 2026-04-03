@@ -1,0 +1,59 @@
+[project]
+name = "ccl-test-data"
+version = "0.4.0"
+description = "Comprehensive JSON test suite for CCL implementations"
+requires-python = ">=3.11"
+
+[tool.semantic_release]
+# Commit parsing
+commit_parser = "conventional"
+commit_message = "chore(release): v{version}"
+
+# Disable Python-specific build (this is a Go project)
+build_command = ""
+
+# Version bumping behavior
+major_on_zero = true
+allow_zero_version = true
+
+# Tag format
+tag_format = "v{version}"
+
+[tool.semantic_release.commit_parser_options]
+# Enable squash commit parsing (extracts individual commits from squash merge bodies)
+parse_squash_commits = true
+ignore_merge_commits = true
+
+# Define which commit types trigger version bumps
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+
+[tool.semantic_release.changelog]
+# Mode: "init" overwrites entire file with template
+mode = "init"
+
+# Custom template directory
+template_dir = "templates"
+
+# Exclude patterns (skip these commit types from changelog)
+exclude_commit_patterns = [
+    '''chore(?:\([^)]*?\))?: .+''',
+    '''ci(?:\([^)]*?\))?: .+''',
+    '''style(?:\([^)]*?\))?: .+''',
+    '''build(?:\([^)]*?\))?: .+''',
+    '''test(?:\([^)]*?\))?: .+''',
+    '''refactor(?:\([^)]*?\))?: .+''',
+    '''docs?(?:\([^)]*?\))?: .+''',
+]
+
+[tool.semantic_release.changelog.default_templates]
+output_format = "md"
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.remote]
+type = "github"
+token = { env = "GH_TOKEN" }
+
+[tool.semantic_release.branches.main]
+match = "^(main|master)$"
+prerelease = false

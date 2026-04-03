@@ -3,7 +3,7 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -31,6 +31,24 @@ age = 42`
 
 }
 
+// basic_key_value_pairs_print - function:print
+func TestBasicKeyValuePairsPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `name = Alice
+age = 42`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
 // equals_in_values_parse - function:parse
 func TestEqualsInValuesParse(t *testing.T) {
 
@@ -47,6 +65,24 @@ path = /bin/app=prod`
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "msg", Value: "k=v pairs work fine"}, mock.Entry{Key: "path", Value: "/bin/app=prod"}}
 	assert.Equal(t, expected, parseResult)
+
+}
+
+// equals_in_values_print - function:print
+func TestEqualsInValuesPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `msg = k=v pairs work fine
+path = /bin/app=prod`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
@@ -90,6 +126,26 @@ done = yes`
 
 }
 
+// multiline_values_print - function:print feature:multiline
+func TestMultilineValuesPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `description = First line
+  Second line
+  Third line
+done = yes`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
 // empty_values_parse - function:parse feature:empty_keys
 func TestEmptyValuesParse(t *testing.T) {
 
@@ -106,6 +162,24 @@ other = value`
 	require.NoError(t, err)
 	expected := []mock.Entry{mock.Entry{Key: "empty", Value: ""}, mock.Entry{Key: "other", Value: "value"}}
 	assert.Equal(t, expected, parseResult)
+
+}
+
+// empty_values_print - function:print feature:empty_keys
+func TestEmptyValuesPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `empty =
+other = value`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
@@ -129,6 +203,25 @@ func TestNestedStructureParsingParse(t *testing.T) {
 
 }
 
+// nested_structure_parsing_print - function:print
+func TestNestedStructureParsingPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `database =
+  host = localhost
+  port = 5432`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
 // unicode_parsing_parse - function:parse feature:unicode
 func TestUnicodeParsingParse(t *testing.T) {
 
@@ -148,6 +241,24 @@ func TestUnicodeParsingParse(t *testing.T) {
 
 }
 
+// unicode_parsing_print - function:print feature:unicode
+func TestUnicodeParsingPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := `emoji = 😀😃😄
+配置 = config`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
 // empty_input_parse - function:parse
 func TestEmptyInputParse(t *testing.T) {
 
@@ -162,6 +273,80 @@ func TestEmptyInputParse(t *testing.T) {
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	expected := []mock.Entry{}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// empty_input_print - function:print
+func TestEmptyInputPrint(t *testing.T) {
+
+	ccl := mock.New()
+	input := ""
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// TODO: Implement print validation
+	_ = ccl   // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
+
+}
+
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `  key = value
+  second`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value\n  second"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// leading_whitespace_multiple_entries_parse - function:parse feature:whitespace
+func TestLeadingWhitespaceMultipleEntriesParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `  key1 = value1
+key2 = value2`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+// leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
+func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
+
+	ccl := mock.New()
+	input := `  key = value
+  second = entry`
+
+	// Declare variables for reuse across validations
+
+	var err error
+
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}, mock.Entry{Key: "second", Value: "entry"}}
 	assert.Equal(t, expected, parseResult)
 
 }

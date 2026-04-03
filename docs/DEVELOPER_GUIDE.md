@@ -225,20 +225,18 @@ The benchmark package tracks performance metrics for test generation and statist
 
 ## Making a Release
 
-This project uses [git-cliff](https://git-cliff.org/) for changelog generation
+This project uses [Python Semantic Release](https://python-semantic-release.readthedocs.io/) for changelog generation
 and follows [Conventional Commits](https://www.conventionalcommits.org/).
 
 ### Prerequisites
 
-Install git-cliff:
+Install semantic-release via uv (managed by mise):
 ```bash
-# macOS
-brew install git-cliff
+# mise installs uv automatically
+mise install
 
-# cargo
-cargo install git-cliff
-
-# or use mise/asdf
+# Install semantic-release
+uv tool install python-semantic-release
 ```
 
 ### Release Workflow
@@ -249,19 +247,20 @@ cargo install git-cliff
    ```
    This analyzes commits and suggests: patch (fix), minor (feat), or major (BREAKING CHANGE).
 
-2. **Preview the changelog**:
+2. **Preview the changelog** (dry-run):
    ```bash
    just release-preview
    ```
 
-3. **Create the release** (with your chosen version):
+3. **Create the release**:
    ```bash
-   just release 1.2.0
+   just release
    ```
    This will:
+   - Calculate the next version based on commits
    - Update CHANGELOG.md with all changes since last release
    - Commit the changelog
-   - Create tag `v1.2.0`
+   - Create the version tag
 
 4. **Push to trigger CI**:
    ```bash
@@ -303,7 +302,6 @@ Follow conventional commits for automatic changelog generation:
 
 ### Debug Commands
 ```bash
-just test-verbose               # Detailed test output
-just stats --format json       # Statistics breakdown
+just stats                     # Test statistics
 ./ccl-test-runner generate --run-only function:parse  # Specific subset
 ```

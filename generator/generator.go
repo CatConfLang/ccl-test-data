@@ -1,0 +1,776 @@
+// Package generator provides utilities for transforming source format
+// CCL tests to implementation-friendly flat format.
+package generator
+
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+	"path/filepath"
+	"reflect"
+	"strings"
+
+	"github.com/catconflang/ccl-test-data/config"
+	"github.com/catconflang/ccl-test-data/loader"
+	"github.com/catconflang/ccl-test-data/types"
+	"github.com/catconflang/ccl-test-data/types/generated"
+)
+
+// Export format constants for convenience
+const (
+	FormatCompact = loader.FormatCompact
+	FormatFlat    = loader.FormatFlat
+)
+
+// FlatGenerator transforms source format to implementation-friendly flat format
+type FlatGenerator struct {
+	SourceDir        string
+	OutputDir        string
+	Options          GenerateOptions
+	BehaviorMetadata *BehaviorMetadata // Loaded from x-behaviorMetadata in schemas/source-format.json
+}
+
+// GenerateOptions controls flat format generation behavior
+type GenerateOptions struct {
+	SkipPropertyTests     bool                 // Skip property-*.json files
+	SkipFunctions         []config.CCLFunction // Skip specific functions
+	OnlyFunctions         []config.CCLFunction // Generate only these functions
+	SourceFormat          loader.TestFormat    // Input format (compact or flat)
+	Verbose               bool                 // Enable verbose output
+	SchemasDir            string               // Path to schemas directory (for behavior metadata)
+	AutoGenerateConflicts bool                 // Auto-generate conflicts from behavior metadata
+	ValidateSourceTests   bool                 // Validate source tests against metadata
+}
+
+// NewFlatGenerator creates a new flat format generator
+func NewFlatGenerator(sourceDir, outputDir string, opts GenerateOptions) *FlatGenerator {
+	fg := &FlatGenerator{
+		SourceDir: sourceDir,
+		OutputDir: outputDir,
+		Options:   opts,
+	}
+
+	// Load behavior metadata if schemas directory is specified
+	if opts.SchemasDir != "" {
+		metadata, err := LoadBehaviorMetadata(opts.SchemasDir)
+		if err != nil {
+			if opts.Verbose {
+				fmt.Printf("Warning: failed to load behavior metadata: %v\n", err)
+				fmt.Println("Continuing without behavior filtering...")
+			}
+		} else {
+			fg.BehaviorMetadata = metadata
+			if opts.Verbose {
+				fmt.Printf("Loaded behavior metadata with %d behaviors\n", len(metadata.Behaviors))
+			}
+		}
+	}
+
+	return fg
+}
+
+// GenerateAll processes all source test files and generates flat format
+func (fg *FlatGenerator) GenerateAll() error {
+	if err := os.MkdirAll(fg.OutputDir, 0755); err != nil {
+		return fmt.Errorf("failed to create output directory: %w", err)
+	}
+
+	pattern := filepath.Join(fg.SourceDir, "*.json")
+	files, err := filepath.Glob(pattern)
+	if err != nil {
+		return fmt.Errorf("failed to find source files: %w", err)
+	}
+
+	for _, file := range files {
+		basename := filepath.Base(file)
+
+		// Skip property tests if requested
+		if fg.Options.SkipPropertyTests && strings.HasPrefix(basename, "property-") {
+			if fg.Options.Verbose {
+				fmt.Printf("Skipping property test file: %s\n", basename)
+			}
+			continue
+		}
+
+		if err := fg.GenerateFile(file); err != nil {
+			return fmt.Errorf("failed to generate %s: %w", file, err)
+		}
+
+		if fg.Options.Verbose {
+			fmt.Printf("Generated flat format for: %s\n", basename)
+		}
+	}
+
+	return nil
+}
+
+// GenerateFile processes a single source file
+func (fg *FlatGenerator) GenerateFile(sourceFile string) error {
+	// Use loader to handle format detection and parsing
+	testLoader := loader.NewTestLoader("", config.ImplementationConfig{})
+
+	sourceSuite, err := testLoader.LoadTestFile(sourceFile, loader.LoadOptions{
+		Format:     fg.Options.SourceFormat,
+		FilterMode: loader.FilterAll,
+	})
+	if err != nil {
+		return fmt.Errorf("failed to load source file: %w", err)
+	}
+
+	// Transform to flat format
+	flatSuite := types.TestSuite{
+		Suite:       sourceSuite.Suite,
+		Version:     sourceSuite.Version,
+		Description: sourceSuite.Description + " (flat format)",
+		Tests:       []types.TestCase{},
+	}
+
+	for _, sourceTest := range sourceSuite.Tests {
+		// Validate source test if enabled
+		if fg.Options.ValidateSourceTests && fg.BehaviorMetadata != nil {
+			var declaredConflicts []string
+			if sourceTest.Conflicts != nil {
+				declaredConflicts = sourceTest.Conflicts.Behaviors
+			}
+			result := fg.BehaviorMetadata.ValidateSourceTest(sourceTest.Name, sourceTest.Behaviors, declaredConflicts)
+			for _, warning := range result.Warnings {
+				fmt.Printf("Warning [%s]: %s\n", sourceTest.Name, warning)
+			}
+			for _, errMsg := range result.Errors {
+				fmt.Printf("Error [%s]: %s\n", sourceTest.Name, errMsg)
+			}
+		}
+
+		flatTests, err := fg.TransformSourceToFlat(sourceTest)
+		if err != nil {
+			return fmt.Errorf("failed to transform test %s: %w", sourceTest.Name, err)
+		}
+		flatSuite.Tests = append(flatSuite.Tests, flatTests...)
+	}
+
+	// Apply filtering options
+	flatSuite.Tests = fg.applyFiltering(flatSuite.Tests)
+
+	// Convert to generated flat format types (array of flat test cases)
+	var flatTests []generated.GeneratedFormatSimpleJsonTestsElem
+	for _, test := range flatSuite.Tests {
+		flatTest := fg.convertToFlatFormat(test)
+		flatTests = append(flatTests, flatTest)
+	}
+
+	// Create object format with $schema at top level
+	wrapper := generated.GeneratedFormatSimpleJson{
+		Schema: "http://json-schema.org/draft-07/schema#",
+		Tests:  flatTests,
+	}
+
+	// Write flat format file
+	outputFile := filepath.Join(fg.OutputDir, filepath.Base(sourceFile))
+	flatData, err := json.MarshalIndent(wrapper, "", "  ")
+	if err != nil {
+		return fmt.Errorf("failed to marshal flat JSON: %w", err)
+	}
+
+	if err := os.WriteFile(outputFile, flatData, 0644); err != nil {
+		return fmt.Errorf("failed to write flat file: %w", err)
+	}
+
+	return nil
+}
+
+// TransformSourceToFlat transforms a source test to multiple flat tests (1:N transformation)
+func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]types.TestCase, error) {
+	if sourceTest.Validations == nil {
+		// Already flat format or no validations
+		return []types.TestCase{sourceTest}, nil
+	}
+
+	var flatTests []types.TestCase
+	validations := sourceTest.Validations
+
+	// Use reflection to iterate over validation fields
+	v := reflect.ValueOf(validations).Elem()
+	t := reflect.TypeOf(validations).Elem()
+
+	for i := 0; i < v.NumField(); i++ {
+		field := v.Field(i)
+		fieldType := t.Field(i)
+
+		if field.IsNil() {
+			continue // Skip nil validations
+		}
+
+		// Use JSON tag if available, otherwise convert field name
+		validationName := getValidationName(fieldType)
+
+		// Parse the validation value to extract components (args, expect, error)
+		validationComponents := parseValidationValue(field.Interface())
+
+		// Create flat test for this validation
+		flatTest := types.TestCase{
+			Name:        fmt.Sprintf("%s_%s", sourceTest.Name, validationName),
+			Inputs:      sourceTest.Inputs,
+			Validation:  validationName,
+			Expected:    validationComponents.Expected,
+			Args:        validationComponents.Args,
+			Predicate:   validationComponents.Predicate,
+			ExpectError: validationComponents.Error,
+			Meta:        sourceTest.Meta,
+			SourceTest:  sourceTest.Name,
+		}
+
+		// Extract and populate type-safe metadata
+		generatedFunctions, generatedFeatures := fg.GenerateMetadataFromValidation(validationName)
+		flatTest.Functions = generatedFunctions
+
+		// Merge generated features with source features, ensuring never nil and no duplicates
+		flatTest.Features = make([]string, 0)
+		if sourceTest.Features != nil {
+			flatTest.Features = append(flatTest.Features, sourceTest.Features...)
+		}
+		if generatedFeatures != nil {
+			flatTest.Features = append(flatTest.Features, generatedFeatures...)
+		}
+		// Remove duplicates by using a map
+		seen := make(map[string]bool)
+		uniqueFeatures := make([]string, 0, len(flatTest.Features))
+		for _, feature := range flatTest.Features {
+			if !seen[feature] {
+				seen[feature] = true
+				uniqueFeatures = append(uniqueFeatures, feature)
+			}
+		}
+		flatTest.Features = uniqueFeatures
+
+		// Filter behaviors to only those affecting this function (if metadata available)
+		// For composite validations (e.g., round_trip → parse + print), check all
+		// component functions so behavior tags aren't incorrectly dropped.
+		if fg.BehaviorMetadata != nil {
+			functionsToCheck := []string{validationName}
+			if compositeFns, ok := compositeFunctionMap[validationName]; ok {
+				functionsToCheck = compositeFns
+			}
+			flatTest.Behaviors = fg.BehaviorMetadata.FilterBehaviorsForFunctions(sourceTest.Behaviors, functionsToCheck)
+		} else {
+			// Fallback: copy all behaviors (legacy behavior)
+			flatTest.Behaviors = copyStringSlice(sourceTest.Behaviors)
+		}
+
+		// Copy variants from source, ensuring never nil
+		if sourceTest.Variants != nil {
+			flatTest.Variants = sourceTest.Variants
+		} else {
+			flatTest.Variants = make([]string, 0)
+		}
+
+		// Handle conflicts: start with source conflicts, then auto-generate if enabled
+		flatTest.Conflicts = fg.generateConflicts(sourceTest.Conflicts, flatTest.Behaviors)
+
+		// Validation components are already parsed and applied above
+		// No special case handling needed - all validation types are handled uniformly
+
+		flatTests = append(flatTests, flatTest)
+	}
+
+	return flatTests, nil
+}
+
+// compositeFunctionMap defines validations that require multiple underlying functions.
+// For example, round_trip validation requires both parse and print functions.
+var compositeFunctionMap = map[string][]string{
+	"round_trip":       {"parse", "print"},
+	"load":             {"parse", "build_hierarchy"},
+	"canonical_format": {"parse", "print", "canonical_format"},
+}
+
+// GenerateMetadataFromValidation creates type-safe metadata from validation type
+func (fg *FlatGenerator) GenerateMetadataFromValidation(validationName string) (functions []string, features []string) {
+	// Check composite function mapping first
+	if compositeFunctions, ok := compositeFunctionMap[validationName]; ok {
+		functions = compositeFunctions
+	} else {
+		// Map validation names to functions (1:1 mapping)
+		functions = []string{validationName}
+	}
+
+	// Initialize features as empty slice, never nil
+	features = make([]string, 0)
+
+	// Map validation names to required features
+	switch validationName {
+	case "expand_dotted":
+		features = append(features, string(config.FeatureExperimentalDottedKeys))
+	}
+
+	return functions, features
+}
+
+// ExtractMetadataFromTags extracts typed metadata from legacy tags
+func ExtractMetadataFromTags(tags []string) (functions, features, behaviors, variants []string) {
+	for _, tag := range tags {
+		switch {
+		case strings.HasPrefix(tag, "function:"):
+			functions = append(functions, strings.TrimPrefix(tag, "function:"))
+		case strings.HasPrefix(tag, "feature:"):
+			features = append(features, strings.TrimPrefix(tag, "feature:"))
+		case strings.HasPrefix(tag, "behavior:"):
+			behaviors = append(behaviors, strings.TrimPrefix(tag, "behavior:"))
+		case strings.HasPrefix(tag, "variant:"):
+			variants = append(variants, strings.TrimPrefix(tag, "variant:"))
+		}
+	}
+	return
+}
+
+// ValidateGenerated validates the generated flat format files
+func (fg *FlatGenerator) ValidateGenerated() error {
+	pattern := filepath.Join(fg.OutputDir, "*.json")
+	files, err := filepath.Glob(pattern)
+	if err != nil {
+		return fmt.Errorf("failed to find generated files: %w", err)
+	}
+
+	for _, file := range files {
+		if err := fg.validateFile(file); err != nil {
+			return fmt.Errorf("validation failed for %s: %w", file, err)
+		}
+	}
+
+	return nil
+}
+
+// applyFiltering applies generation options to filter tests
+func (fg *FlatGenerator) applyFiltering(tests []types.TestCase) []types.TestCase {
+	var filtered []types.TestCase
+
+	for _, test := range tests {
+		var skip bool
+
+		// Skip functions if specified
+		if len(fg.Options.SkipFunctions) > 0 {
+			skip = false
+			for _, skipFn := range fg.Options.SkipFunctions {
+				if test.Validation == string(skipFn) {
+					skip = true
+					break
+				}
+			}
+			if skip {
+				continue
+			}
+		}
+
+		// Include only specified functions if set
+		if len(fg.Options.OnlyFunctions) > 0 {
+			include := false
+			for _, onlyFn := range fg.Options.OnlyFunctions {
+				if test.Validation == string(onlyFn) {
+					include = true
+					break
+				}
+			}
+			if !include {
+				continue
+			}
+		}
+
+		filtered = append(filtered, test)
+	}
+
+	return filtered
+}
+
+// validateFile validates a single generated file
+func (fg *FlatGenerator) validateFile(filename string) error {
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		return fmt.Errorf("failed to read file: %w", err)
+	}
+
+	var suite types.TestSuite
+	if err := json.Unmarshal(data, &suite); err != nil {
+		return fmt.Errorf("failed to parse JSON: %w", err)
+	}
+
+	// Validate each test has required flat format fields
+	for _, test := range suite.Tests {
+		if test.Validation == "" {
+			return fmt.Errorf("test %s missing validation field", test.Name)
+		}
+		if test.Expected == nil {
+			return fmt.Errorf("test %s missing expected field", test.Name)
+		}
+	}
+
+	return nil
+}
+
+// convertToFlatFormat converts old TestCase to generated flat format with proper Expected structure
+func (fg *FlatGenerator) convertToFlatFormat(test types.TestCase) generated.GeneratedFormatSimpleJsonTestsElem {
+	// Create the proper Expected structure based on validation type
+	expected := fg.createExpectedStructure(test.Validation, test.Expected)
+
+	// Convert behaviors, features, variants to the generated enum types
+	// Ensure these are never nil - initialize as empty if needed
+	testBehaviors := test.Behaviors
+	if testBehaviors == nil {
+		testBehaviors = make([]string, 0)
+	}
+	testFeatures := test.Features
+	if testFeatures == nil {
+		testFeatures = make([]string, 0)
+	}
+	testVariants := test.Variants
+	if testVariants == nil {
+		testVariants = make([]string, 0)
+	}
+	testFunctions := test.Functions
+	if testFunctions == nil {
+		testFunctions = make([]string, 0)
+	}
+
+	behaviors := fg.convertBehaviors(testBehaviors)
+	features := fg.convertFeatures(testFeatures)
+	variants := fg.convertVariants(testVariants)
+	functions := fg.convertFunctions(testFunctions)
+	conflicts := fg.convertConflicts(test.Conflicts)
+
+	// Create the flat test directly using the generated type
+	flatTest := generated.GeneratedFormatSimpleJsonTestsElem{
+		Name:       test.Name,
+		Inputs:     test.Inputs,
+		Validation: generated.GeneratedFormatSimpleJsonTestsElemValidation(test.Validation),
+		Expected:   expected,
+		Functions:  functions,
+		Features:   features,
+		Behaviors:  behaviors,
+		Variants:   variants,
+		Conflicts:  conflicts,
+		Args:       fg.getArgsForValidation(test.Validation, test.Args),
+		Predicate:  fg.convertPredicate(test.Predicate),
+		SourceTest: &test.SourceTest,
+	}
+
+	return flatTest
+}
+
+// getArgsForValidation returns args only for typed access functions, nil for others
+func (fg *FlatGenerator) getArgsForValidation(validation string, args []string) []string {
+	// Only typed access functions need args field
+	typedAccessFunctions := map[string]bool{
+		"get_string": true,
+		"get_int":    true,
+		"get_bool":   true,
+		"get_float":  true,
+		"get_list":   true,
+	}
+
+	if typedAccessFunctions[validation] {
+		// For typed access functions, return args (even if empty)
+		return args
+	}
+
+	// For other functions, return nil so omitempty will omit the field
+	return nil
+}
+
+// createExpectedStructure creates the proper Expected object with Count and data fields
+func (fg *FlatGenerator) createExpectedStructure(validation string, data interface{}) generated.GeneratedFormatSimpleJsonTestsElemExpected {
+	expected := generated.GeneratedFormatSimpleJsonTestsElemExpected{}
+
+	switch validation {
+	case "parse", "parse_indented", "filter", "compose", "expand_dotted":
+		// These validations expect entries (key-value pairs)
+		if entries, ok := data.([]interface{}); ok {
+			expected.Count = len(entries)
+			var entryList []generated.GeneratedFormatSimpleJsonTestsElemExpectedEntriesElem
+			for _, entry := range entries {
+				if entryMap, ok := entry.(map[string]interface{}); ok {
+					if key, hasKey := entryMap["key"].(string); hasKey {
+						if value, hasValue := entryMap["value"].(string); hasValue {
+							entryList = append(entryList, generated.GeneratedFormatSimpleJsonTestsElemExpectedEntriesElem{
+								Key:   key,
+								Value: value,
+							})
+						}
+					}
+				}
+			}
+			expected.Entries = entryList
+		}
+	case "build_hierarchy":
+		// Hierarchy expects an object
+		expected.Count = 1
+		expected.Object = data
+	case "get_string", "get_int", "get_bool", "get_float":
+		// Typed access expects a single value
+		expected.Count = 1
+		expected.Value = data
+	case "get_list":
+		// List access expects a list
+		if list, ok := data.([]interface{}); ok {
+			expected.Count = len(list)
+			expected.List = list
+		}
+	default:
+		// Default case - try to infer from data type
+		expected.Count = 1
+		expected.Value = data
+	}
+
+	return expected
+}
+
+// Helper functions for converting enum types
+func (fg *FlatGenerator) convertBehaviors(behaviors []string) []generated.GeneratedFormatSimpleJsonTestsElemBehaviorsElem {
+	result := make([]generated.GeneratedFormatSimpleJsonTestsElemBehaviorsElem, 0, len(behaviors))
+	for _, b := range behaviors {
+		result = append(result, generated.GeneratedFormatSimpleJsonTestsElemBehaviorsElem(b))
+	}
+	return result
+}
+
+func (fg *FlatGenerator) convertFeatures(features []string) []string {
+	// Features is just []string in the simplified schema (no enum constraints)
+	if features == nil {
+		return make([]string, 0)
+	}
+	return features
+}
+
+func (fg *FlatGenerator) convertVariants(variants []string) []generated.GeneratedFormatSimpleJsonTestsElemVariantsElem {
+	result := make([]generated.GeneratedFormatSimpleJsonTestsElemVariantsElem, 0, len(variants))
+	for _, v := range variants {
+		result = append(result, generated.GeneratedFormatSimpleJsonTestsElemVariantsElem(v))
+	}
+	return result
+}
+
+func (fg *FlatGenerator) convertFunctions(functions []string) []generated.GeneratedFormatSimpleJsonTestsElemFunctionsElem {
+	result := make([]generated.GeneratedFormatSimpleJsonTestsElemFunctionsElem, 0, len(functions))
+	for _, f := range functions {
+		result = append(result, generated.GeneratedFormatSimpleJsonTestsElemFunctionsElem(f))
+	}
+	return result
+}
+
+func (fg *FlatGenerator) convertConflicts(conflicts *types.ConflictSet) *generated.GeneratedFormatSimpleJsonTestsElemConflicts {
+	if conflicts == nil {
+		return nil
+	}
+	return &generated.GeneratedFormatSimpleJsonTestsElemConflicts{
+		Behaviors: conflicts.Behaviors,
+		Features:  conflicts.Features,
+		Functions: conflicts.Functions,
+		Variants:  conflicts.Variants,
+	}
+}
+
+func (fg *FlatGenerator) convertPredicate(predicate *types.Predicate) *generated.GeneratedFormatSimpleJsonTestsElemPredicate {
+	if predicate == nil {
+		return nil
+	}
+	return &generated.GeneratedFormatSimpleJsonTestsElemPredicate{
+		Field: predicate.Field,
+		Op:    predicate.Op,
+		Value: predicate.Value,
+	}
+}
+
+// Helper functions
+
+// getValidationName extracts the validation name from JSON tag or field name
+func getValidationName(fieldType reflect.StructField) string {
+	// Check for JSON tag first
+	if jsonTag := fieldType.Tag.Get("json"); jsonTag != "" {
+		// Remove ",omitempty" suffix if present
+		if idx := strings.Index(jsonTag, ","); idx != -1 {
+			return jsonTag[:idx]
+		}
+		return jsonTag
+	}
+	// Fallback to camelToSnake conversion of field name
+	return camelToSnake(fieldType.Name)
+}
+
+// camelToSnake converts CamelCase to snake_case
+func camelToSnake(s string) string {
+	var result []rune
+	for i, r := range s {
+		if i > 0 && r >= 'A' && r <= 'Z' {
+			result = append(result, '_')
+		}
+		result = append(result, r)
+	}
+	return strings.ToLower(string(result))
+}
+
+// ValidationComponents represents the parsed components of a validation value
+type ValidationComponents struct {
+	Expected  interface{}
+	Args      []string
+	Error     bool
+	Predicate *types.Predicate
+}
+
+// parseValidationValue parses a validation value that may be either:
+// - A simple expected value (legacy format)
+// - A structured validation object with args, expect, error fields (source format)
+func parseValidationValue(value interface{}) ValidationComponents {
+	// Try to parse as structured validation object first
+	if validationMap, ok := value.(map[string]interface{}); ok {
+		result := ValidationComponents{
+			Expected: value, // Default to the whole object
+			Args:     []string{},
+			Error:    false,
+		}
+
+		// Extract expect field if present
+		if expect, hasExpect := validationMap["expect"]; hasExpect {
+			result.Expected = expect
+		}
+
+		// Extract args field if present
+		if argsInterface, hasArgs := validationMap["args"]; hasArgs {
+			if argsSlice, ok := argsInterface.([]interface{}); ok {
+				for _, arg := range argsSlice {
+					if argStr, ok := arg.(string); ok {
+						result.Args = append(result.Args, argStr)
+					}
+				}
+			} else if argsStringSlice, ok := argsInterface.([]string); ok {
+				result.Args = argsStringSlice
+			}
+		}
+
+		// Extract error field if present
+		if errorVal, hasError := validationMap["error"]; hasError {
+			if errorBool, ok := errorVal.(bool); ok {
+				result.Error = errorBool
+			}
+		}
+
+		// Extract predicate field if present
+		if predicateVal, hasPredicate := validationMap["predicate"]; hasPredicate {
+			if predicateMap, ok := predicateVal.(map[string]interface{}); ok {
+				predicate := &types.Predicate{}
+				if field, ok := predicateMap["field"].(string); ok {
+					predicate.Field = field
+				}
+				if op, ok := predicateMap["op"].(string); ok {
+					predicate.Op = op
+				}
+				if val, ok := predicateMap["value"].(string); ok {
+					predicate.Value = val
+				}
+				result.Predicate = predicate
+			}
+		}
+
+		return result
+	}
+
+	// Fallback to treating value as expected result (legacy format)
+	return ValidationComponents{
+		Expected: value,
+		Args:     []string{},
+		Error:    expectErrorFromValue(value),
+	}
+}
+
+// expectErrorFromValue checks if a validation value indicates an error expectation
+func expectErrorFromValue(value interface{}) bool {
+	if str, ok := value.(string); ok {
+		return strings.Contains(strings.ToLower(str), "error") ||
+			strings.Contains(strings.ToLower(str), "invalid")
+	}
+	return false
+}
+
+// copyStringSlice creates a deep copy of a string slice, ensuring never nil
+func copyStringSlice(slice []string) []string {
+	if slice == nil {
+		return make([]string, 0)
+	}
+	copy := make([]string, len(slice))
+	for i, val := range slice {
+		copy[i] = val
+	}
+	return copy
+}
+
+// copyConflictSet creates a deep copy of a ConflictSet, ensuring never nil
+func copyConflictSet(conflicts *types.ConflictSet) *types.ConflictSet {
+	if conflicts == nil {
+		return nil
+	}
+
+	// Check if we have any conflicts
+	hasConflicts := len(conflicts.Functions) > 0 ||
+		len(conflicts.Behaviors) > 0 ||
+		len(conflicts.Variants) > 0 ||
+		len(conflicts.Features) > 0
+
+	if !hasConflicts {
+		return nil
+	}
+
+	return &types.ConflictSet{
+		Functions: copyStringSlice(conflicts.Functions),
+		Behaviors: copyStringSlice(conflicts.Behaviors),
+		Variants:  copyStringSlice(conflicts.Variants),
+		Features:  copyStringSlice(conflicts.Features),
+	}
+}
+
+// generateConflicts creates the conflicts for a flat test, optionally auto-generating
+// behavior conflicts from the metadata's mutuallyExclusiveWith definitions.
+func (fg *FlatGenerator) generateConflicts(sourceConflicts *types.ConflictSet, behaviors []string) *types.ConflictSet {
+	// Start with source conflicts
+	var result *types.ConflictSet
+	if sourceConflicts != nil {
+		result = &types.ConflictSet{
+			Functions: copyStringSlice(sourceConflicts.Functions),
+			Behaviors: copyStringSlice(sourceConflicts.Behaviors),
+			Variants:  copyStringSlice(sourceConflicts.Variants),
+			Features:  copyStringSlice(sourceConflicts.Features),
+		}
+	}
+
+	// Auto-generate behavior conflicts if enabled and metadata is available
+	if fg.Options.AutoGenerateConflicts && fg.BehaviorMetadata != nil && len(behaviors) > 0 {
+		autoConflicts := fg.BehaviorMetadata.GetConflictingBehaviors(behaviors)
+		if len(autoConflicts) > 0 {
+			if result == nil {
+				result = &types.ConflictSet{
+					Behaviors: autoConflicts,
+				}
+			} else {
+				// Merge auto-generated with existing, avoiding duplicates
+				existingSet := make(map[string]bool)
+				for _, b := range result.Behaviors {
+					existingSet[b] = true
+				}
+				for _, b := range autoConflicts {
+					if !existingSet[b] {
+						result.Behaviors = append(result.Behaviors, b)
+					}
+				}
+			}
+		}
+	}
+
+	// Return nil if no conflicts
+	if result == nil {
+		return nil
+	}
+	hasConflicts := len(result.Functions) > 0 ||
+		len(result.Behaviors) > 0 ||
+		len(result.Variants) > 0 ||
+		len(result.Features) > 0
+	if !hasConflicts {
+		return nil
+	}
+
+	return result
+}

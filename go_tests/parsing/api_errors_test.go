@@ -3,7 +3,7 @@ package parsing_test
 import (
 	"testing"
 
-	"github.com/ccl-test-data/test-runner/internal/mock"
+	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -86,11 +86,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
       ]
@@ -137,7 +132,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "path_traversal"
       ],
       "variants": [
         "reference_compliant"
@@ -226,11 +222,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
       ]
@@ -282,11 +273,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
       ]
@@ -339,65 +325,8 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
-      ]
-    },
-    {
-      "name": "deeply_nested_list_reference",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "config": {
-              "environments": {
-                "production": {
-                  "servers": [
-                    "api1",
-                    "web1",
-                    "web2"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": null,
-          "args": [
-            "config",
-            "environments",
-            "production",
-            "servers"
-          ]
-        }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
       ]
     },
     {
@@ -450,11 +379,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "names = 张三\nnames = José\nnames = François\nnames = العربية"
       ]
@@ -501,11 +425,6 @@
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|"
       ]
@@ -572,13 +491,9 @@
       ],
       "behaviors": [
         "list_coercion_disabled",
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
-      "conflicts": {
-        "behaviors": [
-          "array_order_insertion"
-        ]
-      },
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
       ]
@@ -664,9 +579,6 @@
           "expect": "empty_key =\n"
         }
       ],
-      "variants": [
-        "reference_compliant"
-      ],
       "inputs": [
         "empty_key ="
       ]
@@ -680,10 +592,8 @@
         }
       ],
       "behaviors": [
-        "tabs_preserve"
-      ],
-      "variants": [
-        "reference_compliant"
+        "tabs_as_content",
+        "indent_spaces"
       ],
       "inputs": [
         "value_with_tabs = text\t\twith\ttabs\t"
@@ -700,8 +610,8 @@
       "features": [
         "unicode"
       ],
-      "variants": [
-        "reference_compliant"
+      "behaviors": [
+        "indent_spaces"
       ],
       "inputs": [
         "unicode = 你好世界\nemo = 🌟✨"
@@ -729,10 +639,8 @@
         }
       ],
       "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "variants": [
-        "reference_compliant"
+        "crlf_preserve_literal",
+        "indent_spaces"
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
@@ -747,10 +655,7 @@
         }
       ],
       "behaviors": [
-        "strict_spacing"
-      ],
-      "variants": [
-        "reference_compliant"
+        "indent_spaces"
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
@@ -764,8 +669,8 @@
           "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
         }
       ],
-      "variants": [
-        "reference_compliant"
+      "behaviors": [
+        "indent_spaces"
       ],
       "inputs": [
         "z = last\na = first\nm = middle"

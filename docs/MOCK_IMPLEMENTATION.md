@@ -508,11 +508,8 @@ var skippedFeatures = []string{
 The mock works with the generator's filtering system:
 
 ```bash
-# Generate tests that mock can pass
-just generate-mock  # Uses --run-only with supported tags
-
 # Generate basic implementation tests
-just generate --run-only function:parse,function:build_hierarchy,function:get_string
+just generate
 ```
 
 ### Progressive Testing

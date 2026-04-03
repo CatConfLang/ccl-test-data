@@ -42,7 +42,7 @@ Metadata for test categorization and progressive implementation:
 - **Functions**: Required CCL functions
 - **Features**: Optional language features
 - **Behaviors**: Implementation choices
-- **Conflicts**: Mutually exclusive behaviors
+- **Conflicts**: Behaviors/variants that cannot coexist in a test
 
 ## Package: internal/mock
 

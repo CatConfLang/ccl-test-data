@@ -3,11 +3,6 @@
   "tests": [
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -33,11 +28,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "object": {
@@ -68,9 +58,6 @@
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
-        ],
-        "variants": [
-          "proposed_behavior"
         ]
       },
       "expected": {
@@ -125,6 +112,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -157,6 +149,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -177,11 +170,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -207,11 +195,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "object": {
@@ -244,14 +227,12 @@
         "port"
       ],
       "behaviors": [
-        "list_coercion_disabled"
+        "list_coercion_disabled",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
-        ],
-        "variants": [
-          "proposed_behavior"
         ]
       },
       "expected": {
@@ -273,11 +254,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -303,11 +279,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "object": {
@@ -333,11 +304,6 @@
         "empty_list"
       ],
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 0
       },
@@ -394,6 +360,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -427,6 +398,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -484,6 +456,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -517,6 +494,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -576,6 +554,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -609,6 +592,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -626,92 +610,6 @@
       ],
       "name": "list_with_whitespace_reference_get_list",
       "source_test": "list_with_whitespace_reference",
-      "validation": "get_list",
-      "variants": []
-    },
-    {
-      "behaviors": [],
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "config",
-            "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-          }
-        ]
-      },
-      "features": [],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-      ],
-      "name": "deeply_nested_list_reference_parse",
-      "source_test": "deeply_nested_list_reference",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "array_order_lexicographic"
-      ],
-      "expected": {
-        "count": 1,
-        "object": {
-          "config": {
-            "environments": {
-              "production": {
-                "servers": [
-                  "api1",
-                  "web1",
-                  "web2"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "features": [],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-      ],
-      "name": "deeply_nested_list_reference_build_hierarchy",
-      "source_test": "deeply_nested_list_reference",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "config",
-        "environments",
-        "production",
-        "servers"
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "list_coercion_enabled"
-        ]
-      },
-      "expected": {
-        "count": 0
-      },
-      "features": [],
-      "functions": [
-        "get_list"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-      ],
-      "name": "deeply_nested_list_reference_get_list",
-      "source_test": "deeply_nested_list_reference",
       "validation": "get_list",
       "variants": []
     },
@@ -756,6 +654,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -791,6 +694,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -846,6 +750,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -878,6 +787,7 @@
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -900,6 +810,11 @@
       "behaviors": [
         "array_order_lexicographic"
       ],
+      "conflicts": {
+        "behaviors": [
+          "array_order_insertion"
+        ]
+      },
       "expected": {
         "count": 1,
         "object": {
@@ -942,10 +857,12 @@
       ],
       "behaviors": [
         "list_coercion_disabled",
-        "array_order_lexicographic"
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "conflicts": {
         "behaviors": [
+          "array_order_insertion",
           "list_coercion_enabled"
         ]
       },
@@ -966,11 +883,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -996,11 +908,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "object": {
@@ -1031,9 +938,6 @@
       "conflicts": {
         "behaviors": [
           "list_coercion_enabled"
-        ],
-        "variants": [
-          "proposed_behavior"
         ]
       },
       "expected": {
@@ -1055,11 +959,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "entries": [
@@ -1085,11 +984,6 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "object": {
@@ -1112,17 +1006,14 @@
     },
     {
       "behaviors": [],
-      "conflicts": {
-        "variants": [
-          "proposed_behavior"
-        ]
-      },
       "expected": {
         "count": 1,
         "value": "empty_key =\n"
       },
       "features": [],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1131,20 +1022,17 @@
       "name": "canonical_format_empty_values_ocaml_reference_canonical_format",
       "source_test": "canonical_format_empty_values_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
-        "tabs_preserve"
+        "tabs_as_content",
+        "indent_spaces"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_to_spaces"
-        ],
-        "variants": [
-          "proposed_behavior"
+          "indent_tabs",
+          "tabs_as_whitespace"
         ]
       },
       "expected": {
@@ -1153,6 +1041,8 @@
       },
       "features": [],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1161,15 +1051,15 @@
       "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
       "source_test": "canonical_format_tab_preservation_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
       "conflicts": {
-        "variants": [
-          "proposed_behavior"
+        "behaviors": [
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -1180,6 +1070,8 @@
         "unicode"
       ],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1188,9 +1080,7 @@
       "name": "canonical_format_unicode_ocaml_reference_canonical_format",
       "source_test": "canonical_format_unicode_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
@@ -1199,9 +1089,6 @@
       "conflicts": {
         "behaviors": [
           "crlf_normalize_to_lf"
-        ],
-        "variants": [
-          "proposed_behavior"
         ]
       },
       "expected": {
@@ -1227,20 +1114,17 @@
       "name": "canonical_format_line_endings_reference_behavior_parse",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "parse",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
       "behaviors": [
-        "crlf_preserve_literal"
+        "crlf_preserve_literal",
+        "indent_spaces"
       ],
       "conflicts": {
         "behaviors": [
-          "crlf_normalize_to_lf"
-        ],
-        "variants": [
-          "proposed_behavior"
+          "crlf_normalize_to_lf",
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -1249,6 +1133,8 @@
       },
       "features": [],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1257,15 +1143,15 @@
       "name": "canonical_format_line_endings_reference_behavior_canonical_format",
       "source_test": "canonical_format_line_endings_reference_behavior",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
       "conflicts": {
-        "variants": [
-          "proposed_behavior"
+        "behaviors": [
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -1274,6 +1160,8 @@
       },
       "features": [],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1282,15 +1170,15 @@
       "name": "canonical_format_consistent_spacing_ocaml_reference_canonical_format",
       "source_test": "canonical_format_consistent_spacing_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "indent_spaces"
+      ],
       "conflicts": {
-        "variants": [
-          "proposed_behavior"
+        "behaviors": [
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -1299,6 +1187,8 @@
       },
       "features": [],
       "functions": [
+        "parse",
+        "print",
         "canonical_format"
       ],
       "inputs": [
@@ -1307,9 +1197,7 @@
       "name": "deterministic_output_ocaml_reference_canonical_format",
       "source_test": "deterministic_output_ocaml_reference",
       "validation": "canonical_format",
-      "variants": [
-        "reference_compliant"
-      ]
+      "variants": []
     }
   ]
 }

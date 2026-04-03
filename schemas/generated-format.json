@@ -108,6 +108,28 @@
           "type": "string"
         }
       },
+      "predicate": {
+        "type": "object",
+        "description": "Filter predicate specification. Defines how to filter entries based on a field comparison.",
+        "required": ["field", "op", "value"],
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": ["key", "value"],
+            "description": "Which Entry field to compare"
+          },
+          "op": {
+            "type": "string",
+            "enum": ["==", "!="],
+            "description": "Comparison operator"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value to compare against"
+          }
+        },
+        "additionalProperties": false
+      },
       "functions": {
         "type": "array",
         "description": "CCL functions tested by this test",
@@ -129,10 +151,13 @@
           "enum": [
             "boolean_strict", "boolean_lenient",
             "crlf_preserve_literal", "crlf_normalize_to_lf",
-            "tabs_preserve", "tabs_to_spaces",
-            "strict_spacing", "loose_spacing",
+            "tabs_as_content", "tabs_as_whitespace",
+            "indent_spaces", "indent_tabs",
             "list_coercion_enabled", "list_coercion_disabled",
-            "array_order_insertion", "array_order_lexicographic"
+            "array_order_insertion", "array_order_lexicographic",
+            "toplevel_indent_strip", "toplevel_indent_preserve",
+            "delimiter_first_equals", "delimiter_prefer_spaced",
+            "path_traversal"
           ]
         },
         "uniqueItems": true
@@ -155,7 +180,7 @@
             {
               "enum": [
                 "comments", "empty_keys",
-                "multiline", "unicode", "whitespace"
+                "multiline", "multiline_continuation", "unicode", "whitespace"
               ]
             },
             {

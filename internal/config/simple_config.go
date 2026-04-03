@@ -7,7 +7,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/tylerbu/ccl-test-lib/config"
+	"github.com/catconflang/ccl-test-data/config"
 	"gopkg.in/yaml.v3"
 )
 
@@ -50,29 +50,31 @@ var ValidFeatures = []string{
 var ValidBehaviors = []string{
 	"boolean_strict",
 	"boolean_lenient",
-	"tabs_preserve",
-	"tabs_to_spaces",
+	"tabs_as_content",
+	"tabs_as_whitespace",
 	"crlf_preserve_literal",
 	"crlf_normalize_to_lf",
-	"strict_spacing",
-	"loose_spacing",
+	"indent_spaces",
+	"indent_tabs",
 	"list_coercion_enabled",
 	"list_coercion_disabled",
+	"array_order_insertion",
+	"array_order_lexicographic",
 }
 
 // ValidVariants defines all supported specification variants
 var ValidVariants = []string{
-	"proposed_behavior",
 	"reference_compliant",
 }
 
 // ConflictingBehaviors defines mutually exclusive behavioral choices
 var ConflictingBehaviors = [][]string{
 	{"boolean_strict", "boolean_lenient"},
-	{"tabs_preserve", "tabs_to_spaces"},
+	{"tabs_as_content", "tabs_as_whitespace"},
 	{"crlf_preserve_literal", "crlf_normalize_to_lf"},
-	{"strict_spacing", "loose_spacing"},
+	{"indent_spaces", "indent_tabs"},
 	{"list_coercion_enabled", "list_coercion_disabled"},
+	{"array_order_insertion", "array_order_lexicographic"},
 }
 
 // LoadConfig loads and validates a YAML configuration file
@@ -217,24 +219,24 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 		case "boolean_lenient":
 			lenient := config.BehaviorBooleanLenient
 			behaviors.Boolean = &lenient
-		case "tabs_preserve":
-			preserve := config.BehaviorTabsPreserve
-			behaviors.TabHandling = &preserve
-		case "tabs_to_spaces":
-			toSpaces := config.BehaviorTabsToSpaces
-			behaviors.TabHandling = &toSpaces
+		case "tabs_as_content":
+			asContent := config.BehaviorTabsAsContent
+			behaviors.TabHandling = &asContent
+		case "tabs_as_whitespace":
+			asWhitespace := config.BehaviorTabsAsWhitespace
+			behaviors.TabHandling = &asWhitespace
 		case "crlf_preserve_literal":
 			preserve := config.BehaviorCRLFPreserve
 			behaviors.CRLFHandling = &preserve
 		case "crlf_normalize_to_lf":
 			normalize := config.BehaviorCRLFNormalize
 			behaviors.CRLFHandling = &normalize
-		case "strict_spacing":
-			strict := config.BehaviorStrictSpacing
-			behaviors.Spacing = &strict
-		case "loose_spacing":
-			loose := config.BehaviorLooseSpacing
-			behaviors.Spacing = &loose
+		case "indent_spaces":
+			spaces := config.BehaviorIndentSpaces
+			behaviors.IndentOutput = &spaces
+		case "indent_tabs":
+			tabs := config.BehaviorIndentTabs
+			behaviors.IndentOutput = &tabs
 		case "list_coercion_enabled":
 			enabled := config.BehaviorListCoercionOn
 			behaviors.ListCoercion = &enabled
@@ -250,16 +252,16 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 		behaviors.Boolean = &lenient
 	}
 	if behaviors.TabHandling == nil {
-		toSpaces := config.BehaviorTabsToSpaces
-		behaviors.TabHandling = &toSpaces
+		asWhitespace := config.BehaviorTabsAsWhitespace
+		behaviors.TabHandling = &asWhitespace
 	}
 	if behaviors.CRLFHandling == nil {
 		normalize := config.BehaviorCRLFNormalize
 		behaviors.CRLFHandling = &normalize
 	}
-	if behaviors.Spacing == nil {
-		loose := config.BehaviorLooseSpacing
-		behaviors.Spacing = &loose
+	if behaviors.IndentOutput == nil {
+		spaces := config.BehaviorIndentSpaces
+		behaviors.IndentOutput = &spaces
 	}
 	if behaviors.ListCoercion == nil {
 		disabled := config.BehaviorListCoercionOff
@@ -270,19 +272,14 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 	variant := VariantChoice{}
 	if len(c.Variants) > 0 {
 		switch c.Variants[0] {
-		case "proposed_behavior":
-			proposed := config.VariantProposed
-			variant.Specification = &proposed
 		case "reference_compliant":
-			// Note: Using the same constant as proposed for now
-			// TODO: Update when VariantReferenceCompliant is available
-			reference := config.VariantProposed
+			reference := config.VariantReference
 			variant.Specification = &reference
 		}
 	} else {
-		// Default to proposed behavior
-		proposed := config.VariantProposed
-		variant.Specification = &proposed
+		// Default to reference_compliant
+		reference := config.VariantReference
+		variant.Specification = &reference
 	}
 
 	return &RunnerConfig{

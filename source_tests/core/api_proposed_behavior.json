@@ -22,9 +22,6 @@
         "empty_keys",
         "multiline"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
       ]
@@ -49,11 +46,100 @@
       "features": [
         "empty_keys"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
+      ]
+    },
+    {
+      "name": "indented_line_is_continuation",
+      "tests": [
+        {
+          "function": "parse_indented",
+          "expect": [
+            {
+              "key": "descriptions",
+              "value": "First line\n  second line"
+            },
+            {
+              "key": "descriptions",
+              "value": "Another item"
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "descriptions": [
+              "First line\n  second line",
+              "Another item"
+            ]
+          }
+        },
+        {
+          "function": "get_list",
+          "expect": [
+            "First line\n  second line",
+            "Another item"
+          ],
+          "args": [
+            "descriptions"
+          ]
+        }
+      ],
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "features": [
+        "multiline",
+        "multiline_continuation"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ]
+    },
+    {
+      "name": "mixed_indentation_levels",
+      "tests": [
+        {
+          "function": "parse_indented",
+          "expect": [
+            {
+              "key": "key1",
+              "value": "value1\n  indented continuation"
+            },
+            {
+              "key": "key2",
+              "value": "value2"
+            },
+            {
+              "key": "not indented key",
+              "value": ""
+            },
+            {
+              "key": "indented for not indented",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "function": "build_hierarchy",
+          "expect": {
+            "key1": "value1\n  indented continuation",
+            "key2": "value2",
+            "not indented key": {
+              "indented for not indented": ""
+            }
+          }
+        }
+      ],
+      "features": [
+        "multiline",
+        "multiline_continuation",
+        "empty_keys"
+      ],
+      "inputs": [
+        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
       ]
     },
     {
@@ -86,9 +172,6 @@
       ],
       "behaviors": [
         "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "item = single"
@@ -145,10 +228,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
@@ -201,10 +282,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "path_traversal"
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
@@ -239,10 +318,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "empty_list ="
@@ -297,10 +374,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
@@ -355,10 +430,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
@@ -413,89 +486,14 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "whitespace"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
-      ]
-    },
-    {
-      "name": "deeply_nested_list",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "config",
-              "value": ""
-            },
-            {
-              "key": "environments",
-              "value": ""
-            },
-            {
-              "key": "production",
-              "value": ""
-            },
-            {
-              "key": "servers",
-              "value": "web1"
-            },
-            {
-              "key": "servers",
-              "value": "web2"
-            },
-            {
-              "key": "servers",
-              "value": "api1"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "config": {
-              "environments": {
-                "production": {
-                  "servers": [
-                    "web1",
-                    "web2",
-                    "api1"
-                  ]
-                }
-              }
-            }
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": [
-            "web1",
-            "web2",
-            "api1"
-          ],
-          "args": [
-            "config",
-            "environments",
-            "production",
-            "servers"
-          ]
-        }
-      ],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
       ]
     },
     {
@@ -547,13 +545,11 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
         "unicode"
-      ],
-      "variants": [
-        "proposed_behavior"
       ],
       "inputs": [
         "names = 张三\nnames = José\nnames = François\nnames = العربية"
@@ -608,10 +604,8 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
@@ -665,13 +659,12 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
+        "list_coercion_enabled",
+        "array_order_insertion"
       ],
       "features": [
-        "multiline"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "multiline",
+        "multiline_continuation"
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
@@ -799,10 +792,9 @@
         }
       ],
       "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "variants": [
-        "proposed_behavior"
+        "list_coercion_enabled",
+        "array_order_insertion",
+        "path_traversal"
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
@@ -850,9 +842,6 @@
       "behaviors": [
         "list_coercion_enabled"
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "safe = value"
       ]
@@ -883,253 +872,8 @@
           ]
         }
       ],
-      "variants": [
-        "proposed_behavior"
-      ],
       "inputs": [
         "empty_key ="
-      ]
-    },
-    {
-      "name": "canonical_format_empty_values",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "empty_key",
-              "value": ""
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "empty_key ="
-        }
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "empty_key ="
-      ]
-    },
-    {
-      "name": "canonical_format_tab_preservation",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "value_with_tabs",
-              "value": "text\t\twith\ttabs\t"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "value_with_tabs = text\t\twith\ttabs"
-        }
-      ],
-      "behaviors": [
-        "tabs_preserve"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "value_with_tabs = text\t\twith\ttabs\t"
-      ]
-    },
-    {
-      "name": "canonical_format_unicode",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "unicode",
-              "value": "你好世界"
-            },
-            {
-              "key": "emo",
-              "value": "🌟✨"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "unicode = 你好世界\nemo = 🌟✨"
-        }
-      ],
-      "features": [
-        "unicode"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "unicode = 你好世界\nemo = 🌟✨"
-      ]
-    },
-    {
-      "name": "canonical_format_line_endings_proposed",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "key1 = value1\nkey2 = value2"
-        }
-      ],
-      "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "key1 = value1\r\nkey2 = value2\r\n"
-      ]
-    },
-    {
-      "name": "crlf_normalize_to_lf_proposed",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "key1 = value1\nkey2 = value2"
-        }
-      ],
-      "behaviors": [
-        "crlf_normalize_to_lf"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "key1 = value1\r\nkey2 = value2\r\n"
-      ]
-    },
-    {
-      "name": "crlf_normalize_to_lf_indented_proposed",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\n"
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "crlf_normalize_to_lf"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "key1 = value1\r\nkey2 = value2\r\n"
-      ]
-    },
-    {
-      "name": "canonical_format_consistent_spacing",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key1 = value1\nkey2 = value2\nkey3 = \tvalue3"
-        },
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            },
-            {
-              "key": "key3",
-              "value": "\tvalue3"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "strict_spacing"
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
-      ]
-    },
-    {
-      "name": "deterministic_output",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "z",
-              "value": "last"
-            },
-            {
-              "key": "a",
-              "value": "first"
-            },
-            {
-              "key": "m",
-              "value": "middle"
-            }
-          ]
-        },
-        {
-          "function": "canonical_format",
-          "expect": "z = last\na = first\nm = middle"
-        }
-      ],
-      "variants": [
-        "proposed_behavior"
-      ],
-      "inputs": [
-        "z = last\na = first\nm = middle"
       ]
     }
   ]
