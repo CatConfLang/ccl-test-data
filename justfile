@@ -82,6 +82,10 @@ stats:
 list:
     go run ./cmd/ccl-test-runner test --list
 
+# Build the test-reader binary
+build-test-reader:
+    go build -o bin/test-reader ./cmd/test-reader
+
 # Interactive test viewer (TUI-based) - builds test-reader if needed
 view-tests PATH="generated_tests":
     just build-test-reader
@@ -91,6 +95,7 @@ view-tests PATH="generated_tests":
 view-tests-static PATH="generated_tests":
     just build-test-reader
     ./bin/test-reader {{PATH}} --static
+
 # Clean, build, lint, and test (ensures clean state)
 reset:
     just clean

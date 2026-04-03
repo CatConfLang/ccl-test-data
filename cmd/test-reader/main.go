@@ -570,31 +570,16 @@ func processTestFile(filename string) error {
 	fmt.Println(suiteInfoStyle.Render(info))
 	fmt.Println()
 
-	parseOnlyCount := 0
-	for _, test := range suite.Tests {
-		if hasParseValidation(test) {
-			parseOnlyCount++
-			displayTest(test, parseOnlyCount)
-		}
+	for i, test := range suite.Tests {
+		displayTest(test, i+1)
 	}
 
-	// Summary with styled box
-	if parseOnlyCount == 0 {
-		summary := "📋 No parse tests (parse/parse_indented) found in this file"
-		fmt.Println(summaryStyle.Render(summary))
-	} else {
-		summary := fmt.Sprintf("📊 Found %d parse test(s) (parse/parse_indented)", parseOnlyCount)
-		fmt.Println(summaryStyle.Render(summary))
-	}
+	// Summary
+	summary := fmt.Sprintf("📊 Found %d test(s)", len(suite.Tests))
+	fmt.Println(summaryStyle.Render(summary))
 	fmt.Println()
 
 	return nil
-}
-
-func hasParseValidation(test TestCase) bool {
-	// ccl-test-lib TestCase should have parse functionality built-in
-	// For now, assume all loaded tests are valid parse tests
-	return true
 }
 
 func displayTest(test TestCase, index int) {
@@ -816,64 +801,6 @@ func displayParseValidationFromTestCase(test TestCase) {
 	}
 }
 
-func displayParseValidation(parseData interface{}) {
-	// Convert to map first to handle the interface{}
-	parseMap, ok := parseData.(map[string]interface{})
-	if !ok {
-		fmt.Println(errorHeaderStyle.Render("❌ Invalid parse validation format"))
-		return
-	}
-
-	count, _ := parseMap["count"].(float64) // JSON numbers are float64
-
-	// Check if this is an error case
-	if errorVal, hasError := parseMap["error"]; hasError && errorVal == true {
-		fmt.Println(errorHeaderStyle.Render("❌ EXPECTED: Parse Error"))
-		fmt.Printf("   Count: %.0f assertion(s)\n", count)
-
-		if errorMsg, ok := parseMap["error_message"].(string); ok {
-			fmt.Printf("   Error: %s\n", errorMsg)
-		}
-		return
-	}
-
-	// Handle successful parse case
-	fmt.Println(successHeaderStyle.Render("✅ EXPECTED: Parse Success"))
-	fmt.Printf("   Count: %.0f assertion(s)\n", count)
-
-	if expectedData, ok := parseMap["expected"].([]interface{}); ok {
-		totalEntries := len(expectedData)
-		fmt.Printf("   Entries (%d total):\n", totalEntries)
-
-		// Show up to maxEntriesDisplay entries
-		entriesToShow := expectedData
-		if totalEntries > maxEntriesDisplay {
-			entriesToShow = expectedData[:maxEntriesDisplay]
-		}
-
-		for _, entryData := range entriesToShow {
-			if entryMap, ok := entryData.(map[string]interface{}); ok {
-				key, _ := entryMap["key"].(string)
-				value, _ := entryMap["value"].(string)
-
-				// Boxed entry content with key/equals on first line, value on second
-				keyLine := fmt.Sprintf("%s %s", formatKey(key), entryEqualsStyle.Render("="))
-				valueLine := formatValue(value)
-				entryContent := fmt.Sprintf("%s\n%s", keyLine, valueLine)
-				fmt.Println(entryBoxStyle.Render(entryContent))
-			}
-		}
-
-		// Show truncation indicator if there are more entries
-		if totalEntries > maxEntriesDisplay {
-			remaining := totalEntries - maxEntriesDisplay
-			truncationMsg := fmt.Sprintf("... and %d more entries (use TUI mode for scrolling)", remaining)
-			truncationStyle := lipgloss.NewStyle().Foreground(subtleColor)
-			fmt.Println(truncationStyle.Render("   " + truncationMsg))
-		}
-	}
-}
-
 func displaySelectiveMetadata(test TestCase) {
 	// Show behavior tags if available in ccl-test-lib TestCase
 	variantTags := []string{}
@@ -1009,7 +936,7 @@ func (m fileSelectionModel) View() string {
 
 		// Stats line for selected file
 		if i == m.selectedFile {
-			stats := fmt.Sprintf("   Total: %d tests, Parse/ParseValue: %d tests", file.TestCount, file.ParseTests)
+			stats := fmt.Sprintf("   Total: %d tests, Parse/ParseIndented: %d tests", file.TestCount, file.ParseTests)
 			statsStyle := lipgloss.NewStyle().Foreground(subtleColor)
 			fileList.WriteString(statsStyle.Render(stats) + "\n")
 		}
@@ -1103,10 +1030,18 @@ type tuiModel struct {
 
 	// Navigation
 	wantsBack bool
+
+	// Error state
+	loadError error
 }
 
 type testLoadedMsg struct {
 	suite    TestSuite
+	filename string
+}
+
+type testLoadErrorMsg struct {
+	err      error
 	filename string
 }
 
@@ -1199,7 +1134,7 @@ func loadTestFileCmd(filename string) tea.Cmd {
 			FilterMode: loader.FilterAll,
 		})
 		if err != nil {
-			return nil
+			return testLoadErrorMsg{err: err, filename: filename}
 		}
 
 		return testLoadedMsg{
@@ -1272,6 +1207,11 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.filteredTests = m.tests // Initialize filtered to all tests
 		return m, nil
 
+	case testLoadErrorMsg:
+		m.loadError = msg.err
+		m.filename = msg.filename
+		return m, nil
+
 	case tea.WindowSizeMsg:
 		m.width = msg.Width
 		m.height = msg.Height
@@ -1295,8 +1235,8 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.applyFilter()
 				}
 			default:
-				// Accept printable characters
-				if len(msg.String()) == 1 {
+				// Accept printable characters (use rune count for unicode support)
+				if len([]rune(msg.String())) == 1 {
 					m.filterText += msg.String()
 					m.applyFilter()
 				}
@@ -1408,21 +1348,20 @@ func (m *tuiModel) scrollEntriesDown() {
 		return
 	}
 	currentTest := m.filteredTests[m.currentTest]
-	entryCount := 0
-	if currentTest.Expected != nil {
-		if expectedMap, ok := currentTest.Expected.(map[string]interface{}); ok {
-			if entriesArray, ok := expectedMap["entries"].([]interface{}); ok {
-				entryCount = len(entriesArray)
-			}
-		}
-	}
-	maxScroll := entryCount - maxEntriesDisplay
+	// Use renderExpectedContent to get the total item count consistently
+	// across all expected formats (entries array, structured map, objects)
+	result := renderExpectedContent(currentTest, 0, maxEntriesDisplay)
+	maxScroll := result.TotalItems - maxEntriesDisplay
 	if maxScroll > 0 && m.entryScroll < maxScroll {
 		m.entryScroll++
 	}
 }
 
 func (m tuiModel) View() string {
+	if m.loadError != nil {
+		errStyle := lipgloss.NewStyle().Foreground(errorColor).Bold(true)
+		return errStyle.Render(fmt.Sprintf("Error loading %s: %v\n\nPress q to quit.", m.filename, m.loadError))
+	}
 	if len(m.tests) == 0 {
 		return fmt.Sprintf("Loading... (tests=%d, suite=%s, filename=%s)", len(m.tests), m.suite.Suite, m.filename)
 	}
@@ -1824,54 +1763,37 @@ func runTUI(filename string) {
 }
 
 func runTUIWithBackNav(filename, directory string) {
-	for {
-		model := initialTUIModel()
-		model.filename = filename
-		model.directory = directory
+	model := initialTUIModel()
+	model.filename = filename
+	model.directory = directory
 
-		p := tea.NewProgram(model, tea.WithAltScreen())
-		finalModel, err := p.Run()
-		if err != nil {
-			fmt.Printf("Error running TUI: %v", err)
-			os.Exit(1)
-		}
+	p := tea.NewProgram(model, tea.WithAltScreen())
+	finalModel, err := p.Run()
+	if err != nil {
+		fmt.Printf("Error running TUI: %v", err)
+		os.Exit(1)
+	}
 
-		// Check if user pressed escape to go back
-		if tuiModel, ok := finalModel.(tuiModel); ok && tuiModel.wantsBack {
-			// Go back to directory selection
-			runFileSelectionTUI(directory)
-			break
-		} else {
-			// User quit normally, exit completely
-			break
-		}
+	if tuiModel, ok := finalModel.(tuiModel); ok && tuiModel.wantsBack {
+		runFileSelectionTUI(directory)
 	}
 }
 
 // runTUIWithAllTests runs the TUI with all tests from the directory combined
 func runTUIWithAllTests(directory string) {
-	for {
-		model := initialTUIModel()
-		model.filename = "" // Will be set by loadAllTestFilesCmd
-		model.directory = directory
+	model := initialTUIModel()
+	model.filename = "" // Will be set by loadAllTestFilesCmd
+	model.directory = directory
 
-		// Create a custom init that loads all files
-		p := tea.NewProgram(&allTestsModel{tuiModel: model, dir: directory}, tea.WithAltScreen())
-		finalModel, err := p.Run()
-		if err != nil {
-			fmt.Printf("Error running TUI: %v", err)
-			os.Exit(1)
-		}
+	p := tea.NewProgram(&allTestsModel{tuiModel: model, dir: directory}, tea.WithAltScreen())
+	finalModel, err := p.Run()
+	if err != nil {
+		fmt.Printf("Error running TUI: %v", err)
+		os.Exit(1)
+	}
 
-		// Check if user pressed escape to go back
-		if m, ok := finalModel.(*allTestsModel); ok && m.tuiModel.wantsBack {
-			// Go back to directory selection
-			runFileSelectionTUI(directory)
-			break
-		} else {
-			// User quit normally, exit completely
-			break
-		}
+	if m, ok := finalModel.(*allTestsModel); ok && m.tuiModel.wantsBack {
+		runFileSelectionTUI(directory)
 	}
 }
 
