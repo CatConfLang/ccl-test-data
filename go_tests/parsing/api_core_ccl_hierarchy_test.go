@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,22 +12,17 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // basic_object_construction_parse - function:parse
 func TestBasicObjectConstructionParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -36,21 +31,17 @@ age = 42`
 
 }
 
-
 // basic_object_construction_build_hierarchy - function:build_hierarchy
 func TestBasicObjectConstructionBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -60,32 +51,26 @@ age = 42`
 
 }
 
-
 // basic_object_construction_print - function:print
 func TestBasicObjectConstructionPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // deep_nested_objects_parse - function:parse
 func TestDeepNestedObjectsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -94,13 +79,11 @@ func TestDeepNestedObjectsParse(t *testing.T) {
     port = 5432
   cache =
     enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -109,10 +92,8 @@ func TestDeepNestedObjectsParse(t *testing.T) {
 
 }
 
-
 // deep_nested_objects_build_hierarchy - function:build_hierarchy
 func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -121,13 +102,11 @@ func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
     port = 5432
   cache =
     enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -137,10 +116,8 @@ func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
 
 }
 
-
 // deep_nested_objects_print - function:print
 func TestDeepNestedObjectsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -149,36 +126,30 @@ func TestDeepNestedObjectsPrint(t *testing.T) {
     port = 5432
   cache =
     enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // duplicate_keys_to_lists_parse - function:parse
 func TestDuplicateKeysToListsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = first
 item = second
 item = third`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -187,22 +158,18 @@ item = third`
 
 }
 
-
 // duplicate_keys_to_lists_build_hierarchy - function:build_hierarchy
 func TestDuplicateKeysToListsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = first
 item = second
 item = third`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -212,46 +179,38 @@ item = third`
 
 }
 
-
 // duplicate_keys_to_lists_print - function:print
 func TestDuplicateKeysToListsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `item = first
 item = second
 item = third`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // nested_duplicate_keys_parse - function:parse
 func TestNestedDuplicateKeysParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
   server = web1
   server = web2
   port = 80`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -260,23 +219,19 @@ func TestNestedDuplicateKeysParse(t *testing.T) {
 
 }
 
-
 // nested_duplicate_keys_build_hierarchy - function:build_hierarchy
 func TestNestedDuplicateKeysBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
   server = web1
   server = web2
   port = 80`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -286,34 +241,28 @@ func TestNestedDuplicateKeysBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_duplicate_keys_print - function:print
 func TestNestedDuplicateKeysPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
   server = web1
   server = web2
   port = 80`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // mixed_flat_and_nested_parse - function:parse
 func TestMixedFlatAndNestedParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
@@ -321,13 +270,11 @@ config =
   debug = true
   timeout = 30
 version = 1.0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -336,10 +283,8 @@ version = 1.0`
 
 }
 
-
 // mixed_flat_and_nested_build_hierarchy - function:build_hierarchy
 func TestMixedFlatAndNestedBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
@@ -347,13 +292,11 @@ config =
   debug = true
   timeout = 30
 version = 1.0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -363,10 +306,8 @@ version = 1.0`
 
 }
 
-
 // mixed_flat_and_nested_print - function:print
 func TestMixedFlatAndNestedPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice
@@ -374,24 +315,20 @@ config =
   debug = true
   timeout = 30
 version = 1.0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // nested_objects_with_lists_parse - function:parse
 func TestNestedObjectsWithListsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `environments =
@@ -402,13 +339,11 @@ func TestNestedObjectsWithListsParse(t *testing.T) {
   dev =
     server = localhost
     port = 3000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -417,10 +352,8 @@ func TestNestedObjectsWithListsParse(t *testing.T) {
 
 }
 
-
 // nested_objects_with_lists_build_hierarchy - function:build_hierarchy
 func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `environments =
@@ -431,13 +364,11 @@ func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
   dev =
     server = localhost
     port = 3000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -447,10 +378,8 @@ func TestNestedObjectsWithListsBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_objects_with_lists_print - function:print
 func TestNestedObjectsWithListsPrint(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `environments =
@@ -461,24 +390,20 @@ func TestNestedObjectsWithListsPrint(t *testing.T) {
   dev =
     server = localhost
     port = 3000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// TODO: Implement print validation
-	_ = ccl // Prevent unused variable warning
+	_ = ccl   // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
+	_ = err   // Prevent unused variable warning
 
 }
 
-
 // deeply_nested_list_parse - function:parse
 func TestDeeplyNestedListParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -487,13 +412,11 @@ func TestDeeplyNestedListParse(t *testing.T) {
       servers = web1
       servers = web2
       servers = api1`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -502,10 +425,8 @@ func TestDeeplyNestedListParse(t *testing.T) {
 
 }
 
-
 // deeply_nested_list_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestDeeplyNestedListBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -514,13 +435,11 @@ func TestDeeplyNestedListBuildHierarchy(t *testing.T) {
       servers = web1
       servers = web2
       servers = api1`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -530,10 +449,8 @@ func TestDeeplyNestedListBuildHierarchy(t *testing.T) {
 
 }
 
-
 // deeply_nested_list_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic behavior:path_traversal
 func TestDeeplyNestedListGetList(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -542,13 +459,11 @@ func TestDeeplyNestedListGetList(t *testing.T) {
       servers = web1
       servers = web2
       servers = api1`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -561,5 +476,3 @@ func TestDeeplyNestedListGetList(t *testing.T) {
 	}
 
 }
-
-

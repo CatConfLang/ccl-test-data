@@ -272,6 +272,28 @@
                   "type": "boolean",
                   "description": "Whether function should produce an error",
                   "default": false
+                },
+                "predicate": {
+                  "type": "object",
+                  "description": "Filter predicate specification. Defines how to filter entries based on a field comparison.",
+                  "required": ["field", "op", "value"],
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "enum": ["key", "value"],
+                      "description": "Which Entry field to compare"
+                    },
+                    "op": {
+                      "type": "string",
+                      "enum": ["==", "!="],
+                      "description": "Comparison operator"
+                    },
+                    "value": {
+                      "type": "string",
+                      "description": "Value to compare against"
+                    }
+                  },
+                  "additionalProperties": false
                 }
               },
               "additionalProperties": false

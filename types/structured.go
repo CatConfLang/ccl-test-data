@@ -24,10 +24,11 @@ type SourceTestCase struct {
 
 // SourceTestValidation represents a validation in source tests
 type SourceTestValidation struct {
-	Function string      `json:"function"`
-	Expect   interface{} `json:"expect"`
-	Args     []string    `json:"args,omitempty"`
-	Error    bool        `json:"error,omitempty"`
+	Function  string      `json:"function"`
+	Expect    interface{} `json:"expect"`
+	Args      []string    `json:"args,omitempty"`
+	Error     bool        `json:"error,omitempty"`
+	Predicate *Predicate  `json:"predicate,omitempty"`
 }
 
 // FlatTest represents the structure of flat test files (*-flat.json)
@@ -41,6 +42,7 @@ type FlatTestCase struct {
 	Validation  string         `json:"validation"`
 	Expected    ExpectedResult `json:"expected"`
 	Args        []string       `json:"args,omitempty"`
+	Predicate   *Predicate     `json:"predicate,omitempty"`
 	Functions   []string       `json:"functions,omitempty"`
 	Behaviors   []string       `json:"behaviors"`
 	Variants    []string       `json:"variants"`
@@ -69,6 +71,13 @@ type ConflictSpec struct {
 	Behaviors []string `json:"behaviors,omitempty"`
 	Variants  []string `json:"variants,omitempty"`
 	Features  []string `json:"features,omitempty"`
+}
+
+// Predicate represents a filter predicate specification
+type Predicate struct {
+	Field string `json:"field"` // "key" or "value"
+	Op    string `json:"op"`    // "==" or "!="
+	Value string `json:"value"` // Value to compare against
 }
 
 // Entry is defined in schema.go to avoid duplication

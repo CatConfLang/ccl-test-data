@@ -728,6 +728,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": []
         }
       ],
@@ -756,6 +757,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": []
         }
       ],
@@ -796,6 +798,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": [
             {
               "key": "host",
@@ -856,6 +859,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": [
             {
               "key": "host",
@@ -912,6 +916,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": []
         }
       ],
@@ -948,6 +953,7 @@
         },
         {
           "function": "filter",
+          "predicate": { "field": "key", "op": "!=", "value": "/" },
           "expect": []
         }
       ],

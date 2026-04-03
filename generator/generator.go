@@ -213,6 +213,7 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 			Validation:  validationName,
 			Expected:    validationComponents.Expected,
 			Args:        validationComponents.Args,
+			Predicate:   validationComponents.Predicate,
 			ExpectError: validationComponents.Error,
 			Meta:        sourceTest.Meta,
 			SourceTest:  sourceTest.Name,
@@ -297,8 +298,6 @@ func (fg *FlatGenerator) GenerateMetadataFromValidation(validationName string) (
 
 	// Map validation names to required features
 	switch validationName {
-	case "filter":
-		features = append(features, string(config.FeatureComments))
 	case "expand_dotted":
 		features = append(features, string(config.FeatureExperimentalDottedKeys))
 	}
@@ -448,6 +447,7 @@ func (fg *FlatGenerator) convertToFlatFormat(test types.TestCase) generated.Gene
 		Variants:   variants,
 		Conflicts:  conflicts,
 		Args:       fg.getArgsForValidation(test.Validation, test.Args),
+		Predicate:  fg.convertPredicate(test.Predicate),
 		SourceTest: &test.SourceTest,
 	}
 
@@ -566,6 +566,17 @@ func (fg *FlatGenerator) convertConflicts(conflicts *types.ConflictSet) *generat
 	}
 }
 
+func (fg *FlatGenerator) convertPredicate(predicate *types.Predicate) *generated.GeneratedFormatSimpleJsonTestsElemPredicate {
+	if predicate == nil {
+		return nil
+	}
+	return &generated.GeneratedFormatSimpleJsonTestsElemPredicate{
+		Field: predicate.Field,
+		Op:    predicate.Op,
+		Value: predicate.Value,
+	}
+}
+
 // Helper functions
 
 // getValidationName extracts the validation name from JSON tag or field name
@@ -596,9 +607,10 @@ func camelToSnake(s string) string {
 
 // ValidationComponents represents the parsed components of a validation value
 type ValidationComponents struct {
-	Expected interface{}
-	Args     []string
-	Error    bool
+	Expected  interface{}
+	Args      []string
+	Error     bool
+	Predicate *types.Predicate
 }
 
 // parseValidationValue parses a validation value that may be either:
@@ -635,6 +647,23 @@ func parseValidationValue(value interface{}) ValidationComponents {
 		if errorVal, hasError := validationMap["error"]; hasError {
 			if errorBool, ok := errorVal.(bool); ok {
 				result.Error = errorBool
+			}
+		}
+
+		// Extract predicate field if present
+		if predicateVal, hasPredicate := validationMap["predicate"]; hasPredicate {
+			if predicateMap, ok := predicateVal.(map[string]interface{}); ok {
+				predicate := &types.Predicate{}
+				if field, ok := predicateMap["field"].(string); ok {
+					predicate.Field = field
+				}
+				if op, ok := predicateMap["op"].(string); ok {
+					predicate.Op = op
+				}
+				if val, ok := predicateMap["value"].(string); ok {
+					predicate.Value = val
+				}
+				result.Predicate = predicate
 			}
 		}
 

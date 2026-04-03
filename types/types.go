@@ -22,6 +22,7 @@ type TestCase struct {
 	Validation  string      `json:"validation,omitempty"`
 	Expected    interface{} `json:"expected,omitempty"`
 	Args        []string    `json:"args,omitempty"`
+	Predicate   *Predicate  `json:"predicate,omitempty"`
 	ExpectError bool        `json:"expect_error,omitempty"`
 
 	// Type-safe metadata (replaces string tag parsing)

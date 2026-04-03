@@ -422,10 +422,11 @@ type CompactTest struct {
 
 // CompactValidation represents a single validation in compact format
 type CompactValidation struct {
-	Function string      `json:"function"`
-	Expect   interface{} `json:"expect"`
-	Args     []string    `json:"args,omitempty"`
-	Error    bool        `json:"error,omitempty"`
+	Function  string           `json:"function"`
+	Expect    interface{}      `json:"expect"`
+	Args      []string         `json:"args,omitempty"`
+	Error     bool             `json:"error,omitempty"`
+	Predicate *types.Predicate `json:"predicate,omitempty"`
 }
 
 // loadCompactFormat parses compact format and converts to TestCase array
@@ -548,6 +549,15 @@ func createValidationObject(test CompactValidation) interface{} {
 	// Only include args for typed access functions
 	if typedAccessFunctions[test.Function] {
 		validationObj["args"] = test.Args
+	}
+
+	// Include predicate when present (for filter tests)
+	if test.Predicate != nil {
+		validationObj["predicate"] = map[string]interface{}{
+			"field": test.Predicate.Field,
+			"op":    test.Predicate.Op,
+			"value": test.Predicate.Value,
+		}
 	}
 
 	return validationObj

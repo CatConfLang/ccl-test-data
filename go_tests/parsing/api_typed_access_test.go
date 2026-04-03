@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-	
+
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,21 +12,16 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
-
-
 // parse_basic_integer_parse - function:parse feature:optional_typed_accessors
 func TestParseBasicIntegerParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = 8080`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -35,20 +30,16 @@ func TestParseBasicIntegerParse(t *testing.T) {
 
 }
 
-
 // parse_basic_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = 8080`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -58,20 +49,16 @@ func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_basic_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBasicIntegerGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = 8080`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -82,20 +69,16 @@ func TestParseBasicIntegerGetInt(t *testing.T) {
 
 }
 
-
 // parse_basic_float_parse - function:parse feature:optional_typed_accessors
 func TestParseBasicFloatParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = 98.6`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -104,20 +87,16 @@ func TestParseBasicFloatParse(t *testing.T) {
 
 }
 
-
 // parse_basic_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicFloatBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = 98.6`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -127,20 +106,16 @@ func TestParseBasicFloatBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_basic_float_get_float - function:get_float feature:optional_typed_accessors
 func TestParseBasicFloatGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = 98.6`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -151,20 +126,16 @@ func TestParseBasicFloatGetFloat(t *testing.T) {
 
 }
 
-
 // parse_boolean_true_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanTrueParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -173,20 +144,16 @@ func TestParseBooleanTrueParse(t *testing.T) {
 
 }
 
-
 // parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -196,20 +163,16 @@ func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_boolean_true_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanTrueGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -220,20 +183,16 @@ func TestParseBooleanTrueGetBool(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanYesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -242,20 +201,16 @@ func TestParseBooleanYesParse(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -265,20 +220,16 @@ func TestParseBooleanYesBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanYesGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -289,20 +240,16 @@ func TestParseBooleanYesGetBool(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -311,20 +258,16 @@ func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -334,20 +277,16 @@ func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_boolean_yes_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `active = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -361,20 +300,16 @@ func TestParseBooleanYesStrictLiteralGetBool(t *testing.T) {
 
 }
 
-
 // parse_boolean_false_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanFalseParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `disabled = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -383,20 +318,16 @@ func TestParseBooleanFalseParse(t *testing.T) {
 
 }
 
-
 // parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `disabled = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -406,20 +337,16 @@ func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_boolean_false_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient
 func TestParseBooleanFalseGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `disabled = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -430,20 +357,16 @@ func TestParseBooleanFalseGetBool(t *testing.T) {
 
 }
 
-
 // parse_string_fallback_parse - function:parse
 func TestParseStringFallbackParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -452,20 +375,16 @@ func TestParseStringFallbackParse(t *testing.T) {
 
 }
 
-
 // parse_string_fallback_build_hierarchy - function:build_hierarchy
 func TestParseStringFallbackBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -475,20 +394,16 @@ func TestParseStringFallbackBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_string_fallback_get_string - function:get_string
 func TestParseStringFallbackGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `name = Alice`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -499,20 +414,16 @@ func TestParseStringFallbackGetString(t *testing.T) {
 
 }
 
-
 // parse_negative_integer_parse - function:parse feature:optional_typed_accessors
 func TestParseNegativeIntegerParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `offset = -42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -521,20 +432,16 @@ func TestParseNegativeIntegerParse(t *testing.T) {
 
 }
 
-
 // parse_negative_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `offset = -42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -544,20 +451,16 @@ func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_negative_integer_get_int - function:get_int feature:optional_typed_accessors
 func TestParseNegativeIntegerGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `offset = -42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -568,22 +471,18 @@ func TestParseNegativeIntegerGetInt(t *testing.T) {
 
 }
 
-
 // parse_zero_values_parse - function:parse feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -592,22 +491,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -617,22 +512,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -643,22 +534,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseZeroValuesGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -669,22 +556,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -695,22 +578,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_strict_literal_parse - function:parse feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -719,22 +598,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -744,22 +619,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_strict_literal_get_int - function:get_int feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -770,22 +641,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_strict_literal_get_bool - function:get_bool feature:empty_keys feature:optional_typed_accessors behavior:boolean_strict
 func TestParseZeroValuesStrictLiteralGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -799,22 +666,18 @@ disabled = no`
 
 }
 
-
 // parse_zero_values_strict_literal_get_float - function:get_float feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `count = 0
 distance = 0.0
 disabled = no`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -825,10 +688,8 @@ disabled = no`
 
 }
 
-
 // parse_boolean_variants_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanVariantsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -838,13 +699,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -853,10 +712,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -866,13 +723,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -882,10 +737,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -895,13 +748,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -912,10 +763,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseBooleanVariantsGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -925,13 +774,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -942,10 +789,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -955,13 +800,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -970,10 +813,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -983,13 +824,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -999,10 +838,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -1012,13 +849,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1029,10 +864,8 @@ flag7 = 0`
 
 }
 
-
 // parse_boolean_variants_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanVariantsStrictLiteralGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag1 = yes
@@ -1042,13 +875,11 @@ flag4 = false
 flag5 = no
 flag6 = off
 flag7 = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1062,10 +893,8 @@ flag7 = 0`
 
 }
 
-
 // parse_mixed_types_parse - function:parse feature:optional_typed_accessors
 func TestParseMixedTypesParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1073,13 +902,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1087,11 +914,9 @@ debug = off`
 	assert.Equal(t, expected, parseResult)
 
 }
-
 
 // parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1099,13 +924,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1115,10 +938,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1126,13 +947,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1143,10 +962,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1154,13 +971,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1171,10 +986,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestParseMixedTypesGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1182,13 +995,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1199,10 +1010,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1210,13 +1019,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1227,10 +1034,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_parse - function:parse feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1238,13 +1043,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1253,10 +1056,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1264,13 +1065,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1280,10 +1079,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_get_string - function:get_string feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1291,13 +1088,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1308,10 +1103,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_get_int - function:get_int feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1319,13 +1112,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1336,10 +1127,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseMixedTypesStrictLiteralGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1347,13 +1136,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1364,10 +1151,8 @@ debug = off`
 
 }
 
-
 // parse_mixed_types_strict_literal_get_float - function:get_float feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `host = localhost
@@ -1375,13 +1160,11 @@ port = 8080
 ssl = true
 timeout = 30.5
 debug = off`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1392,21 +1175,17 @@ debug = off`
 
 }
 
-
 // parse_with_whitespace_parse - function:parse feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number =   42   
 flag =  true  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1415,21 +1194,17 @@ flag =  true  `
 
 }
 
-
 // parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number =   42   
 flag =  true  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1439,21 +1214,17 @@ flag =  true  `
 
 }
 
-
 // parse_with_whitespace_get_int - function:get_int feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number =   42   
 flag =  true  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1464,21 +1235,17 @@ flag =  true  `
 
 }
 
-
 // parse_with_whitespace_get_bool - function:get_bool feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number =   42   
 flag =  true  `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1489,23 +1256,19 @@ flag =  true  `
 
 }
 
-
 // parse_with_conservative_options_parse - function:parse feature:optional_typed_accessors
 func TestParseWithConservativeOptionsParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42
 decimal = 3.14
 flag = true
 text = hello`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1514,23 +1277,19 @@ text = hello`
 
 }
 
-
 // parse_with_conservative_options_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseWithConservativeOptionsBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42
 decimal = 3.14
 flag = true
 text = hello`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1540,23 +1299,19 @@ text = hello`
 
 }
 
-
 // parse_with_conservative_options_get_string - function:get_string feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42
 decimal = 3.14
 flag = true
 text = hello`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1567,23 +1322,19 @@ text = hello`
 
 }
 
-
 // parse_with_conservative_options_get_int - function:get_int feature:optional_typed_accessors
 func TestParseWithConservativeOptionsGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42
 decimal = 3.14
 flag = true
 text = hello`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1594,20 +1345,16 @@ text = hello`
 
 }
 
-
 // parse_integer_error_parse - function:parse feature:optional_typed_accessors
 func TestParseIntegerErrorParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = not_a_number`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1616,20 +1363,16 @@ func TestParseIntegerErrorParse(t *testing.T) {
 
 }
 
-
 // parse_integer_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = not_a_number`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1639,20 +1382,16 @@ func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_integer_error_get_int - function:get_int feature:optional_typed_accessors
 func TestParseIntegerErrorGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `port = not_a_number`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1666,20 +1405,16 @@ func TestParseIntegerErrorGetInt(t *testing.T) {
 
 }
 
-
 // parse_float_error_parse - function:parse feature:optional_typed_accessors
 func TestParseFloatErrorParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = invalid`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1688,20 +1423,16 @@ func TestParseFloatErrorParse(t *testing.T) {
 
 }
 
-
 // parse_float_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseFloatErrorBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = invalid`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1711,20 +1442,16 @@ func TestParseFloatErrorBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_float_error_get_float - function:get_float feature:optional_typed_accessors
 func TestParseFloatErrorGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `temperature = invalid`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1738,20 +1465,16 @@ func TestParseFloatErrorGetFloat(t *testing.T) {
 
 }
 
-
 // parse_boolean_error_parse - function:parse feature:optional_typed_accessors
 func TestParseBooleanErrorParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = maybe`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1760,20 +1483,16 @@ func TestParseBooleanErrorParse(t *testing.T) {
 
 }
 
-
 // parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = maybe`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1783,20 +1502,16 @@ func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_boolean_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestParseBooleanErrorGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `enabled = maybe`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1810,20 +1525,16 @@ func TestParseBooleanErrorGetBool(t *testing.T) {
 
 }
 
-
 // parse_missing_path_error_parse - function:parse
 func TestParseMissingPathErrorParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `existing = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1832,20 +1543,16 @@ func TestParseMissingPathErrorParse(t *testing.T) {
 
 }
 
-
 // parse_missing_path_error_build_hierarchy - function:build_hierarchy
 func TestParseMissingPathErrorBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `existing = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1855,20 +1562,16 @@ func TestParseMissingPathErrorBuildHierarchy(t *testing.T) {
 
 }
 
-
 // parse_missing_path_error_get_string - function:get_string
 func TestParseMissingPathErrorGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `existing = value`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1882,21 +1585,17 @@ func TestParseMissingPathErrorGetString(t *testing.T) {
 
 }
 
-
 // boolean_case_sensitivity_uppercase_parse - function:parse feature:optional_typed_accessors
 func TestBooleanCaseSensitivityUppercaseParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `upper_true = TRUE
 upper_false = FALSE`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1905,21 +1604,17 @@ upper_false = FALSE`
 
 }
 
-
 // boolean_case_sensitivity_uppercase_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanCaseSensitivityUppercaseGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `upper_true = TRUE
 upper_false = FALSE`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1933,21 +1628,17 @@ upper_false = FALSE`
 
 }
 
-
 // boolean_case_sensitivity_mixed_parse - function:parse feature:optional_typed_accessors
 func TestBooleanCaseSensitivityMixedParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `mixed_true = True
 mixed_false = False`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1956,21 +1647,17 @@ mixed_false = False`
 
 }
 
-
 // boolean_case_sensitivity_mixed_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanCaseSensitivityMixedGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `mixed_true = True
 mixed_false = False`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -1984,21 +1671,17 @@ mixed_false = False`
 
 }
 
-
 // boolean_lenient_uppercase_yes_no_parse - function:parse feature:optional_typed_accessors
 func TestBooleanLenientUppercaseYesNoParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `upper_yes = YES
 upper_no = NO`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2007,21 +1690,17 @@ upper_no = NO`
 
 }
 
-
 // boolean_lenient_uppercase_yes_no_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_lenient
 func TestBooleanLenientUppercaseYesNoGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `upper_yes = YES
 upper_no = NO`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2035,21 +1714,17 @@ upper_no = NO`
 
 }
 
-
 // boolean_numeric_one_zero_strict_parse - function:parse feature:optional_typed_accessors
 func TestBooleanNumericOneZeroStrictParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `one = 1
 zero = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2058,21 +1733,17 @@ zero = 0`
 
 }
 
-
 // boolean_numeric_one_zero_strict_get_int - function:get_int feature:optional_typed_accessors
 func TestBooleanNumericOneZeroStrictGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `one = 1
 zero = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2083,21 +1754,17 @@ zero = 0`
 
 }
 
-
 // boolean_numeric_one_zero_strict_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanNumericOneZeroStrictGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `one = 1
 zero = 0`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2111,20 +1778,16 @@ zero = 0`
 
 }
 
-
 // boolean_with_whitespace_parse - function:parse feature:optional_typed_accessors feature:whitespace
 func TestBooleanWithWhitespaceParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `padded =   true   `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2133,20 +1796,16 @@ func TestBooleanWithWhitespaceParse(t *testing.T) {
 
 }
 
-
 // boolean_with_whitespace_get_bool - function:get_bool feature:optional_typed_accessors feature:whitespace behavior:boolean_strict
 func TestBooleanWithWhitespaceGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `padded =   true   `
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2157,23 +1816,19 @@ func TestBooleanWithWhitespaceGetBool(t *testing.T) {
 
 }
 
-
 // boolean_nested_object_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestBooleanNestedObjectBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
   debug = true
   verbose = false
   experimental = yes`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2183,20 +1838,16 @@ func TestBooleanNestedObjectBuildHierarchy(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_int_on_bool_parse - function:parse feature:optional_typed_accessors
 func TestTypeMismatchGetIntOnBoolParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2205,20 +1856,16 @@ func TestTypeMismatchGetIntOnBoolParse(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_int_on_bool_get_int - function:get_int feature:optional_typed_accessors
 func TestTypeMismatchGetIntOnBoolGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag = true`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2232,20 +1879,16 @@ func TestTypeMismatchGetIntOnBoolGetInt(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_bool_on_int_parse - function:parse feature:optional_typed_accessors
 func TestTypeMismatchGetBoolOnIntParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2254,20 +1897,16 @@ func TestTypeMismatchGetBoolOnIntParse(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_bool_on_int_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestTypeMismatchGetBoolOnIntGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `number = 42`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2281,20 +1920,16 @@ func TestTypeMismatchGetBoolOnIntGetBool(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_float_on_bool_parse - function:parse feature:optional_typed_accessors
 func TestTypeMismatchGetFloatOnBoolParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2303,20 +1938,16 @@ func TestTypeMismatchGetFloatOnBoolParse(t *testing.T) {
 
 }
 
-
 // type_mismatch_get_float_on_bool_get_float - function:get_float feature:optional_typed_accessors
 func TestTypeMismatchGetFloatOnBoolGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `flag = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2330,22 +1961,18 @@ func TestTypeMismatchGetFloatOnBoolGetFloat(t *testing.T) {
 
 }
 
-
 // type_mismatch_nested_path_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestTypeMismatchNestedPathBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
   name = test
   count = abc`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2355,20 +1982,16 @@ func TestTypeMismatchNestedPathBuildHierarchy(t *testing.T) {
 
 }
 
-
 // boolean_empty_value_error_parse - function:parse feature:optional_typed_accessors
 func TestBooleanEmptyValueErrorParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2377,20 +2000,16 @@ func TestBooleanEmptyValueErrorParse(t *testing.T) {
 
 }
 
-
 // boolean_empty_value_error_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict
 func TestBooleanEmptyValueErrorGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `empty =`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2404,22 +2023,18 @@ func TestBooleanEmptyValueErrorGetBool(t *testing.T) {
 
 }
 
-
 // nested_get_int_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetIntParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
   port = 8080
   max_connections = 1000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2428,22 +2043,18 @@ func TestNestedGetIntParse(t *testing.T) {
 
 }
 
-
 // nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetIntBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
   port = 8080
   max_connections = 1000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2453,22 +2064,18 @@ func TestNestedGetIntBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_get_int_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestNestedGetIntGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
   port = 8080
   max_connections = 1000`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2479,10 +2086,8 @@ func TestNestedGetIntGetInt(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_int_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetIntParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -2490,13 +2095,11 @@ func TestDeeplyNestedGetIntParse(t *testing.T) {
     pool =
       min = 5
       max = 50`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2505,10 +2108,8 @@ func TestDeeplyNestedGetIntParse(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -2516,13 +2117,11 @@ func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
     pool =
       min = 5
       max = 50`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2532,10 +2131,8 @@ func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_int_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestDeeplyNestedGetIntGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `config =
@@ -2543,13 +2140,11 @@ func TestDeeplyNestedGetIntGetInt(t *testing.T) {
     pool =
       min = 5
       max = 50`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2560,22 +2155,18 @@ func TestDeeplyNestedGetIntGetInt(t *testing.T) {
 
 }
 
-
 // nested_get_float_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetFloatParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `metrics =
   cpu_threshold = 0.85
   memory_limit = 2.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2584,22 +2175,18 @@ func TestNestedGetFloatParse(t *testing.T) {
 
 }
 
-
 // nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetFloatBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `metrics =
   cpu_threshold = 0.85
   memory_limit = 2.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2609,22 +2196,18 @@ func TestNestedGetFloatBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_get_float_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestNestedGetFloatGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `metrics =
   cpu_threshold = 0.85
   memory_limit = 2.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2635,10 +2218,8 @@ func TestNestedGetFloatGetFloat(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_float_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetFloatParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -2646,13 +2227,11 @@ func TestDeeplyNestedGetFloatParse(t *testing.T) {
     weights =
       relevance = 0.6
       freshness = 0.4`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2661,10 +2240,8 @@ func TestDeeplyNestedGetFloatParse(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -2672,13 +2249,11 @@ func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
     weights =
       relevance = 0.6
       freshness = 0.4`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2688,10 +2263,8 @@ func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_float_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestDeeplyNestedGetFloatGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `app =
@@ -2699,13 +2272,11 @@ func TestDeeplyNestedGetFloatGetFloat(t *testing.T) {
     weights =
       relevance = 0.6
       freshness = 0.4`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2716,22 +2287,18 @@ func TestDeeplyNestedGetFloatGetFloat(t *testing.T) {
 
 }
 
-
 // nested_get_bool_parse - function:parse feature:optional_typed_accessors
 func TestNestedGetBoolParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `feature_flags =
   dark_mode = true
   beta_access = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2740,22 +2307,18 @@ func TestNestedGetBoolParse(t *testing.T) {
 
 }
 
-
 // nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetBoolBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `feature_flags =
   dark_mode = true
   beta_access = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2765,22 +2328,18 @@ func TestNestedGetBoolBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestNestedGetBoolGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `feature_flags =
   dark_mode = true
   beta_access = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2791,10 +2350,8 @@ func TestNestedGetBoolGetBool(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_bool_parse - function:parse feature:optional_typed_accessors
 func TestDeeplyNestedGetBoolParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `services =
@@ -2802,13 +2359,11 @@ func TestDeeplyNestedGetBoolParse(t *testing.T) {
     settings =
       require_mfa = true
       allow_anonymous = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2817,10 +2372,8 @@ func TestDeeplyNestedGetBoolParse(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `services =
@@ -2828,13 +2381,11 @@ func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
     settings =
       require_mfa = true
       allow_anonymous = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2844,10 +2395,8 @@ func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
 
 }
 
-
 // deeply_nested_get_bool_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestDeeplyNestedGetBoolGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `services =
@@ -2855,13 +2404,11 @@ func TestDeeplyNestedGetBoolGetBool(t *testing.T) {
     settings =
       require_mfa = true
       allow_anonymous = false`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2872,22 +2419,18 @@ func TestDeeplyNestedGetBoolGetBool(t *testing.T) {
 
 }
 
-
 // nested_get_string_basic_parse - function:parse
 func TestNestedGetStringBasicParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   name = mydb`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2896,22 +2439,18 @@ func TestNestedGetStringBasicParse(t *testing.T) {
 
 }
 
-
 // nested_get_string_basic_build_hierarchy - function:build_hierarchy
 func TestNestedGetStringBasicBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   name = mydb`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2921,22 +2460,18 @@ func TestNestedGetStringBasicBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_get_string_basic_get_string - function:get_string behavior:path_traversal
 func TestNestedGetStringBasicGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   name = mydb`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2947,10 +2482,8 @@ func TestNestedGetStringBasicGetString(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_parse - function:parse feature:optional_typed_accessors
 func TestNestedMixedTypedAccessParse(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -2958,13 +2491,11 @@ func TestNestedMixedTypedAccessParse(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -2973,10 +2504,8 @@ func TestNestedMixedTypedAccessParse(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
 func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -2984,13 +2513,11 @@ func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -3000,10 +2527,8 @@ func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_get_string - function:get_string feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetString(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -3011,13 +2536,11 @@ func TestNestedMixedTypedAccessGetString(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_string validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -3028,10 +2551,8 @@ func TestNestedMixedTypedAccessGetString(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_get_int - function:get_int feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetInt(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -3039,13 +2560,11 @@ func TestNestedMixedTypedAccessGetInt(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_int validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -3056,10 +2575,8 @@ func TestNestedMixedTypedAccessGetInt(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_get_bool - function:get_bool feature:optional_typed_accessors behavior:boolean_strict behavior:boolean_lenient behavior:path_traversal
 func TestNestedMixedTypedAccessGetBool(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -3067,13 +2584,11 @@ func TestNestedMixedTypedAccessGetBool(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_bool validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -3084,10 +2599,8 @@ func TestNestedMixedTypedAccessGetBool(t *testing.T) {
 
 }
 
-
 // nested_mixed_typed_access_get_float - function:get_float feature:optional_typed_accessors behavior:path_traversal
 func TestNestedMixedTypedAccessGetFloat(t *testing.T) {
-	
 
 	ccl := mock.New()
 	input := `server =
@@ -3095,13 +2608,11 @@ func TestNestedMixedTypedAccessGetFloat(t *testing.T) {
   port = 3000
   debug = true
   rate_limit = 1.5`
-	
+
 	// Declare variables for reuse across validations
-	
-	
-	
+
 	var err error
-	
+
 	// get_float validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -3111,5 +2622,3 @@ func TestNestedMixedTypedAccessGetFloat(t *testing.T) {
 	assert.Equal(t, 1.5, result)
 
 }
-
-
