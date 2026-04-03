@@ -970,27 +970,76 @@ func runFileSelectionTUI(dir string) {
 		return
 	}
 
-	model := initialFileSelectionModel(dir)
-	model.files = files
+	// Loop-based navigation: file selection → test viewer → back to file selection
+	// avoids unbounded recursion from runTUIWithBackNav ↔ runFileSelectionTUI calls
+	for {
+		model := initialFileSelectionModel(dir)
+		model.files = files
+
+		p := tea.NewProgram(model, tea.WithAltScreen())
+		finalModel, err := p.Run()
+		if err != nil {
+			fmt.Printf("Error running file selection TUI: %v", err)
+			os.Exit(1)
+		}
+
+		fsModel, ok := finalModel.(fileSelectionModel)
+		if !ok || !fsModel.fileSelected || fsModel.selectedFile < 0 || fsModel.selectedFile >= len(fsModel.files) {
+			return // user quit
+		}
+
+		selectedFile := fsModel.files[fsModel.selectedFile]
+		wantsBack := false
+		if selectedFile.IsVirtual {
+			wantsBack = runTUIAndCheckBack(dir)
+		} else {
+			wantsBack = runTUIAndCheckBack(selectedFile.Path)
+		}
+		if !wantsBack {
+			return // user quit from test viewer
+		}
+		// loop back to file selection
+	}
+}
+
+// runTUIAndCheckBack runs the test viewer TUI and returns true if the user wants
+// to go back to file selection, false if they quit.
+func runTUIAndCheckBack(fileOrDir string) bool {
+	// Determine if this is an "all tests" load or a single file
+	info, err := os.Stat(fileOrDir)
+	isDir := err == nil && info.IsDir()
+
+	if isDir {
+		model := initialTUIModel()
+		model.filename = ""
+		model.directory = fileOrDir
+
+		p := tea.NewProgram(&allTestsModel{tuiModel: model, dir: fileOrDir}, tea.WithAltScreen())
+		finalModel, err := p.Run()
+		if err != nil {
+			fmt.Printf("Error running TUI: %v", err)
+			os.Exit(1)
+		}
+		if m, ok := finalModel.(*allTestsModel); ok {
+			return m.tuiModel.wantsBack
+		}
+		return false
+	}
+
+	model := initialTUIModel()
+	model.filename = fileOrDir
+	model.directory = filepath.Dir(fileOrDir)
 
 	p := tea.NewProgram(model, tea.WithAltScreen())
 	finalModel, err := p.Run()
 	if err != nil {
-		fmt.Printf("Error running file selection TUI: %v", err)
+		fmt.Printf("Error running TUI: %v", err)
 		os.Exit(1)
 	}
-
-	// Check if a file was selected
-	if fsModel, ok := finalModel.(fileSelectionModel); ok && fsModel.fileSelected && fsModel.selectedFile >= 0 && fsModel.selectedFile < len(fsModel.files) {
-		selectedFile := fsModel.files[fsModel.selectedFile]
-		if selectedFile.IsVirtual {
-			// Run TUI with all tests combined
-			runTUIWithAllTests(dir)
-		} else {
-			// Run TUI with directory context for back navigation
-			runTUIWithBackNav(selectedFile.Path, dir)
-		}
+	if tm, ok := finalModel.(tuiModel); ok {
+		return tm.wantsBack
 	}
+	return false
 }
 
 // FilterMode represents the active filter type
@@ -1149,7 +1198,7 @@ func loadAllTestFilesCmd(dir string) tea.Cmd {
 	return func() tea.Msg {
 		files, err := os.ReadDir(dir)
 		if err != nil {
-			return nil
+			return testLoadErrorMsg{err: err, filename: dir}
 		}
 
 		impl := config.ImplementationConfig{
@@ -1231,7 +1280,8 @@ func (m tuiModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.applyFilter()
 			case "backspace":
 				if len(m.filterText) > 0 {
-					m.filterText = m.filterText[:len(m.filterText)-1]
+					runes := []rune(m.filterText)
+					m.filterText = string(runes[:len(runes)-1])
 					m.applyFilter()
 				}
 			default:
@@ -1522,8 +1572,9 @@ func (m tuiModel) renderListPane(width, height int) string {
 			maxNameLen = 10
 		}
 		name := test.Name
-		if len(name) > maxNameLen {
-			name = name[:maxNameLen-2] + ".."
+		nameRunes := []rune(name)
+		if len(nameRunes) > maxNameLen {
+			name = string(nameRunes[:maxNameLen-2]) + ".."
 		}
 
 		line := fmt.Sprintf("%s[%s] %s", prefix, badge, name)
@@ -1742,9 +1793,13 @@ func (m tuiModel) renderHelpBar() string {
 	if m.focusPane == 1 {
 		paneIndicator = "detail▶"
 	}
-	countInfo := fmt.Sprintf("[%d/%d] %s", m.currentTest+1, len(m.filteredTests), paneIndicator)
+	testNum := 0
+	if len(m.filteredTests) > 0 {
+		testNum = m.currentTest + 1
+	}
+	countInfo := fmt.Sprintf("[%d/%d] %s", testNum, len(m.filteredTests), paneIndicator)
 	if len(m.filteredTests) != len(m.tests) {
-		countInfo = fmt.Sprintf("[%d/%d of %d] %s", m.currentTest+1, len(m.filteredTests), len(m.tests), paneIndicator)
+		countInfo = fmt.Sprintf("[%d/%d of %d] %s", testNum, len(m.filteredTests), len(m.tests), paneIndicator)
 	}
 
 	help := strings.Join(parts, " • ") + " " + summaryStyle.Render(countInfo)
@@ -1759,41 +1814,6 @@ func runTUI(filename string) {
 	if _, err := p.Run(); err != nil {
 		fmt.Printf("Error running TUI: %v", err)
 		os.Exit(1)
-	}
-}
-
-func runTUIWithBackNav(filename, directory string) {
-	model := initialTUIModel()
-	model.filename = filename
-	model.directory = directory
-
-	p := tea.NewProgram(model, tea.WithAltScreen())
-	finalModel, err := p.Run()
-	if err != nil {
-		fmt.Printf("Error running TUI: %v", err)
-		os.Exit(1)
-	}
-
-	if tuiModel, ok := finalModel.(tuiModel); ok && tuiModel.wantsBack {
-		runFileSelectionTUI(directory)
-	}
-}
-
-// runTUIWithAllTests runs the TUI with all tests from the directory combined
-func runTUIWithAllTests(directory string) {
-	model := initialTUIModel()
-	model.filename = "" // Will be set by loadAllTestFilesCmd
-	model.directory = directory
-
-	p := tea.NewProgram(&allTestsModel{tuiModel: model, dir: directory}, tea.WithAltScreen())
-	finalModel, err := p.Run()
-	if err != nil {
-		fmt.Printf("Error running TUI: %v", err)
-		os.Exit(1)
-	}
-
-	if m, ok := finalModel.(*allTestsModel); ok && m.tuiModel.wantsBack {
-		runFileSelectionTUI(directory)
 	}
 }
 
