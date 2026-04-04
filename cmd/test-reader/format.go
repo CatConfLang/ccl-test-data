@@ -46,11 +46,18 @@ func isObjectValidation(validation string) bool {
 	}
 }
 
+// isListValidation returns true if the validation type expects a list
+func isListValidation(validation string) bool {
+	return validation == "get_list"
+}
+
 // ExpectedContentResult holds the rendered expected output content
 type ExpectedContentResult struct {
 	Header       string   // e.g. "✅ EXPECTED: Object" or "✅ EXPECTED: Entries"
 	IsError      bool     // true if expecting an error
 	IsObject     bool     // true if object visualization, false for entries
+	IsList       bool     // true if list visualization (get_list)
+	ListKey      string   // the key argument for list lookups
 	Lines        []string // rendered lines (object tree lines or entry box strings)
 	TotalItems   int      // total number of items (for count display)
 	StartIdx     int      // actual start index after bounds checking
@@ -102,11 +109,58 @@ func renderEntryLine(entry Entry) string {
 	return entryBoxStyle.Render(entryContent)
 }
 
+// extractList extracts a string slice from test.Expected for get_list validation.
+// Handles both the loader-transformed format (bare []interface{}) and the
+// structured format ({"count": N, "list": ["a", "b", ...]}).
+func extractList(expected interface{}) []string {
+	if expected == nil {
+		return nil
+	}
+
+	// Handle already-transformed format (loader extracts just the array)
+	if arr, ok := expected.([]interface{}); ok {
+		items := make([]string, 0, len(arr))
+		for _, item := range arr {
+			items = append(items, fmt.Sprintf("%v", item))
+		}
+		return items
+	}
+
+	// Handle structured format with "list" field
+	exp, ok := expected.(map[string]interface{})
+	if !ok {
+		return nil
+	}
+	listRaw, ok := exp["list"]
+	if !ok {
+		return nil
+	}
+	arr, ok := listRaw.([]interface{})
+	if !ok {
+		return nil
+	}
+	items := make([]string, 0, len(arr))
+	for _, item := range arr {
+		items = append(items, fmt.Sprintf("%v", item))
+	}
+	return items
+}
+
+// renderListItemLine renders a single list item as a styled string with its index
+func renderListItemLine(index int, value string) string {
+	indexStr := listIndexStyle.Render(fmt.Sprintf("[%d]", index))
+	valueStr := listValueStyle.Render(fmt.Sprintf("%q", value))
+	return fmt.Sprintf("  %s %s", indexStr, valueStr)
+}
+
 // countExpectedItems returns the total number of scrollable items for a test's
 // expected output without performing full styled rendering.
 func countExpectedItems(test TestCase) int {
 	if test.ExpectError {
 		return 0
+	}
+	if isListValidation(test.Validation) {
+		return len(extractList(test.Expected))
 	}
 	if isObjectValidation(test.Validation) {
 		if obj, ok := test.Expected.(map[string]interface{}); ok {
@@ -126,6 +180,25 @@ func renderExpectedContent(test TestCase, scrollOffset int, maxDisplay int) Expe
 	if test.ExpectError {
 		result.Header = "❌ EXPECTED: Error"
 		result.IsError = true
+		return result
+	}
+
+	if isListValidation(test.Validation) {
+		result.IsList = true
+		if len(test.Args) > 0 {
+			result.ListKey = test.Args[0]
+		}
+		items := extractList(test.Expected)
+		result.TotalItems = len(items)
+		if result.ListKey != "" {
+			result.Header = fmt.Sprintf("✅ EXPECTED: List (key: %s)", listKeyArgStyle.Render(result.ListKey))
+		} else {
+			result.Header = "✅ EXPECTED: List"
+		}
+		for i, item := range items {
+			result.Lines = append(result.Lines, renderListItemLine(i, item))
+		}
+		applyScrollBounds(&result, scrollOffset, maxDisplay)
 		return result
 	}
 

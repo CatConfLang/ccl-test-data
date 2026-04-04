@@ -159,6 +159,23 @@ var (
 				Bold(true).
 				Padding(0, 1)
 
+	getListValidationStyle = lipgloss.NewStyle().
+				Foreground(lipgloss.Color("#000000")).
+				Background(lipgloss.Color("#AF87FF")).
+				Bold(true).
+				Padding(0, 1)
+
+	// List visualization styles (for get_list)
+	listIndexStyle = lipgloss.NewStyle().
+			Foreground(subtleColor)
+
+	listValueStyle = lipgloss.NewStyle().
+			Foreground(lipgloss.Color("#FFFFFF"))
+
+	listKeyArgStyle = lipgloss.NewStyle().
+			Foreground(primaryColor).
+			Bold(true)
+
 	// Object visualization styles (for build_hierarchy, load, etc.)
 	objectKeyStyle = lipgloss.NewStyle().
 			Foreground(primaryColor).

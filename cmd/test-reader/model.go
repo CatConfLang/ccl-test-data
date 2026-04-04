@@ -21,7 +21,7 @@ type Entry = types.Entry
 var readerConfig = config.ImplementationConfig{
 	Name:               "test-reader",
 	Version:            "1.0.0",
-	SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseIndented},
+	SupportedFunctions: []config.CCLFunction{config.FunctionParse, config.FunctionParseIndented, config.FunctionGetList},
 }
 
 // FilterMode represents the active filter type
@@ -159,6 +159,8 @@ func getValidationBadge(validation string) string {
 		return parseValidationStyle.Render("parse")
 	case "parse_indented":
 		return parseIndentedValidationStyle.Render("parse_indented")
+	case "get_list":
+		return getListValidationStyle.Render("get_list")
 	default:
 		return otherValidationStyle.Render(validation)
 	}

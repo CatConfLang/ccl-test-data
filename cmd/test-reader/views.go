@@ -246,23 +246,26 @@ func (m tuiModel) renderExpectedOutput(test TestCase, width int) string {
 	}
 	content.WriteString(successHeaderStyle.Render(result.Header) + "\n")
 
-	if !result.IsObject {
+	if !result.IsObject && !result.IsList {
 		content.WriteString(fmt.Sprintf("Count: %d\n", result.TotalItems))
+	}
+	if result.IsList {
+		content.WriteString(fmt.Sprintf("Items: %d\n", result.TotalItems))
 	}
 
 	if result.HasMoreAbove {
 		content.WriteString(scrollStyle.Render("↑ more above\n"))
 	}
 
-	if result.IsObject && len(result.Lines) > 0 {
-		var objectContent strings.Builder
+	if (result.IsObject || result.IsList) && len(result.Lines) > 0 {
+		var boxContent strings.Builder
 		for i := result.StartIdx; i < result.EndIdx; i++ {
-			objectContent.WriteString(result.Lines[i])
+			boxContent.WriteString(result.Lines[i])
 			if i < result.EndIdx-1 {
-				objectContent.WriteString("\n")
+				boxContent.WriteString("\n")
 			}
 		}
-		content.WriteString(objectBoxStyle.Render(objectContent.String()) + "\n")
+		content.WriteString(objectBoxStyle.Render(boxContent.String()) + "\n")
 	} else {
 		for i := result.StartIdx; i < result.EndIdx; i++ {
 			content.WriteString(result.Lines[i] + "\n")

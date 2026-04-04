@@ -69,22 +69,24 @@ func displayExpectedOutput(test TestCase) {
 	}
 	fmt.Println(successHeaderStyle.Render(result.Header))
 
-	if !result.IsObject {
+	if result.IsList {
+		fmt.Printf("   Items: %d\n", result.TotalItems)
+	} else if !result.IsObject {
 		fmt.Printf("   Count: %d assertion(s)\n", result.TotalItems)
 		if result.TotalItems > 0 {
 			fmt.Printf("   Entries (%d total):\n", result.TotalItems)
 		}
 	}
 
-	if result.IsObject && len(result.Lines) > 0 {
-		var objectContent strings.Builder
+	if (result.IsObject || result.IsList) && len(result.Lines) > 0 {
+		var boxContent strings.Builder
 		for i := result.StartIdx; i < result.EndIdx; i++ {
-			objectContent.WriteString(result.Lines[i])
+			boxContent.WriteString(result.Lines[i])
 			if i < result.EndIdx-1 {
-				objectContent.WriteString("\n")
+				boxContent.WriteString("\n")
 			}
 		}
-		fmt.Println(objectBoxStyle.Render(objectContent.String()))
+		fmt.Println(objectBoxStyle.Render(boxContent.String()))
 	} else {
 		for i := result.StartIdx; i < result.EndIdx; i++ {
 			fmt.Println(result.Lines[i])
@@ -96,6 +98,8 @@ func displayExpectedOutput(test TestCase) {
 		itemType := "entries"
 		if result.IsObject {
 			itemType = "lines"
+		} else if result.IsList {
+			itemType = "items"
 		}
 		truncationMsg := fmt.Sprintf("... and %d more %s (use TUI mode for scrolling)", remaining, itemType)
 		truncationStyle := lipgloss.NewStyle().Foreground(subtleColor)
