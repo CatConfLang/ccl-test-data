@@ -3,6 +3,66 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [0.8.0] - 2026-04-03
+
+
+
+### Bug Fixes
+
+- **tests:** Preserve empty strings in list_with_whitespace_reference build_hierarchy ([`bf29adc`](https://github.com/CatConfLang/ccl-test-data/commit/bf29adce1e95160c052976dc36d5888e5ea30d80))
+
+
+
+  The build_hierarchy expected output for list_with_whitespace_reference incorrectly filtered out empty string values from the array. The parse test correctly expected all 4 entries (including 2 empty strings), but build_hierarchy only expected ["normal", "spaced"].
+
+  There is no schema-defined behavior for empty string filtering — array_order_lexicographic only controls sorting, not filtering. The proposed_behavior variant (list_with_whitespace) also preserves empty strings. Single empty values are preserved elsewhere (e.g. empty_list).
+
+  Changes:
+  - build_hierarchy expect: ["normal", "spaced"] → ["", "", "normal", "spaced"]
+  - Added empty_keys feature tag (test exercises empty value handling)
+  - Regenerated flat and Go test files
+
+  Closes #111 Closes #112
+
+  Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+
+
+
+
+
+### Features
+
+- **schema:** Add structured predicate field to filter tests ([`d86dc9f`](https://github.com/CatConfLang/ccl-test-data/commit/d86dc9fca5f364fc86b31cd333cc4ea03c435d20))
+
+
+
+  #### Summary
+
+  Add an optional `predicate` object to both source and generated format schemas, enabling filter tests to declare their filtering criteria explicitly. Implements the schema and test data changes from [ccl-typescript#23](https://github.com/CatConfLang/ccl-typescript/pull/23).
+
+  #### Changes
+
+  ##### Schema
+  - Added `predicate` property (`{field, op, value}`) to `generated-format.json` and `source-format.json`
+
+  ##### Existing tests updated (9 tests)
+  - All filter tests now include explicit `"predicate": {"field":"key","op":"!=","value":"/"}`
+  - 3 in `api_comments.json`, 6 in `api_whitespace_behaviors.json`
+
+  ##### New test cases (5 tests)
+  - `api_filter_predicates.json`: key equality, value not-empty, value equality, no matches, keeps-all
+
+  ##### Go pipeline
+  - Types: added `Predicate` struct, propagated through `TestCase`, `FlatTestCase`, and generated types
+  - Generator: extracts/propagates predicate; removed incorrect `comments` feature auto-tagging for filter
+  - Loader: handles predicate in compact format loading
+  - Test generator: real assertions for comment-exclusion predicates; TODO stubs for others
+
+  ##### Backwards compatibility When `predicate` is absent, test runners fall back to comment-exclusion behavior.
+
+
+
+
 ## [0.7.1] - 2026-03-29
 
 
