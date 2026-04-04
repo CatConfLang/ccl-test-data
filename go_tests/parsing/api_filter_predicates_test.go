@@ -40,25 +40,7 @@ mode = debug`
 
 // filter_by_key_equality_filter - function:filter
 func TestFilterByKeyEqualityFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `host = localhost
-port = 8080
-mode = debug`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation with predicate: key == "port"
-	// The Go mock only supports comment-exclusion (key != "/")
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -88,25 +70,7 @@ version = 1.0`
 
 // filter_by_value_not_empty_filter - function:filter feature:empty_keys
 func TestFilterByValueNotEmptyFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `name = app
-description =
-version = 1.0`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation with predicate: value != ""
-	// The Go mock only supports comment-exclusion (key != "/")
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -136,25 +100,7 @@ logging = true`
 
 // filter_by_value_equality_filter - function:filter
 func TestFilterByValueEqualityFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `debug = true
-verbose = false
-logging = true`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation with predicate: value == "true"
-	// The Go mock only supports comment-exclusion (key != "/")
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -183,24 +129,7 @@ port = 8080`
 
 // filter_no_matches_filter - function:filter
 func TestFilterNoMatchesFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `host = localhost
-port = 8080`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation with predicate: key == "nonexistent"
-	// The Go mock only supports comment-exclusion (key != "/")
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -229,24 +158,7 @@ port = 8080`
 
 // filter_keeps_all_filter - function:filter
 func TestFilterKeepsAllFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `host = localhost
-port = 8080`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement filter validation with predicate: key != "nonexistent"
-	// The Go mock only supports comment-exclusion (key != "/")
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 

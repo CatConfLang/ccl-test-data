@@ -43,34 +43,7 @@ connections = 16`
 
 // comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= This is an environment section
-port = 8080
-serve = index.html
-/= Database section
-mode = in-memory
-connections = 16`
-	
-	// Declare variables for reuse across validations
-	var parseResult []mock.Entry
-	
-	var filterResult []mock.Entry
-	var err error
-	
-	// Filter validation (predicate: key != "/")
-	parseResult, err = ccl.Parse(input)
-	require.NoError(t, err)
-	filterResult = ccl.Filter(parseResult)
-	expectedFilter := []mock.Entry{
-		mock.Entry{Key: `port`, Value: `8080`},
-		mock.Entry{Key: `serve`, Value: `index.html`},
-		mock.Entry{Key: `mode`, Value: `in-memory`},
-		mock.Entry{Key: `connections`, Value: `16`},
-	}
-	assert.Equal(t, expectedFilter, filterResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -98,24 +71,7 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 // comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `/= this is a comment`
-	
-	// Declare variables for reuse across validations
-	var parseResult []mock.Entry
-	
-	var filterResult []mock.Entry
-	var err error
-	
-	// Filter validation (predicate: key != "/")
-	parseResult, err = ccl.Parse(input)
-	require.NoError(t, err)
-	filterResult = ccl.Filter(parseResult)
-	expectedFilter := []mock.Entry(nil)
-	assert.Equal(t, expectedFilter, filterResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
@@ -148,34 +104,7 @@ port = 6379`
 
 // section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `== Database Config ==
-/= Connection settings
-host = localhost
-=== Cache Config ===
-/= Redis configuration
-port = 6379`
-	
-	// Declare variables for reuse across validations
-	var parseResult []mock.Entry
-	
-	var filterResult []mock.Entry
-	var err error
-	
-	// Filter validation (predicate: key != "/")
-	parseResult, err = ccl.Parse(input)
-	require.NoError(t, err)
-	filterResult = ccl.Filter(parseResult)
-	expectedFilter := []mock.Entry{
-		mock.Entry{Key: "", Value: `= Database Config ==`},
-		mock.Entry{Key: `host`, Value: `localhost`},
-		mock.Entry{Key: "", Value: `== Cache Config ===`},
-		mock.Entry{Key: `port`, Value: `6379`},
-	}
-	assert.Equal(t, expectedFilter, filterResult)
-
+	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
