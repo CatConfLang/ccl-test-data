@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,8 +12,11 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // comment_extension_parse - function:parse feature:comments
 func TestCommentExtensionParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= This is an environment section
@@ -22,11 +25,13 @@ serve = index.html
 /= Database section
 mode = in-memory
 connections = 16`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -35,8 +40,10 @@ connections = 16`
 
 }
 
+
 // comment_extension_filter - function:filter feature:comments
 func TestCommentExtensionFilter(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= This is an environment section
@@ -45,13 +52,13 @@ serve = index.html
 /= Database section
 mode = in-memory
 connections = 16`
-
+	
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
-
+	
 	var filterResult []mock.Entry
 	var err error
-
+	
 	// Filter validation (predicate: key != "/")
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
@@ -66,16 +73,20 @@ connections = 16`
 
 }
 
+
 // comment_syntax_slash_equals_parse - function:parse feature:comments
 func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= this is a comment`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -84,18 +95,20 @@ func TestCommentSyntaxSlashEqualsParse(t *testing.T) {
 
 }
 
+
 // comment_syntax_slash_equals_filter - function:filter feature:comments
 func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `/= this is a comment`
-
+	
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
-
+	
 	var filterResult []mock.Entry
 	var err error
-
+	
 	// Filter validation (predicate: key != "/")
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
@@ -105,8 +118,10 @@ func TestCommentSyntaxSlashEqualsFilter(t *testing.T) {
 
 }
 
+
 // section_headers_with_comments_parse - function:parse feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `== Database Config ==
@@ -115,11 +130,13 @@ host = localhost
 === Cache Config ===
 /= Redis configuration
 port = 6379`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -128,8 +145,10 @@ port = 6379`
 
 }
 
+
 // section_headers_with_comments_filter - function:filter feature:comments feature:empty_keys
 func TestSectionHeadersWithCommentsFilter(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `== Database Config ==
@@ -138,13 +157,13 @@ host = localhost
 === Cache Config ===
 /= Redis configuration
 port = 6379`
-
+	
 	// Declare variables for reuse across validations
 	var parseResult []mock.Entry
-
+	
 	var filterResult []mock.Entry
 	var err error
-
+	
 	// Filter validation (predicate: key != "/")
 	parseResult, err = ccl.Parse(input)
 	require.NoError(t, err)
@@ -158,3 +177,5 @@ port = 6379`
 	assert.Equal(t, expectedFilter, filterResult)
 
 }
+
+

@@ -537,6 +537,7 @@
         ]
       },
       "features": [
+        "empty_keys",
         "whitespace"
       ],
       "functions": [
@@ -563,12 +564,15 @@
         "count": 1,
         "object": {
           "items": [
+            "",
+            "",
             "normal",
             "spaced"
           ]
         }
       },
       "features": [
+        "empty_keys",
         "whitespace"
       ],
       "functions": [
@@ -600,6 +604,7 @@
         "count": 0
       },
       "features": [
+        "empty_keys",
         "whitespace"
       ],
       "functions": [

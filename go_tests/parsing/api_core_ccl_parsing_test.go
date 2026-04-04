@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,17 +12,22 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // basic_key_value_pairs_parse - function:parse
 func TestBasicKeyValuePairsParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -31,35 +36,43 @@ age = 42`
 
 }
 
+
 // basic_key_value_pairs_print - function:print
 func TestBasicKeyValuePairsPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `name = Alice
 age = 42`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // equals_in_values_parse - function:parse
 func TestEqualsInValuesParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `msg = k=v pairs work fine
 path = /bin/app=prod`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -68,35 +81,43 @@ path = /bin/app=prod`
 
 }
 
+
 // equals_in_values_print - function:print
 func TestEqualsInValuesPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `msg = k=v pairs work fine
 path = /bin/app=prod`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // whitespace_trimming_parse - function:parse feature:whitespace
 func TestWhitespaceTrimmingParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `  key   =    value with spaces   
 other = normal`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -105,19 +126,23 @@ other = normal`
 
 }
 
+
 // multiline_values_parse - function:parse feature:multiline
 func TestMultilineValuesParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `description = First line
   Second line
   Third line
 done = yes`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -126,37 +151,45 @@ done = yes`
 
 }
 
+
 // multiline_values_print - function:print feature:multiline
 func TestMultilineValuesPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `description = First line
   Second line
   Third line
 done = yes`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // empty_values_parse - function:parse feature:empty_keys
 func TestEmptyValuesParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty =
 other = value`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -165,36 +198,44 @@ other = value`
 
 }
 
+
 // empty_values_print - function:print feature:empty_keys
 func TestEmptyValuesPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty =
 other = value`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // nested_structure_parsing_parse - function:parse
 func TestNestedStructureParsingParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   port = 5432`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -203,36 +244,44 @@ func TestNestedStructureParsingParse(t *testing.T) {
 
 }
 
+
 // nested_structure_parsing_print - function:print
 func TestNestedStructureParsingPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `database =
   host = localhost
   port = 5432`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // unicode_parsing_parse - function:parse feature:unicode
 func TestUnicodeParsingParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `emoji = 😀😃😄
 配置 = config`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -241,34 +290,42 @@ func TestUnicodeParsingParse(t *testing.T) {
 
 }
 
+
 // unicode_parsing_print - function:print feature:unicode
 func TestUnicodeParsingPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `emoji = 😀😃😄
 配置 = config`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // empty_input_parse - function:parse
 func TestEmptyInputParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := ""
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -277,34 +334,42 @@ func TestEmptyInputParse(t *testing.T) {
 
 }
 
+
 // empty_input_print - function:print
 func TestEmptyInputPrint(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := ""
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement print validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
 func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `  key = value
   second`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -313,17 +378,21 @@ func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
 
 }
 
+
 // leading_whitespace_multiple_entries_parse - function:parse feature:whitespace
 func TestLeadingWhitespaceMultipleEntriesParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `  key1 = value1
 key2 = value2`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -332,17 +401,21 @@ key2 = value2`
 
 }
 
+
 // leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
 func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `  key = value
   second = entry`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -350,3 +423,5 @@ func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
 	assert.Equal(t, expected, parseResult)
 
 }
+
+

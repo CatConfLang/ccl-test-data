@@ -2,7 +2,7 @@ package parsing_test
 
 import (
 	"testing"
-
+	
 	"github.com/catconflang/ccl-test-data/internal/mock"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -12,16 +12,21 @@ import (
 // Suite: Flat Format
 // Version: 1.0
 
+
+
 // single_item_as_list_reference_parse - function:parse variant:reference_compliant
 func TestSingleItemAsListReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `item = single`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -30,16 +35,20 @@ func TestSingleItemAsListReferenceParse(t *testing.T) {
 
 }
 
+
 // single_item_as_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `item = single`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -49,16 +58,20 @@ func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
 
 }
 
+
 // single_item_as_list_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestSingleItemAsListReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `item = single`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -72,18 +85,22 @@ func TestSingleItemAsListReferenceGetList(t *testing.T) {
 
 }
 
+
 // mixed_duplicate_single_keys_reference_parse - function:parse
 func TestMixedDuplicateSingleKeysReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -92,18 +109,22 @@ host = localhost`
 
 }
 
+
 // mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -113,18 +134,22 @@ host = localhost`
 
 }
 
+
 // mixed_duplicate_single_keys_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `ports = 80
 ports = 443
 host = localhost`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -138,19 +163,23 @@ host = localhost`
 
 }
 
+
 // nested_list_access_reference_parse - function:parse variant:reference_compliant
 func TestNestedListAccessReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -159,19 +188,23 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 
 }
 
+
 // nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -181,19 +214,23 @@ func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 
 }
 
+
 // nested_list_access_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:path_traversal variant:reference_compliant
 func TestNestedListAccessReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `database =
   hosts = primary
   hosts = secondary
   port = 5432`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -207,16 +244,20 @@ func TestNestedListAccessReferenceGetList(t *testing.T) {
 
 }
 
+
 // empty_list_reference_parse - function:parse variant:reference_compliant
 func TestEmptyListReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_list =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -225,16 +266,20 @@ func TestEmptyListReferenceParse(t *testing.T) {
 
 }
 
+
 // empty_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestEmptyListReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_list =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -244,16 +289,20 @@ func TestEmptyListReferenceBuildHierarchy(t *testing.T) {
 
 }
 
+
 // empty_list_reference_get_list - function:get_list variant:reference_compliant
 func TestEmptyListReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_list =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -267,19 +316,23 @@ func TestEmptyListReferenceGetList(t *testing.T) {
 
 }
 
+
 // list_with_numbers_reference_parse - function:parse
 func TestListWithNumbersReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -288,19 +341,23 @@ numbers = 0`
 
 }
 
+
 // list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -310,19 +367,23 @@ numbers = 0`
 
 }
 
+
 // list_with_numbers_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithNumbersReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `numbers = 1
 numbers = 42
 numbers = -17
 numbers = 0`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -336,19 +397,23 @@ numbers = 0`
 
 }
 
+
 // list_with_booleans_reference_parse - function:parse
 func TestListWithBooleansReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -357,19 +422,23 @@ flags = no`
 
 }
 
+
 // list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -379,19 +448,23 @@ flags = no`
 
 }
 
+
 // list_with_booleans_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithBooleansReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `flags = true
 flags = false
 flags = yes
 flags = no`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -405,19 +478,23 @@ flags = no`
 
 }
 
-// list_with_whitespace_reference_parse - function:parse feature:whitespace
+
+// list_with_whitespace_reference_parse - function:parse feature:empty_keys feature:whitespace
 func TestListWithWhitespaceReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -426,41 +503,49 @@ items =   `
 
 }
 
-// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:whitespace behavior:array_order_lexicographic
+
+// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:empty_keys feature:whitespace behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
 	objectResult := ccl.BuildHierarchy(parseResult)
-	expected := map[string]interface{}{"items": []interface{}{"normal", "spaced"}}
+	expected := map[string]interface{}{"items": []interface{}{"", "", "normal", "spaced"}}
 	assert.Equal(t, expected, objectResult)
 
 }
 
-// list_with_whitespace_reference_get_list - function:get_list feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
+
+// list_with_whitespace_reference_get_list - function:get_list feature:empty_keys feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `items =   spaced   
 items = normal
 items =
 items =   `
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -474,19 +559,23 @@ items =   `
 
 }
 
+
 // list_with_unicode_reference_parse - function:parse feature:unicode
 func TestListWithUnicodeReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -495,19 +584,23 @@ names = العربية`
 
 }
 
+
 // list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -517,19 +610,23 @@ names = العربية`
 
 }
 
+
 // list_with_unicode_reference_get_list - function:get_list feature:unicode behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `names = 张三
 names = José
 names = François
 names = العربية`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -543,18 +640,22 @@ names = العربية`
 
 }
 
+
 // list_with_special_characters_reference_parse - function:parse
 func TestListWithSpecialCharactersReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -563,18 +664,22 @@ symbols = []{}|`
 
 }
 
+
 // list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -584,18 +689,22 @@ symbols = []{}|`
 
 }
 
+
 // list_with_special_characters_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `symbols = @#$%
 symbols = !^&*()
 symbols = []{}|`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -609,8 +718,10 @@ symbols = []{}|`
 
 }
 
+
 // complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `config =
@@ -624,11 +735,13 @@ func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
 features = auth
 features = api
 features = ui`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -638,8 +751,10 @@ features = ui`
 
 }
 
+
 // complex_mixed_list_scenarios_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic behavior:path_traversal
 func TestComplexMixedListScenariosReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `config =
@@ -653,11 +768,13 @@ func TestComplexMixedListScenariosReferenceGetList(t *testing.T) {
 features = auth
 features = api
 features = ui`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -671,16 +788,20 @@ features = ui`
 
 }
 
+
 // list_path_traversal_protection_reference_parse - function:parse variant:reference_compliant
 func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `safe = value`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -689,16 +810,20 @@ func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 
 }
 
+
 // list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `safe = value`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -708,16 +833,20 @@ func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
 
 }
 
+
 // list_path_traversal_protection_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestListPathTraversalProtectionReferenceGetList(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `safe = value`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// get_list validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -731,16 +860,20 @@ func TestListPathTraversalProtectionReferenceGetList(t *testing.T) {
 
 }
 
+
 // empty_value_reference_behavior_parse - function:parse variant:reference_compliant
 func TestEmptyValueReferenceBehaviorParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_key =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -749,16 +882,20 @@ func TestEmptyValueReferenceBehaviorParse(t *testing.T) {
 
 }
 
+
 // empty_value_reference_behavior_build_hierarchy - function:build_hierarchy variant:reference_compliant
 func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_key =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// BuildHierarchy validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -768,68 +905,84 @@ func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
 
 }
 
+
 // canonical_format_empty_values_ocaml_reference_canonical_format - function:parse function:print function:canonical_format
 func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `empty_key =`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
+
 
 // canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:tabs_as_content behavior:indent_spaces
 func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `value_with_tabs = text		with	tabs	`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print function:canonical_format feature:unicode behavior:indent_spaces
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `unicode = 你好世界
 emo = 🌟✨`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // canonical_format_line_endings_reference_behavior_parse - function:parse behavior:crlf_preserve_literal
 func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// Parse validation
 	parseResult, err := ccl.Parse(input)
 	require.NoError(t, err)
@@ -838,57 +991,71 @@ func TestCanonicalFormatLineEndingsReferenceBehaviorParse(t *testing.T) {
 
 }
 
+
 // canonical_format_line_endings_reference_behavior_canonical_format - function:parse function:print function:canonical_format behavior:crlf_preserve_literal behavior:indent_spaces
 func TestCanonicalFormatLineEndingsReferenceBehaviorCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := "key1 = value1\r\nkey2 = value2\r\n"
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // canonical_format_consistent_spacing_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:indent_spaces
 func TestCanonicalFormatConsistentSpacingOcamlReferenceCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `key1=value1
 key2  =  value2
 key3	=	value3`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
 
+
 // deterministic_output_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:indent_spaces
 func TestDeterministicOutputOcamlReferenceCanonicalFormat(t *testing.T) {
+	
 
 	ccl := mock.New()
 	input := `z = last
 a = first
 m = middle`
-
+	
 	// Declare variables for reuse across validations
-
+	
+	
+	
 	var err error
-
+	
 	// TODO: Implement canonical_format validation
-	_ = ccl   // Prevent unused variable warning
+	_ = ccl // Prevent unused variable warning
 	_ = input // Prevent unused variable warning
-	_ = err   // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
 
 }
+
+

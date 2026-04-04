@@ -305,6 +305,8 @@
           "function": "build_hierarchy",
           "expect": {
             "items": [
+              "",
+              "",
               "normal",
               "spaced"
             ]
@@ -319,6 +321,7 @@
         }
       ],
       "features": [
+        "empty_keys",
         "whitespace"
       ],
       "behaviors": [
