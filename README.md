@@ -55,10 +55,13 @@ function shouldRun(test, myCapabilities) {
 | Function                                                     | Description                      |
 | ------------------------------------------------------------ | -------------------------------- |
 | `parse`                                                      | Basic key-value parsing          |
+| `parse_indented`                                             | Indentation-normalized parsing   |
 | `build_hierarchy`                                            | Object construction from entries |
 | `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` | Typed value access               |
 | `filter`, `compose`                                          | Entry processing                 |
 | `canonical_format`, `round_trip`                             | Formatting and validation        |
+
+> **Note:** `build_hierarchy` internally requires `parse_indented` to produce its input entries — it cannot work with `parse` alone. `parse_indented` handles indentation-based nesting and lines without `=` delimiters that `parse` rejects. Implementations that support `build_hierarchy` implicitly support `parse_indented`, even if `parse_indented` is not exposed as a public API.
 
 ### Behaviors
 
