@@ -568,7 +568,7 @@
         ]
       },
       "features": [
-        "empty_keys",
+        "multiline",
         "whitespace"
       ],
       "functions": [
@@ -594,7 +594,7 @@
         ]
       },
       "features": [
-        "empty_keys",
+        "multiline",
         "whitespace"
       ],
       "functions": [
