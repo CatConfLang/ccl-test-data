@@ -80,19 +80,19 @@ func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
 }
 
 
-// tabs_as_content_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_content
+// tabs_as_content_multiline_parse - function:parse feature:multiline feature:multiline_values feature:whitespace behavior:tabs_as_content
 func TestTabsAsContentMultilineParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
 
-// tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
+// tabs_as_whitespace_multiline_parse - function:parse feature:multiline feature:multiline_values feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
 
 
-// tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline behavior:tabs_as_whitespace
+// tabs_as_whitespace_mixed_indent_parse - function:parse feature:multiline feature:multiline_values feature:whitespace behavior:tabs_as_whitespace
 func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
@@ -110,7 +110,7 @@ func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_spaces
+// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:multiline feature:multiline_values feature:whitespace behavior:tabs_as_whitespace behavior:indent_spaces
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
@@ -251,7 +251,7 @@ key3	=	value3`
 }
 
 
-// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline behavior:tabs_as_whitespace behavior:indent_tabs
+// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:multiline feature:multiline_values feature:whitespace behavior:tabs_as_whitespace behavior:indent_tabs
 func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
 }
@@ -350,7 +350,7 @@ func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
 }
 
 
-// crlf_normalize_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_normalize_to_lf
+// crlf_normalize_multiline_value_parse - function:parse feature:multiline feature:multiline_values feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
 	
 
@@ -372,7 +372,7 @@ func TestCrlfNormalizeMultilineValueParse(t *testing.T) {
 }
 
 
-// crlf_preserve_multiline_value_parse - function:parse feature:whitespace feature:multiline behavior:crlf_preserve_literal
+// crlf_preserve_multiline_value_parse - function:parse feature:multiline feature:multiline_values feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveMultilineValueParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
 }

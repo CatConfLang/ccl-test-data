@@ -168,7 +168,7 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": ["comments", "empty_keys", "multiline", "multiline_continuation", "unicode", "whitespace"]
+          "enum": ["comments", "empty_keys", "multiline", "multiline_continuation", "multiline_keys", "multiline_values", "unicode", "whitespace"]
         },
         { "pattern": "^experimental_" },
         { "pattern": "^optional_" }

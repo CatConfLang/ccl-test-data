@@ -233,7 +233,8 @@
         }
       ],
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "inputs": [
         "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two"

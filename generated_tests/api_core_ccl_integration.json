@@ -393,7 +393,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse"
@@ -421,7 +422,8 @@
         }
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "build_hierarchy"
@@ -441,7 +443,8 @@
         "value": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two"
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "print"

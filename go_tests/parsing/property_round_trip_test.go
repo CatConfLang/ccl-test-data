@@ -238,7 +238,7 @@ func TestRoundTripNestedStructuresRoundTrip(t *testing.T) {
 }
 
 
-// round_trip_multiline_values_parse - function:parse feature:multiline
+// round_trip_multiline_values_parse - function:parse feature:multiline feature:multiline_values
 func TestRoundTripMultilineValuesParse(t *testing.T) {
 	
 
@@ -263,13 +263,13 @@ func TestRoundTripMultilineValuesParse(t *testing.T) {
 }
 
 
-// round_trip_multiline_values_print - function:print feature:multiline
+// round_trip_multiline_values_print - function:print feature:multiline feature:multiline_values
 func TestRoundTripMultilineValuesPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// round_trip_multiline_values_round_trip - function:parse function:print feature:multiline
+// round_trip_multiline_values_round_trip - function:parse function:print feature:multiline feature:multiline_values
 func TestRoundTripMultilineValuesRoundTrip(t *testing.T) {
 	
 
@@ -474,7 +474,7 @@ func TestRoundTripDeeplyNestedRoundTrip(t *testing.T) {
 }
 
 
-// round_trip_empty_multiline_parse - function:parse feature:empty_keys feature:multiline
+// round_trip_empty_multiline_parse - function:parse feature:empty_keys feature:multiline feature:multiline_values
 func TestRoundTripEmptyMultilineParse(t *testing.T) {
 	
 
@@ -498,13 +498,13 @@ other = value`
 }
 
 
-// round_trip_empty_multiline_print - function:print feature:empty_keys feature:multiline
+// round_trip_empty_multiline_print - function:print feature:empty_keys feature:multiline feature:multiline_values
 func TestRoundTripEmptyMultilinePrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// round_trip_empty_multiline_round_trip - function:parse function:print feature:empty_keys feature:multiline
+// round_trip_empty_multiline_round_trip - function:parse function:print feature:empty_keys feature:multiline feature:multiline_values
 func TestRoundTripEmptyMultilineRoundTrip(t *testing.T) {
 	
 

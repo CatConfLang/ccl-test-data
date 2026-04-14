@@ -75,6 +75,8 @@ const (
 	FeatureEmptyKeys              CCLFeature = "empty_keys"
 	FeatureMultiline              CCLFeature = "multiline"
 	FeatureMultilineContinuation  CCLFeature = "multiline_continuation"
+	FeatureMultilineKeys          CCLFeature = "multiline_keys"
+	FeatureMultilineValues        CCLFeature = "multiline_values"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
 )
@@ -86,6 +88,9 @@ func AllFeatures() []CCLFeature {
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
 		FeatureMultiline,
+		FeatureMultilineContinuation,
+		FeatureMultilineKeys,
+		FeatureMultilineValues,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}

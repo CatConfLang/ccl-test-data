@@ -339,7 +339,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse"
@@ -359,7 +360,8 @@
         "value": "script =\n  #!/bin/bash\n  echo hello\n  exit 0"
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "print"
@@ -379,7 +381,8 @@
         "value": true
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse",
@@ -624,7 +627,8 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse"
@@ -645,7 +649,8 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "print"
@@ -666,7 +671,8 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse",

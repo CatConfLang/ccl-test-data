@@ -41,6 +41,8 @@
               "unicode",
               "multiline",
               "multiline_continuation",
+              "multiline_keys",
+              "multiline_values",
               "whitespace",
               "empty_keys"
             ]

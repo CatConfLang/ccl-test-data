@@ -20,7 +20,8 @@
       ],
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
@@ -92,7 +93,8 @@
       ],
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
@@ -134,9 +136,10 @@
         }
       ],
       "features": [
+        "empty_keys",
         "multiline",
         "multiline_continuation",
-        "empty_keys"
+        "multiline_values"
       ],
       "inputs": [
         "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
@@ -664,7 +667,8 @@
       ],
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"

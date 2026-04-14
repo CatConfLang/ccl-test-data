@@ -136,7 +136,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse"
@@ -156,7 +157,8 @@
         "value": "description = First line\n  Second line\n  Third line\ndone = yes"
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "print"

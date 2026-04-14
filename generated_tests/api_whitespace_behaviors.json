@@ -344,8 +344,9 @@
         ]
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse"
@@ -377,8 +378,9 @@
         ]
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse"
@@ -410,8 +412,9 @@
         ]
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse"
@@ -498,8 +501,9 @@
         "value": "section =\n  indented\n  another"
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse",
@@ -797,8 +801,9 @@
         "value": "section =\n\tindented\n\tanother"
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse",
@@ -1024,8 +1029,9 @@
         ]
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse"
@@ -1057,8 +1063,9 @@
         ]
       },
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "functions": [
         "parse"

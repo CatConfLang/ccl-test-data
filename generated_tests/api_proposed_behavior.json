@@ -18,7 +18,8 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse_indented"
@@ -77,7 +78,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "parse_indented"
@@ -110,7 +112,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "build_hierarchy"
@@ -146,7 +149,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "get_list"
@@ -183,9 +187,10 @@
         ]
       },
       "features": [
+        "empty_keys",
         "multiline",
         "multiline_continuation",
-        "empty_keys"
+        "multiline_values"
       ],
       "functions": [
         "parse_indented"
@@ -211,9 +216,10 @@
         }
       },
       "features": [
+        "empty_keys",
         "multiline",
         "multiline_continuation",
-        "empty_keys"
+        "multiline_values"
       ],
       "functions": [
         "build_hierarchy"
@@ -1103,7 +1109,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "parse_indented"
@@ -1138,7 +1145,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "build_hierarchy"
@@ -1175,7 +1183,8 @@
       },
       "features": [
         "multiline",
-        "multiline_continuation"
+        "multiline_continuation",
+        "multiline_values"
       ],
       "functions": [
         "get_list"

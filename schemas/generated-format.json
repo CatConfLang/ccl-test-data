@@ -180,7 +180,7 @@
             {
               "enum": [
                 "comments", "empty_keys",
-                "multiline", "multiline_continuation", "unicode", "whitespace"
+                "multiline", "multiline_continuation", "multiline_keys", "multiline_values", "unicode", "whitespace"
               ]
             },
             {

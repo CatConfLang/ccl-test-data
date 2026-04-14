@@ -569,6 +569,7 @@
       },
       "features": [
         "multiline",
+        "multiline_keys",
         "whitespace"
       ],
       "functions": [
@@ -595,6 +596,7 @@
       },
       "features": [
         "multiline",
+        "multiline_keys",
         "whitespace"
       ],
       "functions": [
@@ -605,6 +607,170 @@
       ],
       "name": "complex_multi_newline_whitespace_parse",
       "source_test": "complex_multi_newline_whitespace",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "my key",
+            "value": "val"
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "my\n key\n= val"
+      ],
+      "name": "multiline_key_with_spaces_parse",
+      "source_test": "multiline_key_with_spaces",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "a b c",
+            "value": "val"
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "a\n b\n c\n= val"
+      ],
+      "name": "multiline_key_three_lines_parse",
+      "source_test": "multiline_key_three_lines",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "key",
+            "value": ""
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys",
+        "empty_keys"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "key\n="
+      ],
+      "name": "multiline_key_empty_value_parse",
+      "source_test": "multiline_key_empty_value",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "first",
+            "value": "val1"
+          },
+          {
+            "key": "key",
+            "value": "val2"
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "first = val1\nkey\n= val2"
+      ],
+      "name": "multiline_key_with_regular_entry_parse",
+      "source_test": "multiline_key_with_regular_entry",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "key",
+            "value": "val"
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "key\n\n= val"
+      ],
+      "name": "multiline_key_blank_lines_between_parse",
+      "source_test": "multiline_key_blank_lines_between",
+      "validation": "parse",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "entries": [
+          {
+            "key": "key",
+            "value": "val"
+          }
+        ]
+      },
+      "features": [
+        "multiline",
+        "multiline_keys",
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "key\n\t= val"
+      ],
+      "name": "multiline_key_tabs_in_continuation_parse",
+      "source_test": "multiline_key_tabs_in_continuation",
       "validation": "parse",
       "variants": []
     },
@@ -741,7 +907,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse"
@@ -766,7 +933,8 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline",
+        "multiline_values"
       ],
       "functions": [
         "parse_indented"

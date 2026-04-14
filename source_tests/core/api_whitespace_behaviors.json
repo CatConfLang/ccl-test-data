@@ -173,8 +173,9 @@
         "tabs_as_content"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "section =\n \tindented_with_tabs\n \tanother_line"
@@ -197,8 +198,9 @@
         "tabs_as_whitespace"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
@@ -221,8 +223,9 @@
         "tabs_as_whitespace"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "section =\n \tmixed_indent\n\t another_line"
@@ -277,8 +280,9 @@
         "indent_spaces"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -458,8 +462,9 @@
         "indent_tabs"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -588,8 +593,9 @@
         "crlf_normalize_to_lf"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
@@ -612,8 +618,9 @@
         "crlf_preserve_literal"
       ],
       "features": [
-        "whitespace",
-        "multiline"
+        "multiline",
+        "multiline_values",
+        "whitespace"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
@@ -728,7 +735,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -757,7 +768,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -798,7 +813,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": [
             {
               "key": "host",
@@ -859,7 +878,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": [
             {
               "key": "host",
@@ -916,7 +939,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -953,7 +980,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
