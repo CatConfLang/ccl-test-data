@@ -385,7 +385,7 @@ func TestMultipleEmptyEqualityParse(t *testing.T) {
 }
 
 
-// key_with_newline_before_equals_parse - function:parse feature:empty_keys feature:whitespace
+// key_with_newline_before_equals_parse - function:parse feature:multiline feature:whitespace
 func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 	
 
@@ -409,7 +409,7 @@ func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 }
 
 
-// complex_multi_newline_whitespace_parse - function:parse feature:empty_keys feature:whitespace
+// complex_multi_newline_whitespace_parse - function:parse feature:multiline feature:whitespace
 func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
 	
 
