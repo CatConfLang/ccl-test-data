@@ -18,6 +18,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "empty_keys",
         "multiline"
@@ -88,7 +91,8 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
         "multiline",
@@ -132,6 +136,9 @@
             }
           }
         }
+      ],
+      "behaviors": [
+        "multiline_values"
       ],
       "features": [
         "multiline",
@@ -660,7 +667,8 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
         "multiline",

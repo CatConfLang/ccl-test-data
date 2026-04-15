@@ -580,6 +580,9 @@
           ]
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "multiline"
       ],
@@ -599,6 +602,9 @@
             }
           ]
         }
+      ],
+      "behaviors": [
+        "multiline_values"
       ],
       "features": [
         "multiline"

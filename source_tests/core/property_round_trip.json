@@ -173,6 +173,9 @@
           "expect": true
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "multiline"
       ],
@@ -304,6 +307,9 @@
           "function": "print",
           "expect": "empty_section =\nother = value"
         }
+      ],
+      "behaviors": [
+        "multiline_values"
       ],
       "features": [
         "empty_keys",

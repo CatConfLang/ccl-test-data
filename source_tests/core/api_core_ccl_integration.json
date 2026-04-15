@@ -232,6 +232,9 @@
           }
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "multiline"
       ],

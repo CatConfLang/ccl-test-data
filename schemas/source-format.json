@@ -152,7 +152,8 @@
         "array_order_insertion", "array_order_lexicographic",
         "toplevel_indent_strip", "toplevel_indent_preserve",
         "delimiter_first_equals", "delimiter_prefer_spaced",
-        "path_traversal"
+        "path_traversal",
+        "multiline_values"
       ]
     },
     "functionName": {
@@ -168,7 +169,7 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": ["comments", "empty_keys", "multiline", "multiline_continuation", "unicode", "whitespace"]
+          "enum": ["comments", "empty_keys", "multiline", "multiline_continuation", "multiline_keys", "unicode", "whitespace"]
         },
         { "pattern": "^experimental_" },
         { "pattern": "^optional_" }
@@ -433,6 +434,11 @@
       "path_traversal": {
         "description": "Support accessing values within nested CCL objects via multi-level key path arguments to typed access functions.",
         "affectedFunctions": ["get_string", "get_int", "get_bool", "get_float", "get_list"],
+        "mutuallyExclusiveWith": []
+      },
+      "multiline_values": {
+        "description": "Multi-line value construction edge cases: empty first line after '=', continuation line preservation, and empty line lookahead within indented blocks.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "round_trip"],
         "mutuallyExclusiveWith": []
       }
     },

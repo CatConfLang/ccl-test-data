@@ -96,6 +96,9 @@
           "expect": "description = First line\n  Second line\n  Third line\ndone = yes"
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "multiline"
       ],

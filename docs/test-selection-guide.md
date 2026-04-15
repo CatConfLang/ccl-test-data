@@ -50,6 +50,8 @@ A feature represents a language capability that all implementations are expected
 | `comments` | `/=` comment syntax | `/= This is a comment` |
 | `empty_keys` | Anonymous list items | `= item1\n= item2` |
 | `multiline` | Multi-line values | `description = Line 1\nLine 2` |
+| `multiline_continuation` | Indented continuation lines | `desc = First\n  second line` |
+| `multiline_keys` | Keys spanning multiple lines | `key\n= val` |
 | `unicode` | Unicode content | `name = José` |
 | `whitespace` | Complex whitespace handling | Preserving tabs, spaces |
 
@@ -75,6 +77,7 @@ Behaviors fall into two categories:
 | `tabs_as_whitespace` | Tabs are whitespace (count for indentation, get trimmed) |
 | `indent_spaces` | Use spaces for printed indentation |
 | `indent_tabs` | Use tabs for printed indentation |
+| `multiline_values` | Multi-line value construction edge cases (empty first line, continuation preservation, blank line lookahead) |
 
 **API-specific behaviors** (affect individual functions like `get_bool`):
 | Behavior | Description |
