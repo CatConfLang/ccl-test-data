@@ -41,7 +41,9 @@ const functionsSupported = test.functions.every(fn =>
 
 ### Features Array (`test.features[]`)
 
-**Informational tags** describing which language features a test exercises. Features are for reporting, not filtering.
+**Informational tags** describing which language capabilities a test exercises. Features are for **gap reporting, not filtering**.
+
+A feature represents a language capability that all implementations are expected to eventually support. Features may be associated with specific functions or behaviors (e.g., `comments` is relevant to implementations supporting `filter`). Use feature tags to identify where your implementation still needs work.
 
 | Feature | Description | Example |
 |---------|-------------|---------|
@@ -60,7 +62,9 @@ console.log(`Could support unicode by fixing ${unicodeGaps.length} tests`);
 
 ### Behaviors Array (`test.behaviors[]`)
 
-**Implementation choices** describing how a test expects certain operations to behave. Behaviors fall into two categories:
+**Implementation choices** describing how a test expects certain operations to behave. Behaviors are used for **test filtering** — implementations declare their choices and skip tests written for the alternative approach.
+
+Behaviors fall into two categories:
 
 **Parsing behaviors** (affect core parsing):
 | Behavior | Description |
@@ -101,10 +105,16 @@ if (test.conflicts?.variants?.some(v => v === myVariant)) skipTest(test);
 
 **Important:** These variant values are **temporary disambiguation mechanisms**. Once the CCL specification owners clarify these ambiguities, the variant system will be eliminated and these choices will be converted to specific behaviors (e.g., `multiline-flexible` vs `multiline-strict`).
 
-## Behavior vs Variant
+## Features vs Behaviors vs Variants
 
-**Behaviors** are stable implementation choices:
-- Technical decisions (CRLF handling, boolean parsing)
+**Features** describe *what* a test exercises:
+- A language capability all implementations should eventually support
+- Used for gap reporting — *"Which areas does my implementation still need work?"*
+- Not used for test filtering
+
+**Behaviors** describe *how* a test expects something to work:
+- A legitimate implementation choice where multiple valid approaches exist
+- Used for test filtering — *"Which approach does my implementation take?"*
 - Won't change based on spec evolution
 
 **Variants** are temporary spec disambiguation:
