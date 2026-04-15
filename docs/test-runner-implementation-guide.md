@@ -57,9 +57,9 @@ function all_functions_implemented(required, implemented) {
 }
 ```
 
-### Behavior and Feature Filtering
+### Behavior Filtering
 
-Filter tests based on implementation behaviors and supported features:
+Filter tests based on implementation behavior choices. Note that **features are not used for filtering** — they are informational tags for gap reporting (see the [Test Selection Guide](test-selection-guide.md) for details).
 
 ```pseudocode
 function test_is_compatible(test, capabilities) {
@@ -70,14 +70,7 @@ function test_is_compatible(test, capabilities) {
     }
   }
   
-  // Check feature requirements  
-  for feature_name in test.features {
-    if feature_name not in capabilities.features {
-      return false
-    }
-  }
-  
-  // Check behavior compatibility
+  // Check behavior compatibility — skip tests for choices you didn't make
   for behavior_name in test.behaviors {
     if behavior_name not in capabilities.behaviors {
       return false
@@ -158,7 +151,6 @@ ccl-test-runner generate \
 ```pseudocode
 capabilities = {
   functions: ["parse"],
-  features: [],
   behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 
@@ -170,7 +162,6 @@ capabilities = {
 ```pseudocode
 capabilities = {
   functions: ["parse", "filter", "compose", "expand_dotted"],
-  features: ["comments"],
   behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 ```
@@ -179,7 +170,6 @@ capabilities = {
 ```pseudocode
 capabilities = {
   functions: ["parse", "make_objects"],
-  features: ["dotted_keys", "empty_keys"],
   behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 ```
@@ -188,7 +178,6 @@ capabilities = {
 ```pseudocode
 capabilities = {
   functions: ["parse", "make_objects", "get_string", "get_int", "get_bool", "get_float", "get_list"],
-  features: ["dotted_keys", "empty_keys", "comments"],
   behaviors: ["crlf_normalize_to_lf", "boolean_lenient"]
 }
 ```
@@ -306,12 +295,10 @@ ccl-test-runner test --format verbose
   "implementation_name": "my_ccl_parser",
   "capabilities": {
     "functions": ["parse", "make_objects", "get_string", "get_int"],
-    "features": ["dotted_keys", "empty_keys"],
     "behaviors": ["crlf_normalize_to_lf", "boolean_lenient"]
   },
   "test_selection": {
     "skip_behaviors": ["tabs_as_content", "crlf_preserve_literal"],
-    "skip_features": ["unicode", "multiline"],
     "skip_variants": ["proposed_behavior"]
   }
 }
@@ -327,12 +314,10 @@ function create_test_runner_from_config(config_file) {
   // Generate CLI args for test generation
   run_only_tags = []
   run_only_tags.extend("function:" + f for f in capabilities.functions)
-  run_only_tags.extend("feature:" + f for f in capabilities.features) 
   run_only_tags.extend("behavior:" + b for b in capabilities.behaviors)
   
   skip_tags = []
   skip_tags.extend("behavior:" + b for b in config.test_selection.skip_behaviors)
-  skip_tags.extend("feature:" + f for f in config.test_selection.skip_features)
   
   return TestRunner(capabilities, run_only_tags, skip_tags)
 }
@@ -436,11 +421,11 @@ ccl-test-runner generate
 ccl-test-runner test --format json > results.json
 ```
 
-### Feature Development Testing
+### Feature Gap Reporting
 ```bash
-# Test specific features during development
-ccl-test-runner generate --run-only feature:comments
-ccl-test-runner test --features comments
+# After running tests, use feature tags to identify gaps
+ccl-test-runner test --format json > results.json
+# Analyze which feature areas have failing tests
 ```
 
 This simplified approach eliminates the complexity of partial validation execution while providing clear, predictable test behavior that matches the flat format's design.

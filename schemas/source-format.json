@@ -301,7 +301,7 @@
           },
           "features": {
             "type": "array",
-            "description": "Required language features for this test",
+            "description": "Language features exercised by this test (informational, for gap reporting)",
             "items": { "$ref": "#/$defs/featureName" },
             "uniqueItems": true
           },

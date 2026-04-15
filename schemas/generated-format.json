@@ -173,7 +173,7 @@
       },
       "features": {
         "type": "array",
-        "description": "Required language features",
+        "description": "Language features exercised by this test (informational, for gap reporting)",
         "items": {
           "type": "string",
           "oneOf": [
