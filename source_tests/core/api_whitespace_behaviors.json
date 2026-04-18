@@ -175,7 +175,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n \tindented_with_tabs\n \tanother_line"
@@ -200,7 +200,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
@@ -225,7 +225,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n \tmixed_indent\n\t another_line"
@@ -282,7 +282,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -464,7 +464,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -595,7 +595,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
@@ -620,7 +620,7 @@
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"

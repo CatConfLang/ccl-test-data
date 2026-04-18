@@ -49,7 +49,6 @@ A feature represents a language capability that all implementations are expected
 |---------|-------------|---------|
 | `comments` | `/=` comment syntax | `/= This is a comment` |
 | `empty_keys` | Anonymous list items | `= item1\n= item2` |
-| `multiline` | Multi-line values | `description = Line 1\nLine 2` |
 | `multiline_continuation` | Indented continuation lines | `desc = First\n  second line` |
 | `multiline_keys` | Keys spanning multiple lines | `key\n= val` |
 | `unicode` | Unicode content | `name = José` |

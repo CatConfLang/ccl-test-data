@@ -328,7 +328,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "entries": [
@@ -339,7 +341,7 @@
         ]
       },
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -359,7 +361,7 @@
         "value": "script =\n  #!/bin/bash\n  echo hello\n  exit 0"
       },
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "print"
@@ -373,13 +375,15 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "value": true
       },
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse",
@@ -608,7 +612,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -624,7 +630,7 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -645,7 +651,7 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "print"
@@ -659,14 +665,16 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "value": true
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse",

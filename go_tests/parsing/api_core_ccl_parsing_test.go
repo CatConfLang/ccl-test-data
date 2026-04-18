@@ -95,7 +95,7 @@ other = normal`
 }
 
 
-// multiline_values_parse - function:parse feature:multiline
+// multiline_values_parse - function:parse feature:multiline_continuation behavior:multiline_values
 func TestMultilineValuesParse(t *testing.T) {
 	
 
@@ -120,7 +120,7 @@ done = yes`
 }
 
 
-// multiline_values_print - function:print feature:multiline
+// multiline_values_print - function:print feature:multiline_continuation
 func TestMultilineValuesPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

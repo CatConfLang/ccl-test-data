@@ -23,7 +23,7 @@
       ],
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
@@ -95,7 +95,6 @@
         "multiline_values"
       ],
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "inputs": [
@@ -141,7 +140,6 @@
         "multiline_values"
       ],
       "features": [
-        "multiline",
         "multiline_continuation",
         "empty_keys"
       ],
@@ -671,7 +669,6 @@
         "multiline_values"
       ],
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "inputs": [

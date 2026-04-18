@@ -73,7 +73,6 @@ const (
 	FeatureComments               CCLFeature = "comments"
 	FeatureExperimentalDottedKeys CCLFeature = "experimental_dotted_keys"
 	FeatureEmptyKeys              CCLFeature = "empty_keys"
-	FeatureMultiline              CCLFeature = "multiline"
 	FeatureMultilineContinuation  CCLFeature = "multiline_continuation"
 	FeatureMultilineKeys          CCLFeature = "multiline_keys"
 	FeatureUnicode                CCLFeature = "unicode"
@@ -86,7 +85,6 @@ func AllFeatures() []CCLFeature {
 		FeatureComments,
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
-		FeatureMultiline,
 		FeatureMultilineContinuation,
 		FeatureMultilineKeys,
 		FeatureUnicode,

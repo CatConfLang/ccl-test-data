@@ -64,7 +64,7 @@
         }
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "val\n  next"
@@ -79,7 +79,7 @@
         }
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "\nval\n  next"

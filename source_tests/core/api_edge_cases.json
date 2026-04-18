@@ -584,7 +584,7 @@
         "multiline_values"
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "key =\n  line1\n  line2"
@@ -607,7 +607,7 @@
         "multiline_values"
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "key =\n  line1\n\n  line2"

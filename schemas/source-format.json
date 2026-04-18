@@ -169,7 +169,7 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": ["comments", "empty_keys", "multiline", "multiline_continuation", "multiline_keys", "unicode", "whitespace"]
+          "enum": ["comments", "empty_keys", "multiline_continuation", "multiline_keys", "unicode", "whitespace"]
         },
         { "pattern": "^experimental_" },
         { "pattern": "^optional_" }

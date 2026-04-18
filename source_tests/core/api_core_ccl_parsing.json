@@ -100,7 +100,7 @@
         "multiline_values"
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "description = First line\n  Second line\n  Third line\ndone = yes"

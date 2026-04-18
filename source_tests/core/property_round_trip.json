@@ -177,7 +177,7 @@
         "multiline_values"
       ],
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "script =\n  #!/bin/bash\n  echo hello\n  exit 0"
@@ -313,7 +313,7 @@
       ],
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "empty_section =\n\nother = value"

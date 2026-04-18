@@ -195,8 +195,10 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 			supportedFeatures = append(supportedFeatures, config.FeatureExperimentalDottedKeys)
 		case "unicode":
 			supportedFeatures = append(supportedFeatures, config.FeatureUnicode)
-		case "multiline":
-			supportedFeatures = append(supportedFeatures, config.FeatureMultiline)
+		case "multiline_continuation":
+			supportedFeatures = append(supportedFeatures, config.FeatureMultilineContinuation)
+		case "multiline_keys":
+			supportedFeatures = append(supportedFeatures, config.FeatureMultilineKeys)
 		case "whitespace":
 			supportedFeatures = append(supportedFeatures, config.FeatureWhitespace)
 		case "empty_keys":
