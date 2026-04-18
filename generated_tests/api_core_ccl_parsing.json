@@ -121,7 +121,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -136,8 +138,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -157,8 +158,7 @@
         "value": "description = First line\n  Second line\n  Third line\ndone = yes"
       },
       "features": [
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "print"

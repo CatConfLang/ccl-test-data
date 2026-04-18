@@ -2,7 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -18,8 +20,7 @@
       },
       "features": [
         "empty_keys",
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -62,7 +63,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -77,9 +80,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -94,7 +95,8 @@
     },
     {
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -111,9 +113,7 @@
         }
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "build_hierarchy"
@@ -148,9 +148,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "get_list"
@@ -164,7 +162,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 4,
         "entries": [
@@ -187,10 +187,8 @@
         ]
       },
       "features": [
-        "empty_keys",
-        "multiline",
         "multiline_continuation",
-        "multiline_values"
+        "empty_keys"
       ],
       "functions": [
         "parse_indented"
@@ -204,7 +202,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "object": {
@@ -216,10 +216,8 @@
         }
       },
       "features": [
-        "empty_keys",
-        "multiline",
         "multiline_continuation",
-        "multiline_values"
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy"
@@ -1085,7 +1083,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 4,
         "entries": [
@@ -1108,9 +1108,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -1125,7 +1123,8 @@
     },
     {
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -1144,9 +1143,7 @@
         }
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "build_hierarchy"
@@ -1182,9 +1179,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "get_list"

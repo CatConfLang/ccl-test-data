@@ -14,7 +14,7 @@ import (
 
 
 
-// multiline_section_header_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline feature:multiline_values
+// multiline_section_header_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline_continuation behavior:multiline_values
 func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -26,31 +26,31 @@ func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
 }
 
 
-// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation feature:multiline_values
+// indented_line_is_continuation_parse_indented - function:parse_indented feature:multiline_continuation behavior:multiline_values
 func TestIndentedLineIsContinuationParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation feature:multiline_values behavior:array_order_insertion
+// indented_line_is_continuation_build_hierarchy - function:build_hierarchy feature:multiline_continuation behavior:array_order_insertion behavior:multiline_values
 func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// indented_line_is_continuation_get_list - function:get_list feature:multiline feature:multiline_continuation feature:multiline_values behavior:list_coercion_enabled behavior:array_order_insertion
+// indented_line_is_continuation_get_list - function:get_list feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestIndentedLineIsContinuationGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// mixed_indentation_levels_parse_indented - function:parse_indented feature:empty_keys feature:multiline feature:multiline_continuation feature:multiline_values
+// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline_continuation feature:empty_keys behavior:multiline_values
 func TestMixedIndentationLevelsParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:empty_keys feature:multiline feature:multiline_continuation feature:multiline_values
+// mixed_indentation_levels_build_hierarchy - function:build_hierarchy feature:multiline_continuation feature:empty_keys behavior:multiline_values
 func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -382,19 +382,19 @@ func TestListWithSpecialCharactersGetList(t *testing.T) {
 }
 
 
-// list_multiline_values_parse_indented - function:parse_indented feature:multiline feature:multiline_continuation feature:multiline_values
+// list_multiline_values_parse_indented - function:parse_indented feature:multiline_continuation behavior:multiline_values
 func TestListMultilineValuesParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline feature:multiline_continuation feature:multiline_values behavior:array_order_insertion
+// list_multiline_values_build_hierarchy - function:build_hierarchy feature:multiline_continuation behavior:array_order_insertion behavior:multiline_values
 func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// list_multiline_values_get_list - function:get_list feature:multiline feature:multiline_continuation feature:multiline_values behavior:list_coercion_enabled behavior:array_order_insertion
+// list_multiline_values_get_list - function:get_list feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListMultilineValuesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

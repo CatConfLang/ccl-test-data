@@ -18,10 +18,12 @@
           ]
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "empty_keys",
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
@@ -89,12 +91,11 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
@@ -135,11 +136,12 @@
           }
         }
       ],
-      "features": [
-        "empty_keys",
-        "multiline",
-        "multiline_continuation",
+      "behaviors": [
         "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation",
+        "empty_keys"
       ],
       "inputs": [
         "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
@@ -663,12 +665,11 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
-        "multiline",
-        "multiline_continuation",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"

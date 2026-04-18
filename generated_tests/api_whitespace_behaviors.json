@@ -327,7 +327,8 @@
     },
     {
       "behaviors": [
-        "tabs_as_content"
+        "tabs_as_content",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -344,9 +345,8 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -361,7 +361,8 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace"
+        "tabs_as_whitespace",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -378,9 +379,8 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -395,7 +395,8 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace"
+        "tabs_as_whitespace",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -412,9 +413,8 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -488,7 +488,8 @@
     {
       "behaviors": [
         "tabs_as_whitespace",
-        "indent_spaces"
+        "indent_spaces",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -501,9 +502,8 @@
         "value": "section =\n  indented\n  another"
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse",
@@ -788,7 +788,8 @@
     {
       "behaviors": [
         "tabs_as_whitespace",
-        "indent_tabs"
+        "indent_tabs",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -801,9 +802,8 @@
         "value": "section =\n\tindented\n\tanother"
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse",
@@ -1012,7 +1012,8 @@
     },
     {
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_normalize_to_lf",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -1029,9 +1030,8 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -1046,7 +1046,8 @@
     },
     {
       "behaviors": [
-        "crlf_preserve_literal"
+        "crlf_preserve_literal",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -1063,9 +1064,8 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values",
-        "whitespace"
+        "whitespace",
+        "multiline_continuation"
       ],
       "functions": [
         "parse"

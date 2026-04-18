@@ -173,9 +173,11 @@
           "expect": true
         }
       ],
-      "features": [
-        "multiline",
+      "behaviors": [
         "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation"
       ],
       "inputs": [
         "script =\n  #!/bin/bash\n  echo hello\n  exit 0"
@@ -306,10 +308,12 @@
           "expect": "empty_section =\nother = value"
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "empty_keys",
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "inputs": [
         "empty_section =\n\nother = value"

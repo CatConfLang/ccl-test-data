@@ -446,8 +446,7 @@
         }
       ],
       "features": [
-        "multiline",
-        "multiline_keys",
+        "empty_keys",
         "whitespace"
       ],
       "inputs": [
@@ -468,146 +467,11 @@
         }
       ],
       "features": [
-        "multiline",
-        "multiline_keys",
+        "empty_keys",
         "whitespace"
       ],
       "inputs": [
         "  \n key  \n=  val  \n"
-      ]
-    },
-    {
-      "name": "multiline_key_with_spaces",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "my key",
-              "value": "val"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys",
-        "whitespace"
-      ],
-      "inputs": [
-        "my\n key\n= val"
-      ]
-    },
-    {
-      "name": "multiline_key_three_lines",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "a b c",
-              "value": "val"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys"
-      ],
-      "inputs": [
-        "a\n b\n c\n= val"
-      ]
-    },
-    {
-      "name": "multiline_key_empty_value",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": ""
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys",
-        "empty_keys"
-      ],
-      "inputs": [
-        "key\n="
-      ]
-    },
-    {
-      "name": "multiline_key_with_regular_entry",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "first",
-              "value": "val1"
-            },
-            {
-              "key": "key",
-              "value": "val2"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys"
-      ],
-      "inputs": [
-        "first = val1\nkey\n= val2"
-      ]
-    },
-    {
-      "name": "multiline_key_blank_lines_between",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "val"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys",
-        "whitespace"
-      ],
-      "inputs": [
-        "key\n\n= val"
-      ]
-    },
-    {
-      "name": "multiline_key_tabs_in_continuation",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "val"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "multiline",
-        "multiline_keys",
-        "whitespace"
-      ],
-      "inputs": [
-        "key\n\t= val"
       ]
     },
     {
@@ -716,9 +580,11 @@
           ]
         }
       ],
-      "features": [
-        "multiline",
+      "behaviors": [
         "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation"
       ],
       "inputs": [
         "key =\n  line1\n  line2"
@@ -737,9 +603,11 @@
           ]
         }
       ],
-      "features": [
-        "multiline",
+      "behaviors": [
         "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation"
       ],
       "inputs": [
         "key =\n  line1\n\n  line2"

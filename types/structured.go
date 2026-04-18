@@ -129,7 +129,6 @@ const (
 	FeatureComments               Feature = "comments"
 	FeatureEmptyKeys              Feature = "empty_keys"
 	FeatureExperimentalDottedKeys Feature = "experimental_dotted_keys"
-	FeatureMultiline              Feature = "multiline"
 	FeatureUnicode                Feature = "unicode"
 	FeatureWhitespace             Feature = "whitespace"
 )

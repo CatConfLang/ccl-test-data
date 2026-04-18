@@ -378,7 +378,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -393,8 +395,7 @@
         ]
       },
       "features": [
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -408,7 +409,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "object": {
@@ -422,8 +425,7 @@
         }
       },
       "features": [
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "build_hierarchy"
@@ -443,8 +445,7 @@
         "value": "description = Welcome to our app\n  This is a multi-line description\n  With several lines\nconfig =\n  settings =\n    value1 = one\n    value2 = two"
       },
       "features": [
-        "multiline",
-        "multiline_values"
+        "multiline_continuation"
       ],
       "functions": [
         "print"
