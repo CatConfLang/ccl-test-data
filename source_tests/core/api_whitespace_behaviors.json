@@ -170,11 +170,12 @@
         }
       ],
       "behaviors": [
-        "tabs_as_content"
+        "tabs_as_content",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n \tindented_with_tabs\n \tanother_line"
@@ -194,11 +195,12 @@
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace"
+        "tabs_as_whitespace",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
@@ -218,11 +220,12 @@
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace"
+        "tabs_as_whitespace",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n \tmixed_indent\n\t another_line"
@@ -274,11 +277,12 @@
       ],
       "behaviors": [
         "tabs_as_whitespace",
-        "indent_spaces"
+        "indent_spaces",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -455,11 +459,12 @@
       ],
       "behaviors": [
         "tabs_as_whitespace",
-        "indent_tabs"
+        "indent_tabs",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -585,11 +590,12 @@
         }
       ],
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_normalize_to_lf",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
@@ -609,11 +615,12 @@
         }
       ],
       "behaviors": [
-        "crlf_preserve_literal"
+        "crlf_preserve_literal",
+        "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"

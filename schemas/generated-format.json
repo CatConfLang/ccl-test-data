@@ -157,7 +157,8 @@
             "array_order_insertion", "array_order_lexicographic",
             "toplevel_indent_strip", "toplevel_indent_preserve",
             "delimiter_first_equals", "delimiter_prefer_spaced",
-            "path_traversal"
+            "path_traversal",
+            "multiline_values"
           ]
         },
         "uniqueItems": true
@@ -180,7 +181,7 @@
             {
               "enum": [
                 "comments", "empty_keys",
-                "multiline", "multiline_continuation", "unicode", "whitespace"
+                "multiline_continuation", "multiline_keys", "unicode", "whitespace"
               ]
             },
             {

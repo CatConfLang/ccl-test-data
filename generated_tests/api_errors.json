@@ -79,7 +79,7 @@
         "count": 0
       },
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -98,7 +98,7 @@
         "count": 0
       },
       "features": [
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"

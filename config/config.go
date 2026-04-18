@@ -73,8 +73,8 @@ const (
 	FeatureComments               CCLFeature = "comments"
 	FeatureExperimentalDottedKeys CCLFeature = "experimental_dotted_keys"
 	FeatureEmptyKeys              CCLFeature = "empty_keys"
-	FeatureMultiline              CCLFeature = "multiline"
 	FeatureMultilineContinuation  CCLFeature = "multiline_continuation"
+	FeatureMultilineKeys          CCLFeature = "multiline_keys"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
 )
@@ -85,7 +85,8 @@ func AllFeatures() []CCLFeature {
 		FeatureComments,
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
-		FeatureMultiline,
+		FeatureMultilineContinuation,
+		FeatureMultilineKeys,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}
@@ -112,6 +113,7 @@ const (
 	BehaviorArrayOrderInsertion     CCLBehavior = "array_order_insertion"
 	BehaviorArrayOrderLexicographic CCLBehavior = "array_order_lexicographic"
 	BehaviorPathTraversal           CCLBehavior = "path_traversal"
+	BehaviorMultilineValues         CCLBehavior = "multiline_values"
 )
 
 // GetBehaviorConflicts returns mutually exclusive behavior groups

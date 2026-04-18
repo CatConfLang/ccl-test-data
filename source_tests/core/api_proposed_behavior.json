@@ -18,9 +18,12 @@
           ]
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
@@ -88,10 +91,10 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "inputs": [
@@ -133,8 +136,10 @@
           }
         }
       ],
+      "behaviors": [
+        "multiline_values"
+      ],
       "features": [
-        "multiline",
         "multiline_continuation",
         "empty_keys"
       ],
@@ -660,10 +665,10 @@
       ],
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "inputs": [

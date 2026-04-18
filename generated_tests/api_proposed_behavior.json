@@ -2,7 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -18,7 +20,7 @@
       },
       "features": [
         "empty_keys",
-        "multiline"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -61,7 +63,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 2,
         "entries": [
@@ -76,7 +80,6 @@
         ]
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [
@@ -92,7 +95,8 @@
     },
     {
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -109,7 +113,6 @@
         }
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [
@@ -145,7 +148,6 @@
         ]
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [
@@ -160,7 +162,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 4,
         "entries": [
@@ -183,7 +187,6 @@
         ]
       },
       "features": [
-        "multiline",
         "multiline_continuation",
         "empty_keys"
       ],
@@ -199,7 +202,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 1,
         "object": {
@@ -211,7 +216,6 @@
         }
       },
       "features": [
-        "multiline",
         "multiline_continuation",
         "empty_keys"
       ],
@@ -1079,7 +1083,9 @@
       "variants": []
     },
     {
-      "behaviors": [],
+      "behaviors": [
+        "multiline_values"
+      ],
       "expected": {
         "count": 4,
         "entries": [
@@ -1102,7 +1108,6 @@
         ]
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [
@@ -1118,7 +1123,8 @@
     },
     {
       "behaviors": [
-        "array_order_insertion"
+        "array_order_insertion",
+        "multiline_values"
       ],
       "conflicts": {
         "behaviors": [
@@ -1137,7 +1143,6 @@
         }
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [
@@ -1174,7 +1179,6 @@
         ]
       },
       "features": [
-        "multiline",
         "multiline_continuation"
       ],
       "functions": [

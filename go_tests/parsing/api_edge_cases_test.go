@@ -548,7 +548,7 @@ func TestNestedSingleLineParse(t *testing.T) {
 }
 
 
-// nested_multi_line_parse - function:parse feature:multiline
+// nested_multi_line_parse - function:parse feature:multiline_continuation behavior:multiline_values
 func TestNestedMultiLineParse(t *testing.T) {
 	
 
@@ -572,7 +572,7 @@ func TestNestedMultiLineParse(t *testing.T) {
 }
 
 
-// nested_with_blank_line_parse_indented - function:parse_indented feature:multiline
+// nested_with_blank_line_parse_indented - function:parse_indented feature:multiline_continuation behavior:multiline_values
 func TestNestedWithBlankLineParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

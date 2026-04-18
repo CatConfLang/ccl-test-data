@@ -102,7 +102,7 @@ func TestJustStringErrorParse(t *testing.T) {
 }
 
 
-// multiline_plain_error_parse - function:parse feature:multiline
+// multiline_plain_error_parse - function:parse feature:multiline_continuation
 func TestMultilinePlainErrorParse(t *testing.T) {
 	
 
@@ -125,7 +125,7 @@ func TestMultilinePlainErrorParse(t *testing.T) {
 }
 
 
-// multiline_plain_nested_error_parse - function:parse feature:multiline
+// multiline_plain_nested_error_parse - function:parse feature:multiline_continuation
 func TestMultilinePlainNestedErrorParse(t *testing.T) {
 	
 

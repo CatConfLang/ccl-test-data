@@ -17,7 +17,7 @@ func TestImplementationConfig_JSONMarshaling(t *testing.T) {
 		},
 		SupportedFeatures: []CCLFeature{
 			FeatureComments,
-			FeatureMultiline,
+			FeatureMultilineContinuation,
 		},
 		BehaviorChoices: []CCLBehavior{
 			BehaviorCRLFNormalize,
@@ -107,7 +107,8 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureComments,
 		FeatureExperimentalDottedKeys,
 		FeatureEmptyKeys,
-		FeatureMultiline,
+		FeatureMultilineContinuation,
+		FeatureMultilineKeys,
 		FeatureUnicode,
 		FeatureWhitespace,
 	}
@@ -321,7 +322,7 @@ func TestImplementationConfig_HasFeature_Positive(t *testing.T) {
 	config := ImplementationConfig{
 		SupportedFeatures: []CCLFeature{
 			FeatureComments,
-			FeatureMultiline,
+			FeatureMultilineContinuation,
 		},
 	}
 
@@ -329,7 +330,7 @@ func TestImplementationConfig_HasFeature_Positive(t *testing.T) {
 	if !config.HasFeature(FeatureComments) {
 		t.Error("Should have comments feature")
 	}
-	if !config.HasFeature(FeatureMultiline) {
+	if !config.HasFeature(FeatureMultilineContinuation) {
 		t.Error("Should have multiline feature")
 	}
 }
@@ -366,7 +367,7 @@ func TestImplementationConfig_HasFeature_ExplicitlyUnsupported(t *testing.T) {
 	}
 
 	// Feature not listed anywhere (default false)
-	if config.HasFeature(FeatureMultiline) {
+	if config.HasFeature(FeatureMultilineContinuation) {
 		t.Error("Should not have unlisted multiline feature")
 	}
 }
@@ -515,7 +516,8 @@ func TestCCLFeature_StringValues(t *testing.T) {
 		{FeatureComments, "comments"},
 		{FeatureExperimentalDottedKeys, "experimental_dotted_keys"},
 		{FeatureEmptyKeys, "empty_keys"},
-		{FeatureMultiline, "multiline"},
+		{FeatureMultilineContinuation, "multiline_continuation"},
+		{FeatureMultilineKeys, "multiline_keys"},
 		{FeatureUnicode, "unicode"},
 		{FeatureWhitespace, "whitespace"},
 	}

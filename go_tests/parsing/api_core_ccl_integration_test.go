@@ -206,7 +206,7 @@ func TestCompleteListsWorkflowLexicographicPrint(t *testing.T) {
 }
 
 
-// complete_multiline_workflow_parse - function:parse feature:multiline
+// complete_multiline_workflow_parse - function:parse feature:multiline_continuation behavior:multiline_values
 func TestCompleteMultilineWorkflowParse(t *testing.T) {
 	
 
@@ -234,13 +234,13 @@ config =
 }
 
 
-// complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline
+// complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline_continuation behavior:multiline_values
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// complete_multiline_workflow_print - function:print feature:multiline
+// complete_multiline_workflow_print - function:print feature:multiline_continuation
 func TestCompleteMultilineWorkflowPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
