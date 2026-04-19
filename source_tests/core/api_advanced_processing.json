@@ -28,6 +28,9 @@
       ],
       "inputs": [
         "a = 1\nb = 2\nb = 20\nc = 3"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -53,6 +56,9 @@
       ],
       "inputs": [
         "ports = 8000\nports = 8001\nports = 8002"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -81,6 +87,9 @@
       ],
       "inputs": [
         "= 3\n= 1\n= 2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -101,6 +110,9 @@
       ],
       "inputs": [
         "== Section 2 =="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -130,6 +142,9 @@
       ],
       "inputs": [
         "b = 20\nc = 3\na = 1\nb = 2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -162,6 +177,9 @@
       ],
       "inputs": [
         "name = app\nports = 8000\nname = service\nports = 8001"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -190,6 +208,9 @@
       ],
       "inputs": [
         "1 =\n2 =\n3 ="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -218,6 +239,9 @@
       ],
       "inputs": [
         "== Database Config ==\nhost = localhost\nport = 5432"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -246,6 +270,9 @@
       ],
       "inputs": [
         "=== Server Settings ===\nhost = 0.0.0.0\nssl = true"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -286,6 +313,9 @@
       ],
       "inputs": [
         "== Database ==\nhost = localhost\n\n=== Cache ===\nredis = enabled\n\n== Logging ==\nlevel = info"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -326,6 +356,9 @@
       ],
       "inputs": [
         "== Configuration ==\n= item1\n= item2\nkey = value\n=== Next Section ===\nother = data"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -343,6 +376,9 @@
       ],
       "inputs": [
         "== Empty Section =="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -367,6 +403,9 @@
       ],
       "inputs": [
         "key = value\n== Final Section =="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -399,6 +438,9 @@
       ],
       "inputs": [
         "== Database Config\nhost = localhost\n=== Server Settings\nport = 8080"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -431,6 +473,9 @@
       ],
       "inputs": [
         "== Database: Production ==\nhost = db.prod.com\n=== Cache: Redis Config ===\nport = 6379"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -463,6 +508,9 @@
       ],
       "inputs": [
         "= = spaced equals\n=  = wide spaces\n== Real Header ==\nkey = value"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -495,6 +543,9 @@
       ],
       "inputs": [
         "== First Section ==\n=== Nested Section ===\n==== Deep Section ====\nkey = value"
+      ],
+      "functions": [
+        "parse"
       ]
     }
   ]

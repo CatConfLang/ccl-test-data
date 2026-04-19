@@ -31,7 +31,7 @@ const (
 	FunctionParse           CCLFunction = "parse"
 	FunctionParseIndented   CCLFunction = "parse_indented"
 	FunctionFilter          CCLFunction = "filter"
-	FunctionCombine         CCLFunction = "combine"
+	FunctionCompose         CCLFunction = "compose"
 	FunctionExpandDotted    CCLFunction = "expand_dotted"
 	FunctionBuildHierarchy  CCLFunction = "build_hierarchy"
 	FunctionGetString       CCLFunction = "get_string"
@@ -51,7 +51,7 @@ func AllFunctions() []CCLFunction {
 		FunctionParse,
 		FunctionParseIndented,
 		FunctionFilter,
-		FunctionCombine,
+		FunctionCompose,
 		FunctionExpandDotted,
 		FunctionBuildHierarchy,
 		FunctionGetString,
@@ -79,6 +79,7 @@ const (
 	FeatureWhitespace             CCLFeature = "whitespace"
 	FeatureTabInValuePreserved    CCLFeature = "tab_in_value_preserved"
 	FeatureToplevelIndentStrip    CCLFeature = "toplevel_indent_strip"
+	FeatureOptionalTypedAccessors CCLFeature = "optional_typed_accessors"
 )
 
 // AllFeatures returns all valid CCL features
@@ -93,6 +94,7 @@ func AllFeatures() []CCLFeature {
 		FeatureWhitespace,
 		FeatureTabInValuePreserved,
 		FeatureToplevelIndentStrip,
+		FeatureOptionalTypedAccessors,
 	}
 }
 

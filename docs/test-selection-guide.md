@@ -2,6 +2,9 @@
 
 This guide shows how to use the feature-based tagging system to select appropriate tests for your CCL implementation.
 
+> [!NOTE]
+> This page is the **concrete runner-filtering** reference — how the typed fields, conflict resolution, and Go utilities work in this repo. For the **conceptual** side (what each tag means, how features/behaviors/variants relate, canonical CCL semantics), see <https://catconflang.com/test-suite-guide> and the [Features](https://catconflang.com/reference/features/)/[Behaviors](https://catconflang.com/behavior-reference/)/[Variants](https://catconflang.com/reference/variants/) reference pages.
+
 ## Overview
 
 The CCL test suite uses **structured tags** to enable precise test selection based on implementation capabilities. This allows you to:

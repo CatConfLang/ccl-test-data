@@ -1,8 +1,12 @@
 # ADR-002: CRLF Handling in Nested Structures
 
+> **Superseded by:** <https://catconflang.com/reference/decisions/crlf-nested/>
+>
+> The canonical rule now lives on the CCL documentation site. This ADR is retained as a historical record of the decision context; implementers should follow the website version.
+
 ## Status
 
-Accepted
+Accepted (superseded by website spec)
 
 ## Date
 

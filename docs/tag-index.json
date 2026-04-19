@@ -1,0 +1,272 @@
+{
+  "version": 1,
+  "generated_at": "2026-04-19T22:27:18.168Z",
+  "site": "https://catconflang.com",
+  "count": 44,
+  "tags": {
+    "function:parse": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#parse",
+      "page": "/reference/functions/",
+      "anchor": "parse"
+    },
+    "function:parse_indented": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#parse_indented",
+      "page": "/reference/functions/",
+      "anchor": "parse_indented"
+    },
+    "function:build_hierarchy": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#build_hierarchy",
+      "page": "/reference/functions/",
+      "anchor": "build_hierarchy"
+    },
+    "function:load": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#load",
+      "page": "/reference/functions/",
+      "anchor": "load"
+    },
+    "function:filter": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#filter",
+      "page": "/reference/functions/",
+      "anchor": "filter"
+    },
+    "function:compose": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#compose",
+      "page": "/reference/functions/",
+      "anchor": "compose"
+    },
+    "function:expand_dotted": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#expand_dotted",
+      "page": "/reference/functions/",
+      "anchor": "expand_dotted"
+    },
+    "function:get_string": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#get_string",
+      "page": "/reference/functions/",
+      "anchor": "get_string"
+    },
+    "function:get_int": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#get_int",
+      "page": "/reference/functions/",
+      "anchor": "get_int"
+    },
+    "function:get_bool": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#get_bool",
+      "page": "/reference/functions/",
+      "anchor": "get_bool"
+    },
+    "function:get_float": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#get_float",
+      "page": "/reference/functions/",
+      "anchor": "get_float"
+    },
+    "function:get_list": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#get_list",
+      "page": "/reference/functions/",
+      "anchor": "get_list"
+    },
+    "function:print": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#print",
+      "page": "/reference/functions/",
+      "anchor": "print"
+    },
+    "function:canonical_format": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#canonical_format",
+      "page": "/reference/functions/",
+      "anchor": "canonical_format"
+    },
+    "function:round_trip": {
+      "type": "function",
+      "url": "https://catconflang.com/reference/functions/#round_trip",
+      "page": "/reference/functions/",
+      "anchor": "round_trip"
+    },
+    "feature:comments": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#comments",
+      "page": "/reference/features/",
+      "anchor": "comments"
+    },
+    "feature:empty_keys": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#empty_keys",
+      "page": "/reference/features/",
+      "anchor": "empty_keys"
+    },
+    "feature:experimental_dotted_keys": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#experimental_dotted_keys",
+      "page": "/reference/features/",
+      "anchor": "experimental_dotted_keys"
+    },
+    "feature:multiline_continuation": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#multiline_continuation",
+      "page": "/reference/features/",
+      "anchor": "multiline_continuation"
+    },
+    "feature:multiline_keys": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#multiline_keys",
+      "page": "/reference/features/",
+      "anchor": "multiline_keys"
+    },
+    "feature:unicode": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#unicode",
+      "page": "/reference/features/",
+      "anchor": "unicode"
+    },
+    "feature:whitespace": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#whitespace",
+      "page": "/reference/features/",
+      "anchor": "whitespace"
+    },
+    "feature:tab_in_value_preserved": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#tab_in_value_preserved",
+      "page": "/reference/features/",
+      "anchor": "tab_in_value_preserved"
+    },
+    "feature:toplevel_indent_strip": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#toplevel_indent_strip",
+      "page": "/reference/features/",
+      "anchor": "toplevel_indent_strip"
+    },
+    "feature:optional_typed_accessors": {
+      "type": "feature",
+      "url": "https://catconflang.com/reference/features/#optional_typed_accessors",
+      "page": "/reference/features/",
+      "anchor": "optional_typed_accessors"
+    },
+    "behavior:crlf_normalize_to_lf": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#crlf_normalize_to_lf",
+      "page": "/behavior-reference/",
+      "anchor": "crlf_normalize_to_lf"
+    },
+    "behavior:crlf_preserve_literal": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#crlf_preserve_literal",
+      "page": "/behavior-reference/",
+      "anchor": "crlf_preserve_literal"
+    },
+    "behavior:indent_spaces": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#indent_spaces",
+      "page": "/behavior-reference/",
+      "anchor": "indent_spaces"
+    },
+    "behavior:indent_tabs": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#indent_tabs",
+      "page": "/behavior-reference/",
+      "anchor": "indent_tabs"
+    },
+    "behavior:continuation_tab_to_space": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#continuation_tab_to_space",
+      "page": "/behavior-reference/",
+      "anchor": "continuation_tab_to_space"
+    },
+    "behavior:continuation_tab_preserve": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#continuation_tab_preserve",
+      "page": "/behavior-reference/",
+      "anchor": "continuation_tab_preserve"
+    },
+    "behavior:boolean_strict": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#boolean_strict",
+      "page": "/behavior-reference/",
+      "anchor": "boolean_strict"
+    },
+    "behavior:boolean_lenient": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#boolean_lenient",
+      "page": "/behavior-reference/",
+      "anchor": "boolean_lenient"
+    },
+    "behavior:list_coercion_enabled": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#list_coercion_enabled",
+      "page": "/behavior-reference/",
+      "anchor": "list_coercion_enabled"
+    },
+    "behavior:list_coercion_disabled": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#list_coercion_disabled",
+      "page": "/behavior-reference/",
+      "anchor": "list_coercion_disabled"
+    },
+    "behavior:toplevel_indent_strip": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#toplevel_indent_strip",
+      "page": "/behavior-reference/",
+      "anchor": "toplevel_indent_strip"
+    },
+    "behavior:toplevel_indent_preserve": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#toplevel_indent_preserve",
+      "page": "/behavior-reference/",
+      "anchor": "toplevel_indent_preserve"
+    },
+    "behavior:delimiter_first_equals": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#delimiter_first_equals",
+      "page": "/behavior-reference/",
+      "anchor": "delimiter_first_equals"
+    },
+    "behavior:delimiter_prefer_spaced": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#delimiter_prefer_spaced",
+      "page": "/behavior-reference/",
+      "anchor": "delimiter_prefer_spaced"
+    },
+    "behavior:array_order_insertion": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#array_order_insertion",
+      "page": "/behavior-reference/",
+      "anchor": "array_order_insertion"
+    },
+    "behavior:array_order_lexicographic": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#array_order_lexicographic",
+      "page": "/behavior-reference/",
+      "anchor": "array_order_lexicographic"
+    },
+    "behavior:multiline_values": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#multiline-values",
+      "page": "/behavior-reference/",
+      "anchor": "multiline-values"
+    },
+    "behavior:path_traversal": {
+      "type": "behavior",
+      "url": "https://catconflang.com/behavior-reference/#path-traversal",
+      "page": "/behavior-reference/",
+      "anchor": "path-traversal"
+    },
+    "variant:reference_compliant": {
+      "type": "variant",
+      "url": "https://catconflang.com/reference/variants/#reference_compliant",
+      "page": "/reference/variants/",
+      "anchor": "reference_compliant"
+    }
+  }
+}

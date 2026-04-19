@@ -27,6 +27,9 @@
       ],
       "inputs": [
         "== Section Header =\n  This continues the header\nkey = value"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -51,6 +54,9 @@
       ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -99,6 +105,11 @@
       ],
       "inputs": [
         "descriptions = First line\n  second line\ndescriptions = Another item"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse_indented"
       ]
     },
     {
@@ -145,6 +156,10 @@
       ],
       "inputs": [
         "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse_indented"
       ]
     },
     {
@@ -180,6 +195,11 @@
       ],
       "inputs": [
         "item = single"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -238,6 +258,11 @@
       ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -292,6 +317,11 @@
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -328,6 +358,11 @@
       ],
       "inputs": [
         "empty_list ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -384,6 +419,11 @@
       ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -440,6 +480,11 @@
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -499,6 +544,11 @@
       ],
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -509,19 +559,19 @@
           "expect": [
             {
               "key": "names",
-              "value": "张三"
+              "value": "\u5f20\u4e09"
             },
             {
               "key": "names",
-              "value": "José"
+              "value": "Jos\u00e9"
             },
             {
               "key": "names",
-              "value": "François"
+              "value": "Fran\u00e7ois"
             },
             {
               "key": "names",
-              "value": "العربية"
+              "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
             }
           ]
         },
@@ -529,20 +579,20 @@
           "function": "build_hierarchy",
           "expect": {
             "names": [
-              "张三",
-              "José",
-              "François",
-              "العربية"
+              "\u5f20\u4e09",
+              "Jos\u00e9",
+              "Fran\u00e7ois",
+              "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
             ]
           }
         },
         {
           "function": "get_list",
           "expect": [
-            "张三",
-            "José",
-            "François",
-            "العربية"
+            "\u5f20\u4e09",
+            "Jos\u00e9",
+            "Fran\u00e7ois",
+            "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
           ],
           "args": [
             "names"
@@ -557,7 +607,12 @@
         "unicode"
       ],
       "inputs": [
-        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+        "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -614,6 +669,11 @@
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -673,6 +733,11 @@
       ],
       "inputs": [
         "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse_indented"
       ]
     },
     {
@@ -803,6 +868,11 @@
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse_indented"
       ]
     },
     {
@@ -849,6 +919,11 @@
       ],
       "inputs": [
         "safe = value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -879,6 +954,11 @@
       ],
       "inputs": [
         "empty_key ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     }
   ]

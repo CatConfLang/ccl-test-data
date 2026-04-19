@@ -67,7 +67,7 @@ func TestAllFunctions_Completeness(t *testing.T) {
 		FunctionParse,
 		FunctionParseIndented,
 		FunctionFilter,
-		FunctionCombine,
+		FunctionCompose,
 		FunctionExpandDotted,
 		FunctionBuildHierarchy,
 		FunctionGetString,
@@ -113,6 +113,7 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureWhitespace,
 		FeatureTabInValuePreserved,
 		FeatureToplevelIndentStrip,
+		FeatureOptionalTypedAccessors,
 	}
 
 	if len(features) != len(expectedFeatures) {
@@ -487,7 +488,7 @@ func TestCCLFunction_StringValues(t *testing.T) {
 		{FunctionParse, "parse"},
 		{FunctionParseIndented, "parse_indented"},
 		{FunctionFilter, "filter"},
-		{FunctionCombine, "combine"},
+		{FunctionCompose, "compose"},
 		{FunctionExpandDotted, "expand_dotted"},
 		{FunctionBuildHierarchy, "build_hierarchy"},
 		{FunctionGetString, "get_string"},

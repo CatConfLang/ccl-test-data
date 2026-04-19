@@ -33,7 +33,7 @@ just test-all               # Run all tests including failing ones
 > **`just reset` vs `just generate`:** `reset` (and `build`) use filtered generation (`--run-only function:parse --skip-tags ...`). `just generate` is unfiltered and produces a much larger go_tests set. Always use `reset`/`build` unless you specifically need the full set — running `generate` after a small edit produces thousands of lines of unrelated drift in `go_tests/`.
 
 > [!NOTE]
-> **OCaml is canonical.** The test suite tracks the OCaml reference-implementation semantics. When tab/indent or similar edge-case expectations are ambiguous, OCaml's behavior is the spec; non-OCaml alternatives are dropped from the fixtures unless a concrete consumer needs them. See `docs/implementing-ccl.md` for the tab/indent rules.
+> **OCaml is canonical.** The test suite tracks the OCaml reference-implementation semantics. See <https://catconflang.com/reference/canonical-semantics/> for the normative rule and implications; this test-data repo's fixtures follow it.
 
 ### Testing Options
 ```bash

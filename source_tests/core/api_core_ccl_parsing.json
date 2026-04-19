@@ -24,6 +24,10 @@
       ],
       "inputs": [
         "name = Alice\nage = 42"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -49,6 +53,10 @@
       ],
       "inputs": [
         "msg = k=v pairs work fine\npath = /bin/app=prod"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -73,6 +81,9 @@
       ],
       "inputs": [
         "  key   =    value with spaces   \nother = normal"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -104,6 +115,10 @@
       ],
       "inputs": [
         "description = First line\n  Second line\n  Third line\ndone = yes"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -132,6 +147,10 @@
       ],
       "inputs": [
         "empty =\nother = value"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -153,6 +172,10 @@
       ],
       "inputs": [
         "database =\n  host = localhost\n  port = 5432"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -163,24 +186,28 @@
           "expect": [
             {
               "key": "emoji",
-              "value": "😀😃😄"
+              "value": "\ud83d\ude00\ud83d\ude03\ud83d\ude04"
             },
             {
-              "key": "配置",
+              "key": "\u914d\u7f6e",
               "value": "config"
             }
           ]
         },
         {
           "function": "print",
-          "expect": "emoji = 😀😃😄\n配置 = config"
+          "expect": "emoji = \ud83d\ude00\ud83d\ude03\ud83d\ude04\n\u914d\u7f6e = config"
         }
       ],
       "features": [
         "unicode"
       ],
       "inputs": [
-        "emoji = 😀😃😄\n配置 = config"
+        "emoji = \ud83d\ude00\ud83d\ude03\ud83d\ude04\n\u914d\u7f6e = config"
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -197,6 +224,10 @@
       ],
       "inputs": [
         ""
+      ],
+      "functions": [
+        "parse",
+        "print"
       ]
     },
     {
@@ -221,6 +252,9 @@
       ],
       "inputs": [
         "  key = value\n  second"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -245,6 +279,9 @@
       ],
       "inputs": [
         "  key1 = value1\nkey2 = value2"
+      ],
+      "functions": [
+        "parse"
       ]
     }
   ]

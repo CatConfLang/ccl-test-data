@@ -7,21 +7,41 @@
         {
           "function": "parse",
           "expect": [
-            { "key": "host", "value": "localhost" },
-            { "key": "port", "value": "8080" },
-            { "key": "mode", "value": "debug" }
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            },
+            {
+              "key": "mode",
+              "value": "debug"
+            }
           ]
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "==", "value": "port" },
+          "predicate": {
+            "field": "key",
+            "op": "==",
+            "value": "port"
+          },
           "expect": [
-            { "key": "port", "value": "8080" }
+            {
+              "key": "port",
+              "value": "8080"
+            }
           ]
         }
       ],
       "inputs": [
         "host = localhost\nport = 8080\nmode = debug"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -30,17 +50,36 @@
         {
           "function": "parse",
           "expect": [
-            { "key": "name", "value": "app" },
-            { "key": "description", "value": "" },
-            { "key": "version", "value": "1.0" }
+            {
+              "key": "name",
+              "value": "app"
+            },
+            {
+              "key": "description",
+              "value": ""
+            },
+            {
+              "key": "version",
+              "value": "1.0"
+            }
           ]
         },
         {
           "function": "filter",
-          "predicate": { "field": "value", "op": "!=", "value": "" },
+          "predicate": {
+            "field": "value",
+            "op": "!=",
+            "value": ""
+          },
           "expect": [
-            { "key": "name", "value": "app" },
-            { "key": "version", "value": "1.0" }
+            {
+              "key": "name",
+              "value": "app"
+            },
+            {
+              "key": "version",
+              "value": "1.0"
+            }
           ]
         }
       ],
@@ -49,6 +88,10 @@
       ],
       "inputs": [
         "name = app\ndescription =\nversion = 1.0"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -57,22 +100,45 @@
         {
           "function": "parse",
           "expect": [
-            { "key": "debug", "value": "true" },
-            { "key": "verbose", "value": "false" },
-            { "key": "logging", "value": "true" }
+            {
+              "key": "debug",
+              "value": "true"
+            },
+            {
+              "key": "verbose",
+              "value": "false"
+            },
+            {
+              "key": "logging",
+              "value": "true"
+            }
           ]
         },
         {
           "function": "filter",
-          "predicate": { "field": "value", "op": "==", "value": "true" },
+          "predicate": {
+            "field": "value",
+            "op": "==",
+            "value": "true"
+          },
           "expect": [
-            { "key": "debug", "value": "true" },
-            { "key": "logging", "value": "true" }
+            {
+              "key": "debug",
+              "value": "true"
+            },
+            {
+              "key": "logging",
+              "value": "true"
+            }
           ]
         }
       ],
       "inputs": [
         "debug = true\nverbose = false\nlogging = true"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -81,18 +147,32 @@
         {
           "function": "parse",
           "expect": [
-            { "key": "host", "value": "localhost" },
-            { "key": "port", "value": "8080" }
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            }
           ]
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "==", "value": "nonexistent" },
+          "predicate": {
+            "field": "key",
+            "op": "==",
+            "value": "nonexistent"
+          },
           "expect": []
         }
       ],
       "inputs": [
         "host = localhost\nport = 8080"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -101,21 +181,41 @@
         {
           "function": "parse",
           "expect": [
-            { "key": "host", "value": "localhost" },
-            { "key": "port", "value": "8080" }
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            }
           ]
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "nonexistent" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "nonexistent"
+          },
           "expect": [
-            { "key": "host", "value": "localhost" },
-            { "key": "port", "value": "8080" }
+            {
+              "key": "host",
+              "value": "localhost"
+            },
+            {
+              "key": "port",
+              "value": "8080"
+            }
           ]
         }
       ],
       "inputs": [
         "host = localhost\nport = 8080"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     }
   ]

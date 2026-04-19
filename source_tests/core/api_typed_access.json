@@ -32,6 +32,11 @@
       ],
       "inputs": [
         "port = 8080"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -65,6 +70,11 @@
       ],
       "inputs": [
         "temperature = 98.6"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_float",
+        "parse"
       ]
     },
     {
@@ -102,6 +112,11 @@
       ],
       "inputs": [
         "enabled = true"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -138,6 +153,11 @@
       ],
       "inputs": [
         "active = yes"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -174,6 +194,11 @@
       ],
       "inputs": [
         "active = yes"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -211,6 +236,11 @@
       ],
       "inputs": [
         "disabled = false"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -241,6 +271,11 @@
       ],
       "inputs": [
         "name = Alice"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -274,6 +309,11 @@
       ],
       "inputs": [
         "offset = -42"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -335,6 +375,13 @@
       ],
       "inputs": [
         "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_float",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -396,6 +443,13 @@
       ],
       "inputs": [
         "count = 0\ndistance = 0.0\ndisabled = no"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_float",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -469,6 +523,12 @@
       ],
       "inputs": [
         "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -542,6 +602,12 @@
       ],
       "inputs": [
         "flag1 = yes\nflag2 = on\nflag3 = 1\nflag4 = false\nflag5 = no\nflag6 = off\nflag7 = 0"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -619,6 +685,14 @@
       ],
       "inputs": [
         "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_float",
+        "get_int",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -696,6 +770,14 @@
       ],
       "inputs": [
         "host = localhost\nport = 8080\nssl = true\ntimeout = 30.5\ndebug = off"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_float",
+        "get_int",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -742,6 +824,12 @@
       ],
       "inputs": [
         "number =   42   \nflag =  true  "
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -797,6 +885,12 @@
       ],
       "inputs": [
         "number = 42\ndecimal = 3.14\nflag = true\ntext = hello"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -830,6 +924,11 @@
       ],
       "inputs": [
         "port = not_a_number"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -863,6 +962,11 @@
       ],
       "inputs": [
         "temperature = invalid"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_float",
+        "parse"
       ]
     },
     {
@@ -899,6 +1003,11 @@
       ],
       "inputs": [
         "enabled = maybe"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -929,6 +1038,11 @@
       ],
       "inputs": [
         "existing = value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -963,6 +1077,10 @@
       ],
       "inputs": [
         "upper_true = TRUE\nupper_false = FALSE"
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -997,6 +1115,10 @@
       ],
       "inputs": [
         "mixed_true = True\nmixed_false = False"
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1031,6 +1153,10 @@
       ],
       "inputs": [
         "upper_yes = YES\nupper_no = NO"
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1072,6 +1198,11 @@
       ],
       "inputs": [
         "one = 1\nzero = 0"
+      ],
+      "functions": [
+        "get_bool",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -1103,6 +1234,10 @@
       ],
       "inputs": [
         "padded =   true   "
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1124,6 +1259,9 @@
       ],
       "inputs": [
         "config =\n  debug = true\n  verbose = false\n  experimental = yes"
+      ],
+      "functions": [
+        "build_hierarchy"
       ]
     },
     {
@@ -1151,6 +1289,10 @@
       ],
       "inputs": [
         "flag = true"
+      ],
+      "functions": [
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -1181,6 +1323,10 @@
       ],
       "inputs": [
         "number = 42"
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1208,6 +1354,10 @@
       ],
       "inputs": [
         "flag = false"
+      ],
+      "functions": [
+        "get_float",
+        "parse"
       ]
     },
     {
@@ -1228,6 +1378,9 @@
       ],
       "inputs": [
         "config =\n  name = test\n  count = abc"
+      ],
+      "functions": [
+        "build_hierarchy"
       ]
     },
     {
@@ -1258,6 +1411,10 @@
       ],
       "inputs": [
         "empty ="
+      ],
+      "functions": [
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1306,6 +1463,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -1362,6 +1524,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_int",
+        "parse"
       ]
     },
     {
@@ -1410,6 +1577,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_float",
+        "parse"
       ]
     },
     {
@@ -1466,6 +1638,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_float",
+        "parse"
       ]
     },
     {
@@ -1516,6 +1693,11 @@
       ],
       "inputs": [
         "feature_flags =\n  dark_mode = true\n  beta_access = false"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1574,6 +1756,11 @@
       ],
       "inputs": [
         "services =\n  auth =\n    settings =\n      require_mfa = true\n      allow_anonymous = false"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "parse"
       ]
     },
     {
@@ -1619,6 +1806,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1687,6 +1879,14 @@
       ],
       "inputs": [
         "server =\n  host = 0.0.0.0\n  port = 3000\n  debug = true\n  rate_limit = 1.5"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_bool",
+        "get_float",
+        "get_int",
+        "get_string",
+        "parse"
       ]
     }
   ]
