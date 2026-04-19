@@ -62,8 +62,8 @@ func main() {
 	}
 	fmt.Printf("collected %d distinct tags from %s/\n", len(usedTags), *testsDir)
 
-	missing := findMissing(usedTags, index.Tags)
-	unused := findUnused(usedTags, index.Tags)
+	missing := setDifference(usedTags, index.Tags)
+	unused := setDifference(index.Tags, usedTags)
 
 	if len(missing) > 0 {
 		fmt.Fprintf(os.Stderr, "\nFAIL: %d tag(s) used in tests have no canonical documentation URL:\n", len(missing))
@@ -151,6 +151,14 @@ func collectTags(dir string) (map[string]struct{}, error) {
 	return tags, err
 }
 
+// tagPrefixByKey maps metadata array keys to their canonical tag prefix.
+var tagPrefixByKey = map[string]string{
+	"functions": "function",
+	"features":  "feature",
+	"behaviors": "behavior",
+	"variants":  "variant",
+}
+
 // walkTags recurses into arbitrary JSON values and harvests tag strings from
 // known tag-bearing keys.
 //
@@ -163,34 +171,21 @@ func walkTags(v any, out map[string]struct{}) {
 	switch x := v.(type) {
 	case map[string]any:
 		for key, val := range x {
+			if prefix, ok := tagPrefixByKey[key]; ok {
+				addStrings(val, prefix, out)
+				continue
+			}
 			switch key {
-			case "functions":
-				addStrings(val, "function", out)
-			case "features":
-				addStrings(val, "feature", out)
-			case "behaviors":
-				addStrings(val, "behavior", out)
-			case "variants":
-				addStrings(val, "variant", out)
 			case "conflicts":
-				// conflicts: { functions: [...], behaviors: [...], variants: [...] }
 				if c, ok := val.(map[string]any); ok {
 					for k, v := range c {
-						switch k {
-						case "functions":
-							addStrings(v, "function", out)
-						case "features":
-							addStrings(v, "feature", out)
-						case "behaviors":
-							addStrings(v, "behavior", out)
-						case "variants":
-							addStrings(v, "variant", out)
+						if prefix, ok := tagPrefixByKey[k]; ok {
+							addStrings(v, prefix, out)
 						}
 					}
 				}
 			case "expect", "input", "inputs", "args":
 				// Test data, not metadata — skip recursion.
-				continue
 			default:
 				walkTags(val, out)
 			}
@@ -214,24 +209,14 @@ func addStrings(v any, prefix string, out map[string]struct{}) {
 	}
 }
 
-func findMissing(used map[string]struct{}, documented map[string]tagEntry) []string {
-	var missing []string
-	for tag := range used {
-		if _, ok := documented[tag]; !ok {
-			missing = append(missing, tag)
+// setDifference returns keys present in a but not b, sorted.
+func setDifference[A, B any](a map[string]A, b map[string]B) []string {
+	var out []string
+	for k := range a {
+		if _, ok := b[k]; !ok {
+			out = append(out, k)
 		}
 	}
-	sort.Strings(missing)
-	return missing
-}
-
-func findUnused(used map[string]struct{}, documented map[string]tagEntry) []string {
-	var unused []string
-	for tag := range documented {
-		if _, ok := used[tag]; !ok {
-			unused = append(unused, tag)
-		}
-	}
-	sort.Strings(unused)
-	return unused
+	sort.Strings(out)
+	return out
 }

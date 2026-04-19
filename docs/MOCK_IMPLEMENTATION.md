@@ -75,7 +75,3 @@ just test               # run the basic test suite
 just test-all           # including known-failing tests
 just validate-tags      # ensure every test tag resolves to a website URL
 ```
-
----
-
-Historical note: this document used to be a 689-line "Comprehensive Implementation Guide" that mixed Go-specific code with CCL language semantics. The semantic content now lives canonically on <https://catconflang.com>; what remains here is the Go mock's own layout and design rationale.
