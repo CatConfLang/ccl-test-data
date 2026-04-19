@@ -122,11 +122,11 @@ const (
 type Feature string
 
 const (
-	FeatureComments                 Feature = "comments"
-	FeatureEmptyKeys                Feature = "empty_keys"
-	FeatureExperimentalDottedKeys   Feature = "experimental_dotted_keys"
-	FeatureUnicode                  Feature = "unicode"
-	FeatureWhitespace               Feature = "whitespace"
+	FeatureComments               Feature = "comments"
+	FeatureEmptyKeys              Feature = "empty_keys"
+	FeatureExperimentalDottedKeys Feature = "experimental_dotted_keys"
+	FeatureUnicode                Feature = "unicode"
+	FeatureWhitespace             Feature = "whitespace"
 	FeatureTabInValuePreserved    Feature = "tab_in_value_preserved"
 	FeatureContinuationTabToSpace Feature = "continuation_tab_to_space"
 	FeatureToplevelIndentStrip    Feature = "toplevel_indent_strip"
