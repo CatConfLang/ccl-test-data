@@ -151,11 +151,9 @@
           "enum": [
             "boolean_strict", "boolean_lenient",
             "crlf_preserve_literal", "crlf_normalize_to_lf",
-            "tabs_as_content", "tabs_as_whitespace",
             "indent_spaces", "indent_tabs",
             "list_coercion_enabled", "list_coercion_disabled",
             "array_order_insertion", "array_order_lexicographic",
-            "toplevel_indent_strip", "toplevel_indent_preserve",
             "delimiter_first_equals", "delimiter_prefer_spaced",
             "path_traversal",
             "multiline_values"
@@ -181,7 +179,9 @@
             {
               "enum": [
                 "comments", "empty_keys",
-                "multiline_continuation", "multiline_keys", "unicode", "whitespace"
+                "multiline_continuation", "multiline_keys", "unicode", "whitespace",
+                "tab_in_value_preserved", "continuation_tab_to_space",
+                "toplevel_indent_strip"
               ]
             },
             {

@@ -114,10 +114,6 @@ const (
 	BehaviorBooleanLenient       Behavior = "boolean_lenient"
 	BehaviorCrlfPreserveLiteral  Behavior = "crlf_preserve_literal"
 	BehaviorCrlfNormalizeToLf    Behavior = "crlf_normalize_to_lf"
-	BehaviorTabsAsContent        Behavior = "tabs_as_content"
-	BehaviorTabsAsWhitespace     Behavior = "tabs_as_whitespace"
-	BehaviorIndentSpaces         Behavior = "indent_spaces"
-	BehaviorIndentTabs           Behavior = "indent_tabs"
 	BehaviorListCoercionEnabled  Behavior = "list_coercion_enabled"
 	BehaviorListCoercionDisabled Behavior = "list_coercion_disabled"
 )
@@ -126,11 +122,14 @@ const (
 type Feature string
 
 const (
-	FeatureComments               Feature = "comments"
-	FeatureEmptyKeys              Feature = "empty_keys"
-	FeatureExperimentalDottedKeys Feature = "experimental_dotted_keys"
-	FeatureUnicode                Feature = "unicode"
-	FeatureWhitespace             Feature = "whitespace"
+	FeatureComments                 Feature = "comments"
+	FeatureEmptyKeys                Feature = "empty_keys"
+	FeatureExperimentalDottedKeys   Feature = "experimental_dotted_keys"
+	FeatureUnicode                  Feature = "unicode"
+	FeatureWhitespace               Feature = "whitespace"
+	FeatureTabInValuePreserved    Feature = "tab_in_value_preserved"
+	FeatureContinuationTabToSpace Feature = "continuation_tab_to_space"
+	FeatureToplevelIndentStrip    Feature = "toplevel_indent_strip"
 )
 
 // Variant represents specification variants

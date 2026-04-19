@@ -111,6 +111,9 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureMultilineKeys,
 		FeatureUnicode,
 		FeatureWhitespace,
+		FeatureTabInValuePreserved,
+		FeatureContinuationTabToSpace,
+		FeatureToplevelIndentStrip,
 	}
 
 	if len(features) != len(expectedFeatures) {
@@ -164,7 +167,6 @@ func TestGetBehaviorConflicts_Structure(t *testing.T) {
 	// Verify expected conflict groups exist
 	expectedGroups := []string{
 		"crlf_handling",
-		"tab_handling",
 		"indent_output",
 		"boolean",
 		"list_coercion",
@@ -206,7 +208,7 @@ func TestImplementationConfig_IsValid_ValidConfig(t *testing.T) {
 		BehaviorChoices: []CCLBehavior{
 			BehaviorCRLFNormalize,
 			BehaviorBooleanLenient,
-			BehaviorTabsAsContent,
+			BehaviorIndentSpaces,
 		},
 		VariantChoice: VariantReference,
 	}
@@ -537,8 +539,6 @@ func TestCCLBehavior_StringValues(t *testing.T) {
 	}{
 		{BehaviorCRLFNormalize, "crlf_normalize_to_lf"},
 		{BehaviorCRLFPreserve, "crlf_preserve_literal"},
-		{BehaviorTabsAsContent, "tabs_as_content"},
-		{BehaviorTabsAsWhitespace, "tabs_as_whitespace"},
 		{BehaviorIndentSpaces, "indent_spaces"},
 		{BehaviorIndentTabs, "indent_tabs"},
 		{BehaviorBooleanStrict, "boolean_strict"},

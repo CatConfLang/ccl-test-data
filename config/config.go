@@ -77,6 +77,9 @@ const (
 	FeatureMultilineKeys          CCLFeature = "multiline_keys"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
+	FeatureTabInValuePreserved    CCLFeature = "tab_in_value_preserved"
+	FeatureContinuationTabToSpace CCLFeature = "continuation_tab_to_space"
+	FeatureToplevelIndentStrip    CCLFeature = "toplevel_indent_strip"
 )
 
 // AllFeatures returns all valid CCL features
@@ -89,6 +92,9 @@ func AllFeatures() []CCLFeature {
 		FeatureMultilineKeys,
 		FeatureUnicode,
 		FeatureWhitespace,
+		FeatureTabInValuePreserved,
+		FeatureContinuationTabToSpace,
+		FeatureToplevelIndentStrip,
 	}
 }
 
@@ -98,16 +104,12 @@ type CCLBehavior string
 const (
 	BehaviorCRLFNormalize           CCLBehavior = "crlf_normalize_to_lf"
 	BehaviorCRLFPreserve            CCLBehavior = "crlf_preserve_literal"
-	BehaviorTabsAsContent           CCLBehavior = "tabs_as_content"
-	BehaviorTabsAsWhitespace        CCLBehavior = "tabs_as_whitespace"
 	BehaviorIndentSpaces            CCLBehavior = "indent_spaces"
 	BehaviorIndentTabs              CCLBehavior = "indent_tabs"
 	BehaviorBooleanStrict           CCLBehavior = "boolean_strict"
 	BehaviorBooleanLenient          CCLBehavior = "boolean_lenient"
 	BehaviorListCoercionOn          CCLBehavior = "list_coercion_enabled"
 	BehaviorListCoercionOff         CCLBehavior = "list_coercion_disabled"
-	BehaviorToplevelIndentStrip     CCLBehavior = "toplevel_indent_strip"
-	BehaviorToplevelIndentPreserve  CCLBehavior = "toplevel_indent_preserve"
 	BehaviorDelimiterFirstEquals    CCLBehavior = "delimiter_first_equals"
 	BehaviorDelimiterPreferSpaced   CCLBehavior = "delimiter_prefer_spaced"
 	BehaviorArrayOrderInsertion     CCLBehavior = "array_order_insertion"
@@ -119,14 +121,12 @@ const (
 // GetBehaviorConflicts returns mutually exclusive behavior groups
 func GetBehaviorConflicts() map[string][]CCLBehavior {
 	return map[string][]CCLBehavior{
-		"crlf_handling":   {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
-		"tab_handling":    {BehaviorTabsAsContent, BehaviorTabsAsWhitespace},
-		"indent_output":   {BehaviorIndentSpaces, BehaviorIndentTabs},
-		"boolean":         {BehaviorBooleanStrict, BehaviorBooleanLenient},
-		"list_coercion":   {BehaviorListCoercionOn, BehaviorListCoercionOff},
-		"toplevel_indent": {BehaviorToplevelIndentStrip, BehaviorToplevelIndentPreserve},
-		"delimiter":       {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
-		"array_ordering":  {BehaviorArrayOrderInsertion, BehaviorArrayOrderLexicographic},
+		"crlf_handling":  {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
+		"indent_output":  {BehaviorIndentSpaces, BehaviorIndentTabs},
+		"boolean":        {BehaviorBooleanStrict, BehaviorBooleanLenient},
+		"list_coercion":  {BehaviorListCoercionOn, BehaviorListCoercionOff},
+		"delimiter":      {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
+		"array_ordering": {BehaviorArrayOrderInsertion, BehaviorArrayOrderLexicographic},
 	}
 }
 

@@ -44,14 +44,15 @@ var ValidFeatures = []string{
 	"whitespace",
 	"empty_keys",
 	"optional_typed_accessors",
+	"tab_in_value_preserved",
+	"continuation_tab_to_space",
+	"toplevel_indent_strip",
 }
 
 // ValidBehaviors defines all supported behavioral choices
 var ValidBehaviors = []string{
 	"boolean_strict",
 	"boolean_lenient",
-	"tabs_as_content",
-	"tabs_as_whitespace",
 	"crlf_preserve_literal",
 	"crlf_normalize_to_lf",
 	"indent_spaces",
@@ -70,7 +71,6 @@ var ValidVariants = []string{
 // ConflictingBehaviors defines mutually exclusive behavioral choices
 var ConflictingBehaviors = [][]string{
 	{"boolean_strict", "boolean_lenient"},
-	{"tabs_as_content", "tabs_as_whitespace"},
 	{"crlf_preserve_literal", "crlf_normalize_to_lf"},
 	{"indent_spaces", "indent_tabs"},
 	{"list_coercion_enabled", "list_coercion_disabled"},
@@ -203,6 +203,12 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 			supportedFeatures = append(supportedFeatures, config.FeatureWhitespace)
 		case "empty_keys":
 			supportedFeatures = append(supportedFeatures, config.FeatureEmptyKeys)
+		case "tab_in_value_preserved":
+			supportedFeatures = append(supportedFeatures, config.FeatureTabInValuePreserved)
+		case "continuation_tab_to_space":
+			supportedFeatures = append(supportedFeatures, config.FeatureContinuationTabToSpace)
+		case "toplevel_indent_strip":
+			supportedFeatures = append(supportedFeatures, config.FeatureToplevelIndentStrip)
 		case "optional_typed_accessors":
 			// Handle optional typed accessors feature - this might need a new enum value
 			// For now, we'll need to check if this enum exists in ccl-test-lib
@@ -221,12 +227,6 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 		case "boolean_lenient":
 			lenient := config.BehaviorBooleanLenient
 			behaviors.Boolean = &lenient
-		case "tabs_as_content":
-			asContent := config.BehaviorTabsAsContent
-			behaviors.TabHandling = &asContent
-		case "tabs_as_whitespace":
-			asWhitespace := config.BehaviorTabsAsWhitespace
-			behaviors.TabHandling = &asWhitespace
 		case "crlf_preserve_literal":
 			preserve := config.BehaviorCRLFPreserve
 			behaviors.CRLFHandling = &preserve
@@ -252,10 +252,6 @@ func (c *SimpleConfig) ToRunnerConfig() (*RunnerConfig, error) {
 	if behaviors.Boolean == nil {
 		lenient := config.BehaviorBooleanLenient
 		behaviors.Boolean = &lenient
-	}
-	if behaviors.TabHandling == nil {
-		asWhitespace := config.BehaviorTabsAsWhitespace
-		behaviors.TabHandling = &asWhitespace
 	}
 	if behaviors.CRLFHandling == nil {
 		normalize := config.BehaviorCRLFNormalize
