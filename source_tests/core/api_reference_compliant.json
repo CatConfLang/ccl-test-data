@@ -35,6 +35,11 @@
       ],
       "inputs": [
         "item = single"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -88,6 +93,11 @@
       ],
       "inputs": [
         "ports = 80\nports = 443\nhost = localhost"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -140,6 +150,11 @@
       ],
       "inputs": [
         "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -173,6 +188,11 @@
       ],
       "inputs": [
         "empty_list ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -224,6 +244,11 @@
       ],
       "inputs": [
         "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -275,6 +300,11 @@
       ],
       "inputs": [
         "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -330,6 +360,11 @@
       ],
       "inputs": [
         "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -340,19 +375,19 @@
           "expect": [
             {
               "key": "names",
-              "value": "张三"
+              "value": "\u5f20\u4e09"
             },
             {
               "key": "names",
-              "value": "José"
+              "value": "Jos\u00e9"
             },
             {
               "key": "names",
-              "value": "François"
+              "value": "Fran\u00e7ois"
             },
             {
               "key": "names",
-              "value": "العربية"
+              "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
             }
           ]
         },
@@ -360,10 +395,10 @@
           "function": "build_hierarchy",
           "expect": {
             "names": [
-              "François",
-              "José",
-              "العربية",
-              "张三"
+              "Fran\u00e7ois",
+              "Jos\u00e9",
+              "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
+              "\u5f20\u4e09"
             ]
           }
         },
@@ -383,7 +418,12 @@
         "array_order_lexicographic"
       ],
       "inputs": [
-        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+        "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -430,6 +470,11 @@
       ],
       "inputs": [
         "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -499,6 +544,10 @@
       ],
       "inputs": [
         "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list"
       ]
     },
     {
@@ -546,6 +595,11 @@
       ],
       "inputs": [
         "safe = value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     },
     {
@@ -572,6 +626,10 @@
       ],
       "inputs": [
         "empty_key ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -584,6 +642,9 @@
       ],
       "inputs": [
         "empty_key ="
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -591,7 +652,7 @@
       "tests": [
         {
           "function": "canonical_format",
-          "expect": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n"
+          "expect": "emo =\n  \ud83c\udf1f\u2728 =\nunicode =\n  \u4f60\u597d\u4e16\u754c =\n"
         }
       ],
       "features": [
@@ -601,7 +662,10 @@
         "indent_spaces"
       ],
       "inputs": [
-        "unicode = 你好世界\nemo = 🌟✨"
+        "unicode = \u4f60\u597d\u4e16\u754c\nemo = \ud83c\udf1f\u2728"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -631,6 +695,10 @@
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "functions": [
+        "canonical_format",
+        "parse"
       ]
     },
     {
@@ -646,6 +714,9 @@
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -661,6 +732,9 @@
       ],
       "inputs": [
         "z = last\na = first\nm = middle"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     }
   ]

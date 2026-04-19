@@ -16,6 +16,9 @@
       ],
       "inputs": [
         "' = val406"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -33,6 +36,9 @@
       ],
       "inputs": [
         "* = val236"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -50,6 +56,9 @@
       ],
       "inputs": [
         "\\ = val775"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -67,6 +76,9 @@
       ],
       "inputs": [
         "} = val221"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -84,6 +96,9 @@
       ],
       "inputs": [
         "~ = val416"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -101,6 +116,9 @@
       ],
       "inputs": [
         "; = val155"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -118,6 +136,9 @@
       ],
       "inputs": [
         "+ = val794"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -135,6 +156,9 @@
       ],
       "inputs": [
         "$ = val665"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -152,6 +176,9 @@
       ],
       "inputs": [
         "% = val973"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -169,6 +196,9 @@
       ],
       "inputs": [
         "@ = val410"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -186,6 +216,9 @@
       ],
       "inputs": [
         "\" = val797"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -203,6 +236,9 @@
       ],
       "inputs": [
         "( = val364"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -212,14 +248,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": "\u003c",
+              "key": "<",
               "value": "val789"
             }
           ]
         }
       ],
       "inputs": [
-        "\u003c = val789"
+        "< = val789"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -237,6 +276,9 @@
       ],
       "inputs": [
         "[ = val216"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -254,6 +296,9 @@
       ],
       "inputs": [
         ") = val374"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -263,14 +308,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": "@\u003c/",
+              "key": "@</",
               "value": "combo594"
             }
           ]
         }
       ],
       "inputs": [
-        "@\u003c/ = combo594"
+        "@</ = combo594"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -288,6 +336,9 @@
       ],
       "inputs": [
         "/(;\\ = combo220"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -297,14 +348,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": "\u003c#",
+              "key": "<#",
               "value": "combo31"
             }
           ]
         }
       ],
       "inputs": [
-        "\u003c# = combo31"
+        "<# = combo31"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -322,6 +376,9 @@
       ],
       "inputs": [
         "(\"! = combo359"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -339,6 +396,9 @@
       ],
       "inputs": [
         "/#\\\" = combo87"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -356,6 +416,9 @@
       ],
       "inputs": [
         "/%| = combo957"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -373,6 +436,9 @@
       ],
       "inputs": [
         "{|\\ = combo828"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -390,6 +456,9 @@
       ],
       "inputs": [
         "!%/ = combo382"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -407,6 +476,9 @@
       ],
       "inputs": [
         "{|) = combo608"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -416,14 +488,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": ":;'\u003c",
+              "key": ":;'<",
               "value": "combo488"
             }
           ]
         }
       ],
       "inputs": [
-        ":;'\u003c = combo488"
+        ":;'< = combo488"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -441,6 +516,9 @@
       ],
       "inputs": [
         "[host = pos428"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -458,6 +536,9 @@
       ],
       "inputs": [
         "ga$mma = pos138"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -475,6 +556,9 @@
       ],
       "inputs": [
         "name| = pos691"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -492,6 +576,9 @@
       ],
       "inputs": [
         "*server = pos50"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -501,14 +588,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": "al\u003epha",
+              "key": "al>pha",
               "value": "pos153"
             }
           ]
         }
       ],
       "inputs": [
-        "al\u003epha = pos153"
+        "al>pha = pos153"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -526,6 +616,9 @@
       ],
       "inputs": [
         "item' = pos133"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -543,6 +636,9 @@
       ],
       "inputs": [
         "\"mode = pos155"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -552,14 +648,17 @@
           "function": "parse",
           "expect": [
             {
-              "key": "po\u0026rt",
+              "key": "po&rt",
               "value": "pos601"
             }
           ]
         }
       ],
       "inputs": [
-        "po\u0026rt = pos601"
+        "po&rt = pos601"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -577,6 +676,9 @@
       ],
       "inputs": [
         "host# = pos976"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -594,6 +696,9 @@
       ],
       "inputs": [
         "$path = pos556"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -627,6 +732,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -660,6 +770,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -693,6 +808,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -726,6 +846,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -759,6 +884,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -768,7 +898,7 @@
           "function": "parse",
           "expect": [
             {
-              "key": "\u0026alpha",
+              "key": "&alpha",
               "value": "nested297"
             },
             {
@@ -780,7 +910,7 @@
         {
           "function": "build_hierarchy",
           "expect": {
-            "\u0026alpha": "nested297",
+            "&alpha": "nested297",
             "}gamma": "deep715"
           }
         },
@@ -788,15 +918,20 @@
           "function": "get_string",
           "expect": "nested297",
           "args": [
-            "\u0026alpha"
+            "&alpha"
           ]
         }
       ],
       "inputs": [
-        "\u0026alpha = nested297\n}gamma = deep715"
+        "&alpha = nested297\n}gamma = deep715"
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -835,6 +970,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -873,6 +1013,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -882,7 +1027,7 @@
           "function": "parse",
           "expect": [
             {
-              "key": "\u0026name",
+              "key": "&name",
               "value": "nested41"
             },
             {
@@ -895,22 +1040,27 @@
           "function": "build_hierarchy",
           "expect": {
             "$port": "deep486",
-            "\u0026name": "nested41"
+            "&name": "nested41"
           }
         },
         {
           "function": "get_string",
           "expect": "nested41",
           "args": [
-            "\u0026name"
+            "&name"
           ]
         }
       ],
       "inputs": [
-        "\u0026name = nested41\n$port = deep486"
+        "&name = nested41\n$port = deep486"
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -949,6 +1099,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -962,7 +1117,7 @@
               "value": "nested723"
             },
             {
-              "key": "\u0026epsilon",
+              "key": "&epsilon",
               "value": "deep891"
             }
           ]
@@ -970,7 +1125,7 @@
         {
           "function": "build_hierarchy",
           "expect": {
-            "\u0026epsilon": "deep891",
+            "&epsilon": "deep891",
             "-config": "nested723"
           }
         },
@@ -983,10 +1138,15 @@
         }
       ],
       "inputs": [
-        "-config = nested723\n\u0026epsilon = deep891"
+        "-config = nested723\n&epsilon = deep891"
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1025,6 +1185,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1063,6 +1228,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1101,6 +1271,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1139,6 +1314,11 @@
       ],
       "features": [
         "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     }
   ]

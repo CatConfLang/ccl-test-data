@@ -33,6 +33,11 @@
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -60,6 +65,10 @@
       ],
       "inputs": [
         "key = \tindented"
+      ],
+      "functions": [
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -80,6 +89,9 @@
       ],
       "inputs": [
         "key = \t\t\tthree_tabs"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -105,6 +117,9 @@
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -130,6 +145,9 @@
       ],
       "inputs": [
         "section =\n \tmixed_indent\n\t another_line"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -145,6 +163,9 @@
       ],
       "inputs": [
         "key = \tvalue"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -166,6 +187,9 @@
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -182,6 +206,9 @@
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
+      ],
+      "functions": [
+        "round_trip"
       ]
     },
     {
@@ -201,6 +228,9 @@
       ],
       "inputs": [
         "package =\n  = brew\n  = scoop\n  = nix"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -220,6 +250,9 @@
       ],
       "inputs": [
         "app =\n  = item1\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b\n  = item2"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -235,6 +268,9 @@
       ],
       "inputs": [
         "database =\n  host = localhost\n  port = 5432"
+      ],
+      "functions": [
+        "print"
       ]
     },
     {
@@ -250,6 +286,9 @@
       ],
       "inputs": [
         "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      ],
+      "functions": [
+        "print"
       ]
     },
     {
@@ -265,6 +304,9 @@
       ],
       "inputs": [
         "database =\n\thost = localhost\n\tport = 5432"
+      ],
+      "functions": [
+        "print"
       ]
     },
     {
@@ -280,6 +322,9 @@
       ],
       "inputs": [
         "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
+      ],
+      "functions": [
+        "print"
       ]
     },
     {
@@ -295,6 +340,9 @@
       ],
       "inputs": [
         "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
+      ],
+      "functions": [
+        "print"
       ]
     },
     {
@@ -310,6 +358,9 @@
       ],
       "inputs": [
         "z = last\na = first\nm = middle"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -325,6 +376,9 @@
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -346,6 +400,9 @@
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -365,6 +422,9 @@
       ],
       "inputs": [
         "package =\n\t= brew\n\t= scoop\n\t= nix"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -384,6 +444,9 @@
       ],
       "inputs": [
         "app =\n\t= item1\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b\n\t= item2"
+      ],
+      "functions": [
+        "canonical_format"
       ]
     },
     {
@@ -418,6 +481,10 @@
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -452,6 +519,10 @@
       ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -477,6 +548,9 @@
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -502,6 +576,9 @@
       ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -533,6 +610,9 @@
       ],
       "inputs": [
         "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -565,6 +645,10 @@
       ],
       "inputs": [
         "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -597,6 +681,10 @@
       ],
       "inputs": [
         "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -630,6 +718,10 @@
       ],
       "inputs": [
         "/= this is a comment\r\n"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -663,6 +755,10 @@
       ],
       "inputs": [
         "/= this is a comment\r\n"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -728,6 +824,11 @@
       ],
       "inputs": [
         "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "filter",
+        "parse"
       ]
     },
     {
@@ -793,6 +894,11 @@
       ],
       "inputs": [
         "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "filter",
+        "parse"
       ]
     },
     {
@@ -834,6 +940,10 @@
       ],
       "inputs": [
         "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -875,6 +985,10 @@
       ],
       "inputs": [
         "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ],
+      "functions": [
+        "filter",
+        "parse"
       ]
     },
     {
@@ -899,6 +1013,9 @@
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs\r\n"
+      ],
+      "functions": [
+        "parse"
       ]
     }
   ]

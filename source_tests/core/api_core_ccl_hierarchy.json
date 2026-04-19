@@ -38,6 +38,12 @@
       ],
       "inputs": [
         "name = Alice\nage = 42"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "load",
+        "parse",
+        "print"
       ]
     },
     {
@@ -87,6 +93,12 @@
       ],
       "inputs": [
         "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "load",
+        "parse",
+        "print"
       ]
     },
     {
@@ -136,6 +148,12 @@
       ],
       "inputs": [
         "item = first\nitem = second\nitem = third"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "load",
+        "parse",
+        "print"
       ]
     },
     {
@@ -169,6 +187,11 @@
       ],
       "inputs": [
         "config =\n  server = web1\n  server = web2\n  port = 80"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse",
+        "print"
       ]
     },
     {
@@ -209,6 +232,11 @@
       ],
       "inputs": [
         "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse",
+        "print"
       ]
     },
     {
@@ -248,6 +276,11 @@
       ],
       "inputs": [
         "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse",
+        "print"
       ]
     },
     {
@@ -296,6 +329,11 @@
       ],
       "inputs": [
         "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     }
   ]

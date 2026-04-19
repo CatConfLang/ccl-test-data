@@ -16,6 +16,9 @@
       ],
       "inputs": [
         "key=val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -36,6 +39,9 @@
       ],
       "inputs": [
         "key = val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -56,6 +62,9 @@
       ],
       "inputs": [
         "  key = val"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -76,6 +85,9 @@
       ],
       "inputs": [
         "key = val  "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -96,6 +108,9 @@
       ],
       "inputs": [
         "  key  =  val  "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -113,6 +128,9 @@
       ],
       "inputs": [
         "\nkey = val\n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -133,6 +151,9 @@
       ],
       "inputs": [
         "key ="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -153,6 +174,9 @@
       ],
       "inputs": [
         "key =\n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -174,6 +198,9 @@
       ],
       "inputs": [
         "key =  "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -194,6 +221,9 @@
       ],
       "inputs": [
         "  = val"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -214,6 +244,9 @@
       ],
       "inputs": [
         "\n  = val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -235,6 +268,9 @@
       ],
       "inputs": [
         "  =  "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -252,6 +288,9 @@
       ],
       "inputs": [
         "a=b=c"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -272,6 +311,9 @@
       ],
       "inputs": [
         "a = b = c"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -293,6 +335,9 @@
       ],
       "inputs": [
         "key1 = val1\nkey2 = val2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -316,6 +361,9 @@
       ],
       "inputs": [
         "\tkey\t=\tvalue"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -337,6 +385,9 @@
       ],
       "inputs": [
         "onlyspaces =     "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -358,6 +409,9 @@
       ],
       "inputs": [
         " =  = "
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -379,6 +433,9 @@
       ],
       "inputs": [
         "key \n= val\n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -400,6 +457,9 @@
       ],
       "inputs": [
         "  \n key  \n=  val  \n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -421,6 +481,9 @@
       ],
       "inputs": [
         "my\n key\n= val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -441,6 +504,9 @@
       ],
       "inputs": [
         "a\n b\n c\n= val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -462,6 +528,9 @@
       ],
       "inputs": [
         "key\n="
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -486,6 +555,9 @@
       ],
       "inputs": [
         "first = val1\nkey\n= val2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -507,6 +579,9 @@
       ],
       "inputs": [
         "key\n\n= val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -528,6 +603,9 @@
       ],
       "inputs": [
         "key\n\t= val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -549,6 +627,9 @@
       ],
       "inputs": [
         "key =  \n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -570,6 +651,9 @@
       ],
       "inputs": [
         "\n  =  \n"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -587,6 +671,9 @@
       ],
       "inputs": [
         "host = localhost"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -604,6 +691,9 @@
       ],
       "inputs": [
         "host = \"localhost\""
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -621,6 +711,9 @@
       ],
       "inputs": [
         "key =\n  val"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -644,6 +737,9 @@
       ],
       "inputs": [
         "key =\n  line1\n  line2"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -667,6 +763,9 @@
       ],
       "inputs": [
         "key =\n  line1\n\n  line2"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -684,6 +783,9 @@
       ],
       "inputs": [
         "key =\n  field1 = value1\n  field2 =\n    subfield = x\n    another = y"
+      ],
+      "functions": [
+        "parse_indented"
       ]
     },
     {
@@ -713,6 +815,9 @@
       ],
       "inputs": [
         "name = Dmitrii Kovanikov\nlogin = chshersh\nlanguage = OCaml\ndate = 2024-05-25"
+      ],
+      "functions": [
+        "parse"
       ]
     },
     {
@@ -783,6 +888,11 @@
       ],
       "inputs": [
         "/= This is a CCL document\ntitle = CCL Example\n\ndatabase =\n  enabled = true\n  ports =\n    = 8000\n    = 8001\n    = 8002\n  limits =\n    cpu = 1500mi\n    memory = 10Gb\n\nuser =\n  guestId = 42\n\nuser =\n  login = chshersh\n  createdAt = 2024-12-31"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -820,6 +930,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -846,6 +961,10 @@
       ],
       "inputs": [
         "paths =\n  C:\\Users\\config = user_settings\n  D:\\data\\file.txt = backup"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -872,6 +991,10 @@
       ],
       "inputs": [
         "timestamps =\n  12:30:45 = morning\n  23:59:59 = midnight"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -898,6 +1021,10 @@
       ],
       "inputs": [
         "packages =\n  my-package-name = 1.0.0\n  another-lib = 2.3.4"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -924,6 +1051,10 @@
       ],
       "inputs": [
         "emails =\n  user@example.com = primary\n  admin@test.org = secondary"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -950,6 +1081,10 @@
       ],
       "inputs": [
         "issues =\n  issue#123 = open\n  bug#456 = closed"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -976,6 +1111,10 @@
       ],
       "inputs": [
         "arrays =\n  items[0] = first\n  items[1] = second"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1002,6 +1141,10 @@
       ],
       "inputs": [
         "functions =\n  init() = setup\n  run(args) = execute"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1029,6 +1172,10 @@
       ],
       "inputs": [
         "complex =\n  user@host:8080/api = endpoint\n  file#v1.2.3 = release\n  path\\to\\[item] = location"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1055,6 +1202,10 @@
       ],
       "inputs": [
         "endpoints =\n  https://api.example.com/v1 = production\n  http://localhost:3000/test = development"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1078,6 +1229,10 @@
       ],
       "inputs": [
         "../.. = up_two_levels"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1101,6 +1256,10 @@
       ],
       "inputs": [
         "../ = parent_dir"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1124,6 +1283,10 @@
       ],
       "inputs": [
         ". = current_dir"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1147,6 +1310,10 @@
       ],
       "inputs": [
         "// = double_slash_value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1177,6 +1344,11 @@
       ],
       "inputs": [
         "path = ../../src"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1214,6 +1386,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1240,6 +1417,10 @@
       ],
       "inputs": [
         "urls =\n  //api = //backup\n  //server = /root"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1289,6 +1470,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1329,6 +1515,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1372,6 +1563,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1415,6 +1611,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1445,6 +1646,11 @@
       ],
       "inputs": [
         "https://api.example.com = production"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1468,6 +1674,10 @@
       ],
       "inputs": [
         "http://localhost:8080 = dev"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1491,6 +1701,10 @@
       ],
       "inputs": [
         "https://api.example.com/v1/users = users_endpoint"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1521,6 +1735,11 @@
       ],
       "inputs": [
         "endpoint = https://api.example.com/v1/data"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1558,6 +1777,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1604,6 +1828,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_string",
+        "parse"
       ]
     },
     {
@@ -1630,6 +1859,10 @@
       ],
       "inputs": [
         "https://api.example.com/search?q=test&page=1 = search_results"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1656,6 +1889,10 @@
       ],
       "inputs": [
         "https://api.example.com/search?q=test&page=1 = search_results"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1682,6 +1919,10 @@
       ],
       "inputs": [
         "a=b = c=d"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1708,6 +1949,10 @@
       ],
       "inputs": [
         "a=b ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1734,6 +1979,10 @@
       ],
       "inputs": [
         "a=b = c=d"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1760,6 +2009,10 @@
       ],
       "inputs": [
         "key=value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1786,6 +2039,10 @@
       ],
       "inputs": [
         "a=b ="
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -1809,6 +2066,10 @@
       ],
       "inputs": [
         "https://docs.example.com/guide#section-1 = docs_section_1"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     }
   ]

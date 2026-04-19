@@ -27,6 +27,10 @@
       ],
       "inputs": [
         "database.host = localhost"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -67,6 +71,10 @@
       ],
       "inputs": [
         "database.host = localhost\ndatabase.port = 5432\napp.name = MyApp"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -104,6 +112,10 @@
       ],
       "inputs": [
         "server.database.credentials.user = admin\nserver.database.credentials.pass = secret"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -151,6 +163,10 @@
       ],
       "inputs": [
         "app = MyApp\ndatabase.host = localhost\nconfig =\n  debug = true\nlogging.level = info"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -183,6 +199,10 @@
       ],
       "inputs": [
         "database = old_value\ndatabase.host = localhost"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -223,6 +243,10 @@
       ],
       "inputs": [
         "servers.web = web1\nservers.web = web2\nservers.api = api1"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -254,6 +278,10 @@
       ],
       "inputs": [
         "a..b = value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -283,6 +311,10 @@
       ],
       "inputs": [
         "a. = value"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -312,6 +344,10 @@
       ],
       "inputs": [
         "database =\n  enabled = true\n  port = 5432"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
       ]
     },
     {
@@ -376,6 +412,11 @@
       ],
       "behaviors": [
         "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "get_list",
+        "parse"
       ]
     }
   ]
