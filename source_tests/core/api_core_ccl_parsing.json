@@ -28,6 +28,9 @@
       "functions": [
         "parse",
         "print"
+      ],
+      "features": [
+        "experimental_ci_verification_undocumented"
       ]
     },
     {
