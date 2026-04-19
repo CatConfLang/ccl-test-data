@@ -7,7 +7,7 @@ Dual-format test architecture with progressive implementation paths and type-saf
 **Core (Required):** `parse`, `build_hierarchy`
 **Typed Access:** `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 **Processing:** `filter`, `compose`, `canonical_format`, `round_trip`
-**Features:** `comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`, `experimental_dotted_keys`
+**Features:** `comments`, `empty_keys`, `multiline_continuation`, `multiline_keys`, `unicode`, `whitespace`, `experimental_dotted_keys`
 
 ## Test File Overview
 

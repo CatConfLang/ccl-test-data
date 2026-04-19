@@ -27,7 +27,8 @@ The generated flat format provides type-safe filtering through separate arrays:
 - `comments` - `/=` comment syntax
 - `experimental_dotted_keys` - `foo.bar.baz` key syntax
 - `empty_keys` - `= value` anonymous list items
-- `multiline` - Multi-line value support
+- `multiline_continuation` - Indented continuation lines in multi-line values
+- `multiline_keys` - Keys that span multiple lines
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 
@@ -276,7 +277,8 @@ const progressiveTests = flatTests.filter(test => {
 - `comments` - `/=` comment syntax support
 - `experimental_dotted_keys` - `foo.bar.baz` key syntax support
 - `empty_keys` - `= value` anonymous list items
-- `multiline` - Multi-line value support
+- `multiline_continuation` - Indented continuation lines in multi-line values
+- `multiline_keys` - Keys that span multiple lines
 - `unicode` - Unicode content handling
 - `whitespace` - Complex whitespace preservation
 

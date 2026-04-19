@@ -41,7 +41,7 @@ just test-all                   # Run all tests including failing ones
    - `name`: Unique test identifier
    - `input`: CCL text to test
    - `tests`: Array of function validations with `function` and `expect` fields
-   - `features`: Optional array (`comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`)
+   - `features`: Optional array (`comments`, `empty_keys`, `multiline_continuation`, `multiline_keys`, `unicode`, `whitespace`)
    - `behaviors`: Optional array (`boolean_strict`, `crlf_normalize_to_lf`, etc.)
    - `variants`: Optional array (`proposed_behavior`, `reference_compliant`)
 3. Run `just generate && just test` to verify

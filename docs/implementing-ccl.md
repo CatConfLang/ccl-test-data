@@ -176,7 +176,8 @@ for test in test_data {
 **Features:**
 - `comments` - 5 tests
 - `empty_keys` - 43 tests
-- `multiline` - 10 tests
+- `multiline_continuation` - indented continuation-line tests
+- `multiline_keys` - multi-line key tests
 - `unicode` - 5 tests
 - `whitespace` - 24 tests
 - `experimental_dotted_keys` - 10 tests (experimental)
