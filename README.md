@@ -71,11 +71,12 @@ Implementation choices that affect test compatibility:
 | Group           | Options                                           |
 | --------------- | ------------------------------------------------- |
 | CRLF handling   | `crlf_normalize_to_lf`, `crlf_preserve_literal`   |
-| Tab handling    | `tabs_as_whitespace`, `tabs_as_content`           |
+| Indent output   | `indent_spaces`, `indent_tabs`                    |
 | Boolean parsing | `boolean_strict`, `boolean_lenient`               |
 | List coercion   | `list_coercion_enabled`, `list_coercion_disabled` |
 
-> **Note:** Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
+> \[!NOTE]
+> Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
 
 See [test-selection-guide.md](docs/test-selection-guide.md) for complete filtering documentation.
 

@@ -498,7 +498,8 @@ var supportedTags = []string{
 // Skipped advanced features
 var skippedFeatures = []string{
     "feature:unicode",     // Complex character handling
-    "feature:multiline",   // Advanced parsing modes
+    "feature:multiline_continuation", // Advanced parsing modes
+    "feature:multiline_keys",
     "variant:proposed_behavior", // Experimental features
 }
 ```

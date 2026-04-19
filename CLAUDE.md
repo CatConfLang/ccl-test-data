@@ -29,6 +29,12 @@ just test                   # Run tests
 just test-all               # Run all tests including failing ones
 ```
 
+> [!IMPORTANT]
+> **`just reset` vs `just generate`:** `reset` (and `build`) use filtered generation (`--run-only function:parse --skip-tags ...`). `just generate` is unfiltered and produces a much larger go_tests set. Always use `reset`/`build` unless you specifically need the full set — running `generate` after a small edit produces thousands of lines of unrelated drift in `go_tests/`.
+
+> [!NOTE]
+> **OCaml is canonical.** The test suite tracks the OCaml reference-implementation semantics. When tab/indent or similar edge-case expectations are ambiguous, OCaml's behavior is the spec; non-OCaml alternatives are dropped from the fixtures unless a concrete consumer needs them. See `docs/implementing-ccl.md` for the tab/indent rules.
+
 ### Testing Options
 ```bash
 just test                       # Run tests (basic tests by default)
@@ -41,7 +47,7 @@ just test-all                   # Run all tests including failing ones
    - `name`: Unique test identifier
    - `input`: CCL text to test
    - `tests`: Array of function validations with `function` and `expect` fields
-   - `features`: Optional array (`comments`, `empty_keys`, `multiline`, `unicode`, `whitespace`)
+   - `features`: Optional array (`comments`, `empty_keys`, `multiline_continuation`, `multiline_keys`, `unicode`, `whitespace`, `tab_in_value_preserved`, `toplevel_indent_strip`)
    - `behaviors`: Optional array (`boolean_strict`, `crlf_normalize_to_lf`, etc.)
    - `variants`: Optional array (`proposed_behavior`, `reference_compliant`)
 3. Run `just generate && just test` to verify
@@ -90,10 +96,10 @@ source_tests/
 ### CCL Function Groups (per schema)
 - **Core Parsing**: `parse`, `parse_indented`, `build_hierarchy`
 - **Typed Access**: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
-- **Processing**: `filter`, `compose`, `merge`
+- **Processing**: `filter`, `compose`, `expand_dotted`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`
 
-**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, ExpandDotted. (Note: mock uses `Combine` method name but schema specifies `compose` function)
+**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, Compose, ExpandDotted, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, Print, RoundTrip, ComposeAssociative, IdentityLeft, IdentityRight.
 
 **Function Details:**
 - **`parse`**: Basic lexical parsing - returns flat entries where values are raw strings
@@ -107,27 +113,12 @@ source_tests/
 - **`variants`** - Spec interpretation (filter via `conflicts` field)
 - **`conflicts`** - Mutually exclusive options (filter: skip if your choice is listed)
 
+> [!NOTE]
+> **Features vs behaviors:** Features annotate universal OCaml-canonical rules every conformant impl follows (e.g. `tab_in_value_preserved`, `toplevel_indent_strip`). Behaviors encode genuine implementation *choices* with mutually-exclusive pairs (e.g. `indent_spaces` vs `indent_tabs`, `continuation_tab_to_space` vs `continuation_tab_preserve`). When adding a tag, ask: "could a reasonable impl do otherwise?" — yes → behavior pair, no → feature.
+
 ## Function-Based Implementation
 
-### Mock Implementation
-The `internal/mock/ccl.go` provides a working CCL implementation with core functions.
-
-### Available Functions
-Tests are organized by the CCL functions they validate. Implement the functions your library needs:
-
-**Core Parsing:**
-- `parse` - Basic lexical parsing to flat entries
-- `parse_indented` - Indentation normalization (used by build_hierarchy)
-- `build_hierarchy` - Object construction from flat entries
-
-**Typed Access:**
-- `get_string`, `get_int`, `get_bool`, `get_float`, `get_list` - Type-safe value extraction
-
-**Processing:**
-- `filter`, `compose`, `merge` - Entry manipulation
-
-**Formatting/IO:**
-- `canonical_format`, `load`, `round_trip` - Output and validation
+Tests are organized by the CCL functions they validate. Implement the functions your library needs — see CCL Function Groups above. The mock in `internal/mock/ccl.go` is the reference implementation used to validate expected values.
 
 ## Build System
 
@@ -242,8 +233,7 @@ replace github.com/catconflang/ccl-test-data => ../ccl-test-data
           ]
         }
       ],
-      "features": ["whitespace"],
-      "behaviors": ["tabs_as_whitespace"]
+      "features": ["whitespace", "tab_in_value_preserved"]
     }
   ]
 }

@@ -53,7 +53,7 @@ ccl-test-runner generate --run-only function:parse
 ccl-test-runner generate --run-only function:parse,function:build_hierarchy
 
 # Skip advanced features
-ccl-test-runner generate --skip-tags feature:unicode,feature:multiline
+ccl-test-runner generate --skip-tags feature:unicode,feature:multiline_continuation,feature:multiline_keys
 ```
 
 ### Command: test
