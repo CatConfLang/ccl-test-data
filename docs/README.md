@@ -1,63 +1,50 @@
 # CCL Test Suite Documentation
 
-This directory contains documentation for the CCL (Categorical Configuration Language) Test Suite.
+This directory documents the **CCL test-suite infrastructure**: how tests are organized, how the runner filters them, how to extend the mock, and how to contribute fixtures.
 
-## Documentation Index
+> [!IMPORTANT]
+> **CCL language documentation lives on the website**, not here.
+>
+> - Functions, features, behaviors, decisions: <https://ccl.tylerbutler.com>
+> - Test-tag to URL index (machine-readable): <https://ccl.tylerbutler.com/tag-index.json>
+>
+> If you're implementing CCL, start there. This directory is for test-infrastructure contributors.
 
-### Core Documentation
-- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System architecture and component design
-- **[API.md](API.md)** - Complete API reference for Go packages
-- **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** - Development workflow and contribution guide
-- **[CLI_REFERENCE.md](CLI_REFERENCE.md)** - Command-line interface reference
-- **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** - Common issues and debugging
+## Scope
 
-### Implementation Guides
-- **[implementing-ccl.md](implementing-ccl.md)** - Complete CCL implementation guide
-- **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** - Reference CCL implementation patterns
+| Doc | Scope |
+| --- | --- |
+| **[ARCHITECTURE.md](ARCHITECTURE.md)** | Dual-format test design and component interactions |
+| **[API.md](API.md)** | Go package reference (loader, config, generator, types) |
+| **[CLI_REFERENCE.md](CLI_REFERENCE.md)** | Command reference for `ccl-test-runner`, `test-reader`, `validate-schema`, `validate-tags` |
+| **[DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)** | Contributor workflow |
+| **[TROUBLESHOOTING.md](TROUBLESHOOTING.md)** | Common issues |
+| **[MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)** | Go mock-package layout and design decisions (not language semantics) |
+| **[test-architecture.md](test-architecture.md)** | Test file organization, statistics |
+| **[test-runner-design-principles.md](test-runner-design-principles.md)** | Configuration-validation rules for test runners |
+| **[test-runner-implementation-guide.md](test-runner-implementation-guide.md)** | Building a test runner |
+| **[test-selection-guide.md](test-selection-guide.md)** | Filtering tests by capability (see also the website's [Test Suite Guide](https://ccl.tylerbutler.com/test-suite-guide) for the conceptual side) |
+| **[test-filtering.md](test-filtering.md)** | Type-safe filtering internals |
+| **[schema-reference.md](schema-reference.md)** | Practical source/generated format reference |
+| **[generated-schema.md](generated-schema.md)** | Auto-generated per-field schema reference |
+| **[consuming-results.md](consuming-results.md)** | Deriving summaries from test-results output |
+| **[implementing-ccl.md](implementing-ccl.md)** | Pointer to the canonical implementer guide on the website |
+| **[tag-index.json](tag-index.json)** | Cached copy of the website's tag-URL index (fallback for `just validate-tags`) |
+| **[adr/](adr/)** | Historical architectural decision records; normative rules are now on the website |
+| **[plans/](plans/)** | Test-infrastructure design plans (fuzz generator, etc.) |
 
-### Test Suite Guides
-- **[test-architecture.md](test-architecture.md)** - Test suite design and organization
-- **[test-filtering.md](test-filtering.md)** - Advanced test filtering patterns
-- **[schema-reference.md](schema-reference.md)** - Test data schema reference
-- **[consuming-results.md](consuming-results.md)** - Deriving summaries from test-results-format output
+## Quick nav
 
-### Quick Navigation
+- **New contributor?** → [ARCHITECTURE.md](ARCHITECTURE.md), then [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
+- **Building a CCL parser?** → <https://ccl.tylerbutler.com/implementing-ccl>.
+- **Building a test runner?** → [test-runner-implementation-guide.md](test-runner-implementation-guide.md).
+- **Extending the mock?** → [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md).
 
-**New Contributors**: Start with [ARCHITECTURE.md](ARCHITECTURE.md), then [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md)
+## Contributing
 
-**CCL Implementers**: Begin with [implementing-ccl.md](implementing-ccl.md) and [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md)
+When modifying this repo:
 
-**Tool Users**: Reference [CLI_REFERENCE.md](CLI_REFERENCE.md) for commands and [API.md](API.md) for data structures
-
-### Documentation Standards
-
-All documentation in this directory follows these standards:
-
-- **Comprehensive Coverage** - Complete information for each topic
-- **Practical Examples** - Real-world usage examples and code samples
-- **Progressive Structure** - Information organized from basic to advanced
-- **Cross-References** - Links between related concepts across documents
-- **Maintenance** - Updated with code changes and feature additions
-
-### Contributing to Documentation
-
-When contributing to the project, please ensure documentation is updated:
-
-1. **API Changes** - Update API.md with new functions, parameters, or return types
-2. **New Features** - Add examples and usage patterns to DEVELOPER_GUIDE.md
-3. **CLI Modifications** - Update CLI_REFERENCE.md with new commands or options
-4. **Implementation Patterns** - Document new patterns in MOCK_IMPLEMENTATION.md
-
-### External References
-
-For conceptual explanations of Core CCL, see [Core Concepts](https://ccl.tylerbutler.com/core-concepts)
-For API compatibility across implementations, see [API Guide](https://ccl.tylerbutler.com/api-guide)
-
-### Getting Help
-
-For questions about the documentation:
-
-1. **General Questions** - Open an issue in the project repository
-2. **Implementation Help** - Reference MOCK_IMPLEMENTATION.md and API.md
-3. **Usage Questions** - Check CLI_REFERENCE.md and DEVELOPER_GUIDE.md
-4. **Contributing** - Follow DEVELOPER_GUIDE.md workflow and quality standards
+1. **Taxonomy changes** (new function/feature/behavior/variant): update `config/config.go`, add to `src/data/tags.ts` in the website repo, and refresh `docs/tag-index.json` here. `just validate-tags` enforces the contract.
+2. **New tests**: follow the schema in `schemas/source-format.json`; tag features/behaviors/variants with values declared in `config/config.go`.
+3. **Tool changes**: update [CLI_REFERENCE.md](CLI_REFERENCE.md).
+4. **Language-level docs** (what CCL *is*, how functions behave): contribute to the website, not this directory.
