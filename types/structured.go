@@ -127,9 +127,8 @@ const (
 	FeatureExperimentalDottedKeys Feature = "experimental_dotted_keys"
 	FeatureUnicode                Feature = "unicode"
 	FeatureWhitespace             Feature = "whitespace"
-	FeatureTabInValuePreserved    Feature = "tab_in_value_preserved"
-	FeatureContinuationTabToSpace Feature = "continuation_tab_to_space"
-	FeatureToplevelIndentStrip    Feature = "toplevel_indent_strip"
+	FeatureTabInValuePreserved Feature = "tab_in_value_preserved"
+	FeatureToplevelIndentStrip Feature = "toplevel_indent_strip"
 )
 
 // Variant represents specification variants

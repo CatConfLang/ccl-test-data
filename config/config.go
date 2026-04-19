@@ -78,7 +78,6 @@ const (
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
 	FeatureTabInValuePreserved    CCLFeature = "tab_in_value_preserved"
-	FeatureContinuationTabToSpace CCLFeature = "continuation_tab_to_space"
 	FeatureToplevelIndentStrip    CCLFeature = "toplevel_indent_strip"
 )
 
@@ -93,7 +92,6 @@ func AllFeatures() []CCLFeature {
 		FeatureUnicode,
 		FeatureWhitespace,
 		FeatureTabInValuePreserved,
-		FeatureContinuationTabToSpace,
 		FeatureToplevelIndentStrip,
 	}
 }
@@ -106,6 +104,8 @@ const (
 	BehaviorCRLFPreserve            CCLBehavior = "crlf_preserve_literal"
 	BehaviorIndentSpaces            CCLBehavior = "indent_spaces"
 	BehaviorIndentTabs              CCLBehavior = "indent_tabs"
+	BehaviorContinuationTabToSpace  CCLBehavior = "continuation_tab_to_space"
+	BehaviorContinuationTabPreserve CCLBehavior = "continuation_tab_preserve"
 	BehaviorBooleanStrict           CCLBehavior = "boolean_strict"
 	BehaviorBooleanLenient          CCLBehavior = "boolean_lenient"
 	BehaviorListCoercionOn          CCLBehavior = "list_coercion_enabled"
@@ -121,12 +121,13 @@ const (
 // GetBehaviorConflicts returns mutually exclusive behavior groups
 func GetBehaviorConflicts() map[string][]CCLBehavior {
 	return map[string][]CCLBehavior{
-		"crlf_handling":  {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
-		"indent_output":  {BehaviorIndentSpaces, BehaviorIndentTabs},
-		"boolean":        {BehaviorBooleanStrict, BehaviorBooleanLenient},
-		"list_coercion":  {BehaviorListCoercionOn, BehaviorListCoercionOff},
-		"delimiter":      {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
-		"array_ordering": {BehaviorArrayOrderInsertion, BehaviorArrayOrderLexicographic},
+		"crlf_handling":             {BehaviorCRLFNormalize, BehaviorCRLFPreserve},
+		"indent_output":             {BehaviorIndentSpaces, BehaviorIndentTabs},
+		"continuation_tab_handling": {BehaviorContinuationTabToSpace, BehaviorContinuationTabPreserve},
+		"boolean":                   {BehaviorBooleanStrict, BehaviorBooleanLenient},
+		"list_coercion":             {BehaviorListCoercionOn, BehaviorListCoercionOff},
+		"delimiter":                 {BehaviorDelimiterFirstEquals, BehaviorDelimiterPreferSpaced},
+		"array_ordering":            {BehaviorArrayOrderInsertion, BehaviorArrayOrderLexicographic},
 	}
 }
 

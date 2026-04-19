@@ -98,7 +98,7 @@ func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:multiline_values
+// tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline_continuation behavior:multiline_values behavior:continuation_tab_to_space
 func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
 	
 
@@ -122,7 +122,7 @@ func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:multiline_values
+// tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline_continuation behavior:multiline_values behavior:continuation_tab_to_space
 func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 	
 
@@ -167,7 +167,7 @@ func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:indent_spaces behavior:multiline_values
+// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation behavior:indent_spaces behavior:multiline_values behavior:continuation_tab_to_space
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
 	
 
@@ -306,7 +306,7 @@ func TestCanonicalFormatConsistentSpacingIndentTabsCanonicalFormat(t *testing.T)
 }
 
 
-// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:indent_tabs behavior:multiline_values
+// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation behavior:indent_tabs behavior:multiline_values behavior:continuation_tab_to_space
 func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }

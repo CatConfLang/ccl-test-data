@@ -59,6 +59,22 @@
             "mutuallyExclusiveWith": { "const": ["indent_spaces"] }
           }
         },
+        "continuation_tab_to_space": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "During parse, normalize leading tabs on multiline continuation lines 1:1 to spaces (OCaml reference). Each leading '\\t' becomes a single space." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["continuation_tab_preserve"] }
+          }
+        },
+        "continuation_tab_preserve": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "During parse, preserve leading tabs on multiline continuation lines verbatim. Alternative to the OCaml 1:1 tab-to-space normalization." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["continuation_tab_to_space"] }
+          }
+        },
         "list_coercion_enabled": {
           "type": "object",
           "properties": {
@@ -115,6 +131,7 @@
         "boolean_strict", "boolean_lenient",
         "crlf_preserve_literal", "crlf_normalize_to_lf",
         "indent_spaces", "indent_tabs",
+        "continuation_tab_to_space", "continuation_tab_preserve",
         "list_coercion_enabled", "list_coercion_disabled",
         "array_order_insertion", "array_order_lexicographic",
         "delimiter_first_equals", "delimiter_prefer_spaced",
@@ -143,7 +160,6 @@
             "unicode",
             "whitespace",
             "tab_in_value_preserved",
-            "continuation_tab_to_space",
             "toplevel_indent_strip"
           ]
         },
@@ -356,6 +372,16 @@
         "description": "Use tabs for indentation in formatted output.",
         "affectedFunctions": ["canonical_format", "print", "round_trip"],
         "mutuallyExclusiveWith": ["indent_spaces"]
+      },
+      "continuation_tab_to_space": {
+        "description": "During parse, normalize leading tabs on multiline continuation lines 1:1 to spaces (OCaml reference). Each leading '\\t' becomes a single space.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["continuation_tab_preserve"]
+      },
+      "continuation_tab_preserve": {
+        "description": "During parse, preserve leading tabs on multiline continuation lines verbatim. Alternative to the OCaml 1:1 tab-to-space normalization.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["continuation_tab_to_space"]
       },
       "list_coercion_enabled": {
         "description": "Single values are coerced to single-element lists when accessed via get_list.",

@@ -112,7 +112,6 @@ func TestAllFeatures_Completeness(t *testing.T) {
 		FeatureUnicode,
 		FeatureWhitespace,
 		FeatureTabInValuePreserved,
-		FeatureContinuationTabToSpace,
 		FeatureToplevelIndentStrip,
 	}
 

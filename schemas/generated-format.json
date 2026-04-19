@@ -152,6 +152,7 @@
             "boolean_strict", "boolean_lenient",
             "crlf_preserve_literal", "crlf_normalize_to_lf",
             "indent_spaces", "indent_tabs",
+            "continuation_tab_to_space", "continuation_tab_preserve",
             "list_coercion_enabled", "list_coercion_disabled",
             "array_order_insertion", "array_order_lexicographic",
             "delimiter_first_equals", "delimiter_prefer_spaced",
@@ -180,7 +181,7 @@
               "enum": [
                 "comments", "empty_keys",
                 "multiline_continuation", "multiline_keys", "unicode", "whitespace",
-                "tab_in_value_preserved", "continuation_tab_to_space",
+                "tab_in_value_preserved",
                 "toplevel_indent_strip"
               ]
             },

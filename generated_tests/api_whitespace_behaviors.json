@@ -149,8 +149,14 @@
     },
     {
       "behaviors": [
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
+      "conflicts": {
+        "behaviors": [
+          "continuation_tab_preserve"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -162,8 +168,7 @@
       },
       "features": [
         "whitespace",
-        "multiline_continuation",
-        "continuation_tab_to_space"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -178,8 +183,14 @@
     },
     {
       "behaviors": [
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
+      "conflicts": {
+        "behaviors": [
+          "continuation_tab_preserve"
+        ]
+      },
       "expected": {
         "count": 1,
         "entries": [
@@ -191,8 +202,7 @@
       },
       "features": [
         "whitespace",
-        "multiline_continuation",
-        "continuation_tab_to_space"
+        "multiline_continuation"
       ],
       "functions": [
         "parse"
@@ -230,10 +240,12 @@
     {
       "behaviors": [
         "indent_spaces",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
+          "continuation_tab_preserve",
           "indent_tabs"
         ]
       },
@@ -243,8 +255,7 @@
       },
       "features": [
         "whitespace",
-        "multiline_continuation",
-        "continuation_tab_to_space"
+        "multiline_continuation"
       ],
       "functions": [
         "parse",
@@ -523,10 +534,12 @@
     {
       "behaviors": [
         "indent_tabs",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
+          "continuation_tab_preserve",
           "indent_spaces"
         ]
       },
@@ -536,8 +549,7 @@
       },
       "features": [
         "whitespace",
-        "multiline_continuation",
-        "continuation_tab_to_space"
+        "multiline_continuation"
       ],
       "functions": [
         "parse",

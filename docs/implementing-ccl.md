@@ -208,16 +208,23 @@ Per the OCaml reference:
 
 ## Tab and Indent Handling
 
-The OCaml reference implementation encodes the canonical rules. The test suite carries `features` annotations indicating which rule a test exercises:
+The test suite uses two kinds of tags for tab/indent rules:
+
+**Features** — annotations for universal OCaml-canonical rules. Every conformant implementation follows these.
 
 | Feature | Meaning |
 |---|---|
 | `tab_in_value_preserved` | Tabs that appear inside a value (between non-whitespace content) are preserved verbatim. Boundary tabs immediately after `=` are always trimmed as whitespace (this is untagged — it is the universal default). |
-| `continuation_tab_to_space` | On multiline continuation lines, each leading `\t` normalizes 1:1 to a single space during `parse`. Example: `"section =\n\t\tfoo"` → value `"\n  foo"`. |
-| `canonical_indent_two_spaces` | `canonical_format` emits exactly two spaces per nesting level; tabs are never emitted as indentation. |
 | `toplevel_indent_strip` | Leading whitespace on top-level keys is stripped (per OCaml: `String.trim`). |
 
-These are feature annotations, not divergence switches — every conformant implementation follows all four rules. The annotations exist so test runners can filter by what a given test exercises and report feature-coverage gaps.
+**Behaviors** — implementation choices. Implementations declare their choice per group; tests are filtered to compatible choices.
+
+| Group | Option | Meaning |
+|---|---|---|
+| continuation_tab_handling | `continuation_tab_to_space` | On multiline continuation lines, each leading `\t` normalizes 1:1 to a single space during `parse`. Example: `"section =\n\t\tfoo"` → value `"\n  foo"`. (OCaml reference) |
+| continuation_tab_handling | `continuation_tab_preserve` | Continuation-line leading tabs preserved verbatim during `parse`. |
+| indent_output | `indent_spaces` | `canonical_format` emits 2 spaces per nesting level. (OCaml reference) |
+| indent_output | `indent_tabs` | `canonical_format` emits tab characters for indentation. |
 
 ## API Guidelines
 
