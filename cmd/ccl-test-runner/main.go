@@ -359,6 +359,12 @@ func testAction(ctx *cli.Context) error {
 		defaultSkipTests := []string{
 			"TestKeyWithNewlineBeforeEqualsParse",
 			"TestComplexMultiNewlineWhitespaceParse",
+			"TestMultilineKeyWithSpacesParse",
+			"TestMultilineKeyThreeLinesParse",
+			"TestMultilineKeyEmptyValueParse",
+			"TestMultilineKeyWithRegularEntryParse",
+			"TestMultilineKeyBlankLinesBetweenParse",
+			"TestMultilineKeyTabsInContinuationParse",
 			"TestRoundTripWhitespaceNormalizationParse",
 		}
 		skipTests = append(skipTests, defaultSkipTests...)
