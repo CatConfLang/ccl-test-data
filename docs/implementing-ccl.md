@@ -223,8 +223,8 @@ The test suite uses two kinds of tags for tab/indent rules:
 |---|---|---|
 | continuation_tab_handling | `continuation_tab_to_space` | On multiline continuation lines, each leading `\t` normalizes 1:1 to a single space during `parse`. Example: `"section =\n\t\tfoo"` → value `"\n  foo"`. (OCaml reference) |
 | continuation_tab_handling | `continuation_tab_preserve` | Continuation-line leading tabs preserved verbatim during `parse`. |
-| indent_output | `indent_spaces` | `canonical_format` emits 2 spaces per nesting level. (OCaml reference) |
-| indent_output | `indent_tabs` | `canonical_format` emits tab characters for indentation. |
+| indent_output | `indent_spaces` | `print`, `canonical_format`, and `round_trip` emit 2 spaces per nesting level. (OCaml reference) |
+| indent_output | `indent_tabs` | `print`, `canonical_format`, and `round_trip` emit tab characters for indentation. |
 
 ## API Guidelines
 

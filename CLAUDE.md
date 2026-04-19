@@ -242,8 +242,7 @@ replace github.com/catconflang/ccl-test-data => ../ccl-test-data
           ]
         }
       ],
-      "features": ["whitespace"],
-      "behaviors": ["tabs_as_whitespace"]
+      "features": ["whitespace", "tab_in_value_preserved"]
     }
   ]
 }

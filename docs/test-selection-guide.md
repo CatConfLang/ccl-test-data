@@ -75,11 +75,17 @@ Behaviors fall into two categories:
 |----------|-------------|
 | `crlf_preserve_literal` | Preserve `\r` characters in values (default) |
 | `crlf_normalize_to_lf` | Normalize CRLF to LF during parsing |
-| `tabs_as_content` | Tabs are content characters (never indentation, never trimmed) |
-| `tabs_as_whitespace` | Tabs are whitespace (count for indentation, get trimmed) |
-| `indent_spaces` | Use spaces for printed indentation |
-| `indent_tabs` | Use tabs for printed indentation |
+| `continuation_tab_to_space` | Normalize leading tabs on multiline continuation lines 1:1 to spaces during `parse` (OCaml reference) |
+| `continuation_tab_preserve` | Preserve leading tabs on multiline continuation lines verbatim during `parse` |
 | `multiline_values` | Multi-line value construction edge cases (empty first line, continuation preservation, blank line lookahead) |
+
+**Output-format behaviors** (affect `print` / `canonical_format` / `round_trip`):
+| Behavior | Description |
+|----------|-------------|
+| `indent_spaces` | Emit spaces for indentation in formatted output (2 per level, OCaml reference) |
+| `indent_tabs` | Emit tabs for indentation in formatted output |
+
+> Mid-value tab preservation (`tab_in_value_preserved`) and top-level indent stripping (`toplevel_indent_strip`) are canonical OCaml rules carried as **features**, not behaviors — every conformant implementation follows them.
 
 **API-specific behaviors** (affect individual functions like `get_bool`):
 | Behavior | Description |
@@ -91,7 +97,8 @@ Behaviors fall into two categories:
 | `array_order_insertion` | Preserve insertion order |
 | `array_order_lexicographic` | Sort elements lexicographically |
 
-> **Note:** Only behaviors with populated `conflicts` fields are mutually exclusive. Some behaviors are supersets (e.g., `boolean_lenient` accepts everything `boolean_strict` does, plus more).
+> [!NOTE]
+> Only behaviors with populated `conflicts` fields are mutually exclusive. Some behaviors are supersets (e.g., `boolean_lenient` accepts everything `boolean_strict` does, plus more).
 
 ### Variants Array (`test.variants[]`) - Temporary Disambiguation
 

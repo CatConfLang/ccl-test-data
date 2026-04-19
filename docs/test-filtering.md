@@ -33,13 +33,17 @@ The generated flat format provides type-safe filtering through separate arrays:
 
 **Behaviors Array** (`test.behaviors[]`) - Implementation choices:
 - `crlf_preserve_literal` vs `crlf_normalize_to_lf` - Line ending handling
-- `tabs_as_content` vs `tabs_as_whitespace` - Tab character treatment
-- `indent_spaces` vs `indent_tabs` - Output indentation style
+- `indent_spaces` vs `indent_tabs` - Indent style in `print` / `canonical_format` / `round_trip` output
+- `continuation_tab_to_space` vs `continuation_tab_preserve` - Handling of leading tabs on multiline continuation lines during `parse`
 - `boolean_strict` vs `boolean_lenient` - Boolean value parsing
 - `list_coercion_enabled` vs `list_coercion_disabled` - Single-to-list conversion
 - `array_order_insertion` vs `array_order_lexicographic` - List element ordering
 
-> **Note:** Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
+> [!NOTE]
+> Mid-value tab preservation and top-level indent stripping are not behavior choices — they follow the OCaml canonical rules universally and are exercised via the `tab_in_value_preserved` and `toplevel_indent_strip` feature tags.
+
+> [!NOTE]
+> Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
 
 **Variants Array** (`test.variants[]`) - Specification variants:
 - `proposed_behavior` - Proposed specification behavior
@@ -103,15 +107,15 @@ Mutually exclusive behaviors and specification variants:
 
 ```json
 {
-  "name": "tab_preservation_proposed_parse",
-  "input": "key = \tvalue",
-  "validation": "parse",
-  "functions": ["parse"],
+  "name": "canonical_format_indent_tabs_proposed",
+  "input": "section =\n  indented",
+  "validation": "canonical_format",
+  "functions": ["canonical_format"],
   "features": ["whitespace"],
-  "behaviors": ["tabs_as_content"],
+  "behaviors": ["indent_tabs"],
   "variants": ["proposed_behavior"],
   "conflicts": {
-    "behaviors": ["tabs_as_whitespace"],
+    "behaviors": ["indent_spaces"],
     "variants": ["reference_compliant"]
   }
 }
@@ -278,7 +282,6 @@ const progressiveTests = flatTests.filter(test => {
 
 ### Behaviors Array Values
 - Line endings: `crlf_preserve_literal` vs `crlf_normalize_to_lf`
-- Tab handling: `tabs_as_content` vs `tabs_as_whitespace`
 - Indent output: `indent_spaces` vs `indent_tabs`
 - Boolean parsing: `boolean_strict` vs `boolean_lenient`
 - List access: `list_coercion_enabled` vs `list_coercion_disabled`
