@@ -31,6 +31,9 @@ Direct array containing CCL functions required for a test to run:
 | `get_list` | List value access | `GetList(obj, "items")` |
 | `pretty_print` | Formatting output | `PrettyPrint(obj)` |
 
+> [!NOTE]
+> `build_hierarchy` internally requires `parse_indented` to produce its input entries — it cannot work with `parse` alone. `parse_indented` handles indentation-based nesting and lines without `=` delimiters that `parse` rejects. Implementations that support `build_hierarchy` implicitly support `parse_indented`, even if `parse_indented` is not exposed as a public API.
+
 **Type-safe filtering:**
 ```javascript
 // Check if implementation supports all required functions
