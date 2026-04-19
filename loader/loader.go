@@ -414,6 +414,7 @@ type CompactTest struct {
 	Name      string              `json:"name"`
 	Inputs    []string            `json:"inputs"` // CCL input text(s) - single-input tests use 1-element array
 	Tests     []CompactValidation `json:"tests"`
+	Functions []string            `json:"functions,omitempty"`
 	Features  []string            `json:"features,omitempty"`
 	Behaviors []string            `json:"behaviors,omitempty"`
 	Variants  []string            `json:"variants,omitempty"`
@@ -472,6 +473,7 @@ func (tl *TestLoader) loadCompactFormat(data []byte) ([]types.TestCase, error) {
 		testCase := types.TestCase{
 			Name:      compact.Name,
 			Inputs:    compact.Inputs,
+			Functions: compact.Functions,
 			Features:  features,
 			Behaviors: behaviors,
 			Variants:  variants,

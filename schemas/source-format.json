@@ -141,11 +141,19 @@
     },
     "functionName": {
       "type": "string",
+      "description": "A CCL function that implementations provide. Mirrors ccl-test-data/config.CCLFunction.",
       "enum": [
         "parse", "parse_indented", "filter", "compose",
         "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
-        "print", "canonical_format", "load", "round_trip",
-        "compose_associative", "identity_left", "identity_right"
+        "print", "canonical_format", "load", "round_trip"
+      ]
+    },
+    "validationName": {
+      "type": "string",
+      "description": "A named test validation. Superset of functionName: includes the 15 CCL functions plus algebraic-property assertions validated by the test runner.",
+      "oneOf": [
+        { "$ref": "#/$defs/functionName" },
+        { "enum": ["compose_associative", "identity_left", "identity_right"] }
       ]
     },
     "featureName": {
@@ -206,8 +214,8 @@
               "required": ["function", "expect"],
               "properties": {
                 "function": {
-                  "$ref": "#/$defs/functionName",
-                  "description": "CCL function to test"
+                  "$ref": "#/$defs/validationName",
+                  "description": "Named test validation (a CCL function, or an algebraic-property assertion)"
                 },
                 "expect": {
                   "description": "Expected result from the function",
@@ -291,6 +299,12 @@
               },
               "additionalProperties": false
             }
+          },
+          "functions": {
+            "type": "array",
+            "description": "CCL functions exercised by this test. Used by validate-tags to map tests to function:* tags.",
+            "items": { "$ref": "#/$defs/functionName" },
+            "uniqueItems": true
           },
           "features": {
             "type": "array",

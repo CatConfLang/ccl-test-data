@@ -13,6 +13,9 @@
           "function": "compose_associative",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -27,6 +30,9 @@
           "function": "compose_associative",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -44,6 +50,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -57,6 +66,9 @@
           "function": "identity_left",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -70,6 +82,9 @@
           "function": "identity_right",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -83,6 +98,9 @@
           "function": "identity_left",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -96,6 +114,9 @@
           "function": "identity_right",
           "expect": true
         }
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -112,6 +133,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -128,6 +152,9 @@
       ],
       "features": [
         "empty_keys"
+      ],
+      "functions": [
+        "compose"
       ]
     },
     {
@@ -157,6 +184,11 @@
       ],
       "inputs": [
         "key = value\nanother = test"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "round_trip"
       ]
     },
     {
@@ -182,6 +214,11 @@
       ],
       "inputs": [
         "config =\n  host = localhost\n  port = 8080\n  db =\n    name = mydb\n    user = admin"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "round_trip"
       ]
     },
     {
@@ -222,6 +259,11 @@
       ],
       "inputs": [
         "= item1\n= item2\nconfig =\n  nested =\n    deep = value\n  list =\n    = a\n    = b\n    = c\nfinal = end"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "round_trip"
       ]
     }
   ]

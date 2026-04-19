@@ -20,6 +20,8 @@ import (
 	"path/filepath"
 	"sort"
 	"time"
+
+	"github.com/catconflang/ccl-test-data/loader"
 )
 
 const (
@@ -128,6 +130,12 @@ func fetchIndex(url string) (*tagIndex, error) {
 // collectTags walks every JSON file under dir and returns the set of
 // function/feature/behavior/variant tags used in tests, in canonical
 // "category:name" form.
+//
+// Tags are read from typed loader fields, so test fixture payloads
+// (expect/inputs/args) cannot be mistaken for metadata. Per-validation
+// function names (e.g. property-test identifiers like compose_associative)
+// are not tags — declare a test's function tags via its top-level
+// "functions" array instead.
 func collectTags(dir string) (map[string]struct{}, error) {
 	tags := map[string]struct{}{}
 	err := filepath.WalkDir(dir, func(path string, d os.DirEntry, err error) error {
@@ -141,71 +149,30 @@ func collectTags(dir string) (map[string]struct{}, error) {
 		if err != nil {
 			return fmt.Errorf("reading %s: %w", path, err)
 		}
-		var raw any
-		if err := json.Unmarshal(data, &raw); err != nil {
+		var file loader.CompactTestFile
+		if err := json.Unmarshal(data, &file); err != nil {
 			return fmt.Errorf("parsing %s: %w", path, err)
 		}
-		walkTags(raw, tags)
+		for _, t := range file.Tests {
+			addPrefixed(tags, "function:", t.Functions)
+			addPrefixed(tags, "feature:", t.Features)
+			addPrefixed(tags, "behavior:", t.Behaviors)
+			addPrefixed(tags, "variant:", t.Variants)
+			if t.Conflicts != nil {
+				addPrefixed(tags, "function:", t.Conflicts.Functions)
+				addPrefixed(tags, "feature:", t.Conflicts.Features)
+				addPrefixed(tags, "behavior:", t.Conflicts.Behaviors)
+				addPrefixed(tags, "variant:", t.Conflicts.Variants)
+			}
+		}
 		return nil
 	})
 	return tags, err
 }
 
-// tagPrefixByKey maps metadata array keys to their canonical tag prefix.
-var tagPrefixByKey = map[string]string{
-	"functions": "function",
-	"features":  "feature",
-	"behaviors": "behavior",
-	"variants":  "variant",
-}
-
-// walkTags recurses into arbitrary JSON values and harvests tag strings from
-// known tag-bearing keys.
-//
-// Critically, it does NOT recurse into data-carrying fields like `expect`,
-// `input`, `inputs`, or `args`: a `features` key inside `expect.data` is
-// test output (the *content* of a CCL document being parsed), not test
-// metadata. Recursing into them causes false-positive "tags" like the
-// literal keys of a test fixture.
-func walkTags(v any, out map[string]struct{}) {
-	switch x := v.(type) {
-	case map[string]any:
-		for key, val := range x {
-			if prefix, ok := tagPrefixByKey[key]; ok {
-				addStrings(val, prefix, out)
-				continue
-			}
-			switch key {
-			case "conflicts":
-				if c, ok := val.(map[string]any); ok {
-					for k, v := range c {
-						if prefix, ok := tagPrefixByKey[k]; ok {
-							addStrings(v, prefix, out)
-						}
-					}
-				}
-			case "expect", "input", "inputs", "args":
-				// Test data, not metadata — skip recursion.
-			default:
-				walkTags(val, out)
-			}
-		}
-	case []any:
-		for _, item := range x {
-			walkTags(item, out)
-		}
-	}
-}
-
-func addStrings(v any, prefix string, out map[string]struct{}) {
-	arr, ok := v.([]any)
-	if !ok {
-		return
-	}
-	for _, item := range arr {
-		if s, ok := item.(string); ok {
-			out[prefix+":"+s] = struct{}{}
-		}
+func addPrefixed(out map[string]struct{}, prefix string, values []string) {
+	for _, v := range values {
+		out[prefix+v] = struct{}{}
 	}
 }
 
