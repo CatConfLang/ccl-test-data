@@ -36,7 +36,7 @@ func TestTabsAsWhitespaceInValueParse(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_in_value_build_hierarchy - function:build_hierarchy feature:whitespace feature:tab_in_value_preserved
+// tabs_as_whitespace_in_value_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -346,7 +346,7 @@ func TestCrlfNormalizeToLfBasicParse(t *testing.T) {
 }
 
 
-// crlf_normalize_to_lf_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
+// crlf_normalize_to_lf_basic_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -358,7 +358,7 @@ func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 }
 
 
-// crlf_preserve_literal_basic_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
+// crlf_preserve_literal_basic_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -436,7 +436,7 @@ func TestCrlfNestedStructureParse(t *testing.T) {
 }
 
 
-// crlf_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
+// crlf_nested_structure_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -448,7 +448,7 @@ func TestCrlfPreserveNestedStructureParse(t *testing.T) {
 }
 
 
-// crlf_preserve_nested_structure_build_hierarchy - function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
+// crlf_preserve_nested_structure_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -522,7 +522,7 @@ func TestCrlfNormalizeCommentsAndValuesFilter(t *testing.T) {
 }
 
 
-// crlf_normalize_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+// crlf_normalize_comments_and_values_build_hierarchy - function:parse_indented function:build_hierarchy feature:comments feature:whitespace behavior:crlf_normalize_to_lf
 func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -540,7 +540,7 @@ func TestCrlfPreserveCommentsAndValuesFilter(t *testing.T) {
 }
 
 
-// crlf_preserve_comments_and_values_build_hierarchy - function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
+// crlf_preserve_comments_and_values_build_hierarchy - function:parse_indented function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

@@ -36,7 +36,7 @@ func TestParseBasicIntegerParse(t *testing.T) {
 }
 
 
-// parse_basic_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_basic_integer_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicIntegerBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -70,7 +70,7 @@ func TestParseBasicFloatParse(t *testing.T) {
 }
 
 
-// parse_basic_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_basic_float_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBasicFloatBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -104,7 +104,7 @@ func TestParseBooleanTrueParse(t *testing.T) {
 }
 
 
-// parse_boolean_true_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_true_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanTrueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -138,7 +138,7 @@ func TestParseBooleanYesParse(t *testing.T) {
 }
 
 
-// parse_boolean_yes_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_yes_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -172,7 +172,7 @@ func TestParseBooleanYesStrictLiteralParse(t *testing.T) {
 }
 
 
-// parse_boolean_yes_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_yes_strict_literal_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanYesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -206,7 +206,7 @@ func TestParseBooleanFalseParse(t *testing.T) {
 }
 
 
-// parse_boolean_false_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_false_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanFalseBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -240,7 +240,7 @@ func TestParseStringFallbackParse(t *testing.T) {
 }
 
 
-// parse_string_fallback_build_hierarchy - function:build_hierarchy
+// parse_string_fallback_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestParseStringFallbackBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -274,7 +274,7 @@ func TestParseNegativeIntegerParse(t *testing.T) {
 }
 
 
-// parse_negative_integer_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_negative_integer_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseNegativeIntegerBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -310,7 +310,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
+// parse_zero_values_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -358,7 +358,7 @@ disabled = no`
 }
 
 
-// parse_zero_values_strict_literal_build_hierarchy - function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
+// parse_zero_values_strict_literal_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys feature:optional_typed_accessors
 func TestParseZeroValuesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -410,7 +410,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_variants_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -456,7 +456,7 @@ flag7 = 0`
 }
 
 
-// parse_boolean_variants_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_variants_strict_literal_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanVariantsStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -500,7 +500,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_mixed_types_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -556,7 +556,7 @@ debug = off`
 }
 
 
-// parse_mixed_types_strict_literal_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_mixed_types_strict_literal_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseMixedTypesStrictLiteralBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -609,7 +609,7 @@ flag =  true  `
 }
 
 
-// parse_with_whitespace_build_hierarchy - function:build_hierarchy feature:whitespace feature:optional_typed_accessors
+// parse_with_whitespace_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace feature:optional_typed_accessors
 func TestParseWithWhitespaceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -652,7 +652,7 @@ text = hello`
 }
 
 
-// parse_with_conservative_options_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_with_conservative_options_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseWithConservativeOptionsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -692,7 +692,7 @@ func TestParseIntegerErrorParse(t *testing.T) {
 }
 
 
-// parse_integer_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_integer_error_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseIntegerErrorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -726,7 +726,7 @@ func TestParseFloatErrorParse(t *testing.T) {
 }
 
 
-// parse_float_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_float_error_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseFloatErrorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -760,7 +760,7 @@ func TestParseBooleanErrorParse(t *testing.T) {
 }
 
 
-// parse_boolean_error_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// parse_boolean_error_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestParseBooleanErrorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -794,7 +794,7 @@ func TestParseMissingPathErrorParse(t *testing.T) {
 }
 
 
-// parse_missing_path_error_build_hierarchy - function:build_hierarchy
+// parse_missing_path_error_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestParseMissingPathErrorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -956,7 +956,7 @@ func TestBooleanWithWhitespaceGetBool(t *testing.T) {
 }
 
 
-// boolean_nested_object_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// boolean_nested_object_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestBooleanNestedObjectBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1046,7 +1046,7 @@ func TestTypeMismatchGetFloatOnBoolGetFloat(t *testing.T) {
 }
 
 
-// type_mismatch_nested_path_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// type_mismatch_nested_path_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestTypeMismatchNestedPathBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1104,7 +1104,7 @@ func TestNestedGetIntParse(t *testing.T) {
 }
 
 
-// nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// nested_get_int_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetIntBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1142,7 +1142,7 @@ func TestDeeplyNestedGetIntParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_int_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// deeply_nested_get_int_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetIntBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1178,7 +1178,7 @@ func TestNestedGetFloatParse(t *testing.T) {
 }
 
 
-// nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// nested_get_float_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetFloatBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1216,7 +1216,7 @@ func TestDeeplyNestedGetFloatParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_float_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// deeply_nested_get_float_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetFloatBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1252,7 +1252,7 @@ func TestNestedGetBoolParse(t *testing.T) {
 }
 
 
-// nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// nested_get_bool_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestNestedGetBoolBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1290,7 +1290,7 @@ func TestDeeplyNestedGetBoolParse(t *testing.T) {
 }
 
 
-// deeply_nested_get_bool_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// deeply_nested_get_bool_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestDeeplyNestedGetBoolBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1326,7 +1326,7 @@ func TestNestedGetStringBasicParse(t *testing.T) {
 }
 
 
-// nested_get_string_basic_build_hierarchy - function:build_hierarchy
+// nested_get_string_basic_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestNestedGetStringBasicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1364,7 +1364,7 @@ func TestNestedMixedTypedAccessParse(t *testing.T) {
 }
 
 
-// nested_mixed_typed_access_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// nested_mixed_typed_access_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestNestedMixedTypedAccessBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

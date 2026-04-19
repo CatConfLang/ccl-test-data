@@ -37,7 +37,7 @@ age = 42`
 }
 
 
-// complete_basic_workflow_build_hierarchy - function:build_hierarchy
+// complete_basic_workflow_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestCompleteBasicWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -74,7 +74,7 @@ func TestCompleteNestedWorkflowParse(t *testing.T) {
 }
 
 
-// complete_nested_workflow_build_hierarchy - function:build_hierarchy
+// complete_nested_workflow_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestCompleteNestedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -114,7 +114,7 @@ config =
 }
 
 
-// complete_mixed_workflow_build_hierarchy - function:build_hierarchy
+// complete_mixed_workflow_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestCompleteMixedWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -154,7 +154,7 @@ ports =
 }
 
 
-// complete_lists_workflow_build_hierarchy - function:build_hierarchy behavior:array_order_insertion
+// complete_lists_workflow_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_insertion
 func TestCompleteListsWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -194,7 +194,7 @@ ports =
 }
 
 
-// complete_lists_workflow_lexicographic_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// complete_lists_workflow_lexicographic_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestCompleteListsWorkflowLexicographicBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -234,7 +234,7 @@ config =
 }
 
 
-// complete_multiline_workflow_build_hierarchy - function:build_hierarchy feature:multiline_continuation behavior:multiline_values
+// complete_multiline_workflow_build_hierarchy - function:parse_indented function:build_hierarchy feature:multiline_continuation behavior:multiline_values
 func TestCompleteMultilineWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -288,7 +288,7 @@ features =
 }
 
 
-// real_world_complete_workflow_build_hierarchy - function:build_hierarchy
+// real_world_complete_workflow_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRealWorldCompleteWorkflowBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

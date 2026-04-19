@@ -36,7 +36,7 @@ func TestSingleItemAsListReferenceParse(t *testing.T) {
 }
 
 
-// single_item_as_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// single_item_as_list_reference_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -72,7 +72,7 @@ host = localhost`
 }
 
 
-// mixed_duplicate_single_keys_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// mixed_duplicate_single_keys_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -109,7 +109,7 @@ func TestNestedListAccessReferenceParse(t *testing.T) {
 }
 
 
-// nested_list_access_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// nested_list_access_reference_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -143,7 +143,7 @@ func TestEmptyListReferenceParse(t *testing.T) {
 }
 
 
-// empty_list_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// empty_list_reference_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestEmptyListReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -180,7 +180,7 @@ numbers = 0`
 }
 
 
-// list_with_numbers_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// list_with_numbers_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -217,7 +217,7 @@ flags = no`
 }
 
 
-// list_with_booleans_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// list_with_booleans_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -254,7 +254,7 @@ items =   `
 }
 
 
-// list_with_whitespace_reference_build_hierarchy - function:build_hierarchy feature:empty_keys feature:whitespace behavior:array_order_lexicographic
+// list_with_whitespace_reference_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys feature:whitespace behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -291,7 +291,7 @@ names = العربية`
 }
 
 
-// list_with_unicode_reference_build_hierarchy - function:build_hierarchy feature:unicode behavior:array_order_lexicographic
+// list_with_unicode_reference_build_hierarchy - function:parse_indented function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -327,7 +327,7 @@ symbols = []{}|`
 }
 
 
-// list_with_special_characters_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// list_with_special_characters_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -339,7 +339,7 @@ func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
 }
 
 
-// complex_mixed_list_scenarios_reference_build_hierarchy - function:build_hierarchy behavior:array_order_lexicographic
+// complex_mixed_list_scenarios_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -373,7 +373,7 @@ func TestListPathTraversalProtectionReferenceParse(t *testing.T) {
 }
 
 
-// list_path_traversal_protection_reference_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// list_path_traversal_protection_reference_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -407,7 +407,7 @@ func TestEmptyValueReferenceBehaviorParse(t *testing.T) {
 }
 
 
-// empty_value_reference_behavior_build_hierarchy - function:build_hierarchy variant:reference_compliant
+// empty_value_reference_behavior_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

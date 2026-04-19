@@ -277,9 +277,14 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 
 // compositeFunctionMap defines validations that require multiple underlying functions.
 // For example, round_trip validation requires both parse and print functions.
+//
+// build_hierarchy depends on parse_indented (not parse) because parse rejects lines
+// without `=` delimiters, while parse_indented handles the indentation-based nesting
+// that build_hierarchy needs to construct its input entries. See issue #114.
 var compositeFunctionMap = map[string][]string{
 	"round_trip":          {"parse", "print"},
-	"load":                {"parse", "build_hierarchy"},
+	"build_hierarchy":     {"parse_indented", "build_hierarchy"},
+	"load":                {"parse_indented", "build_hierarchy"},
 	"canonical_format":    {"parse", "print", "canonical_format"},
 	"compose_associative": {"parse", "compose"},
 	"identity_left":       {"parse", "compose"},
