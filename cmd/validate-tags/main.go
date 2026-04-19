@@ -5,7 +5,7 @@
 // referenced by tests, fetches the canonical tag-index.json emitted by the
 // website build, and fails if any tag used in tests is missing from the index.
 //
-// The canonical tag-index lives at https://ccl.tylerbutler.com/tag-index.json.
+// The canonical tag-index lives at https://catconflang.com/tag-index.json.
 // If the fetch fails, a cached copy at docs/tag-index.json is used as a
 // fallback so CI doesn't break when the website is mid-deploy.
 package main
@@ -23,7 +23,7 @@ import (
 )
 
 const (
-	defaultIndexURL  = "https://ccl.tylerbutler.com/tag-index.json"
+	defaultIndexURL  = "https://catconflang.com/tag-index.json"
 	defaultCachePath = "docs/tag-index.json"
 	fetchTimeout     = 10 * time.Second
 )

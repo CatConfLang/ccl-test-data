@@ -1,6 +1,6 @@
 # CCL Test Data
 
-Language-agnostic JSON test suite for [CCL (Categorical Configuration Language)](https://ccl.tylerbutler.com) implementations.
+Language-agnostic JSON test suite for [CCL (Categorical Configuration Language)](https://catconflang.com) implementations.
 
 **218 tests | 470 assertions | 15 files**
 
@@ -106,9 +106,9 @@ tests, _ := testLoader.LoadAllTests(loader.LoadOptions{
 
 ## Resources
 
-- [CCL Documentation](https://ccl.tylerbutler.com) - Language specification and guides
-- [Implementing CCL](https://ccl.tylerbutler.com/implementing-ccl/) - Parser implementation guide
-- [AI Quickstart](https://ccl.tylerbutler.com/ai-quickstart/) - LLM-friendly CCL reference
+- [CCL Documentation](https://catconflang.com) - Language specification and guides
+- [Implementing CCL](https://catconflang.com/implementing-ccl/) - Parser implementation guide
+- [AI Quickstart](https://catconflang.com/ai-quickstart/) - LLM-friendly CCL reference
 - [Original Specification](https://chshersh.com/blog/2025-01-06-the-most-elegant-configuration-language.html) - CCL blog post by Dmitrii Kovanikov
 
 ## Development

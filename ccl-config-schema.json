@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://ccl.tylerbutler.com/schemas/ccl-config.json",
+  "$id": "https://catconflang.com/schemas/ccl-config.json",
   "title": "CCL Test Runner Configuration",
   "description": "Configuration schema for CCL (Categorical Configuration Language) test runner",
   "type": "object",

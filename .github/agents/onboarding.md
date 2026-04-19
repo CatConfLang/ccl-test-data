@@ -321,8 +321,8 @@ just test
 - **[documentation.md](documentation.md)** - Updating documentation
 
 ### External Resources
-- **CCL Core Concepts**: https://ccl.tylerbutler.com/core-concepts
-- **CCL API Guide**: https://ccl.tylerbutler.com/api-guide
+- **CCL Core Concepts**: https://catconflang.com/core-concepts
+- **CCL API Guide**: https://catconflang.com/api-guide
 
 ## Next Steps
 

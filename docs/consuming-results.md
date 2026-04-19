@@ -139,7 +139,7 @@ function featureMatrix(resultsByImpl) {
 }
 ```
 
-The [CCL docs site](https://ccl.tylerbutler.com) uses this pattern to generate the implementation comparison tables.
+The [CCL docs site](https://catconflang.com) uses this pattern to generate the implementation comparison tables.
 
 ## See Also
 

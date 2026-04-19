@@ -4,12 +4,12 @@ The mock at `internal/mock/ccl.go` is a **Go reference implementation** used to 
 
 **For canonical CCL language semantics — function signatures, error conditions, edge cases — see the CCL documentation site:**
 
-- [Functions Reference](https://ccl.tylerbutler.com/reference/functions/)
-- [Features Reference](https://ccl.tylerbutler.com/reference/features/)
-- [Behavior Reference](https://ccl.tylerbutler.com/behavior-reference/)
-- [Parsing Algorithm](https://ccl.tylerbutler.com/parsing-algorithm)
-- [Continuation Lines](https://ccl.tylerbutler.com/continuation-lines)
-- [Decisions](https://ccl.tylerbutler.com/reference/decisions/bare-list-hierarchy/) (bare-list, CRLF)
+- [Functions Reference](https://catconflang.com/reference/functions/)
+- [Features Reference](https://catconflang.com/reference/features/)
+- [Behavior Reference](https://catconflang.com/behavior-reference/)
+- [Parsing Algorithm](https://catconflang.com/parsing-algorithm)
+- [Continuation Lines](https://catconflang.com/continuation-lines)
+- [Decisions](https://catconflang.com/reference/decisions/bare-list-hierarchy/) (bare-list, CRLF)
 
 This document covers the **Go mock's package layout and design decisions** — what's useful for someone reading or extending the mock itself. It does not redefine CCL semantics.
 
@@ -52,7 +52,7 @@ These are choices **this mock** makes — they are implementation-level decision
 
 ### CRLF preservation
 
-- Line splitting is `strings.Split(input, "\n")`. If the original line ended in `\r`, the mock re-attaches `\r` to the value after trimming. This is the direct approach; the canonical rule (see the [CRLF nested-structure decision](https://ccl.tylerbutler.com/reference/decisions/crlf-nested/)) says implementations should treat `\r\n` as a single line terminator so indentation measurement isn't corrupted.
+- Line splitting is `strings.Split(input, "\n")`. If the original line ended in `\r`, the mock re-attaches `\r` to the value after trimming. This is the direct approach; the canonical rule (see the [CRLF nested-structure decision](https://catconflang.com/reference/decisions/crlf-nested/)) says implementations should treat `\r\n` as a single line terminator so indentation measurement isn't corrupted.
 
 ### Deliberate simplifications
 
@@ -65,7 +65,7 @@ If you add a new CCL function to the canonical taxonomy (`config/CCLFunction`):
 
 1. Add a method on `CCL` in `internal/mock/ccl.go` producing the canonical expected value.
 2. Update the generator in `internal/generator/` so it emits test cases exercising the new function.
-3. Add a function section on the [website](https://ccl.tylerbutler.com/reference/functions/) and an entry to `src/data/tags.ts` in the website repo so `just validate-tags` resolves the new tag.
+3. Add a function section on the [website](https://catconflang.com/reference/functions/) and an entry to `src/data/tags.ts` in the website repo so `just validate-tags` resolves the new tag.
 
 ## Testing the Mock
 
@@ -78,4 +78,4 @@ just validate-tags      # ensure every test tag resolves to a website URL
 
 ---
 
-Historical note: this document used to be a 689-line "Comprehensive Implementation Guide" that mixed Go-specific code with CCL language semantics. The semantic content now lives canonically on <https://ccl.tylerbutler.com>; what remains here is the Go mock's own layout and design rationale.
+Historical note: this document used to be a 689-line "Comprehensive Implementation Guide" that mixed Go-specific code with CCL language semantics. The semantic content now lives canonically on <https://catconflang.com>; what remains here is the Go mock's own layout and design rationale.

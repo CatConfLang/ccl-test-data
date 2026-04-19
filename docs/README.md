@@ -5,8 +5,8 @@ This directory documents the **CCL test-suite infrastructure**: how tests are or
 > [!IMPORTANT]
 > **CCL language documentation lives on the website**, not here.
 >
-> - Functions, features, behaviors, decisions: <https://ccl.tylerbutler.com>
-> - Test-tag to URL index (machine-readable): <https://ccl.tylerbutler.com/tag-index.json>
+> - Functions, features, behaviors, decisions: <https://catconflang.com>
+> - Test-tag to URL index (machine-readable): <https://catconflang.com/tag-index.json>
 >
 > If you're implementing CCL, start there. This directory is for test-infrastructure contributors.
 
@@ -23,7 +23,7 @@ This directory documents the **CCL test-suite infrastructure**: how tests are or
 | **[test-architecture.md](test-architecture.md)** | Test file organization, statistics |
 | **[test-runner-design-principles.md](test-runner-design-principles.md)** | Configuration-validation rules for test runners |
 | **[test-runner-implementation-guide.md](test-runner-implementation-guide.md)** | Building a test runner |
-| **[test-selection-guide.md](test-selection-guide.md)** | Filtering tests by capability (see also the website's [Test Suite Guide](https://ccl.tylerbutler.com/test-suite-guide) for the conceptual side) |
+| **[test-selection-guide.md](test-selection-guide.md)** | Filtering tests by capability (see also the website's [Test Suite Guide](https://catconflang.com/test-suite-guide) for the conceptual side) |
 | **[test-filtering.md](test-filtering.md)** | Type-safe filtering internals |
 | **[schema-reference.md](schema-reference.md)** | Practical source/generated format reference |
 | **[generated-schema.md](generated-schema.md)** | Auto-generated per-field schema reference |
@@ -36,7 +36,7 @@ This directory documents the **CCL test-suite infrastructure**: how tests are or
 ## Quick nav
 
 - **New contributor?** → [ARCHITECTURE.md](ARCHITECTURE.md), then [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md).
-- **Building a CCL parser?** → <https://ccl.tylerbutler.com/implementing-ccl>.
+- **Building a CCL parser?** → <https://catconflang.com/implementing-ccl>.
 - **Building a test runner?** → [test-runner-implementation-guide.md](test-runner-implementation-guide.md).
 - **Extending the mock?** → [MOCK_IMPLEMENTATION.md](MOCK_IMPLEMENTATION.md).
 
