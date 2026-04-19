@@ -296,29 +296,6 @@
       ]
     },
     {
-      "name": "key_with_tabs",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "\tvalue"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "inputs": [
-        "\tkey\t=\tvalue"
-      ]
-    },
-    {
       "name": "key_with_tabs_ocaml_reference",
       "tests": [
         {
@@ -333,9 +310,6 @@
       ],
       "features": [
         "whitespace"
-      ],
-      "behaviors": [
-        "tabs_as_whitespace"
       ],
       "variants": [
         "reference_compliant"
@@ -363,52 +337,6 @@
       ],
       "inputs": [
         "onlyspaces =     "
-      ]
-    },
-    {
-      "name": "spaces_vs_tabs_continuation",
-      "tests": [
-        {
-          "function": "parse_indented",
-          "expect": [
-            {
-              "key": "text",
-              "value": "First\n   four spaces\n\ttab preserved"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "inputs": [
-        "text = First\n    four spaces\n \ttab preserved"
-      ]
-    },
-    {
-      "name": "spaces_vs_tabs_continuation_ocaml_reference",
-      "tests": [
-        {
-          "function": "parse_indented",
-          "expect": [
-            {
-              "key": "text",
-              "value": "First\n   four spaces\n\ttab preserved"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "inputs": [
-        "text = First\n    four spaces\n \ttab preserved"
       ]
     },
     {

@@ -434,12 +434,6 @@ func TestCanonicalFormatEmptyValuesOcamlReferenceCanonicalFormat(t *testing.T) {
 }
 
 
-// canonical_format_tab_preservation_ocaml_reference_canonical_format - function:parse function:print function:canonical_format behavior:tabs_as_content behavior:indent_spaces
-func TestCanonicalFormatTabPreservationOcamlReferenceCanonicalFormat(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
 // canonical_format_unicode_ocaml_reference_canonical_format - function:parse function:print function:canonical_format feature:unicode behavior:indent_spaces
 func TestCanonicalFormatUnicodeOcamlReferenceCanonicalFormat(t *testing.T) {
 	

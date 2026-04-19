@@ -29,12 +29,11 @@ type ImplementationSettings struct {
 // BehaviorChoices contains REQUIRED mutually exclusive behavioral choices
 // All fields must be explicitly set - no defaults allowed
 type BehaviorChoices struct {
-	CRLFHandling   *config.CCLBehavior `json:"crlf_handling"`   // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
-	TabHandling    *config.CCLBehavior `json:"tab_handling"`    // REQUIRED: tabs_as_content | tabs_as_whitespace
-	IndentOutput   *config.CCLBehavior `json:"indent_output"`   // REQUIRED: indent_spaces | indent_tabs
-	Boolean        *config.CCLBehavior `json:"boolean"`         // REQUIRED: boolean_strict | boolean_lenient
-	ListCoercion   *config.CCLBehavior `json:"list_coercion"`   // REQUIRED: list_coercion_enabled | list_coercion_disabled
-	ToplevelIndent *config.CCLBehavior `json:"toplevel_indent"` // REQUIRED: toplevel_indent_strip | toplevel_indent_preserve
+	CRLFHandling            *config.CCLBehavior `json:"crlf_handling"`             // REQUIRED: crlf_normalize_to_lf | crlf_preserve_literal
+	IndentOutput            *config.CCLBehavior `json:"indent_output"`             // REQUIRED: indent_spaces | indent_tabs
+	ContinuationTabHandling *config.CCLBehavior `json:"continuation_tab_handling"` // REQUIRED: continuation_tab_to_space | continuation_tab_preserve
+	Boolean                 *config.CCLBehavior `json:"boolean"`                   // REQUIRED: boolean_strict | boolean_lenient
+	ListCoercion            *config.CCLBehavior `json:"list_coercion"`             // REQUIRED: list_coercion_enabled | list_coercion_disabled
 }
 
 // VariantChoice contains REQUIRED specification variant choice
@@ -53,12 +52,11 @@ type TestFilteringOptions struct {
 // DefaultConfig returns the default configuration for the CCL test runner
 // NOTE: This configuration makes explicit behavioral choices for the mock implementation
 func DefaultConfig() *RunnerConfig {
-	crlf := config.BehaviorCRLFNormalize    // Normalize CRLF to LF for consistent line endings
-	tabs := config.BehaviorTabsAsWhitespace // Tabs are whitespace (count for indentation, get trimmed)
-	indent := config.BehaviorIndentSpaces   // Use spaces for printed indentation
+	crlf := config.BehaviorCRLFNormalize // Normalize CRLF to LF for consistent line endings
+	indent := config.BehaviorIndentSpaces
+	continuationTab := config.BehaviorContinuationTabToSpace // Match OCaml reference
 	boolean := config.BehaviorBooleanLenient
 	listCoercion := config.BehaviorListCoercionOff
-	toplevelIndent := config.BehaviorToplevelIndentStrip // Strip leading indent at top-level (matches OCaml reference)
 	variant := config.VariantReference
 
 	return &RunnerConfig{
@@ -81,22 +79,23 @@ func DefaultConfig() *RunnerConfig {
 				config.FeatureComments,
 				config.FeatureExperimentalDottedKeys,
 				config.FeatureUnicode,
+				config.FeatureTabInValuePreserved,
+				config.FeatureToplevelIndentStrip,
 			},
 		},
 		Behaviors: BehaviorChoices{
-			CRLFHandling:   &crlf,
-			TabHandling:    &tabs,
-			IndentOutput:   &indent,
-			Boolean:        &boolean,
-			ListCoercion:   &listCoercion,
-			ToplevelIndent: &toplevelIndent,
+			CRLFHandling:            &crlf,
+			IndentOutput:            &indent,
+			ContinuationTabHandling: &continuationTab,
+			Boolean:                 &boolean,
+			ListCoercion:            &listCoercion,
 		},
 		Variant: VariantChoice{
 			Specification: &variant,
 		},
 		TestFiltering: TestFilteringOptions{
 			RunOnlyFunctions: []string{"parse", "get-string", "get-int", "get-bool", "get-float", "get-list"}, // Basic functions only
-			SkipTags:         []string{"behavior:crlf_normalize_to_lf", "behavior:tabs_as_content"},           // Skip conflicting behaviors
+			SkipTags:         []string{"behavior:crlf_normalize_to_lf"},                                       // Skip conflicting behaviors
 			SkipTestsByName: []string{
 				// Indentation-aware parsing (requires multiline value preservation)
 				"deep_nested_objects", "nested_duplicate_keys", "round_trip_deeply_nested",
@@ -139,20 +138,17 @@ func (rc *RunnerConfig) Validate() error {
 	if rc.Behaviors.CRLFHandling == nil {
 		errors = append(errors, "CRLF handling choice is required (crlf_normalize_to_lf | crlf_preserve_literal)")
 	}
-	if rc.Behaviors.TabHandling == nil {
-		errors = append(errors, "Tab handling choice is required (tabs_as_content | tabs_as_whitespace)")
-	}
 	if rc.Behaviors.IndentOutput == nil {
 		errors = append(errors, "Indent output choice is required (indent_spaces | indent_tabs)")
+	}
+	if rc.Behaviors.ContinuationTabHandling == nil {
+		errors = append(errors, "Continuation tab handling choice is required (continuation_tab_to_space | continuation_tab_preserve)")
 	}
 	if rc.Behaviors.Boolean == nil {
 		errors = append(errors, "Boolean parsing choice is required (boolean_strict | boolean_lenient)")
 	}
 	if rc.Behaviors.ListCoercion == nil {
 		errors = append(errors, "List coercion choice is required (list_coercion_enabled | list_coercion_disabled)")
-	}
-	if rc.Behaviors.ToplevelIndent == nil {
-		errors = append(errors, "Toplevel indent choice is required (toplevel_indent_strip | toplevel_indent_preserve)")
 	}
 
 	// Validate required variant choice is made
@@ -166,13 +162,13 @@ func (rc *RunnerConfig) Validate() error {
 			errors = append(errors, err.Error())
 		}
 	}
-	if rc.Behaviors.TabHandling != nil {
-		if err := rc.validateBehaviorInGroup(*rc.Behaviors.TabHandling, "tab_handling"); err != nil {
+	if rc.Behaviors.IndentOutput != nil {
+		if err := rc.validateBehaviorInGroup(*rc.Behaviors.IndentOutput, "indent_output"); err != nil {
 			errors = append(errors, err.Error())
 		}
 	}
-	if rc.Behaviors.IndentOutput != nil {
-		if err := rc.validateBehaviorInGroup(*rc.Behaviors.IndentOutput, "indent_output"); err != nil {
+	if rc.Behaviors.ContinuationTabHandling != nil {
+		if err := rc.validateBehaviorInGroup(*rc.Behaviors.ContinuationTabHandling, "continuation_tab_handling"); err != nil {
 			errors = append(errors, err.Error())
 		}
 	}
@@ -183,11 +179,6 @@ func (rc *RunnerConfig) Validate() error {
 	}
 	if rc.Behaviors.ListCoercion != nil {
 		if err := rc.validateBehaviorInGroup(*rc.Behaviors.ListCoercion, "list_coercion"); err != nil {
-			errors = append(errors, err.Error())
-		}
-	}
-	if rc.Behaviors.ToplevelIndent != nil {
-		if err := rc.validateBehaviorInGroup(*rc.Behaviors.ToplevelIndent, "toplevel_indent"); err != nil {
 			errors = append(errors, err.Error())
 		}
 	}
@@ -230,20 +221,17 @@ func (rc *RunnerConfig) ToImplementationConfig() config.ImplementationConfig {
 	if rc.Behaviors.CRLFHandling != nil {
 		behaviorChoices = append(behaviorChoices, *rc.Behaviors.CRLFHandling)
 	}
-	if rc.Behaviors.TabHandling != nil {
-		behaviorChoices = append(behaviorChoices, *rc.Behaviors.TabHandling)
-	}
 	if rc.Behaviors.IndentOutput != nil {
 		behaviorChoices = append(behaviorChoices, *rc.Behaviors.IndentOutput)
+	}
+	if rc.Behaviors.ContinuationTabHandling != nil {
+		behaviorChoices = append(behaviorChoices, *rc.Behaviors.ContinuationTabHandling)
 	}
 	if rc.Behaviors.Boolean != nil {
 		behaviorChoices = append(behaviorChoices, *rc.Behaviors.Boolean)
 	}
 	if rc.Behaviors.ListCoercion != nil {
 		behaviorChoices = append(behaviorChoices, *rc.Behaviors.ListCoercion)
-	}
-	if rc.Behaviors.ToplevelIndent != nil {
-		behaviorChoices = append(behaviorChoices, *rc.Behaviors.ToplevelIndent)
 	}
 
 	var variantChoice config.CCLVariant
@@ -290,9 +278,8 @@ func (rc *RunnerConfig) GetConflictingTags() []string {
 // isBehaviorChosen checks if a specific behavior was chosen in our configuration
 func (rc *RunnerConfig) isBehaviorChosen(behavior config.CCLBehavior) bool {
 	return (rc.Behaviors.CRLFHandling != nil && *rc.Behaviors.CRLFHandling == behavior) ||
-		(rc.Behaviors.TabHandling != nil && *rc.Behaviors.TabHandling == behavior) ||
 		(rc.Behaviors.IndentOutput != nil && *rc.Behaviors.IndentOutput == behavior) ||
+		(rc.Behaviors.ContinuationTabHandling != nil && *rc.Behaviors.ContinuationTabHandling == behavior) ||
 		(rc.Behaviors.Boolean != nil && *rc.Behaviors.Boolean == behavior) ||
-		(rc.Behaviors.ListCoercion != nil && *rc.Behaviors.ListCoercion == behavior) ||
-		(rc.Behaviors.ToplevelIndent != nil && *rc.Behaviors.ToplevelIndent == behavior)
+		(rc.Behaviors.ListCoercion != nil && *rc.Behaviors.ListCoercion == behavior)
 }

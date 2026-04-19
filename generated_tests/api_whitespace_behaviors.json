@@ -2,167 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "tests": [
     {
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "key",
-            "value": "\tvalue\twith\ttabs"
-          }
-        ]
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "key = \tvalue\twith\ttabs"
-      ],
-      "name": "tabs_as_content_in_value_parse",
-      "source_test": "tabs_as_content_in_value",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "object": {
-          "key": "\tvalue\twith\ttabs"
-        }
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "key = \tvalue\twith\ttabs"
-      ],
-      "name": "tabs_as_content_in_value_build_hierarchy",
-      "source_test": "tabs_as_content_in_value",
-      "validation": "build_hierarchy",
-      "variants": []
-    },
-    {
-      "args": [
-        "key"
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "value": "\tvalue\twith\ttabs"
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "key = \tvalue\twith\ttabs"
-      ],
-      "name": "tabs_as_content_in_value_get_string",
-      "source_test": "tabs_as_content_in_value",
-      "validation": "get_string",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "key",
-            "value": "\tindented"
-          }
-        ]
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "key = \tindented"
-      ],
-      "name": "tabs_as_content_leading_tab_parse",
-      "source_test": "tabs_as_content_leading_tab",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "args": [
-        "key"
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "value": "\tindented"
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "get_string"
-      ],
-      "inputs": [
-        "key = \tindented"
-      ],
-      "name": "tabs_as_content_leading_tab_get_string",
-      "source_test": "tabs_as_content_leading_tab",
-      "validation": "get_string",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -173,7 +13,8 @@
         ]
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "functions": [
         "parse"
@@ -187,14 +28,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "object": {
@@ -202,7 +36,8 @@
         }
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "functions": [
         "build_hierarchy"
@@ -225,7 +60,8 @@
         "value": "value\twith\ttabs"
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "functions": [
         "get_string"
@@ -239,14 +75,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -294,14 +123,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -327,12 +149,12 @@
     },
     {
       "behaviors": [
-        "tabs_as_content",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_whitespace"
+          "continuation_tab_preserve"
         ]
       },
       "expected": {
@@ -340,41 +162,7 @@
         "entries": [
           {
             "key": "section",
-            "value": "\n \tindented_with_tabs\n \tanother_line"
-          }
-        ]
-      },
-      "features": [
-        "whitespace",
-        "multiline_continuation"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "section =\n \tindented_with_tabs\n \tanother_line"
-      ],
-      "name": "tabs_as_content_multiline_parse",
-      "source_test": "tabs_as_content_multiline",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_whitespace",
-        "multiline_values"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "entries": [
-          {
-            "key": "section",
-            "value": "\nindented_with_tabs\nanother_line"
+            "value": "\n  indented_with_tabs\n  another_line"
           }
         ]
       },
@@ -395,12 +183,12 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
-          "tabs_as_content"
+          "continuation_tab_preserve"
         ]
       },
       "expected": {
@@ -408,7 +196,7 @@
         "entries": [
           {
             "key": "section",
-            "value": "\nmixed_indent\nanother_line"
+            "value": "\n  mixed_indent\n  another_line"
           }
         ]
       },
@@ -428,43 +216,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "value": "key = \tvalue"
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "parse",
-        "print",
-        "canonical_format"
-      ],
-      "inputs": [
-        "key = \tvalue"
-      ],
-      "name": "tabs_canonical_format_as_content_canonical_format",
-      "source_test": "tabs_canonical_format_as_content",
-      "validation": "canonical_format",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": "key = value"
@@ -487,14 +239,14 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace",
         "indent_spaces",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
-          "indent_tabs",
-          "tabs_as_content"
+          "continuation_tab_preserve",
+          "indent_tabs"
         ]
       },
       "expected": {
@@ -519,20 +271,14 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "tabs_as_content"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "value": "key = value\twith\ttabs"
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "functions": [
         "parse",
@@ -787,14 +533,14 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace",
         "indent_tabs",
-        "multiline_values"
+        "multiline_values",
+        "continuation_tab_to_space"
       ],
       "conflicts": {
         "behaviors": [
-          "indent_spaces",
-          "tabs_as_content"
+          "continuation_tab_preserve",
+          "indent_spaces"
         ]
       },
       "expected": {
@@ -1768,13 +1514,11 @@
     },
     {
       "behaviors": [
-        "tabs_as_whitespace",
         "crlf_normalize_to_lf"
       ],
       "conflicts": {
         "behaviors": [
-          "crlf_preserve_literal",
-          "tabs_as_content"
+          "crlf_preserve_literal"
         ]
       },
       "expected": {
@@ -1782,12 +1526,13 @@
         "entries": [
           {
             "key": "key",
-            "value": "value with tabs"
+            "value": "value\twith\ttabs"
           }
         ]
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "functions": [
         "parse"
@@ -1797,44 +1542,6 @@
       ],
       "name": "behavior_combo_tabs_and_crlf_parse",
       "source_test": "behavior_combo_tabs_and_crlf",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "tabs_as_content",
-        "crlf_normalize_to_lf"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "crlf_preserve_literal",
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "key1",
-            "value": "\tvalue1"
-          },
-          {
-            "key": "key2",
-            "value": "\tvalue2"
-          }
-        ]
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "key1 = \tvalue1\r\nkey2 = \tvalue2\r\n"
-      ],
-      "name": "behavior_combo_content_tabs_crlf_parse",
-      "source_test": "behavior_combo_content_tabs_crlf",
       "validation": "parse",
       "variants": []
     }

@@ -213,9 +213,7 @@
         }
       ],
       "features": [
-        "whitespace"
-      ],
-      "behaviors": [
+        "whitespace",
         "toplevel_indent_strip"
       ],
       "variants": [
@@ -247,33 +245,6 @@
       ],
       "inputs": [
         "  key1 = value1\nkey2 = value2"
-      ]
-    },
-    {
-      "name": "leading_whitespace_toplevel_indent_preserve",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value"
-            },
-            {
-              "key": "second",
-              "value": "entry"
-            }
-          ]
-        }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "behaviors": [
-        "toplevel_indent_preserve"
-      ],
-      "inputs": [
-        "  key = value\n  second = entry"
       ]
     }
   ]

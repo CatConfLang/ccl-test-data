@@ -317,15 +317,25 @@ key2 = val2`
 }
 
 
-// key_with_tabs_parse - function:parse feature:whitespace behavior:tabs_as_content
-func TestKeyWithTabsParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
-// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace behavior:tabs_as_whitespace variant:reference_compliant
+// key_with_tabs_ocaml_reference_parse - function:parse feature:whitespace variant:reference_compliant
 func TestKeyWithTabsOcamlReferenceParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `	key	=	value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
@@ -351,18 +361,6 @@ func TestWhitespaceOnlyValueParse(t *testing.T) {
 }
 
 
-// spaces_vs_tabs_continuation_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
-func TestSpacesVsTabsContinuationParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-
-// spaces_vs_tabs_continuation_ocaml_reference_parse_indented - function:parse_indented feature:whitespace behavior:tabs_as_content
-func TestSpacesVsTabsContinuationOcamlReferenceParseIndented(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-
 // multiple_empty_equality_parse - function:parse feature:empty_keys feature:whitespace
 func TestMultipleEmptyEqualityParse(t *testing.T) {
 	
@@ -385,7 +383,7 @@ func TestMultipleEmptyEqualityParse(t *testing.T) {
 }
 
 
-// key_with_newline_before_equals_parse - function:parse feature:multiline feature:whitespace
+// key_with_newline_before_equals_parse - function:parse feature:multiline_keys feature:whitespace
 func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 	
 
@@ -409,7 +407,7 @@ func TestKeyWithNewlineBeforeEqualsParse(t *testing.T) {
 }
 
 
-// complex_multi_newline_whitespace_parse - function:parse feature:multiline feature:whitespace
+// complex_multi_newline_whitespace_parse - function:parse feature:multiline_keys feature:whitespace
 func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
 	
 
@@ -418,6 +416,149 @@ func TestComplexMultiNewlineWhitespaceParse(t *testing.T) {
  key  
 =  val  
 `
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "val"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_with_spaces_parse - function:parse feature:multiline_keys feature:whitespace
+func TestMultilineKeyWithSpacesParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `my
+ key
+= val`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "my key", Value: "val"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_three_lines_parse - function:parse feature:multiline_keys
+func TestMultilineKeyThreeLinesParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `a
+ b
+ c
+= val`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "a b c", Value: "val"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_empty_value_parse - function:parse feature:multiline_keys feature:empty_keys
+func TestMultilineKeyEmptyValueParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `key
+=`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: ""}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_with_regular_entry_parse - function:parse feature:multiline_keys
+func TestMultilineKeyWithRegularEntryParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `first = val1
+key
+= val2`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "first", Value: "val1"}, mock.Entry{Key: "key", Value: "val2"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_blank_lines_between_parse - function:parse feature:multiline_keys feature:whitespace
+func TestMultilineKeyBlankLinesBetweenParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `key
+
+= val`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "val"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
+// multiline_key_tabs_in_continuation_parse - function:parse feature:multiline_keys feature:whitespace
+func TestMultilineKeyTabsInContinuationParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `key
+	= val`
 	
 	// Declare variables for reuse across validations
 	
@@ -1692,140 +1833,3 @@ func TestUrlWithFragmentAsKeyBuildHierarchy(t *testing.T) {
 }
 
 
-
-// multiline_key_with_spaces_parse - function:parse feature:multiline_keys feature:whitespace
-func TestMultilineKeyWithSpacesParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `my
- key
-= val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "my key", Value: "val"}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// multiline_key_three_lines_parse - function:parse feature:multiline_keys
-func TestMultilineKeyThreeLinesParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `a
- b
- c
-= val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "a b c", Value: "val"}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// multiline_key_empty_value_parse - function:parse feature:multiline_keys feature:empty_keys
-func TestMultilineKeyEmptyValueParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key
-=`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: ""}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// multiline_key_with_regular_entry_parse - function:parse feature:multiline_keys
-func TestMultilineKeyWithRegularEntryParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `first = val1
-key
-= val2`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "first", Value: "val1"}, mock.Entry{Key: "key", Value: "val2"}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// multiline_key_blank_lines_between_parse - function:parse feature:multiline_keys feature:whitespace
-func TestMultilineKeyBlankLinesBetweenParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key
-
-= val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "val"}}
-	assert.Equal(t, expected, parseResult)
-
-}
-
-// multiline_key_tabs_in_continuation_parse - function:parse feature:multiline_keys feature:whitespace
-func TestMultilineKeyTabsInContinuationParse(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key
-	= val`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// Parse validation
-	parseResult, err := ccl.Parse(input)
-	require.NoError(t, err)
-	expected := []mock.Entry{mock.Entry{Key: "key", Value: "val"}}
-	assert.Equal(t, expected, parseResult)
-
-}

@@ -27,25 +27,7 @@ Implementation guide for CCL parsers using the comprehensive test suite.
 
 ### parse vs parse_indented
 
-The distinction between these functions depends on which baseline behavior you implement:
-
-#### With `toplevel_indent_preserve` (simpler)
-
-| Function | Use Case | Baseline N |
-|----------|----------|------------|
-| `parse` | All contexts | N = indentation of first content line |
-
-No distinction needed—one algorithm works everywhere:
-
-```pseudocode
-function parse(text):
-    baseline = find_first_line_indent(text)
-    return parse_with_baseline(text, baseline)
-```
-
-This is simpler to implement but differs from the OCaml reference behavior.
-
-#### With `toplevel_indent_strip` (OCaml reference)
+Per the OCaml reference, these two functions use different baselines:
 
 | Function | Use Case | Baseline N |
 |----------|----------|------------|
@@ -102,15 +84,15 @@ Result: [{key: "host", value: "localhost"}, {key: "port", value: "8080"}]
 
 #### Why This Matters
 
-**With `toplevel_indent_preserve`:** No context detection needed. The same algorithm (use first line's indent as N) works for both top-level and nested parsing.
-
-**With `toplevel_indent_strip`:** Context detection is critical. If you always use N=0:
+Context detection is critical. If you always use N=0:
 - Top-level parsing works correctly
 - But nested values like `"\n  host = localhost\n  port = 8080"` would parse as ONE entry (since both lines have indent > 0)
 
 The OCaml reference implementation handles this with two functions:
 - `kvs_p` - top-level, uses `key_val 0`
 - `nested_kvs_p` - determines prefix from first content line, uses `key_val prefix_len`
+
+Leading whitespace on top-level keys is stripped (`String.trim`) before parsing. In the test suite, tests that exercise this carry the `toplevel_indent_strip` feature annotation.
 
 ### Typed Access (17 tests)
 **Functions**: `get_string()`, `get_int()`, `get_bool()`, `get_float()`, `get_list()`
@@ -218,27 +200,31 @@ for test in test_data {
 
 ## Continuation Behavior
 
-How continuation is determined depends on the baseline behavior:
+Per the OCaml reference:
 
-### With `toplevel_indent_preserve`
+- **Top-level parsing (`parse`)** uses **N = 0**: lines with 0 leading whitespace are new entries, any indented line is a continuation.
+- **Nested-value parsing (`parse_indented`)** uses **N = indentation of first content line**: lines with exactly N leading whitespace are new entries in that scope, lines with more are continuations.
+- **Top-level keys** have leading whitespace stripped (`String.trim`) before baseline determination.
 
-Uses the **first key's indentation** as N:
+## Tab and Indent Handling
 
-- Lines with **same indent as first key** → new entry
-- Lines with **greater indent** → continuation of previous value
+The test suite uses two kinds of tags for tab/indent rules:
 
-This means indenting your whole document doesn't change parsing semantics.
+**Features** — annotations for universal OCaml-canonical rules. Every conformant implementation follows these.
 
-### With `toplevel_indent_strip` (OCaml reference)
+| Feature | Meaning |
+|---|---|
+| `tab_in_value_preserved` | Tabs that appear inside a value (between non-whitespace content) are preserved verbatim. Boundary tabs immediately after `=` are always trimmed as whitespace (this is untagged — it is the universal default). |
+| `toplevel_indent_strip` | Leading whitespace on top-level keys is stripped (per OCaml: `String.trim`). |
 
-Uses **N = 0** as the baseline for top-level parsing:
+**Behaviors** — implementation choices. Implementations declare their choice per group; tests are filtered to compatible choices.
 
-- Lines with **0 spaces** → new entry
-- Lines with **> 0 spaces** → continuation of previous value
-
-This means any indented line after the first key becomes a continuation, regardless of how much the first key was indented in the original input.
-
-See the test suite's `behaviors` field for declaring which behavior your implementation uses.
+| Group | Option | Meaning |
+|---|---|---|
+| continuation_tab_handling | `continuation_tab_to_space` | On multiline continuation lines, each leading `\t` normalizes 1:1 to a single space during `parse`. Example: `"section =\n\t\tfoo"` → value `"\n  foo"`. (OCaml reference) |
+| continuation_tab_handling | `continuation_tab_preserve` | Continuation-line leading tabs preserved verbatim during `parse`. |
+| indent_output | `indent_spaces` | `canonical_format` emits 2 spaces per nesting level. (OCaml reference) |
+| indent_output | `indent_tabs` | `canonical_format` emits tab characters for indentation. |
 
 ## API Guidelines
 

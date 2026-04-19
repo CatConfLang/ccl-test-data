@@ -16,7 +16,7 @@ default:
 # Generate test files from source JSON
 build:
     go run ./cmd/ccl-test-runner generate-flat --source ./source_tests/core --validate
-    go run ./cmd/ccl-test-runner generate --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:tabs_as_content,behavior:tabs_as_whitespace,behavior:toplevel_indent_preserve,behavior:delimiter_prefer_spaced
+    go run ./cmd/ccl-test-runner generate --run-only function:parse --skip-tags behavior:crlf_preserve_literal,behavior:indent_tabs,behavior:delimiter_prefer_spaced
 
 # Run tests
 test:

@@ -43,26 +43,10 @@
             "mutuallyExclusiveWith": { "const": ["crlf_normalize_to_lf"] }
           }
         },
-        "tabs_as_content": {
-          "type": "object",
-          "properties": {
-            "description": { "const": "Treat tab characters as content, not whitespace. Tabs in values are preserved literally." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "get_string", "canonical_format"] },
-            "mutuallyExclusiveWith": { "const": ["tabs_as_whitespace"] }
-          }
-        },
-        "tabs_as_whitespace": {
-          "type": "object",
-          "properties": {
-            "description": { "const": "Treat tab characters as whitespace for indentation purposes." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy", "canonical_format"] },
-            "mutuallyExclusiveWith": { "const": ["tabs_as_content"] }
-          }
-        },
         "indent_spaces": {
           "type": "object",
           "properties": {
-            "description": { "const": "Use spaces for indentation in formatted output." },
+            "description": { "const": "Use spaces for indentation in formatted output (canonical_format emits 2 spaces per nesting level per OCaml reference)." },
             "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
             "mutuallyExclusiveWith": { "const": ["indent_tabs"] }
           }
@@ -73,6 +57,22 @@
             "description": { "const": "Use tabs for indentation in formatted output." },
             "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
             "mutuallyExclusiveWith": { "const": ["indent_spaces"] }
+          }
+        },
+        "continuation_tab_to_space": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "During parse, normalize leading tabs on multiline continuation lines 1:1 to spaces (OCaml reference). Each leading '\\t' becomes a single space." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["continuation_tab_preserve"] }
+          }
+        },
+        "continuation_tab_preserve": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "During parse, preserve leading tabs on multiline continuation lines verbatim. Alternative to the OCaml 1:1 tab-to-space normalization." },
+            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
+            "mutuallyExclusiveWith": { "const": ["continuation_tab_to_space"] }
           }
         },
         "list_coercion_enabled": {
@@ -107,22 +107,6 @@
             "mutuallyExclusiveWith": { "const": ["array_order_insertion"] }
           }
         },
-        "toplevel_indent_strip": {
-          "type": "object",
-          "properties": {
-            "description": { "const": "Strip common leading indentation from top-level values (like Python's textwrap.dedent)." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
-            "mutuallyExclusiveWith": { "const": ["toplevel_indent_preserve"] }
-          }
-        },
-        "toplevel_indent_preserve": {
-          "type": "object",
-          "properties": {
-            "description": { "const": "Preserve indentation of top-level values exactly as written." },
-            "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
-            "mutuallyExclusiveWith": { "const": ["toplevel_indent_strip"] }
-          }
-        },
         "delimiter_first_equals": {
           "type": "object",
           "properties": {
@@ -146,11 +130,10 @@
       "enum": [
         "boolean_strict", "boolean_lenient",
         "crlf_preserve_literal", "crlf_normalize_to_lf",
-        "tabs_as_content", "tabs_as_whitespace",
         "indent_spaces", "indent_tabs",
+        "continuation_tab_to_space", "continuation_tab_preserve",
         "list_coercion_enabled", "list_coercion_disabled",
         "array_order_insertion", "array_order_lexicographic",
-        "toplevel_indent_strip", "toplevel_indent_preserve",
         "delimiter_first_equals", "delimiter_prefer_spaced",
         "path_traversal",
         "multiline_values"
@@ -169,7 +152,16 @@
       "type": "string",
       "oneOf": [
         {
-          "enum": ["comments", "empty_keys", "multiline_continuation", "multiline_keys", "unicode", "whitespace"]
+          "enum": [
+            "comments",
+            "empty_keys",
+            "multiline_continuation",
+            "multiline_keys",
+            "unicode",
+            "whitespace",
+            "tab_in_value_preserved",
+            "toplevel_indent_strip"
+          ]
         },
         { "pattern": "^experimental_" },
         { "pattern": "^optional_" }
@@ -371,18 +363,8 @@
         "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "filter", "canonical_format", "load", "round_trip"],
         "mutuallyExclusiveWith": ["crlf_normalize_to_lf"]
       },
-      "tabs_as_content": {
-        "description": "Treat tab characters as content, not whitespace. Tabs in values are preserved literally.",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "get_string", "canonical_format"],
-        "mutuallyExclusiveWith": ["tabs_as_whitespace"]
-      },
-      "tabs_as_whitespace": {
-        "description": "Treat tab characters as whitespace for indentation purposes.",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format"],
-        "mutuallyExclusiveWith": ["tabs_as_content"]
-      },
       "indent_spaces": {
-        "description": "Use spaces for indentation in formatted output.",
+        "description": "Use spaces for indentation in formatted output (canonical_format emits 2 spaces per nesting level per OCaml reference).",
         "affectedFunctions": ["canonical_format", "print", "round_trip"],
         "mutuallyExclusiveWith": ["indent_tabs"]
       },
@@ -390,6 +372,16 @@
         "description": "Use tabs for indentation in formatted output.",
         "affectedFunctions": ["canonical_format", "print", "round_trip"],
         "mutuallyExclusiveWith": ["indent_spaces"]
+      },
+      "continuation_tab_to_space": {
+        "description": "During parse, normalize leading tabs on multiline continuation lines 1:1 to spaces (OCaml reference). Each leading '\\t' becomes a single space.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["continuation_tab_preserve"]
+      },
+      "continuation_tab_preserve": {
+        "description": "During parse, preserve leading tabs on multiline continuation lines verbatim. Alternative to the OCaml 1:1 tab-to-space normalization.",
+        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
+        "mutuallyExclusiveWith": ["continuation_tab_to_space"]
       },
       "list_coercion_enabled": {
         "description": "Single values are coerced to single-element lists when accessed via get_list.",
@@ -410,16 +402,6 @@
         "description": "Arrays/lists are sorted lexicographically when building hierarchy.",
         "affectedFunctions": ["build_hierarchy", "get_list"],
         "mutuallyExclusiveWith": ["array_order_insertion"]
-      },
-      "toplevel_indent_strip": {
-        "description": "Strip common leading indentation from top-level values (like Python's textwrap.dedent).",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
-        "mutuallyExclusiveWith": ["toplevel_indent_preserve"]
-      },
-      "toplevel_indent_preserve": {
-        "description": "Preserve indentation of top-level values exactly as written.",
-        "affectedFunctions": ["parse", "parse_indented", "build_hierarchy"],
-        "mutuallyExclusiveWith": ["toplevel_indent_strip"]
       },
       "delimiter_first_equals": {
         "description": "Always split on the first '=' character. Keys cannot contain '='.",

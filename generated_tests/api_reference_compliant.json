@@ -1031,35 +1031,6 @@
     },
     {
       "behaviors": [
-        "tabs_as_content",
-        "indent_spaces"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "indent_tabs",
-          "tabs_as_whitespace"
-        ]
-      },
-      "expected": {
-        "count": 1,
-        "value": "value_with_tabs =\n  text\t\twith\ttabs =\n"
-      },
-      "features": [],
-      "functions": [
-        "parse",
-        "print",
-        "canonical_format"
-      ],
-      "inputs": [
-        "value_with_tabs = text\t\twith\ttabs\t"
-      ],
-      "name": "canonical_format_tab_preservation_ocaml_reference_canonical_format",
-      "source_test": "canonical_format_tab_preservation_ocaml_reference",
-      "validation": "canonical_format",
-      "variants": []
-    },
-    {
-      "behaviors": [
         "indent_spaces"
       ],
       "conflicts": {
