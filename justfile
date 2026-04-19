@@ -75,6 +75,14 @@ validate:
     npx @sourcemeta/jsonschema validate schemas/source-format.json source_tests/
     npx @sourcemeta/jsonschema validate schemas/generated-format.json generated_tests/
 
+# Validate that every tag used in source tests has a canonical documentation URL
+validate-tags:
+    go run ./cmd/validate-tags
+
+# Same, but skip the network fetch and use docs/tag-index.json directly
+validate-tags-offline:
+    go run ./cmd/validate-tags --offline
+
 # Show test statistics
 stats:
     go run ./cmd/ccl-test-runner stats --input source_tests
