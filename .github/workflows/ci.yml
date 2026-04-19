@@ -19,6 +19,9 @@ jobs:
       - name: Validate
         run: just validate
 
+      - name: Validate tag-URL contract
+        run: just validate-tags
+
       - name: Build
         run: just build
 
