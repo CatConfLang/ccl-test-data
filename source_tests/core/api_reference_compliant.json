@@ -587,22 +587,6 @@
       ]
     },
     {
-      "name": "canonical_format_tab_preservation_ocaml_reference",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "value_with_tabs =\n  text\t\twith\ttabs =\n"
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content",
-        "indent_spaces"
-      ],
-      "inputs": [
-        "value_with_tabs = text\t\twith\ttabs\t"
-      ]
-    },
-    {
       "name": "canonical_format_unicode_ocaml_reference",
       "tests": [
         {

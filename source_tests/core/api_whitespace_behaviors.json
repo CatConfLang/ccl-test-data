@@ -2,72 +2,6 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
-      "name": "tabs_as_content_in_value",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "\tvalue\twith\ttabs"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "key": "\tvalue\twith\ttabs"
-          }
-        },
-        {
-          "function": "get_string",
-          "args": [
-            "key"
-          ],
-          "expect": "\tvalue\twith\ttabs"
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = \tvalue\twith\ttabs"
-      ]
-    },
-    {
-      "name": "tabs_as_content_leading_tab",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "\tindented"
-            }
-          ]
-        },
-        {
-          "function": "get_string",
-          "args": [
-            "key"
-          ],
-          "expect": "\tindented"
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = \tindented"
-      ]
-    },
-    {
       "name": "tabs_as_whitespace_in_value",
       "tests": [
         {
@@ -93,11 +27,9 @@
           "expect": "value\twith\ttabs"
         }
       ],
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
@@ -123,9 +55,6 @@
           "expect": "indented"
         }
       ],
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
       "features": [
         "whitespace"
       ],
@@ -146,39 +75,11 @@
           ]
         }
       ],
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
       "features": [
         "whitespace"
       ],
       "inputs": [
         "key = \t\t\tthree_tabs"
-      ]
-    },
-    {
-      "name": "tabs_as_content_multiline",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "section",
-              "value": "\n \tindented_with_tabs\n \tanother_line"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content",
-        "multiline_values"
-      ],
-      "features": [
-        "whitespace",
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "section =\n \tindented_with_tabs\n \tanother_line"
       ]
     },
     {
@@ -189,18 +90,18 @@
           "expect": [
             {
               "key": "section",
-              "value": "\nindented_with_tabs\nanother_line"
+              "value": "\n  indented_with_tabs\n  another_line"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace",
         "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline_continuation"
+        "multiline_continuation",
+        "continuation_tab_to_space"
       ],
       "inputs": [
         "section =\n\t\tindented_with_tabs\n\t\tanother_line"
@@ -214,39 +115,21 @@
           "expect": [
             {
               "key": "section",
-              "value": "\nmixed_indent\nanother_line"
+              "value": "\n  mixed_indent\n  another_line"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace",
         "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline_continuation"
+        "multiline_continuation",
+        "continuation_tab_to_space"
       ],
       "inputs": [
         "section =\n \tmixed_indent\n\t another_line"
-      ]
-    },
-    {
-      "name": "tabs_canonical_format_as_content",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key = \tvalue"
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = \tvalue"
       ]
     },
     {
@@ -256,9 +139,6 @@
           "function": "canonical_format",
           "expect": "key = value"
         }
-      ],
-      "behaviors": [
-        "tabs_as_whitespace"
       ],
       "features": [
         "whitespace"
@@ -276,13 +156,13 @@
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace",
         "indent_spaces",
         "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline_continuation"
+        "multiline_continuation",
+        "continuation_tab_to_space"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -296,11 +176,9 @@
           "expect": "key = value\twith\ttabs"
         }
       ],
-      "behaviors": [
-        "tabs_as_whitespace"
-      ],
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
@@ -458,13 +336,13 @@
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace",
         "indent_tabs",
         "multiline_values"
       ],
       "features": [
         "whitespace",
-        "multiline_continuation"
+        "multiline_continuation",
+        "continuation_tab_to_space"
       ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
@@ -735,7 +613,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -764,7 +646,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -805,7 +691,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": [
             {
               "key": "host",
@@ -866,7 +756,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": [
             {
               "key": "host",
@@ -923,7 +817,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -960,7 +858,11 @@
         },
         {
           "function": "filter",
-          "predicate": { "field": "key", "op": "!=", "value": "/" },
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          },
           "expect": []
         }
       ],
@@ -983,48 +885,20 @@
           "expect": [
             {
               "key": "key",
-              "value": "value with tabs"
+              "value": "value\twith\ttabs"
             }
           ]
         }
       ],
       "behaviors": [
-        "tabs_as_whitespace",
         "crlf_normalize_to_lf"
       ],
       "features": [
-        "whitespace"
+        "whitespace",
+        "tab_in_value_preserved"
       ],
       "inputs": [
         "key = \tvalue\twith\ttabs\r\n"
-      ]
-    },
-    {
-      "name": "behavior_combo_content_tabs_crlf",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "\tvalue1"
-            },
-            {
-              "key": "key2",
-              "value": "\tvalue2"
-            }
-          ]
-        }
-      ],
-      "behaviors": [
-        "tabs_as_content",
-        "crlf_normalize_to_lf"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key1 = \tvalue1\r\nkey2 = \tvalue2\r\n"
       ]
     }
   ]
