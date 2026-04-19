@@ -153,6 +153,12 @@ func collectTags(dir string) (map[string]struct{}, error) {
 
 // walkTags recurses into arbitrary JSON values and harvests tag strings from
 // known tag-bearing keys.
+//
+// Critically, it does NOT recurse into data-carrying fields like `expect`,
+// `input`, `inputs`, or `args`: a `features` key inside `expect.data` is
+// test output (the *content* of a CCL document being parsed), not test
+// metadata. Recursing into them causes false-positive "tags" like the
+// literal keys of a test fixture.
 func walkTags(v any, out map[string]struct{}) {
 	switch x := v.(type) {
 	case map[string]any:
@@ -182,8 +188,12 @@ func walkTags(v any, out map[string]struct{}) {
 						}
 					}
 				}
+			case "expect", "input", "inputs", "args":
+				// Test data, not metadata — skip recursion.
+				continue
+			default:
+				walkTags(val, out)
 			}
-			walkTags(val, out)
 		}
 	case []any:
 		for _, item := range x {
