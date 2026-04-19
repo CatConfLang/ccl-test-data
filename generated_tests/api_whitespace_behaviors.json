@@ -1782,7 +1782,7 @@
         "entries": [
           {
             "key": "key",
-            "value": "value with tabs"
+            "value": "value\twith\ttabs"
           }
         ]
       },
