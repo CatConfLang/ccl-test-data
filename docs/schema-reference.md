@@ -591,6 +591,8 @@ const runnableTests = getCompatibleTests(flatTests, capabilities);
 
 > **📖 Complete Filtering Guide**: See [`test-filtering.md`](test-filtering.md) for comprehensive documentation of the typed fields filtering architecture, patterns, and examples.
 
+> **📊 Consuming Results**: For the complementary direction — aggregating runner output into feature-support summaries, function classification, and cross-implementation matrices — see [`consuming-results.md`](consuming-results.md). Runners should emit the raw results document and leave aggregation to consumers.
+
 ## Implementation Guidelines
 
 ### Test Runners

@@ -19,6 +19,7 @@ This directory contains documentation for the CCL (Categorical Configuration Lan
 - **[test-architecture.md](test-architecture.md)** - Test suite design and organization
 - **[test-filtering.md](test-filtering.md)** - Advanced test filtering patterns
 - **[schema-reference.md](schema-reference.md)** - Test data schema reference
+- **[consuming-results.md](consuming-results.md)** - Deriving summaries from test-results-format output
 
 ### Quick Navigation
 
