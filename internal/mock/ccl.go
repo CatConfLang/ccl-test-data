@@ -104,7 +104,14 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 
 						// If line starts with whitespace (indented), it belongs to this key
 						if len(nextLine) > 0 && (nextLine[0] == ' ' || nextLine[0] == '\t') {
-							multilineValue = append(multilineValue, nextLine)
+							// Normalize leading tabs on continuation lines 1:1 to spaces
+							// per OCaml reference (feature: continuation_tab_to_space).
+							k := 0
+							for k < len(nextLine) && (nextLine[k] == ' ' || nextLine[k] == '\t') {
+								k++
+							}
+							leading := strings.ReplaceAll(nextLine[:k], "\t", " ")
+							multilineValue = append(multilineValue, leading+nextLine[k:])
 							j++
 						} else if strings.TrimSpace(nextLine) == "" {
 							// Skip empty lines within multiline content
@@ -138,11 +145,10 @@ func (c *CCL) Parse(input string) ([]Entry, error) {
 	return entries, nil
 }
 
-// ParseIndented implements entry processing with indentation normalization
-// It calculates the common leading whitespace prefix and strips it from all lines
+// ParseIndented implements entry processing with indentation normalization.
+// Delegates to Parse. Continuation-line tab-to-space normalization is handled
+// in Parse per the OCaml reference (1:1 substitution).
 func (c *CCL) ParseIndented(input string) ([]Entry, error) {
-	// For mock purposes, same as Parse
-	// A full implementation would dedent the input first
 	return c.Parse(input)
 }
 
