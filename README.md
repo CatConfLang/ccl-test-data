@@ -75,7 +75,7 @@ Implementation choices that affect test compatibility:
 | Boolean parsing | `boolean_strict`, `boolean_lenient`               |
 | List coercion   | `list_coercion_enabled`, `list_coercion_disabled` |
 
-> [!NOTE]
+> \[!NOTE]
 > Behaviors are not inherently mutually exclusive. A test can require multiple behaviors. Use the `conflicts` field to determine incompatible combinations per-test.
 
 See [test-selection-guide.md](docs/test-selection-guide.md) for complete filtering documentation.
