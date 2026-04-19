@@ -67,7 +67,7 @@ nested =
 }
 
 
-// round_trip_whitespace_normalization_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// round_trip_whitespace_normalization_parse - function:parse feature:whitespace feature:toplevel_indent_strip variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 	
 
@@ -91,7 +91,7 @@ func TestRoundTripWhitespaceNormalizationParse(t *testing.T) {
 }
 
 
-// round_trip_whitespace_normalization_round_trip - function:parse function:print feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// round_trip_whitespace_normalization_round_trip - function:parse function:print feature:whitespace feature:toplevel_indent_strip variant:reference_compliant
 func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	
 
@@ -111,18 +111,6 @@ func TestRoundTripWhitespaceNormalizationRoundTrip(t *testing.T) {
 	_ = input // Prevent unused variable warning
 	_ = err // Prevent unused variable warning
 
-}
-
-
-// round_trip_whitespace_normalization_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
-func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
-}
-
-
-// round_trip_whitespace_normalization_toplevel_indent_preserve_round_trip - function:parse function:print feature:whitespace behavior:toplevel_indent_preserve
-func TestRoundTripWhitespaceNormalizationToplevelIndentPreserveRoundTrip(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
 }
 
 

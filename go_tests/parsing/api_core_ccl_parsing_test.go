@@ -242,7 +242,7 @@ func TestEmptyInputPrint(t *testing.T) {
 }
 
 
-// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace behavior:toplevel_indent_strip variant:reference_compliant
+// leading_whitespace_baseline_zero_parse - function:parse feature:whitespace feature:toplevel_indent_strip variant:reference_compliant
 func TestLeadingWhitespaceBaselineZeroParse(t *testing.T) {
 	
 
@@ -285,12 +285,6 @@ key2 = value2`
 	expected := []mock.Entry{mock.Entry{Key: "key1", Value: "value1"}, mock.Entry{Key: "key2", Value: "value2"}}
 	assert.Equal(t, expected, parseResult)
 
-}
-
-
-// leading_whitespace_toplevel_indent_preserve_parse - function:parse feature:whitespace behavior:toplevel_indent_preserve
-func TestLeadingWhitespaceToplevelIndentPreserveParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:toplevel_indent_preserve")
 }
 
 

@@ -14,57 +14,59 @@ import (
 
 
 
-// tabs_as_content_in_value_parse - function:parse feature:whitespace behavior:tabs_as_content
-func TestTabsAsContentInValueParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
-// tabs_as_content_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_content
-func TestTabsAsContentInValueBuildHierarchy(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-
-// tabs_as_content_in_value_get_string - function:get_string feature:whitespace behavior:tabs_as_content
-func TestTabsAsContentInValueGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-
-// tabs_as_content_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_content
-func TestTabsAsContentLeadingTabParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
-// tabs_as_content_leading_tab_get_string - function:get_string feature:whitespace behavior:tabs_as_content
-func TestTabsAsContentLeadingTabGetString(t *testing.T) {
-	t.Skip("Test does not match run-only filter: [function:parse]")
-}
-
-
-// tabs_as_whitespace_in_value_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_in_value_parse - function:parse feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceInValueParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `key = 	value	with	tabs`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value\twith\ttabs"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
-// tabs_as_whitespace_in_value_build_hierarchy - function:build_hierarchy feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_in_value_build_hierarchy - function:build_hierarchy feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace
+// tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// tabs_as_whitespace_leading_tab_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_leading_tab_parse - function:parse feature:whitespace
 func TestTabsAsWhitespaceLeadingTabParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `key = 	indented`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "indented"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
@@ -74,51 +76,138 @@ func TestTabsAsWhitespaceLeadingTabGetString(t *testing.T) {
 }
 
 
-// tabs_as_whitespace_multiple_tabs_parse - function:parse feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_multiple_tabs_parse - function:parse feature:whitespace
 func TestTabsAsWhitespaceMultipleTabsParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `key = 			three_tabs`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "three_tabs"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
-// tabs_as_content_multiline_parse - function:parse feature:whitespace feature:multiline_continuation behavior:tabs_as_content behavior:multiline_values
-func TestTabsAsContentMultilineParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
-// tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline_continuation behavior:tabs_as_whitespace behavior:multiline_values
+// tabs_as_whitespace_multiline_parse - function:parse feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:multiline_values
 func TestTabsAsWhitespaceMultilineParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `section =
+		indented_with_tabs
+		another_line`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "section", Value: "\n  indented_with_tabs\n  another_line"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
-// tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline_continuation behavior:tabs_as_whitespace behavior:multiline_values
+// tabs_as_whitespace_mixed_indent_parse - function:parse feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:multiline_values
 func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `section =
+ 	mixed_indent
+	 another_line`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "section", Value: "\n  mixed_indent\n  another_line"}}
+	assert.Equal(t, expected, parseResult)
+
 }
 
 
-// tabs_canonical_format_as_content_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_content
-func TestTabsCanonicalFormatAsContentCanonicalFormat(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
-}
-
-
-// tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:tabs_as_whitespace
+// tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print function:canonical_format feature:whitespace
 func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `key = 	value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement canonical_format validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
-// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation behavior:tabs_as_whitespace behavior:indent_spaces behavior:multiline_values
+// tabs_as_whitespace_multiline_print_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:indent_spaces behavior:multiline_values
 func TestTabsAsWhitespaceMultilinePrintCanonicalFormat(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `section =
+		indented
+		another`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement canonical_format validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
-// tabs_as_whitespace_round_trip_round_trip - function:parse function:print feature:whitespace behavior:tabs_as_whitespace
+// tabs_as_whitespace_round_trip_round_trip - function:parse function:print feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceRoundTripRoundTrip(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	
+
+	ccl := mock.New()
+	input := `key = 	value	with	tabs`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement round_trip validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
 }
 
 
@@ -207,106 +296,31 @@ func TestPrintMixedFlatAndNestedIndentTabsPrint(t *testing.T) {
 
 // canonical_format_deterministic_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatDeterministicIndentTabsCanonicalFormat(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `z = last
-a = first
-m = middle`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }
 
 
 // canonical_format_consistent_spacing_indent_tabs_canonical_format - function:parse function:print function:canonical_format behavior:indent_tabs
 func TestCanonicalFormatConsistentSpacingIndentTabsCanonicalFormat(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `key1=value1
-key2  =  value2
-key3	=	value3`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }
 
 
-// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation behavior:tabs_as_whitespace behavior:indent_tabs behavior:multiline_values
+// tabs_as_whitespace_multiline_canonical_indent_tabs_canonical_format - function:parse function:print function:canonical_format feature:whitespace feature:multiline_continuation feature:continuation_tab_to_space behavior:indent_tabs behavior:multiline_values
 func TestTabsAsWhitespaceMultilineCanonicalIndentTabsCanonicalFormat(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
+	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }
 
 
 // nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `package =
-	= brew
-	= scoop
-	= nix`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }
 
 
 // deeply_nested_bare_list_indentation_tabs_canonical_format - function:parse function:print function:canonical_format feature:empty_keys feature:whitespace behavior:indent_tabs
 func TestDeeplyNestedBareListIndentationTabsCanonicalFormat(t *testing.T) {
-	
-
-	ccl := mock.New()
-	input := `app =
-	= item1
-	config =
-		= nested1
-		= nested2
-		deep =
-			= level3a
-			= level3b
-	= item2`
-	
-	// Declare variables for reuse across validations
-	
-	
-	
-	var err error
-	
-	// TODO: Implement canonical_format validation
-	_ = ccl // Prevent unused variable warning
-	_ = input // Prevent unused variable warning
-	_ = err // Prevent unused variable warning
-
+	t.Skip("Test skipped due to tag filter: behavior:indent_tabs")
 }
 
 
@@ -572,15 +586,25 @@ func TestCrlfPreserveMultipleCommentsFilter(t *testing.T) {
 }
 
 
-// behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace behavior:tabs_as_whitespace behavior:crlf_normalize_to_lf
+// behavior_combo_tabs_and_crlf_parse - function:parse feature:whitespace feature:tab_in_value_preserved behavior:crlf_normalize_to_lf
 func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_whitespace")
-}
+	
 
+	ccl := mock.New()
+	input := "key = \tvalue\twith\ttabs\r\n"
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "key", Value: "value\twith\ttabs"}}
+	assert.Equal(t, expected, parseResult)
 
-// behavior_combo_content_tabs_crlf_parse - function:parse feature:whitespace behavior:tabs_as_content behavior:crlf_normalize_to_lf
-func TestBehaviorComboContentTabsCrlfParse(t *testing.T) {
-	t.Skip("Test skipped due to tag filter: behavior:tabs_as_content")
 }
 
 

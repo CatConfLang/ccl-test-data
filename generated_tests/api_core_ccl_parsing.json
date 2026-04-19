@@ -346,14 +346,7 @@
       "variants": []
     },
     {
-      "behaviors": [
-        "toplevel_indent_strip"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "toplevel_indent_preserve"
-        ]
-      },
+      "behaviors": [],
       "expected": {
         "count": 1,
         "entries": [
@@ -364,7 +357,8 @@
         ]
       },
       "features": [
-        "whitespace"
+        "whitespace",
+        "toplevel_indent_strip"
       ],
       "functions": [
         "parse"
@@ -405,42 +399,6 @@
       ],
       "name": "leading_whitespace_multiple_entries_parse",
       "source_test": "leading_whitespace_multiple_entries",
-      "validation": "parse",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "toplevel_indent_preserve"
-      ],
-      "conflicts": {
-        "behaviors": [
-          "toplevel_indent_strip"
-        ]
-      },
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "key",
-            "value": "value"
-          },
-          {
-            "key": "second",
-            "value": "entry"
-          }
-        ]
-      },
-      "features": [
-        "whitespace"
-      ],
-      "functions": [
-        "parse"
-      ],
-      "inputs": [
-        "  key = value\n  second = entry"
-      ],
-      "name": "leading_whitespace_toplevel_indent_preserve_parse",
-      "source_test": "leading_whitespace_toplevel_indent_preserve",
       "validation": "parse",
       "variants": []
     }
