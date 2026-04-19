@@ -40,6 +40,7 @@
         "tab_in_value_preserved"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -680,6 +681,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -746,6 +748,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -918,6 +921,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -982,6 +986,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -1234,6 +1239,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -1356,6 +1362,7 @@
         "whitespace"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [

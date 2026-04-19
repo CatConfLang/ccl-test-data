@@ -39,6 +39,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -104,6 +105,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -181,6 +183,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -265,6 +268,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -349,6 +353,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -428,6 +433,7 @@
         "multiline_continuation"
       ],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [
@@ -535,6 +541,7 @@
       },
       "features": [],
       "functions": [
+        "parse_indented",
         "build_hierarchy"
       ],
       "inputs": [

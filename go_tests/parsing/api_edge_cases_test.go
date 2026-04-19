@@ -790,7 +790,7 @@ user =
 }
 
 
-// ocaml_stress_test_original_build_hierarchy - function:build_hierarchy feature:comments feature:empty_keys
+// ocaml_stress_test_original_build_hierarchy - function:parse_indented function:build_hierarchy feature:comments feature:empty_keys
 func TestOcamlStressTestOriginalBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -826,7 +826,7 @@ func TestForwardSlashesInMapKeysParse(t *testing.T) {
 }
 
 
-// forward_slashes_in_map_keys_build_hierarchy - function:build_hierarchy
+// forward_slashes_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestForwardSlashesInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -862,7 +862,7 @@ func TestBackslashesInMapKeysParse(t *testing.T) {
 }
 
 
-// backslashes_in_map_keys_build_hierarchy - function:build_hierarchy
+// backslashes_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestBackslashesInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -892,7 +892,7 @@ func TestColonsInMapKeysParse(t *testing.T) {
 }
 
 
-// colons_in_map_keys_build_hierarchy - function:build_hierarchy
+// colons_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestColonsInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -922,7 +922,7 @@ func TestHyphensInMapKeysParse(t *testing.T) {
 }
 
 
-// hyphens_in_map_keys_build_hierarchy - function:build_hierarchy
+// hyphens_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestHyphensInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -952,7 +952,7 @@ func TestAtSignsInMapKeysParse(t *testing.T) {
 }
 
 
-// at_signs_in_map_keys_build_hierarchy - function:build_hierarchy
+// at_signs_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestAtSignsInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -982,7 +982,7 @@ func TestHashInMapKeysParse(t *testing.T) {
 }
 
 
-// hash_in_map_keys_build_hierarchy - function:build_hierarchy
+// hash_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestHashInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1012,7 +1012,7 @@ func TestBracketsInMapKeysParse(t *testing.T) {
 }
 
 
-// brackets_in_map_keys_build_hierarchy - function:build_hierarchy
+// brackets_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestBracketsInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1042,7 +1042,7 @@ func TestParenthesesInMapKeysParse(t *testing.T) {
 }
 
 
-// parentheses_in_map_keys_build_hierarchy - function:build_hierarchy
+// parentheses_in_map_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestParenthesesInMapKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1073,7 +1073,7 @@ func TestMixedSpecialCharsInKeysParse(t *testing.T) {
 }
 
 
-// mixed_special_chars_in_keys_build_hierarchy - function:build_hierarchy
+// mixed_special_chars_in_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestMixedSpecialCharsInKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1103,7 +1103,7 @@ func TestUrlLikeKeysParse(t *testing.T) {
 }
 
 
-// url_like_keys_build_hierarchy - function:build_hierarchy
+// url_like_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlLikeKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1131,7 +1131,7 @@ func TestRelativePathParentParentParse(t *testing.T) {
 }
 
 
-// relative_path_parent_parent_build_hierarchy - function:build_hierarchy
+// relative_path_parent_parent_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathParentParentBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1159,7 +1159,7 @@ func TestRelativePathParentParse(t *testing.T) {
 }
 
 
-// relative_path_parent_build_hierarchy - function:build_hierarchy
+// relative_path_parent_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathParentBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1187,7 +1187,7 @@ func TestRelativePathSingleDotParse(t *testing.T) {
 }
 
 
-// relative_path_single_dot_build_hierarchy - function:build_hierarchy
+// relative_path_single_dot_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathSingleDotBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1215,7 +1215,7 @@ func TestDoubleSlashParse(t *testing.T) {
 }
 
 
-// double_slash_build_hierarchy - function:build_hierarchy
+// double_slash_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestDoubleSlashBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1243,7 +1243,7 @@ func TestRelativePathInValueParse(t *testing.T) {
 }
 
 
-// relative_path_in_value_build_hierarchy - function:build_hierarchy
+// relative_path_in_value_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1279,7 +1279,7 @@ func TestRelativePathInNestedValueParse(t *testing.T) {
 }
 
 
-// relative_path_in_nested_value_build_hierarchy - function:build_hierarchy
+// relative_path_in_nested_value_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathInNestedValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1315,7 +1315,7 @@ func TestDoubleSlashInNestedParse(t *testing.T) {
 }
 
 
-// double_slash_in_nested_build_hierarchy - function:build_hierarchy
+// double_slash_in_nested_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestDoubleSlashInNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1346,7 +1346,7 @@ func TestRelativePathsDeeplyNestedParse(t *testing.T) {
 }
 
 
-// relative_paths_deeply_nested_build_hierarchy - function:build_hierarchy
+// relative_paths_deeply_nested_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathsDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1383,7 +1383,7 @@ func TestRelativePathsAsNestedKeysParse(t *testing.T) {
 }
 
 
-// relative_paths_as_nested_keys_build_hierarchy - function:build_hierarchy
+// relative_paths_as_nested_keys_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestRelativePathsAsNestedKeysBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1422,7 +1422,7 @@ func TestMixedRelativeAndAbsoluteNestedParse(t *testing.T) {
 }
 
 
-// mixed_relative_and_absolute_nested_build_hierarchy - function:build_hierarchy
+// mixed_relative_and_absolute_nested_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestMixedRelativeAndAbsoluteNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1461,7 +1461,7 @@ func TestDoubleSlashDeeplyNestedParse(t *testing.T) {
 }
 
 
-// double_slash_deeply_nested_build_hierarchy - function:build_hierarchy
+// double_slash_deeply_nested_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestDoubleSlashDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1495,7 +1495,7 @@ func TestUrlAsKeyParse(t *testing.T) {
 }
 
 
-// url_as_key_build_hierarchy - function:build_hierarchy
+// url_as_key_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1529,7 +1529,7 @@ func TestUrlWithPortAsKeyParse(t *testing.T) {
 }
 
 
-// url_with_port_as_key_build_hierarchy - function:build_hierarchy
+// url_with_port_as_key_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlWithPortAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1557,7 +1557,7 @@ func TestUrlWithPathAsKeyParse(t *testing.T) {
 }
 
 
-// url_with_path_as_key_build_hierarchy - function:build_hierarchy
+// url_with_path_as_key_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlWithPathAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1585,7 +1585,7 @@ func TestUrlInValueParse(t *testing.T) {
 }
 
 
-// url_in_value_build_hierarchy - function:build_hierarchy
+// url_in_value_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlInValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1621,7 +1621,7 @@ func TestUrlsAsNestedKeysAndValuesParse(t *testing.T) {
 }
 
 
-// urls_as_nested_keys_and_values_build_hierarchy - function:build_hierarchy
+// urls_as_nested_keys_and_values_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlsAsNestedKeysAndValuesBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1661,7 +1661,7 @@ func TestUrlsDeeplyNestedParse(t *testing.T) {
 }
 
 
-// urls_deeply_nested_build_hierarchy - function:build_hierarchy
+// urls_deeply_nested_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlsDeeplyNestedBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1679,7 +1679,7 @@ func TestUrlWithQueryParamsAsKeyParse(t *testing.T) {
 }
 
 
-// url_with_query_params_as_key_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+// url_with_query_params_as_key_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_prefer_spaced
 func TestUrlWithQueryParamsAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1707,7 +1707,7 @@ func TestDelimiterFirstUrlWithQueryParamsParse(t *testing.T) {
 }
 
 
-// delimiter_first_url_with_query_params_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+// delimiter_first_url_with_query_params_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_first_equals
 func TestDelimiterFirstUrlWithQueryParamsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1735,7 +1735,7 @@ func TestDelimiterFirstMultipleEqualsParse(t *testing.T) {
 }
 
 
-// delimiter_first_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+// delimiter_first_multiple_equals_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_first_equals
 func TestDelimiterFirstMultipleEqualsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1763,7 +1763,7 @@ func TestDelimiterFirstEmptyValueParse(t *testing.T) {
 }
 
 
-// delimiter_first_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_first_equals
+// delimiter_first_empty_value_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_first_equals
 func TestDelimiterFirstEmptyValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1775,7 +1775,7 @@ func TestDelimiterSpacedMultipleEqualsParse(t *testing.T) {
 }
 
 
-// delimiter_spaced_multiple_equals_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+// delimiter_spaced_multiple_equals_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_prefer_spaced
 func TestDelimiterSpacedMultipleEqualsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1787,7 +1787,7 @@ func TestDelimiterSpacedFallbackNoSpaceParse(t *testing.T) {
 }
 
 
-// delimiter_spaced_fallback_no_space_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+// delimiter_spaced_fallback_no_space_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_prefer_spaced
 func TestDelimiterSpacedFallbackNoSpaceBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1799,7 +1799,7 @@ func TestDelimiterSpacedEmptyValueParse(t *testing.T) {
 }
 
 
-// delimiter_spaced_empty_value_build_hierarchy - function:build_hierarchy behavior:delimiter_prefer_spaced
+// delimiter_spaced_empty_value_build_hierarchy - function:parse_indented function:build_hierarchy behavior:delimiter_prefer_spaced
 func TestDelimiterSpacedEmptyValueBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1827,7 +1827,7 @@ func TestUrlWithFragmentAsKeyParse(t *testing.T) {
 }
 
 
-// url_with_fragment_as_key_build_hierarchy - function:build_hierarchy
+// url_with_fragment_as_key_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestUrlWithFragmentAsKeyBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

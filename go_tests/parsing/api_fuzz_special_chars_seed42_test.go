@@ -806,7 +806,7 @@ func TestS42FuzzValData0Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_val_data_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_val_data_0_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzValData0BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -840,7 +840,7 @@ func TestS42FuzzValBeta1Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_val_beta_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_val_beta_1_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzValBeta1BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -874,7 +874,7 @@ func TestS42FuzzValName2Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_val_name_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_val_name_2_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzValName2BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -908,7 +908,7 @@ func TestS42FuzzValPath3Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_val_path_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_val_path_3_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzValPath3BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -942,7 +942,7 @@ func TestS42FuzzValName4Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_val_name_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_val_name_4_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzValName4BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -977,7 +977,7 @@ func TestS42FuzzNestedLbraceRbracket0Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_lbrace_rbracket_0_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_lbrace_rbracket_0_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedLbraceRbracket0BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1012,7 +1012,7 @@ func TestS42FuzzNestedLbraceRbrace1Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_lbrace_rbrace_1_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_lbrace_rbrace_1_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedLbraceRbrace1BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1047,7 +1047,7 @@ func TestS42FuzzNestedAmpersandPercent2Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_ampersand_percent_2_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_ampersand_percent_2_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedAmpersandPercent2BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1082,7 +1082,7 @@ func TestS42FuzzNestedDquoteGt3Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_dquote_gt_3_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_dquote_gt_3_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedDquoteGt3BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1117,7 +1117,7 @@ $path = deep65`
 }
 
 
-// s42_fuzz_nested_percent_dollar_4_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_percent_dollar_4_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedPercentDollar4BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1152,7 +1152,7 @@ func TestS42FuzzNestedDquoteRbracket5Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_dquote_rbracket_5_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_dquote_rbracket_5_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedDquoteRbracket5BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1187,7 +1187,7 @@ func TestS42FuzzNestedLbraceAmpersand6Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_lbrace_ampersand_6_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_lbrace_ampersand_6_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedLbraceAmpersand6BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1222,7 +1222,7 @@ func TestS42FuzzNestedSemicolonHyphen7Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_semicolon_hyphen_7_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_semicolon_hyphen_7_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedSemicolonHyphen7BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1257,7 +1257,7 @@ func TestS42FuzzNestedLbraceRbrace8Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_lbrace_rbrace_8_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_lbrace_rbrace_8_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedLbraceRbrace8BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
@@ -1292,7 +1292,7 @@ func TestS42FuzzNestedTildeAmpersand9Parse(t *testing.T) {
 }
 
 
-// s42_fuzz_nested_tilde_ampersand_9_build_hierarchy - function:build_hierarchy feature:optional_typed_accessors
+// s42_fuzz_nested_tilde_ampersand_9_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS42FuzzNestedTildeAmpersand9BuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
