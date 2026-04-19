@@ -77,8 +77,9 @@ const (
 	FeatureMultilineKeys          CCLFeature = "multiline_keys"
 	FeatureUnicode                CCLFeature = "unicode"
 	FeatureWhitespace             CCLFeature = "whitespace"
-	FeatureTabInValuePreserved    CCLFeature = "tab_in_value_preserved"
-	FeatureToplevelIndentStrip    CCLFeature = "toplevel_indent_strip"
+	FeatureTabInValuePreserved      CCLFeature = "tab_in_value_preserved"
+	FeatureToplevelIndentStrip      CCLFeature = "toplevel_indent_strip"
+	FeatureOptionalTypedAccessors   CCLFeature = "optional_typed_accessors"
 )
 
 // AllFeatures returns all valid CCL features
@@ -93,6 +94,7 @@ func AllFeatures() []CCLFeature {
 		FeatureWhitespace,
 		FeatureTabInValuePreserved,
 		FeatureToplevelIndentStrip,
+		FeatureOptionalTypedAccessors,
 	}
 }
 
