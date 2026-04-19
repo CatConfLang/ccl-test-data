@@ -446,7 +446,7 @@
         }
       ],
       "features": [
-        "empty_keys",
+        "multiline_keys",
         "whitespace"
       ],
       "inputs": [
@@ -467,7 +467,7 @@
         }
       ],
       "features": [
-        "empty_keys",
+        "multiline_keys",
         "whitespace"
       ],
       "inputs": [
