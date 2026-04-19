@@ -3,6 +3,156 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [1.0.0] - 2026-04-19
+
+
+
+### Bug Fixes
+
+- **tests:** Build_hierarchy requires parse_indented ([`2ed3ab7`](https://github.com/CatConfLang/ccl-test-data/commit/2ed3ab7b2307e9a04aa89436af9260294a4155a3))
+
+
+
+  #### Summary
+
+  Fixes the apparent contradiction reported in #114 between `mixed_indentation_levels_build_hierarchy` and the `multiline_plain_*_error_parse` error tests.
+
+  `build_hierarchy` consumes entries produced by `parse_indented`, not `parse`. `parse` correctly rejects lines without `=` delimiters, while `parse_indented` handles the indentation-based nesting that `build_hierarchy` needs. Implementations that declared `build_hierarchy` support but not `parse_indented` were being handed `build_hierarchy` tests (like `mixed_indentation_levels`) that they could not satisfy.
+
+  This PR encodes that dependency in the test generator:
+
+  - Adds `build_hierarchy` to `compositeFunctionMap` → `{parse_indented, build_hierarchy}`
+  - Updates `load` from `{parse, build_hierarchy}` → `{parse_indented, build_hierarchy}`
+  - Regenerates `generated_tests/` and `go_tests/` so every `build_hierarchy` validation now lists `parse_indented` in its required `functions`
+
+  Implementations that don't expose `parse_indented` will now correctly filter out `build_hierarchy` tests.
+
+- **tests:** Correct metadata for algebraic and edge case tests ([`c63d1d7`](https://github.com/CatConfLang/ccl-test-data/commit/c63d1d72893559ed37ba713c93fe70bf330f7c1c))
+
+
+
+  #### Summary
+
+  Fixes two test data correctness issues.
+
+  * **fix(generator)**: add `compose_associative`, `identity_left`, and `identity_right` to `compositeFunctionMap`. These validations require `parse` and `compose`, but their generated `functions` arrays incorrectly listed the composite validation names, causing implementations declaring `compose` support to filter out these tests. Matches the pattern established for `round_trip` in #61.
+
+  * **fix(tests)**: replace `empty_keys` with `multiline` on `key_with_newline_before_equals` and `complex_multi_newline_whitespace`. Both tests exercise multi-line key accumulation (key spans newlines before `=`) and produce non-empty keys, so the `empty_keys` tag was misleading.
+
+
+
+
+
+### Features
+
+- **tests:** Add multiline key test coverage ([`a48968a`](https://github.com/CatConfLang/ccl-test-data/commit/a48968a50031a9fb148599de702561cd433df07f))
+
+
+
+  #### Summary
+
+  Adds 6 new tests exercising multi-line key accumulation edge cases, tagged with the `multiline_keys` feature added in #121:
+
+  - `multiline_key_with_spaces` — multi-word key across lines
+  - `multiline_key_three_lines` — key continues across three lines
+  - `multiline_key_empty_value` — multi-line key with no value
+  - `multiline_key_with_regular_entry` — multi-line key adjacent to a normal entry
+  - `multiline_key_blank_lines_between` — blank line between key lines
+  - `multiline_key_tabs_in_continuation` — tab-indented continuation
+
+  Also adds these tests to the `--basic-only` skip list so implementations that don't yet support multi-line keys keep passing CI.
+
+- **schema:** Add multiline_keys feature and multiline_values behavior ([`5ab2d87`](https://github.com/CatConfLang/ccl-test-data/commit/5ab2d87b123e9ef834e958e9e3ec1d3edf7c3e52))
+
+
+
+  #### Summary
+
+  Reworks multi-line tagging: adds `multiline_keys` feature and `multiline_values` behavior, and removes the generic `multiline` feature that was redundant with `multiline_continuation`.
+
+  #### Feature vs behavior
+
+  Per #120:
+  - **`multiline_keys` (feature)** — keys spanning multiple lines (e.g., `key\n= val`). Capability tag for gap reporting; all implementations should eventually support it.
+  - **`multiline_continuation` (feature)** — any test requiring indented continuation support (pre-existing).
+  - **`multiline_values` (behavior)** — narrower filter for tests whose expected output encodes a contested edge-case decision: empty first line after `=`, blank line lookahead, or continuation preservation.
+
+  Every `multiline_values` test is also `multiline_continuation`. The behavior tag is narrower — it only applies to tests whose expected output reflects a specific choice that another implementation could defensibly make differently.
+
+  #### `multiline_continuation` vs `multiline_values` — why both?
+
+  The names sound similar, so here's how they differ.
+
+  ##### `multiline_continuation` alone — plain continuation, no contested decision
+
+  ``` description = First line
+    Second line
+    Third line ``` Every impl that supports indented continuations agrees: `value = "First line\n Second line\n Third line"`. No filtering needed.
+
+  ##### `multiline_continuation` + `multiline_values` — empty first line after `=`
+
+  ``` key =
+    line1
+    line2 ``` This suite's expected value: `"\n line1\n line2"` (leading newline preserved because the line after `=` was empty). An impl that strips the leading empty line (→ `"line1\n line2"`) is also defensible. The `multiline_values` tag lets that impl filter this test out.
+
+  ##### `multiline_continuation` + `multiline_values` — blank line within continuation
+
+  ``` key =
+    line1
+
+  line2 ``` This suite: `"\n line1\n\n line2"` (blank line preserved, continuation not terminated). Another impl could terminate at the blank line and treat `line2` separately.
+
+  #### Why remove `multiline`
+
+  The previous `multiline` feature example in the docs was `description = Line 1\nLine 2` — but that isn't a real CCL construct. Without indentation, `Line 2` is either its own entry or a parse error. Every actual multi-line value in the suite already qualified as `multiline_continuation`, so `multiline` was a less-specific alias and got dropped.
+
+  #### Changes
+
+  - **Schema**: add `multiline_keys` to feature enum, add `multiline_values` to behavior enum (with `x-behaviorMetadata`), remove `multiline` from feature enum in both source + generated formats.
+  - **Config (Go)**: add `FeatureMultilineKeys` and `BehaviorMultilineValues` constants; remove `FeatureMultiline`; include `FeatureMultilineContinuation` in `AllFeatures()`.
+  - **Tests**: tag 18 existing tests with `multiline_values` behavior; retag tests from `multiline` to `multiline_continuation` across 7 source files (dropping the tag on tests that already had both).
+  - **Docs**: update test-selection-guide feature/behavior tables.
+
+
+
+
+
+### Refactoring
+
+- Reshape tab/indent taxonomy to ocaml-canonical semantics ([`4ed7255`](https://github.com/CatConfLang/ccl-test-data/commit/4ed7255d53b26ac0ef832dbcd6596b64fed7ec45))
+
+
+
+  Refactors the tab/indent flag taxonomy to OCaml-canonical semantics. Closes #122, addresses #129.
+
+  #### Taxonomy changes
+
+  **Removed behaviors** (non-OCaml alternatives):
+  - `tabs_as_content`, `tabs_as_whitespace`, `toplevel_indent_preserve`
+  - `toplevel_indent_strip` (reclassified as a feature)
+
+  **Retained behaviors** (genuine implementation choice):
+  - `indent_spaces` / `indent_tabs` — canonical_format output style
+
+  **New features** (always-on OCaml rules that tests annotate):
+  - `tab_in_value_preserved`
+  - `continuation_tab_to_space`
+  - `toplevel_indent_strip`
+
+  #### Expected-value corrections (#122)
+  - `behavior_combo_tabs_and_crlf`: tabs preserved inside values
+  - `tabs_as_whitespace_multiline` / `_mixed_indent`: continuation tabs normalized to 2 spaces
+
+  #### Implementation
+  - `internal/mock/ccl.go::Parse()`: continuation-line leading tabs now normalize 1:1 to spaces, matching OCaml.
+  - Schemas, Go config (`config/`, `internal/config/`), and docs updated to the new vocabulary.
+  - Source fixtures: 11 deleted, 13 retagged, 3 expected-value fixes. Generated tests: 919 → 904.
+
+  #### Breaking change Behavior names `tabs_as_content`, `tabs_as_whitespace`, `toplevel_indent_strip`, `toplevel_indent_preserve` are removed from the schema. Downstream fixtures tagged with these must migrate.
+
+
+
+
 ## [0.8.0] - 2026-04-03
 
 
