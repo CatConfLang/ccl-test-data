@@ -1,0 +1,142 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "ccl-test-results",
+	"title": "CCL Test Results",
+	"description": "Structured JSON output for CCL implementation test results. Contains raw per-test outcomes; consumers derive summaries, metrics, and breakdowns.",
+	"type": "object",
+	"required": ["formatVersion", "generatedAt", "implementation", "testSuite", "tests"],
+	"additionalProperties": false,
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"description": "URL to this JSON schema"
+		},
+		"formatVersion": {
+			"type": "string",
+			"enum": ["1.0.0"],
+			"description": "Format version for forward compatibility"
+		},
+		"generatedAt": {
+			"type": "string",
+			"format": "date-time",
+			"description": "ISO 8601 timestamp of when this document was generated"
+		},
+		"implementation": {
+			"$ref": "#/definitions/ImplementationInfo"
+		},
+		"testSuite": {
+			"$ref": "#/definitions/TestSuiteInfo"
+		},
+		"tests": {
+			"type": "array",
+			"description": "Individual test outcomes with full tag metadata for consumer-side aggregation",
+			"items": {
+				"$ref": "#/definitions/TestOutcome"
+			}
+		}
+	},
+	"definitions": {
+		"ImplementationInfo": {
+			"title": "ImplementationInfo",
+			"description": "Identity and capability declaration of the implementation under test",
+			"type": "object",
+			"required": ["name", "version", "language", "variant", "implementedFunctions"],
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Implementation name"
+				},
+				"version": {
+					"type": "string",
+					"description": "Implementation version"
+				},
+				"language": {
+					"type": "string",
+					"description": "Implementation language (e.g. typescript, go, gleam)"
+				},
+				"variant": {
+					"type": "string",
+					"description": "Specification variant the implementation targets"
+				},
+				"implementedFunctions": {
+					"type": "array",
+					"description": "Functions with actual implementations. Consumers use this to classify functions as implemented vs todo vs unsupported — it cannot be derived from test outcomes alone.",
+					"items": { "type": "string" },
+					"uniqueItems": true
+				}
+			}
+		},
+		"TestSuiteInfo": {
+			"title": "TestSuiteInfo",
+			"description": "Information about the test suite version used",
+			"type": "object",
+			"required": ["totalTests"],
+			"additionalProperties": false,
+			"properties": {
+				"version": {
+					"type": "string",
+					"description": "Test suite version string (from .version file in test data)"
+				},
+				"totalTests": {
+					"type": "integer",
+					"minimum": 0,
+					"description": "Total number of tests in the suite. Should equal tests.length."
+				}
+			}
+		},
+		"TestOutcome": {
+			"title": "TestOutcome",
+			"description": "Individual test result with full tag metadata",
+			"type": "object",
+			"required": ["name", "validation", "behaviors", "features", "variants", "outcome"],
+			"additionalProperties": false,
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Test name"
+				},
+				"validation": {
+					"type": "string",
+					"description": "CCL function being validated (e.g. parse, build_hierarchy)"
+				},
+				"behaviors": {
+					"type": "array",
+					"description": "Behavior tags from the test case",
+					"items": { "type": "string" },
+					"uniqueItems": true
+				},
+				"features": {
+					"type": "array",
+					"description": "Feature tags from the test case",
+					"items": { "type": "string" },
+					"uniqueItems": true
+				},
+				"variants": {
+					"type": "array",
+					"description": "Variant tags from the test case",
+					"items": { "type": "string" },
+					"uniqueItems": true
+				},
+				"outcome": {
+					"type": "string",
+					"enum": ["pass", "fail", "skip", "todo"],
+					"description": "Test outcome"
+				},
+				"reason": {
+					"type": "string",
+					"description": "Skip or todo reason (raw string — consumers categorize as needed)"
+				},
+				"error": {
+					"type": "string",
+					"description": "Error message for failed tests"
+				},
+				"durationMs": {
+					"type": "number",
+					"minimum": 0,
+					"description": "Test execution duration in milliseconds"
+				}
+			}
+		}
+	}
+}
