@@ -53,6 +53,9 @@
         "empty_keys",
         "multiline_keys"
       ],
+      "variants": [
+        "reference_compliant"
+      ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
       ],

@@ -61,7 +61,9 @@
       "name": "unindented_line_does_not_continue_value_parse_indented",
       "source_test": "unindented_line_does_not_continue_value",
       "validation": "parse_indented",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [

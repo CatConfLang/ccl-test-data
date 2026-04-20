@@ -20,7 +20,7 @@ func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
 }
 
 
-// unindented_line_does_not_continue_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline_keys
+// unindented_line_does_not_continue_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline_keys variant:reference_compliant
 func TestUnindentedLineDoesNotContinueValueParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
