@@ -43,13 +43,14 @@
             "value": "= Section Header ="
           },
           {
-            "key": "key",
+            "key": "This continues the header\nkey",
             "value": "value"
           }
         ]
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "multiline_keys"
       ],
       "functions": [
         "parse_indented"
@@ -160,63 +161,6 @@
       "name": "indented_line_is_continuation_get_list",
       "source_test": "indented_line_is_continuation",
       "validation": "get_list",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "multiline_values"
-      ],
-      "expected": {
-        "count": 2,
-        "entries": [
-          {
-            "key": "key1",
-            "value": "value1\n  indented continuation"
-          },
-          {
-            "key": "key2",
-            "value": "value2"
-          }
-        ]
-      },
-      "features": [
-        "multiline_continuation"
-      ],
-      "functions": [
-        "parse_indented"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "name": "mixed_indentation_levels_parse_indented",
-      "source_test": "mixed_indentation_levels",
-      "validation": "parse_indented",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "multiline_values"
-      ],
-      "expected": {
-        "count": 1,
-        "object": {
-          "key1": "value1\n  indented continuation",
-          "key2": "value2"
-        }
-      },
-      "features": [
-        "multiline_continuation"
-      ],
-      "functions": [
-        "parse_indented",
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "name": "mixed_indentation_levels_build_hierarchy",
-      "source_test": "mixed_indentation_levels",
-      "validation": "build_hierarchy",
       "variants": []
     },
     {

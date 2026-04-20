@@ -43,14 +43,15 @@
               "value": "= Section Header ="
             },
             {
-              "key": "key",
+              "key": "This continues the header\nkey",
               "value": "value"
             }
           ]
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "multiline_keys"
       ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
@@ -109,44 +110,6 @@
       "functions": [
         "build_hierarchy",
         "get_list",
-        "parse_indented"
-      ]
-    },
-    {
-      "name": "mixed_indentation_levels",
-      "tests": [
-        {
-          "function": "parse_indented",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1\n  indented continuation"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "key1": "value1\n  indented continuation",
-            "key2": "value2"
-          }
-        }
-      ],
-      "behaviors": [
-        "multiline_values"
-      ],
-      "features": [
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "functions": [
-        "build_hierarchy",
         "parse_indented"
       ]
     },

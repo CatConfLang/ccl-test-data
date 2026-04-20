@@ -102,6 +102,27 @@
       "functions": [
         "parse"
       ]
+    },
+    {
+      "name": "mixed_indentation_levels_error",
+      "tests": [
+        {
+          "function": "parse_indented",
+          "expect": null
+        }
+      ],
+      "features": [
+        "multiline_continuation"
+      ],
+      "variants": [
+        "reference_compliant"
+      ],
+      "inputs": [
+        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
+      ],
+      "functions": [
+        "parse_indented"
+      ]
     }
   ]
 }
