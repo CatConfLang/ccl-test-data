@@ -33,24 +33,28 @@
       ]
     },
     {
-      "name": "unindented_multiline_becomes_continuation",
+      "name": "unindented_line_does_not_continue_value",
       "tests": [
         {
           "function": "parse_indented",
           "expect": [
             {
               "key": "",
-              "value": "= Section Header =\nThis continues the header"
+              "value": "= Section Header ="
             },
             {
-              "key": "key",
+              "key": "This continues the header\nkey",
               "value": "value"
             }
           ]
         }
       ],
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "multiline_keys"
+      ],
+      "variants": [
+        "reference_compliant"
       ],
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
@@ -109,56 +113,6 @@
       "functions": [
         "build_hierarchy",
         "get_list",
-        "parse_indented"
-      ]
-    },
-    {
-      "name": "mixed_indentation_levels",
-      "tests": [
-        {
-          "function": "parse_indented",
-          "expect": [
-            {
-              "key": "key1",
-              "value": "value1\n  indented continuation"
-            },
-            {
-              "key": "key2",
-              "value": "value2"
-            },
-            {
-              "key": "not indented key",
-              "value": ""
-            },
-            {
-              "key": "indented for not indented",
-              "value": ""
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "key1": "value1\n  indented continuation",
-            "key2": "value2",
-            "not indented key": {
-              "indented for not indented": ""
-            }
-          }
-        }
-      ],
-      "behaviors": [
-        "multiline_values"
-      ],
-      "features": [
-        "multiline_continuation",
-        "empty_keys"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "functions": [
-        "build_hierarchy",
         "parse_indented"
       ]
     },
@@ -792,35 +746,7 @@
           "expect": [
             {
               "key": "config",
-              "value": ""
-            },
-            {
-              "key": "servers",
-              "value": "web1"
-            },
-            {
-              "key": "servers",
-              "value": "web2"
-            },
-            {
-              "key": "database",
-              "value": ""
-            },
-            {
-              "key": "hosts",
-              "value": "primary"
-            },
-            {
-              "key": "hosts",
-              "value": "backup"
-            },
-            {
-              "key": "port",
-              "value": "5432"
-            },
-            {
-              "key": "cache",
-              "value": "redis"
+              "value": "\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis"
             },
             {
               "key": "features",

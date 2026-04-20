@@ -40,16 +40,17 @@
         "entries": [
           {
             "key": "",
-            "value": "= Section Header =\nThis continues the header"
+            "value": "= Section Header ="
           },
           {
-            "key": "key",
+            "key": "This continues the header\nkey",
             "value": "value"
           }
         ]
       },
       "features": [
-        "empty_keys"
+        "empty_keys",
+        "multiline_keys"
       ],
       "functions": [
         "parse_indented"
@@ -57,10 +58,12 @@
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
       ],
-      "name": "unindented_multiline_becomes_continuation_parse_indented",
-      "source_test": "unindented_multiline_becomes_continuation",
+      "name": "unindented_line_does_not_continue_value_parse_indented",
+      "source_test": "unindented_line_does_not_continue_value",
       "validation": "parse_indented",
-      "variants": []
+      "variants": [
+        "reference_compliant"
+      ]
     },
     {
       "behaviors": [
@@ -160,76 +163,6 @@
       "name": "indented_line_is_continuation_get_list",
       "source_test": "indented_line_is_continuation",
       "validation": "get_list",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "multiline_values"
-      ],
-      "expected": {
-        "count": 4,
-        "entries": [
-          {
-            "key": "key1",
-            "value": "value1\n  indented continuation"
-          },
-          {
-            "key": "key2",
-            "value": "value2"
-          },
-          {
-            "key": "not indented key",
-            "value": ""
-          },
-          {
-            "key": "indented for not indented",
-            "value": ""
-          }
-        ]
-      },
-      "features": [
-        "multiline_continuation",
-        "empty_keys"
-      ],
-      "functions": [
-        "parse_indented"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "name": "mixed_indentation_levels_parse_indented",
-      "source_test": "mixed_indentation_levels",
-      "validation": "parse_indented",
-      "variants": []
-    },
-    {
-      "behaviors": [
-        "multiline_values"
-      ],
-      "expected": {
-        "count": 1,
-        "object": {
-          "key1": "value1\n  indented continuation",
-          "key2": "value2",
-          "not indented key": {
-            "indented for not indented": ""
-          }
-        }
-      },
-      "features": [
-        "multiline_continuation",
-        "empty_keys"
-      ],
-      "functions": [
-        "parse_indented",
-        "build_hierarchy"
-      ],
-      "inputs": [
-        "key1 = value1\n  indented continuation\nkey2 = value2\nnot indented key\n  indented for not indented"
-      ],
-      "name": "mixed_indentation_levels_build_hierarchy",
-      "source_test": "mixed_indentation_levels",
-      "validation": "build_hierarchy",
       "variants": []
     },
     {
@@ -1207,39 +1140,11 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 11,
+        "count": 4,
         "entries": [
           {
             "key": "config",
-            "value": ""
-          },
-          {
-            "key": "servers",
-            "value": "web1"
-          },
-          {
-            "key": "servers",
-            "value": "web2"
-          },
-          {
-            "key": "database",
-            "value": ""
-          },
-          {
-            "key": "hosts",
-            "value": "primary"
-          },
-          {
-            "key": "hosts",
-            "value": "backup"
-          },
-          {
-            "key": "port",
-            "value": "5432"
-          },
-          {
-            "key": "cache",
-            "value": "redis"
+            "value": "\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis"
           },
           {
             "key": "features",
