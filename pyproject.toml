@@ -24,6 +24,10 @@ tag_format = "v{version}"
 parse_squash_commits = true
 ignore_merge_commits = true
 
+# Commit types the parser recognizes. Omitting "docs" means doc-only commits
+# (including "docs!:") are ignored for version bumping.
+allowed_tags = ["feat", "fix", "perf", "refactor", "style", "test", "ci", "build", "chore"]
+
 # Define which commit types trigger version bumps
 minor_tags = ["feat"]
 patch_tags = ["fix", "perf"]
