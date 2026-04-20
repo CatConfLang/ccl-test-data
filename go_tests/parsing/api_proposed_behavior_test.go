@@ -20,8 +20,8 @@ func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
 }
 
 
-// unindented_multiline_becomes_continuation_parse_indented - function:parse_indented feature:empty_keys
-func TestUnindentedMultilineBecomesContinuationParseIndented(t *testing.T) {
+// unindented_line_does_not_continue_value_parse_indented - function:parse_indented feature:empty_keys
+func TestUnindentedLineDoesNotContinueValueParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -44,13 +44,13 @@ func TestIndentedLineIsContinuationGetList(t *testing.T) {
 }
 
 
-// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline_continuation feature:empty_keys behavior:multiline_values
+// mixed_indentation_levels_parse_indented - function:parse_indented feature:multiline_continuation behavior:multiline_values
 func TestMixedIndentationLevelsParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
 
-// mixed_indentation_levels_build_hierarchy - function:parse_indented function:build_hierarchy feature:multiline_continuation feature:empty_keys behavior:multiline_values
+// mixed_indentation_levels_build_hierarchy - function:parse_indented function:build_hierarchy feature:multiline_continuation behavior:multiline_values
 func TestMixedIndentationLevelsBuildHierarchy(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }

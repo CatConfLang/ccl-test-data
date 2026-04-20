@@ -40,7 +40,7 @@
         "entries": [
           {
             "key": "",
-            "value": "= Section Header =\nThis continues the header"
+            "value": "= Section Header ="
           },
           {
             "key": "key",
@@ -57,8 +57,8 @@
       "inputs": [
         "== Section Header =\nThis continues the header\nkey = value"
       ],
-      "name": "unindented_multiline_becomes_continuation_parse_indented",
-      "source_test": "unindented_multiline_becomes_continuation",
+      "name": "unindented_line_does_not_continue_value_parse_indented",
+      "source_test": "unindented_line_does_not_continue_value",
       "validation": "parse_indented",
       "variants": []
     },
@@ -167,7 +167,7 @@
         "multiline_values"
       ],
       "expected": {
-        "count": 4,
+        "count": 2,
         "entries": [
           {
             "key": "key1",
@@ -176,20 +176,11 @@
           {
             "key": "key2",
             "value": "value2"
-          },
-          {
-            "key": "not indented key",
-            "value": ""
-          },
-          {
-            "key": "indented for not indented",
-            "value": ""
           }
         ]
       },
       "features": [
-        "multiline_continuation",
-        "empty_keys"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented"
@@ -210,15 +201,11 @@
         "count": 1,
         "object": {
           "key1": "value1\n  indented continuation",
-          "key2": "value2",
-          "not indented key": {
-            "indented for not indented": ""
-          }
+          "key2": "value2"
         }
       },
       "features": [
-        "multiline_continuation",
-        "empty_keys"
+        "multiline_continuation"
       ],
       "functions": [
         "parse_indented",
@@ -1207,39 +1194,11 @@
     {
       "behaviors": [],
       "expected": {
-        "count": 11,
+        "count": 4,
         "entries": [
           {
             "key": "config",
-            "value": ""
-          },
-          {
-            "key": "servers",
-            "value": "web1"
-          },
-          {
-            "key": "servers",
-            "value": "web2"
-          },
-          {
-            "key": "database",
-            "value": ""
-          },
-          {
-            "key": "hosts",
-            "value": "primary"
-          },
-          {
-            "key": "hosts",
-            "value": "backup"
-          },
-          {
-            "key": "port",
-            "value": "5432"
-          },
-          {
-            "key": "cache",
-            "value": "redis"
+            "value": "\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis"
           },
           {
             "key": "features",
