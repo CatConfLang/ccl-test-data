@@ -127,7 +127,10 @@ This project uses [Python Semantic Release](https://python-semantic-release.read
 
 ### Squash Merge Commit Format
 
-When squash merging PRs with multiple logical changes, format the commit body with `*` prefixes for each sub-commit:
+> [!IMPORTANT]
+> **PRs are squash-merged**, so the **PR description IS the squash commit body** that semantic-release parses for changelog entries. Author the PR body in this format from the start (don't rely on editing it at merge time).
+
+When squash merging PRs with multiple logical changes, format the commit body — i.e. the PR description — with `*` prefixes for each sub-commit:
 
 ```
 feat(scope): main PR title (#123)
