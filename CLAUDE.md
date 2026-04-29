@@ -55,24 +55,15 @@ just test-all                   # Run all tests including failing ones
 ### Test Files Structure
 ```
 source_tests/
-├── core/
-│   ├── api_comments.json
-│   ├── api_core_ccl_hierarchy.json
-│   ├── api_core_ccl_integration.json
-│   ├── api_core_ccl_parsing.json
-│   ├── api_edge_cases.json
-│   ├── api_errors.json
-│   ├── api_advanced_processing.json
-│   ├── api_list_access.json
-│   ├── api_proposed_behavior.json
-│   ├── api_reference_compliant.json
-│   ├── api_typed_access.json
-│   ├── api_whitespace_behaviors.json
-│   ├── property_round_trip.json
-│   └── property_algebraic.json
-└── experimental/
-    └── api_experimental.json
+├── core/                # Stable fixtures grouped by area
+│   ├── api_*.json       # Per-area API tests (parsing, hierarchy, model, errors, comments,
+│   │                    # typed access, list access, advanced processing, edge cases,
+│   │                    # filter predicates, whitespace behaviors, proposed/reference variants)
+│   ├── api_fuzz_*.json  # Generated fuzz seeds
+│   └── property_*.json  # Algebraic + round-trip properties
+└── experimental/        # In-development fixtures (api_experimental.json, etc.)
 ```
+Run `ls source_tests/core/` for the current file list.
 
 ## Command Reference
 
@@ -94,17 +85,21 @@ source_tests/
 - **Go Tests** (`go_tests/`): Generated Go test files for execution
 
 ### CCL Function Groups (per schema)
-- **Core Parsing**: `parse`, `parse_indented`, `build_hierarchy`
+- **Core Parsing**: `parse`, `parse_indented`, `build_hierarchy`, `build_model`
 - **Typed Access**: `get_string`, `get_int`, `get_bool`, `get_float`, `get_list`
 - **Processing**: `filter`, `compose`, `expand_dotted`
 - **Formatting/IO**: `canonical_format`, `load`, `round_trip`
 
-**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, Compose, ExpandDotted, BuildHierarchy, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, Print, RoundTrip, ComposeAssociative, IdentityLeft, IdentityRight.
+**Note:** Mock implementation (`internal/mock/ccl.go`) provides: Parse, ParseIndented, Filter, Compose, ExpandDotted, BuildHierarchy, BuildModel, GetString, GetInt, GetBool, GetFloat, GetList, PrettyPrint, Print, RoundTrip, ComposeAssociative, IdentityLeft, IdentityRight.
 
 **Function Details:**
 - **`parse`**: Basic lexical parsing - returns flat entries where values are raw strings
 - **`parse_indented`**: Indentation-normalized parsing - calculates common leading whitespace and strips it from all lines (like Python's `textwrap.dedent`)
 - **`build_hierarchy`**: Recursively parses entry values to create nested object structure
+- **`build_model`**: Canonical OCaml-reference model construction — like `build_hierarchy` but follows the reference semantics for key folding and value coercion
+
+> [!IMPORTANT]
+> **Mock `Parse` multiline-keys gap:** `internal/mock/ccl.go`'s `Parse` does **not** fold unindented non-`=` lines into the next key (OCaml-canonical multiline-keys behavior). When adding a `parse` validation to a fixture that exercises multiline keys, the matching `*Parse` Go test will fail and must be appended to the basic-only skip list in `cmd/ccl-test-runner/main.go` (alongside the existing `TestKeyWithNewlineBeforeEqualsParse` etc.). This is a known mock limitation, not a bug in the test data.
 
 ### Test Metadata
 - **`functions`** - Required CCL functions (filter: skip if unsupported)
@@ -132,7 +127,10 @@ This project uses [Python Semantic Release](https://python-semantic-release.read
 
 ### Squash Merge Commit Format
 
-When squash merging PRs with multiple logical changes, format the commit body with `*` prefixes for each sub-commit:
+> [!IMPORTANT]
+> **PRs are squash-merged**, so the **PR description IS the squash commit body** that semantic-release parses for changelog entries. Author the PR body in this format from the start (don't rely on editing it at merge time).
+
+When squash merging PRs with multiple logical changes, format the commit body — i.e. the PR description — with `*` prefixes for each sub-commit:
 
 ```
 feat(scope): main PR title (#123)

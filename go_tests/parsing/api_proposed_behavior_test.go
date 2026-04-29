@@ -20,6 +20,30 @@ func TestMultilineSectionHeaderValueParseIndented(t *testing.T) {
 }
 
 
+// unindented_line_does_not_continue_value_parse - function:parse feature:empty_keys feature:multiline_keys variant:reference_compliant
+func TestUnindentedLineDoesNotContinueValueParse(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `== Section Header =
+prefix for next key
+key = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// Parse validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	expected := []mock.Entry{mock.Entry{Key: "", Value: "= Section Header ="}, mock.Entry{Key: "prefix for next key\nkey", Value: "value"}}
+	assert.Equal(t, expected, parseResult)
+
+}
+
+
 // unindented_line_does_not_continue_value_parse_indented - function:parse_indented feature:empty_keys feature:multiline_keys variant:reference_compliant
 func TestUnindentedLineDoesNotContinueValueParseIndented(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
