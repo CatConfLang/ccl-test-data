@@ -46,3 +46,6 @@ bin
 test-reader
 .serena/
 cmd/test-reader/test-reader
+
+# Intermediate schema produced by cmd/simplify-schema for go-jsonschema codegen.
+schemas/generated-format-simple.json

@@ -501,6 +501,8 @@ func (tl *TestLoader) loadCompactFormat(data []byte) ([]types.TestCase, error) {
 				validations.ExpandDotted = validationValue
 			case "build_hierarchy":
 				validations.BuildHierarchy = validationValue
+			case "build_model":
+				validations.BuildModel = validationValue
 			case "get_string":
 				validations.GetString = validationValue
 			case "get_int":
@@ -594,8 +596,8 @@ func (tl *TestLoader) extractExpectedValue(validation string, expected interface
 		if entries, ok := expectedMap["entries"]; ok {
 			return entries
 		}
-	case "build_hierarchy":
-		// Expects an object
+	case "build_hierarchy", "build_model":
+		// Both expect a nested object
 		if object, ok := expectedMap["object"]; ok {
 			return object
 		}

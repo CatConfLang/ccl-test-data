@@ -1,5 +1,6 @@
 [tools]
 go = "1.26.1"
+"github:omissis/go-jsonschema" = "latest"
 hk = "latest"
 just = "latest"
 # Node.js for running ESM scripts and commitlint

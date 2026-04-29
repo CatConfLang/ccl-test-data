@@ -284,6 +284,7 @@ func (fg *FlatGenerator) TransformSourceToFlat(sourceTest types.TestCase) ([]typ
 var compositeFunctionMap = map[string][]string{
 	"round_trip":          {"parse", "print"},
 	"build_hierarchy":     {"parse_indented", "build_hierarchy"},
+	"build_model":         {"parse_indented", "build_model"},
 	"load":                {"parse_indented", "build_hierarchy"},
 	"canonical_format":    {"parse", "print", "canonical_format"},
 	"compose_associative": {"parse", "compose"},
@@ -506,8 +507,8 @@ func (fg *FlatGenerator) createExpectedStructure(validation string, data interfa
 			}
 			expected.Entries = entryList
 		}
-	case "build_hierarchy":
-		// Hierarchy expects an object
+	case "build_hierarchy", "build_model":
+		// Hierarchy and canonical model both expect a nested object
 		expected.Count = 1
 		expected.Object = data
 	case "get_string", "get_int", "get_bool", "get_float":
@@ -579,8 +580,8 @@ func (fg *FlatGenerator) convertPredicate(predicate *types.Predicate) *generated
 		return nil
 	}
 	return &generated.GeneratedFormatSimpleJsonTestsElemPredicate{
-		Field: predicate.Field,
-		Op:    predicate.Op,
+		Field: generated.GeneratedFormatSimpleJsonTestsElemPredicateField(predicate.Field),
+		Op:    generated.GeneratedFormatSimpleJsonTestsElemPredicateOp(predicate.Op),
 		Value: predicate.Value,
 	}
 }

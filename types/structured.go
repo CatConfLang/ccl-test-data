@@ -94,6 +94,7 @@ const (
 	FunctionCompose         CCLFunction = "compose"
 	FunctionExpandDotted    CCLFunction = "expand_dotted"
 	FunctionBuildHierarchy  CCLFunction = "build_hierarchy"
+	FunctionBuildModel      CCLFunction = "build_model"
 	FunctionGetString       CCLFunction = "get_string"
 	FunctionGetInt          CCLFunction = "get_int"
 	FunctionGetBool         CCLFunction = "get_bool"
@@ -127,8 +128,8 @@ const (
 	FeatureExperimentalDottedKeys Feature = "experimental_dotted_keys"
 	FeatureUnicode                Feature = "unicode"
 	FeatureWhitespace             Feature = "whitespace"
-	FeatureTabInValuePreserved Feature = "tab_in_value_preserved"
-	FeatureToplevelIndentStrip Feature = "toplevel_indent_strip"
+	FeatureTabInValuePreserved    Feature = "tab_in_value_preserved"
+	FeatureToplevelIndentStrip    Feature = "toplevel_indent_strip"
 )
 
 // Variant represents specification variants

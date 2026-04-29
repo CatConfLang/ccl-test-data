@@ -1,0 +1,135 @@
+{
+  "$schema": "../../schemas/source-format.json",
+  "tests": [
+    {
+      "name": "model_single_pair",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {
+              "key": "key",
+              "value": "value"
+            }
+          ]
+        },
+        {
+          "function": "build_model",
+          "expect": {
+            "key": {"value": {}}
+          }
+        }
+      ],
+      "inputs": [
+        "key = value"
+      ],
+      "functions": [
+        "build_model",
+        "parse"
+      ]
+    },
+    {
+      "name": "model_duplicate_keys_merge_to_multi_leaf",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {"key": "item", "value": "first"},
+            {"key": "item", "value": "second"}
+          ]
+        },
+        {
+          "function": "build_model",
+          "expect": {
+            "item": {
+              "first": {},
+              "second": {}
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "item = first\nitem = second"
+      ],
+      "functions": [
+        "build_model",
+        "parse"
+      ]
+    },
+    {
+      "name": "model_repeated_value_is_idempotent",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {"key": "item", "value": "a"},
+            {"key": "item", "value": "b"},
+            {"key": "item", "value": "a"}
+          ]
+        },
+        {
+          "function": "build_model",
+          "expect": {
+            "item": {
+              "a": {},
+              "b": {}
+            }
+          }
+        }
+      ],
+      "inputs": [
+        "item = a\nitem = b\nitem = a"
+      ],
+      "functions": [
+        "build_model",
+        "parse"
+      ]
+    },
+    {
+      "name": "model_multiple_distinct_keys",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": [
+            {"key": "host", "value": "localhost"},
+            {"key": "port", "value": "8080"}
+          ]
+        },
+        {
+          "function": "build_model",
+          "expect": {
+            "host": {"localhost": {}},
+            "port": {"8080": {}}
+          }
+        }
+      ],
+      "inputs": [
+        "host = localhost\nport = 8080"
+      ],
+      "functions": [
+        "build_model",
+        "parse"
+      ]
+    },
+    {
+      "name": "model_empty_input",
+      "tests": [
+        {
+          "function": "parse",
+          "expect": []
+        },
+        {
+          "function": "build_model",
+          "expect": {}
+        }
+      ],
+      "inputs": [
+        ""
+      ],
+      "functions": [
+        "build_model",
+        "parse"
+      ]
+    }
+  ]
+}

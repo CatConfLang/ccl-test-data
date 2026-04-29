@@ -5,226 +5,229 @@ package generated
 import "encoding/json"
 import "fmt"
 import "reflect"
+import "regexp"
 
 // Metadata about CCL behaviors including function affinity and mutual exclusivity.
 // Used by the generator to filter behaviors to only the functions they affect.
 type BehaviorMetadata struct {
 	// ArrayOrderInsertion corresponds to the JSON schema field
 	// "array_order_insertion".
-	ArrayOrderInsertion *BehaviorMetadataArrayOrderInsertion `json:"array_order_insertion,omitempty" yaml:"array_order_insertion,omitempty" mapstructure:"array_order_insertion,omitempty"`
+	ArrayOrderInsertion *BehaviorMetadataArrayOrderInsertion `json:"array_order_insertion,omitempty,omitzero" yaml:"array_order_insertion,omitempty" mapstructure:"array_order_insertion,omitempty"`
 
 	// ArrayOrderLexicographic corresponds to the JSON schema field
 	// "array_order_lexicographic".
-	ArrayOrderLexicographic *BehaviorMetadataArrayOrderLexicographic `json:"array_order_lexicographic,omitempty" yaml:"array_order_lexicographic,omitempty" mapstructure:"array_order_lexicographic,omitempty"`
+	ArrayOrderLexicographic *BehaviorMetadataArrayOrderLexicographic `json:"array_order_lexicographic,omitempty,omitzero" yaml:"array_order_lexicographic,omitempty" mapstructure:"array_order_lexicographic,omitempty"`
 
 	// BooleanLenient corresponds to the JSON schema field "boolean_lenient".
-	BooleanLenient *BehaviorMetadataBooleanLenient `json:"boolean_lenient,omitempty" yaml:"boolean_lenient,omitempty" mapstructure:"boolean_lenient,omitempty"`
+	BooleanLenient *BehaviorMetadataBooleanLenient `json:"boolean_lenient,omitempty,omitzero" yaml:"boolean_lenient,omitempty" mapstructure:"boolean_lenient,omitempty"`
 
 	// BooleanStrict corresponds to the JSON schema field "boolean_strict".
-	BooleanStrict *BehaviorMetadataBooleanStrict `json:"boolean_strict,omitempty" yaml:"boolean_strict,omitempty" mapstructure:"boolean_strict,omitempty"`
+	BooleanStrict *BehaviorMetadataBooleanStrict `json:"boolean_strict,omitempty,omitzero" yaml:"boolean_strict,omitempty" mapstructure:"boolean_strict,omitempty"`
+
+	// ContinuationTabPreserve corresponds to the JSON schema field
+	// "continuation_tab_preserve".
+	ContinuationTabPreserve *BehaviorMetadataContinuationTabPreserve `json:"continuation_tab_preserve,omitempty,omitzero" yaml:"continuation_tab_preserve,omitempty" mapstructure:"continuation_tab_preserve,omitempty"`
+
+	// ContinuationTabToSpace corresponds to the JSON schema field
+	// "continuation_tab_to_space".
+	ContinuationTabToSpace *BehaviorMetadataContinuationTabToSpace `json:"continuation_tab_to_space,omitempty,omitzero" yaml:"continuation_tab_to_space,omitempty" mapstructure:"continuation_tab_to_space,omitempty"`
 
 	// CrlfNormalizeToLf corresponds to the JSON schema field "crlf_normalize_to_lf".
-	CrlfNormalizeToLf *BehaviorMetadataCrlfNormalizeToLf `json:"crlf_normalize_to_lf,omitempty" yaml:"crlf_normalize_to_lf,omitempty" mapstructure:"crlf_normalize_to_lf,omitempty"`
+	CrlfNormalizeToLf *BehaviorMetadataCrlfNormalizeToLf `json:"crlf_normalize_to_lf,omitempty,omitzero" yaml:"crlf_normalize_to_lf,omitempty" mapstructure:"crlf_normalize_to_lf,omitempty"`
 
 	// CrlfPreserveLiteral corresponds to the JSON schema field
 	// "crlf_preserve_literal".
-	CrlfPreserveLiteral *BehaviorMetadataCrlfPreserveLiteral `json:"crlf_preserve_literal,omitempty" yaml:"crlf_preserve_literal,omitempty" mapstructure:"crlf_preserve_literal,omitempty"`
+	CrlfPreserveLiteral *BehaviorMetadataCrlfPreserveLiteral `json:"crlf_preserve_literal,omitempty,omitzero" yaml:"crlf_preserve_literal,omitempty" mapstructure:"crlf_preserve_literal,omitempty"`
+
+	// DelimiterFirstEquals corresponds to the JSON schema field
+	// "delimiter_first_equals".
+	DelimiterFirstEquals *BehaviorMetadataDelimiterFirstEquals `json:"delimiter_first_equals,omitempty,omitzero" yaml:"delimiter_first_equals,omitempty" mapstructure:"delimiter_first_equals,omitempty"`
+
+	// DelimiterPreferSpaced corresponds to the JSON schema field
+	// "delimiter_prefer_spaced".
+	DelimiterPreferSpaced *BehaviorMetadataDelimiterPreferSpaced `json:"delimiter_prefer_spaced,omitempty,omitzero" yaml:"delimiter_prefer_spaced,omitempty" mapstructure:"delimiter_prefer_spaced,omitempty"`
 
 	// IndentSpaces corresponds to the JSON schema field "indent_spaces".
-	IndentSpaces *BehaviorMetadataIndentSpaces `json:"indent_spaces,omitempty" yaml:"indent_spaces,omitempty" mapstructure:"indent_spaces,omitempty"`
+	IndentSpaces *BehaviorMetadataIndentSpaces `json:"indent_spaces,omitempty,omitzero" yaml:"indent_spaces,omitempty" mapstructure:"indent_spaces,omitempty"`
 
 	// IndentTabs corresponds to the JSON schema field "indent_tabs".
-	IndentTabs *BehaviorMetadataIndentTabs `json:"indent_tabs,omitempty" yaml:"indent_tabs,omitempty" mapstructure:"indent_tabs,omitempty"`
+	IndentTabs *BehaviorMetadataIndentTabs `json:"indent_tabs,omitempty,omitzero" yaml:"indent_tabs,omitempty" mapstructure:"indent_tabs,omitempty"`
 
 	// ListCoercionDisabled corresponds to the JSON schema field
 	// "list_coercion_disabled".
-	ListCoercionDisabled *BehaviorMetadataListCoercionDisabled `json:"list_coercion_disabled,omitempty" yaml:"list_coercion_disabled,omitempty" mapstructure:"list_coercion_disabled,omitempty"`
+	ListCoercionDisabled *BehaviorMetadataListCoercionDisabled `json:"list_coercion_disabled,omitempty,omitzero" yaml:"list_coercion_disabled,omitempty" mapstructure:"list_coercion_disabled,omitempty"`
 
 	// ListCoercionEnabled corresponds to the JSON schema field
 	// "list_coercion_enabled".
-	ListCoercionEnabled *BehaviorMetadataListCoercionEnabled `json:"list_coercion_enabled,omitempty" yaml:"list_coercion_enabled,omitempty" mapstructure:"list_coercion_enabled,omitempty"`
-
-	// TabsAsContent corresponds to the JSON schema field "tabs_as_content".
-	TabsAsContent *BehaviorMetadataTabsAsContent `json:"tabs_as_content,omitempty" yaml:"tabs_as_content,omitempty" mapstructure:"tabs_as_content,omitempty"`
-
-	// TabsAsWhitespace corresponds to the JSON schema field "tabs_as_whitespace".
-	TabsAsWhitespace *BehaviorMetadataTabsAsWhitespace `json:"tabs_as_whitespace,omitempty" yaml:"tabs_as_whitespace,omitempty" mapstructure:"tabs_as_whitespace,omitempty"`
-
-	// ToplevelIndentPreserve corresponds to the JSON schema field
-	// "toplevel_indent_preserve".
-	ToplevelIndentPreserve *BehaviorMetadataToplevelIndentPreserve `json:"toplevel_indent_preserve,omitempty" yaml:"toplevel_indent_preserve,omitempty" mapstructure:"toplevel_indent_preserve,omitempty"`
-
-	// ToplevelIndentStrip corresponds to the JSON schema field
-	// "toplevel_indent_strip".
-	ToplevelIndentStrip *BehaviorMetadataToplevelIndentStrip `json:"toplevel_indent_strip,omitempty" yaml:"toplevel_indent_strip,omitempty" mapstructure:"toplevel_indent_strip,omitempty"`
+	ListCoercionEnabled *BehaviorMetadataListCoercionEnabled `json:"list_coercion_enabled,omitempty,omitzero" yaml:"list_coercion_enabled,omitempty" mapstructure:"list_coercion_enabled,omitempty"`
 }
 
 type BehaviorMetadataArrayOrderInsertion struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataArrayOrderLexicographic struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataBooleanLenient struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataBooleanStrict struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+}
+
+type BehaviorMetadataContinuationTabPreserve struct {
+	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// MutuallyExclusiveWith corresponds to the JSON schema field
+	// "mutuallyExclusiveWith".
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+}
+
+type BehaviorMetadataContinuationTabToSpace struct {
+	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// MutuallyExclusiveWith corresponds to the JSON schema field
+	// "mutuallyExclusiveWith".
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataCrlfNormalizeToLf struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataCrlfPreserveLiteral struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+}
+
+type BehaviorMetadataDelimiterFirstEquals struct {
+	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// MutuallyExclusiveWith corresponds to the JSON schema field
+	// "mutuallyExclusiveWith".
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+}
+
+type BehaviorMetadataDelimiterPreferSpaced struct {
+	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+
+	// Description corresponds to the JSON schema field "description".
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+
+	// MutuallyExclusiveWith corresponds to the JSON schema field
+	// "mutuallyExclusiveWith".
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataIndentSpaces struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataIndentTabs struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataListCoercionDisabled struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorMetadataListCoercionEnabled struct {
 	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
+	AffectedFunctions interface{} `json:"affectedFunctions,omitempty,omitzero" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
 
 	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
+	Description interface{} `json:"description,omitempty,omitzero" yaml:"description,omitempty" mapstructure:"description,omitempty"`
 
 	// MutuallyExclusiveWith corresponds to the JSON schema field
 	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
-}
-
-type BehaviorMetadataTabsAsContent struct {
-	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
-
-	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
-
-	// MutuallyExclusiveWith corresponds to the JSON schema field
-	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
-}
-
-type BehaviorMetadataTabsAsWhitespace struct {
-	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
-
-	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
-
-	// MutuallyExclusiveWith corresponds to the JSON schema field
-	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
-}
-
-type BehaviorMetadataToplevelIndentPreserve struct {
-	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
-
-	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
-
-	// MutuallyExclusiveWith corresponds to the JSON schema field
-	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
-}
-
-type BehaviorMetadataToplevelIndentStrip struct {
-	// AffectedFunctions corresponds to the JSON schema field "affectedFunctions".
-	AffectedFunctions interface{} `json:"affectedFunctions,omitempty" yaml:"affectedFunctions,omitempty" mapstructure:"affectedFunctions,omitempty"`
-
-	// Description corresponds to the JSON schema field "description".
-	Description interface{} `json:"description,omitempty" yaml:"description,omitempty" mapstructure:"description,omitempty"`
-
-	// MutuallyExclusiveWith corresponds to the JSON schema field
-	// "mutuallyExclusiveWith".
-	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
+	MutuallyExclusiveWith interface{} `json:"mutuallyExclusiveWith,omitempty,omitzero" yaml:"mutuallyExclusiveWith,omitempty" mapstructure:"mutuallyExclusiveWith,omitempty"`
 }
 
 type BehaviorName string
@@ -233,38 +236,42 @@ const BehaviorNameArrayOrderInsertion BehaviorName = "array_order_insertion"
 const BehaviorNameArrayOrderLexicographic BehaviorName = "array_order_lexicographic"
 const BehaviorNameBooleanLenient BehaviorName = "boolean_lenient"
 const BehaviorNameBooleanStrict BehaviorName = "boolean_strict"
+const BehaviorNameContinuationTabPreserve BehaviorName = "continuation_tab_preserve"
+const BehaviorNameContinuationTabToSpace BehaviorName = "continuation_tab_to_space"
 const BehaviorNameCrlfNormalizeToLf BehaviorName = "crlf_normalize_to_lf"
 const BehaviorNameCrlfPreserveLiteral BehaviorName = "crlf_preserve_literal"
+const BehaviorNameDelimiterFirstEquals BehaviorName = "delimiter_first_equals"
+const BehaviorNameDelimiterPreferSpaced BehaviorName = "delimiter_prefer_spaced"
 const BehaviorNameIndentSpaces BehaviorName = "indent_spaces"
 const BehaviorNameIndentTabs BehaviorName = "indent_tabs"
 const BehaviorNameListCoercionDisabled BehaviorName = "list_coercion_disabled"
 const BehaviorNameListCoercionEnabled BehaviorName = "list_coercion_enabled"
-const BehaviorNameTabsAsContent BehaviorName = "tabs_as_content"
-const BehaviorNameTabsAsWhitespace BehaviorName = "tabs_as_whitespace"
-const BehaviorNameToplevelIndentPreserve BehaviorName = "toplevel_indent_preserve"
-const BehaviorNameToplevelIndentStrip BehaviorName = "toplevel_indent_strip"
+const BehaviorNameMultilineValues BehaviorName = "multiline_values"
+const BehaviorNamePathTraversal BehaviorName = "path_traversal"
 
 var enumValues_BehaviorName = []interface{}{
 	"boolean_strict",
 	"boolean_lenient",
 	"crlf_preserve_literal",
 	"crlf_normalize_to_lf",
-	"tabs_as_content",
-	"tabs_as_whitespace",
 	"indent_spaces",
 	"indent_tabs",
+	"continuation_tab_to_space",
+	"continuation_tab_preserve",
 	"list_coercion_enabled",
 	"list_coercion_disabled",
 	"array_order_insertion",
 	"array_order_lexicographic",
-	"toplevel_indent_strip",
-	"toplevel_indent_preserve",
+	"delimiter_first_equals",
+	"delimiter_prefer_spaced",
+	"path_traversal",
+	"multiline_values",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *BehaviorName) UnmarshalJSON(b []byte) error {
+func (j *BehaviorName) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -286,17 +293,15 @@ type FeatureName string
 type FunctionName string
 
 const FunctionNameBuildHierarchy FunctionName = "build_hierarchy"
+const FunctionNameBuildModel FunctionName = "build_model"
 const FunctionNameCanonicalFormat FunctionName = "canonical_format"
 const FunctionNameCompose FunctionName = "compose"
-const FunctionNameComposeAssociative FunctionName = "compose_associative"
 const FunctionNameFilter FunctionName = "filter"
 const FunctionNameGetBool FunctionName = "get_bool"
 const FunctionNameGetFloat FunctionName = "get_float"
 const FunctionNameGetInt FunctionName = "get_int"
 const FunctionNameGetList FunctionName = "get_list"
 const FunctionNameGetString FunctionName = "get_string"
-const FunctionNameIdentityLeft FunctionName = "identity_left"
-const FunctionNameIdentityRight FunctionName = "identity_right"
 const FunctionNameLoad FunctionName = "load"
 const FunctionNameParse FunctionName = "parse"
 const FunctionNameParseIndented FunctionName = "parse_indented"
@@ -309,6 +314,7 @@ var enumValues_FunctionName = []interface{}{
 	"filter",
 	"compose",
 	"build_hierarchy",
+	"build_model",
 	"get_string",
 	"get_int",
 	"get_bool",
@@ -318,15 +324,12 @@ var enumValues_FunctionName = []interface{}{
 	"canonical_format",
 	"load",
 	"round_trip",
-	"compose_associative",
-	"identity_left",
-	"identity_right",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *FunctionName) UnmarshalJSON(b []byte) error {
+func (j *FunctionName) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool
@@ -346,7 +349,7 @@ func (j *FunctionName) UnmarshalJSON(b []byte) error {
 // Schema for source test files (api_*.json)
 type SourceFormatJson struct {
 	// JSON Schema reference (relative path to schema file)
-	Schema *string `json:"$schema,omitempty" yaml:"$schema,omitempty" mapstructure:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty,omitzero" yaml:"$schema,omitempty" mapstructure:"$schema,omitempty"`
 
 	// Array of test cases
 	Tests []SourceFormatJsonTestsElem `json:"tests" yaml:"tests" mapstructure:"tests"`
@@ -355,14 +358,18 @@ type SourceFormatJson struct {
 type SourceFormatJsonTestsElem struct {
 	// Implementation behavior requirements (optional). Conflicts are auto-generated
 	// from behavior metadata.
-	Behaviors []BehaviorName `json:"behaviors,omitempty" yaml:"behaviors,omitempty" mapstructure:"behaviors,omitempty"`
+	Behaviors []BehaviorName `json:"behaviors,omitempty,omitzero" yaml:"behaviors,omitempty" mapstructure:"behaviors,omitempty"`
 
 	// DEPRECATED: Conflicts are now auto-generated from $defs/behaviorMetadata. This
 	// field is ignored and will be removed in a future version.
-	Conflicts *SourceFormatJsonTestsElemConflicts `json:"conflicts,omitempty" yaml:"conflicts,omitempty" mapstructure:"conflicts,omitempty"`
+	Conflicts *SourceFormatJsonTestsElemConflicts `json:"conflicts,omitempty,omitzero" yaml:"conflicts,omitempty" mapstructure:"conflicts,omitempty"`
 
-	// Required language features for this test
-	Features []FeatureName `json:"features,omitempty" yaml:"features,omitempty" mapstructure:"features,omitempty"`
+	// Language features exercised by this test (informational, for gap reporting)
+	Features []FeatureName `json:"features,omitempty,omitzero" yaml:"features,omitempty" mapstructure:"features,omitempty"`
+
+	// CCL functions exercised by this test. Used by validate-tags to map tests to
+	// function:* tags.
+	Functions []FunctionName `json:"functions,omitempty,omitzero" yaml:"functions,omitempty" mapstructure:"functions,omitempty"`
 
 	// CCL input text(s) to be tested. Single-input tests use a 1-element array.
 	Inputs []string `json:"inputs" yaml:"inputs" mapstructure:"inputs"`
@@ -374,43 +381,143 @@ type SourceFormatJsonTestsElem struct {
 	Tests []SourceFormatJsonTestsElemTestsElem `json:"tests" yaml:"tests" mapstructure:"tests"`
 
 	// Specification variants (optional)
-	Variants []VariantName `json:"variants,omitempty" yaml:"variants,omitempty" mapstructure:"variants,omitempty"`
+	Variants []VariantName `json:"variants,omitempty,omitzero" yaml:"variants,omitempty" mapstructure:"variants,omitempty"`
 }
 
 // DEPRECATED: Conflicts are now auto-generated from $defs/behaviorMetadata. This
 // field is ignored and will be removed in a future version.
 type SourceFormatJsonTestsElemConflicts struct {
 	// Behaviors corresponds to the JSON schema field "behaviors".
-	Behaviors []string `json:"behaviors,omitempty" yaml:"behaviors,omitempty" mapstructure:"behaviors,omitempty"`
+	Behaviors []string `json:"behaviors,omitempty,omitzero" yaml:"behaviors,omitempty" mapstructure:"behaviors,omitempty"`
 
 	// Features corresponds to the JSON schema field "features".
-	Features []string `json:"features,omitempty" yaml:"features,omitempty" mapstructure:"features,omitempty"`
+	Features []string `json:"features,omitempty,omitzero" yaml:"features,omitempty" mapstructure:"features,omitempty"`
 
 	// Functions corresponds to the JSON schema field "functions".
-	Functions []string `json:"functions,omitempty" yaml:"functions,omitempty" mapstructure:"functions,omitempty"`
+	Functions []string `json:"functions,omitempty,omitzero" yaml:"functions,omitempty" mapstructure:"functions,omitempty"`
 
 	// Variants corresponds to the JSON schema field "variants".
-	Variants []string `json:"variants,omitempty" yaml:"variants,omitempty" mapstructure:"variants,omitempty"`
+	Variants []string `json:"variants,omitempty,omitzero" yaml:"variants,omitempty" mapstructure:"variants,omitempty"`
 }
 
 type SourceFormatJsonTestsElemTestsElem struct {
 	// Optional arguments for parameterized functions
-	Args []string `json:"args,omitempty" yaml:"args,omitempty" mapstructure:"args,omitempty"`
+	Args []string `json:"args,omitempty,omitzero" yaml:"args,omitempty" mapstructure:"args,omitempty"`
 
 	// Whether function should produce an error
-	Error bool `json:"error,omitempty" yaml:"error,omitempty" mapstructure:"error,omitempty"`
+	Error bool `json:"error,omitempty,omitzero" yaml:"error,omitempty" mapstructure:"error,omitempty"`
 
 	// Expected result from the function
 	Expect interface{} `json:"expect" yaml:"expect" mapstructure:"expect"`
 
-	// CCL function to test
-	Function FunctionName `json:"function" yaml:"function" mapstructure:"function"`
+	// Named test validation (a CCL function, or an algebraic-property assertion)
+	Function ValidationName `json:"function" yaml:"function" mapstructure:"function"`
+
+	// Filter predicate specification. Defines how to filter entries based on a field
+	// comparison.
+	Predicate *SourceFormatJsonTestsElemTestsElemPredicate `json:"predicate,omitempty,omitzero" yaml:"predicate,omitempty" mapstructure:"predicate,omitempty"`
+}
+
+// Filter predicate specification. Defines how to filter entries based on a field
+// comparison.
+type SourceFormatJsonTestsElemTestsElemPredicate struct {
+	// Which Entry field to compare
+	Field SourceFormatJsonTestsElemTestsElemPredicateField `json:"field" yaml:"field" mapstructure:"field"`
+
+	// Comparison operator
+	Op SourceFormatJsonTestsElemTestsElemPredicateOp `json:"op" yaml:"op" mapstructure:"op"`
+
+	// Value to compare against
+	Value string `json:"value" yaml:"value" mapstructure:"value"`
+}
+
+type SourceFormatJsonTestsElemTestsElemPredicateField string
+
+const SourceFormatJsonTestsElemTestsElemPredicateFieldKey SourceFormatJsonTestsElemTestsElemPredicateField = "key"
+const SourceFormatJsonTestsElemTestsElemPredicateFieldValue SourceFormatJsonTestsElemTestsElemPredicateField = "value"
+
+var enumValues_SourceFormatJsonTestsElemTestsElemPredicateField = []interface{}{
+	"key",
+	"value",
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SourceFormatJsonTestsElemTestsElem) UnmarshalJSON(b []byte) error {
+func (j *SourceFormatJsonTestsElemTestsElemPredicateField) UnmarshalJSON(value []byte) error {
+	var v string
+	if err := json.Unmarshal(value, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_SourceFormatJsonTestsElemTestsElemPredicateField {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_SourceFormatJsonTestsElemTestsElemPredicateField, v)
+	}
+	*j = SourceFormatJsonTestsElemTestsElemPredicateField(v)
+	return nil
+}
+
+type SourceFormatJsonTestsElemTestsElemPredicateOp string
+
+const SourceFormatJsonTestsElemTestsElemPredicateOpUndefined SourceFormatJsonTestsElemTestsElemPredicateOp = "=="
+
+var enumValues_SourceFormatJsonTestsElemTestsElemPredicateOp = []interface{}{
+	"==",
+	"!=",
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *SourceFormatJsonTestsElemTestsElemPredicateOp) UnmarshalJSON(value []byte) error {
+	var v string
+	if err := json.Unmarshal(value, &v); err != nil {
+		return err
+	}
+	var ok bool
+	for _, expected := range enumValues_SourceFormatJsonTestsElemTestsElemPredicateOp {
+		if reflect.DeepEqual(v, expected) {
+			ok = true
+			break
+		}
+	}
+	if !ok {
+		return fmt.Errorf("invalid value (expected one of %#v): %#v", enumValues_SourceFormatJsonTestsElemTestsElemPredicateOp, v)
+	}
+	*j = SourceFormatJsonTestsElemTestsElemPredicateOp(v)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *SourceFormatJsonTestsElemTestsElemPredicate) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
+		return err
+	}
+	if _, ok := raw["field"]; raw != nil && !ok {
+		return fmt.Errorf("field field in SourceFormatJsonTestsElemTestsElemPredicate: required")
+	}
+	if _, ok := raw["op"]; raw != nil && !ok {
+		return fmt.Errorf("field op in SourceFormatJsonTestsElemTestsElemPredicate: required")
+	}
+	if _, ok := raw["value"]; raw != nil && !ok {
+		return fmt.Errorf("field value in SourceFormatJsonTestsElemTestsElemPredicate: required")
+	}
+	type Plain SourceFormatJsonTestsElemTestsElemPredicate
+	var plain Plain
+	if err := json.Unmarshal(value, &plain); err != nil {
+		return err
+	}
+	*j = SourceFormatJsonTestsElemTestsElemPredicate(plain)
+	return nil
+}
+
+// UnmarshalJSON implements json.Unmarshaler.
+func (j *SourceFormatJsonTestsElemTestsElem) UnmarshalJSON(value []byte) error {
+	var raw map[string]interface{}
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["expect"]; raw != nil && !ok {
@@ -421,7 +528,7 @@ func (j *SourceFormatJsonTestsElemTestsElem) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SourceFormatJsonTestsElemTestsElem
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	if v, ok := raw["error"]; !ok || v == nil {
@@ -432,9 +539,9 @@ func (j *SourceFormatJsonTestsElemTestsElem) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SourceFormatJsonTestsElem) UnmarshalJSON(b []byte) error {
+func (j *SourceFormatJsonTestsElem) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["inputs"]; raw != nil && !ok {
@@ -448,11 +555,14 @@ func (j *SourceFormatJsonTestsElem) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SourceFormatJsonTestsElem
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	if plain.Inputs != nil && len(plain.Inputs) < 1 {
 		return fmt.Errorf("field %s length: must be >= %d", "inputs", 1)
+	}
+	if matched, _ := regexp.MatchString(`^[a-zA-Z0-9_]+$`, string(plain.Name)); !matched {
+		return fmt.Errorf("field %s pattern match: must match %s", "Name", `^[a-zA-Z0-9_]+$`)
 	}
 	if plain.Tests != nil && len(plain.Tests) < 1 {
 		return fmt.Errorf("field %s length: must be >= %d", "tests", 1)
@@ -462,9 +572,9 @@ func (j *SourceFormatJsonTestsElem) UnmarshalJSON(b []byte) error {
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *SourceFormatJson) UnmarshalJSON(b []byte) error {
+func (j *SourceFormatJson) UnmarshalJSON(value []byte) error {
 	var raw map[string]interface{}
-	if err := json.Unmarshal(b, &raw); err != nil {
+	if err := json.Unmarshal(value, &raw); err != nil {
 		return err
 	}
 	if _, ok := raw["tests"]; raw != nil && !ok {
@@ -472,7 +582,7 @@ func (j *SourceFormatJson) UnmarshalJSON(b []byte) error {
 	}
 	type Plain SourceFormatJson
 	var plain Plain
-	if err := json.Unmarshal(b, &plain); err != nil {
+	if err := json.Unmarshal(value, &plain); err != nil {
 		return err
 	}
 	if plain.Tests != nil && len(plain.Tests) < 1 {
@@ -481,6 +591,10 @@ func (j *SourceFormatJson) UnmarshalJSON(b []byte) error {
 	*j = SourceFormatJson(plain)
 	return nil
 }
+
+// A named test validation. Superset of functionName: includes the 15 CCL functions
+// plus algebraic-property assertions validated by the test runner.
+type ValidationName string
 
 type VariantName string
 
@@ -493,9 +607,9 @@ var enumValues_VariantName = []interface{}{
 }
 
 // UnmarshalJSON implements json.Unmarshaler.
-func (j *VariantName) UnmarshalJSON(b []byte) error {
+func (j *VariantName) UnmarshalJSON(value []byte) error {
 	var v string
-	if err := json.Unmarshal(b, &v); err != nil {
+	if err := json.Unmarshal(value, &v); err != nil {
 		return err
 	}
 	var ok bool

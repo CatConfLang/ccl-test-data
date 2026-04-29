@@ -43,6 +43,12 @@ func TestBasicObjectConstructionBuildHierarchy(t *testing.T) {
 }
 
 
+// basic_object_construction_build_model - function:parse_indented function:build_model
+func TestBasicObjectConstructionBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // basic_object_construction_print - function:print
 func TestBasicObjectConstructionPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -82,6 +88,12 @@ func TestDeepNestedObjectsBuildHierarchy(t *testing.T) {
 }
 
 
+// deep_nested_objects_build_model - function:parse_indented function:build_model
+func TestDeepNestedObjectsBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // deep_nested_objects_print - function:print
 func TestDeepNestedObjectsPrint(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -114,6 +126,12 @@ item = third`
 
 // duplicate_keys_to_lists_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestDuplicateKeysToListsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// duplicate_keys_to_lists_build_model - function:parse_indented function:build_model
+func TestDuplicateKeysToListsBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

@@ -144,7 +144,8 @@
       "description": "A CCL function that implementations provide. Mirrors ccl-test-data/config.CCLFunction.",
       "enum": [
         "parse", "parse_indented", "filter", "compose",
-        "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
+        "build_hierarchy", "build_model",
+        "get_string", "get_int", "get_bool", "get_float", "get_list",
         "print", "canonical_format", "load", "round_trip"
       ]
     },

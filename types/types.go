@@ -56,6 +56,7 @@ type ValidationSet struct {
 	Combine            interface{} `json:"combine,omitempty"`
 	ExpandDotted       interface{} `json:"expand_dotted,omitempty"`
 	BuildHierarchy     interface{} `json:"build_hierarchy,omitempty"`
+	BuildModel         interface{} `json:"build_model,omitempty"`
 	GetString          interface{} `json:"get_string,omitempty"`
 	GetInt             interface{} `json:"get_int,omitempty"`
 	GetBool            interface{} `json:"get_bool,omitempty"`
