@@ -152,6 +152,18 @@ func TestTabsAsWhitespaceMixedIndentParse(t *testing.T) {
 }
 
 
+// tabs_as_whitespace_multiline_preserve_parse - function:parse feature:whitespace feature:multiline_continuation feature:tab_in_value_preserved behavior:multiline_values behavior:continuation_tab_preserve
+func TestTabsAsWhitespaceMultilinePreserveParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:continuation_tab_preserve")
+}
+
+
+// tabs_as_whitespace_mixed_indent_preserve_parse - function:parse feature:whitespace feature:multiline_continuation feature:tab_in_value_preserved behavior:multiline_values behavior:continuation_tab_preserve
+func TestTabsAsWhitespaceMixedIndentPreserveParse(t *testing.T) {
+	t.Skip("Test skipped due to tag filter: behavior:continuation_tab_preserve")
+}
+
+
 // tabs_canonical_format_as_whitespace_canonical_format - function:parse function:print function:canonical_format feature:whitespace
 func TestTabsCanonicalFormatAsWhitespaceCanonicalFormat(t *testing.T) {
 	
