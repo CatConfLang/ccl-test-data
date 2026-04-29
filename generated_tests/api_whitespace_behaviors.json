@@ -52,6 +52,32 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "key": {
+            "value\twith\ttabs": {}
+          }
+        }
+      },
+      "features": [
+        "whitespace",
+        "tab_in_value_preserved"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "key = \tvalue\twith\ttabs"
+      ],
+      "name": "tabs_as_whitespace_in_value_build_model",
+      "source_test": "tabs_as_whitespace_in_value",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "key"
       ],
@@ -694,6 +720,41 @@
     },
     {
       "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "key1": {
+            "value1": {}
+          },
+          "key2": {
+            "value2": {}
+          }
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "name": "crlf_normalize_to_lf_basic_build_model",
+      "source_test": "crlf_normalize_to_lf_basic",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "crlf_preserve_literal"
       ],
       "conflicts": {
@@ -757,6 +818,41 @@
       "name": "crlf_preserve_literal_basic_build_hierarchy",
       "source_test": "crlf_preserve_literal_basic",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "key1": {
+            "value1\r": {}
+          },
+          "key2": {
+            "value2\r": {}
+          }
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
+      "name": "crlf_preserve_literal_basic_build_model",
+      "source_test": "crlf_preserve_literal_basic",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -934,6 +1030,43 @@
     },
     {
       "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "host": {
+              "localhost": {}
+            },
+            "port": {
+              "8080": {}
+            }
+          }
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "name": "crlf_nested_structure_build_model",
+      "source_test": "crlf_nested_structure",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "crlf_preserve_literal"
       ],
       "conflicts": {
@@ -995,6 +1128,43 @@
       "name": "crlf_preserve_nested_structure_build_hierarchy",
       "source_test": "crlf_preserve_nested_structure",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "host": {
+              "localhost\r": {}
+            },
+            "port": {
+              "8080": {}
+            }
+          }
+        }
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
+      "name": "crlf_preserve_nested_structure_build_model",
+      "source_test": "crlf_preserve_nested_structure",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1252,6 +1422,46 @@
     },
     {
       "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_preserve_literal"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "/": {
+            "Port setting": {},
+            "Server config": {}
+          },
+          "host": {
+            "localhost": {}
+          },
+          "port": {
+            "8080": {}
+          }
+        }
+      },
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ],
+      "name": "crlf_normalize_comments_and_values_build_model",
+      "source_test": "crlf_normalize_comments_and_values",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
+      "behaviors": [
         "crlf_preserve_literal"
       ],
       "conflicts": {
@@ -1371,6 +1581,46 @@
       "name": "crlf_preserve_comments_and_values_build_hierarchy",
       "source_test": "crlf_preserve_comments_and_values",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "crlf_preserve_literal"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "crlf_normalize_to_lf"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "object": {
+          "/": {
+            "Port setting\r": {},
+            "Server config\r": {}
+          },
+          "host": {
+            "localhost\r": {}
+          },
+          "port": {
+            "8080\r": {}
+          }
+        }
+      },
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ],
+      "name": "crlf_preserve_comments_and_values_build_model",
+      "source_test": "crlf_preserve_comments_and_values",
+      "validation": "build_model",
       "variants": []
     },
     {

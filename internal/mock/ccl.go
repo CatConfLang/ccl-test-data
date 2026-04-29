@@ -244,6 +244,52 @@ func (c *CCL) BuildHierarchy(entries []Entry) map[string]interface{} {
 	return result
 }
 
+// BuildModel produces the OCaml-canonical recursive model: every value becomes
+// a key in an inner map pointing to an empty map. Duplicate keys merge their
+// inner maps. Mirrors the flat-pattern of BuildHierarchy — no recursive parsing
+// of block values, matching the parity boundary set there.
+func (c *CCL) BuildModel(entries []Entry) map[string]interface{} {
+	result := make(map[string]interface{})
+
+	for _, entry := range entries {
+		key := entry.Key
+		value := entry.Value
+
+		if strings.Contains(key, ".") {
+			parts := strings.Split(key, ".")
+			current := result
+			for i, part := range parts {
+				if i == len(parts)-1 {
+					mergeModelLeaf(current, part, value)
+				} else {
+					if _, exists := current[part]; !exists {
+						current[part] = make(map[string]interface{})
+					}
+					if nested, ok := current[part].(map[string]interface{}); ok {
+						current = nested
+					}
+				}
+			}
+		} else {
+			mergeModelLeaf(result, key, value)
+		}
+	}
+
+	return result
+}
+
+// mergeModelLeaf inserts {value: {}} under key in m, merging if key already exists.
+func mergeModelLeaf(m map[string]interface{}, key, value string) {
+	inner, ok := m[key].(map[string]interface{})
+	if !ok {
+		inner = make(map[string]interface{})
+		m[key] = inner
+	}
+	if _, exists := inner[value]; !exists {
+		inner[value] = map[string]interface{}{}
+	}
+}
+
 // GetString implements string access
 func (c *CCL) GetString(obj map[string]interface{}, path []string) (string, error) {
 	value, err := c.getValue(obj, path)

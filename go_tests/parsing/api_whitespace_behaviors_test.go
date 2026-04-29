@@ -42,6 +42,12 @@ func TestTabsAsWhitespaceInValueBuildHierarchy(t *testing.T) {
 }
 
 
+// tabs_as_whitespace_in_value_build_model - function:parse_indented function:build_model feature:whitespace feature:tab_in_value_preserved
+func TestTabsAsWhitespaceInValueBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // tabs_as_whitespace_in_value_get_string - function:get_string feature:whitespace feature:tab_in_value_preserved
 func TestTabsAsWhitespaceInValueGetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -352,6 +358,12 @@ func TestCrlfNormalizeToLfBasicBuildHierarchy(t *testing.T) {
 }
 
 
+// crlf_normalize_to_lf_basic_build_model - function:parse_indented function:build_model feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeToLfBasicBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // crlf_preserve_literal_basic_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
@@ -360,6 +372,12 @@ func TestCrlfPreserveLiteralBasicParse(t *testing.T) {
 
 // crlf_preserve_literal_basic_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveLiteralBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// crlf_preserve_literal_basic_build_model - function:parse_indented function:build_model feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveLiteralBasicBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -442,6 +460,12 @@ func TestCrlfNestedStructureBuildHierarchy(t *testing.T) {
 }
 
 
+// crlf_nested_structure_build_model - function:parse_indented function:build_model feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNestedStructureBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // crlf_preserve_nested_structure_parse - function:parse feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
@@ -450,6 +474,12 @@ func TestCrlfPreserveNestedStructureParse(t *testing.T) {
 
 // crlf_preserve_nested_structure_build_hierarchy - function:parse_indented function:build_hierarchy feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveNestedStructureBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// crlf_preserve_nested_structure_build_model - function:parse_indented function:build_model feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveNestedStructureBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -528,6 +558,12 @@ func TestCrlfNormalizeCommentsAndValuesBuildHierarchy(t *testing.T) {
 }
 
 
+// crlf_normalize_comments_and_values_build_model - function:parse_indented function:build_model feature:comments feature:whitespace behavior:crlf_normalize_to_lf
+func TestCrlfNormalizeCommentsAndValuesBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // crlf_preserve_comments_and_values_parse - function:parse feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesParse(t *testing.T) {
 	t.Skip("Test skipped due to tag filter: behavior:crlf_preserve_literal")
@@ -542,6 +578,12 @@ func TestCrlfPreserveCommentsAndValuesFilter(t *testing.T) {
 
 // crlf_preserve_comments_and_values_build_hierarchy - function:parse_indented function:build_hierarchy feature:comments feature:whitespace behavior:crlf_preserve_literal
 func TestCrlfPreserveCommentsAndValuesBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// crlf_preserve_comments_and_values_build_model - function:parse_indented function:build_model feature:comments feature:whitespace behavior:crlf_preserve_literal
+func TestCrlfPreserveCommentsAndValuesBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

@@ -2,10 +2,21 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "servers = web1\nservers = web2\nservers = web3"
+      ],
       "name": "basic_list_from_duplicates",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "servers",
@@ -19,47 +30,58 @@
               "key": "servers",
               "value": "web3"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "servers": [
               "web1",
               "web2",
               "web3"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "servers": {
+              "web1": {},
+              "web2": {},
+              "web3": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "servers"
+          ],
           "expect": [
             "web1",
             "web2",
             "web3"
           ],
-          "args": [
-            "servers"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "inputs": [
-        "servers = web1\nservers = web2\nservers = web3"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20"
+      ],
       "name": "large_list",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
@@ -141,10 +163,10 @@
               "key": "items",
               "value": "item20"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": [
               "item01",
@@ -168,10 +190,40 @@
               "item19",
               "item20"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "items": {
+              "item01": {},
+              "item02": {},
+              "item03": {},
+              "item04": {},
+              "item05": {},
+              "item06": {},
+              "item07": {},
+              "item08": {},
+              "item09": {},
+              "item10": {},
+              "item11": {},
+              "item12": {},
+              "item13": {},
+              "item14": {},
+              "item15": {},
+              "item16": {},
+              "item17": {},
+              "item18": {},
+              "item19": {},
+              "item20": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "items"
+          ],
           "expect": [
             "item01",
             "item02",
@@ -194,28 +246,30 @@
             "item19",
             "item20"
           ],
-          "args": [
-            "items"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "inputs": [
-        "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "features": [
+        "comments"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
+      ],
       "name": "list_with_comments",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "servers",
@@ -237,10 +291,10 @@
               "key": "/",
               "value": "End of list"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "/": [
               "Production servers",
@@ -251,41 +305,56 @@
               "web2",
               "web3"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "/": {
+              "End of list": {},
+              "Production servers": {}
+            },
+            "servers": {
+              "web1": {},
+              "web2": {},
+              "web3": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "servers"
+          ],
           "expect": [
             "web1",
             "web2",
             "web3"
           ],
-          "args": [
-            "servers"
-          ]
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_enabled",
-        "array_order_insertion"
+        "array_order_lexicographic"
       ],
       "features": [
         "comments"
       ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
       "inputs": [
         "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
       ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
-      ]
-    },
-    {
       "name": "list_with_comments_lexicographic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "servers",
@@ -307,10 +376,10 @@
               "key": "/",
               "value": "End of list"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "/": [
               "End of list",
@@ -321,187 +390,232 @@
               "web2",
               "web3"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "/": {
+              "End of list": {},
+              "Production servers": {}
+            },
+            "servers": {
+              "web1": {},
+              "web2": {},
+              "web3": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "servers"
+          ],
           "expect": [
             "web1",
             "web2",
             "web3"
           ],
-          "args": [
-            "servers"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_lexicographic"
-      ],
-      "features": [
-        "comments"
-      ],
-      "inputs": [
-        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "existing = value"
+      ],
       "name": "list_error_missing_key",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "existing": "value"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "existing": {
+              "value": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "missing"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "existing",
               "value": "value"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "existing = value"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "config =\n  server = web1"
+      ],
       "name": "list_error_nested_missing_key",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  server = web1"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "server": "web1"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "config": {
+              "server": {
+                "web1": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "missing"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "inputs": [
-        "config =\n  server = web1"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "value = simple"
+      ],
       "name": "list_error_non_object_path",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "value",
               "value": "simple"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "value": "simple"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "value": {
+              "simple": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "value",
             "nested"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "inputs": [
-        "value = simple"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
-      "name": "list_edge_case_zero_length",
-      "tests": [
-        {
-          "function": "get_list",
-          "expect": null,
-          "args": [
-            "nonexistent"
-          ]
-        },
-        {
-          "function": "parse",
-          "expect": []
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {}
-        }
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
       ],
       "inputs": [
         ""
       ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
+      "name": "list_edge_case_zero_length",
+      "tests": [
+        {
+          "args": [
+            "nonexistent"
+          ],
+          "expect": null,
+          "function": "get_list"
+        },
+        {
+          "expect": [],
+          "function": "parse"
+        },
+        {
+          "expect": {},
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {},
+          "function": "build_model"
+        }
       ]
     },
     {
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "servers =\n  = web1\n  = web2\n  = web3"
+      ],
       "name": "bare_list_basic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "servers",
               "value": "\n  = web1\n  = web2\n  = web3"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "servers": {
               "": [
@@ -510,101 +624,133 @@
                 "web3"
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "servers": {
+              "": {
+                "web1": {},
+                "web2": {},
+                "web3": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "servers"
+          ],
           "expect": [
             "web1",
             "web2",
             "web3"
           ],
-          "args": [
-            "servers"
-          ]
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys"
-      ],
-      "inputs": [
-        "servers =\n  = web1\n  = web2\n  = web3"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
-      "name": "bare_list_nested",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "network",
-              "value": "\n  ports =\n    = 80\n    = 443\n    = 8080"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "network": {
-              "ports": {
-                "": [
-                  "80",
-                  "443",
-                  "8080"
-                ]
-              }
-            }
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": [
-            "80",
-            "443",
-            "8080"
-          ],
-          "args": [
-            "network",
-            "ports"
-          ]
-        }
-      ],
-      "features": [
-        "empty_keys"
-      ],
       "behaviors": [
         "array_order_insertion",
         "path_traversal"
       ],
-      "inputs": [
-        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      "features": [
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
-      "name": "bare_list_nested_lexicographic",
+      ],
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ],
+      "name": "bare_list_nested",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "network",
               "value": "\n  ports =\n    = 80\n    = 443\n    = 8080"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
+          "expect": {
+            "network": {
+              "ports": {
+                "": [
+                  "80",
+                  "443",
+                  "8080"
+                ]
+              }
+            }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "network": {
+              "ports": {
+                "": {
+                  "443": {},
+                  "80": {},
+                  "8080": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "network",
+            "ports"
+          ],
+          "expect": [
+            "80",
+            "443",
+            "8080"
+          ],
+          "function": "get_list"
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "array_order_lexicographic",
+        "path_traversal"
+      ],
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ],
+      "name": "bare_list_nested_lexicographic",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "network",
+              "value": "\n  ports =\n    = 80\n    = 443\n    = 8080"
+            }
+          ],
+          "function": "parse"
+        },
+        {
           "expect": {
             "network": {
               "ports": {
@@ -615,51 +761,66 @@
                 ]
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "network": {
+              "ports": {
+                "": {
+                  "443": {},
+                  "80": {},
+                  "8080": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "network",
+            "ports"
+          ],
           "expect": [
             "443",
             "80",
             "8080"
           ],
-          "args": [
-            "network",
-            "ports"
-          ]
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys"
-      ],
-      "behaviors": [
-        "array_order_lexicographic",
-        "path_traversal"
-      ],
-      "inputs": [
-        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "array_order_insertion"
+      ],
+      "features": [
+        "empty_keys",
+        "comments"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+      ],
       "name": "bare_list_with_comments",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "allowed_hosts",
               "value": "\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "allowed_hosts": {
               "": [
@@ -669,50 +830,66 @@
               ],
               "/": "Production hosts"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "allowed_hosts": {
+              "": {
+                "127.0.0.1": {},
+                "example.com": {},
+                "localhost": {}
+              },
+              "/": {
+                "Production hosts": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "allowed_hosts"
+          ],
           "expect": [
             "localhost",
             "127.0.0.1",
             "example.com"
           ],
-          "args": [
-            "allowed_hosts"
-          ]
+          "function": "get_list"
         }
+      ]
+    },
+    {
+      "behaviors": [
+        "array_order_lexicographic"
       ],
       "features": [
         "empty_keys",
         "comments"
       ],
-      "behaviors": [
-        "array_order_insertion"
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
       ],
       "inputs": [
         "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
       ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
-      ]
-    },
-    {
       "name": "bare_list_with_comments_lexicographic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "allowed_hosts",
               "value": "\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "allowed_hosts": {
               "": [
@@ -722,50 +899,66 @@
               ],
               "/": "Production hosts"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "allowed_hosts": {
+              "": {
+                "127.0.0.1": {},
+                "example.com": {},
+                "localhost": {}
+              },
+              "/": {
+                "Production hosts": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "allowed_hosts"
+          ],
           "expect": [
             "127.0.0.1",
             "example.com",
             "localhost"
           ],
-          "args": [
-            "allowed_hosts"
-          ]
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys",
-        "comments"
-      ],
-      "behaviors": [
-        "array_order_lexicographic"
-      ],
-      "inputs": [
-        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "array_order_insertion",
+        "path_traversal"
+      ],
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+      ],
       "name": "bare_list_deeply_nested",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "environments": {
@@ -780,53 +973,72 @@
                 }
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "web1",
-            "web2",
-            "api1"
-          ],
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": {
+                    "": {
+                      "api1": {},
+                      "web1": {},
+                      "web2": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "environments",
             "production",
             "servers"
-          ]
+          ],
+          "expect": [
+            "web1",
+            "web2",
+            "api1"
+          ],
+          "function": "get_list"
         }
+      ]
+    },
+    {
+      "behaviors": [
+        "array_order_lexicographic",
+        "path_traversal"
       ],
       "features": [
         "empty_keys"
       ],
-      "behaviors": [
-        "array_order_insertion",
-        "path_traversal"
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
       ],
       "inputs": [
         "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
       ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
-      ]
-    },
-    {
       "name": "bare_list_deeply_nested_lexicographic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "environments": {
@@ -841,53 +1053,71 @@
                 }
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "api1",
-            "web1",
-            "web2"
-          ],
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": {
+                    "": {
+                      "api1": {},
+                      "web1": {},
+                      "web2": {}
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "environments",
             "production",
             "servers"
-          ]
+          ],
+          "expect": [
+            "api1",
+            "web1",
+            "web2"
+          ],
+          "function": "get_list"
         }
+      ]
+    },
+    {
+      "behaviors": [
+        "path_traversal"
       ],
       "features": [
         "empty_keys"
       ],
-      "behaviors": [
-        "array_order_lexicographic",
-        "path_traversal"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
+      ],
       "name": "bare_list_mixed_with_other_keys",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "database",
               "value": "\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "database": {
               "host": "localhost",
@@ -899,91 +1129,118 @@
                 ]
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "database": {
+              "host": {
+                "localhost": {}
+              },
+              "port": {
+                "5432": {}
+              },
+              "replicas": {
+                "": {
+                  "replica1": {},
+                  "replica2": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "database",
+            "replicas"
+          ],
           "expect": [
             "replica1",
             "replica2"
           ],
-          "args": [
-            "database",
-            "replicas"
-          ]
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys"
-      ],
-      "inputs": [
-        "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
-      ],
+      ]
+    },
+    {
       "behaviors": [
+        "list_coercion_disabled",
         "path_traversal"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "config =\n  setting = value"
+      ],
       "name": "bare_list_error_not_a_list",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  setting = value"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "setting": "value"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "config": {
+              "setting": {
+                "value": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "setting"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "path_traversal"
-      ],
-      "inputs": [
-        "config =\n  setting = value"
+      ]
+    },
+    {
+      "features": [
+        "empty_keys"
       ],
       "functions": [
         "build_hierarchy",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+      ],
       "name": "bare_list_nested_objects_basic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
               "value": "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": {
               "": [
@@ -997,10 +1254,13 @@
                 }
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "args": [
+            "items"
+          ],
           "expect": [
             {
               "name": "first",
@@ -1011,37 +1271,34 @@
               "value": "2"
             }
           ],
-          "args": [
-            "items"
-          ]
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "features": [
         "empty_keys"
-      ],
-      "inputs": [
-        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
       ],
       "functions": [
         "build_hierarchy",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =\n  =\n    name = only\n    value = 42"
+      ],
       "name": "bare_list_nested_objects_single_item",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
               "value": "\n  =\n    name = only\n    value = 42"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": {
               "": [
@@ -1051,47 +1308,46 @@
                 }
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "args": [
+            "items"
+          ],
           "expect": [
             {
               "name": "only",
               "value": "42"
             }
           ],
-          "args": [
-            "items"
-          ]
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys"
-      ],
-      "inputs": [
-        "items =\n  =\n    name = only\n    value = 42"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "parse"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n  =\n    name = second"
+      ],
       "name": "bare_list_nested_objects_minimal",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
               "value": "\n  =\n    name = first\n  =\n    name = second"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": {
               "": [
@@ -1103,34 +1359,34 @@
                 }
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         }
-      ],
+      ]
+    },
+    {
       "features": [
         "empty_keys"
-      ],
-      "inputs": [
-        "items =\n  =\n    name = first\n  =\n    name = second"
       ],
       "functions": [
         "build_hierarchy",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
+      ],
       "name": "bare_list_nested_objects_deeply_nested",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
               "value": "\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": {
               "": [
@@ -1148,34 +1404,37 @@
                 }
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         }
+      ]
+    },
+    {
+      "behaviors": [
+        "array_order_insertion"
       ],
       "features": [
         "empty_keys"
       ],
-      "inputs": [
-        "items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
-      ],
       "functions": [
         "build_hierarchy",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
+      ],
       "name": "bare_list_nested_objects_mixed_with_strings",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
               "value": "\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": {
               "": [
@@ -1187,54 +1446,42 @@
                 "another_string"
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
         }
-      ],
-      "features": [
-        "empty_keys"
-      ],
-      "behaviors": [
-        "array_order_insertion"
-      ],
-      "inputs": [
-        "items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
       ]
     },
     {
-      "name": "bare_list_nested_objects_round_trip",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "items",
-              "value": "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
-            }
-          ]
-        },
-        {
-          "function": "print",
-          "expect": "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
-        },
-        {
-          "function": "round_trip",
-          "expect": true
-        }
-      ],
       "features": [
         "empty_keys"
-      ],
-      "inputs": [
-        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
       ],
       "functions": [
         "parse",
         "print",
         "round_trip"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+      ],
+      "name": "bare_list_nested_objects_round_trip",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "items",
+              "value": "\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+            }
+          ],
+          "function": "parse"
+        },
+        {
+          "expect": "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2",
+          "function": "print"
+        },
+        {
+          "expect": true,
+          "function": "round_trip"
+        }
       ]
     }
   ]

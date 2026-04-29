@@ -44,6 +44,12 @@ func TestBasicListFromDuplicatesBuildHierarchy(t *testing.T) {
 }
 
 
+// basic_list_from_duplicates_build_model - function:parse_indented function:build_model
+func TestBasicListFromDuplicatesBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // basic_list_from_duplicates_get_list - function:get_list behavior:list_coercion_enabled
 func TestBasicListFromDuplicatesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -97,6 +103,12 @@ func TestLargeListBuildHierarchy(t *testing.T) {
 }
 
 
+// large_list_build_model - function:parse_indented function:build_model
+func TestLargeListBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // large_list_get_list - function:get_list behavior:list_coercion_enabled
 func TestLargeListGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -131,6 +143,12 @@ servers = web3
 
 // list_with_comments_build_hierarchy - function:parse_indented function:build_hierarchy feature:comments behavior:array_order_insertion
 func TestListWithCommentsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_with_comments_build_model - function:parse_indented function:build_model feature:comments
+func TestListWithCommentsBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -173,6 +191,12 @@ func TestListWithCommentsLexicographicBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_comments_lexicographic_build_model - function:parse_indented function:build_model feature:comments
+func TestListWithCommentsLexicographicBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_comments_lexicographic_get_list - function:get_list feature:comments behavior:list_coercion_enabled behavior:array_order_lexicographic
 func TestListWithCommentsLexicographicGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -203,6 +227,12 @@ func TestListErrorMissingKeyParse(t *testing.T) {
 
 // list_error_missing_key_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestListErrorMissingKeyBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_error_missing_key_build_model - function:parse_indented function:build_model
+func TestListErrorMissingKeyBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -242,6 +272,12 @@ func TestListErrorNestedMissingKeyBuildHierarchy(t *testing.T) {
 }
 
 
+// list_error_nested_missing_key_build_model - function:parse_indented function:build_model
+func TestListErrorNestedMissingKeyBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_error_nested_missing_key_get_list - function:get_list
 func TestListErrorNestedMissingKeyGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -272,6 +308,12 @@ func TestListErrorNonObjectPathParse(t *testing.T) {
 
 // list_error_non_object_path_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestListErrorNonObjectPathBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_error_non_object_path_build_model - function:parse_indented function:build_model
+func TestListErrorNonObjectPathBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -310,6 +352,12 @@ func TestListEdgeCaseZeroLengthBuildHierarchy(t *testing.T) {
 }
 
 
+// list_edge_case_zero_length_build_model - function:parse_indented function:build_model
+func TestListEdgeCaseZeroLengthBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_edge_case_zero_length_get_list - function:get_list
 func TestListEdgeCaseZeroLengthGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -343,6 +391,12 @@ func TestBareListBasicParse(t *testing.T) {
 
 // bare_list_basic_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys
 func TestBareListBasicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_basic_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListBasicBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -385,6 +439,12 @@ func TestBareListNestedBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_nested_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_nested_get_list - function:get_list feature:empty_keys behavior:array_order_insertion behavior:path_traversal
 func TestBareListNestedGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -419,6 +479,12 @@ func TestBareListNestedLexicographicParse(t *testing.T) {
 
 // bare_list_nested_lexicographic_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys behavior:array_order_lexicographic
 func TestBareListNestedLexicographicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_nested_lexicographic_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedLexicographicBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -461,6 +527,12 @@ func TestBareListWithCommentsBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_with_comments_build_model - function:parse_indented function:build_model feature:empty_keys feature:comments
+func TestBareListWithCommentsBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_with_comments_get_list - function:get_list feature:empty_keys feature:comments behavior:array_order_insertion
 func TestBareListWithCommentsGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -495,6 +567,12 @@ func TestBareListWithCommentsLexicographicParse(t *testing.T) {
 
 // bare_list_with_comments_lexicographic_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys feature:comments behavior:array_order_lexicographic
 func TestBareListWithCommentsLexicographicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_with_comments_lexicographic_build_model - function:parse_indented function:build_model feature:empty_keys feature:comments
+func TestBareListWithCommentsLexicographicBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -539,6 +617,12 @@ func TestBareListDeeplyNestedBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_deeply_nested_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListDeeplyNestedBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_deeply_nested_get_list - function:get_list feature:empty_keys behavior:array_order_insertion behavior:path_traversal
 func TestBareListDeeplyNestedGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -575,6 +659,12 @@ func TestBareListDeeplyNestedLexicographicParse(t *testing.T) {
 
 // bare_list_deeply_nested_lexicographic_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys behavior:array_order_lexicographic
 func TestBareListDeeplyNestedLexicographicBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_deeply_nested_lexicographic_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListDeeplyNestedLexicographicBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -618,6 +708,12 @@ func TestBareListMixedWithOtherKeysBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_mixed_with_other_keys_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListMixedWithOtherKeysBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_mixed_with_other_keys_get_list - function:get_list feature:empty_keys behavior:path_traversal
 func TestBareListMixedWithOtherKeysGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -649,6 +745,12 @@ func TestBareListErrorNotAListParse(t *testing.T) {
 
 // bare_list_error_not_a_list_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestBareListErrorNotAListBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_error_not_a_list_build_model - function:parse_indented function:build_model
+func TestBareListErrorNotAListBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

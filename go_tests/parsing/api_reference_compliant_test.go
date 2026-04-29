@@ -42,6 +42,12 @@ func TestSingleItemAsListReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// single_item_as_list_reference_build_model - function:parse_indented function:build_model variant:reference_compliant
+func TestSingleItemAsListReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // single_item_as_list_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestSingleItemAsListReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -74,6 +80,12 @@ host = localhost`
 
 // mixed_duplicate_single_keys_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestMixedDuplicateSingleKeysReferenceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// mixed_duplicate_single_keys_reference_build_model - function:parse_indented function:build_model
+func TestMixedDuplicateSingleKeysReferenceBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -115,6 +127,12 @@ func TestNestedListAccessReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// nested_list_access_reference_build_model - function:parse_indented function:build_model variant:reference_compliant
+func TestNestedListAccessReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // nested_list_access_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:path_traversal variant:reference_compliant
 func TestNestedListAccessReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -145,6 +163,12 @@ func TestEmptyListReferenceParse(t *testing.T) {
 
 // empty_list_reference_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestEmptyListReferenceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// empty_list_reference_build_model - function:parse_indented function:build_model variant:reference_compliant
+func TestEmptyListReferenceBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -186,6 +210,12 @@ func TestListWithNumbersReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_numbers_reference_build_model - function:parse_indented function:build_model
+func TestListWithNumbersReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_numbers_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithNumbersReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -219,6 +249,12 @@ flags = no`
 
 // list_with_booleans_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestListWithBooleansReferenceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_with_booleans_reference_build_model - function:parse_indented function:build_model
+func TestListWithBooleansReferenceBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -260,6 +296,12 @@ func TestListWithWhitespaceReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_whitespace_reference_build_model - function:parse_indented function:build_model feature:empty_keys feature:whitespace
+func TestListWithWhitespaceReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_whitespace_reference_get_list - function:get_list feature:empty_keys feature:whitespace behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithWhitespaceReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -293,6 +335,12 @@ names = العربية`
 
 // list_with_unicode_reference_build_hierarchy - function:parse_indented function:build_hierarchy feature:unicode behavior:array_order_lexicographic
 func TestListWithUnicodeReferenceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_with_unicode_reference_build_model - function:parse_indented function:build_model feature:unicode
+func TestListWithUnicodeReferenceBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -333,6 +381,12 @@ func TestListWithSpecialCharactersReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_special_characters_reference_build_model - function:parse_indented function:build_model
+func TestListWithSpecialCharactersReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_special_characters_reference_get_list - function:get_list behavior:list_coercion_disabled behavior:array_order_lexicographic
 func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -341,6 +395,12 @@ func TestListWithSpecialCharactersReferenceGetList(t *testing.T) {
 
 // complex_mixed_list_scenarios_reference_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_lexicographic
 func TestComplexMixedListScenariosReferenceBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// complex_mixed_list_scenarios_reference_build_model - function:parse_indented function:build_model
+func TestComplexMixedListScenariosReferenceBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -379,6 +439,12 @@ func TestListPathTraversalProtectionReferenceBuildHierarchy(t *testing.T) {
 }
 
 
+// list_path_traversal_protection_reference_build_model - function:parse_indented function:build_model variant:reference_compliant
+func TestListPathTraversalProtectionReferenceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_path_traversal_protection_reference_get_list - function:get_list behavior:list_coercion_disabled variant:reference_compliant
 func TestListPathTraversalProtectionReferenceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -409,6 +475,12 @@ func TestEmptyValueReferenceBehaviorParse(t *testing.T) {
 
 // empty_value_reference_behavior_build_hierarchy - function:parse_indented function:build_hierarchy variant:reference_compliant
 func TestEmptyValueReferenceBehaviorBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// empty_value_reference_behavior_build_model - function:parse_indented function:build_model variant:reference_compliant
+func TestEmptyValueReferenceBehaviorBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

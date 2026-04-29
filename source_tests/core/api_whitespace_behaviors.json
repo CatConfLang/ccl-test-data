@@ -2,111 +2,136 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "features": [
+        "whitespace",
+        "tab_in_value_preserved"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_string",
+        "parse"
+      ],
+      "inputs": [
+        "key = \tvalue\twith\ttabs"
+      ],
       "name": "tabs_as_whitespace_in_value",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key",
               "value": "value\twith\ttabs"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "key": "value\twith\ttabs"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
+          "expect": {
+            "key": {
+              "value\twith\ttabs": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "key"
           ],
-          "expect": "value\twith\ttabs"
+          "expect": "value\twith\ttabs",
+          "function": "get_string"
         }
-      ],
-      "features": [
-        "whitespace",
-        "tab_in_value_preserved"
-      ],
-      "inputs": [
-        "key = \tvalue\twith\ttabs"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_string",
-        "parse"
       ]
     },
     {
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "get_string",
+        "parse"
+      ],
+      "inputs": [
+        "key = \tindented"
+      ],
       "name": "tabs_as_whitespace_leading_tab",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key",
               "value": "indented"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "get_string",
           "args": [
             "key"
           ],
-          "expect": "indented"
+          "expect": "indented",
+          "function": "get_string"
         }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = \tindented"
-      ],
-      "functions": [
-        "get_string",
-        "parse"
       ]
     },
     {
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "key = \t\t\tthree_tabs"
+      ],
       "name": "tabs_as_whitespace_multiple_tabs",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key",
               "value": "three_tabs"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key = \t\t\tthree_tabs"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "multiline_values",
+        "continuation_tab_to_space"
+      ],
+      "features": [
+        "whitespace",
+        "multiline_continuation"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "section =\n\t\tindented_with_tabs\n\t\tanother_line"
+      ],
       "name": "tabs_as_whitespace_multiline",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "section",
               "value": "\n  indented_with_tabs\n  another_line"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "multiline_values",
         "continuation_tab_to_space"
@@ -115,67 +140,44 @@
         "whitespace",
         "multiline_continuation"
       ],
-      "inputs": [
-        "section =\n\t\tindented_with_tabs\n\t\tanother_line"
-      ],
       "functions": [
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "section =\n \tmixed_indent\n\t another_line"
+      ],
       "name": "tabs_as_whitespace_mixed_indent",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "section",
               "value": "\n  mixed_indent\n  another_line"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "behaviors": [
-        "multiline_values",
-        "continuation_tab_to_space"
-      ],
-      "features": [
-        "whitespace",
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "section =\n \tmixed_indent\n\t another_line"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
-      "name": "tabs_canonical_format_as_whitespace",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key = value"
-        }
-      ],
       "features": [
         "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "key = \tvalue"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "tabs_canonical_format_as_whitespace",
+      "tests": [
+        {
+          "expect": "key = value",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "tabs_as_whitespace_multiline_print",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "section =\n  indented\n  another"
-        }
-      ],
       "behaviors": [
         "indent_spaces",
         "multiline_values",
@@ -185,62 +187,62 @@
         "whitespace",
         "multiline_continuation"
       ],
+      "functions": [
+        "canonical_format"
+      ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "tabs_as_whitespace_multiline_print",
+      "tests": [
+        {
+          "expect": "section =\n  indented\n  another",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "tabs_as_whitespace_round_trip",
-      "tests": [
-        {
-          "function": "round_trip",
-          "expect": "key = value\twith\ttabs"
-        }
-      ],
       "features": [
         "whitespace",
         "tab_in_value_preserved"
       ],
+      "functions": [
+        "round_trip"
+      ],
       "inputs": [
         "key = \tvalue\twith\ttabs"
       ],
-      "functions": [
-        "round_trip"
+      "name": "tabs_as_whitespace_round_trip",
+      "tests": [
+        {
+          "expect": "key = value\twith\ttabs",
+          "function": "round_trip"
+        }
       ]
     },
     {
-      "name": "nested_bare_list_indentation",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "package =\n  = brew\n  = scoop\n  = nix"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
       ],
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "package =\n  = brew\n  = scoop\n  = nix"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "nested_bare_list_indentation",
+      "tests": [
+        {
+          "expect": "package =\n  = brew\n  = scoop\n  = nix",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "deeply_nested_bare_list_indentation",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "app =\n  = item1\n  = item2\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
       ],
@@ -248,147 +250,147 @@
         "empty_keys",
         "whitespace"
       ],
+      "functions": [
+        "canonical_format"
+      ],
       "inputs": [
         "app =\n  = item1\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b\n  = item2"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "deeply_nested_bare_list_indentation",
+      "tests": [
+        {
+          "expect": "app =\n  = item1\n  = item2\n  config =\n    = nested1\n    = nested2\n    deep =\n      = level3a\n      = level3b",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "print_nested_indent_spaces",
-      "tests": [
-        {
-          "function": "print",
-          "expect": "database =\n  host = localhost\n  port = 5432"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
+      ],
+      "functions": [
+        "print"
       ],
       "inputs": [
         "database =\n  host = localhost\n  port = 5432"
       ],
-      "functions": [
-        "print"
+      "name": "print_nested_indent_spaces",
+      "tests": [
+        {
+          "expect": "database =\n  host = localhost\n  port = 5432",
+          "function": "print"
+        }
       ]
     },
     {
-      "name": "print_deeply_nested_indent_spaces",
-      "tests": [
-        {
-          "function": "print",
-          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
+      ],
+      "functions": [
+        "print"
       ],
       "inputs": [
         "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
       ],
-      "functions": [
-        "print"
+      "name": "print_deeply_nested_indent_spaces",
+      "tests": [
+        {
+          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
+          "function": "print"
+        }
       ]
     },
     {
-      "name": "print_nested_indent_tabs",
-      "tests": [
-        {
-          "function": "print",
-          "expect": "database =\n\thost = localhost\n\tport = 5432"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
+      ],
+      "functions": [
+        "print"
       ],
       "inputs": [
         "database =\n\thost = localhost\n\tport = 5432"
       ],
-      "functions": [
-        "print"
+      "name": "print_nested_indent_tabs",
+      "tests": [
+        {
+          "expect": "database =\n\thost = localhost\n\tport = 5432",
+          "function": "print"
+        }
       ]
     },
     {
-      "name": "print_deeply_nested_indent_tabs",
-      "tests": [
-        {
-          "function": "print",
-          "expect": "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
+      ],
+      "functions": [
+        "print"
       ],
       "inputs": [
         "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true"
       ],
-      "functions": [
-        "print"
+      "name": "print_deeply_nested_indent_tabs",
+      "tests": [
+        {
+          "expect": "server =\n\tdatabase =\n\t\thost = localhost\n\t\tport = 5432\n\tcache =\n\t\tenabled = true",
+          "function": "print"
+        }
       ]
     },
     {
-      "name": "print_mixed_flat_and_nested_indent_tabs",
-      "tests": [
-        {
-          "function": "print",
-          "expect": "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
+      ],
+      "functions": [
+        "print"
       ],
       "inputs": [
         "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0"
       ],
-      "functions": [
-        "print"
+      "name": "print_mixed_flat_and_nested_indent_tabs",
+      "tests": [
+        {
+          "expect": "name = Alice\nconfig =\n\tdebug = true\n\ttimeout = 30\nversion = 1.0",
+          "function": "print"
+        }
       ]
     },
     {
-      "name": "canonical_format_deterministic_indent_tabs",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "a =\n\tfirst =\nm =\n\tmiddle =\nz =\n\tlast =\n"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "z = last\na = first\nm = middle"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "canonical_format_deterministic_indent_tabs",
+      "tests": [
+        {
+          "expect": "a =\n\tfirst =\nm =\n\tmiddle =\nz =\n\tlast =\n",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "canonical_format_consistent_spacing_indent_tabs",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key1 =\n\tvalue1 =\nkey2 =\n\tvalue2 =\nkey3 =\n\tvalue3 =\n"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "canonical_format_consistent_spacing_indent_tabs",
+      "tests": [
+        {
+          "expect": "key1 =\n\tvalue1 =\nkey2 =\n\tvalue2 =\nkey3 =\n\tvalue3 =\n",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "tabs_as_whitespace_multiline_canonical_indent_tabs",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "section =\n\tindented\n\tanother"
-        }
-      ],
       "behaviors": [
         "indent_tabs",
         "multiline_values",
@@ -398,43 +400,43 @@
         "whitespace",
         "multiline_continuation"
       ],
+      "functions": [
+        "canonical_format"
+      ],
       "inputs": [
         "section =\n\t\tindented\n\t\tanother"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "tabs_as_whitespace_multiline_canonical_indent_tabs",
+      "tests": [
+        {
+          "expect": "section =\n\tindented\n\tanother",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "nested_bare_list_indentation_tabs",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "package =\n\t= brew\n\t= scoop\n\t= nix"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
       ],
       "features": [
         "empty_keys",
         "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "package =\n\t= brew\n\t= scoop\n\t= nix"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "nested_bare_list_indentation_tabs",
+      "tests": [
+        {
+          "expect": "package =\n\t= brew\n\t= scoop\n\t= nix",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "deeply_nested_bare_list_indentation_tabs",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "app =\n\t= item1\n\t= item2\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b"
-        }
-      ],
       "behaviors": [
         "indent_tabs"
       ],
@@ -442,18 +444,38 @@
         "empty_keys",
         "whitespace"
       ],
+      "functions": [
+        "canonical_format"
+      ],
       "inputs": [
         "app =\n\t= item1\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b\n\t= item2"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "deeply_nested_bare_list_indentation_tabs",
+      "tests": [
+        {
+          "expect": "app =\n\t= item1\n\t= item2\n\tconfig =\n\t\t= nested1\n\t\t= nested2\n\t\tdeep =\n\t\t\t= level3a\n\t\t\t= level3b",
+          "function": "canonical_format"
+        }
       ]
     },
     {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "crlf_normalize_to_lf_basic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key1",
@@ -463,35 +485,47 @@
               "key": "key2",
               "value": "value2"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "key1": "value1",
             "key2": "value2"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "key1": {
+              "value1": {}
+            },
+            "key2": {
+              "value2": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_preserve_literal"
       ],
       "features": [
         "whitespace"
       ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse"
+      ],
       "inputs": [
         "key1 = value1\r\nkey2 = value2\r\n"
       ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
-      ]
-    },
-    {
       "name": "crlf_preserve_literal_basic",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key1",
@@ -501,43 +535,30 @@
               "key": "key2",
               "value": "value2\r"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "key1": "value1\r",
             "key2": "value2\r"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "key1": {
+              "value1\r": {}
+            },
+            "key2": {
+              "value2\r": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "key1 = value1\r\nkey2 = value2\r\n"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
       ]
     },
     {
-      "name": "crlf_normalize_multiline_value",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "multiline",
-              "value": "\n  line1\n  line2"
-            }
-          ]
-        }
-      ],
       "behaviors": [
         "crlf_normalize_to_lf",
         "multiline_values"
@@ -546,26 +567,26 @@
         "whitespace",
         "multiline_continuation"
       ],
+      "functions": [
+        "parse"
+      ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
       ],
-      "functions": [
-        "parse"
-      ]
-    },
-    {
-      "name": "crlf_preserve_multiline_value",
+      "name": "crlf_normalize_multiline_value",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "multiline",
-              "value": "\r\n  line1\r\n  line2"
+              "value": "\n  line1\n  line2"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "crlf_preserve_literal",
         "multiline_values"
@@ -574,18 +595,41 @@
         "whitespace",
         "multiline_continuation"
       ],
+      "functions": [
+        "parse"
+      ],
       "inputs": [
         "multiline =\r\n  line1\r\n  line2"
       ],
-      "functions": [
-        "parse"
+      "name": "crlf_preserve_multiline_value",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "multiline",
+              "value": "\r\n  line1\r\n  line2"
+            }
+          ],
+          "function": "parse"
+        }
       ]
     },
     {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
+      ],
       "name": "crlf_mixed_line_endings",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "lf_line",
@@ -599,116 +643,112 @@
               "key": "lf_again",
               "value": "value3"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
       "features": [
         "whitespace"
       ],
-      "inputs": [
-        "lf_line = value1\ncrlf_line = value2\r\nlf_again = value3\n"
-      ],
       "functions": [
+        "build_hierarchy",
+        "build_model",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "config =\r\n  host = localhost\r\n  port = 8080"
+      ],
       "name": "crlf_nested_structure",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  host = localhost\n  port = 8080"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "host": "localhost",
               "port": "8080"
             }
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "config": {
+              "host": {
+                "localhost": {}
+              },
+              "port": {
+                "8080": {}
+              }
+            }
+          },
+          "function": "build_model"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_preserve_literal"
       ],
       "features": [
         "whitespace"
       ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse"
+      ],
       "inputs": [
         "config =\r\n  host = localhost\r\n  port = 8080"
       ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
-      ]
-    },
-    {
       "name": "crlf_preserve_nested_structure",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\r\n  host = localhost\r\n  port = 8080"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "host": "localhost\r",
               "port": "8080"
             }
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "config": {
+              "host": {
+                "localhost\r": {}
+              },
+              "port": {
+                "8080": {}
+              }
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "config =\r\n  host = localhost\r\n  port = 8080"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
       ]
     },
     {
-      "name": "crlf_normalize_comment_only",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "/",
-              "value": "this is a comment"
-            }
-          ]
-        },
-        {
-          "function": "filter",
-          "predicate": {
-            "field": "key",
-            "op": "!=",
-            "value": "/"
-          },
-          "expect": []
-        }
-      ],
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
@@ -716,36 +756,36 @@
         "comments",
         "whitespace"
       ],
-      "inputs": [
-        "/= this is a comment\r\n"
-      ],
       "functions": [
         "filter",
         "parse"
-      ]
-    },
-    {
-      "name": "crlf_preserve_comment_only",
+      ],
+      "inputs": [
+        "/= this is a comment\r\n"
+      ],
+      "name": "crlf_normalize_comment_only",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/",
-              "value": "this is a comment\r"
+              "value": "this is a comment"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
+          "expect": [],
           "function": "filter",
           "predicate": {
             "field": "key",
             "op": "!=",
             "value": "/"
-          },
-          "expect": []
+          }
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "crlf_preserve_literal"
       ],
@@ -753,19 +793,55 @@
         "comments",
         "whitespace"
       ],
-      "inputs": [
-        "/= this is a comment\r\n"
-      ],
       "functions": [
         "filter",
         "parse"
+      ],
+      "inputs": [
+        "/= this is a comment\r\n"
+      ],
+      "name": "crlf_preserve_comment_only",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "/",
+              "value": "this is a comment\r"
+            }
+          ],
+          "function": "parse"
+        },
+        {
+          "expect": [],
+          "function": "filter",
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          }
+        }
       ]
     },
     {
+      "behaviors": [
+        "crlf_normalize_to_lf"
+      ],
+      "features": [
+        "comments",
+        "whitespace"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "filter",
+        "parse"
+      ],
+      "inputs": [
+        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
+      ],
       "name": "crlf_normalize_comments_and_values",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/",
@@ -783,15 +859,10 @@
               "key": "port",
               "value": "8080"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "filter",
-          "predicate": {
-            "field": "key",
-            "op": "!=",
-            "value": "/"
-          },
           "expect": [
             {
               "key": "host",
@@ -801,10 +872,15 @@
               "key": "port",
               "value": "8080"
             }
-          ]
+          ],
+          "function": "filter",
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          }
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "/": [
               "Server config",
@@ -812,30 +888,46 @@
             ],
             "host": "localhost",
             "port": "8080"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "/": {
+              "Port setting": {},
+              "Server config": {}
+            },
+            "host": {
+              "localhost": {}
+            },
+            "port": {
+              "8080": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_preserve_literal"
       ],
       "features": [
         "comments",
         "whitespace"
       ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "filter",
+        "parse"
+      ],
       "inputs": [
         "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
       ],
-      "functions": [
-        "build_hierarchy",
-        "filter",
-        "parse"
-      ]
-    },
-    {
       "name": "crlf_preserve_comments_and_values",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/",
@@ -853,15 +945,10 @@
               "key": "port",
               "value": "8080\r"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "filter",
-          "predicate": {
-            "field": "key",
-            "op": "!=",
-            "value": "/"
-          },
           "expect": [
             {
               "key": "host",
@@ -871,10 +958,15 @@
               "key": "port",
               "value": "8080\r"
             }
-          ]
+          ],
+          "function": "filter",
+          "predicate": {
+            "field": "key",
+            "op": "!=",
+            "value": "/"
+          }
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "/": [
               "Server config\r",
@@ -882,30 +974,44 @@
             ],
             "host": "localhost\r",
             "port": "8080\r"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "/": {
+              "Port setting\r": {},
+              "Server config\r": {}
+            },
+            "host": {
+              "localhost\r": {}
+            },
+            "port": {
+              "8080\r": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
-        "crlf_preserve_literal"
+        "crlf_normalize_to_lf"
       ],
       "features": [
         "comments",
         "whitespace"
       ],
-      "inputs": [
-        "/= Server config\r\nhost = localhost\r\n/= Port setting\r\nport = 8080\r\n"
-      ],
       "functions": [
-        "build_hierarchy",
         "filter",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ],
       "name": "crlf_normalize_multiple_comments",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/",
@@ -919,38 +1025,38 @@
               "key": "/",
               "value": "third comment"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
+          "expect": [],
           "function": "filter",
           "predicate": {
             "field": "key",
             "op": "!=",
             "value": "/"
-          },
-          "expect": []
+          }
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
-        "crlf_normalize_to_lf"
+        "crlf_preserve_literal"
       ],
       "features": [
         "comments",
         "whitespace"
       ],
-      "inputs": [
-        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-      ],
       "functions": [
         "filter",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
+      ],
       "name": "crlf_preserve_multiple_comments",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/",
@@ -964,46 +1070,21 @@
               "key": "/",
               "value": "third comment\r"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
+          "expect": [],
           "function": "filter",
           "predicate": {
             "field": "key",
             "op": "!=",
             "value": "/"
-          },
-          "expect": []
+          }
         }
-      ],
-      "behaviors": [
-        "crlf_preserve_literal"
-      ],
-      "features": [
-        "comments",
-        "whitespace"
-      ],
-      "inputs": [
-        "/= first comment\r\n/= second comment\r\n/= third comment\r\n"
-      ],
-      "functions": [
-        "filter",
-        "parse"
       ]
     },
     {
-      "name": "behavior_combo_tabs_and_crlf",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "key",
-              "value": "value\twith\ttabs"
-            }
-          ]
-        }
-      ],
       "behaviors": [
         "crlf_normalize_to_lf"
       ],
@@ -1011,11 +1092,23 @@
         "whitespace",
         "tab_in_value_preserved"
       ],
+      "functions": [
+        "parse"
+      ],
       "inputs": [
         "key = \tvalue\twith\ttabs\r\n"
       ],
-      "functions": [
-        "parse"
+      "name": "behavior_combo_tabs_and_crlf",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "key",
+              "value": "value\twith\ttabs"
+            }
+          ],
+          "function": "parse"
+        }
       ]
     }
   ]

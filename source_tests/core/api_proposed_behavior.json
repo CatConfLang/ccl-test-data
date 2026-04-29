@@ -2,10 +2,22 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "behaviors": [
+        "multiline_values"
+      ],
+      "features": [
+        "empty_keys",
+        "multiline_continuation"
+      ],
+      "functions": [
+        "parse_indented"
+      ],
+      "inputs": [
+        "== Section Header =\n  This continues the header\nkey = value"
+      ],
       "name": "multiline_section_header_value",
       "tests": [
         {
-          "function": "parse_indented",
           "expect": [
             {
               "key": "",
@@ -15,28 +27,25 @@
               "key": "key",
               "value": "value"
             }
-          ]
+          ],
+          "function": "parse_indented"
         }
-      ],
-      "behaviors": [
-        "multiline_values"
-      ],
-      "features": [
-        "empty_keys",
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "== Section Header =\n  This continues the header\nkey = value"
-      ],
-      "functions": [
-        "parse_indented"
       ]
     },
     {
+      "features": [
+        "empty_keys",
+        "multiline_keys"
+      ],
+      "functions": [
+        "parse_indented"
+      ],
+      "inputs": [
+        "== Section Header =\nThis continues the header\nkey = value"
+      ],
       "name": "unindented_line_does_not_continue_value",
       "tests": [
         {
-          "function": "parse_indented",
           "expect": [
             {
               "key": "",
@@ -46,28 +55,35 @@
               "key": "This continues the header\nkey",
               "value": "value"
             }
-          ]
+          ],
+          "function": "parse_indented"
         }
-      ],
-      "features": [
-        "empty_keys",
-        "multiline_keys"
       ],
       "variants": [
         "reference_compliant"
-      ],
-      "inputs": [
-        "== Section Header =\nThis continues the header\nkey = value"
-      ],
-      "functions": [
-        "parse_indented"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion",
+        "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse_indented"
+      ],
+      "inputs": [
+        "descriptions = First line\n  second line\ndescriptions = Another item"
+      ],
       "name": "indented_line_is_continuation",
       "tests": [
         {
-          "function": "parse_indented",
           "expect": [
             {
               "key": "descriptions",
@@ -77,90 +93,105 @@
               "key": "descriptions",
               "value": "Another item"
             }
-          ]
+          ],
+          "function": "parse_indented"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "descriptions": [
               "First line\n  second line",
               "Another item"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "descriptions": {
+              "Another item": {},
+              "First line\n  second line": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "descriptions"
+          ],
           "expect": [
             "First line\n  second line",
             "Another item"
           ],
-          "args": [
-            "descriptions"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion",
-        "multiline_values"
-      ],
-      "features": [
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "descriptions = First line\n  second line\ndescriptions = Another item"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse_indented"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "item = single"
+      ],
       "name": "single_item_as_list",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "item",
               "value": "single"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "item": "single"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "item": {
+              "single": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "item"
+          ],
           "expect": [
             "single"
           ],
-          "args": [
-            "item"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "inputs": [
-        "item = single"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ],
       "name": "mixed_duplicate_single_keys",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "ports",
@@ -174,65 +205,78 @@
               "key": "host",
               "value": "localhost"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "host": "localhost",
             "ports": [
               "80",
               "443"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "host": {
+              "localhost": {}
+            },
+            "ports": {
+              "443": {},
+              "80": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "ports"
+          ],
           "expect": [
             "80",
             "443"
           ],
-          "args": [
-            "ports"
-          ]
+          "function": "get_list"
         },
         {
-          "function": "get_list",
+          "args": [
+            "host"
+          ],
           "expect": [
             "localhost"
           ],
-          "args": [
-            "host"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion"
-      ],
-      "inputs": [
-        "ports = 80\nports = 443\nhost = localhost"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
       "name": "nested_list_access",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "database",
               "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "database": {
               "hosts": [
@@ -241,89 +285,113 @@
               ],
               "port": "5432"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "database": {
+              "hosts": {
+                "primary": {},
+                "secondary": {}
+              },
+              "port": {
+                "5432": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "database",
+            "hosts"
+          ],
           "expect": [
             "primary",
             "secondary"
           ],
-          "args": [
-            "database",
-            "hosts"
-          ]
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "5432"
-          ],
           "args": [
             "database",
             "port"
-          ]
+          ],
+          "expect": [
+            "5432"
+          ],
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "path_traversal"
-      ],
-      "inputs": [
-        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "empty_list ="
+      ],
       "name": "empty_list",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "empty_list",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "empty_list": ""
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "empty_list": {
+              "": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "empty_list"
+          ],
           "expect": [
             ""
           ],
-          "args": [
-            "empty_list"
-          ]
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_enabled",
         "array_order_insertion"
       ],
-      "inputs": [
-        "empty_list ="
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
       "name": "list_with_numbers",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "numbers",
@@ -341,10 +409,10 @@
               "key": "numbers",
               "value": "0"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "numbers": [
               "1",
@@ -352,39 +420,51 @@
               "-17",
               "0"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "numbers": {
+              "-17": {},
+              "0": {},
+              "1": {},
+              "42": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "numbers"
+          ],
           "expect": [
             "1",
             "42",
             "-17",
             "0"
           ],
-          "args": [
-            "numbers"
-          ]
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_enabled",
         "array_order_insertion"
       ],
-      "inputs": [
-        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
       "name": "list_with_booleans",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "flags",
@@ -402,10 +482,10 @@
               "key": "flags",
               "value": "no"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "flags": [
               "true",
@@ -413,39 +493,54 @@
               "yes",
               "no"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "flags": {
+              "false": {},
+              "no": {},
+              "true": {},
+              "yes": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "flags"
+          ],
           "expect": [
             "true",
             "false",
             "yes",
             "no"
           ],
-          "args": [
-            "flags"
-          ]
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_enabled",
         "array_order_insertion"
       ],
-      "inputs": [
-        "flags = true\nflags = false\nflags = yes\nflags = no"
+      "features": [
+        "whitespace"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
       "name": "list_with_whitespace",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
@@ -463,10 +558,10 @@
               "key": "items",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": [
               "spaced",
@@ -474,85 +569,34 @@
               "",
               ""
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "items": {
+              "": {},
+              "normal": {},
+              "spaced": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "items"
+          ],
           "expect": [
             "spaced",
             "normal",
             "",
             ""
           ],
-          "args": [
-            "items"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion"
-      ],
-      "features": [
-        "whitespace"
-      ],
-      "inputs": [
-        "items =   spaced   \nitems = normal\nitems =\nitems =   "
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
-      "name": "list_with_unicode",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "names",
-              "value": "\u5f20\u4e09"
-            },
-            {
-              "key": "names",
-              "value": "Jos\u00e9"
-            },
-            {
-              "key": "names",
-              "value": "Fran\u00e7ois"
-            },
-            {
-              "key": "names",
-              "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "names": [
-              "\u5f20\u4e09",
-              "Jos\u00e9",
-              "Fran\u00e7ois",
-              "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-            ]
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": [
-            "\u5f20\u4e09",
-            "Jos\u00e9",
-            "Fran\u00e7ois",
-            "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-          ],
-          "args": [
-            "names"
-          ]
-        }
-      ],
       "behaviors": [
         "list_coercion_enabled",
         "array_order_insertion"
@@ -560,20 +604,91 @@
       "features": [
         "unicode"
       ],
-      "inputs": [
-        "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
+      ],
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ],
+      "name": "list_with_unicode",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "names",
+              "value": "张三"
+            },
+            {
+              "key": "names",
+              "value": "José"
+            },
+            {
+              "key": "names",
+              "value": "François"
+            },
+            {
+              "key": "names",
+              "value": "العربية"
+            }
+          ],
+          "function": "parse"
+        },
+        {
+          "expect": {
+            "names": [
+              "张三",
+              "José",
+              "François",
+              "العربية"
+            ]
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "names": {
+              "François": {},
+              "José": {},
+              "العربية": {},
+              "张三": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "names"
+          ],
+          "expect": [
+            "张三",
+            "José",
+            "François",
+            "العربية"
+          ],
+          "function": "get_list"
+        }
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|\nsymbols = \u003c\u003e=+"
+      ],
       "name": "list_with_special_characters",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "symbols",
@@ -581,7 +696,7 @@
             },
             {
               "key": "symbols",
-              "value": "!^&*()"
+              "value": "!^\u0026*()"
             },
             {
               "key": "symbols",
@@ -589,52 +704,68 @@
             },
             {
               "key": "symbols",
-              "value": "<>=+"
+              "value": "\u003c\u003e=+"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "symbols": [
               "@#$%",
-              "!^&*()",
+              "!^\u0026*()",
               "[]{}|",
-              "<>=+"
+              "\u003c\u003e=+"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "@#$%",
-            "!^&*()",
-            "[]{}|",
-            "<>=+"
-          ],
+          "expect": {
+            "symbols": {
+              "!^\u0026*()": {},
+              "\u003c\u003e=+": {},
+              "@#$%": {},
+              "[]{}|": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "symbols"
-          ]
+          ],
+          "expect": [
+            "@#$%",
+            "!^\u0026*()",
+            "[]{}|",
+            "\u003c\u003e=+"
+          ],
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion"
-      ],
-      "inputs": [
-        "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|\nsymbols = <>=+"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion",
+        "multiline_values"
+      ],
+      "features": [
+        "multiline_continuation"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse_indented"
+      ],
+      "inputs": [
+        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
+      ],
       "name": "list_multiline_values",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "descriptions": [
               "First line",
@@ -642,21 +773,34 @@
               "Third item"
             ],
             "second line": ""
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
+          "expect": {
+            "descriptions": {
+              "Another item": {},
+              "First line": {},
+              "Third item": {}
+            },
+            "second line": {
+              "": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "descriptions"
+          ],
           "expect": [
             "First line",
             "Another item",
             "Third item"
           ],
-          "args": [
-            "descriptions"
-          ]
+          "function": "get_list"
         },
         {
-          "function": "parse_indented",
           "expect": [
             {
               "key": "descriptions",
@@ -674,75 +818,73 @@
               "key": "descriptions",
               "value": "Third item"
             }
-          ]
+          ],
+          "function": "parse_indented"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion",
-        "multiline_values"
-      ],
-      "features": [
-        "multiline_continuation"
-      ],
-      "inputs": [
-        "descriptions = First line\nsecond line\ndescriptions = Another item\ndescriptions = Third item"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse_indented"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled",
+        "array_order_insertion",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse_indented"
+      ],
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
       "name": "complex_mixed_list_scenarios",
       "tests": [
         {
-          "function": "get_list",
+          "args": [
+            "config",
+            "servers"
+          ],
           "expect": [
             "web1",
             "web2"
           ],
-          "args": [
-            "config",
-            "servers"
-          ]
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "primary",
-            "backup"
-          ],
           "args": [
             "config",
             "database",
             "hosts"
-          ]
+          ],
+          "expect": [
+            "primary",
+            "backup"
+          ],
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": [
-            "redis"
-          ],
           "args": [
             "config",
             "cache"
-          ]
+          ],
+          "expect": [
+            "redis"
+          ],
+          "function": "get_list"
         },
         {
-          "function": "get_list",
+          "args": [
+            "features"
+          ],
           "expect": [
             "auth",
             "api",
             "ui"
           ],
-          "args": [
-            "features"
-          ]
+          "function": "get_list"
         },
         {
-          "function": "parse_indented",
           "expect": [
             {
               "key": "config",
@@ -760,10 +902,10 @@
               "key": "features",
               "value": "ui"
             }
-          ]
+          ],
+          "function": "parse_indented"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "cache": "redis",
@@ -784,107 +926,141 @@
               "api",
               "ui"
             ]
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "config": {
+              "cache": {
+                "redis": {}
+              },
+              "database": {
+                "hosts": {
+                  "backup": {},
+                  "primary": {}
+                },
+                "port": {
+                  "5432": {}
+                }
+              },
+              "servers": {
+                "web1": {},
+                "web2": {}
+              }
+            },
+            "features": {
+              "api": {},
+              "auth": {},
+              "ui": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled",
-        "array_order_insertion",
-        "path_traversal"
-      ],
-      "inputs": [
-        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse_indented"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_enabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "safe = value"
+      ],
       "name": "list_path_traversal_protection",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "safe",
               "value": "value"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "safe": "value"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "safe": {
+              "value": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             ""
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
+          "args": [
+            "safe"
+          ],
           "expect": [
             "value"
           ],
-          "args": [
-            "safe"
-          ]
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_enabled"
-      ],
-      "inputs": [
-        "safe = value"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_string",
+        "parse"
+      ],
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "parse_empty_value",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "empty_key": ""
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "",
+          "expect": {
+            "empty_key": {
+              "": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "empty_key"
-          ]
+          ],
+          "expect": "",
+          "function": "get_string"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "empty_key",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "empty_key ="
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_string",
-        "parse"
       ]
     }
   ]

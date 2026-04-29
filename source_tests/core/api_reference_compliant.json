@@ -2,51 +2,72 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "item = single"
+      ],
       "name": "single_item_as_list_reference",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "item",
               "value": "single"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "item": "single"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "item": {
+              "single": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "item"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
-      ],
-      "inputs": [
-        "item = single"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "ports = 80\nports = 443\nhost = localhost"
+      ],
       "name": "mixed_duplicate_single_keys_reference",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "ports",
@@ -60,60 +81,73 @@
               "key": "host",
               "value": "localhost"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "host": "localhost",
             "ports": [
               "443",
               "80"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "host": {
+              "localhost": {}
+            },
+            "ports": {
+              "443": {},
+              "80": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "ports"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "host"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "inputs": [
-        "ports = 80\nports = 443\nhost = localhost"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
+      ],
       "name": "nested_list_access_reference",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "database",
               "value": "\n  hosts = primary\n  hosts = secondary\n  port = 5432"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "database": {
               "hosts": [
@@ -122,84 +156,108 @@
               ],
               "port": "5432"
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "database": {
+              "hosts": {
+                "primary": {},
+                "secondary": {}
+              },
+              "port": {
+                "5432": {}
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "database",
             "hosts"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "database",
             "port"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "path_traversal"
       ],
       "variants": [
         "reference_compliant"
-      ],
-      "inputs": [
-        "database =\n  hosts = primary\n  hosts = secondary\n  port = 5432"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "empty_list ="
+      ],
       "name": "empty_list_reference",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "empty_list": ""
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "empty_list": {
+              "": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "empty_list"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "empty_list",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         }
       ],
       "variants": [
         "reference_compliant"
-      ],
-      "inputs": [
-        "empty_list ="
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
+      ],
       "name": "list_with_numbers_reference",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "numbers",
@@ -217,10 +275,10 @@
               "key": "numbers",
               "value": "0"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "numbers": [
               "-17",
@@ -228,41 +286,53 @@
               "1",
               "42"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "numbers": {
+              "-17": {},
+              "0": {},
+              "1": {},
+              "42": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "numbers"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "inputs": [
-        "numbers = 1\nnumbers = 42\nnumbers = -17\nnumbers = 0"
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "flags = true\nflags = false\nflags = yes\nflags = no"
+      ],
       "name": "list_with_booleans_reference",
       "tests": [
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "flags"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "flags",
@@ -280,10 +350,10 @@
               "key": "flags",
               "value": "no"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "flags": [
               "false",
@@ -291,27 +361,43 @@
               "true",
               "yes"
             ]
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "flags": {
+              "false": {},
+              "no": {},
+              "true": {},
+              "yes": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "inputs": [
-        "flags = true\nflags = false\nflags = yes\nflags = no"
+      "features": [
+        "empty_keys",
+        "whitespace"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "items =   spaced   \nitems = normal\nitems =\nitems =   "
+      ],
       "name": "list_with_whitespace_reference",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "items",
@@ -329,10 +415,10 @@
               "key": "items",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "items": [
               "",
@@ -340,104 +426,123 @@
               "normal",
               "spaced"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "items": {
+              "": {},
+              "normal": {},
+              "spaced": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "items"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "features": [
-        "empty_keys",
-        "whitespace"
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "inputs": [
-        "items =   spaced   \nitems = normal\nitems =\nitems =   "
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
-      "name": "list_with_unicode_reference",
-      "tests": [
-        {
-          "function": "parse",
-          "expect": [
-            {
-              "key": "names",
-              "value": "\u5f20\u4e09"
-            },
-            {
-              "key": "names",
-              "value": "Jos\u00e9"
-            },
-            {
-              "key": "names",
-              "value": "Fran\u00e7ois"
-            },
-            {
-              "key": "names",
-              "value": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-            }
-          ]
-        },
-        {
-          "function": "build_hierarchy",
-          "expect": {
-            "names": [
-              "Fran\u00e7ois",
-              "Jos\u00e9",
-              "\u0627\u0644\u0639\u0631\u0628\u064a\u0629",
-              "\u5f20\u4e09"
-            ]
-          }
-        },
-        {
-          "function": "get_list",
-          "expect": null,
-          "args": [
-            "names"
-          ]
-        }
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic"
       ],
       "features": [
         "unicode"
       ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "names = 张三\nnames = José\nnames = François\nnames = العربية"
+      ],
+      "name": "list_with_unicode_reference",
+      "tests": [
+        {
+          "expect": [
+            {
+              "key": "names",
+              "value": "张三"
+            },
+            {
+              "key": "names",
+              "value": "José"
+            },
+            {
+              "key": "names",
+              "value": "François"
+            },
+            {
+              "key": "names",
+              "value": "العربية"
+            }
+          ],
+          "function": "parse"
+        },
+        {
+          "expect": {
+            "names": [
+              "François",
+              "José",
+              "العربية",
+              "张三"
+            ]
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "names": {
+              "François": {},
+              "José": {},
+              "العربية": {},
+              "张三": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
+          "args": [
+            "names"
+          ],
+          "expect": null,
+          "function": "get_list"
+        }
+      ]
+    },
+    {
       "behaviors": [
         "list_coercion_disabled",
         "array_order_lexicographic"
       ],
-      "inputs": [
-        "names = \u5f20\u4e09\nnames = Jos\u00e9\nnames = Fran\u00e7ois\nnames = \u0627\u0644\u0639\u0631\u0628\u064a\u0629"
-      ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "symbols = @#$%\nsymbols = !^\u0026*()\nsymbols = []{}|"
+      ],
       "name": "list_with_special_characters_reference",
       "tests": [
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "symbols"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "symbols",
@@ -445,43 +550,54 @@
             },
             {
               "key": "symbols",
-              "value": "!^&*()"
+              "value": "!^\u0026*()"
             },
             {
               "key": "symbols",
               "value": "[]{}|"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "symbols": [
-              "!^&*()",
+              "!^\u0026*()",
               "@#$%",
               "[]{}|"
             ]
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "symbols": {
+              "!^\u0026*()": {},
+              "@#$%": {},
+              "[]{}|": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic"
-      ],
-      "inputs": [
-        "symbols = @#$%\nsymbols = !^&*()\nsymbols = []{}|"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list"
+      ],
+      "inputs": [
+        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
+      ],
       "name": "complex_mixed_list_scenarios_reference",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "cache": "redis",
@@ -502,181 +618,226 @@
               "auth",
               "ui"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "config": {
+              "cache": {
+                "redis": {}
+              },
+              "database": {
+                "hosts": {
+                  "backup": {},
+                  "primary": {}
+                },
+                "port": {
+                  "5432": {}
+                }
+              },
+              "servers": {
+                "web1": {},
+                "web2": {}
+              }
+            },
+            "features": {
+              "api": {},
+              "auth": {},
+              "ui": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "servers"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "config",
             "database",
             "hosts"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "config",
             "cache"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             "features"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic",
-        "path_traversal"
-      ],
-      "inputs": [
-        "config =\n  servers = web1\n  servers = web2\n  database =\n    hosts = primary\n    hosts = backup\n    port = 5432\n  cache = redis\nfeatures = auth\nfeatures = api\nfeatures = ui"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "safe = value"
+      ],
       "name": "list_path_traversal_protection_reference",
       "tests": [
         {
-          "function": "get_list",
-          "expect": null,
           "args": [
             ""
-          ]
-        },
-        {
-          "function": "get_list",
-          "expect": null
-        },
-        {
-          "function": "get_list",
+          ],
           "expect": null,
+          "function": "get_list"
+        },
+        {
+          "expect": null,
+          "function": "get_list"
+        },
+        {
           "args": [
             "safe"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "safe",
               "value": "value"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "safe": "value"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "safe": {
+              "value": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled"
       ],
       "variants": [
         "reference_compliant"
-      ],
-      "inputs": [
-        "safe = value"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse"
+      ],
+      "inputs": [
+        "empty_key ="
+      ],
       "name": "empty_value_reference_behavior",
       "tests": [
         {
-          "function": "build_hierarchy",
           "expect": {
             "empty_key": ""
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "parse",
+          "expect": {
+            "empty_key": {
+              "": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "expect": [
             {
               "key": "empty_key",
               "value": ""
             }
-          ]
+          ],
+          "function": "parse"
         }
       ],
       "variants": [
         "reference_compliant"
+      ]
+    },
+    {
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "empty_key ="
       ],
-      "functions": [
-        "build_hierarchy",
-        "parse"
-      ]
-    },
-    {
       "name": "canonical_format_empty_values_ocaml_reference",
       "tests": [
         {
-          "function": "canonical_format",
-          "expect": "empty_key =\n"
+          "expect": "empty_key =\n",
+          "function": "canonical_format"
         }
-      ],
-      "inputs": [
-        "empty_key ="
-      ],
-      "functions": [
-        "canonical_format"
       ]
     },
     {
-      "name": "canonical_format_unicode_ocaml_reference",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "emo =\n  \ud83c\udf1f\u2728 =\nunicode =\n  \u4f60\u597d\u4e16\u754c =\n"
-        }
+      "behaviors": [
+        "indent_spaces"
       ],
       "features": [
         "unicode"
       ],
-      "behaviors": [
-        "indent_spaces"
-      ],
-      "inputs": [
-        "unicode = \u4f60\u597d\u4e16\u754c\nemo = \ud83c\udf1f\u2728"
-      ],
       "functions": [
         "canonical_format"
+      ],
+      "inputs": [
+        "unicode = 你好世界\nemo = 🌟✨"
+      ],
+      "name": "canonical_format_unicode_ocaml_reference",
+      "tests": [
+        {
+          "expect": "emo =\n  🌟✨ =\nunicode =\n  你好世界 =\n",
+          "function": "canonical_format"
+        }
       ]
     },
     {
+      "behaviors": [
+        "crlf_preserve_literal",
+        "indent_spaces"
+      ],
+      "functions": [
+        "canonical_format",
+        "parse"
+      ],
+      "inputs": [
+        "key1 = value1\r\nkey2 = value2\r\n"
+      ],
       "name": "canonical_format_line_endings_reference_behavior",
       "tests": [
         {
-          "function": "canonical_format",
-          "expect": "key1 =\n  value1\r =\nkey2 =\n  value2\r =\n"
+          "expect": "key1 =\n  value1\r =\nkey2 =\n  value2\r =\n",
+          "function": "canonical_format"
         },
         {
-          "function": "parse",
           "expect": [
             {
               "key": "key1",
@@ -686,55 +847,45 @@
               "key": "key2",
               "value": "value2\r"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "behaviors": [
-        "crlf_preserve_literal",
-        "indent_spaces"
-      ],
-      "inputs": [
-        "key1 = value1\r\nkey2 = value2\r\n"
-      ],
-      "functions": [
-        "canonical_format",
-        "parse"
       ]
     },
     {
-      "name": "canonical_format_consistent_spacing_ocaml_reference",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "key1=value1\nkey2  =  value2\nkey3\t=\tvalue3"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "canonical_format_consistent_spacing_ocaml_reference",
+      "tests": [
+        {
+          "expect": "key1 =\n  value1 =\nkey2 =\n  value2 =\nkey3 =\n  value3 =\n",
+          "function": "canonical_format"
+        }
       ]
     },
     {
-      "name": "deterministic_output_ocaml_reference",
-      "tests": [
-        {
-          "function": "canonical_format",
-          "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n"
-        }
-      ],
       "behaviors": [
         "indent_spaces"
+      ],
+      "functions": [
+        "canonical_format"
       ],
       "inputs": [
         "z = last\na = first\nm = middle"
       ],
-      "functions": [
-        "canonical_format"
+      "name": "deterministic_output_ocaml_reference",
+      "tests": [
+        {
+          "expect": "a =\n  first =\nm =\n  middle =\nz =\n  last =\n",
+          "function": "canonical_format"
+        }
       ]
     }
   ]

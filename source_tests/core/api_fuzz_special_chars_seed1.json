@@ -2,943 +2,1011 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "' = val406"
+      ],
       "name": "s1_fuzz_single_squote",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "'",
               "value": "val406"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "' = val406"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "* = val236"
+      ],
       "name": "s1_fuzz_single_asterisk",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "*",
               "value": "val236"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "* = val236"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\\ = val775"
+      ],
       "name": "s1_fuzz_single_backslash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "\\",
               "value": "val775"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "\\ = val775"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "} = val221"
+      ],
       "name": "s1_fuzz_single_rbrace",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "}",
               "value": "val221"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "} = val221"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "~ = val416"
+      ],
       "name": "s1_fuzz_single_tilde",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "~",
               "value": "val416"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "~ = val416"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "; = val155"
+      ],
       "name": "s1_fuzz_single_semicolon",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": ";",
               "value": "val155"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "; = val155"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "+ = val794"
+      ],
       "name": "s1_fuzz_single_plus",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "+",
               "value": "val794"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "+ = val794"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "$ = val665"
+      ],
       "name": "s1_fuzz_single_dollar",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "$",
               "value": "val665"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "$ = val665"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "% = val973"
+      ],
       "name": "s1_fuzz_single_percent",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "%",
               "value": "val973"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "% = val973"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "@ = val410"
+      ],
       "name": "s1_fuzz_single_at",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "@",
               "value": "val410"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "@ = val410"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\" = val797"
+      ],
       "name": "s1_fuzz_single_dquote",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "\"",
               "value": "val797"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "\" = val797"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "( = val364"
+      ],
       "name": "s1_fuzz_single_lparen",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "(",
               "value": "val364"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "( = val364"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\u003c = val789"
+      ],
       "name": "s1_fuzz_single_lt",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "<",
+              "key": "\u003c",
               "value": "val789"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "< = val789"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "[ = val216"
+      ],
       "name": "s1_fuzz_single_lbracket",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "[",
               "value": "val216"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "[ = val216"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        ") = val374"
+      ],
       "name": "s1_fuzz_single_rparen",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": ")",
               "value": "val374"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        ") = val374"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "@\u003c/ = combo594"
+      ],
       "name": "s1_fuzz_combo_at_lt_slash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "@</",
+              "key": "@\u003c/",
               "value": "combo594"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "@</ = combo594"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "/(;\\ = combo220"
+      ],
       "name": "s1_fuzz_combo_slash_lparen_semicolon_backslash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/(;\\",
               "value": "combo220"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "/(;\\ = combo220"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\u003c# = combo31"
+      ],
       "name": "s1_fuzz_combo_lt_hash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "<#",
+              "key": "\u003c#",
               "value": "combo31"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "<# = combo31"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "(\"! = combo359"
+      ],
       "name": "s1_fuzz_combo_lparen_dquote_bang",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "(\"!",
               "value": "combo359"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "(\"! = combo359"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "/#\\\" = combo87"
+      ],
       "name": "s1_fuzz_combo_slash_hash_backslash_dquote",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/#\\\"",
               "value": "combo87"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "/#\\\" = combo87"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "/%| = combo957"
+      ],
       "name": "s1_fuzz_combo_slash_percent_pipe",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "/%|",
               "value": "combo957"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "/%| = combo957"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "{|\\ = combo828"
+      ],
       "name": "s1_fuzz_combo_lbrace_pipe_backslash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "{|\\",
               "value": "combo828"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "{|\\ = combo828"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "!%/ = combo382"
+      ],
       "name": "s1_fuzz_combo_bang_percent_slash",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "!%/",
               "value": "combo382"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "!%/ = combo382"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "{|) = combo608"
+      ],
       "name": "s1_fuzz_combo_lbrace_pipe_rparen",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "{|)",
               "value": "combo608"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "{|) = combo608"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        ":;'\u003c = combo488"
+      ],
       "name": "s1_fuzz_combo_colon_semicolon_squote_lt",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": ":;'<",
+              "key": ":;'\u003c",
               "value": "combo488"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        ":;'< = combo488"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "[host = pos428"
+      ],
       "name": "s1_fuzz_pos_start_lbracket_host",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "[host",
               "value": "pos428"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "[host = pos428"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "ga$mma = pos138"
+      ],
       "name": "s1_fuzz_pos_middle_dollar_gamma",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "ga$mma",
               "value": "pos138"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "ga$mma = pos138"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "name| = pos691"
+      ],
       "name": "s1_fuzz_pos_end_pipe_name",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "name|",
               "value": "pos691"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "name| = pos691"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "*server = pos50"
+      ],
       "name": "s1_fuzz_pos_start_asterisk_server",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "*server",
               "value": "pos50"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "*server = pos50"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "al\u003epha = pos153"
+      ],
       "name": "s1_fuzz_pos_middle_gt_alpha",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "al>pha",
+              "key": "al\u003epha",
               "value": "pos153"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "al>pha = pos153"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "item' = pos133"
+      ],
       "name": "s1_fuzz_pos_end_squote_item",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "item'",
               "value": "pos133"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "item' = pos133"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "\"mode = pos155"
+      ],
       "name": "s1_fuzz_pos_start_dquote_mode",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "\"mode",
               "value": "pos155"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "\"mode = pos155"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "po\u0026rt = pos601"
+      ],
       "name": "s1_fuzz_pos_middle_ampersand_port",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "po&rt",
+              "key": "po\u0026rt",
               "value": "pos601"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "po&rt = pos601"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "host# = pos976"
+      ],
       "name": "s1_fuzz_pos_end_hash_host",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "host#",
               "value": "pos976"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "host# = pos976"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "$path = pos556"
+      ],
       "name": "s1_fuzz_pos_start_dollar_path",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "$path",
               "value": "pos556"
             }
-          ]
+          ],
+          "function": "parse"
         }
-      ],
-      "inputs": [
-        "$path = pos556"
-      ],
-      "functions": [
-        "parse"
       ]
     },
     {
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_string",
+        "parse"
+      ],
+      "inputs": [
+        "name = data?x77]x88"
+      ],
       "name": "s1_fuzz_val_name_0",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "name",
               "value": "data?x77]x88"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "name": "data?x77]x88"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "data?x77]x88",
+          "expect": {
+            "name": {
+              "data?x77]x88": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "name"
-          ]
+          ],
+          "expect": "data?x77]x88",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "name = data?x77]x88"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "data = data'x23!x22"
+      ],
       "name": "s1_fuzz_val_data_1",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "data",
               "value": "data'x23!x22"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "data": "data'x23!x22"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "data'x23!x22",
+          "expect": {
+            "data": {
+              "data'x23!x22": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "data"
-          ]
+          ],
+          "expect": "data'x23!x22",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "data = data'x23!x22"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "mode = data?x30\"x15~x73"
+      ],
       "name": "s1_fuzz_val_mode_2",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "mode",
               "value": "data?x30\"x15~x73"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "mode": "data?x30\"x15~x73"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "data?x30\"x15~x73",
+          "expect": {
+            "mode": {
+              "data?x30\"x15~x73": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "mode"
-          ]
+          ],
+          "expect": "data?x30\"x15~x73",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "mode = data?x30\"x15~x73"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "name = data$x23~x81@x41"
+      ],
       "name": "s1_fuzz_val_name_3",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "name",
               "value": "data$x23~x81@x41"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "name": "data$x23~x81@x41"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "data$x23~x81@x41",
+          "expect": {
+            "name": {
+              "data$x23~x81@x41": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "name"
-          ]
+          ],
+          "expect": "data$x23~x81@x41",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "name = data$x23~x81@x41"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "user = data}x85$x2$x43"
+      ],
       "name": "s1_fuzz_val_user_4",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "user",
               "value": "data}x85$x2$x43"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "user": "data}x85$x2$x43"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "data}x85$x2$x43",
+          "expect": {
+            "user": {
+              "data}x85$x2$x43": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "user"
-          ]
+          ],
+          "expect": "data}x85$x2$x43",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "user = data}x85$x2$x43"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "\u0026alpha = nested297\n}gamma = deep715"
+      ],
       "name": "s1_fuzz_nested_ampersand_rbrace_0",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "&alpha",
+              "key": "\u0026alpha",
               "value": "nested297"
             },
             {
               "key": "}gamma",
               "value": "deep715"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
-            "&alpha": "nested297",
+            "\u0026alpha": "nested297",
             "}gamma": "deep715"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested297",
+          "expect": {
+            "\u0026alpha": {
+              "nested297": {}
+            },
+            "}gamma": {
+              "deep715": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
-            "&alpha"
-          ]
+            "\u0026alpha"
+          ],
+          "expect": "nested297",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "&alpha = nested297\n}gamma = deep715"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "?port = nested105\n]name = deep997"
+      ],
       "name": "s1_fuzz_nested_question_rbracket_1",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "?port",
@@ -948,40 +1016,52 @@
               "key": "]name",
               "value": "deep997"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "?port": "nested105",
             "]name": "deep997"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested105",
+          "expect": {
+            "?port": {
+              "nested105": {}
+            },
+            "]name": {
+              "deep997": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "?port"
-          ]
+          ],
+          "expect": "nested105",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "?port = nested105\n]name = deep997"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "+config = nested427\n/server = deep329"
+      ],
       "name": "s1_fuzz_nested_plus_slash_2",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "+config",
@@ -991,83 +1071,107 @@
               "key": "/server",
               "value": "deep329"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "+config": "nested427",
             "/server": "deep329"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested427",
+          "expect": {
+            "+config": {
+              "nested427": {}
+            },
+            "/server": {
+              "deep329": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "+config"
-          ]
+          ],
+          "expect": "nested427",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "+config = nested427\n/server = deep329"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "\u0026name = nested41\n$port = deep486"
+      ],
       "name": "s1_fuzz_nested_ampersand_dollar_3",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
-              "key": "&name",
+              "key": "\u0026name",
               "value": "nested41"
             },
             {
               "key": "$port",
               "value": "deep486"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "$port": "deep486",
-            "&name": "nested41"
-          }
+            "\u0026name": "nested41"
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested41",
+          "expect": {
+            "$port": {
+              "deep486": {}
+            },
+            "\u0026name": {
+              "nested41": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
-            "&name"
-          ]
+            "\u0026name"
+          ],
+          "expect": "nested41",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "&name = nested41\n$port = deep486"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "~beta = nested332\n'beta = deep158"
+      ],
       "name": "s1_fuzz_nested_tilde_squote_4",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "~beta",
@@ -1077,83 +1181,107 @@
               "key": "'beta",
               "value": "deep158"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "'beta": "deep158",
             "~beta": "nested332"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested332",
+          "expect": {
+            "'beta": {
+              "deep158": {}
+            },
+            "~beta": {
+              "nested332": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "~beta"
-          ]
+          ],
+          "expect": "nested332",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "~beta = nested332\n'beta = deep158"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "-config = nested723\n\u0026epsilon = deep891"
+      ],
       "name": "s1_fuzz_nested_hyphen_ampersand_5",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "-config",
               "value": "nested723"
             },
             {
-              "key": "&epsilon",
+              "key": "\u0026epsilon",
               "value": "deep891"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
-            "&epsilon": "deep891",
+            "\u0026epsilon": "deep891",
             "-config": "nested723"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested723",
+          "expect": {
+            "\u0026epsilon": {
+              "deep891": {}
+            },
+            "-config": {
+              "nested723": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "-config"
-          ]
+          ],
+          "expect": "nested723",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "-config = nested723\n&epsilon = deep891"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "$path = nested884\n*mode = deep88"
+      ],
       "name": "s1_fuzz_nested_dollar_asterisk_6",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "$path",
@@ -1163,40 +1291,52 @@
               "key": "*mode",
               "value": "deep88"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "$path": "nested884",
             "*mode": "deep88"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested884",
+          "expect": {
+            "$path": {
+              "nested884": {}
+            },
+            "*mode": {
+              "deep88": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "$path"
-          ]
+          ],
+          "expect": "nested884",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "$path = nested884\n*mode = deep88"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "_path = nested515\n;alpha = deep519"
+      ],
       "name": "s1_fuzz_nested_underscore_semicolon_7",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "_path",
@@ -1206,40 +1346,52 @@
               "key": ";alpha",
               "value": "deep519"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             ";alpha": "deep519",
             "_path": "nested515"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested515",
+          "expect": {
+            ";alpha": {
+              "deep519": {}
+            },
+            "_path": {
+              "nested515": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "_path"
-          ]
+          ],
+          "expect": "nested515",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "_path = nested515\n;alpha = deep519"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "@server = nested286\n)gamma = deep475"
+      ],
       "name": "s1_fuzz_nested_at_rparen_8",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "@server",
@@ -1249,40 +1401,52 @@
               "key": ")gamma",
               "value": "deep475"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             ")gamma": "deep475",
             "@server": "nested286"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested286",
+          "expect": {
+            ")gamma": {
+              "deep475": {}
+            },
+            "@server": {
+              "nested286": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "@server"
-          ]
+          ],
+          "expect": "nested286",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "@server = nested286\n)gamma = deep475"
-      ],
+      ]
+    },
+    {
       "features": [
         "optional_typed_accessors"
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_string",
         "parse"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "}beta = nested295\n~alpha = deep415"
+      ],
       "name": "s1_fuzz_nested_rbrace_tilde_9",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "}beta",
@@ -1292,33 +1456,34 @@
               "key": "~alpha",
               "value": "deep415"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "}beta": "nested295",
             "~alpha": "deep415"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_string",
-          "expect": "nested295",
+          "expect": {
+            "}beta": {
+              "nested295": {}
+            },
+            "~alpha": {
+              "deep415": {}
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "}beta"
-          ]
+          ],
+          "expect": "nested295",
+          "function": "get_string"
         }
-      ],
-      "inputs": [
-        "}beta = nested295\n~alpha = deep415"
-      ],
-      "features": [
-        "optional_typed_accessors"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_string",
-        "parse"
       ]
     }
   ]

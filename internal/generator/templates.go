@@ -599,6 +599,8 @@ func (g *Generator) generateFlatFormatValidation(test types.TestCase) (string, e
 		return g.generateFlatFilterValidation(test)
 	case "build_hierarchy":
 		return g.generateFlatBuildHierarchyValidation(test)
+	case "build_model":
+		return g.generateFlatBuildModelValidation(test)
 	case "get_string", "get_int", "get_bool", "get_float", "get_list":
 		return g.generateFlatTypedAccessValidation(test, test.Validation)
 	default:
@@ -812,6 +814,22 @@ func (g *Generator) generateFlatBuildHierarchyValidation(test types.TestCase) (s
 	objectResult := ccl.BuildHierarchy(parseResult)
 	expected := %s
 	assert.Equal(t, expected, objectResult)`, formatGoValue(expectedMap)), nil
+}
+
+// generateFlatBuildModelValidation generates build_model validation for flat format.
+// build_model produces the OCaml-canonical recursive map-of-maps; expect is always a nested object.
+func (g *Generator) generateFlatBuildModelValidation(test types.TestCase) (string, error) {
+	expectedMap, ok := test.Expected.(map[string]interface{})
+	if !ok {
+		return "", fmt.Errorf("expected map for build_model validation, got %T", test.Expected)
+	}
+
+	return fmt.Sprintf(`// BuildModel validation
+	parseResult, err := ccl.Parse(input)
+	require.NoError(t, err)
+	modelResult := ccl.BuildModel(parseResult)
+	expected := %s
+	assert.Equal(t, expected, modelResult)`, formatGoValue(expectedMap)), nil
 }
 
 // generateFlatTypedAccessValidation generates typed access validation for flat format

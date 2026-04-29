@@ -47,7 +47,8 @@
         "description": "Single CCL function to validate",
         "enum": [
           "parse", "parse_indented", "filter", "compose",
-          "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
+          "build_hierarchy", "build_model",
+          "get_string", "get_int", "get_bool", "get_float", "get_list",
           "print", "canonical_format", "load", "round_trip",
           "compose_associative", "identity_left", "identity_right"
         ]
@@ -137,7 +138,8 @@
           "type": "string",
           "enum": [
             "parse", "parse_indented", "filter", "compose",
-            "build_hierarchy", "get_string", "get_int", "get_bool", "get_float", "get_list",
+            "build_hierarchy", "build_model",
+            "get_string", "get_int", "get_bool", "get_float", "get_list",
             "print", "canonical_format", "load", "round_trip",
             "compose_associative", "identity_left", "identity_right"
           ]

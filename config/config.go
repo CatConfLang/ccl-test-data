@@ -34,6 +34,7 @@ const (
 	FunctionCompose         CCLFunction = "compose"
 	FunctionExpandDotted    CCLFunction = "expand_dotted"
 	FunctionBuildHierarchy  CCLFunction = "build_hierarchy"
+	FunctionBuildModel      CCLFunction = "build_model"
 	FunctionGetString       CCLFunction = "get_string"
 	FunctionGetInt          CCLFunction = "get_int"
 	FunctionGetBool         CCLFunction = "get_bool"
@@ -54,6 +55,7 @@ func AllFunctions() []CCLFunction {
 		FunctionCompose,
 		FunctionExpandDotted,
 		FunctionBuildHierarchy,
+		FunctionBuildModel,
 		FunctionGetString,
 		FunctionGetInt,
 		FunctionGetBool,

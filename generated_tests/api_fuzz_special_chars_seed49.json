@@ -855,6 +855,31 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "epsilon": {
+            "data;x5\u0026x96?x73": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "epsilon = data;x5\u0026x96?x73"
+      ],
+      "name": "s49_fuzz_val_epsilon_0_build_model",
+      "source_test": "s49_fuzz_val_epsilon_0",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "epsilon"
       ],
@@ -923,6 +948,31 @@
       "name": "s49_fuzz_val_config_1_build_hierarchy",
       "source_test": "s49_fuzz_val_config_1",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "data'x33": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config = data'x33"
+      ],
+      "name": "s49_fuzz_val_config_1_build_model",
+      "source_test": "s49_fuzz_val_config_1",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -997,6 +1047,31 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "name": {
+            "data\u003cx71": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "name = data\u003cx71"
+      ],
+      "name": "s49_fuzz_val_name_2_build_model",
+      "source_test": "s49_fuzz_val_name_2",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "name"
       ],
@@ -1068,6 +1143,31 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "mode": {
+            "data+x19": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "mode = data+x19"
+      ],
+      "name": "s49_fuzz_val_mode_3_build_model",
+      "source_test": "s49_fuzz_val_mode_3",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "mode"
       ],
@@ -1136,6 +1236,31 @@
       "name": "s49_fuzz_val_server_4_build_hierarchy",
       "source_test": "s49_fuzz_val_server_4",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "server": {
+            "data#x70-x10": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "server = data#x70-x10"
+      ],
+      "name": "s49_fuzz_val_server_4_build_model",
+      "source_test": "s49_fuzz_val_server_4",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1215,6 +1340,34 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "'name": {
+            "nested330": {}
+          },
+          "{user": {
+            "deep34": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "'name = nested330\n{user = deep34"
+      ],
+      "name": "s49_fuzz_nested_squote_lbrace_0_build_model",
+      "source_test": "s49_fuzz_nested_squote_lbrace_0",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "'name"
       ],
@@ -1288,6 +1441,34 @@
       "name": "s49_fuzz_nested_at_underscore_1_build_hierarchy",
       "source_test": "s49_fuzz_nested_at_underscore_1",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "@name": {
+            "nested517": {}
+          },
+          "_user": {
+            "deep650": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "@name = nested517\n_user = deep650"
+      ],
+      "name": "s49_fuzz_nested_at_underscore_1_build_model",
+      "source_test": "s49_fuzz_nested_at_underscore_1",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1367,6 +1548,34 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          ")epsilon": {
+            "nested451": {}
+          },
+          "\\delta": {
+            "deep648": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        ")epsilon = nested451\n\\delta = deep648"
+      ],
+      "name": "s49_fuzz_nested_rparen_backslash_2_build_model",
+      "source_test": "s49_fuzz_nested_rparen_backslash_2",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         ")epsilon"
       ],
@@ -1440,6 +1649,34 @@
       "name": "s49_fuzz_nested_dollar_gt_3_build_hierarchy",
       "source_test": "s49_fuzz_nested_dollar_gt_3",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "$port": {
+            "nested76": {}
+          },
+          "\u003ehost": {
+            "deep444": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "$port = nested76\n\u003ehost = deep444"
+      ],
+      "name": "s49_fuzz_nested_dollar_gt_3_build_model",
+      "source_test": "s49_fuzz_nested_dollar_gt_3",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1519,6 +1756,34 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "\"host": {
+            "nested587": {}
+          },
+          "{gamma": {
+            "deep774": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "\"host = nested587\n{gamma = deep774"
+      ],
+      "name": "s49_fuzz_nested_dquote_lbrace_4_build_model",
+      "source_test": "s49_fuzz_nested_dquote_lbrace_4",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "\"host"
       ],
@@ -1592,6 +1857,34 @@
       "name": "s49_fuzz_nested_semicolon_asterisk_5_build_hierarchy",
       "source_test": "s49_fuzz_nested_semicolon_asterisk_5",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "*item": {
+            "deep424": {}
+          },
+          ";host": {
+            "nested246": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        ";host = nested246\n*item = deep424"
+      ],
+      "name": "s49_fuzz_nested_semicolon_asterisk_5_build_model",
+      "source_test": "s49_fuzz_nested_semicolon_asterisk_5",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1671,6 +1964,34 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "*delta": {
+            "deep689": {}
+          },
+          "?epsilon": {
+            "nested334": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "?epsilon = nested334\n*delta = deep689"
+      ],
+      "name": "s49_fuzz_nested_question_asterisk_6_build_model",
+      "source_test": "s49_fuzz_nested_question_asterisk_6",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "?epsilon"
       ],
@@ -1744,6 +2065,34 @@
       "name": "s49_fuzz_nested_plus_ampersand_7_build_hierarchy",
       "source_test": "s49_fuzz_nested_plus_ampersand_7",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "\u0026gamma": {
+            "deep440": {}
+          },
+          "+server": {
+            "nested496": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "+server = nested496\n\u0026gamma = deep440"
+      ],
+      "name": "s49_fuzz_nested_plus_ampersand_7_build_model",
+      "source_test": "s49_fuzz_nested_plus_ampersand_7",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1823,6 +2172,34 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "\"delta": {
+            "deep232": {}
+          },
+          "*item": {
+            "nested578": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "*item = nested578\n\"delta = deep232"
+      ],
+      "name": "s49_fuzz_nested_asterisk_dquote_8_build_model",
+      "source_test": "s49_fuzz_nested_asterisk_dquote_8",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "*item"
       ],
@@ -1896,6 +2273,34 @@
       "name": "s49_fuzz_nested_rbrace_slash_9_build_hierarchy",
       "source_test": "s49_fuzz_nested_rbrace_slash_9",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "/delta": {
+            "deep756": {}
+          },
+          "}host": {
+            "nested668": {}
+          }
+        }
+      },
+      "features": [
+        "optional_typed_accessors"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "}host = nested668\n/delta = deep756"
+      ],
+      "name": "s49_fuzz_nested_rbrace_slash_9_build_model",
+      "source_test": "s49_fuzz_nested_rbrace_slash_9",
+      "validation": "build_model",
       "variants": []
     },
     {
