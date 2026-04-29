@@ -58,6 +58,31 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "servers": {
+            "web1": {},
+            "web2": {},
+            "web3": {}
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "servers = web1\nservers = web2\nservers = web3"
+      ],
+      "name": "basic_list_from_duplicates_build_model",
+      "source_test": "basic_list_from_duplicates",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "servers"
       ],
@@ -231,6 +256,48 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "items": {
+            "item01": {},
+            "item02": {},
+            "item03": {},
+            "item04": {},
+            "item05": {},
+            "item06": {},
+            "item07": {},
+            "item08": {},
+            "item09": {},
+            "item10": {},
+            "item11": {},
+            "item12": {},
+            "item13": {},
+            "item14": {},
+            "item15": {},
+            "item16": {},
+            "item17": {},
+            "item18": {},
+            "item19": {},
+            "item20": {}
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items = item01\nitems = item02\nitems = item03\nitems = item04\nitems = item05\nitems = item06\nitems = item07\nitems = item08\nitems = item09\nitems = item10\nitems = item11\nitems = item12\nitems = item13\nitems = item14\nitems = item15\nitems = item16\nitems = item17\nitems = item18\nitems = item19\nitems = item20"
+      ],
+      "name": "large_list_build_model",
+      "source_test": "large_list",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "items"
       ],
@@ -359,6 +426,37 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "/": {
+            "End of list": {},
+            "Production servers": {}
+          },
+          "servers": {
+            "web1": {},
+            "web2": {},
+            "web3": {}
+          }
+        }
+      },
+      "features": [
+        "comments"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
+      ],
+      "name": "list_with_comments_build_model",
+      "source_test": "list_with_comments",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "servers"
       ],
@@ -474,6 +572,37 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "/": {
+            "End of list": {},
+            "Production servers": {}
+          },
+          "servers": {
+            "web1": {},
+            "web2": {},
+            "web3": {}
+          }
+        }
+      },
+      "features": [
+        "comments"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "servers = web1\n/= Production servers\nservers = web2\nservers = web3\n/= End of list"
+      ],
+      "name": "list_with_comments_lexicographic_build_model",
+      "source_test": "list_with_comments_lexicographic",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "servers"
       ],
@@ -554,6 +683,29 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "existing": {
+            "value": {}
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "existing = value"
+      ],
+      "name": "list_error_missing_key_build_model",
+      "source_test": "list_error_missing_key",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "missing"
       ],
@@ -617,6 +769,31 @@
       "name": "list_error_nested_missing_key_build_hierarchy",
       "source_test": "list_error_nested_missing_key",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "server": {
+              "web1": {}
+            }
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\n  server = web1"
+      ],
+      "name": "list_error_nested_missing_key_build_model",
+      "source_test": "list_error_nested_missing_key",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -685,6 +862,29 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "value": {
+            "simple": {}
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "value = simple"
+      ],
+      "name": "list_error_non_object_path_build_model",
+      "source_test": "list_error_non_object_path",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "value",
         "nested"
@@ -739,6 +939,25 @@
       "name": "list_edge_case_zero_length_build_hierarchy",
       "source_test": "list_edge_case_zero_length",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {}
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        ""
+      ],
+      "name": "list_edge_case_zero_length_build_model",
+      "source_test": "list_edge_case_zero_length",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -813,6 +1032,35 @@
       "name": "bare_list_basic_build_hierarchy",
       "source_test": "bare_list_basic",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "servers": {
+            "": {
+              "web1": {},
+              "web2": {},
+              "web3": {}
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "servers =\n  = web1\n  = web2\n  = web3"
+      ],
+      "name": "bare_list_basic_build_model",
+      "source_test": "bare_list_basic",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -903,6 +1151,37 @@
       "name": "bare_list_nested_build_hierarchy",
       "source_test": "bare_list_nested",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "network": {
+            "ports": {
+              "": {
+                "443": {},
+                "80": {},
+                "8080": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ],
+      "name": "bare_list_nested_build_model",
+      "source_test": "bare_list_nested",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1002,6 +1281,37 @@
       "name": "bare_list_nested_lexicographic_build_hierarchy",
       "source_test": "bare_list_nested_lexicographic",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "network": {
+            "ports": {
+              "": {
+                "443": {},
+                "80": {},
+                "8080": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "network =\n  ports =\n    = 80\n    = 443\n    = 8080"
+      ],
+      "name": "bare_list_nested_lexicographic_build_model",
+      "source_test": "bare_list_nested_lexicographic",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1105,6 +1415,39 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "allowed_hosts": {
+            "": {
+              "127.0.0.1": {},
+              "example.com": {},
+              "localhost": {}
+            },
+            "/": {
+              "Production hosts": {}
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys",
+        "comments"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+      ],
+      "name": "bare_list_with_comments_build_model",
+      "source_test": "bare_list_with_comments",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "allowed_hosts"
       ],
@@ -1201,6 +1544,39 @@
       "name": "bare_list_with_comments_lexicographic_build_hierarchy",
       "source_test": "bare_list_with_comments_lexicographic",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "allowed_hosts": {
+            "": {
+              "127.0.0.1": {},
+              "example.com": {},
+              "localhost": {}
+            },
+            "/": {
+              "Production hosts": {}
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys",
+        "comments"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "allowed_hosts =\n  /= Production hosts\n  = localhost\n  = 127.0.0.1\n  = example.com"
+      ],
+      "name": "bare_list_with_comments_lexicographic_build_model",
+      "source_test": "bare_list_with_comments_lexicographic",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1303,6 +1679,41 @@
       "name": "bare_list_deeply_nested_build_hierarchy",
       "source_test": "bare_list_deeply_nested",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "environments": {
+              "production": {
+                "servers": {
+                  "": {
+                    "api1": {},
+                    "web1": {},
+                    "web2": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+      ],
+      "name": "bare_list_deeply_nested_build_model",
+      "source_test": "bare_list_deeply_nested",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -1411,6 +1822,41 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "environments": {
+              "production": {
+                "servers": {
+                  "": {
+                    "api1": {},
+                    "web1": {},
+                    "web2": {}
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers =\n        = web1\n        = web2\n        = api1"
+      ],
+      "name": "bare_list_deeply_nested_lexicographic_build_model",
+      "source_test": "bare_list_deeply_nested_lexicographic",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "config",
         "environments",
@@ -1506,6 +1952,42 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "database": {
+            "host": {
+              "localhost": {}
+            },
+            "port": {
+              "5432": {}
+            },
+            "replicas": {
+              "": {
+                "replica1": {},
+                "replica2": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "database =\n  host = localhost\n  port = 5432\n  replicas =\n    = replica1\n    = replica2"
+      ],
+      "name": "bare_list_mixed_with_other_keys_build_model",
+      "source_test": "bare_list_mixed_with_other_keys",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "database",
         "replicas"
@@ -1578,6 +2060,31 @@
       "name": "bare_list_error_not_a_list_build_hierarchy",
       "source_test": "bare_list_error_not_a_list",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "config": {
+            "setting": {
+              "value": {}
+            }
+          }
+        }
+      },
+      "features": [],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "config =\n  setting = value"
+      ],
+      "name": "bare_list_error_not_a_list_build_model",
+      "source_test": "bare_list_error_not_a_list",
+      "validation": "build_model",
       "variants": []
     },
     {

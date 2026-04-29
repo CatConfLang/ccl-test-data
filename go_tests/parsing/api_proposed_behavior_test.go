@@ -38,6 +38,12 @@ func TestIndentedLineIsContinuationBuildHierarchy(t *testing.T) {
 }
 
 
+// indented_line_is_continuation_build_model - function:parse_indented function:build_model feature:multiline_continuation behavior:multiline_values
+func TestIndentedLineIsContinuationBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // indented_line_is_continuation_get_list - function:get_list feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestIndentedLineIsContinuationGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -68,6 +74,12 @@ func TestSingleItemAsListParse(t *testing.T) {
 
 // single_item_as_list_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestSingleItemAsListBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// single_item_as_list_build_model - function:parse_indented function:build_model
+func TestSingleItemAsListBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -104,6 +116,12 @@ host = localhost`
 
 // mixed_duplicate_single_keys_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_insertion
 func TestMixedDuplicateSingleKeysBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// mixed_duplicate_single_keys_build_model - function:parse_indented function:build_model
+func TestMixedDuplicateSingleKeysBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -145,6 +163,12 @@ func TestNestedListAccessBuildHierarchy(t *testing.T) {
 }
 
 
+// nested_list_access_build_model - function:parse_indented function:build_model
+func TestNestedListAccessBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // nested_list_access_get_list - function:get_list behavior:list_coercion_enabled behavior:path_traversal
 func TestNestedListAccessGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -175,6 +199,12 @@ func TestEmptyListParse(t *testing.T) {
 
 // empty_list_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_insertion
 func TestEmptyListBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// empty_list_build_model - function:parse_indented function:build_model
+func TestEmptyListBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -216,6 +246,12 @@ func TestListWithNumbersBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_numbers_build_model - function:parse_indented function:build_model
+func TestListWithNumbersBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_numbers_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithNumbersGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -249,6 +285,12 @@ flags = no`
 
 // list_with_booleans_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_insertion
 func TestListWithBooleansBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_with_booleans_build_model - function:parse_indented function:build_model
+func TestListWithBooleansBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -290,6 +332,12 @@ func TestListWithWhitespaceBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_whitespace_build_model - function:parse_indented function:build_model feature:whitespace
+func TestListWithWhitespaceBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_whitespace_get_list - function:get_list feature:whitespace behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithWhitespaceGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -323,6 +371,12 @@ names = العربية`
 
 // list_with_unicode_build_hierarchy - function:parse_indented function:build_hierarchy feature:unicode behavior:array_order_insertion
 func TestListWithUnicodeBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// list_with_unicode_build_model - function:parse_indented function:build_model feature:unicode
+func TestListWithUnicodeBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -364,6 +418,12 @@ func TestListWithSpecialCharactersBuildHierarchy(t *testing.T) {
 }
 
 
+// list_with_special_characters_build_model - function:parse_indented function:build_model
+func TestListWithSpecialCharactersBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_with_special_characters_get_list - function:get_list behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListWithSpecialCharactersGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -382,6 +442,12 @@ func TestListMultilineValuesBuildHierarchy(t *testing.T) {
 }
 
 
+// list_multiline_values_build_model - function:parse_indented function:build_model feature:multiline_continuation behavior:multiline_values
+func TestListMultilineValuesBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_multiline_values_get_list - function:get_list feature:multiline_continuation behavior:list_coercion_enabled behavior:array_order_insertion
 func TestListMultilineValuesGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -396,6 +462,12 @@ func TestComplexMixedListScenariosParseIndented(t *testing.T) {
 
 // complex_mixed_list_scenarios_build_hierarchy - function:parse_indented function:build_hierarchy behavior:array_order_insertion
 func TestComplexMixedListScenariosBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// complex_mixed_list_scenarios_build_model - function:parse_indented function:build_model
+func TestComplexMixedListScenariosBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -434,6 +506,12 @@ func TestListPathTraversalProtectionBuildHierarchy(t *testing.T) {
 }
 
 
+// list_path_traversal_protection_build_model - function:parse_indented function:build_model
+func TestListPathTraversalProtectionBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // list_path_traversal_protection_get_list - function:get_list behavior:list_coercion_enabled
 func TestListPathTraversalProtectionGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -464,6 +542,12 @@ func TestParseEmptyValueParse(t *testing.T) {
 
 // parse_empty_value_build_hierarchy - function:parse_indented function:build_hierarchy
 func TestParseEmptyValueBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// parse_empty_value_build_model - function:parse_indented function:build_model
+func TestParseEmptyValueBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 

@@ -2,10 +2,19 @@
   "$schema": "../../schemas/source-format.json",
   "tests": [
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "load",
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "name = Alice\nage = 42"
+      ],
       "name": "basic_object_construction",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "name",
@@ -15,63 +24,67 @@
               "key": "age",
               "value": "42"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "name = Alice\nage = 42"
+          "expect": "name = Alice\nage = 42",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "age": "42",
             "name": "Alice"
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "build_model",
           "expect": {
-            "name": {"Alice": {}},
-            "age": {"42": {}}
-          }
+            "age": {
+              "42": {}
+            },
+            "name": {
+              "Alice": {}
+            }
+          },
+          "function": "build_model"
         },
         {
-          "function": "load",
           "expect": {
             "age": "42",
             "name": "Alice"
-          }
+          },
+          "function": "load"
         }
-      ],
-      "inputs": [
-        "name = Alice\nage = 42"
-      ],
+      ]
+    },
+    {
       "functions": [
         "build_hierarchy",
         "build_model",
         "load",
         "parse",
         "print"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+      ],
       "name": "deep_nested_objects",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "server",
               "value": "\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
+          "expect": "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "server": {
               "cache": {
@@ -82,24 +95,30 @@
                 "port": "5432"
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "build_model",
           "expect": {
             "server": {
               "cache": {
-                "enabled": {"true": {}}
+                "enabled": {
+                  "true": {}
+                }
               },
               "database": {
-                "host": {"localhost": {}},
-                "port": {"5432": {}}
+                "host": {
+                  "localhost": {}
+                },
+                "port": {
+                  "5432": {}
+                }
               }
             }
-          }
+          },
+          "function": "build_model"
         },
         {
-          "function": "load",
           "expect": {
             "server": {
               "cache": {
@@ -110,25 +129,25 @@
                 "port": "5432"
               }
             }
-          }
+          },
+          "function": "load"
         }
-      ],
-      "inputs": [
-        "server =\n  database =\n    host = localhost\n    port = 5432\n  cache =\n    enabled = true"
-      ],
+      ]
+    },
+    {
       "functions": [
         "build_hierarchy",
         "build_model",
         "load",
         "parse",
         "print"
-      ]
-    },
-    {
+      ],
+      "inputs": [
+        "item = first\nitem = second\nitem = third"
+      ],
       "name": "duplicate_keys_to_lists",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "item",
@@ -142,72 +161,71 @@
               "key": "item",
               "value": "third"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "item = first\nitem = second\nitem = third"
+          "expect": "item = first\nitem = second\nitem = third",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "item": [
               "first",
               "second",
               "third"
             ]
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "build_model",
           "expect": {
             "item": {
               "first": {},
               "second": {},
               "third": {}
             }
-          }
+          },
+          "function": "build_model"
         },
         {
-          "function": "load",
           "expect": {
             "item": [
               "first",
               "second",
               "third"
             ]
-          }
+          },
+          "function": "load"
         }
-      ],
-      "inputs": [
-        "item = first\nitem = second\nitem = third"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "build_model",
-        "load",
-        "parse",
-        "print"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "config =\n  server = web1\n  server = web2\n  port = 80"
+      ],
       "name": "nested_duplicate_keys",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  server = web1\n  server = web2\n  port = 80"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "config =\n  server = web1\n  server = web2\n  port = 80"
+          "expect": "config =\n  server = web1\n  server = web2\n  port = 80",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "port": "80",
@@ -216,23 +234,38 @@
                 "web2"
               ]
             }
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "config": {
+              "port": {
+                "80": {}
+              },
+              "server": {
+                "web1": {},
+                "web2": {}
+              }
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "inputs": [
-        "config =\n  server = web1\n  server = web2\n  port = 80"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse",
-        "print"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
+      ],
       "name": "mixed_flat_and_nested",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "name",
@@ -246,14 +279,14 @@
               "key": "version",
               "value": "1.0"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
+          "expect": "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "debug": "true",
@@ -261,36 +294,56 @@
             },
             "name": "Alice",
             "version": "1.0"
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "config": {
+              "debug": {
+                "true": {}
+              },
+              "timeout": {
+                "30": {}
+              }
+            },
+            "name": {
+              "Alice": {}
+            },
+            "version": {
+              "1.0": {}
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "inputs": [
-        "name = Alice\nconfig =\n  debug = true\n  timeout = 30\nversion = 1.0"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse",
-        "print"
       ]
     },
     {
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+      ],
       "name": "nested_objects_with_lists",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "environments",
               "value": "\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "print",
-          "expect": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
+          "expect": "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000",
+          "function": "print"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "environments": {
               "dev": {
@@ -305,32 +358,62 @@
                 ]
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "environments": {
+              "dev": {
+                "port": {
+                  "3000": {}
+                },
+                "server": {
+                  "localhost": {}
+                }
+              },
+              "prod": {
+                "port": {
+                  "80": {}
+                },
+                "server": {
+                  "web1": {},
+                  "web2": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
         }
-      ],
-      "inputs": [
-        "environments =\n  prod =\n    server = web1\n    server = web2\n    port = 80\n  dev =\n    server = localhost\n    port = 3000"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "parse",
-        "print"
       ]
     },
     {
+      "behaviors": [
+        "list_coercion_disabled",
+        "array_order_lexicographic",
+        "path_traversal"
+      ],
+      "functions": [
+        "build_hierarchy",
+        "build_model",
+        "get_list",
+        "parse"
+      ],
+      "inputs": [
+        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
+      ],
       "name": "deeply_nested_list",
       "tests": [
         {
-          "function": "parse",
           "expect": [
             {
               "key": "config",
               "value": "\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
             }
-          ]
+          ],
+          "function": "parse"
         },
         {
-          "function": "build_hierarchy",
           "expect": {
             "config": {
               "environments": {
@@ -343,31 +426,35 @@
                 }
               }
             }
-          }
+          },
+          "function": "build_hierarchy"
         },
         {
-          "function": "get_list",
-          "expect": null,
+          "expect": {
+            "config": {
+              "environments": {
+                "production": {
+                  "servers": {
+                    "api1": {},
+                    "web1": {},
+                    "web2": {}
+                  }
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "config",
             "environments",
             "production",
             "servers"
-          ]
+          ],
+          "expect": null,
+          "function": "get_list"
         }
-      ],
-      "behaviors": [
-        "list_coercion_disabled",
-        "array_order_lexicographic",
-        "path_traversal"
-      ],
-      "inputs": [
-        "config =\n  environments =\n    production =\n      servers = web1\n      servers = web2\n      servers = api1"
-      ],
-      "functions": [
-        "build_hierarchy",
-        "get_list",
-        "parse"
       ]
     }
   ]

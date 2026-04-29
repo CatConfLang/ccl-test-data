@@ -812,6 +812,12 @@ func TestS99FuzzValPath0BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_val_path_0_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzValPath0BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_val_path_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzValPath0GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -842,6 +848,12 @@ func TestS99FuzzValItem1Parse(t *testing.T) {
 
 // s99_fuzz_val_item_1_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzValItem1BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_val_item_1_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzValItem1BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -880,6 +892,12 @@ func TestS99FuzzValServer2BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_val_server_2_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzValServer2BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_val_server_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzValServer2GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -914,6 +932,12 @@ func TestS99FuzzValPath3BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_val_path_3_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzValPath3BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_val_path_3_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzValPath3GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -944,6 +968,12 @@ func TestS99FuzzValAlpha4Parse(t *testing.T) {
 
 // s99_fuzz_val_alpha_4_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzValAlpha4BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_val_alpha_4_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzValAlpha4BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -983,6 +1013,12 @@ func TestS99FuzzNestedSlashRparen0BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_nested_slash_rparen_0_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedSlashRparen0BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_nested_slash_rparen_0_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzNestedSlashRparen0GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -1014,6 +1050,12 @@ func TestS99FuzzNestedLtPercent1Parse(t *testing.T) {
 
 // s99_fuzz_nested_lt_percent_1_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzNestedLtPercent1BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_nested_lt_percent_1_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedLtPercent1BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -1053,6 +1095,12 @@ func TestS99FuzzNestedSlashLbrace2BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_nested_slash_lbrace_2_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedSlashLbrace2BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_nested_slash_lbrace_2_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzNestedSlashLbrace2GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -1084,6 +1132,12 @@ func TestS99FuzzNestedDquoteLbracket3Parse(t *testing.T) {
 
 // s99_fuzz_nested_dquote_lbracket_3_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzNestedDquoteLbracket3BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_nested_dquote_lbracket_3_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedDquoteLbracket3BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -1123,6 +1177,12 @@ func TestS99FuzzNestedBackslashBackslash4BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_nested_backslash_backslash_4_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedBackslashBackslash4BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_nested_backslash_backslash_4_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzNestedBackslashBackslash4GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -1154,6 +1214,12 @@ func TestS99FuzzNestedQuestionDquote5Parse(t *testing.T) {
 
 // s99_fuzz_nested_question_dquote_5_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzNestedQuestionDquote5BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_nested_question_dquote_5_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedQuestionDquote5BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -1193,6 +1259,12 @@ func TestS99FuzzNestedDquoteBackslash6BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_nested_dquote_backslash_6_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedDquoteBackslash6BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_nested_dquote_backslash_6_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzNestedDquoteBackslash6GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -1224,6 +1296,12 @@ func TestS99FuzzNestedRparenBackslash7Parse(t *testing.T) {
 
 // s99_fuzz_nested_rparen_backslash_7_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzNestedRparenBackslash7BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_nested_rparen_backslash_7_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedRparenBackslash7BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -1263,6 +1341,12 @@ func TestS99FuzzNestedRbraceDollar8BuildHierarchy(t *testing.T) {
 }
 
 
+// s99_fuzz_nested_rbrace_dollar_8_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedRbraceDollar8BuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // s99_fuzz_nested_rbrace_dollar_8_get_string - function:get_string feature:optional_typed_accessors
 func TestS99FuzzNestedRbraceDollar8GetString(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -1294,6 +1378,12 @@ func TestS99FuzzNestedPercentAmpersand9Parse(t *testing.T) {
 
 // s99_fuzz_nested_percent_ampersand_9_build_hierarchy - function:parse_indented function:build_hierarchy feature:optional_typed_accessors
 func TestS99FuzzNestedPercentAmpersand9BuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// s99_fuzz_nested_percent_ampersand_9_build_model - function:parse_indented function:build_model feature:optional_typed_accessors
+func TestS99FuzzNestedPercentAmpersand9BuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
