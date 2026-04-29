@@ -43,7 +43,39 @@
             "value": "= Section Header ="
           },
           {
-            "key": "This continues the header\nkey",
+            "key": "prefix for next key\nkey",
+            "value": "value"
+          }
+        ]
+      },
+      "features": [
+        "empty_keys",
+        "multiline_keys"
+      ],
+      "functions": [
+        "parse"
+      ],
+      "inputs": [
+        "== Section Header =\nprefix for next key\nkey = value"
+      ],
+      "name": "unindented_line_does_not_continue_value_parse",
+      "source_test": "unindented_line_does_not_continue_value",
+      "validation": "parse",
+      "variants": [
+        "reference_compliant"
+      ]
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 2,
+        "entries": [
+          {
+            "key": "",
+            "value": "= Section Header ="
+          },
+          {
+            "key": "prefix for next key\nkey",
             "value": "value"
           }
         ]
@@ -56,7 +88,7 @@
         "parse_indented"
       ],
       "inputs": [
-        "== Section Header =\nThis continues the header\nkey = value"
+        "== Section Header =\nprefix for next key\nkey = value"
       ],
       "name": "unindented_line_does_not_continue_value_parse_indented",
       "source_test": "unindented_line_does_not_continue_value",

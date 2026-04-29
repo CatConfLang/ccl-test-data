@@ -366,6 +366,7 @@ func testAction(ctx *cli.Context) error {
 			"TestMultilineKeyBlankLinesBetweenParse",
 			"TestMultilineKeyTabsInContinuationParse",
 			"TestRoundTripWhitespaceNormalizationParse",
+			"TestUnindentedLineDoesNotContinueValueParse",
 		}
 		skipTests = append(skipTests, defaultSkipTests...)
 	}

@@ -38,10 +38,11 @@
         "multiline_keys"
       ],
       "functions": [
+        "parse",
         "parse_indented"
       ],
       "inputs": [
-        "== Section Header =\nThis continues the header\nkey = value"
+        "== Section Header =\nprefix for next key\nkey = value"
       ],
       "name": "unindented_line_does_not_continue_value",
       "tests": [
@@ -52,7 +53,20 @@
               "value": "= Section Header ="
             },
             {
-              "key": "This continues the header\nkey",
+              "key": "prefix for next key\nkey",
+              "value": "value"
+            }
+          ],
+          "function": "parse"
+        },
+        {
+          "expect": [
+            {
+              "key": "",
+              "value": "= Section Header ="
+            },
+            {
+              "key": "prefix for next key\nkey",
               "value": "value"
             }
           ],
