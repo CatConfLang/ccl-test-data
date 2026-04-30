@@ -1110,6 +1110,94 @@
           "function": "parse"
         }
       ]
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_strip"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
+      ],
+      "inputs": [
+        "  key = value\n  nested =\n    child = inner"
+      ],
+      "name": "toplevel_indent_strip_canonical",
+      "tests": [
+        {
+          "expect": "key = value\nnested =\n  child = inner",
+          "function": "canonical_format"
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_preserve"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "canonical_format"
+      ],
+      "inputs": [
+        "  key = value\n  nested =\n    child = inner"
+      ],
+      "name": "toplevel_indent_preserve_canonical",
+      "tests": [
+        {
+          "expect": "  key = value\n  nested =\n    child = inner",
+          "function": "canonical_format"
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_strip"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "round_trip"
+      ],
+      "inputs": [
+        "  key = value"
+      ],
+      "name": "toplevel_indent_strip_round_trip",
+      "tests": [
+        {
+          "expect": "key = value",
+          "function": "round_trip"
+        }
+      ]
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_preserve"
+      ],
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "round_trip"
+      ],
+      "inputs": [
+        "  key = value"
+      ],
+      "name": "toplevel_indent_preserve_round_trip",
+      "tests": [
+        {
+          "expect": "  key = value",
+          "function": "round_trip"
+        }
+      ]
     }
   ]
 }

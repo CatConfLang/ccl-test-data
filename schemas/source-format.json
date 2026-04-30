@@ -122,6 +122,22 @@
             "affectedFunctions": { "const": ["parse", "parse_indented", "build_hierarchy"] },
             "mutuallyExclusiveWith": { "const": ["delimiter_first_equals"] }
           }
+        },
+        "toplevel_indent_strip": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "When re-serializing, strip leading top-level indentation so canonical output starts at column zero. Implementation choice (output formatting) — distinct from feature:toplevel_indent_strip which is the universal OCaml-canonical parsing rule." },
+            "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["toplevel_indent_preserve"] }
+          }
+        },
+        "toplevel_indent_preserve": {
+          "type": "object",
+          "properties": {
+            "description": { "const": "When re-serializing, preserve leading top-level indentation verbatim in canonical output. Implementation choice (output formatting) for impls that retain the original layout." },
+            "affectedFunctions": { "const": ["canonical_format", "print", "round_trip"] },
+            "mutuallyExclusiveWith": { "const": ["toplevel_indent_strip"] }
+          }
         }
       }
     },
@@ -135,6 +151,7 @@
         "list_coercion_enabled", "list_coercion_disabled",
         "array_order_insertion", "array_order_lexicographic",
         "delimiter_first_equals", "delimiter_prefer_spaced",
+        "toplevel_indent_strip", "toplevel_indent_preserve",
         "path_traversal",
         "multiline_values"
       ]
@@ -437,6 +454,16 @@
         "description": "Multi-line value construction edge cases: empty first line after '=', continuation line preservation, and empty line lookahead within indented blocks.",
         "affectedFunctions": ["parse", "parse_indented", "build_hierarchy", "canonical_format", "round_trip"],
         "mutuallyExclusiveWith": []
+      },
+      "toplevel_indent_strip": {
+        "description": "When re-serializing, strip leading top-level indentation so canonical output starts at column zero. Implementation choice (output formatting) — distinct from feature:toplevel_indent_strip which is the universal OCaml-canonical parsing rule.",
+        "affectedFunctions": ["canonical_format", "print", "round_trip"],
+        "mutuallyExclusiveWith": ["toplevel_indent_preserve"]
+      },
+      "toplevel_indent_preserve": {
+        "description": "When re-serializing, preserve leading top-level indentation verbatim in canonical output. Implementation choice (output formatting) for impls that retain the original layout.",
+        "affectedFunctions": ["canonical_format", "print", "round_trip"],
+        "mutuallyExclusiveWith": ["toplevel_indent_strip"]
       }
     },
     "defaults": {

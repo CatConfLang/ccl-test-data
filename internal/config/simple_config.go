@@ -62,6 +62,8 @@ var ValidBehaviors = []string{
 	"list_coercion_disabled",
 	"array_order_insertion",
 	"array_order_lexicographic",
+	"toplevel_indent_strip",
+	"toplevel_indent_preserve",
 }
 
 // ValidVariants defines all supported specification variants
@@ -77,6 +79,7 @@ var ConflictingBehaviors = [][]string{
 	{"continuation_tab_to_space", "continuation_tab_preserve"},
 	{"list_coercion_enabled", "list_coercion_disabled"},
 	{"array_order_insertion", "array_order_lexicographic"},
+	{"toplevel_indent_strip", "toplevel_indent_preserve"},
 }
 
 // LoadConfig loads and validates a YAML configuration file
