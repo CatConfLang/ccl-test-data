@@ -795,6 +795,12 @@ func TestBareListNestedObjectsBasicBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_nested_objects_basic_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedObjectsBasicBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_nested_objects_basic_get_list - function:get_list feature:empty_keys
 func TestBareListNestedObjectsBasicGetList(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
@@ -828,6 +834,12 @@ func TestBareListNestedObjectsSingleItemParse(t *testing.T) {
 
 // bare_list_nested_objects_single_item_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys
 func TestBareListNestedObjectsSingleItemBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_nested_objects_single_item_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedObjectsSingleItemBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
@@ -870,6 +882,12 @@ func TestBareListNestedObjectsMinimalBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_nested_objects_minimal_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedObjectsMinimalBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_nested_objects_deeply_nested_parse - function:parse feature:empty_keys
 func TestBareListNestedObjectsDeeplyNestedParse(t *testing.T) {
 	
@@ -906,6 +924,12 @@ func TestBareListNestedObjectsDeeplyNestedBuildHierarchy(t *testing.T) {
 }
 
 
+// bare_list_nested_objects_deeply_nested_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedObjectsDeeplyNestedBuildModel(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
 // bare_list_nested_objects_mixed_with_strings_parse - function:parse feature:empty_keys
 func TestBareListNestedObjectsMixedWithStringsParse(t *testing.T) {
 	
@@ -935,6 +959,12 @@ func TestBareListNestedObjectsMixedWithStringsParse(t *testing.T) {
 
 // bare_list_nested_objects_mixed_with_strings_build_hierarchy - function:parse_indented function:build_hierarchy feature:empty_keys behavior:array_order_insertion
 func TestBareListNestedObjectsMixedWithStringsBuildHierarchy(t *testing.T) {
+	t.Skip("Test does not match run-only filter: [function:parse]")
+}
+
+
+// bare_list_nested_objects_mixed_with_strings_build_model - function:parse_indented function:build_model feature:empty_keys
+func TestBareListNestedObjectsMixedWithStringsBuildModel(t *testing.T) {
 	t.Skip("Test does not match run-only filter: [function:parse]")
 }
 
