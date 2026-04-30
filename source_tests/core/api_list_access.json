@@ -1223,6 +1223,7 @@
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
       ],
@@ -1258,6 +1259,23 @@
           "function": "build_hierarchy"
         },
         {
+          "expect": {
+            "items": {
+              "": {
+                "name": {
+                  "first": {},
+                  "second": {}
+                },
+                "value": {
+                  "1": {},
+                  "2": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "items"
           ],
@@ -1281,6 +1299,7 @@
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "get_list",
         "parse"
       ],
@@ -1312,6 +1331,21 @@
           "function": "build_hierarchy"
         },
         {
+          "expect": {
+            "items": {
+              "": {
+                "name": {
+                  "only": {}
+                },
+                "value": {
+                  "42": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
+        },
+        {
           "args": [
             "items"
           ],
@@ -1331,6 +1365,7 @@
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "parse"
       ],
       "inputs": [
@@ -1361,6 +1396,19 @@
             }
           },
           "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "items": {
+              "": {
+                "name": {
+                  "first": {},
+                  "second": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
         }
       ]
     },
@@ -1370,6 +1418,7 @@
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "parse"
       ],
       "inputs": [
@@ -1406,6 +1455,25 @@
             }
           },
           "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "items": {
+              "": {
+                "config": {
+                  "host": {
+                    "example.com": {},
+                    "localhost": {}
+                  },
+                  "port": {
+                    "443": {},
+                    "8080": {}
+                  }
+                }
+              }
+            }
+          },
+          "function": "build_model"
         }
       ]
     },
@@ -1418,6 +1486,7 @@
       ],
       "functions": [
         "build_hierarchy",
+        "build_model",
         "parse"
       ],
       "inputs": [
@@ -1448,6 +1517,23 @@
             }
           },
           "function": "build_hierarchy"
+        },
+        {
+          "expect": {
+            "items": {
+              "": {
+                "another_string": {},
+                "name": {
+                  "nested": {}
+                },
+                "simple_string": {},
+                "value": {
+                  "obj": {}
+                }
+              }
+            }
+          },
+          "function": "build_model"
         }
       ]
     },
