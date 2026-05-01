@@ -3,6 +3,106 @@
 All notable changes to the CCL test data will be documented in this file.
 
 
+## [1.1.0] - 2026-05-01
+
+
+
+### Bug Fixes
+
+- **tests:** Clarify unindented-line fixture and add parse variant ([`042cda3`](https://github.com/CatConfLang/ccl-test-data/commit/042cda38baf88a352883a951aeecdd22e72c5f94))
+
+
+
+  Clarifies a misleading test fixture, adds a parse-validation variant to close a coverage gap, and refreshes CLAUDE.md to match recent feature work.
+
+- **tests:** Rename misleading fixture text in ([`042cda3`](https://github.com/CatConfLang/ccl-test-data/commit/042cda38baf88a352883a951aeecdd22e72c5f94))
+
+- **release:** Exclude docs commits from version bumps ([`112f9e2`](https://github.com/CatConfLang/ccl-test-data/commit/112f9e2c51da2e9371446ee30c6f2ff0c560987c))
+
+
+
+  #### Summary
+  - The `docs!:` commit in #135 caused `just release-check` to report a 2.0.0 bump — the conventional parser's default `allowed_tags` includes `docs`, so a breaking-marker on a docs commit triggers major.
+  - Explicitly set `allowed_tags` without `docs` so doc-only commits (including breaking ones) are ignored for version bumping.
+  - `exclude_commit_patterns` only filters the changelog output; it does not affect version bumps.
+
+  #### Verification With this change, `semantic-release version --print` against main's commit range reports **1.0.1** (from the `fix(tests)` commit in #140) instead of 2.0.0.
+
+- **tests:** Align parse_indented expectations with ocaml canonical (#134) ([`ffeebb2`](https://github.com/CatConfLang/ccl-test-data/commit/ffeebb24ce6cf4058cbf56eb48b7af8fdadcb4a7))
+
+
+
+  Fixes #134.
+
+  Three `parse_indented` expectations in `api_proposed_behavior.json` contradicted OCaml canonical semantics and their own `build_hierarchy` siblings. Each corrected expectation was verified by running the input through the OCaml reference parser.
+
+  #### Changes
+
+  **`complex_mixed_list_scenarios`** — `parse_indented` corrected from 11 flat entries to 4 (indented block collected as multiline value on `config`). `build_hierarchy` unchanged. No variant tag: output is universal.
+
+  **`mixed_indentation_levels` → `mixed_indentation_levels_error`** — moved to `api_errors.json`. OCaml parse-errors on this input; the Go mock silently drops no-`=` lines. Tagged `variants: [reference_compliant]`; added to mock's `SkipTestsByName`.
+
+  **`unindented_multiline_becomes_continuation` → `unindented_line_does_not_continue_value`** — renamed and corrected. OCaml's greedy key parser absorbs the unindented line into the next key, producing a multi-line key `"This continues the header\nkey"`. Tagged `variants: [reference_compliant]` + `features: [multiline_keys]`; stays in mock's `SkipTestsByName`.
+
+
+
+
+
+### Features
+
+- **tests:** Define build_model for bare-list nested-objects fixtures ([`bdc8ec9`](https://github.com/CatConfLang/ccl-test-data/commit/bdc8ec91ec352d16d63c3af272af257ed8c2d231))
+
+
+
+  Adds `build_model` expectations to the five `bare_list_nested_objects_*` fixtures in `api_list_access.json` that #143 deferred. Each shape was captured by piping the input through `Ccl.Model.fix` in the OCaml reference (helper landed in [CatConfLang/ccl_test_runner_ocaml#2](https://github.com/CatConfLang/ccl_test_runner_ocaml/pull/2)) — not derived by hand from the projection rule.
+
+  Fixtures updated: `bare_list_nested_objects_basic`, `_single_item`, `_minimal`, `_deeply_nested`, `_mixed_with_strings`. The 6th sibling, `_round_trip`, doesn't declare `build_model` in its functions list and is left alone.
+
+  The canonical OCaml `fix` destructively merges repeated empty-key entries: per-element field grouping that `build_hierarchy` preserves as a *list of objects* collapses into a *single inner map* with lex-sorted keys. For `_basic`, `build_hierarchy` returns `{"items":{"":[{"name":"first","value":"1"},{"name":"second","value":"2"}]}}` while `build_model` returns `{"items":{"":{"name":{"first":{},"second":{}},"value":{"1":{},"2":{}}}}}`. The mixed-strings case confirms bare strings and nested-object fields land side-by-side in the same inner map — the model cannot distinguish "list element that was a bare string" from "key with no children". This is the lossy-merge tradeoff #142 highlights, now concretely encoded.
+
+- **tests:** Cover behavior:toplevel_indent_strip/preserve tag pair ([`95f292c`](https://github.com/CatConfLang/ccl-test-data/commit/95f292cfe7c3f0d42b58f1aacdae9c002ad334b5))
+
+
+
+  Closes #138.
+
+  Adds coverage for the `toplevel_indent_strip` / `toplevel_indent_preserve` behavior pair so both tags drop off the validate-tags unused-warning list (41 → 43 distinct tags collected from `source_tests/`).
+
+- **tests:** Exercise toplevel_indent_strip/preserve behaviors ([`95f292c`](https://github.com/CatConfLang/ccl-test-data/commit/95f292cfe7c3f0d42b58f1aacdae9c002ad334b5))
+
+
+
+  Adds four fixtures in `api_whitespace_behaviors.json` — two `canonical_format` and two `round_trip` — declaring the implementation-choice behavior tags. Inputs use top-level indentation so the two branches diverge in their re-serialized output.
+
+- **schema:** Register toplevel_indent_strip/preserve behavior pair ([`95f292c`](https://github.com/CatConfLang/ccl-test-data/commit/95f292cfe7c3f0d42b58f1aacdae9c002ad334b5))
+
+
+
+  Adds entries to `schemas/source-format.json` (both `$defs/behaviorMetadata` and `x-behaviorMetadata`) and `schemas/generated-format.json` so the tags validate and auto-conflict generation marks them mutually exclusive.
+
+- **tests:** Add parse-validation variant of ([`042cda3`](https://github.com/CatConfLang/ccl-test-data/commit/042cda38baf88a352883a951aeecdd22e72c5f94))
+
+- **tests:** Add build_model canonical model function ([`7d1b54a`](https://github.com/CatConfLang/ccl-test-data/commit/7d1b54aed88f848350eb0f7b4bd9a4c42c737da6))
+
+
+
+  Adds `build_model` as a peer to `build_hierarchy`, exposing the OCaml-canonical recursive `Map<string, Model>` model where string values become keys pointing to `{}` and duplicate keys merge. Also restores the type-codegen pipeline (silently broken since the `ccl-test-lib` consolidation) so `go generate ./types/...` now works end-to-end.
+
+- **tests:** Add build_model canonical model function ([`7d1b54a`](https://github.com/CatConfLang/ccl-test-data/commit/7d1b54aed88f848350eb0f7b4bd9a4c42c737da6))
+
+
+
+  Defines `build_model` as a function that produces the recursive `Map<string, Model>` shape — the abstraction OCaml's `fix` actually builds. Wires it through the schema, mock, loader, generator dispatch, and stats. Adds 5 fixtures in `api_core_ccl_model.json` and cross-links 3 entries in `api_core_ccl_hierarchy.json` so implementations' two views are validated against the same inputs.
+
+  `build_hierarchy` is **not** redefined as a projection of `build_model` (issue #142 open questions 1–4 are explicitly deferred). The two functions remain independent, with cross-linked tests as the consistency check.
+
+  One mock parity boundary: `TestDeepNestedObjectsBuildModel` is skipped under the `function:parse` run-only filter — same boundary as the long-standing `TestDeepNestedObjectsBuildHierarchy`. The mock walks entries flat and doesn't recurse into block values; pre-existing behavior, documented in the `BuildModel` mock comment.
+
+
+
+
+
+
 ## [1.0.0] - 2026-04-19
 
 
@@ -1904,7 +2004,9 @@ All notable changes to the CCL test data will be documented in this file.
 
   Migration tools:
   - scripts/migrate-tags.py: Convert old tags to new structured format
-  - scripts/clean-legacy-tags.py: Remove legacy descriptive tags docs/tag-migration.json: Complete mapping between old and new tags docs/schema-update.md: Implementation guide and usage examples
+  - scripts/clean-legacy-tags.py: Remove legacy descriptive tags
+  - docs/tag-migration.json: Complete mapping between old and new tags
+  - docs/schema-update.md: Implementation guide and usage examples
 
   Benefits:
   - Precise test filtering by implementation capabilities
@@ -1988,7 +2090,8 @@ All notable changes to the CCL test data will be documented in this file.
 
   - Remove all scripts from package.json, keep only Node.js dependencies
   - Add rimraf for cross-platform file deletion
-  - Enhance justfile with comprehensive commands: docs-update, docs-check, docs-schema (replaces npm scripts)
+  - Enhance justfile with comprehensive commands:
+    * docs-update, docs-check, docs-schema (replaces npm scripts)
     * unified deps command (deps-node + go mod tidy) test now includes validation + docs check (replaces npm test) test-generated for Go tests only ci command for full pipeline
   - All commands now use justfile as single interface
 
