@@ -1871,6 +1871,128 @@
       "source_test": "behavior_combo_tabs_and_crlf",
       "validation": "parse",
       "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_strip"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs",
+          "toplevel_indent_preserve"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "key = value\nnested =\n  child = inner"
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "  key = value\n  nested =\n    child = inner"
+      ],
+      "name": "toplevel_indent_strip_canonical_canonical_format",
+      "source_test": "toplevel_indent_strip_canonical",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_preserve"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs",
+          "toplevel_indent_strip"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "  key = value\n  nested =\n    child = inner"
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print",
+        "canonical_format"
+      ],
+      "inputs": [
+        "  key = value\n  nested =\n    child = inner"
+      ],
+      "name": "toplevel_indent_preserve_canonical_canonical_format",
+      "source_test": "toplevel_indent_preserve_canonical",
+      "validation": "canonical_format",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_strip"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs",
+          "toplevel_indent_preserve"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "key = value"
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "  key = value"
+      ],
+      "name": "toplevel_indent_strip_round_trip_round_trip",
+      "source_test": "toplevel_indent_strip_round_trip",
+      "validation": "round_trip",
+      "variants": []
+    },
+    {
+      "behaviors": [
+        "indent_spaces",
+        "toplevel_indent_preserve"
+      ],
+      "conflicts": {
+        "behaviors": [
+          "indent_tabs",
+          "toplevel_indent_strip"
+        ]
+      },
+      "expected": {
+        "count": 1,
+        "value": "  key = value"
+      },
+      "features": [
+        "whitespace"
+      ],
+      "functions": [
+        "parse",
+        "print"
+      ],
+      "inputs": [
+        "  key = value"
+      ],
+      "name": "toplevel_indent_preserve_round_trip_round_trip",
+      "source_test": "toplevel_indent_preserve_round_trip",
+      "validation": "round_trip",
+      "variants": []
     }
   ]
 }

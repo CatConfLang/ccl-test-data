@@ -662,3 +662,91 @@ func TestBehaviorComboTabsAndCrlfParse(t *testing.T) {
 }
 
 
+// toplevel_indent_strip_canonical_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:indent_spaces behavior:toplevel_indent_strip
+func TestToplevelIndentStripCanonicalCanonicalFormat(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `  key = value
+  nested =
+    child = inner`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement canonical_format validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// toplevel_indent_preserve_canonical_canonical_format - function:parse function:print function:canonical_format feature:whitespace behavior:indent_spaces behavior:toplevel_indent_preserve
+func TestToplevelIndentPreserveCanonicalCanonicalFormat(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `  key = value
+  nested =
+    child = inner`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement canonical_format validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// toplevel_indent_strip_round_trip_round_trip - function:parse function:print feature:whitespace behavior:indent_spaces behavior:toplevel_indent_strip
+func TestToplevelIndentStripRoundTripRoundTrip(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `  key = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement round_trip validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+
+// toplevel_indent_preserve_round_trip_round_trip - function:parse function:print feature:whitespace behavior:indent_spaces behavior:toplevel_indent_preserve
+func TestToplevelIndentPreserveRoundTripRoundTrip(t *testing.T) {
+	
+
+	ccl := mock.New()
+	input := `  key = value`
+	
+	// Declare variables for reuse across validations
+	
+	
+	
+	var err error
+	
+	// TODO: Implement round_trip validation
+	_ = ccl // Prevent unused variable warning
+	_ = input // Prevent unused variable warning
+	_ = err // Prevent unused variable warning
+
+}
+
+

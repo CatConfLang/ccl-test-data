@@ -2176,6 +2176,40 @@
       "variants": []
     },
     {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "items": {
+            "": {
+              "name": {
+                "first": {},
+                "second": {}
+              },
+              "value": {
+                "1": {},
+                "2": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n    value = 1\n  =\n    name = second\n    value = 2"
+      ],
+      "name": "bare_list_nested_objects_basic_build_model",
+      "source_test": "bare_list_nested_objects_basic",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
       "args": [
         "items"
       ],
@@ -2260,6 +2294,38 @@
       "name": "bare_list_nested_objects_single_item_build_hierarchy",
       "source_test": "bare_list_nested_objects_single_item",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "items": {
+            "": {
+              "name": {
+                "only": {}
+              },
+              "value": {
+                "42": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = only\n    value = 42"
+      ],
+      "name": "bare_list_nested_objects_single_item_build_model",
+      "source_test": "bare_list_nested_objects_single_item",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -2351,6 +2417,36 @@
       "behaviors": [],
       "expected": {
         "count": 1,
+        "object": {
+          "items": {
+            "": {
+              "name": {
+                "first": {},
+                "second": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items =\n  =\n    name = first\n  =\n    name = second"
+      ],
+      "name": "bare_list_nested_objects_minimal_build_model",
+      "source_test": "bare_list_nested_objects_minimal",
+      "validation": "build_model",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
         "entries": [
           {
             "key": "items",
@@ -2408,6 +2504,42 @@
       "name": "bare_list_nested_objects_deeply_nested_build_hierarchy",
       "source_test": "bare_list_nested_objects_deeply_nested",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "items": {
+            "": {
+              "config": {
+                "host": {
+                  "example.com": {},
+                  "localhost": {}
+                },
+                "port": {
+                  "443": {},
+                  "8080": {}
+                }
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items =\n  =\n    config =\n      host = localhost\n      port = 8080\n  =\n    config =\n      host = example.com\n      port = 443"
+      ],
+      "name": "bare_list_nested_objects_deeply_nested_build_model",
+      "source_test": "bare_list_nested_objects_deeply_nested",
+      "validation": "build_model",
       "variants": []
     },
     {
@@ -2472,6 +2604,40 @@
       "name": "bare_list_nested_objects_mixed_with_strings_build_hierarchy",
       "source_test": "bare_list_nested_objects_mixed_with_strings",
       "validation": "build_hierarchy",
+      "variants": []
+    },
+    {
+      "behaviors": [],
+      "expected": {
+        "count": 1,
+        "object": {
+          "items": {
+            "": {
+              "another_string": {},
+              "name": {
+                "nested": {}
+              },
+              "simple_string": {},
+              "value": {
+                "obj": {}
+              }
+            }
+          }
+        }
+      },
+      "features": [
+        "empty_keys"
+      ],
+      "functions": [
+        "parse_indented",
+        "build_model"
+      ],
+      "inputs": [
+        "items =\n  = simple_string\n  =\n    name = nested\n    value = obj\n  = another_string"
+      ],
+      "name": "bare_list_nested_objects_mixed_with_strings_build_model",
+      "source_test": "bare_list_nested_objects_mixed_with_strings",
+      "validation": "build_model",
       "variants": []
     },
     {
