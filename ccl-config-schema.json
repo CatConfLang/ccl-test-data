@@ -6,6 +6,33 @@
   "type": "object",
   "required": ["functions"],
   "additionalProperties": false,
+  "definitions": {
+    "behaviorName": {
+      "type": "string",
+      "enum": [
+        "array_order_insertion",
+        "array_order_lexicographic",
+        "boolean_lenient",
+        "boolean_strict",
+        "continuation_tab_preserve",
+        "continuation_tab_to_space",
+        "crlf_normalize_to_lf",
+        "crlf_preserve_literal",
+        "delimiter_first_equals",
+        "delimiter_prefer_spaced",
+        "indent_spaces",
+        "indent_tabs",
+        "list_coercion_disabled",
+        "list_coercion_enabled",
+        "multiline_values",
+        "path_traversal",
+        "tabs_as_content",
+        "tabs_as_whitespace",
+        "toplevel_indent_preserve",
+        "toplevel_indent_strip"
+      ]
+    }
+  },
   "properties": {
     "functions": {
       "type": "array",
@@ -16,15 +43,20 @@
         "type": "string",
         "enum": [
           "parse",
+          "parse_indented",
           "build_hierarchy",
+          "build_model",
           "get_string",
           "get_int",
           "get_bool",
           "get_float",
           "get_list",
           "filter",
+          "compose",
           "expand_dotted",
-          "canonical_format"
+          "canonical_format",
+          "load",
+          "print"
         ]
       }
     },
@@ -38,11 +70,12 @@
           {
             "enum": [
               "comments",
-              "unicode",
+              "empty_keys",
               "multiline",
               "multiline_continuation",
-              "whitespace",
-              "empty_keys"
+              "multiline_keys",
+              "unicode",
+              "whitespace"
             ]
           },
           {
@@ -58,26 +91,13 @@
       "type": "array",
       "description": "Behavioral choices for your implementation (mutually exclusive pairs documented via conflicts field in tests)",
       "uniqueItems": true,
-      "items": {
-        "type": "string",
-        "enum": [
-          "boolean_strict",
-          "boolean_lenient",
-          "tabs_as_content",
-          "tabs_as_whitespace",
-          "indent_spaces",
-          "indent_tabs",
-          "crlf_preserve_literal",
-          "crlf_normalize_to_lf",
-          "list_coercion_enabled",
-          "list_coercion_disabled",
-          "array_order_insertion",
-          "array_order_lexicographic",
-          "toplevel_indent_strip",
-          "toplevel_indent_preserve",
-          "path_traversal"
-        ]
-      }
+      "items": { "$ref": "#/definitions/behaviorName" }
+    },
+    "optional_behaviors": {
+      "type": "array",
+      "description": "Behaviors your implementation supports as opt-in (e.g. via function options) but does not select as primary. Used by tests that allow multiple behavior choices.",
+      "uniqueItems": true,
+      "items": { "$ref": "#/definitions/behaviorName" }
     },
     "variants": {
       "type": "array",
