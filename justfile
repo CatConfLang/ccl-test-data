@@ -87,6 +87,26 @@ validate-tags-offline:
 stats:
     go run ./cmd/ccl-test-runner stats --input source_tests
 
+list:
+    go run ./cmd/ccl-test-runner test --list
+
+# Build the test-reader binary
+build-test-reader:
+    go build -o bin/test-reader ./cmd/test-reader
+
+# Launch interactive test viewer TUI
+tui: view-tests
+
+# Interactive test viewer (TUI-based) - builds test-reader if needed
+view-tests PATH="generated_tests":
+    just build-test-reader
+    ./bin/test-reader {{PATH}}
+
+# Static test viewer (CLI output) - builds test-reader if needed
+view-tests-static PATH="generated_tests":
+    just build-test-reader
+    ./bin/test-reader {{PATH}} --static
+
 # Clean, build, lint, and test (ensures clean state)
 reset:
     just clean
